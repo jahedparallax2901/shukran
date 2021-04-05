@@ -45,9 +45,13 @@
 }
 
 .header--furniture .header__left {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   max-width: 270px;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .header--furniture .ps-form--quick-search {
@@ -159,6 +163,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   padding-left: 140px;
 }
@@ -299,3 +304,4 @@
   border-top: 1px solid #e1e1e1;
   background-color: #f8f8f8;
 }
+/*# sourceMappingURL=furniture.css.map */

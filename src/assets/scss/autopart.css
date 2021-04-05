@@ -42,7 +42,9 @@
   border-left: 1px solid #e1e1e1;
   border-top: 1px solid #e1e1e1;
   background-color: #ffffff;
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+  -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
 
@@ -55,6 +57,7 @@
 }
 
 .header--autopart .menu--product-categories:hover .menu__content {
+  -webkit-transform: translateY(25px);
   transform: translateY(25px);
 }
 
@@ -104,6 +107,7 @@
 }
 
 .header--autopart.header--sticky .menu--product-categories:hover .menu__content {
+  -webkit-transform: translateY(15px);
   transform: translateY(15px);
 }
 
@@ -192,6 +196,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   padding-left: 140px;
 }
@@ -294,6 +299,7 @@
   left: 50%;
   max-width: 1200px;
   margin: 0 auto;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 
@@ -326,3 +332,4 @@
     padding: 50px 0 30px;
   }
 }
+/*# sourceMappingURL=autopart.css.map */

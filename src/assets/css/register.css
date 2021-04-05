@@ -1,0 +1,249 @@
+.register-account {
+    max-width: 430px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.ps-form--account .ps-tab-list{
+    margin-bottom: 0px;
+}
+.ps-my-account {
+    min-height: 100%;
+    padding: 50px;
+    background-color: #f4f5f5;
+}
+@media screen and (max-width: 1366px){
+    .ps-my-account {
+        min-height: 100%;
+        padding: 40px;
+        background-color: #f1f1f1;
+    }
+}
+@media screen and (max-width: 768px){
+    .ps-my-account {
+        min-height: 100%;
+        padding: 30px;
+        background-color: #f1f1f1;
+    }
+}
+@media screen and (max-width: 576px){
+    .ps-my-account {
+        min-height: 100%;
+        padding: 20px 0px;
+        background-color: #f1f1f1;
+    }
+}
+
+
+/* =================== Start User Profile =====================*/
+.ps-form--account-setting .ps-form__header h3 {
+    font-weight: 600;
+    margin-bottom: 21px;
+}
+.ps-section--account-modified {
+    padding: 50px 0;
+    background: #f4f5f5;
+}
+@media screen and (max-width: 1366px){
+    .ps-section--account-modified {
+        padding: 40px 0;
+        background: #f4f5f5;
+    }
+}
+@media screen and (max-width: 768px){
+    .ps-section--account-modified {
+        padding: 30px 0;
+        background: #f4f5f5;
+    }
+}
+@media screen and (max-width: 576px){
+    .ps-section--account-modified {
+        padding: 20px 0;
+        background: #f4f5f5;
+    }
+}
+.ps-section__left-modified{
+    background: #fff;
+    padding: 20px;
+}
+.ps-section__right-modified{
+    background: #fff;
+    padding: 20px;
+}
+.ps-widget--account-dashboard .ps-widget__content ul li.active {
+    background-color: #ED1C24;
+    transition: all .3s ease-in-out;
+}
+.ps-btn, button.ps-btn {
+    color: #ffffff;
+    background-color: #ED1C24;
+    transition: all .3s ease-in-out;
+}
+/* =================== End User Profile =====================*/
+
+.invoice-main-content{
+    background: #f4f5f5;
+    padding: 50px 0px;
+}
+@media screen and (max-width: 1366px){
+    .invoice-main-content{
+        padding: 40px 0px;
+    }
+}
+@media screen and (max-width: 768px){
+    .invoice-main-content{
+        padding: 30px 0px;
+    }
+}
+@media screen and (max-width: 576px){
+    .invoice-main-content{
+        padding: 20px 0px;
+    }
+}
+.invoice-section-block{
+    background: #FFFFFF;
+    padding: 20px;
+}
+.invoice-outer {
+    background-color: #ffffff;
+}
+
+.invoice-table {
+    width: 100%;
+    min-width: 768px;
+}
+.invoice-table .invoice-title{
+    padding: 15px 0;
+    font-size: 2.5rem;
+    color: #ED1C24;
+}
+.invoice-table .invoice-title-alt {
+    font-size: 2.1rem;
+}
+.invoice-table .brand-logo {
+    height: 50px;
+}
+.invoice-table thead tr th{
+    background: #f4f5f5;
+    padding: 10px;
+    vertical-align: middle;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.invoice-table tbody tr td{
+    padding: 10px;
+    font-weight: 600;
+    vertical-align: middle;
+    font-size: 16px;
+}
+ .invoice-table tbody tr td .dispute-review{
+    font-size: 16px;
+     opacity: 1;
+ }
+.invoice-table tbody tr td span{
+    font-size: 16px;
+}
+.invoice-table tbody tr td .order-date-tag{
+    color: #637381;
+    padding-left: 10px;
+}
+.invoice-table .brand-logo .v-top td {
+    vertical-align: top;
+}
+
+.invoice-table .brand-logo .v-middle td {
+    vertical-align: middle;
+}
+
+table {
+    width: 100%;
+    line-height: 1.4;
+}
+.delivery-progress-timeline {
+    background-color: #fff;
+    padding: 20px 0;
+    position: relative;
+    margin-bottom: 30px;
+}
+.delivery-progress-timeline:before {
+    content: "";
+}
+.delivery-progress-timeline.grid-6 .progress-line {
+    width: calc(83.33333% - 5px);
+    left: calc(5px + 8.33333%);
+    height: 3px;
+    display: block;
+    position: absolute;
+    top: 75px;
+    background-color: #e2e6e8;
+}
+.delivery-progress-timeline .timeline-inner {
+    display: flex;
+}
+.delivery-progress-timeline.grid-6 .progress-block {
+    width: 16.66667%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 16.66667%;
+}
+.delivery-progress-timeline .progress-block {
+    width: 16.666667%;
+    flex: 0 0 16.666667%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+}
+.delivery-progress-timeline .progress-block .date {
+    margin-bottom: 40px;
+}
+.delivery-progress-timeline .progress-block.completed .circle, .delivery-progress-timeline .progress-block.completed:after {
+    background-color: #006C32;
+}
+.delivery-progress-timeline .progress-block .circle {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 51px;
+    left: 50%;
+    transform: translateX(-3px);
+    background-color: #e2e6e8;
+    z-index: 5;
+    border-radius: 50%;
+}
+.delivery-progress-timeline .progress-block .text h4 {
+    font-size: 16px;
+}
+.delivery-progress-timeline .progress-block .text p {
+    margin: 5px 0 0;
+    line-height: 1.4;
+}
+.delivery-progress-timeline.grid-6 .progress-block {
+    width: 16.66667%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 16.66667%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+}
+.delivery-progress-timeline .progress-block:not(:first-child):after {
+    content: "";
+    height: 3px;
+    position: absolute;
+    top: 55px;
+    right: 50%;
+    width: 100%;
+    background-color: transparent;
+}
+.btn-toggle-collapse {
+    display: block;
+    height: 22px;
+    line-height: 24px;
+    background-color: #f9f9fa;
+    color: #637381;
+    text-align: center;
+    font-size: .8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}

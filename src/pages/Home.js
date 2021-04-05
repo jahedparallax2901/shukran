@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import OwlCarousel from "react-owl-carousel";
 import '../assets/css/style.css';
 import '../assets/css/change.css';
 import '../assets/css/market-place-1.css';
@@ -6,7 +7,6 @@ import '../assets/css/market-place-3.css';
 // import '../assets/css/select2.min.css';
 import shukranLogo from '../assets/img/shukran.png';
 import clothing7 from '../assets/img/products/clothing/7.jpg';
-import banner1 from '../assets/img/downloads/banner-1.jpg';
 import home52 from '../assets/img/slider/home-5/2.jpg';
 import home53 from '../assets/img/slider/home-5/3.jpg';
 import promotion7 from '../assets/img/downloads/promotion7.jpg';
@@ -96,25 +96,66 @@ import productsHomeHealthy3 from '../assets/img/products/home-3/healthy/3.jpg';
 import productsHomeHealthy4 from '../assets/img/products/home-3/healthy/4.jpg';
 import productsHomeHealthy5 from '../assets/img/products/home-3/healthy/5.jpg';
 import productsHomeHealthy6 from '../assets/img/products/home-3/healthy/6.jpg';
-import paymentMethod1 from '../assets/img/payment-method/1.jpg';
-import paymentMethod2 from '../assets/img/payment-method/2.jpg';
 import paymentMethod3 from '../assets/img/payment-method/3.jpg';
-import paymentMethod4 from '../assets/img/payment-method/4.jpg';
 import paymentMethod5 from '../assets/img/payment-method/5.jpg';
 import detailFullWidth1 from '../assets/img/products/detail/fullwidth/1.jpg';
 import detailFullWidth2 from '../assets/img/products/detail/fullwidth/2.jpg';
 import detailFullWidth3 from '../assets/img/products/detail/fullwidth/3.jpg';
+import downloadBodyspray from '../assets/img/downloads/bodyspray.JPG';
+import downloadsBanner5 from '../assets/img/downloads/banner5.png';
+import downloadsBanner6 from '../assets/img/downloads/banner6.png';
+import downloadsSmartwatch from '../assets/img/downloads/smartwatch.jpg';
+import downloadsBangladesh from '../assets/img/downloads/bangladesh.png';
+import downloadsBagpack from '../assets/img/downloads/bagpack.jpeg';
+import downloadsFridge1 from '../assets/img/downloads/fridge1.jpg';
+import downloadsFridge2 from '../assets/img/downloads/fridge2.jpg';
+import bike1 from '../assets/img/downloads/bike1.jpeg';
+import bike2 from '../assets/img/downloads/bike2.jpeg';
+import camera from '../assets/img/downloads/camera.jpg';
+import watch from '../assets/img/downloads/watch.JPG';
+import downloadsChair1 from '../assets/img/downloads/chair1.JPG';
+// import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
+import { faBaby, faBars, faCamera, faCartArrowDown, faFemale, faLanguage, faLaptop, faList, faMedkit, faMobile, faMotorcycle, faSearch, faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+const menuContents = [
+  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faLaptop} />, title: "Computer and accessories"},
+  {id: 2, link: "#", icon: <FontAwesomeIcon icon={faCamera} />, title: "Cameras"},
+  {id: 3, link: "#", icon: <FontAwesomeIcon icon={faMedkit} />, title: "Health & Beauty"},
+  {id: 4, link: "#", icon: <FontAwesomeIcon icon={faBaby} />, title: "Mother & Baby"},
+  {id: 5, link: "#", icon: <FontAwesomeIcon icon={faMobile} />, title: "Mobile & Accessories"},
+  {id: 6, link: "#", icon: <FontAwesomeIcon icon={faUniversalAccess} />, title: "Men's Fashion"},
+  {id: 7, link: "#", icon: <FontAwesomeIcon icon={faFemale} />, title: "Women's Fashion"},
+  {id: 8, link: "#", icon: <FontAwesomeIcon icon={faMotorcycle} />, title: "Automotive and Motorbike"},
+]
+
+const navigationList = [
+  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faBars} />, title: "Menu"},
+  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faList} />, title: "Categories"},
+  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faSearch} />, title: "Search"},
+  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faCartArrowDown} />, title: "Cart"},
+]
+
+const centerBanners = [
+  {id: 1, src: '../assets/img/downloads/banner-1.jpg', link: "#"},
+  {id: 2, src: '../assets/img/downloads/banner5.png', link: "#"},
+  {id: 3, src: '../assets/img/downloads/banner6.png', link: "#"},
+]
 
 class Home extends Component {
     render() {
         return (
-            <div>
-                <div
+
+            <>
+            {/* ================ Start Header Area ================= */}
+    {/* Modal */}
+    <div
       className="modal fade"
-      id="exampleModalCenter"
-      tabIndex="-1"
+      id="login-modal-center"
+      tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
+      aria-labelledby="login-modal-centerTitle"
       aria-hidden="true"
     >
       <div
@@ -136,7 +177,7 @@ class Home extends Component {
           <div className="modal-body login-modal-body">
             <div className="login-form">
               <div className="login-form-group">
-                <label htmlFor="userID" className="sr-only">User ID</label>
+                <label for="userID" className="sr-only">User ID</label>
                 <div className="input-group">
                   <select
                     name="country_code"
@@ -174,7 +215,7 @@ class Home extends Component {
                     ><svg
                       stroke="currentColor"
                       fill="currentColor"
-                      strokeWidth="0"
+                      stroke-width="0"
                       viewBox="0 0 488 512"
                       height="1em"
                       width="1em"
@@ -191,6 +232,7 @@ class Home extends Component {
         </div>
       </div>
     </div>
+    
     <div
       className="ps-block--promotion-header bg--cover"
       data-background="img/promotions/header-promotion.jpg"
@@ -206,7 +248,7 @@ class Home extends Component {
         <a className="ps-btn ps-btn--sm mr-0" href="#">Shop now</a>
       </div>
     </div>
-
+    
     <header
       className="header header--standard header--market-place-1"
       data-sticky="true"
@@ -218,103 +260,24 @@ class Home extends Component {
               <div className="menu__toggle">
                 <i className="icon-menu"></i><span> Shop by Department</span>
               </div>
+
+              
+
+              {/* changed */}
               <div className="menu__content">
                 <ul className="menu--dropdown">
-                  <li>
-                    <a href="#"
-                      ><i className="las la-laptop"></i> Computer and accessories</a
-                    >
-                  </li>
-                  {/* <li className="menu-item-has-children has-mega-menu">
-                    <a href="#"><i className="icon-laundry"></i> Consumer Electronic</a>
-                    <div className="mega-menu">
-                      <div className="mega-menu__column">
-                        <h4>Electronic<span className="sub-toggle"></span></h4>
-                        <ul className="mega-menu__list">
-                          <li><a href="#">Home Audio &amp; Theathers</a></li>
-                          <li><a href="#">TV &amp; Videos</a></li>
-                          <li><a href="#">Camera, Photos &amp; Videos</a></li>
-                          <li><a href="#">Cellphones &amp; Accessories</a></li>
-                          <li><a href="#">Headphones</a></li>
-                          <li><a href="#">Videosgames</a></li>
-                          <li><a href="#">Wireless Speakers</a></li>
-                          <li><a href="#">Office Electronic</a></li>
-                        </ul>
-                      </div>
-                      <div className="mega-menu__column">
-                        <h4>
-                          Accessories &amp; Parts<span className="sub-toggle"></span>
-                        </h4>
-                        <ul className="mega-menu__list">
-                          <li><a href="#">Digital Cables</a></li>
-                          <li><a href="#">Audio &amp; Video Cables</a></li>
-                          <li><a href="#">Batteries</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li> */}
-                  <li>
-                    <a href="#"><i className="las la-camera"></i> Cameras</a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i className="las la-medkit"></i> Health & Beauty</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><i className="las la-baby"></i> Mother & Baby</a>
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i className="las la-mobile"></i> Mobile & Accessories</a
-                    >
-                  </li>
-
-                  {/*  <li className="menu-item-has-children has-mega-menu">
-                    <a href="#"
-                      ><i className="icon-desktop"></i> Computer &amp; Technology</a
-                    >
-                    <div className="mega-menu">
-                      <div className="mega-menu__column">
-                        <h4>
-                          Computer &amp; Technologies<span
-                            className="sub-toggle"
-                          ></span>
-                        </h4>
-                        <ul className="mega-menu__list">
-                          <li><a href="#">Computer &amp; Tablets</a></li>
-                          <li><a href="#">Laptop</a></li>
-                          <li><a href="#">Monitors</a></li>
-                          <li><a href="#">Networking</a></li>
-                          <li><a href="#">Drive &amp; Storages</a></li>
-                          <li><a href="#">Computer Components</a></li>
-                          <li><a href="#">Security &amp; Protection</a></li>
-                          <li><a href="#">Gaming Laptop</a></li>
-                          <li><a href="#">Accessories</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>*/}
-                  <li>
-                    <a href="#"
-                      ><i className="las la-universal-access"></i> Men’s Fashion</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i className="las la-female"></i> Women’s Fashion</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="las la-motorcycle"></i>
-                      Automotive and Motorbike
-                    </a>
-                  </li>
+                  {
+                    menuContents.map(item=>(
+                      <li key={item.id}>
+                        <a href={item.link}>{item.icon} {item.title}</a>
+                      </li>
+                    ))
+                  }
                 </ul>
+              {/* changed - end */}
               </div>
             </div>
-            <a className="ps-logo" href="homepage-3.html"
+            <a className="ps-logo" href="index.html"
               ><img src={shukranLogo} alt=""
             /></a>
           </div>
@@ -363,7 +326,7 @@ class Home extends Component {
                         <a className="ps-product__remove" href="#"
                           ><i className="icon-cross"></i></a
                         ><a href="product-default.html"
-                          >MVMTH classical Leather Watch In Black</a
+                          >MVMTH classNameical Leather Watch In Black</a
                         >
                         <p><strong>Sold by:</strong> YOUNG SHOP</p>
                         <small>1 x ৳59.99</small>
@@ -372,7 +335,7 @@ class Home extends Component {
                     <div className="ps-product--cart-mobile">
                       <div className="ps-product__thumbnail">
                         <a href="#"
-                          ><img src={clothing5} alt=""
+                          ><img src={downloadBodyspray} alt=""
                         /></a>
                       </div>
                       <div className="ps-product__content">
@@ -390,7 +353,7 @@ class Home extends Component {
                   <div className="ps-cart__footer">
                     <h3>Sub Total:<strong>৳59.99</strong></h3>
                     <figure>
-                      <a className="ps-btn" href="shopping-cart.html">View Cart</a
+                      <a className="ps-btn" href="#">View Cart</a
                       ><a className="ps-btn" href="checkout.html">Checkout</a>
                     </figure>
                   </div>
@@ -402,7 +365,7 @@ class Home extends Component {
                   <a
                     href="#"
                     data-toggle="modal"
-                    data-target="#exampleModalCenter"
+                    data-target="#login-modal-center"
                     >Login</a
                   >
                   <a href="my-account.html">Register</a>
@@ -423,110 +386,26 @@ class Home extends Component {
                 </div>
                 <div className="menu__content">
                   <ul className="menu--dropdown">
-                    <li>
-                      <a href="#"
-                        ><i className="las la-laptop"></i> Computer and
-                        accessories</a
-                      >
-                    </li>
-                    {/*  <li className="menu-item-has-children has-mega-menu">
-                      <a href="#"><i className="icon-laundry"></i> Consumer Electronic</a>
-                      <div className="mega-menu">
-                        <div className="mega-menu__column">
-                          <h4>Electronic<span className="sub-toggle"></span></h4>
-                          <ul className="mega-menu__list">
-                            <li><a href="#">Home Audio &amp; Theathers</a></li>
-                            <li><a href="#">TV &amp; Videos</a></li>
-                            <li><a href="#">Camera, Photos &amp; Videos</a></li>
-                            <li><a href="#">Cellphones &amp; Accessories</a></li>
-                            <li><a href="#">Headphones</a></li>
-                            <li><a href="#">Videosgames</a></li>
-                            <li><a href="#">Wireless Speakers</a></li>
-                            <li><a href="#">Office Electronic</a></li>
-                          </ul>
-                        </div>
-                        <div className="mega-menu__column">
-                          <h4>
-                            Accessories &amp; Parts<span className="sub-toggle"></span>
-                          </h4>
-                          <ul className="mega-menu__list">
-                            <li><a href="#">Digital Cables</a></li>
-                            <li><a href="#">Audio &amp; Video Cables</a></li>
-                            <li><a href="#">Batteries</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li> */}
-                    <li>
-                      <a href="#"><i className="las la-camera"></i> Cameras</a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i className="las la-medkit"></i> Health & Beauty</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"><i className="las la-baby"></i> Mother & Baby</a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i className="las la-mobile"></i> Mobile & Accessories</a
-                      >
-                    </li>
-
-                    {/*  <li className="menu-item-has-children has-mega-menu">
-                      <a href="#"
-                        ><i className="icon-desktop"></i> Computer &amp; Technology</a
-                      >
-                      <div className="mega-menu">
-                        <div className="mega-menu__column">
-                          <h4>
-                            Computer &amp; Technologies<span
-                              className="sub-toggle"
-                            ></span>
-                          </h4>
-                          <ul className="mega-menu__list">
-                            <li><a href="#">Computer &amp; Tablets</a></li>
-                            <li><a href="#">Laptop</a></li>
-                            <li><a href="#">Monitors</a></li>
-                            <li><a href="#">Networking</a></li>
-                            <li><a href="#">Drive &amp; Storages</a></li>
-                            <li><a href="#">Computer Components</a></li>
-                            <li><a href="#">Security &amp; Protection</a></li>
-                            <li><a href="#">Gaming Laptop</a></li>
-                            <li><a href="#">Accessories</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li> */}
-                    <li>
-                      <a href="#"
-                        ><i className="las la-universal-access"></i> Men’s
-                        Fashion</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i className="las la-female"></i> Women’s Fashion</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i className="las la-motorcycle"></i>
-                        Automotive and Motorbike
-                      </a>
-                    </li>
+                    {/* changed */}
+                  {
+                    menuContents.map(item=>(
+                      <li key={item.id}>
+                        <a href={item.link}>{item.icon} {item.title}</a>
+                      </li>
+                    ))
+                  }
+                  {/* changed - end */}
                   </ul>
                 </div>
               </div>
             </div>
             <div className="navigation__center">
               <ul className="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Campaign</a></li>
-                <li><a href="#">Vendor Stores</a></li>
-                <li><a href="#">Become a Vendor</a></li>
-                <li><a href="#">Order Tracking</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="campaign.html">Campaign</a></li>
+                <li><a href="vendor-store.html">Vendor Stores</a></li>
+                <li><a href="become-a-vendor.html">Become a Vendor</a></li>
+                <li><a href="invoices.html">Order Tracking</a></li>
               </ul>
             </div>
             <div className="navigation__right">
@@ -542,39 +421,8 @@ class Home extends Component {
         </div>
       </nav>
     </header>
+    
     <header className="header header--mobile" data-sticky="true">
-      <div className="header__top">
-        <div className="header__right">
-          <ul className="navigation__extra">
-            <li><a href="#">Sell on Martfury</a></li>
-            <li><a href="#">Tract your order</a></li>
-            <li>
-              <div className="ps-dropdown">
-                <a href="#">US Dollar</a>
-                <ul className="ps-dropdown-menu">
-                  <li><a href="#">Us Dollar</a></li>
-                  <li><a href="#">Euro</a></li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <div className="ps-dropdown language">
-                <a href="#"><img src={endFlag} alt="" />English</a>
-                <ul className="ps-dropdown-menu">
-                  <li>
-                    <a href="#"
-                      ><img src={germanyFlag} alt="" /> Germany</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"><img src={franceFlag} alt="" /> France</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
       <div className="navigation--mobile">
         <div className="navigation__left">
           <a className="ps-logo" href="index.html"
@@ -599,7 +447,7 @@ class Home extends Component {
                       <a className="ps-product__remove" href="#"
                         ><i className="icon-cross"></i></a
                       ><a href="product-default.html"
-                        >MVMTH Classical Leather Watch In Black</a
+                        >MVMTH classNameical Leather Watch In Black</a
                       >
                       <p><strong>Sold by:</strong> YOUNG SHOP</p>
                       <small>1 x ৳59.99</small>
@@ -608,7 +456,7 @@ class Home extends Component {
                   <div className="ps-product--cart-mobile">
                     <div className="ps-product__thumbnail">
                       <a href="#"
-                        ><img src={clothing7} alt=""
+                        ><img src={downloadBodyspray} alt=""
                       /></a>
                     </div>
                     <div className="ps-product__content">
@@ -625,7 +473,7 @@ class Home extends Component {
                 <div className="ps-cart__footer">
                   <h3>Sub Total:<strong>৳59.99</strong></h3>
                   <figure>
-                    <a className="ps-btn" href="shopping-cart.html">View Cart</a
+                    <a className="ps-btn" href="#">View Cart</a
                     ><a className="ps-btn" href="checkout.html">Checkout</a>
                   </figure>
                 </div>
@@ -634,7 +482,11 @@ class Home extends Component {
             <div className="ps-block--user-header">
               <div className="ps-block__left"><i className="icon-user"></i></div>
               <div className="ps-block__right">
-                <a href="my-account.html">Login</a
+                <a
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#login-modal-center"
+                  >Login</a
                 ><a href="my-account.html">Register</a>
               </div>
             </div>
@@ -654,6 +506,7 @@ class Home extends Component {
         </form>
       </div>
     </header>
+    
     <div className="ps-panel--sidebar" id="cart-mobile">
       <div className="ps-panel__header">
         <h3>Shopping Cart</h3>
@@ -669,7 +522,7 @@ class Home extends Component {
                 <a className="ps-product__remove" href="#"
                   ><i className="icon-cross"></i></a
                 ><a href="product-default.html"
-                  >MVMTH Classical Leather Watch In Black</a
+                  >MVMTH classNameical Leather Watch In Black</a
                 >
                 <p><strong>Sold by:</strong> YOUNG SHOP</p>
                 <small>1 x ৳59.99</small>
@@ -679,57 +532,49 @@ class Home extends Component {
           <div className="ps-cart__footer">
             <h3>Sub Total:<strong>৳59.99</strong></h3>
             <figure>
-              <a className="ps-btn" href="shopping-cart.html">View Cart</a
+              <a className="ps-btn" href="#">View Cart</a
               ><a className="ps-btn" href="checkout.html">Checkout</a>
             </figure>
           </div>
         </div>
       </div>
     </div>
+
+
     <div className="ps-panel--sidebar" id="navigation-mobile">
       <div className="ps-panel__header">
         <h3>Categories</h3>
       </div>
       <div className="ps-panel__content">
         <ul className="menu--mobile">
-          <li><a href="#">Hot Promotions</a></li>
-          <li className="menu-item-has-children has-mega-menu">
-            <a href="#">Consumer Electronic</a><span className="sub-toggle"></span>
-            <div className="mega-menu">
-              <div className="mega-menu__column">
-                <h4>Electronic<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="#">Home Audio &amp; Theathers</a></li>
-                  <li><a href="#">TV &amp; Videos</a></li>
-                  <li><a href="#">Camera, Photos &amp; Videos</a></li>
-                  <li><a href="#">Cellphones &amp; Accessories</a></li>
-                  <li><a href="#">Headphones</a></li>
-                  <li><a href="#">Videosgames</a></li>
-                  <li><a href="#">Wireless Speakers</a></li>
-                  <li><a href="#">Office Electronic</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Accessories &amp; Parts<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="#">Digital Cables</a></li>
-                  <li><a href="#">Audio &amp; Video Cables</a></li>
-                  <li><a href="#">Batteries</a></li>
-                </ul>
-              </div>
-            </div>
+          <li>
+            <a href="#"
+              ><i className="las la-laptop"></i> Computer and accessories</a
+            >
           </li>
-          <li><a href="#">Clothing &amp; Apparel</a></li>
-          <li><a href="#">Home, Garden &amp; Kitchen</a></li>
-          <li><a href="#">Health &amp; Beauty</a></li>
-          <li><a href="#">Yewelry &amp; Watches</a></li>
-          <li className="menu-item-has-children has-mega-menu">
-            <a href="#">Computer &amp; Technology</a
-            ><span className="sub-toggle"></span>
+          <li>
+            <a href="#"><i className="las la-camera"></i> Cameras</a>
+          </li>
+          <li>
+            <a href="#"><i className="las la-medkit"></i> Health & Beauty</a>
+          </li>
+          <li>
+            <a href="#"><i className="las la-baby"></i> Mother & Baby</a>
+          </li>
+          <li>
+            <a href="#"><i className="las la-mobile"></i> Mobile & Accessories</a>
+          </li>
+
+          {/* <li className="menu-item-has-children has-mega-menu">
+            <a href="#"
+              ><i className="icon-desktop"></i> Computer &amp; Technology</a
+            >
             <div className="mega-menu">
               <div className="mega-menu__column">
                 <h4>
-                  Computer &amp; Technologies<span className="sub-toggle"></span>
+                  Computer &amp; Technologies<span
+                    className="sub-toggle"
+                  ></span>
                 </h4>
                 <ul className="mega-menu__list">
                   <li><a href="#">Computer &amp; Tablets</a></li>
@@ -744,32 +589,40 @@ class Home extends Component {
                 </ul>
               </div>
             </div>
+          </li> */}
+          <li>
+            <a href="#"
+              ><i className="las la-universal-access"></i> Men’s Fashion</a
+            >
           </li>
-          <li><a href="#">Babies &amp; Moms</a></li>
-          <li><a href="#">Sport &amp; Outdoor</a></li>
-          <li><a href="#">Phones &amp; Accessories</a></li>
-          <li><a href="#">Books &amp; Office</a></li>
-          <li><a href="#">Cars &amp; Motocycles</a></li>
-          <li><a href="#">Home Improments</a></li>
-          <li><a href="#">Vouchers &amp; Services</a></li>
+          <li>
+            <a href="#"><i className="las la-female"></i> Women’s Fashion</a>
+          </li>
+          <li>
+            <a href="#">
+              <i className="las la-motorcycle"></i>
+              Automotive and Motorbike
+            </a>
+          </li>
         </ul>
       </div>
     </div>
+    
+    {/* changed */}
     <div className="navigation--list">
       <div className="navigation__content">
-        <a className="navigation__item ps-toggle--sidebar" href="#menu-mobile"
-          ><i className="icon-menu"></i><span> Menu</span></a
-        ><a
-          className="navigation__item ps-toggle--sidebar"
-          href="#navigation-mobile"
-          ><i className="icon-list4"></i><span> Categories</span></a
-        ><a className="navigation__item ps-toggle--sidebar" href="#search-sidebar"
-          ><i className="icon-magnifier"></i><span> Search</span></a
-        ><a className="navigation__item ps-toggle--sidebar" href="#cart-mobile"
-          ><i className="icon-bag2"></i><span> Cart</span></a
-        >
+        {
+          navigationList.map(item=>(
+            <a key={item.id} className="navigation__item ps-toggle--sidebar" href={item.link}>
+              {item.icon}<span> {item.title}</span>
+            </a>
+          ))
+        }
       </div>
     </div>
+    {/* changed-end */}
+
+
     <div className="ps-panel--sidebar" id="search-sidebar">
       <div className="ps-panel__header">
         <form className="ps-form--search-mobile" action="index.html" method="get">
@@ -791,259 +644,72 @@ class Home extends Component {
       </div>
       <div className="ps-panel__content">
         <ul className="menu--mobile">
-          <li className="menu-item-has-children">
-            <a href="index.html">Home</a><span className="sub-toggle"></span>
-            <ul className="sub-menu">
-              <li><a href="index.html">Marketplace Full Width</a></li>
-              <li><a href="homepage-2.html">Home Auto Parts</a></li>
-              <li><a href="homepage-10.html">Home Technology</a></li>
-              <li><a href="homepage-9.html">Home Organic</a></li>
-              <li><a href="homepage-3.html">Home Marketplace V1</a></li>
-              <li><a href="homepage-4.html">Home Marketplace V2</a></li>
-              <li><a href="homepage-5.html">Home Marketplace V3</a></li>
-              <li><a href="homepage-6.html">Home Marketplace V4</a></li>
-              <li><a href="homepage-7.html">Home Electronic</a></li>
-              <li><a href="homepage-8.html">Home Furniture</a></li>
-              <li><a href="homepage-kids.html">Home Kids</a></li>
-              <li>
-                <a href="homepage-photo-and-video.html"
-                  >Home photo and picture</a
-                >
-              </li>
-              <li><a href="home-medical.html">Home Medical</a></li>
-            </ul>
-          </li>
-          <li className="menu-item-has-children has-mega-menu">
-            <a href="shop-default.html">Shop</a><span className="sub-toggle"></span>
-            <div className="mega-menu">
-              <div className="mega-menu__column">
-                <h4>Catalog Pages<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="shop-default.html">Shop Default</a></li>
-                  <li><a href="shop-default.html">Shop Fullwidth</a></li>
-                  <li><a href="shop-categories.html">Shop Categories</a></li>
-                  <li><a href="shop-sidebar.html">Shop Sidebar</a></li>
-                  <li>
-                    <a href="shop-sidebar-without-banner.html"
-                      >Shop Without Banner</a
-                    >
-                  </li>
-                  <li><a href="shop-carousel.html">Shop Carousel</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Product Layout<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="product-default.html">Default</a></li>
-                  <li><a href="product-extend.html">Extended</a></li>
-                  <li><a href="product-full-content.html">Full Content</a></li>
-                  <li><a href="product-box.html">Boxed</a></li>
-                  <li><a href="product-sidebar.html">Sidebar</a></li>
-                  <li><a href="product-default.html">Fullwidth</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Product Types<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="product-default.html">Simple</a></li>
-                  <li><a href="product-default.html">Color Swatches</a></li>
-                  <li>
-                    <a href="product-image-swatches.html">Images Swatches</a>
-                  </li>
-                  <li><a href="product-countdown.html">Countdown</a></li>
-                  <li><a href="product-multi-vendor.html">Multi-Vendor</a></li>
-                  <li><a href="product-instagram.html">Instagram</a></li>
-                  <li><a href="product-affiliate.html">Affiliate</a></li>
-                  <li><a href="product-on-sale.html">On sale</a></li>
-                  <li><a href="product-video.html">Video Featured</a></li>
-                  <li><a href="product-groupped.html">Grouped</a></li>
-                  <li><a href="product-out-stock.html">Out Of Stock</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Woo Pages<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                  <li><a href="checkout.html">Checkout</a></li>
-                  <li><a href="whishlist.html">Whishlist</a></li>
-                  <li><a href="compare.html">Compare</a></li>
-                  <li><a href="order-tracking.html">Order Tracking</a></li>
-                  <li><a href="my-account.html">My Account</a></li>
-                  <li><a href="checkout-2.html">Checkout 2</a></li>
-                  <li><a href="shipping.html">Shipping</a></li>
-                  <li><a href="payment.html">Payment</a></li>
-                  <li><a href="payment-success.html">Payment Success</a></li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li className="menu-item-has-children has-mega-menu">
-            <a href="#">Pages</a><span className="sub-toggle"></span>
-            <div className="mega-menu">
-              <div className="mega-menu__column">
-                <h4>Basic Page<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="about-us.html">About Us</a></li>
-                  <li><a href="contact-us.html">Contact</a></li>
-                  <li><a href="faqs.html">Faqs</a></li>
-                  <li><a href="comming-soon.html">Comming Soon</a></li>
-                  <li><a href="404-page.html">404 Page</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Vendor Pages<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="become-a-vendor.html">Become a Vendor</a></li>
-                  <li><a href="vendor-store.html">Vendor Store</a></li>
-                  <li>
-                    <a href="vendor-dashboard-free.html"
-                      >Vendor Dashboard Free</a
-                    >
-                  </li>
-                  <li>
-                    <a href="vendor-dashboard-pro.html">Vendor Dashboard Pro</a>
-                  </li>
-                  <li><a href="store-list.html">Store List</a></li>
-                  <li><a href="store-list.html">Store List 2</a></li>
-                  <li><a href="store-detail.html">Store Detail</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Account Pages<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="user-information.html">User Information</a></li>
-                  <li><a href="addresses.html">Addresses</a></li>
-                  <li><a href="invoices.html">Invoices</a></li>
-                  <li><a href="invoice-detail.html">Invoice Detail</a></li>
-                  <li><a href="notifications.html">Notifications</a></li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li className="menu-item-has-children has-mega-menu">
-            <a href="#">Blogs</a><span className="sub-toggle"></span>
-            <div className="mega-menu">
-              <div className="mega-menu__column">
-                <h4>Blog Layout<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="blog-grid.html">Grid</a></li>
-                  <li><a href="blog-list.html">Listing</a></li>
-                  <li><a href="blog-small-thumb.html">Small Thumb</a></li>
-                  <li><a href="blog-left-sidebar.html">Left Sidebar</a></li>
-                  <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-                </ul>
-              </div>
-              <div className="mega-menu__column">
-                <h4>Single Blog<span className="sub-toggle"></span></h4>
-                <ul className="mega-menu__list">
-                  <li><a href="blog-detail.html">Single 1</a></li>
-                  <li><a href="blog-detail-2.html">Single 2</a></li>
-                  <li><a href="blog-detail-3.html">Single 3</a></li>
-                  <li><a href="blog-detail-4.html">Single 4</a></li>
-                </ul>
-              </div>
-            </div>
-          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="campaign.html">Campaign</a></li>
+          <li><a href="vendor-store.html">Vendor Stores</a></li>
+          <li><a href="become-a-vendor.html">Become a Vendor</a></li>
+          <li><a href="invoices.html">Order Tracking</a></li>
         </ul>
       </div>
     </div>
+    {/*================ End Header Area =================*/}
 
+    {/*============ Start Main Body Area =============*/}
     <div id="homepage-5">
       <div className="ps-home-banner">
         <div className="container">
           <div className="ps-section__left">
+            {/* changed */}
             <ul className="menu--dropdown">
-              <li>
-                <a href="#"
-                  ><i className="las la-laptop"></i> Computer and accessories</a
-                >
-              </li>
-              {/* <li className="menu-item-has-children has-mega-menu">
-                <a href="#"><i className="icon-laundry"></i> Consumer Electronic</a>
-                <div className="mega-menu">
-                  <div className="mega-menu__column">
-                    <h4>Electronic<span className="sub-toggle"></span></h4>
-                    <ul className="mega-menu__list">
-                      <li><a href="#">Home Audio &amp; Theathers</a></li>
-                      <li><a href="#">TV &amp; Videos</a></li>
-                      <li><a href="#">Camera, Photos &amp; Videos</a></li>
-                      <li><a href="#">Cellphones &amp; Accessories</a></li>
-                      <li><a href="#">Headphones</a></li>
-                      <li><a href="#">Videosgames</a></li>
-                      <li><a href="#">Wireless Speakers</a></li>
-                      <li><a href="#">Office Electronic</a></li>
-                    </ul>
-                  </div>
-                  <div className="mega-menu__column">
-                    <h4>
-                      Accessories &amp; Parts<span className="sub-toggle"></span>
-                    </h4>
-                    <ul className="mega-menu__list">
-                      <li><a href="#">Digital Cables</a></li>
-                      <li><a href="#">Audio &amp; Video Cables</a></li>
-                      <li><a href="#">Batteries</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </li> */}
-              <li>
-                <a href="#"><i className="las la-camera"></i> Cameras</a>
-              </li>
-              <li>
-                <a href="#"><i className="las la-medkit"></i> Health & Beauty</a>
-              </li>
-              <li>
-                <a href="#"><i className="las la-baby"></i> Mother & Baby</a>
-              </li>
-              <li>
-                <a href="#"
-                  ><i className="las la-mobile"></i> Mobile & Accessories</a
-                >
-              </li>
-
-              {/* <li className="menu-item-has-children has-mega-menu">
-                <a href="#"
-                  ><i className="icon-desktop"></i> Computer &amp; Technology</a
-                >
-                <div className="mega-menu">
-                  <div className="mega-menu__column">
-                    <h4>
-                      Computer &amp; Technologies<span
-                        className="sub-toggle"
-                      ></span>
-                    </h4>
-                    <ul className="mega-menu__list">
-                      <li><a href="#">Computer &amp; Tablets</a></li>
-                      <li><a href="#">Laptop</a></li>
-                      <li><a href="#">Monitors</a></li>
-                      <li><a href="#">Networking</a></li>
-                      <li><a href="#">Drive &amp; Storages</a></li>
-                      <li><a href="#">Computer Components</a></li>
-                      <li><a href="#">Security &amp; Protection</a></li>
-                      <li><a href="#">Gaming Laptop</a></li>
-                      <li><a href="#">Accessories</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </li>  */}
-              <li>
-                <a href="#"
-                  ><i className="las la-universal-access"></i> Men’s Fashion</a
-                >
-              </li>
-              <li>
-                <a href="#"><i className="las la-female"></i> Women’s Fashion</a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="las la-motorcycle"></i>
-                  Automotive and Motorbike
-                </a>
-              </li>
+            {
+              menuContents.map(item=>(
+                <li key={item.id}>
+                  <a href={item.link}>{item.icon} {item.title}</a>
+                </li>
+              ))
+            }
             </ul>
+            {/* changed-end */}
           </div>
+
+          {/* Now Working */}
+          
           <div className="ps-section__center">
-            <div
+          <OwlCarousel
+          className="ps-carousel--dots owl-slider"
+          loop={false}
+          nav={true}
+          // responsive={
+          //   {
+          //     0: {
+          //       items: 1,
+          //       margin: 10
+          //     },
+          //     768: {
+          //       items: 1,
+          //       margin: 20
+          //     },
+          //     991: {
+          //       items: 3,
+          //       margin: 25
+          //     },
+          //     1200: {
+          //       items: 4,
+          //       margin: 30
+          //     }
+          //   }
+          // }
+          navText={[
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>`
+          ]}
+          dots={false}
+          items={1}>
+          {centerBanners.map((product, index) => (
+            <a href="#"><img src={centerBanners.src} alt="" /></a>
+          ))}
+        </OwlCarousel>
+            {/* <div
               className="ps-carousel--dots owl-slider"
               data-owl-auto="true"
               data-owl-loop="true"
@@ -1059,23 +725,525 @@ class Home extends Component {
               data-owl-duration="1000"
               data-owl-mousedrag="on"
             >
-              <a href="#"><img src={banner1} alt="" /></a
-              ><a href="#"><img src={home52} alt="" /></a
-              ><a href="#"><img src={home53} alt="" /></a>
-            </div>
-            <a href="#"><img src={promotion7} alt="" /></a>
+              <a href="#"><img src={banner1} alt="" /></a>
+              <a href="#"><img src={downloadsBanner5} alt="" /></a>
+              <a href="#"><img src={downloadsBanner6} alt="" /></a>
+            </div> */}
+            {/* <a href="#"><img src={promotion7} alt="" /></a> */}
           </div>
+          
+          
           <div className="ps-section__right">
-            <a href="#"
-              ><img src={promotion1} alt="" /></a
-            ><a href="#"><img src={promotion2} alt="" /></a
-            ><a className="wide" href="#"
-              ><img src={promotion3} alt="" /></a
-            ><a href="#"><img src={beauty1} alt="" /></a
-            ><a href="#"><img src={technology2} alt="" /></a>
+            <a href="#"><img src={downloadsSmartwatch} alt="" /></a
+            ><a href="#"><img src={downloadsBangladesh} alt="" /></a>
+            {/* <a className="wide" href="#"><img src={promotion3} alt=""/></a> */}
+            <a href="#"><img src={downloadsBagpack} alt="" /></a>
+            <a href="#"><img src={promotion2} alt="" /></a>
           </div>
         </div>
       </div>
+
+      <div className="ps-deal-hot">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div className="ps-block--deal-hot" data-mh="dealhot">
+                <div className="ps-block__header">
+                  <h3>Campaign</h3>
+                  <div className="ps-block__navigation">
+                    <a className="ps-carousel__prev" href=".ps-carousel--deal-hot"
+                      ><i className="icon-chevron-left"></i></a
+                    ><a className="ps-carousel__next" href=".ps-carousel--deal-hot"
+                      ><i className="icon-chevron-right"></i
+                    ></a>
+                  </div>
+                </div>
+                <div className="ps-product__content">
+                  <div
+                    className="ps-carousel--deal-hot ps-carousel--deal-hot owl-slider"
+                    data-owl-auto="true"
+                    data-owl-loop="true"
+                    data-owl-speed="5000"
+                    data-owl-gap="0"
+                    data-owl-nav="false"
+                    data-owl-dots="false"
+                    data-owl-item="1"
+                    data-owl-item-xs="1"
+                    data-owl-item-sm="1"
+                    data-owl-item-md="1"
+                    data-owl-item-lg="1"
+                    data-owl-duration="1000"
+                    data-owl-mousedrag="on"
+                  >
+                    <div className="ps-product--detail ps-product--hot-deal">
+                      <div className="ps-product__header">
+                        <div className="ps-product__thumbnail" data-vertical="true">
+                          <figure>
+                            <div className="ps-wrapper">
+                              <div
+                                className="ps-product__gallery"
+                                data-arrow="true"
+                              >
+                                <div className="item">
+                                  <a href="#"
+                                    ><img
+                                      src={downloadsFridge1}
+                                      alt=""
+                                  /></a>
+                                </div>
+                                <div className="item">
+                                  <a href="#"
+                                    ><img
+                                      src={downloadsFridge2}
+                                      alt=""
+                                  /></a>
+                                </div>
+                              </div>
+                              <div className="ps-product__badge">
+                                <span
+                                  >Save <br />
+                                  ৳280.000</span
+                                >
+                              </div>
+                            </div>
+                          </figure>
+                          <div
+                            className="ps-product__variants"
+                            data-item="4"
+                            data-md="3"
+                            data-sm="3"
+                            data-arrow="false"
+                          >
+                            <div className="item">
+                              <img src={downloadsFridge1} alt="" />
+                            </div>
+                            <div className="item">
+                              <img src={downloadsFridge2} alt="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="ps-product__info">
+                          <h5>Clothing & Apparel</h5>
+                          <h3 className="ps-product__name">
+                            Walton WFD-1F3-GDEL-XX Direct Cool Refrigerator -
+                            176 Ltr
+                          </h3>
+                          <div className="ps-product__meta">
+                            <h4 className="ps-product__price sale">
+                              ৳20,500.00 <del> ৳25000.00</del>
+                            </h4>
+                            <div className="ps-product__rating">
+                              <select className="ps-rating" data-read-only="true">
+                                <option value="1">1</option>
+                                <option value="1">2</option>
+                                <option value="1">3</option>
+                                <option value="1">4</option>
+                                <option value="2">5</option></select
+                              ><span>(1 review)</span>
+                            </div>
+                            <div className="ps-product__specification">
+                              <p>
+                                Status:<strong className="in-stock">
+                                  In Stock</strong
+                                >
+                              </p>
+                            </div>
+                          </div>
+                          <div className="ps-product__expires">
+                            <p>Expires In</p>
+                            <ul
+                              className="ps-countdown"
+                              data-time="December 30, 2021 23:00:00"
+                            >
+                              <li>
+                                <span className="days"></span>
+                                <p>Days</p>
+                              </li>
+                              <li>
+                                <span className="hours"></span>
+                                <p>Hours</p>
+                              </li>
+                              <li>
+                                <span className="minutes"></span>
+                                <p>Minutes</p>
+                              </li>
+                              <li>
+                                <span className="seconds"></span>
+                                <p>Seconds</p>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="ps-product__processs-bar">
+                            <div className="ps-progress" data-value="10">
+                              <span className="ps-progress__value"></span>
+                            </div>
+                            <p><strong>4/79</strong> Sold</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="ps-product--detail ps-product--hot-deal">
+                      <div className="ps-product__header">
+                        <div className="ps-product__thumbnail" data-vertical="true">
+                          <figure>
+                            <div className="ps-wrapper">
+                              <div
+                                className="ps-product__gallery"
+                                data-arrow="true"
+                              >
+                                <div className="item">
+                                  <a href="#"
+                                    ><img src={bike1} alt=""
+                                  /></a>
+                                </div>
+                                <div className="item">
+                                  <a href="#"
+                                    ><img src={bike2} alt=""
+                                  /></a>
+                                </div>
+                              </div>
+                              <div className="ps-product__badge">
+                                <span
+                                  >Save <br />
+                                  ৳9.000</span
+                                >
+                              </div>
+                            </div>
+                          </figure>
+                          <div
+                            className="ps-product__variants"
+                            data-item="4"
+                            data-md="3"
+                            data-sm="3"
+                            data-arrow="false"
+                          >
+                            <div className="item">
+                              <img src={bike1} alt="" />
+                            </div>
+                            <div className="item">
+                              <img src={bike2} alt="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="ps-product__info">
+                          <h5>Consumer Electrics</h5>
+                          <h3 className="ps-product__name">
+                            Honda CBR150R Motor Bike - 150 cc
+                          </h3>
+                          <div className="ps-product__meta">
+                            <h4 className="ps-product__price sale">
+                              ৳2,91000.00 <del> ৳3,00000.00</del>
+                            </h4>
+                            <div className="ps-product__rating">
+                              <select className="ps-rating" data-read-only="true">
+                                <option value="1">1</option>
+                                <option value="1">2</option>
+                                <option value="1">3</option>
+                                <option value="1">4</option>
+                                <option value="2">5</option></select
+                              ><span>(1 review)</span>
+                            </div>
+                            <div className="ps-product__specification">
+                              <p>
+                                Status:<strong className="in-stock">
+                                  In Stock</strong
+                                >
+                              </p>
+                            </div>
+                          </div>
+                          <div className="ps-product__expires">
+                            <p>Expires In</p>
+                            <ul
+                              className="ps-countdown"
+                              data-time="December 30, 2021 23:00:00"
+                            >
+                              <li>
+                                <span className="days"></span>
+                                <p>Days</p>
+                              </li>
+                              <li>
+                                <span className="hours"></span>
+                                <p>Hours</p>
+                              </li>
+                              <li>
+                                <span className="minutes"></span>
+                                <p>Minutes</p>
+                              </li>
+                              <li>
+                                <span className="seconds"></span>
+                                <p>Seconds</p>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="ps-product__processs-bar">
+                            <div className="ps-progress" data-value="60">
+                              <span className="ps-progress__value"></span>
+                            </div>
+                            <p><strong>30/50</strong> Sold</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
+              <aside className="widget widget_best-sale mb-0" data-mh="dealhot">
+                <h3 className="widget-title">Top 20 Best Products</h3>
+                <div className="widget__content">
+                  <div
+                    className="owl-slider"
+                    data-owl-auto="true"
+                    data-owl-loop="true"
+                    data-owl-speed="5000"
+                    data-owl-gap="0"
+                    data-owl-nav="false"
+                    data-owl-dots="false"
+                    data-owl-item="1"
+                    data-owl-item-xs="1"
+                    data-owl-item-sm="1"
+                    data-owl-item-md="1"
+                    data-owl-item-lg="1"
+                    data-owl-duration="1000"
+                    data-owl-mousedrag="on"
+                  >
+
+
+                    <div className="ps-product-group">
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology1}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >Sound Intone I65 Earphone White Version</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>01</span>
+                          </div>
+                          <p className="ps-product__price">105.30</p>
+                        </div>
+                      </div>
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology2}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >Beat Spill 2.0 Wireless Speaker – White</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>01</span>
+                          </div>
+                          <p className="ps-product__price">
+                            ৳125.00 <del>৳135.00 </del>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology3}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >ASUS Chromebook Flip – 10.2 Inch</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>02</span>
+                          </div>
+                          <p className="ps-product__price sale">
+                            ৳990.00 <del>৳1250.00 </del>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology4}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >Apple Macbook Retina Display 12”</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>04</span>
+                          </div>
+                          <p className="ps-product__price">
+                            ৳1090.00 <del>৳1550.00 </del>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div className="ps-product-group">
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology3}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >ASUS Chromebook Flip – 10.2 Inch</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>02</span>
+                          </div>
+                          <p className="ps-product__price sale">
+                            ৳990.00 <del>৳1250.00 </del>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology4}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >Apple Macbook Retina Display 12”</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>04</span>
+                          </div>
+                          <p className="ps-product__price">
+                            ৳1090.00 <del>৳1550.00 </del>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology5}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >Samsung Gear VR Virtual Reality Headset</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>01</span>
+                          </div>
+                          <p className="ps-product__price">৳85.00</p>
+                        </div>
+                      </div>
+                      <div className="ps-product--horizontal">
+                        <div className="ps-product__thumbnail">
+                          <a href="product-default.html"
+                            ><img
+                              src={productsHomeTechnology6}
+                              alt=""
+                          /></a>
+                        </div>
+                        <div className="ps-product__content">
+                          <a
+                            className="ps-product__title"
+                            href="product-default.html"
+                            >Apple iPhone Retina 6s Plus 64GB</a
+                          >
+                          <div className="ps-product__rating">
+                            <select className="ps-rating" data-read-only="true">
+                              <option value="1">1</option>
+                              <option value="1">2</option>
+                              <option value="1">3</option>
+                              <option value="1">4</option>
+                              <option value="2">5</option></select
+                            ><span>01</span>
+                          </div>
+                          <p className="ps-product__price">৳950.60</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="ps-search-trending">
         <div className="container">
           <div className="ps-section__header">
@@ -1090,7 +1258,7 @@ class Home extends Component {
                   data-owl-speed="1000"
                   data-owl-gap="0"
                   data-owl-nav="true"
-                  data-owl-dots="true"
+                  data-owl-dots="false"
                   data-owl-item="8"
                   data-owl-item-xs="3"
                   data-owl-item-sm="4"
@@ -1131,17 +1299,16 @@ class Home extends Component {
                         /><span>#television</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome52}
+                          src={camera}
                           alt="#camera"
                         /><span>#camera</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome53}
-                          alt="#watch"
-                        /><span>#watch</span></a
+                        ><img src={watch} alt="#watch" /><span
+                          >#watch</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome54}
+                          src={downloadsChair1}
                           alt="#chair"
                         /><span>#chair</span></a
                       ><a href="shop-default.html"
@@ -1151,7 +1318,7 @@ class Home extends Component {
                         /><span>#sneaker</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome56}
+                          src="img/downloads/controller1.JPG"
                           alt="#xbox"
                         /><span>#xbox</span></a
                       ><a href="shop-default.html"
@@ -1171,19 +1338,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1191,7 +1357,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1210,13 +1376,12 @@ class Home extends Component {
                   <div className="ps-tab" id="tab-2">
                     <div className="ps-block__item">
                       <a href="shop-default.html"
-                        ><img
-                          src={categoriesHome53}
-                          alt="#watch"
-                        /><span>#watch</span></a
+                        ><img src={watch} alt="#watch" /><span
+                          >#watch</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome54}
+                          src={downloadsChair1}
                           alt="#chair"
                         /><span>#chair</span></a
                       ><a href="shop-default.html"
@@ -1226,7 +1391,7 @@ class Home extends Component {
                         /><span>#sneaker</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome56}
+                          src="img/downloads/controller1.JPG"
                           alt="#xbox"
                         /><span>#xbox</span></a
                       ><a href="shop-default.html"
@@ -1246,19 +1411,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1266,7 +1430,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1286,7 +1450,7 @@ class Home extends Component {
                     <div className="ps-block__item">
                       <a href="shop-default.html"
                         ><img
-                          src={categoriesHome54}
+                          src={downloadsChair1}
                           alt="#chair"
                         /><span>#chair</span></a
                       ><a href="shop-default.html"
@@ -1296,7 +1460,7 @@ class Home extends Component {
                         /><span>#sneaker</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome56}
+                          src="img/downloads/controller1.JPG"
                           alt="#xbox"
                         /><span>#xbox</span></a
                       ><a href="shop-default.html"
@@ -1316,19 +1480,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1336,7 +1499,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1361,7 +1524,7 @@ class Home extends Component {
                         /><span>#sneaker</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome56}
+                          src="img/downloads/controller1.JPG"
                           alt="#xbox"
                         /><span>#xbox</span></a
                       ><a href="shop-default.html"
@@ -1381,19 +1544,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1401,7 +1563,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1421,7 +1583,7 @@ class Home extends Component {
                     <div className="ps-block__item">
                       <a href="shop-default.html"
                         ><img
-                          src={categoriesHome56}
+                          src="img/downloads/controller1.JPG"
                           alt="#xbox"
                         /><span>#xbox</span></a
                       ><a href="shop-default.html"
@@ -1441,19 +1603,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1461,7 +1622,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1496,19 +1657,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1516,7 +1676,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1546,19 +1706,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1566,7 +1725,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1591,19 +1750,18 @@ class Home extends Component {
                         /><span>#phone</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome510}
+                          src="img/downloads/laptop1.jpeg"
                           alt="#laptop"
                         /><span>#laptop</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome511}
+                          src={categoriesHome51}
                           alt="#speaker"
                         /><span>#speaker</span></a
                       ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome512}
-                          alt="#book"
-                        /><span>#book</span></a
+                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
+                          >#book</span
+                        ></a
                       ><a href="shop-default.html"
                         ><img
                           src={categoriesHome513}
@@ -1611,7 +1769,7 @@ class Home extends Component {
                         /><span>#blender</span></a
                       ><a href="shop-default.html"
                         ><img
-                          src={categoriesHome514}
+                          src="img/categories/home-5/14.jpg"
                           alt="#bag"
                         /><span>#bag</span></a
                       ><a href="shop-default.html"
@@ -1663,22 +1821,22 @@ class Home extends Component {
               data-owl-auto="true"
               data-owl-loop="true"
               data-owl-speed="1000"
-              data-owl-gap="30"
+              data-owl-gap="20"
               data-owl-nav="false"
-              data-owl-dots="true"
+              data-owl-dots="false"
               data-owl-item="5"
               data-owl-item-xs="2"
               data-owl-item-sm="3"
               data-owl-item-md="4"
               data-owl-item-lg="4"
-              data-owl-item-xl="5"
+              data-owl-item-xl="4"
               data-owl-duration="1000"
               data-owl-mousedrag="on"
             >
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productHome1} alt=""
+                    ><img src={bike1} alt=""
                   /></a>
                   <div className="ps-product__badge">-16%</div>
                   <ul className="ps-product__actions">
@@ -1687,9 +1845,8 @@ class Home extends Component {
                         href="#"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                        title="Add to Cart"
+                        ><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -1726,7 +1883,7 @@ class Home extends Component {
                   </p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Korea Long Sofa Fabric In Blue Navy Color</a
+                      >Honda CBR150R Motor Bike - 150 cc</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -1750,18 +1907,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productHome2} alt=""
+                    ><img src="img/downloads/baby-toy.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                      <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -1796,7 +1947,7 @@ class Home extends Component {
                   <p className="ps-product__price">৳101.99<small>18% off</small></p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Aroma Rice Cooker</a
+                      >Deer Rider</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -1820,18 +1971,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome3} alt=""
+                    ><img src={downloadsChair1} alt=""
                   /></a>
                   <div className="ps-product__badge">-25%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -1892,18 +2037,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome4} alt=""
+                    ><img src={downloadsFridge1} alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -1938,7 +2077,7 @@ class Home extends Component {
                   <p className="ps-product__price">৳320.00<small>18% off</small></p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Korea Fabric Chair In Brown Colorr</a
+                      >Walton Fridge</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -1962,18 +2101,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome5} alt=""
+                    ><img src="img/downloads/kids-food.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2008,7 +2141,8 @@ class Home extends Component {
                   <p className="ps-product__price">৳85.00<small>18% off</small></p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Set 14-Piece Knife From KichiKit</a
+                      >Eldomilk 2+ Growing Up Milk Powder BIB After 2 Years To 3
+                      Years Old 350 Gm</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -2032,18 +2166,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome6} alt=""
+                    ><img src="img/downloads/kids-care.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2078,8 +2206,8 @@ class Home extends Component {
                   <p className="ps-product__price">৳92.00<small>18% off</small></p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Magic Bullet NutriBullet Pro 900 Series Blender</a
-                    >
+                      >Kidstar Baby Diaper Small 66pcs 3-8 Kg
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -2102,18 +2230,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome7} alt=""
+                    ><img src="img/downloads/shirt1.jpeg" alt=""
                   /></a>
                   <div className="ps-product__badge">-46%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2150,7 +2272,7 @@ class Home extends Component {
                   </p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Letter Printed Cushion Cover Cotton</a
+                      >Men's Full Sleeve Shirt</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -2174,18 +2296,12 @@ class Home extends Component {
               <div className="ps-product ps-product--inner">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome7} alt=""
+                    ><img src="img/downloads/shirt2.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge">-46%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2222,7 +2338,7 @@ class Home extends Component {
                   </p>
                   <div className="ps-product__content">
                     <a className="ps-product__title" href="product-default.html"
-                      >Letter Printed Cushion Cover Cotton</a
+                      >Men's Full Sleeve Shirt</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -2250,165 +2366,98 @@ class Home extends Component {
     </div>
     <div id="shop-now-home3">
       <div className="container">
-        <div className="ps-shop-brand">
-          <a href="#"><img src={brand1} alt="" /></a>
-          <a href="#"><img src={brand2} alt="" /></a>
-          <a href="#"><img src={brand3} alt="" /></a>
-          <a href="#"><img src={brand4} alt="" /></a>
-          <a href="#"><img src={brand5} alt="" /></a>
-          <a href="#"><img src={brand6} alt="" /></a>
-          <a href="#"><img src={brand7} alt="" /></a>
-          <a href="#"><img src={brand8} alt="" /></a>
-        </div>
-        <div className="ps-shop-categories">
-          <div className="row align-content-lg-stretch">
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop1} alt="" />
+        <div className="ps-section__content">
+          <div className="home-categories-top">
+            <h3>All Categories</h3>
+          </div>
+          <div
+            className="ps-carousel--nav owl-slider bg-white home-categories-body"
+            data-owl-auto="false"
+            data-owl-loop="false"
+            data-owl-speed="1000"
+            data-owl-gap="30"
+            data-owl-nav="true"
+            data-owl-dots="false"
+            data-owl-item="5"
+            data-owl-item-xs="1"
+            data-owl-item-sm="2"
+            data-owl-item-md="3"
+            data-owl-item-lg="3"
+            data-owl-item-xl="4"
+            data-owl-duration="1000"
+            data-owl-mousedrag="on"
+          >
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src="img/downloads/laptop1.jpeg" alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Clothing &amp; Apparel</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Accessories</a></li>
-                    <li><a href="shop-default.html">Bags</a></li>
-                    <li><a href="shop-default.html">Kid's Fashion</a></li>
-                    <li><a href="shop-default.html">Mens</a></li>
-                    <li><a href="shop-default.html">Shoes</a></li>
-                  </ul>
-                </div>
+
+                <p>Computer and accessories</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop2} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src={camera} alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Garden &amp; Kitchen</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Cookware</a></li>
-                    <li><a href="shop-default.html">Decoration</a></li>
-                    <li><a href="shop-default.html">Furniture</a></li>
-                    <li><a href="shop-default.html">Garden Tools</a></li>
-                    <li><a href="shop-default.html">Home Improvement</a></li>
-                  </ul>
-                </div>
+                <p>Cameras</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop3} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src="img/categories/1.jpg" alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Consumer Electrics</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Air Conditioners</a></li>
-                    <li>
-                      <a href="shop-default.html">Audios &amp; Theaters</a>
-                    </li>
-                    <li><a href="shop-default.html">Car Electronics</a></li>
-                    <li><a href="shop-default.html">Office Electronics</a></li>
-                    <li><a href="shop-default.html">Refrigerations</a></li>
-                  </ul>
-                </div>
+                <p>Health & Beauty</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop4} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src="img/downloads/kids-care.JPG" alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Health &amp; Beauty</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Equipments</a></li>
-                    <li><a href="shop-default.html">Hair Care</a></li>
-                    <li><a href="shop-default.html">Perfumer</a></li>
-                    <li><a href="shop-default.html">Skin Care</a></li>
-                  </ul>
-                </div>
+                <p>Mother & Baby</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop5} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src={categoriesHome515} alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Computers &amp; Technologies</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Desktop PC</a></li>
-                    <li><a href="shop-default.html">Laptop</a></li>
-                    <li><a href="shop-default.html">Smartphones</a></li>
-                  </ul>
-                </div>
+                <p>Mobile & Accessories</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop6} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src="img/downloads/shirt1.jpeg" alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Jewelry &amp; Watches</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Gemstones Jewelry</a></li>
-                    <li><a href="shop-default.html">Men's Watches</a></li>
-                    <li><a href="shop-default.html">Women's Watches</a></li>
-                  </ul>
-                </div>
+                <p>Men’s Fashion</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop7} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src={categoriesHome58} alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Phone &amp; Accessories</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Iphone 8</a></li>
-                    <li><a href="shop-default.html">Iphone X</a></li>
-                    <li><a href="shop-default.html">Samsung Note 8</a></li>
-                    <li><a href="shop-default.html">Samsung S8</a></li>
-                  </ul>
-                </div>
+                <p>Women’s Fashion</p>
               </div>
             </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop8} alt="" />
+            <div className="ps-product ps-product--inner">
+              <div className="ps-block--category">
+                <a className="ps-block__overlay" href="#"></a>
+                <div className="all-category-single">
+                  <img src={bike1} alt="" />
                 </div>
-                <div className="ps-block__content">
-                  <h4>Sport &amp; Outdoor</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Freezer Burn</a></li>
-                    <li><a href="shop-default.html">Frigde Cooler</a></li>
-                    <li><a href="shop-default.html">Wine Cabinets</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-              <div className="ps-block--category-2" data-mh="categories">
-                <div className="ps-block__thumbnail">
-                  <img src={categoriesShop3} alt="" />
-                </div>
-                <div className="ps-block__content">
-                  <h4>Consumer Electrics</h4>
-                  <ul>
-                    <li><a href="shop-default.html">Air Conditioners</a></li>
-                    <li>
-                      <a href="shop-default.html">Audios &amp; Theaters</a>
-                    </li>
-                    <li><a href="shop-default.html">Car Electronics</a></li>
-                    <li><a href="shop-default.html">Office Electronics</a></li>
-                    <li><a href="shop-default.html">Refrigerations</a></li>
-                  </ul>
-                </div>
+                <p>Automotive and Motorbike</p>
               </div>
             </div>
           </div>
@@ -2421,7 +2470,7 @@ class Home extends Component {
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
               <h3>
-                Clothing & <br />
+                Clothing &
                 Apparel
               </h3>
               <ul>
@@ -2453,27 +2502,25 @@ class Home extends Component {
                 data-owl-duration="500"
                 data-owl-mousedrag="off"
               >
-                <a href="#"><img src={downloadsClothing1} alt="" /></a>
-                <a href="#"><img src={sliderHomeClothing2} alt="" /></a>
-                <a href="#"><img src={sliderHomeClothing3} alt=""/></a>
+                <a href="#"
+                  ><img src="img/downloads/shirt-banner.JPG" alt="" /></a
+                ><a href="#"
+                  ><img src={sliderHomeClothing2} alt="" /></a
+                ><a href="#"
+                  ><img src={sliderHomeClothing3} alt=""
+                /></a>
               </div>
             </div>
             <div className="ps-block__product-box">
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsClothing1} alt=""
+                    ><img src="./img/downloads/bagpack.jpeg" alt=""
                   /></a>
                   <div className="ps-product__badge">-16%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2533,13 +2580,7 @@ class Home extends Component {
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2597,13 +2638,7 @@ class Home extends Component {
                   <div className="ps-product__badge">-25%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2658,18 +2693,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsClothing4} alt=""
+                    ><img src="img/downloads/shirt1.jpeg" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2722,18 +2751,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={clothing7} alt=""
+                    ><img src={downloadBodyspray} alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2768,7 +2791,7 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="clothing">
                     <a className="ps-product__title" href="product-default.html"
-                      >Men’s Sports Runnning Swim Board Shorts</a
+                      >Fogg Fresh Spicy 120ml Fragrance BS</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -2786,18 +2809,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsClothing6} alt=""
+                    ><img src="img/downloads/sandal1.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2832,8 +2849,8 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="clothing">
                     <a className="ps-product__title" href="product-default.html"
-                      >Paul’s Smith Sneaker InWhite Color</a
-                    >
+                      >Walkar Mens Sandal Black
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -2901,13 +2918,7 @@ class Home extends Component {
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -2965,13 +2976,7 @@ class Home extends Component {
                   <div className="ps-product__badge out-stock">7%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3031,13 +3036,7 @@ class Home extends Component {
                   <div className="ps-product__badge">-25%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3097,13 +3096,7 @@ class Home extends Component {
                   <div className="ps-product__badge">10%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3162,13 +3155,7 @@ class Home extends Component {
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3225,13 +3212,7 @@ class Home extends Component {
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3330,18 +3311,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsElectronics1} alt=""
+                    ><img src="img/downloads/speaker.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge">-16%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3376,7 +3351,7 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="technology">
                     <a className="ps-product__title" href="product-default.html"
-                      >Marshall Kilburn Portable Wireless</a
+                      >VISION 2:1 Multimedia Speaker LOUD-808</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -3401,13 +3376,7 @@ class Home extends Component {
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3465,13 +3434,7 @@ class Home extends Component {
                   <div className="ps-product__badge">-25%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3531,13 +3494,7 @@ class Home extends Component {
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3595,13 +3552,7 @@ class Home extends Component {
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3659,13 +3610,7 @@ class Home extends Component {
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3719,7 +3664,7 @@ class Home extends Component {
           </div>
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
-              <h3>Home, Garden & Kitchen</h3>
+              <h3>Mother & Baby</h3>
               <ul>
                 <li><a href="shop-default.html">Best Seller</a></li>
                 <li><a href="shop-default.html">New Arrivals</a></li>
@@ -3763,18 +3708,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productHome1} alt=""
+                    ><img src="img/downloads/kids-bag1.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge">-16%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3809,8 +3748,9 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Korea Long Sofa Fabric In Blue Navy Color</a
-                    >
+                      >Soft Plush Cute Hello Kitty Toddler Backpack/ School Bag
+                      For Kid Adorable, Huggable Toys And Gifts
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -3829,18 +3769,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productHome2} alt=""
+                    ><img src="img/downloads/baby-toy.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3875,7 +3809,7 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Aroma Rice Cooker</a
+                      >Deer Rider</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -3893,18 +3827,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome3} alt=""
+                    ><img src="img/downloads/pampers1.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge">-25%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -3939,8 +3867,8 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Simple Plastice Chair In White Color</a
-                    >
+                      >Pampers Pant Style Diapers Large 9-14Kg 24pcs
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -3959,18 +3887,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome4} alt=""
+                    ><img src={downloadsFridge1} alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4005,7 +3927,7 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Korea Fabric Chair In Brown Colorr</a
+                      >Korea Fabric Chair In Brown Color</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -4023,18 +3945,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome5} alt=""
+                    ><img src="img/downloads/kids-food.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4069,7 +3985,8 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Set 14-Piece Knife From KichiKit</a
+                      >Eldomilk 2+ Growing Up Milk Powder BIB After 2 Years To 3
+                      Years Old 350 Gm</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -4087,18 +4004,12 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHome6} alt=""
+                    ><img src="img/downloads/kids-care.JPG" alt=""
                   /></a>
                   <div className="ps-product__badge out-stock">Out Of Stock</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4133,8 +4044,8 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Magic Bullet NutriBullet Pro 900 Series Blender</a
-                    >
+                      >Kidstar Baby Diaper Small 66pcs 3-8 Kg
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -4152,7 +4063,7 @@ class Home extends Component {
           </div>
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
-              <h3>Healthy & Beauty</h3>
+              <h3>Women's Fashion</h3>
               <ul>
                 <li><a href="shop-default.html">Best Seller</a></li>
                 <li><a href="shop-default.html">New Arrivals</a></li>
@@ -4182,25 +4093,25 @@ class Home extends Component {
                 data-owl-duration="500"
                 data-owl-mousedrag="off"
               >
-                <a href="#"><img src={sliderHomeHealthy1} alt="" /></a>
-                <a href="#"><img src={sliderHomeHealthy2} alt="" /></a>
-                <a href="#"><img src={sliderHomeHealthy3} alt=""/></a>
+                <a href="#"
+                  ><img src={sliderHomeHealthy1} alt="" /></a
+                ><a href="#"
+                  ><img src={sliderHomeHealthy2} alt="" /></a
+                ><a href="#"
+                  ><img src={sliderHomeHealthy3} alt=""
+                /></a>
               </div>
             </div>
             <div className="ps-block__product-box">
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHomeHealthy1} alt=""
+                    ><img src="img/downloads/lotion1.jpg" alt=""
                   /></a>
                   <div className="ps-product__badge">-16%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"><i className="icon-bag2"></i>
-                        </a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4208,21 +4119,27 @@ class Home extends Component {
                         data-placement="top"
                         title="Quick View"
                         data-toggle="modal"
-                        data-target="#product-quickview"><i className="icon-eye"></i></a>
+                        data-target="#product-quickview"
+                        ><i className="icon-eye"></i
+                      ></a>
                     </li>
                     <li>
                       <a
                         href="#"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title="Add to Whishlist"><i className="icon-heart"></i></a>
+                        title="Add to Whishlist"
+                        ><i className="icon-heart"></i
+                      ></a>
                     </li>
                     <li>
                       <a
                         href="#"
                         data-toggle="tooltip"
                         data-placement="top"
-                        title="Compare"><i className="icon-chart-bars"></i></a>
+                        title="Compare"
+                        ><i className="icon-chart-bars"></i
+                      ></a>
                     </li>
                   </ul>
                 </div>
@@ -4253,13 +4170,7 @@ class Home extends Component {
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4317,13 +4228,7 @@ class Home extends Component {
                   <div className="ps-product__badge">-25%</div>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4378,17 +4283,11 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHomeHealthy4} alt=""
+                    ><img src="img/downloads/dress1.webp" alt=""
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4423,8 +4322,8 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Anna Sui Putty Mask Perfection</a
-                    >
+                      >Women's Ethnic 3 Pcs
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -4441,17 +4340,11 @@ class Home extends Component {
               <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHomeHealthy5} alt=""
+                    ><img src="img/downloads/shampoo1.jpeg" alt=""
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4486,7 +4379,7 @@ class Home extends Component {
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="garden">
                     <a className="ps-product__title" href="product-default.html"
-                      >Set 30 Piece Korea StartSkin Natural Mask</a
+                      >TRESemme Shampoo Keratin Smooth 580ml</a
                     >
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -4508,13 +4401,7 @@ class Home extends Component {
                   /></a>
                   <ul className="ps-product__actions">
                     <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Read More"
-                        ><i className="icon-bag2"></i
-                      ></a>
+                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
                     </li>
                     <li>
                       <a
@@ -4568,62 +4455,332 @@ class Home extends Component {
           </div>
         </div>
       </div>
-      <div className="ps-newsletter">
-        <div className="container">
-          <form className="ps-form--newsletter" action="do_action" method="post">
-            <div className="row">
-              <div className="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div className="ps-form__left">
-                  <h3>Newsletter</h3>
-                  <p>Subcribe to get information about products and coupons</p>
-                </div>
-              </div>
-              <div className="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div className="ps-form__right">
-                  <div className="form-group--nest">
-                    <input
-                      className="form-control"
-                      type="email"
-                      placeholder="Email address"
-                    />
-                    <button className="ps-btn">Subscribe</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
-     {/* Start Aside Drower */}
-    <button className="asside-card-drower">
+
+    {/* Start Aside Drower */}
+    <button className="asside-card-drower asside-card-drower-button">
       <div className="asside-top">
         <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-        <p><span>0</span> Item</p>
+        <p><span>2</span> Item</p>
       </div>
       <div className="asside-body">
-        <span>৳0.00</span>
+        <span>৳৫৫০.০০</span>
       </div>
     </button>
-
     <div className="asside-card-checkout">
-      <div className="cart-header">
-        <h4 className="cart-header-title">
-          <span className="d-inline-block mr-3">Item</span>
-        </h4>
-        <button className="btn-cart-hide">Close</button>
-      </div>
-      <div className="cart-item-container"></div>
-      <div className="cart-footer">
-        <div className="btn-container">
-          <button className="btn-checkout">
-            <span className="btn-text">Checkout</span>
-            <span className="cart-price">৳ 0.00</span>
-          </button>
+      <div className="aside-cart-header">
+        {/* <div className="ps-checkbox">
+          <input type="checkbox" id="select-all" />
+          <label for="select-all">Select All</label>
+        </div> */}
+        <h1>Your Cart</h1>
+        <div className="close-btn">
+          <i className="las la-times"></i>
         </div>
       </div>
+      <div className="select-all-div">
+        <div className="ps-checkbox">
+          <input type="checkbox" id="select-all" />
+          <label for="select-all">Select All</label>
+        </div>
+      </div>
+      <div className="store-div">
+        <div className="store">
+          <div className="store-name">
+            <div className="ps-checkbox">
+              <input
+                className="form-control"
+                type="checkbox"
+                id="store-1"
+                name="brand"
+              />
+              <label for="store-1">ecstasy</label>
+            </div>
+            {/* <h1>ecstasy</h1> */}
+          </div>
+          <div className="product">
+            <div className="product-name">
+              <div className="ps-checkbox">
+                <input
+                  className="form-control"
+                  type="checkbox"
+                  id="brand-1"
+                  name="brand"
+                />
+                <label for="brand-1">Bagpack</label>
+              </div>
+            </div>
+            <div className="product-details">
+              <div className="product-details-div-img product-details-div">
+                <img src="./img/downloads/bagpack.jpeg" alt="" />
+              </div>
+              <div className="quantity product-details-div">
+                <h6 className="quantity-title product-details-div-title">
+                  quantity
+                </h6>
+                <div className="quantity-changer">
+                  <i className="fas fa-minus"></i>
+                  <p>2</p>
+                  <i className="fas fa-plus"></i>
+                </div>
+              </div>
+              <div className="variant product-details-div">
+                <h6 className="variant-title product-details-div-title">variant</h6>
+                <div className="color-block"></div>
+              </div>
+              <div className="size product-details-div">
+                <h6 className="size-title product-details-div-title">size</h6>
+                <p>XL</p>
+              </div>
+            </div>
+            <div className="product-price-div">
+              <div className="product-price">
+                <div className="product-price-title">
+                  <h6>price</h6>
+                </div>
+                <p>৳2000.00</p>
+              </div>
+              <div className="delivery-charge">
+                <div className="delivery-charge-title">
+                  <h6>delivery charge</h6>
+                </div>
+                <p>৳60.00</p>
+              </div>
+            </div>
+          </div>
+          <div className="product">
+            <div className="product-name">
+              <div className="ps-checkbox">
+                <input
+                  className="form-control"
+                  type="checkbox"
+                  id="brand-2"
+                  name="brand"
+                />
+                <label for="brand-2">shirt</label>
+              </div>
+            </div>
+            <div className="product-details">
+              <div className="product-details-div-img product-details-div">
+                <img src="./img/downloads/shirt1.jpeg" alt="" />
+              </div>
+              <div className="quantity product-details-div">
+                <h6 className="quantity-title product-details-div-title">
+                  quantity
+                </h6>
+                <div className="quantity-changer">
+                  <i className="fas fa-minus"></i>
+                  <p>2</p>
+                  <i className="fas fa-plus"></i>
+                </div>
+              </div>
+              {/* <div className="variant product-details-div">
+                <h6 className="variant-title product-details-div-title">variant</h6>
+                <div className="color-block"></div>
+              </div> */}
+              <div className="size product-details-div">
+                <h6 className="size-title product-details-div-title">size</h6>
+                <p>L</p>
+              </div>
+            </div>
+            <div className="product-price-div">
+              <div className="product-price">
+                <div className="product-price-title">
+                  <h6>price</h6>
+                </div>
+                <p>৳2000.00</p>
+              </div>
+              <div className="delivery-charge">
+                <div className="delivery-charge-title">
+                  <h6>delivery charge</h6>
+                </div>
+                <p>৳60.00</p>
+              </div>
+            </div>
+          </div>
+          <div className="store-checkout-div">
+            <div className="store-coupon">
+              {/* <a href="#">apply for coupon</a> */}
+              <input type="text" placeholder="apply for coupon" name="search" />
+              <button type="submit">✓</button>
+            </div>
+            <div className="store-checkout-div-right">
+              <div className="delivery-charge">
+                <h6 className="delivery-charge-title">delivery-charge :</h6>
+                <p>৳2060.00</p>
+              </div>
+              <div className="subtotal">
+                <h6 className="subtotal-title">subtotal :</h6>
+                <p>৳2060.00</p>
+              </div>
+              <div className="total">
+                <h6 className="total-title">total :</h6>
+                <p>৳2060.00</p>
+              </div>
+              <a href="checkout.html" className="store-checkout">checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="store-div">
+        <div className="store">
+          <div className="store-name">
+            <div className="ps-checkbox">
+              <input
+                className="form-control"
+                type="checkbox"
+                id="store-2"
+                name="brand"
+              />
+              <label for="store-2">zara</label>
+            </div>
+            {/* <h1>ecstasy</h1> */}
+          </div>
+          <div className="product">
+            <div className="product-name">
+              <div className="ps-checkbox">
+                <input
+                  className="form-control"
+                  type="checkbox"
+                  id="brand-3"
+                  name="brand"
+                />
+                <label for="brand-3">watch</label>
+              </div>
+            </div>
+            <div className="product-details">
+              <div className="product-details-div-img product-details-div">
+                <img src={watch} alt="" />
+              </div>
+              <div className="quantity product-details-div">
+                <h6 className="quantity-title product-details-div-title">
+                  quantity
+                </h6>
+                <div className="quantity-changer">
+                  <i className="fas fa-minus"></i>
+                  <p>2</p>
+                  <i className="fas fa-plus"></i>
+                </div>
+              </div>
+              <div className="variant product-details-div">
+                <h6 className="variant-title product-details-div-title">variant</h6>
+                <div className="color-block"></div>
+              </div>
+              {/* <div className="size product-details-div">
+                <h6 className="size-title product-details-div-title">size</h6>
+                <p>XL</p>
+              </div> */}
+            </div>
+            <div className="product-price-div">
+              <div className="product-price">
+                <div className="product-price-title">
+                  <h6>price</h6>
+                </div>
+                <p>৳2000.00</p>
+              </div>
+              <div className="delivery-charge">
+                <div className="delivery-charge-title">
+                  <h6>delivery charge</h6>
+                </div>
+                <p>৳60.00</p>
+              </div>
+            </div>
+          </div>
+          <div className="product">
+            <div className="product-name">
+              <div className="ps-checkbox">
+                <input
+                  className="form-control"
+                  type="checkbox"
+                  id="brand-4"
+                  name="brand"
+                />
+                <label for="brand-4">Lipstick</label>
+              </div>
+            </div>
+            <div className="product-details">
+              <div className="product-details-div-img product-details-div">
+                <img src={categoriesHome58} alt="" />
+              </div>
+              <div className="quantity product-details-div">
+                <h6 className="quantity-title product-details-div-title">
+                  quantity
+                </h6>
+                <div className="quantity-changer">
+                  <i className="fas fa-minus"></i>
+                  <p>2</p>
+                  <i className="fas fa-plus"></i>
+                </div>
+              </div>
+              {/* <div className="variant product-details-div">
+                <h6 className="variant-title product-details-div-title">variant</h6>
+                <div className="color-block"></div>
+              </div> */}
+              {/* <div className="size product-details-div">
+                <h6 className="size-title product-details-div-title">size</h6>
+                <p>L</p>
+              </div> */}
+            </div>
+            <div className="product-price-div">
+              <div className="product-price">
+                <div className="product-price-title">
+                  <h6>price</h6>
+                </div>
+                <p>৳2000.00</p>
+              </div>
+              <div className="delivery-charge">
+                <div className="delivery-charge-title">
+                  <h6>delivery charge</h6>
+                </div>
+                <p>৳60.00</p>
+              </div>
+            </div>
+          </div>
+          <div className="store-checkout-div">
+            <div className="store-coupon">
+              {/* <a href="#">apply for coupon</a> */}
+              <input type="text" placeholder="apply for coupon" name="search" />
+              <button type="submit">✓</button>
+            </div>
+            <div className="store-checkout-div-right">
+              <div className="delivery-charge">
+                <h6 className="delivery-charge-title">delivery-charge :</h6>
+                <p>৳2060.00</p>
+              </div>
+              <div className="subtotal">
+                <h6 className="subtotal-title">subtotal :</h6>
+                <p>৳2060.00</p>
+              </div>
+              <div className="total">
+                <h6 className="total-title">total :</h6>
+                <p>৳2060.00</p>
+              </div>
+              <a href="checkout.html" className="store-checkout">checkout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="all-ckeckout">
+        <div className="delivery-charge">
+          <h6 className="delivery-charge-title">delivery-charge:</h6>
+          <p>৳200.00</p>
+        </div>
+        <div className="subtotal">
+          <h6 className="subtotal-title">subtotal Amount:</h6>
+          <p>৳2060.00</p>
+        </div>
+        <div className="total">
+          <h6 className="total-title">total Amount:</h6>
+          <p>৳2060.00</p>
+        </div>
+        <a href="checkout.html" className="store-checkout">checkout</a>
+      </div>
     </div>
-     {/* End Aside Drower  */}
+    {/* End Aside Drower */}
+    {/*============ End Main Body Area =============*/}
+
+
+    {/*============ Start Footer Area =============*/}
     <footer className="ps-footer">
       <div className="container">
         <div className="ps-footer__widgets">
@@ -4631,12 +4788,11 @@ class Home extends Component {
             <h4 className="widget-title">Contact us</h4>
             <div className="widget_content">
               <p>Call us 24/7</p>
-              <h3>1800 97 97 69</h3>
+              <h3>+88-02-8431092-3</h3>
               <p>
-                502 New Design Str, Melbourne, Australia <br /><a
-                  href="mailto:contact@martfury.co"
-                  >contact@martfury.co</a
-                >
+                Plot-314/A, Road-18, Block-E, Bashundhara Residential Area,<br />
+                Dhaka-1229, Bangladesh
+                <a href="info@shukran24seven.com">info@shukran24seven.com</a>
               </p>
               <ul className="ps-list--social">
                 <li>
@@ -4667,16 +4823,16 @@ class Home extends Component {
               <li><a href="#">Term & Condition</a></li>
               <li><a href="#">Shipping</a></li>
               <li><a href="#">Return</a></li>
-              <li><a href="faqs.html">FAQs</a></li>
+              <li><a href="#">FAQs</a></li>
             </ul>
           </aside>
           <aside className="widget widget_footer">
             <h4 className="widget-title">Company</h4>
             <ul className="ps-list--link">
-              <li><a href="about-us.html">About Us</a></li>
+              <li><a href="#">About Us</a></li>
               <li><a href="#">Affilate</a></li>
               <li><a href="#">Career</a></li>
-              <li><a href="contact-us.html">Contact</a></li>
+              <li><a href="#">Contact</a></li>
             </ul>
           </aside>
           <aside className="widget widget_footer">
@@ -4684,7 +4840,7 @@ class Home extends Component {
             <ul className="ps-list--link">
               <li><a href="#">Our Press</a></li>
               <li><a href="checkout.html">Checkout</a></li>
-              <li><a href="my-account.html">My account</a></li>
+              <li><a href="user-information.html">My account</a></li>
               <li><a href="shop-default.html">Shop</a></li>
             </ul>
           </aside>
@@ -4729,16 +4885,16 @@ class Home extends Component {
             ><a href="#">Game Controller</a><a href="#">Audio &amp; Video</a
             ><a href="#">Wireless Speaker</a><a href="#">Done</a>
           </p>
-        </div>  */}
+        </div> */}
         <div className="ps-footer__copyright">
-          <p>© 2018 Martfury. All Rights Reserved</p>
+          <p>© 2021 Shukran. All Rights Reserved</p>
           <p>
-            <span>We Using Safe Payment For:</span>
-            <a href="#"><img src={paymentMethod1} alt="" /></a>
-            <a href="#"><img src={paymentMethod2} alt="" /></a>
-            <a href="#"><img src={paymentMethod3} alt="" /></a>
-            <a href="#"><img src={paymentMethod4} alt="" /></a>
-            <a href="#"><img src={paymentMethod5} alt="" /></a>
+            <span>We Using Safe Payment For:</span
+            ><a href="#"><img src="img/payment-method/01.jpg" alt="" /></a
+            ><a href="#"><img src="img/payment-method/02.png" alt="" /></a
+            ><a href="#"><img src={paymentMethod3} alt="" /></a
+            ><a href="#"><img src="img/payment-method/03.jpg" alt="" /></a
+            ><a href="#"><img src={paymentMethod5} alt="" /></a>
           </p>
         </div>
       </div>
@@ -4758,11 +4914,10 @@ class Home extends Component {
         </form>
       </div>
     </div>
-
     <div
       className="modal fade"
       id="product-quickview"
-      tabIndex="-1"
+      tabindex="-1"
       role="dialog"
       aria-labelledby="product-quickview"
       aria-hidden="true"
@@ -4790,7 +4945,7 @@ class Home extends Component {
                 </div>
               </div>
               <div className="ps-product__info">
-                <h1>Marshall Kilburn Portable Wireless Speaker</h1>
+                <h1>VISION 2:1 Multimedia Speaker LOUD-808 Speaker</h1>
                 <div className="ps-product__meta">
                   <p>Brand:<a href="shop-default.html">Sony</a></p>
                   <div className="ps-product__rating">
@@ -4824,11 +4979,8 @@ class Home extends Component {
                   <a className="ps-btn ps-btn--black" href="#">Add to cart</a
                   ><a className="ps-btn" href="#">Buy Now</a>
                   <div className="ps-product__actions">
-                    <a href="#">
-                      <i className="icon-heart"></i>
-                    
-                    </a>
-                    <a href="#"><i className="icon-chart-bars"></i></a>
+                    <a href="#"><i className="icon-heart"></i></a
+                    ><a href="#"><i className="icon-chart-bars"></i></a>
                   </div>
                 </div>
               </div>
@@ -4836,8 +4988,8 @@ class Home extends Component {
           </article>
         </div>
       </div>
-    </div>      
-            </div>
+    </div>
+            </>
         );
     }
 }
