@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import '../assets/css/style.css';
 import '../assets/css/change.css';
-import '../assets/css/market-place-1.css';
-import '../assets/css/market-place-2.css';
 import '../assets/css/market-place-3.css';
-import '../assets/css/market-place-4.css';
 import '../assets/css/autopart.css';
 import '../assets/css/campaign.css';
+import Slider from 'react-slick';
 
 // import '../assets/css/select2.min.css';
 import shukranLogo from '../assets/img/shukran.png';
@@ -24,23 +22,14 @@ import clothing5 from '../assets/img/products/clothing/5.jpg';
 import endFlag from '../assets/img/flag/en.png';
 import germanyFlag from '../assets/img/flag/germany.png';
 import franceFlag from '../assets/img/flag/fr.png';
-import categoriesHome52 from '../assets/img/categories/home-5/2.jpg';
-import categoriesHome53 from '../assets/img/categories/home-5/3.jpg';
-import categoriesHome54 from '../assets/img/categories/home-5/4.jpg';
 import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import categoriesHome56 from '../assets/img/categories/home-5/6.jpg';
 import categoriesHome57 from '../assets/img/categories/home-5/7.jpg';
 import categoriesHome58 from '../assets/img/categories/home-5/8.jpg';
 import categoriesHome59 from '../assets/img/categories/home-5/9.jpg';
-import categoriesHome510 from '../assets/img/categories/home-5/10.jpg';
-import categoriesHome511 from '../assets/img/categories/home-5/11.jpg';
-import categoriesHome512 from '../assets/img/categories/home-5/12.jpg';
 import categoriesHome513 from '../assets/img/categories/home-5/13.jpg';
 import categoriesHome514 from '../assets/img/categories/home-5/14.jpg';
 import categoriesHome515 from '../assets/img/categories/home-5/15.jpg';
 import categoriesHome516 from '../assets/img/categories/home-5/16.jpg';
-import productHome1 from '../assets/img/products/home/1.jpg';
-import productHome2 from '../assets/img/products/home/2.jpg';
 import productsClothing6 from '../assets/img/products/clothing/6.jpg';
 import homeTechnology1 from '../assets/img/slider/home-3/technology-1.jpg';
 import homeTechnology2 from '../assets/img/slider/home-3/technology-2.jpg';
@@ -52,13 +41,6 @@ import productsHomeTechnology4 from '../assets/img/products/home-3/technology/4.
 import productsHomeTechnology5 from '../assets/img/products/home-3/technology/5.jpg';
 import productsHomeTechnology6 from '../assets/img/products/home-3/technology/6.jpg';
 import downloadsElectronics1 from '../assets/img/downloads/electronics-1.jpg';
-import sliderHomeElectronics2 from '../assets/img/slider/home-3/electronic-2.jpg';
-import sliderHomeElectronics3 from '../assets/img/slider/home-3/electronic-3.jpg';
-import productsElectronics1 from '../assets/img/products/electronic/1.jpg';
-import productsElectronics2 from '../assets/img/products/electronic/2.jpg';
-import productsElectronics3 from '../assets/img/products/electronic/3.jpg';
-import productsElectronics4 from '../assets/img/products/electronic/4.jpg';
-import productsElectronics5 from '../assets/img/products/electronic/5.jpg';
 import productsElectronics6 from '../assets/img/products/electronic/6.jpg';
 import sliderHomeKitchen1 from '../assets/img/slider/home-3/kitchen-1.jpg';
 import sliderHomeKitchen2 from '../assets/img/slider/home-3/kitchen-2.jpg';
@@ -126,6 +108,8 @@ import shirtBanner from '../assets/img/downloads/shirt-banner.jpg';
 import { faBaby, faBars, faCamera, faCartArrowDown, faEye, faFemale, faLanguage, faLaptop, faList, faMedkit, faMobile, faMotorcycle, faSearch, faShoppingBag, faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartBar, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
+import MarketPlace3Banner from '../components/MartketPlace3Banner';
 
 
 const menuContents = [
@@ -148,8 +132,8 @@ const navigationList = [
 
 const centerBanners = [
   {id: 1, src: banner1, link: "#"},
-  // {id: 2, src: banner1, link: "#"},
-  // {id: 3, src: banner1, link: "#"},
+  {id: 2, src: banner1, link: "#"},
+  {id: 3, src: banner1, link: "#"},
 ]
 
 const clothingAndApparelProducts = [
@@ -254,6 +238,14 @@ const horizontalSliderProducts = [
 
 class Home extends Component {
     render() {
+      const carouselSettings = {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
         return (
 
             <>
@@ -767,63 +759,7 @@ class Home extends Component {
 
     {/*============ Start Main Body Area =============*/}
     <div id="homepage-5">
-      <div className="ps-home-banner">
-        <div className="container">
-          <div className="ps-section__left">
-            {/* changed */}
-            <ul className="menu--dropdown">
-            {
-              menuContents.map(item=>(
-                <li key={item.id}>
-                  <a href={item.link}>{item.icon} {item.title}</a>
-                </li>
-              ))
-            }
-            </ul>
-            {/* changed-end */}
-          </div>
-
-          
-          <div className="ps-section__center">
-            <div
-              className="ps-carousel--dots owl-slider"
-              data-owl-auto="true"
-              data-owl-loop="true"
-              data-owl-speed="5000"
-              data-owl-gap="0"
-              data-owl-nav="false"
-              data-owl-dots="true"
-              data-owl-item="1"
-              data-owl-item-xs="1"
-              data-owl-item-sm="1"
-              data-owl-item-md="1"
-              data-owl-item-lg="1"
-              data-owl-duration="1000"
-              data-owl-mousedrag="on"
-            >
-              {
-                centerBanners.map(banner=>(
-                  <a key={banner.id} href={banner.link}><img src={banner.src} alt="" /></a>
-                ))
-              }
-              {/* <a href="#"><img src={banner1} alt="" /></a>
-              <a href="#"><img src={downloadsBanner5} alt="" /></a>
-              <a href="#"><img src={downloadsBanner6} alt="" /></a> */}
-            </div> 
-        <a href="#"><img src={promotion7} alt="" /></a>
-          </div>
-          
-          
-          <div className="ps-section__right">
-            <a href="#"><img src={downloadsSmartwatch} alt="" /></a
-            ><a href="#"><img src={downloadsBangladesh} alt="" /></a>
-            <a className="wide" href="#"><img src={promotion3} alt=""/></a>
-            <a href="#"><img src={downloadsBagpack} alt="" /></a>
-            <a href="#"><img src={promotion2} alt="" /></a>
-          </div>
-        </div>
-      </div>
-
+      <MarketPlace3Banner/>
       <div className="ps-deal-hot">
         <div className="container">
           <div className="row">
