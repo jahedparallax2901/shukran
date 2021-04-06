@@ -11261,7 +11261,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   transition-delay: 0.5s;
 }
 
-#loader-wrapper {
+/* #loader-wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -11278,7 +11278,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   height: 100%;
   background: #ffffff;
   z-index: 999;
-}
+} */
 
 #loader-wrapper .loader-section.section-left {
   left: 0;

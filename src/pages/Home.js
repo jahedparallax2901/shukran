@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import OwlCarousel from "react-owl-carousel";
 import '../assets/css/style.css';
 import '../assets/css/change.css';
 import '../assets/css/market-place-1.css';
+import '../assets/css/market-place-2.css';
 import '../assets/css/market-place-3.css';
+import '../assets/css/market-place-4.css';
+import '../assets/css/autopart.css';
+import '../assets/css/campaign.css';
+
 // import '../assets/css/select2.min.css';
 import shukranLogo from '../assets/img/shukran.png';
 import clothing7 from '../assets/img/products/clothing/7.jpg';
@@ -102,6 +106,7 @@ import detailFullWidth1 from '../assets/img/products/detail/fullwidth/1.jpg';
 import detailFullWidth2 from '../assets/img/products/detail/fullwidth/2.jpg';
 import detailFullWidth3 from '../assets/img/products/detail/fullwidth/3.jpg';
 import downloadBodyspray from '../assets/img/downloads/bodyspray.JPG';
+import banner1 from '../assets/img/downloads/banner-1.jpg';
 import downloadsBanner5 from '../assets/img/downloads/banner5.png';
 import downloadsBanner6 from '../assets/img/downloads/banner6.png';
 import downloadsSmartwatch from '../assets/img/downloads/smartwatch.jpg';
@@ -114,9 +119,13 @@ import bike2 from '../assets/img/downloads/bike2.jpeg';
 import camera from '../assets/img/downloads/camera.jpg';
 import watch from '../assets/img/downloads/watch.JPG';
 import downloadsChair1 from '../assets/img/downloads/chair1.JPG';
+import headerBg from '../assets/img/promotions/header-promotion.jpg';
+import backpack from '../assets/img/downloads/bagpack.jpeg';
+import shirtBanner from '../assets/img/downloads/shirt-banner.jpg';
 // import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import { faBaby, faBars, faCamera, faCartArrowDown, faFemale, faLanguage, faLaptop, faList, faMedkit, faMobile, faMotorcycle, faSearch, faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
+import { faBaby, faBars, faCamera, faCartArrowDown, faEye, faFemale, faLanguage, faLaptop, faList, faMedkit, faMobile, faMotorcycle, faSearch, faShoppingBag, faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar, faHeart } from '@fortawesome/free-regular-svg-icons';
 
 
 const menuContents = [
@@ -138,9 +147,109 @@ const navigationList = [
 ]
 
 const centerBanners = [
-  {id: 1, src: '../assets/img/downloads/banner-1.jpg', link: "#"},
-  {id: 2, src: '../assets/img/downloads/banner5.png', link: "#"},
-  {id: 3, src: '../assets/img/downloads/banner6.png', link: "#"},
+  {id: 1, src: banner1, link: "#"},
+  // {id: 2, src: banner1, link: "#"},
+  // {id: 3, src: banner1, link: "#"},
+]
+
+const clothingAndApparelProducts = [
+  { id: 1, 
+    img: backpack, 
+    discount: '-16%', 
+    icons: [
+      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
+    ], 
+    price: 670, 
+    discounted_price: 567, 
+    title: 'Herschel Leather Duffle Bag In Brown Color'
+  },
+  { id: 1, 
+    img: backpack, 
+    discount: '-16%', 
+    icons: [
+      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
+    ], 
+    price: 670, 
+    discounted_price: 567, 
+    title: 'Herschel Leather Duffle Bag In Brown Color'
+  },
+  { id: 1, 
+    img: backpack, 
+    discount: '-16%', 
+    icons: [
+      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
+    ], 
+    price: 670, 
+    discounted_price: 567, 
+    title: 'Herschel Leather Duffle Bag In Brown Color'
+  },
+  { id: 1, 
+    img: backpack, 
+    discount: '-16%', 
+    icons: [
+      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
+    ], 
+    price: 670, 
+    discounted_price: 567, 
+    title: 'Herschel Leather Duffle Bag In Brown Color'
+  },
+  { id: 1, 
+    img: backpack, 
+    discount: '-16%', 
+    icons: [
+      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
+    ], 
+    price: 670, 
+    discounted_price: 567, 
+    title: 'Herschel Leather Duffle Bag In Brown Color'
+  },
+  { id: 1, 
+    img: backpack, 
+    discount: '-16%', 
+    icons: [
+      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
+      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
+    ], 
+    price: 670, 
+    discounted_price: 567, 
+    title: 'Herschel Leather Duffle Bag In Brown Color'
+  },
+]
+
+const sideCategories = [
+  {id: 1, title: 'Best Seller'},
+  {id: 2, title: 'New Arrivals'},
+  {id: 3, title: 'Desktop PC'},
+  {id: 4, title: 'Laptop'},
+  {id: 5, title: 'Smartphones'},
+  {id: 6, title: 'Storage & Memory'},
+  {id: 7, title: 'PC Component'},
+  {id: 8, title: 'Computer Accessories'},
+  {id: 9, title: 'Sales & Deals'},
+]
+
+const horizontalSliderProducts = [
+  {id: 1, link: "#", src: productsHomeTechnology3},
+  {id: 2, link: "#", src: productsHomeTechnology3},
+  {id: 3, link: "#", src: productsHomeTechnology3},
+  {id: 4, link: "#", src: productsHomeTechnology3},
 ]
 
 class Home extends Component {
@@ -150,6 +259,7 @@ class Home extends Component {
             <>
             {/* ================ Start Header Area ================= */}
     {/* Modal */}
+    
     <div
       className="modal fade"
       id="login-modal-center"
@@ -235,7 +345,8 @@ class Home extends Component {
     
     <div
       className="ps-block--promotion-header bg--cover"
-      data-background="img/promotions/header-promotion.jpg"
+      data-background={headerBg}
+      style={{backgroundImage: `url(${headerBg})`}}
     >
       <div className="container">
         <div className="ps-block__left">
@@ -672,44 +783,9 @@ class Home extends Component {
             {/* changed-end */}
           </div>
 
-          {/* Now Working */}
           
           <div className="ps-section__center">
-          <OwlCarousel
-          className="ps-carousel--dots owl-slider"
-          loop={false}
-          nav={true}
-          // responsive={
-          //   {
-          //     0: {
-          //       items: 1,
-          //       margin: 10
-          //     },
-          //     768: {
-          //       items: 1,
-          //       margin: 20
-          //     },
-          //     991: {
-          //       items: 3,
-          //       margin: 25
-          //     },
-          //     1200: {
-          //       items: 4,
-          //       margin: 30
-          //     }
-          //   }
-          // }
-          navText={[
-            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>`,
-            `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>`
-          ]}
-          dots={false}
-          items={1}>
-          {centerBanners.map((product, index) => (
-            <a href="#"><img src={centerBanners.src} alt="" /></a>
-          ))}
-        </OwlCarousel>
-            {/* <div
+            <div
               className="ps-carousel--dots owl-slider"
               data-owl-auto="true"
               data-owl-loop="true"
@@ -725,18 +801,23 @@ class Home extends Component {
               data-owl-duration="1000"
               data-owl-mousedrag="on"
             >
-              <a href="#"><img src={banner1} alt="" /></a>
+              {
+                centerBanners.map(banner=>(
+                  <a key={banner.id} href={banner.link}><img src={banner.src} alt="" /></a>
+                ))
+              }
+              {/* <a href="#"><img src={banner1} alt="" /></a>
               <a href="#"><img src={downloadsBanner5} alt="" /></a>
-              <a href="#"><img src={downloadsBanner6} alt="" /></a>
-            </div> */}
-            {/* <a href="#"><img src={promotion7} alt="" /></a> */}
+              <a href="#"><img src={downloadsBanner6} alt="" /></a> */}
+            </div> 
+        <a href="#"><img src={promotion7} alt="" /></a>
           </div>
           
           
           <div className="ps-section__right">
             <a href="#"><img src={downloadsSmartwatch} alt="" /></a
             ><a href="#"><img src={downloadsBangladesh} alt="" /></a>
-            {/* <a className="wide" href="#"><img src={promotion3} alt=""/></a> */}
+            <a className="wide" href="#"><img src={promotion3} alt=""/></a>
             <a href="#"><img src={downloadsBagpack} alt="" /></a>
             <a href="#"><img src={promotion2} alt="" /></a>
           </div>
@@ -784,13 +865,13 @@ class Home extends Component {
                                 className="ps-product__gallery"
                                 data-arrow="true"
                               >
-                                <div className="item">
+                                {/* <div className="item">
                                   <a href="#"
                                     ><img
                                       src={downloadsFridge1}
                                       alt=""
                                   /></a>
-                                </div>
+                                </div> */}
                                 <div className="item">
                                   <a href="#"
                                     ><img
@@ -882,6 +963,9 @@ class Home extends Component {
                         </div>
                       </div>
                     </div>
+
+{/* Commenting primarily for design issue*/}
+{/*                     
                     <div className="ps-product--detail ps-product--hot-deal">
                       <div className="ps-product__header">
                         <div className="ps-product__thumbnail" data-vertical="true">
@@ -984,6 +1068,8 @@ class Home extends Component {
                         </div>
                       </div>
                     </div>
+                   */}
+                  
                   </div>
                 </div>
               </div>
@@ -1008,7 +1094,8 @@ class Home extends Component {
                     data-owl-duration="1000"
                     data-owl-mousedrag="on"
                   >
-
+                    {/* Double slider code */}
+{/* 
 
                     <div className="ps-product-group">
                       <div className="ps-product--horizontal">
@@ -1122,119 +1209,47 @@ class Home extends Component {
                         </div>
                       </div>
                     </div>
+                     */}
                     
                     
-                    
-                    
+                    {/* Now working */}
                     <div className="ps-product-group">
-                      <div className="ps-product--horizontal">
-                        <div className="ps-product__thumbnail">
-                          <a href="product-default.html"
-                            ><img
-                              src={productsHomeTechnology3}
-                              alt=""
-                          /></a>
-                        </div>
-                        <div className="ps-product__content">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                            >ASUS Chromebook Flip – 10.2 Inch</a
-                          >
-                          <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option></select
-                            ><span>02</span>
+
+                      {
+                        clothingAndApparelProducts.map((item, index)=>(
+                         index <= 3 && <>
+                         <div className="ps-product--horizontal">
+                            <div className="ps-product__thumbnail">
+                              <a href={item.link}
+                                ><img
+                                  src={item.img}
+                                  alt=""
+                              /></a>
+                            </div>
+                            <div className="ps-product__content">
+                              <a
+                                className="ps-product__title"
+                                href="product-default.html"
+                                >{item.title}</a
+                              >
+                              <div className="ps-product__rating">
+                                <select className="ps-rating" data-read-only="true">
+                                  <option value="1">1</option>
+                                  <option value="1">2</option>
+                                  <option value="1">3</option>
+                                  <option value="1">4</option>
+                                  <option value="2">5</option></select
+                                ><span>02</span>
+                              </div>
+                              <p className="ps-product__price sale">
+                                ৳{item.discountedPrice} <del>৳{item.price} </del>
+                              </p>
+                            </div>
                           </div>
-                          <p className="ps-product__price sale">
-                            ৳990.00 <del>৳1250.00 </del>
-                          </p>
-                        </div>
-                      </div>
-                      <div className="ps-product--horizontal">
-                        <div className="ps-product__thumbnail">
-                          <a href="product-default.html"
-                            ><img
-                              src={productsHomeTechnology4}
-                              alt=""
-                          /></a>
-                        </div>
-                        <div className="ps-product__content">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                            >Apple Macbook Retina Display 12”</a
-                          >
-                          <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option></select
-                            ><span>04</span>
-                          </div>
-                          <p className="ps-product__price">
-                            ৳1090.00 <del>৳1550.00 </del>
-                          </p>
-                        </div>
-                      </div>
-                      <div className="ps-product--horizontal">
-                        <div className="ps-product__thumbnail">
-                          <a href="product-default.html"
-                            ><img
-                              src={productsHomeTechnology5}
-                              alt=""
-                          /></a>
-                        </div>
-                        <div className="ps-product__content">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                            >Samsung Gear VR Virtual Reality Headset</a
-                          >
-                          <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option></select
-                            ><span>01</span>
-                          </div>
-                          <p className="ps-product__price">৳85.00</p>
-                        </div>
-                      </div>
-                      <div className="ps-product--horizontal">
-                        <div className="ps-product__thumbnail">
-                          <a href="product-default.html"
-                            ><img
-                              src={productsHomeTechnology6}
-                              alt=""
-                          /></a>
-                        </div>
-                        <div className="ps-product__content">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                            >Apple iPhone Retina 6s Plus 64GB</a
-                          >
-                          <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option></select
-                            ><span>01</span>
-                          </div>
-                          <p className="ps-product__price">৳950.60</p>
-                        </div>
-                      </div>
+                          
+                         </>
+                        ))
+                      }
                     </div>
                   </div>
                 </div>
@@ -2474,17 +2489,16 @@ class Home extends Component {
                 Apparel
               </h3>
               <ul>
-                <li><a href="#">Best Seller</a></li>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Girls</a></li>
-                <li><a href="#">Boys</a></li>
-                <li><a href="#">Baby</a></li>
-                <li><a href="#">Sales & Deals</a></li>
+              {
+                sideCategories.map(cat=>(
+                  <li><a href="#">{cat.title}</a></li>
+                ))
+              }
               </ul>
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
+
+            {/* Now working */}
             <div className="ps-block__slider">
               <div
                 className="ps-carousel--product-box owl-slider"
@@ -2502,354 +2516,52 @@ class Home extends Component {
                 data-owl-duration="500"
                 data-owl-mousedrag="off"
               >
-                <a href="#"
-                  ><img src="img/downloads/shirt-banner.JPG" alt="" /></a
-                ><a href="#"
-                  ><img src={sliderHomeClothing2} alt="" /></a
-                ><a href="#"
-                  ><img src={sliderHomeClothing3} alt=""
-                /></a>
+                <a href="#">
+                  <img src={shirtBanner} alt="" />
+                </a>
+                {/* <a href="#">
+                  <img src={sliderHomeClothing2} alt="" />
+                </a>
+                <a href="#">
+                  <img src={sliderHomeClothing3} alt=""/>
+                </a> */}
               </div>
             </div>
+
+            {/* Now working */}
+            
             <div className="ps-block__product-box">
-              <div className="ps-product ps-product--simple">
+                {
+                  clothingAndApparelProducts.map(item=>(
+                    <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src="./img/downloads/bagpack.jpeg" alt=""
+                    ><img src={item.img} alt=""
                   /></a>
-                  <div className="ps-product__badge">-16%</div>
+                  <div className="ps-product__badge">{item.discount}</div>
                   <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
+                    {
+                      item.icons.map(icon=>(
+                        <li>
                       <a
                         href="#"
                         data-placement="top"
                         title="Quick View"
                         data-toggle="modal"
                         data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
+                        >
+                          {icon.icon}
+                      </a>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
+                      ))
+                    }
+                    
                   </ul>
                 </div>
                 <div className="ps-product__container">
                   <div className="ps-product__content" data-mh="clothing">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Herschel Leather Duffle Bag In Brown Color</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳567.99 <del>৳670.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsClothing2} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="clothing">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Unero Military classNameical Backpack</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳101.99</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsClothing3} alt=""
-                  /></a>
-                  <div className="ps-product__badge">-25%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="clothing">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Rayban Rounded Sunglass Brown Color</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>02</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳42.00 <del>৳60.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/shirt1.jpeg" alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="clothing">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Sleeve Linen Blend Caro Pane Shirt</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳320.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={downloadBodyspray} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="clothing">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Fogg Fresh Spicy 120ml Fragrance BS</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳85.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/sandal1.JPG" alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="clothing">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Walkar Mens Sandal Black
+                    <a className="ps-product__title" href="product-default.html">
+                      {item.title}
                     </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -2860,27 +2572,26 @@ class Home extends Component {
                         <option value="2">5</option></select
                       ><span>01</span>
                     </div>
-                    <p className="ps-product__price">৳92.00</p>
+                    <p className="ps-product__price sale">
+                      ৳{item.discountedPrice} <del>৳{item.price} </del>
+                    </p>
                   </div>
                 </div>
               </div>
+                  ))
+                }
             </div>
+          
           </div>
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
               <h3>Computer & Techologies</h3>
               <ul>
-                <li><a href="#">Best Seller</a></li>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Desktop PC</a></li>
-                <li><a href="#">Laptop</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Tablets</a></li>
-                <li><a href="#">Storage & Memory</a></li>
-                <li><a href="#">PC Component</a></li>
-                <li><a href="#">Computer Accessories</a></li>
-                <li><a href="#">Game Accessories</a></li>
-                <li><a href="#">Sales & Deals</a></li>
+                {
+                  sideCategories.map(cat=>(
+                    <li><a href="#">{cat.title}</a></li>
+                  ))
+                }
               </ul>
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
@@ -2903,116 +2614,48 @@ class Home extends Component {
               >
                 <a href="#"
                   ><img src={homeTechnology1} alt="" /></a
-                ><a href="#"
+                >
+                {/* <a href="#"
                   ><img src={homeTechnology2} alt="" /></a
                 ><a href="#"
                   ><img src={downloadsTechnology1} alt=""
-                /></a>
+                /></a> */}
               </div>
             </div>
+
             <div className="ps-block__product-box">
-              <div className="ps-product ps-product--simple">
+                {
+                  clothingAndApparelProducts.map(item=>(
+                    <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src={productsHomeTechnology1} alt=""
+                    ><img src={item.img} alt=""
                   /></a>
+                  <div className="ps-product__badge">{item.discount}</div>
                   <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
+                    {
+                      item.icons.map(icon=>(
+                        <li>
                       <a
                         href="#"
                         data-placement="top"
                         title="Quick View"
                         data-toggle="modal"
                         data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
+                        >
+                          {icon.icon}
+                      </a>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
+                      ))
+                    }
+                    
                   </ul>
                 </div>
                 <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Sound Intone I65 Earphone White Version</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳105.30</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeTechnology2} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">7%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Beat Spill 2.0 Wireless Speaker – White</a
-                    >
+                  <div className="ps-product__content" data-mh="clothing">
+                    <a className="ps-product__title" href="product-default.html">
+                      {item.title}
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -3023,261 +2666,25 @@ class Home extends Component {
                       ><span>01</span>
                     </div>
                     <p className="ps-product__price sale">
-                      ৳125.00 <del>৳135.00 </del>
+                      ৳{item.discountedPrice} <del>৳{item.price} </del>
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeTechnology3} alt=""
-                  /></a>
-                  <div className="ps-product__badge">-25%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >ASUS Chromebook Flip – 10.2 Inch</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>02</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳990.00 <del>৳1250.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeTechnology4} alt=""
-                  /></a>
-                  <div className="ps-product__badge">10%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Apple Macbook Retina Display 12”</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>04</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳1090.00 <del>৳1550.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeTechnology5} alt=""
-                  /></a>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Samsung Gear VR Virtual Reality Headset</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳85.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeTechnology6} alt=""
-                  /></a>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Apple iPhone Retina 6s Plus 64GB</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳950.60</p>
-                  </div>
-                </div>
-              </div>
+                  ))
+                }
             </div>
+          
           </div>
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
               <h3>Consumer Electronics</h3>
               <ul>
-                <li><a href="shop-default.html">Best Seller</a></li>
-                <li><a href="shop-default.html">New Arrivals</a></li>
-                <li><a href="shop-default.html">TV Television</a></li>
-                <li><a href="shop-default.html">Air Condition</a></li>
-                <li><a href="shop-default.html">Washing Machine</a></li>
-                <li><a href="shop-default.html">Microwave</a></li>
-                <li><a href="shop-default.html">Refrigerator</a></li>
-                <li><a href="shop-default.html">Office Electronic</a></li>
-                <li><a href="shop-default.html">Car Electronic</a></li>
-                <li><a href="shop-default.html">Sales & Deals</a></li>
+              {
+                  sideCategories.map(cat=>(
+                    <li><a href="#">{cat.title}</a></li>
+                  ))
+                }
               </ul>
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
@@ -3300,59 +2707,48 @@ class Home extends Component {
               >
                 <a href="#"
                   ><img src={downloadsElectronics1} alt="" /></a
-                ><a href="#"
+                >
+                {/* <a href="#"
                   ><img src={sliderHomeElectronics2} alt="" /></a
                 ><a href="#"
                   ><img src={sliderHomeElectronics3} alt=""
-                /></a>
+                /></a> */}
               </div>
             </div>
+
             <div className="ps-block__product-box">
-              <div className="ps-product ps-product--simple">
+                {
+                  clothingAndApparelProducts.map(item=>(
+                    <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src="img/downloads/speaker.JPG" alt=""
+                    ><img src={item.img} alt=""
                   /></a>
-                  <div className="ps-product__badge">-16%</div>
+                  <div className="ps-product__badge">{item.discount}</div>
                   <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
+                    {
+                      item.icons.map(icon=>(
+                        <li>
                       <a
                         href="#"
                         data-placement="top"
                         title="Quick View"
                         data-toggle="modal"
                         data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
+                        >
+                          {icon.icon}
+                      </a>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
+                      ))
+                    }
+                    
                   </ul>
                 </div>
                 <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >VISION 2:1 Multimedia Speaker LOUD-808</a
-                    >
+                  <div className="ps-product__content" data-mh="clothing">
+                    <a className="ps-product__title" href="product-default.html">
+                      {item.title}
+                    </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
                         <option value="1">1</option>
@@ -3363,318 +2759,25 @@ class Home extends Component {
                       ><span>01</span>
                     </div>
                     <p className="ps-product__price sale">
-                      ৳567.99 <del>৳670.00 </del>
+                      ৳{item.discountedPrice} <del>৳{item.price} </del>
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsElectronics2} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Xbox One Wireless Controller Black Color</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳101.99</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsElectronics3} alt=""
-                  /></a>
-                  <div className="ps-product__badge">-25%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Sound Intone I65 Earphone White Version</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>02</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳42.00 <del>৳60.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsElectronics4} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Samsung Gear VR Virtual Reality Headset</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳320.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsElectronics5} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Samsung UHD TV 24inch</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳85.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsElectronics6} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="technology">
-                    <a className="ps-product__title" href="product-default.html"
-                      >EPSION Plaster Printer</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳92.00</p>
-                  </div>
-                </div>
-              </div>
+                  ))
+                }
             </div>
+          
           </div>
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
               <h3>Mother & Baby</h3>
               <ul>
-                <li><a href="shop-default.html">Best Seller</a></li>
-                <li><a href="shop-default.html">New Arrivals</a></li>
-                <li><a href="shop-default.html">Furniture</a></li>
-                <li><a href="shop-default.html">Home Decor</a></li>
-                <li><a href="shop-default.html">Cookware</a></li>
-                <li><a href="shop-default.html">Utensils & Gadget</a></li>
-                <li><a href="shop-default.html">Garden Tools</a></li>
-                <li><a href="shop-default.html">Acessesories</a></li>
-                <li><a href="shop-default.html">Sales & Deals</a></li>
+              {
+                  sideCategories.map(cat=>(
+                    <li><a href="#">{cat.title}</a></li>
+                  ))
+                }
               </ul>
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
@@ -3697,59 +2800,47 @@ class Home extends Component {
               >
                 <a href="#"
                   ><img src={sliderHomeKitchen1} alt="" /></a
-                ><a href="#"
+                >
+                {/* <a href="#"
                   ><img src={sliderHomeKitchen2} alt="" /></a
                 ><a href="#"
                   ><img src={downloadsKitchen1} alt=""
-                /></a>
+                /></a> */}
               </div>
             </div>
+
             <div className="ps-block__product-box">
-              <div className="ps-product ps-product--simple">
+                {
+                  clothingAndApparelProducts.map(item=>(
+                    <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src="img/downloads/kids-bag1.JPG" alt=""
+                    ><img src={item.img} alt=""
                   /></a>
-                  <div className="ps-product__badge">-16%</div>
+                  <div className="ps-product__badge">{item.discount}</div>
                   <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
+                    {
+                      item.icons.map(icon=>(
+                        <li>
                       <a
                         href="#"
                         data-placement="top"
                         title="Quick View"
                         data-toggle="modal"
                         data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
+                        >
+                          {icon.icon}
+                      </a>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
+                      ))
+                    }
+                    
                   </ul>
                 </div>
                 <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Soft Plush Cute Hello Kitty Toddler Backpack/ School Bag
-                      For Kid Adorable, Huggable Toys And Gifts
+                  <div className="ps-product__content" data-mh="clothing">
+                    <a className="ps-product__title" href="product-default.html">
+                      {item.title}
                     </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -3761,318 +2852,25 @@ class Home extends Component {
                       ><span>01</span>
                     </div>
                     <p className="ps-product__price sale">
-                      ৳567.99 <del>৳670.00 </del>
+                      ৳{item.discountedPrice} <del>৳{item.price} </del>
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/baby-toy.JPG" alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Deer Rider</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳101.99</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/pampers1.JPG" alt=""
-                  /></a>
-                  <div className="ps-product__badge">-25%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Pampers Pant Style Diapers Large 9-14Kg 24pcs
-                    </a>
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>02</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳42.00 <del>৳60.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={downloadsFridge1} alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Korea Fabric Chair In Brown Color</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳320.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/kids-food.JPG" alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Eldomilk 2+ Growing Up Milk Powder BIB After 2 Years To 3
-                      Years Old 350 Gm</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳85.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/kids-care.JPG" alt=""
-                  /></a>
-                  <div className="ps-product__badge out-stock">Out Of Stock</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Kidstar Baby Diaper Small 66pcs 3-8 Kg
-                    </a>
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳92.00</p>
-                  </div>
-                </div>
-              </div>
+                  ))
+                }
             </div>
+          
           </div>
           <div className="ps-block--products-of-category">
             <div className="ps-block__categories">
               <h3>Women's Fashion</h3>
               <ul>
-                <li><a href="shop-default.html">Best Seller</a></li>
-                <li><a href="shop-default.html">New Arrivals</a></li>
-                <li><a href="shop-default.html">Makeup</a></li>
-                <li><a href="shop-default.html">Skin Care</a></li>
-                <li><a href="shop-default.html">Hair Care</a></li>
-                <li><a href="shop-default.html">Tools & Equipments</a></li>
-                <li><a href="shop-default.html">Perfumer & Cologine</a></li>
-                <li><a href="shop-default.html">Sales & Deals</a></li>
+              {
+                  sideCategories.map(cat=>(
+                    <li><a href="#">{cat.title}</a></li>
+                  ))
+                }
               </ul>
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
@@ -4095,234 +2893,47 @@ class Home extends Component {
               >
                 <a href="#"
                   ><img src={sliderHomeHealthy1} alt="" /></a
-                ><a href="#"
+                >
+                {/* <a href="#"
                   ><img src={sliderHomeHealthy2} alt="" /></a
                 ><a href="#"
                   ><img src={sliderHomeHealthy3} alt=""
-                /></a>
+                /></a> */}
               </div>
             </div>
+
             <div className="ps-block__product-box">
-              <div className="ps-product ps-product--simple">
+                {
+                  clothingAndApparelProducts.map(item=>(
+                    <div className="ps-product ps-product--simple">
                 <div className="ps-product__thumbnail">
                   <a href="product-default.html"
-                    ><img src="img/downloads/lotion1.jpg" alt=""
+                    ><img src={item.img} alt=""
                   /></a>
-                  <div className="ps-product__badge">-16%</div>
+                  <div className="ps-product__badge">{item.discount}</div>
                   <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
+                    {
+                      item.icons.map(icon=>(
+                        <li>
                       <a
                         href="#"
                         data-placement="top"
                         title="Quick View"
                         data-toggle="modal"
                         data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
+                        >
+                          {icon.icon}
+                      </a>
                     </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
+                      ))
+                    }
+                    
                   </ul>
                 </div>
                 <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Aveeno Moisturizing Body Shower 450ml</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳47.99 <del>৳59.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeHealthy2} alt=""
-                  /></a>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >NYX Beauty Couton Pallete Makeup 12</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳101.99</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeHealthy3} alt=""
-                  /></a>
-                  <div className="ps-product__badge">-25%</div>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Baxter Care Hair Kit For Bearded Mens</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>02</span>
-                    </div>
-                    <p className="ps-product__price sale">
-                      ৳42.00 <del>৳60.00 </del>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/dress1.webp" alt=""
-                  /></a>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Women's Ethnic 3 Pcs
+                  <div className="ps-product__content" data-mh="clothing">
+                    <a className="ps-product__title" href="product-default.html">
+                      {item.title}
                     </a>
                     <div className="ps-product__rating">
                       <select className="ps-rating" data-read-only="true">
@@ -4333,125 +2944,16 @@ class Home extends Component {
                         <option value="2">5</option></select
                       ><span>01</span>
                     </div>
-                    <p className="ps-product__price">৳25.00</p>
+                    <p className="ps-product__price sale">
+                      ৳{item.discountedPrice} <del>৳{item.price} </del>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src="img/downloads/shampoo1.jpeg" alt=""
-                  /></a>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >TRESemme Shampoo Keratin Smooth 580ml</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳85.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="ps-product ps-product--simple">
-                <div className="ps-product__thumbnail">
-                  <a href="product-default.html"
-                    ><img src={productsHomeHealthy6} alt=""
-                  /></a>
-                  <ul className="ps-product__actions">
-                    <li>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Cart" className="asside-card-drower-button"><i className="icon-bag2"></i></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-placement="top"
-                        title="Quick View"
-                        data-toggle="modal"
-                        data-target="#product-quickview"
-                        ><i className="icon-eye"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Add to Whishlist"
-                        ><i className="icon-heart"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Compare"
-                        ><i className="icon-chart-bars"></i
-                      ></a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="ps-product__container">
-                  <div className="ps-product__content" data-mh="garden">
-                    <a className="ps-product__title" href="product-default.html"
-                      >Ciate Palemore Lipstick Bold Red Color</a
-                    >
-                    <div className="ps-product__rating">
-                      <select className="ps-rating" data-read-only="true">
-                        <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
-                        <option value="1">4</option>
-                        <option value="2">5</option></select
-                      ><span>01</span>
-                    </div>
-                    <p className="ps-product__price">৳92.00</p>
-                  </div>
-                </div>
-              </div>
+                  ))
+                }
             </div>
+          
           </div>
         </div>
       </div>
