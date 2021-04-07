@@ -9,100 +9,33 @@ import Slider from 'react-slick';
 // import '../assets/css/select2.min.css';
 import shukranLogo from '../assets/img/shukran.png';
 import clothing7 from '../assets/img/products/clothing/7.jpg';
-import home52 from '../assets/img/slider/home-5/2.jpg';
-import home53 from '../assets/img/slider/home-5/3.jpg';
-import promotion7 from '../assets/img/downloads/promotion7.jpg';
-import promotion1 from '../assets/img/slider/home-5/promotion-1.jpg';
-import promotion2 from '../assets/img/downloads/promotion-2.webp';
-import promotion3 from '../assets/img/slider/home-5/promotion-3.jpg';
-import beauty1 from '../assets/img/downloads/beauty-1.jpg';
-import technology2 from '../assets/img/downloads/technology-2.jpg';
-import categoriesHome51 from '../assets/img/categories/home-5/1.jpg';
-import clothing5 from '../assets/img/products/clothing/5.jpg';
-import endFlag from '../assets/img/flag/en.png';
-import germanyFlag from '../assets/img/flag/germany.png';
-import franceFlag from '../assets/img/flag/fr.png';
-import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import categoriesHome57 from '../assets/img/categories/home-5/7.jpg';
 import categoriesHome58 from '../assets/img/categories/home-5/8.jpg';
-import categoriesHome59 from '../assets/img/categories/home-5/9.jpg';
-import categoriesHome513 from '../assets/img/categories/home-5/13.jpg';
-import categoriesHome514 from '../assets/img/categories/home-5/14.jpg';
 import categoriesHome515 from '../assets/img/categories/home-5/15.jpg';
-import categoriesHome516 from '../assets/img/categories/home-5/16.jpg';
-import productsClothing6 from '../assets/img/products/clothing/6.jpg';
 import homeTechnology1 from '../assets/img/slider/home-3/technology-1.jpg';
 import homeTechnology2 from '../assets/img/slider/home-3/technology-2.jpg';
 import downloadsTechnology1 from '../assets/img/downloads/technology-1.jpg';
-import productsHomeTechnology1 from '../assets/img/products/home-3/technology/1.jpg';
-import productsHomeTechnology2 from '../assets/img/products/home-3/technology/2.jpg';
-import productsHomeTechnology3 from '../assets/img/products/home-3/technology/3.jpg';
-import productsHomeTechnology4 from '../assets/img/products/home-3/technology/4.jpg';
-import productsHomeTechnology5 from '../assets/img/products/home-3/technology/5.jpg';
-import productsHomeTechnology6 from '../assets/img/products/home-3/technology/6.jpg';
 import downloadsElectronics1 from '../assets/img/downloads/electronics-1.jpg';
-import productsElectronics6 from '../assets/img/products/electronic/6.jpg';
 import sliderHomeKitchen1 from '../assets/img/slider/home-3/kitchen-1.jpg';
 import sliderHomeKitchen2 from '../assets/img/slider/home-3/kitchen-2.jpg';
 import downloadsKitchen1 from '../assets/img/downloads/kitchen-1.jpg';
-import productsHome3 from '../assets/img/products/home/3.jpg';
-import productsHome4 from '../assets/img/products/home/4.jpg';
-import productsHome5 from '../assets/img/products/home/5.jpg';
-import productsHome6 from '../assets/img/products/home/6.jpg';
-import productsHome7 from '../assets/img/products/home/7.jpg';
-import brand1 from '../assets/img/brand/1.jpg';
-import brand2 from '../assets/img/brand/2.jpg';
-import brand3 from '../assets/img/brand/3.jpg';
-import brand4 from '../assets/img/brand/4.jpg';
-import brand5 from '../assets/img/brand/5.jpg';
-import brand6 from '../assets/img/brand/6.jpg';
-import brand7 from '../assets/img/brand/7.jpg';
-import brand8 from '../assets/img/brand/8.jpg';
-import categoriesShop1 from '../assets/img/categories/shop/1.jpg';
-import categoriesShop2 from '../assets/img/categories/shop/2.jpg';
-import categoriesShop3 from '../assets/img/categories/shop/3.jpg';
-import categoriesShop4 from '../assets/img/categories/shop/4.jpg';
-import categoriesShop5 from '../assets/img/categories/shop/5.jpg';
-import categoriesShop6 from '../assets/img/categories/shop/6.jpg';
-import categoriesShop7 from '../assets/img/categories/shop/7.jpg';
-import categoriesShop8 from '../assets/img/categories/shop/8.jpg';
-import downloadsClothing1 from '../assets/img/downloads/clothing-1.jpg';
 import sliderHomeClothing2 from '../assets/img/slider/home-3/clothing-2.jpg';
 import sliderHomeClothing3 from '../assets/img/slider/home-3/clothing-3.jpg';
-import productsClothing1 from '../assets/img/products/clothing/1.jpg';
-import productsClothing2 from '../assets/img/products/clothing/2.jpg';
-import productsClothing3 from '../assets/img/products/clothing/3.jpg';
-import productsClothing4 from '../assets/img/products/clothing/4.jpg';
 import sliderHomeHealthy1 from '../assets/img/slider/home-3/healthy-1.jpg';
 import sliderHomeHealthy2 from '../assets/img/slider/home-3/healthy-2.jpg';
 import sliderHomeHealthy3 from '../assets/img/slider/home-3/healthy-3.jpg';
-import productsHomeHealthy1 from '../assets/img/products/home-3/healthy/1.jpg';
-import productsHomeHealthy2 from '../assets/img/products/home-3/healthy/2.jpg';
-import productsHomeHealthy3 from '../assets/img/products/home-3/healthy/3.jpg';
-import productsHomeHealthy4 from '../assets/img/products/home-3/healthy/4.jpg';
-import productsHomeHealthy5 from '../assets/img/products/home-3/healthy/5.jpg';
-import productsHomeHealthy6 from '../assets/img/products/home-3/healthy/6.jpg';
 import paymentMethod3 from '../assets/img/payment-method/3.jpg';
 import paymentMethod5 from '../assets/img/payment-method/5.jpg';
 import detailFullWidth1 from '../assets/img/products/detail/fullwidth/1.jpg';
 import detailFullWidth2 from '../assets/img/products/detail/fullwidth/2.jpg';
 import detailFullWidth3 from '../assets/img/products/detail/fullwidth/3.jpg';
 import downloadBodyspray from '../assets/img/downloads/bodyspray.JPG';
-import banner1 from '../assets/img/downloads/banner-1.jpg';
-import downloadsBanner5 from '../assets/img/downloads/banner5.png';
-import downloadsBanner6 from '../assets/img/downloads/banner6.png';
-import downloadsSmartwatch from '../assets/img/downloads/smartwatch.jpg';
-import downloadsBangladesh from '../assets/img/downloads/bangladesh.png';
-import downloadsBagpack from '../assets/img/downloads/bagpack.jpeg';
 import downloadsFridge1 from '../assets/img/downloads/fridge1.jpg';
 import downloadsFridge2 from '../assets/img/downloads/fridge2.jpg';
 import bike1 from '../assets/img/downloads/bike1.jpeg';
-import bike2 from '../assets/img/downloads/bike2.jpeg';
 import camera from '../assets/img/downloads/camera.jpg';
 import watch from '../assets/img/downloads/watch.JPG';
 import downloadsChair1 from '../assets/img/downloads/chair1.JPG';
 import headerBg from '../assets/img/promotions/header-promotion.jpg';
-import backpack from '../assets/img/downloads/bagpack.jpeg';
 import shirtBanner from '../assets/img/downloads/shirt-banner.jpg';
 // import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
 import { faBaby, faBars, faCamera, faCartArrowDown, faEye, faFemale, faLanguage, faLaptop, faList, faMedkit, faMobile, faMotorcycle, faSearch, faShoppingBag, faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
@@ -110,145 +43,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartBar, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import MarketPlace3Banner from '../components/MartketPlace3Banner';
-
-
-const menuContents = [
-  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faLaptop} />, title: "Computer and accessories"},
-  {id: 2, link: "#", icon: <FontAwesomeIcon icon={faCamera} />, title: "Cameras"},
-  {id: 3, link: "#", icon: <FontAwesomeIcon icon={faMedkit} />, title: "Health & Beauty"},
-  {id: 4, link: "#", icon: <FontAwesomeIcon icon={faBaby} />, title: "Mother & Baby"},
-  {id: 5, link: "#", icon: <FontAwesomeIcon icon={faMobile} />, title: "Mobile & Accessories"},
-  {id: 6, link: "#", icon: <FontAwesomeIcon icon={faUniversalAccess} />, title: "Men's Fashion"},
-  {id: 7, link: "#", icon: <FontAwesomeIcon icon={faFemale} />, title: "Women's Fashion"},
-  {id: 8, link: "#", icon: <FontAwesomeIcon icon={faMotorcycle} />, title: "Automotive and Motorbike"},
-]
-
-const navigationList = [
-  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faBars} />, title: "Menu"},
-  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faList} />, title: "Categories"},
-  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faSearch} />, title: "Search"},
-  {id: 1, link: "#", icon: <FontAwesomeIcon icon={faCartArrowDown} />, title: "Cart"},
-]
-
-const centerBanners = [
-  {id: 1, src: banner1, link: "#"},
-  {id: 2, src: banner1, link: "#"},
-  {id: 3, src: banner1, link: "#"},
-]
-
-const clothingAndApparelProducts = [
-  { id: 1, 
-    img: backpack, 
-    discount: '-16%', 
-    icons: [
-      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-    ], 
-    price: 670, 
-    discounted_price: 567, 
-    title: 'Herschel Leather Duffle Bag In Brown Color'
-  },
-  { id: 1, 
-    img: backpack, 
-    discount: '-16%', 
-    icons: [
-      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-    ], 
-    price: 670, 
-    discounted_price: 567, 
-    title: 'Herschel Leather Duffle Bag In Brown Color'
-  },
-  { id: 1, 
-    img: backpack, 
-    discount: '-16%', 
-    icons: [
-      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-    ], 
-    price: 670, 
-    discounted_price: 567, 
-    title: 'Herschel Leather Duffle Bag In Brown Color'
-  },
-  { id: 1, 
-    img: backpack, 
-    discount: '-16%', 
-    icons: [
-      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-    ], 
-    price: 670, 
-    discounted_price: 567, 
-    title: 'Herschel Leather Duffle Bag In Brown Color'
-  },
-  { id: 1, 
-    img: backpack, 
-    discount: '-16%', 
-    icons: [
-      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-    ], 
-    price: 670, 
-    discounted_price: 567, 
-    title: 'Herschel Leather Duffle Bag In Brown Color'
-  },
-  { id: 1, 
-    img: backpack, 
-    discount: '-16%', 
-    icons: [
-      {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-      {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-    ], 
-    price: 670, 
-    discounted_price: 567, 
-    title: 'Herschel Leather Duffle Bag In Brown Color'
-  },
-]
-
-const sideCategories = [
-  {id: 1, title: 'Best Seller'},
-  {id: 2, title: 'New Arrivals'},
-  {id: 3, title: 'Desktop PC'},
-  {id: 4, title: 'Laptop'},
-  {id: 5, title: 'Smartphones'},
-  {id: 6, title: 'Storage & Memory'},
-  {id: 7, title: 'PC Component'},
-  {id: 8, title: 'Computer Accessories'},
-  {id: 9, title: 'Sales & Deals'},
-]
-
-const horizontalSliderProducts = [
-  {id: 1, link: "#", src: productsHomeTechnology3},
-  {id: 2, link: "#", src: productsHomeTechnology3},
-  {id: 3, link: "#", src: productsHomeTechnology3},
-  {id: 4, link: "#", src: productsHomeTechnology3},
-]
+import MarketPlace3SearchTrending from '../components/MarketPlace3SearchTrending';
+import {menuContents, navigationList, centerBanners, clothingAndApparelProducts, sideCategories, horizontalSliderProducts} from '../temp-data/homeData';
 
 class Home extends Component {
     render() {
       const carouselSettings = {
         dots: false,
-        arrows: false,
+        arrows: true,
         infinite: true,
-        speed: 1000,
+        speed: 2000,
+        autoplay: true,
+        autoplaySpeed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
     };
-        return (
-
-            <>
+        return (<>
             {/* ================ Start Header Area ================= */}
     {/* Modal */}
     
@@ -1195,553 +1005,11 @@ class Home extends Component {
         </div>
       </div>
 
-      <div className="ps-search-trending">
-        <div className="container">
-          <div className="ps-section__header">
-            <h3>Search Trending<span>Updated at 9:00AM</span></h3>
-          </div>
-          <div className="ps-section__content">
-            <div className="ps-block--categories-tabs ps-tab-root">
-              <div className="ps-block__header">
-                <div
-                  className="ps-carousel--nav ps-tab-list owl-slider"
-                  data-owl-auto="false"
-                  data-owl-speed="1000"
-                  data-owl-gap="0"
-                  data-owl-nav="true"
-                  data-owl-dots="false"
-                  data-owl-item="8"
-                  data-owl-item-xs="3"
-                  data-owl-item-sm="4"
-                  data-owl-item-md="6"
-                  data-owl-item-lg="6"
-                  data-owl-duration="500"
-                  data-owl-mousedrag="on"
-                >
-                  <a className="active" href="#tab-1"
-                    ><i className="icon-star"></i><span>Hot Trending</span></a
-                  ><a href="#tab-2"
-                    ><i className="icon-smartphone"></i><span>Cell Phones</span></a
-                  ><a href="#tab-3"
-                    ><i className="icon-desktop"></i><span>Computers</span></a
-                  ><a href="#tab-4"
-                    ><i className="icon-lampshade"></i><span>Furnitures</span></a
-                  ><a href="#tab-5"
-                    ><i className="icon-shirt"></i><span>T-Shirts</span></a
-                  ><a href="#tab-6"
-                    ><i className="icon-baby-bottle"></i><span>Baby & Mom</span></a
-                  ><a href="#tab-7"
-                    ><i className="icon-baseball"></i><span>Sports</span></a
-                  ><a href="#tab-8"
-                    ><i className="icon-book2"></i><span>Book & Office</span></a
-                  ><a href="#tab-9"
-                    ><i className="icon-car-siren"></i><span>Cars</span></a
-                  >
-                </div>
-              </div>
-              <div className="ps-tabs">
-                <div className="ps-tabs">
-                  <div className="ps-tab active" id="tab-1">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#television"
-                        /><span>#television</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={camera}
-                          alt="#camera"
-                        /><span>#camera</span></a
-                      ><a href="shop-default.html"
-                        ><img src={watch} alt="#watch" /><span
-                          >#watch</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={downloadsChair1}
-                          alt="#chair"
-                        /><span>#chair</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome55}
-                          alt="#sneaker"
-                        /><span>#sneaker</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/controller1.JPG"
-                          alt="#xbox"
-                        /><span>#xbox</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome57}
-                          alt="#gopro"
-                        /><span>#gopro</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-2">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img src={watch} alt="#watch" /><span
-                          >#watch</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={downloadsChair1}
-                          alt="#chair"
-                        /><span>#chair</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome55}
-                          alt="#sneaker"
-                        /><span>#sneaker</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/controller1.JPG"
-                          alt="#xbox"
-                        /><span>#xbox</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome57}
-                          alt="#gopro"
-                        /><span>#gopro</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-3">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src={downloadsChair1}
-                          alt="#chair"
-                        /><span>#chair</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome55}
-                          alt="#sneaker"
-                        /><span>#sneaker</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/controller1.JPG"
-                          alt="#xbox"
-                        /><span>#xbox</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome57}
-                          alt="#gopro"
-                        /><span>#gopro</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-4">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src={categoriesHome55}
-                          alt="#sneaker"
-                        /><span>#sneaker</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/controller1.JPG"
-                          alt="#xbox"
-                        /><span>#xbox</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome57}
-                          alt="#gopro"
-                        /><span>#gopro</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-5">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src="img/downloads/controller1.JPG"
-                          alt="#xbox"
-                        /><span>#xbox</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome57}
-                          alt="#gopro"
-                        /><span>#gopro</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-6">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src={categoriesHome57}
-                          alt="#gopro"
-                        /><span>#gopro</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-7">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src={categoriesHome58}
-                          alt="#lipstick"
-                        /><span>#lipstick</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                  <div className="ps-tab" id="tab-7">
-                    <div className="ps-block__item">
-                      <a href="shop-default.html"
-                        ><img
-                          src={categoriesHome59}
-                          alt="#phone"
-                        /><span>#phone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/downloads/laptop1.jpeg"
-                          alt="#laptop"
-                        /><span>#laptop</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome51}
-                          alt="#speaker"
-                        /><span>#speaker</span></a
-                      ><a href="shop-default.html"
-                        ><img src="img/downloads/book1.jpeg" alt="#book" /><span
-                          >#book</span
-                        ></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome513}
-                          alt="#blender"
-                        /><span>#blender</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src="img/categories/home-5/14.jpg"
-                          alt="#bag"
-                        /><span>#bag</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome515}
-                          alt="#smartphone"
-                        /><span>#smartphone</span></a
-                      ><a href="shop-default.html"
-                        ><img
-                          src={categoriesHome516}
-                          alt="#camping"
-                        /><span>#camping</span></a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <MarketPlace3SearchTrending/>
+      
+     
+      
+      
       <div className="ps-deal-of-day">
         <div className="container">
           <div className="ps-section__header">
@@ -2321,6 +1589,9 @@ class Home extends Component {
           <div className="home-categories-top">
             <h3>All Categories</h3>
           </div>
+
+        
+
           <div
             className="ps-carousel--nav owl-slider bg-white home-categories-body"
             data-owl-auto="false"
@@ -2435,33 +1706,38 @@ class Home extends Component {
             </div>
 
             {/* Now working */}
+
+            
+
             <div className="ps-block__slider">
-              <div
-                className="ps-carousel--product-box owl-slider"
-                data-owl-auto="true"
-                data-owl-loop="true"
-                data-owl-speed="7000"
-                data-owl-gap="0"
-                data-owl-nav="true"
-                data-owl-dots="true"
-                data-owl-item="1"
-                data-owl-item-xs="1"
-                data-owl-item-sm="1"
-                data-owl-item-md="1"
-                data-owl-item-lg="1"
-                data-owl-duration="500"
-                data-owl-mousedrag="off"
-              >
-                <a href="#">
+
+            <Slider {...carouselSettings}>
+            <div className="item">
+            <a href="#">
                   <img src={shirtBanner} alt="" />
                 </a>
-                {/* <a href="#">
+            </div>
+            <div className="item">
+            <a href="#">
                   <img src={sliderHomeClothing2} alt="" />
                 </a>
-                <a href="#">
+            </div>
+            <div className="item">
+            <a href="#">
                   <img src={sliderHomeClothing3} alt=""/>
-                </a> */}
-              </div>
+                </a>
+            </div>
+              {/* {centerBanners.map((banner) => (
+                <div className="item">
+                  <Link to="#">
+                    <a key={banner.id} href="">
+                      <img src={banner.src} alt="" />
+                    </a>
+                  </Link>
+                </div>
+              ))} */}
+            </Slider>
+              
             </div>
 
             {/* Now working */}
@@ -2532,31 +1808,24 @@ class Home extends Component {
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
             <div className="ps-block__slider">
-              <div
-                className="ps-carousel--product-box owl-slider"
-                data-owl-auto="true"
-                data-owl-loop="true"
-                data-owl-speed="7000"
-                data-owl-gap="0"
-                data-owl-nav="true"
-                data-owl-dots="true"
-                data-owl-item="1"
-                data-owl-item-xs="1"
-                data-owl-item-sm="1"
-                data-owl-item-md="1"
-                data-owl-item-lg="1"
-                data-owl-duration="500"
-                data-owl-mousedrag="off"
-              >
-                <a href="#"
-                  ><img src={homeTechnology1} alt="" /></a
-                >
-                {/* <a href="#"
-                  ><img src={homeTechnology2} alt="" /></a
-                ><a href="#"
-                  ><img src={downloadsTechnology1} alt=""
-                /></a> */}
-              </div>
+            <Slider {...carouselSettings}>
+                <div className="item">
+                  <a href="#">
+                    <img src={homeTechnology1} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                  <img src={homeTechnology2} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <img src={downloadsTechnology1} alt="" />
+                  </a>
+                </div>
+            </Slider>
+            
             </div>
 
             <div className="ps-block__product-box">
@@ -2625,31 +1894,24 @@ class Home extends Component {
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
             <div className="ps-block__slider">
-              <div
-                className="ps-carousel--product-box owl-slider"
-                data-owl-auto="true"
-                data-owl-loop="true"
-                data-owl-speed="7000"
-                data-owl-gap="0"
-                data-owl-nav="true"
-                data-owl-dots="true"
-                data-owl-item="1"
-                data-owl-item-xs="1"
-                data-owl-item-sm="1"
-                data-owl-item-md="1"
-                data-owl-item-lg="1"
-                data-owl-duration="500"
-                data-owl-mousedrag="off"
-              >
-                <a href="#"
-                  ><img src={downloadsElectronics1} alt="" /></a
-                >
-                {/* <a href="#"
-                  ><img src={sliderHomeElectronics2} alt="" /></a
-                ><a href="#"
-                  ><img src={sliderHomeElectronics3} alt=""
-                /></a> */}
-              </div>
+            <Slider {...carouselSettings}>
+                <div className="item">
+                  <a href="#">
+                    <img src={downloadsElectronics1} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                  <img src={homeTechnology2} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <img src={downloadsTechnology1} alt="" />
+                  </a>
+                </div>
+            </Slider>
+              
             </div>
 
             <div className="ps-block__product-box">
@@ -2718,31 +1980,24 @@ class Home extends Component {
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
             <div className="ps-block__slider">
-              <div
-                className="ps-carousel--product-box owl-slider"
-                data-owl-auto="true"
-                data-owl-loop="true"
-                data-owl-speed="7000"
-                data-owl-gap="0"
-                data-owl-nav="true"
-                data-owl-dots="true"
-                data-owl-item="1"
-                data-owl-item-xs="1"
-                data-owl-item-sm="1"
-                data-owl-item-md="1"
-                data-owl-item-lg="1"
-                data-owl-duration="500"
-                data-owl-mousedrag="off"
-              >
-                <a href="#"
-                  ><img src={sliderHomeKitchen1} alt="" /></a
-                >
-                {/* <a href="#"
-                  ><img src={sliderHomeKitchen2} alt="" /></a
-                ><a href="#"
-                  ><img src={downloadsKitchen1} alt=""
-                /></a> */}
-              </div>
+            <Slider {...carouselSettings}>
+                <div className="item">
+                  <a href="#">
+                    <img src={sliderHomeKitchen1} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                  <img src={sliderHomeKitchen2} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <img src={downloadsKitchen1} alt="" />
+                  </a>
+                </div>
+            </Slider>
+             
             </div>
 
             <div className="ps-block__product-box">
@@ -2811,31 +2066,24 @@ class Home extends Component {
               <a className="ps-block__more-link" href="#">View All</a>
             </div>
             <div className="ps-block__slider">
-              <div
-                className="ps-carousel--product-box owl-slider"
-                data-owl-auto="true"
-                data-owl-loop="true"
-                data-owl-speed="7000"
-                data-owl-gap="0"
-                data-owl-nav="true"
-                data-owl-dots="true"
-                data-owl-item="1"
-                data-owl-item-xs="1"
-                data-owl-item-sm="1"
-                data-owl-item-md="1"
-                data-owl-item-lg="1"
-                data-owl-duration="500"
-                data-owl-mousedrag="off"
-              >
-                <a href="#"
-                  ><img src={sliderHomeHealthy1} alt="" /></a
-                >
-                {/* <a href="#"
-                  ><img src={sliderHomeHealthy2} alt="" /></a
-                ><a href="#"
-                  ><img src={sliderHomeHealthy3} alt=""
-                /></a> */}
-              </div>
+            <Slider {...carouselSettings}>
+                <div className="item">
+                  <a href="#">
+                    <img src={sliderHomeHealthy1} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                  <img src={sliderHomeHealthy2} alt="" />
+                  </a>
+                </div>
+                <div className="item">
+                  <a href="#">
+                    <img src={sliderHomeHealthy3} alt="" />
+                  </a>
+                </div>
+            </Slider>
+              
             </div>
 
             <div className="ps-block__product-box">
@@ -3427,6 +2675,7 @@ class Home extends Component {
         </div>
       </div>
     </div>
+            
             </>
         );
     }
