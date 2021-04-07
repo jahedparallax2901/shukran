@@ -1,75 +1,92 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBaby, faBars, faCamera, faCartArrowDown, faEye, faFemale, faLanguage, faLaptop, faList, faMedkit, faMobile, faMotorcycle, faSearch, faShoppingBag, faUniversalAccess } from '@fortawesome/free-solid-svg-icons';
-import { faChartBar, faHeart } from '@fortawesome/free-regular-svg-icons';
-import banner1 from '../assets/img/downloads/banner-1.jpg';
-import downloadsBanner5 from '../assets/img/downloads/banner5.png';
-import downloadsBanner6 from '../assets/img/downloads/banner6.png';
-import backpack from '../assets/img/downloads/bagpack.jpeg';
-import home52 from '../assets/img/slider/home-5/2.jpg';
-import home53 from '../assets/img/slider/home-5/3.jpg';
-import promotion7 from '../assets/img/downloads/promotion7.jpg';
-import promotion1 from '../assets/img/slider/home-5/promotion-1.jpg';
-import promotion2 from '../assets/img/downloads/promotion-2.webp';
-import promotion3 from '../assets/img/slider/home-5/promotion-3.jpg';
-import beauty1 from '../assets/img/downloads/beauty-1.jpg';
-import technology2 from '../assets/img/downloads/technology-2.jpg';
-import categoriesHome51 from '../assets/img/categories/home-5/1.jpg';
-import clothing5 from '../assets/img/products/clothing/5.jpg';
-import endFlag from '../assets/img/flag/en.png';
-import germanyFlag from '../assets/img/flag/germany.png';
-import franceFlag from '../assets/img/flag/fr.png';
-import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import categoriesHome57 from '../assets/img/categories/home-5/7.jpg';
-import categoriesHome58 from '../assets/img/categories/home-5/8.jpg';
-import categoriesHome59 from '../assets/img/categories/home-5/9.jpg';
-import categoriesHome513 from '../assets/img/categories/home-5/13.jpg';
-import categoriesHome514 from '../assets/img/categories/home-5/14.jpg';
-import categoriesHome516 from '../assets/img/categories/home-5/16.jpg';
-import productsClothing6 from '../assets/img/products/clothing/6.jpg';
-import productsHomeTechnology1 from '../assets/img/products/home-3/technology/1.jpg';
-import productsHomeTechnology2 from '../assets/img/products/home-3/technology/2.jpg';
-import productsHomeTechnology3 from '../assets/img/products/home-3/technology/3.jpg';
-import productsHomeTechnology4 from '../assets/img/products/home-3/technology/4.jpg';
-import productsHomeTechnology5 from '../assets/img/products/home-3/technology/5.jpg';
-import productsHomeTechnology6 from '../assets/img/products/home-3/technology/6.jpg';
-import productsElectronics6 from '../assets/img/products/electronic/6.jpg';
-import productsHome3 from '../assets/img/products/home/3.jpg';
-import productsHome4 from '../assets/img/products/home/4.jpg';
-import productsHome5 from '../assets/img/products/home/5.jpg';
-import productsHome6 from '../assets/img/products/home/6.jpg';
-import productsHome7 from '../assets/img/products/home/7.jpg';
-import brand1 from '../assets/img/brand/1.jpg';
-import brand2 from '../assets/img/brand/2.jpg';
-import brand3 from '../assets/img/brand/3.jpg';
-import brand4 from '../assets/img/brand/4.jpg';
-import brand5 from '../assets/img/brand/5.jpg';
-import brand6 from '../assets/img/brand/6.jpg';
-import brand7 from '../assets/img/brand/7.jpg';
-import brand8 from '../assets/img/brand/8.jpg';
-import categoriesShop1 from '../assets/img/categories/shop/1.jpg';
-import categoriesShop2 from '../assets/img/categories/shop/2.jpg';
-import categoriesShop3 from '../assets/img/categories/shop/3.jpg';
-import categoriesShop4 from '../assets/img/categories/shop/4.jpg';
-import categoriesShop5 from '../assets/img/categories/shop/5.jpg';
-import categoriesShop6 from '../assets/img/categories/shop/6.jpg';
-import categoriesShop7 from '../assets/img/categories/shop/7.jpg';
-import categoriesShop8 from '../assets/img/categories/shop/8.jpg';
-import downloadsClothing1 from '../assets/img/downloads/clothing-1.jpg';
-import productsClothing1 from '../assets/img/products/clothing/1.jpg';
-import productsClothing2 from '../assets/img/products/clothing/2.jpg';
-import productsClothing3 from '../assets/img/products/clothing/3.jpg';
-import productsClothing4 from '../assets/img/products/clothing/4.jpg';
-import productsHomeHealthy1 from '../assets/img/products/home-3/healthy/1.jpg';
-import productsHomeHealthy2 from '../assets/img/products/home-3/healthy/2.jpg';
-import productsHomeHealthy3 from '../assets/img/products/home-3/healthy/3.jpg';
-import productsHomeHealthy4 from '../assets/img/products/home-3/healthy/4.jpg';
-import productsHomeHealthy5 from '../assets/img/products/home-3/healthy/5.jpg';
-import productsHomeHealthy6 from '../assets/img/products/home-3/healthy/6.jpg';
-import downloadsSmartwatch from '../assets/img/downloads/smartwatch.jpg';
-import downloadsBangladesh from '../assets/img/downloads/bangladesh.png';
-import downloadsBagpack from '../assets/img/downloads/bagpack.jpeg';
-import bike2 from '../assets/img/downloads/bike2.jpeg';
-
+import {
+  faBaby,
+  faBars,
+  faCamera,
+  faCartArrowDown,
+  faEye,
+  faFemale,
+  faLanguage,
+  faLaptop,
+  faList,
+  faMedkit,
+  faMobile,
+  faMotorcycle,
+  faSearch,
+  faShoppingBag,
+  faUniversalAccess,
+} from "@fortawesome/free-solid-svg-icons";
+import { faChartBar, faHeart } from "@fortawesome/free-regular-svg-icons";
+import banner1 from "../assets/img/downloads/banner-1.jpg";
+import downloadsBanner5 from "../assets/img/downloads/banner5.png";
+import downloadsBanner6 from "../assets/img/downloads/banner6.png";
+import backpack from "../assets/img/downloads/bagpack.jpeg";
+import home52 from "../assets/img/slider/home-5/2.jpg";
+import home53 from "../assets/img/slider/home-5/3.jpg";
+import promotion7 from "../assets/img/downloads/promotion7.jpg";
+import promotion1 from "../assets/img/slider/home-5/promotion-1.jpg";
+import promotion2 from "../assets/img/downloads/promotion-2.webp";
+import promotion3 from "../assets/img/slider/home-5/promotion-3.jpg";
+import beauty1 from "../assets/img/downloads/beauty-1.jpg";
+import technology2 from "../assets/img/downloads/technology-2.jpg";
+import categoriesHome51 from "../assets/img/categories/home-5/1.jpg";
+import clothing5 from "../assets/img/products/clothing/5.jpg";
+import endFlag from "../assets/img/flag/en.png";
+import germanyFlag from "../assets/img/flag/germany.png";
+import franceFlag from "../assets/img/flag/fr.png";
+import categoriesHome55 from "../assets/img/categories/home-5/5.jpg";
+import categoriesHome57 from "../assets/img/categories/home-5/7.jpg";
+import categoriesHome58 from "../assets/img/categories/home-5/8.jpg";
+import categoriesHome59 from "../assets/img/categories/home-5/9.jpg";
+import categoriesHome513 from "../assets/img/categories/home-5/13.jpg";
+import categoriesHome514 from "../assets/img/categories/home-5/14.jpg";
+import categoriesHome516 from "../assets/img/categories/home-5/16.jpg";
+import productsClothing6 from "../assets/img/products/clothing/6.jpg";
+import productsHomeTechnology1 from "../assets/img/products/home-3/technology/1.jpg";
+import productsHomeTechnology2 from "../assets/img/products/home-3/technology/2.jpg";
+import productsHomeTechnology3 from "../assets/img/products/home-3/technology/3.jpg";
+import productsHomeTechnology4 from "../assets/img/products/home-3/technology/4.jpg";
+import productsHomeTechnology5 from "../assets/img/products/home-3/technology/5.jpg";
+import productsHomeTechnology6 from "../assets/img/products/home-3/technology/6.jpg";
+import productsElectronics6 from "../assets/img/products/electronic/6.jpg";
+import productsHome3 from "../assets/img/products/home/3.jpg";
+import productsHome4 from "../assets/img/products/home/4.jpg";
+import productsHome5 from "../assets/img/products/home/5.jpg";
+import productsHome6 from "../assets/img/products/home/6.jpg";
+import productsHome7 from "../assets/img/products/home/7.jpg";
+import brand1 from "../assets/img/brand/1.jpg";
+import brand2 from "../assets/img/brand/2.jpg";
+import brand3 from "../assets/img/brand/3.jpg";
+import brand4 from "../assets/img/brand/4.jpg";
+import brand5 from "../assets/img/brand/5.jpg";
+import brand6 from "../assets/img/brand/6.jpg";
+import brand7 from "../assets/img/brand/7.jpg";
+import brand8 from "../assets/img/brand/8.jpg";
+import categoriesShop1 from "../assets/img/categories/shop/1.jpg";
+import categoriesShop2 from "../assets/img/categories/shop/2.jpg";
+import categoriesShop3 from "../assets/img/categories/shop/3.jpg";
+import categoriesShop4 from "../assets/img/categories/shop/4.jpg";
+import categoriesShop5 from "../assets/img/categories/shop/5.jpg";
+import categoriesShop6 from "../assets/img/categories/shop/6.jpg";
+import categoriesShop7 from "../assets/img/categories/shop/7.jpg";
+import categoriesShop8 from "../assets/img/categories/shop/8.jpg";
+import downloadsClothing1 from "../assets/img/downloads/clothing-1.jpg";
+import productsClothing1 from "../assets/img/products/clothing/1.jpg";
+import productsClothing2 from "../assets/img/products/clothing/2.jpg";
+import productsClothing3 from "../assets/img/products/clothing/3.jpg";
+import productsClothing4 from "../assets/img/products/clothing/4.jpg";
+import productsHomeHealthy1 from "../assets/img/products/home-3/healthy/1.jpg";
+import productsHomeHealthy2 from "../assets/img/products/home-3/healthy/2.jpg";
+import productsHomeHealthy3 from "../assets/img/products/home-3/healthy/3.jpg";
+import productsHomeHealthy4 from "../assets/img/products/home-3/healthy/4.jpg";
+import productsHomeHealthy5 from "../assets/img/products/home-3/healthy/5.jpg";
+import productsHomeHealthy6 from "../assets/img/products/home-3/healthy/6.jpg";
+import downloadsSmartwatch from "../assets/img/downloads/smartwatch.jpg";
+import downloadsBangladesh from "../assets/img/downloads/bangladesh.png";
+import downloadsBagpack from "../assets/img/downloads/bagpack.jpeg";
+import bike2 from "../assets/img/downloads/bike2.jpeg";
+import downloadsFridge1 from '../assets/img/downloads/fridge1.jpg';
+import downloadsFridge2 from '../assets/img/downloads/fridge2.jpg';
 
 export const menuContents = [
   {
@@ -123,115 +140,902 @@ export const menuContents = [
 ];
 
 export const navigationList = [
-    {id: 1, link: "#", icon: <FontAwesomeIcon icon={faBars} />, title: "Menu"},
-    {id: 1, link: "#", icon: <FontAwesomeIcon icon={faList} />, title: "Categories"},
-    {id: 1, link: "#", icon: <FontAwesomeIcon icon={faSearch} />, title: "Search"},
-    {id: 1, link: "#", icon: <FontAwesomeIcon icon={faCartArrowDown} />, title: "Cart"},
-  ]
+  { id: 1, link: "#", icon: <FontAwesomeIcon icon={faBars} />, title: "Menu" },
+  {
+    id: 1,
+    link: "#",
+    icon: <FontAwesomeIcon icon={faList} />,
+    title: "Categories",
+  },
+  {
+    id: 1,
+    link: "#",
+    icon: <FontAwesomeIcon icon={faSearch} />,
+    title: "Search",
+  },
+  {
+    id: 1,
+    link: "#",
+    icon: <FontAwesomeIcon icon={faCartArrowDown} />,
+    title: "Cart",
+  },
+];
 
- export const centerBanners = [
-    {id: 1, src: banner1, link: "#"},
-    {id: 2, src: downloadsBanner5, link: "#"},
-    {id: 3, src: downloadsBanner6, link: "#"},
-  ]
+export const centerBanners = [
+  { id: 1, src: banner1, link: "#" },
+  { id: 2, src: downloadsBanner5, link: "#" },
+  { id: 3, src: downloadsBanner6, link: "#" },
+];
 
-  export const clothingAndApparelProducts = [
-    { id: 1, 
-      img: backpack, 
-      discount: '-16%', 
-      icons: [
-        {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-      ], 
-      price: 670, 
-      discounted_price: 567, 
-      title: 'Herschel Leather Duffle Bag In Brown Color'
-    },
-    { id: 1, 
-      img: backpack, 
-      discount: '-16%', 
-      icons: [
-        {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-      ], 
-      price: 670, 
-      discounted_price: 567, 
-      title: 'Herschel Leather Duffle Bag In Brown Color'
-    },
-    { id: 1, 
-      img: backpack, 
-      discount: '-16%', 
-      icons: [
-        {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-      ], 
-      price: 670, 
-      discounted_price: 567, 
-      title: 'Herschel Leather Duffle Bag In Brown Color'
-    },
-    { id: 1, 
-      img: backpack, 
-      discount: '-16%', 
-      icons: [
-        {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-      ], 
-      price: 670, 
-      discounted_price: 567, 
-      title: 'Herschel Leather Duffle Bag In Brown Color'
-    },
-    { id: 1, 
-      img: backpack, 
-      discount: '-16%', 
-      icons: [
-        {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-      ], 
-      price: 670, 
-      discounted_price: 567, 
-      title: 'Herschel Leather Duffle Bag In Brown Color'
-    },
-    { id: 1, 
-      img: backpack, 
-      discount: '-16%', 
-      icons: [
-        {id: 1, icon: <FontAwesomeIcon icon={faShoppingBag}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faEye}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faHeart}/>},
-        {id: 1, icon: <FontAwesomeIcon icon={faChartBar}/>},
-      ], 
-      price: 670, 
-      discounted_price: 567, 
-      title: 'Herschel Leather Duffle Bag In Brown Color'
-    },
-  ]
+export const clothingAndApparelProducts = [
+  {
+    id: 1,
+    img: backpack,
+    discount: "-16%",
+    icons: [
+      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
+    ],
+    price: 670,
+    discounted_price: 567,
+    title: "Herschel Leather Duffle Bag In Brown Color",
+  },
+  {
+    id: 1,
+    img: backpack,
+    discount: "-16%",
+    icons: [
+      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
+    ],
+    price: 670,
+    discounted_price: 567,
+    title: "Herschel Leather Duffle Bag In Brown Color",
+  },
+  {
+    id: 1,
+    img: backpack,
+    discount: "-16%",
+    icons: [
+      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
+    ],
+    price: 670,
+    discounted_price: 567,
+    title: "Herschel Leather Duffle Bag In Brown Color",
+  },
+  {
+    id: 1,
+    img: backpack,
+    discount: "-16%",
+    icons: [
+      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
+    ],
+    price: 670,
+    discounted_price: 567,
+    title: "Herschel Leather Duffle Bag In Brown Color",
+  },
+  {
+    id: 1,
+    img: backpack,
+    discount: "-16%",
+    icons: [
+      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
+    ],
+    price: 670,
+    discounted_price: 567,
+    title: "Herschel Leather Duffle Bag In Brown Color",
+  },
+  {
+    id: 1,
+    img: backpack,
+    discount: "-16%",
+    icons: [
+      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
+      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
+    ],
+    price: 670,
+    discounted_price: 567,
+    title: "Herschel Leather Duffle Bag In Brown Color",
+  },
+];
 
- export const sideCategories = [
-    {id: 1, title: 'Best Seller'},
-    {id: 2, title: 'New Arrivals'},
-    {id: 3, title: 'Desktop PC'},
-    {id: 4, title: 'Laptop'},
-    {id: 5, title: 'Smartphones'},
-    {id: 6, title: 'Storage & Memory'},
-    {id: 7, title: 'PC Component'},
-    {id: 8, title: 'Computer Accessories'},
-    {id: 9, title: 'Sales & Deals'},
-  ]
-  
- export const horizontalSliderProducts = [
-    {id: 1, link: "#", src: productsHomeTechnology3},
-    {id: 2, link: "#", src: productsHomeTechnology3},
-    {id: 3, link: "#", src: productsHomeTechnology3},
-    {id: 4, link: "#", src: productsHomeTechnology3},
-  ]
-  
+export const sideCategories = [
+  { id: 1, title: "Best Seller" },
+  { id: 2, title: "New Arrivals" },
+  { id: 3, title: "Desktop PC" },
+  { id: 4, title: "Laptop" },
+  { id: 5, title: "Smartphones" },
+  { id: 6, title: "Storage & Memory" },
+  { id: 7, title: "PC Component" },
+  { id: 8, title: "Computer Accessories" },
+  { id: 9, title: "Sales & Deals" },
+];
+
+export const horizontalSliderProducts = [
+  { id: 1, link: "#", src: productsHomeTechnology3 },
+  { id: 2, link: "#", src: productsHomeTechnology3 },
+  { id: 3, link: "#", src: productsHomeTechnology3 },
+  { id: 4, link: "#", src: productsHomeTechnology3 },
+];
+
+export const dealOfTheDayProducts = [
+  {
+    id: 6,
+    title: "Grand Slam Indoor Of Show Jumping Novel",
+    is_featured: false,
+    is_hot: false,
+    price: 41.99,
+    sale_price: 32.99,
+    vendor: "Robert's Store",
+    review: 4,
+    is_out_of_stock: false,
+    depot: 68,
+    inventory: 90,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:04:35.781Z",
+    updated_at: "2020-04-14T10:46:09.145Z",
+    variants: [],
+    images: [
+      {
+        id: 24,
+        name: "6a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "5c7442b5104545afa78bfe819616d298",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 52.29,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:07:56.574Z",
+        updated_at: "2020-03-15T06:07:56.574Z",
+      },
+      {
+        id: 25,
+        name: "6a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "0a9100b8791b44ff9629377856bab05a",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 52.29,
+        url: downloadsFridge2,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:07:56.593Z",
+        updated_at: "2020-03-15T06:07:56.593Z",
+      },
+    ],
+    thumbnail: {
+      id: 23,
+      name: "5.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "e2132e11d3c34da89511593297697922",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 10.17,
+      url: downloadsFridge2,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:07:56.562Z",
+      updated_at: "2020-03-15T06:07:56.562Z",
+    },
+  },
+  {
+    id: 7,
+    title: "Sound Intone I65 Earphone White Version",
+    is_featured: false,
+    is_hot: false,
+    price: 106.96,
+    sale_price: 100.99,
+    vendor: "Youngshop",
+    review: 5,
+    is_out_of_stock: false,
+    depot: 80,
+    inventory: 90,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:12:37.749Z",
+    updated_at: "2020-04-14T10:45:51.530Z",
+    variants: [],
+    images: [
+      {
+        id: 27,
+        name: "7a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "e98492a0c2b24ae5892641009bf21056",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 35.46,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:12:37.787Z",
+        updated_at: "2020-03-15T06:12:37.787Z",
+      },
+      {
+        id: 28,
+        name: "7b.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "55fbf669c1804ea994ace81b7aa58896",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 44.24,
+        url: downloadsFridge2,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:12:37.797Z",
+        updated_at: "2020-03-15T06:12:37.797Z",
+      },
+      {
+        id: 29,
+        name: "7c.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "b6bf4ec3c620428ca2c3876d31b28252",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 35.55,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:12:37.807Z",
+        updated_at: "2020-03-15T06:12:37.807Z",
+      },
+      {
+        id: 30,
+        name: "7d.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "dcdfd21d3ea44a6888d983d21852d961",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 30.8,
+        url: downloadsFridge2,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:12:37.816Z",
+        updated_at: "2020-03-15T06:12:37.816Z",
+      },
+    ],
+    thumbnail: {
+      id: 26,
+      name: "6.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "b097fdfb8b9d40fca83de9180de5a7ab",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 7.03,
+      url: downloadsFridge1,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:12:37.775Z",
+      updated_at: "2020-03-15T06:12:37.775Z",
+    },
+  },
+  {
+    id: 8,
+    title: "Korea Long Sofa Fabric In Blue Navy Color",
+    is_featured: false,
+    is_hot: false,
+    price: 670.2,
+    sale_price: 567.8,
+    vendor: "Youngshop",
+    review: 4,
+    is_out_of_stock: false,
+    depot: 85,
+    inventory: 79,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:15:55.939Z",
+    updated_at: "2020-03-15T06:15:55.939Z",
+    variants: [],
+    images: [
+      {
+        id: 32,
+        name: "8a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "caafb8f05561484a97923b235d2603f7",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 20.75,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:15:56.021Z",
+        updated_at: "2020-03-15T06:15:56.021Z",
+      },
+      {
+        id: 33,
+        name: "8b.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "ea26eeafaa1747b5857ee73c93430261",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 26.42,
+        url: downloadsFridge2,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:15:56.038Z",
+        updated_at: "2020-03-15T06:15:56.038Z",
+      },
+      
+    ],
+    thumbnail: {
+      id: 31,
+      name: "7.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "04ec8d58423647c98d6dbd3544c1c355",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 3.63,
+      url: downloadsFridge1,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:15:55.999Z",
+      updated_at: "2020-03-15T06:15:55.999Z",
+    },
+  },
+  {
+    id: 9,
+    title: "Unero Military Classical Backpack",
+    is_featured: false,
+    is_hot: false,
+    price: 42.2,
+    sale_price: 35.89,
+    vendor: "Young shop",
+    review: 3,
+    is_out_of_stock: false,
+    depot: 70,
+    inventory: 80,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:18:20.414Z",
+    updated_at: "2020-03-15T06:18:20.414Z",
+    variants: [],
+    images: [
+      {
+        id: 37,
+        name: "9a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "13fc9fc391d64652a0139f54cdac5c2b",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 43.02,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:18:20.533Z",
+        updated_at: "2020-03-15T06:18:20.533Z",
+      },
+      {
+        id: 38,
+        name: "9b.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "3d3ef24143bc473eb75a5721228e1f6d",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 50.61,
+        url: downloadsFridge2,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:18:20.573Z",
+        updated_at: "2020-03-15T06:18:20.573Z",
+      },
+     
+    ],
+    thumbnail: {
+      id: 36,
+      name: "8.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "1e1f0f78e33d4ce7828d21465e84da7d",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 8.13,
+      url: downloadsFridge2,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:18:20.459Z",
+      updated_at: "2020-03-15T06:18:20.459Z",
+    },
+  },
+  {
+    id: 14,
+    title: "MVMTH Classical Leather Watch In Black",
+    is_featured: false,
+    is_hot: false,
+    price: 62.99,
+    sale_price: 57.99,
+    vendor: "Young Shop",
+    review: 5,
+    is_out_of_stock: false,
+    depot: 60,
+    inventory: 70,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:34:26.192Z",
+    updated_at: "2020-03-15T06:34:26.192Z",
+    variants: [],
+    images: [
+      {
+        id: 60,
+        name: "14a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "3ac851d95c86433b8fcc50600c917036",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 37.78,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:34:26.237Z",
+        updated_at: "2020-03-15T06:34:26.237Z",
+      },
+      {
+        id: 61,
+        name: "14b.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "ebe0db165640431d9c8fd683f3258663",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 22.93,
+        url: downloadsFridge2,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:34:26.244Z",
+        updated_at: "2020-03-15T06:34:26.244Z",
+      },
+      
+    ],
+    thumbnail: {
+      id: 59,
+      name: "13.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "5a88e8516a6e44cb86ba41516dca0d56",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 7.62,
+      url: "/uploads/5a88e8516a6e44cb86ba41516dca0d56.jpg",
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:34:26.226Z",
+      updated_at: "2020-03-15T06:34:26.226Z",
+    },
+  },
+  {
+    id: 15,
+    title: "Beat Spill 2.0 Wireless Speaker – White",
+    is_featured: false,
+    is_hot: false,
+    price: 62.99,
+    sale_price: 57.99,
+    vendor: "Global Office",
+    review: 5,
+    is_out_of_stock: false,
+    depot: 50,
+    inventory: 80,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:37:17.824Z",
+    updated_at: "2020-03-15T06:37:17.824Z",
+    variants: [],
+    images: [
+      {
+        id: 64,
+        name: "1.png",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "bbb75430607f4d43ad26e4467ebdc524",
+        ext: ".png",
+        mime: "image/png",
+        size: 2.55,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:37:17.869Z",
+        updated_at: "2020-03-15T06:37:17.869Z",
+      },
+      {
+        id: 65,
+        name: "2.png",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "8df2b7bc798c43e3a56ba6b59c5be53a",
+        ext: ".png",
+        mime: "image/png",
+        size: 2.55,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:37:17.878Z",
+        updated_at: "2020-03-15T06:37:17.878Z",
+      },
+      {
+        id: 66,
+        name: "4.png",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "88eb11d6018e498aa7f97d41d4a434d2",
+        ext: ".png",
+        mime: "image/png",
+        size: 2.55,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:37:17.887Z",
+        updated_at: "2020-03-15T06:37:17.887Z",
+      }
+    ],
+    thumbnail: {
+      id: 63,
+      name: "14.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "3ca33b80916943f49a5af0a84ab2ef15",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 6.24,
+      url: downloadsFridge1,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:37:17.857Z",
+      updated_at: "2020-03-15T06:37:17.857Z",
+    },
+  },
+  {
+    id: 21,
+    title: "LG White Front Load Steam Washer",
+    is_featured: false,
+    is_hot: false,
+    price: 1422.7,
+    sale_price: 1025.5,
+    vendor: "Young Shop",
+    review: 5,
+    is_out_of_stock: false,
+    depot: 65,
+    inventory: 75,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:54:51.696Z",
+    updated_at: "2020-03-15T06:54:51.696Z",
+    variants: [],
+    images: [
+      {
+        id: 95,
+        name: "21a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "a88b749bd3bb49a6be93a362099c8295",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 46.36,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:54:51.730Z",
+        updated_at: "2020-03-15T06:54:51.730Z",
+      },
+      {
+        id: 96,
+        name: "22a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "8fcfcb5d0c694660b1906eda13290a82",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 68.23,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:54:51.739Z",
+        updated_at: "2020-03-15T06:54:51.739Z",
+      },
+    ],
+    thumbnail: {
+      id: 94,
+      name: "20.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "95aa7cb09ba04ce2b529ebceabb6f02c",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 8.71,
+      url: downloadsFridge1,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:54:51.718Z",
+      updated_at: "2020-03-15T06:54:51.718Z",
+    },
+  },
+  {
+    id: 22,
+    title: "Edifier Powered Bookshelf Speakers",
+    is_featured: false,
+    is_hot: false,
+    price: 96,
+    sale_price: 85,
+    vendor: "Young Shop",
+    review: 5,
+    is_out_of_stock: false,
+    depot: 50,
+    inventory: 65,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T06:57:47.163Z",
+    updated_at: "2020-03-15T06:57:47.163Z",
+    variants: [],
+    images: [
+      {
+        id: 98,
+        name: "22a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "8781ca71d80847979441fe7dc8b94fa9",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 68.23,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:57:47.213Z",
+        updated_at: "2020-03-15T06:57:47.213Z",
+      },
+      {
+        id: 99,
+        name: "22b.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "bde411ee582c4c86812e06dd5252c188",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 24.46,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T06:57:47.230Z",
+        updated_at: "2020-03-15T06:57:47.230Z",
+      },
+      
+    ],
+    thumbnail: {
+      id: 97,
+      name: "21.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "51a0ff71f98649af8b17284ed14f955d",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 10,
+      url: downloadsFridge1,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T06:57:47.203Z",
+      updated_at: "2020-03-15T06:57:47.203Z",
+    },
+  },
+  {
+    id: 23,
+    title: "Amcrest Security Camera in White Color",
+    is_featured: false,
+    is_hot: false,
+    price: 62.99,
+    sale_price: 45.9,
+    vendor: "Global Office",
+    review: 4,
+    is_out_of_stock: false,
+    depot: 60,
+    inventory: 80,
+    is_active: true,
+    is_sale: true,
+    slug: null,
+    created_at: "2020-03-15T07:00:52.871Z",
+    updated_at: "2020-03-15T07:00:52.871Z",
+    variants: [],
+    images: [
+      {
+        id: 103,
+        name: "24a.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "4fcbfdb675614342a172da1be483724e",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 38.76,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T07:00:52.919Z",
+        updated_at: "2020-03-15T07:00:52.919Z",
+      },
+      {
+        id: 104,
+        name: "24b.jpg",
+        alternativeText: null,
+        caption: null,
+        width: null,
+        height: null,
+        formats: null,
+        hash: "ba0feb269ff041e9ba8489b63c0ad79d",
+        ext: ".jpg",
+        mime: "image/jpeg",
+        size: 19.41,
+        url: downloadsFridge1,
+        previewUrl: null,
+        provider: "local",
+        provider_metadata: null,
+        created_at: "2020-03-15T07:00:52.927Z",
+        updated_at: "2020-03-15T07:00:52.927Z",
+      },
+      
+    ],
+    thumbnail: {
+      id: 102,
+      name: "22.jpg",
+      alternativeText: null,
+      caption: null,
+      width: null,
+      height: null,
+      formats: null,
+      hash: "bb783d18223044cca198d84a4e0e3191",
+      ext: ".jpg",
+      mime: "image/jpeg",
+      size: 7.24,
+      url: downloadsFridge1,
+      previewUrl: null,
+      provider: "local",
+      provider_metadata: null,
+      created_at: "2020-03-15T07:00:52.903Z",
+      updated_at: "2020-03-15T07:00:52.903Z",
+    },
+  },
+];

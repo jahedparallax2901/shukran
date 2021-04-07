@@ -131,11 +131,6 @@ class MartketPlace3Banner extends Component {
                 </div>
               ))}
             </Slider>
-            <Link to="/shop">
-              <a>
-                <img src={promotion7} alt="martfury" />
-              </a>
-            </Link>
           </div>
           <div className="ps-section__right">
             {/* <Link href="/shop">
@@ -145,7 +140,6 @@ class MartketPlace3Banner extends Component {
             </Link> */}
             <a href="#"><img src={downloadsSmartwatch} alt="" /></a>
             <a href="#"><img src={downloadsBangladesh} alt="" /></a>
-            <a className="wide" href="#"><img src={promotion3} alt=""/></a>
             <a href="#"><img src={downloadsBagpack} alt="" /></a>
             <a href="#"><img src={promotion2} alt="" /></a>
           </div>
