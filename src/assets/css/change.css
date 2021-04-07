@@ -1950,3 +1950,51 @@ button.ps-btn:active {
 }
 
 /* ====================== Card Section ========================*/
+
+/* Ant tab design */
+.ant-tabs .ant-tabs-tab {
+	padding-bottom: 0;
+}
+
+.ant-tabs .ps-block__tab-list a {
+	display: block;
+	padding: 20px 0;
+	text-align: center;
+	border-bottom: 2px solid transparent;
+}
+
+.ant-tabs .ps-block__tab-list a i {
+	font-size: 36px;
+}
+
+.ant-tabs .ps-block__tab-list a span {
+	display: block;
+}
+
+.ant-tabs .ps-block__tab-list a:hover {
+	border-color: #fcb800;
+}
+
+.ant-tabs .ps-block__tab-list a:hover i {
+	color: #fcb800;
+}
+
+.ant-tabs .ps-block__tab-list a.active {
+	border-color: #fcb800;
+}
+
+.ant-tabs .ps-block__tab-list a.active i {
+	color: #fcb800;
+}
+
+.ant-tabs .ant-tabs-tab-active {
+	color: #fcb800;
+}
+
+.ant-tabs .ant-tabs-tab-active:hover {
+	color: #fcb800;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+	background-color: #fcb800;
+}
