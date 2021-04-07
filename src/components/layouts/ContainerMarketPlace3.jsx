@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
-import HeaderMobile from '~/components/shared/headers/HeaderMobile';
-import NavigationList from '~/components/shared/navigation/NavigationList';
-
-import FooterMarketPlace2 from '~/components/shared/footers/FooterMarketPlace2';
-import HeaderMarketPlace3 from '~/components/shared/headers/HeaderMarketPlace3';
+// import HeaderMobile from '../partials/HeaderMobile';
+// import NavigationList from '../partials/NavigationList';
+import FooterMarketPlace2 from '../partials/footer/FooterMarketPlace2';
+// import MarketPlacePromotionHeader from '../partials/MarketPlacePromotionHeader';
+// import HeaderMarketPlace from '../partials/HeaderMarketPlace';
 
 const ContainerMarketPlace3 = ({ children, title }) => {
     let titleView;
@@ -15,14 +14,15 @@ const ContainerMarketPlace3 = ({ children, title }) => {
     }
 
     useEffect(()=>{
-        document.title(titleView)
+        document.title = 'Shukran';
     },[])
 
     return (
-        <div className="martfury">
-            <HeaderMarketPlace3 />
-            <HeaderMobile />
-            <NavigationList />
+        <div>
+            {/* <MarketPlacePromotionHeader />
+            <HeaderMarketPlace /> */}
+            {/* <HeaderMobile />
+            <NavigationList /> */}
             <main id="homepage-5">
                 <div className="container">{children}</div>
             </main>
