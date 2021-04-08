@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import '../../assets/css/campaign.css';
-
 import moment from 'moment';
 
 class CountDown extends Component {
@@ -36,6 +34,7 @@ class CountDown extends Component {
     }
     render() {
         const { days, hours, minutes, seconds } = this.state;
+        console.log("seconds",seconds);
         return (
             <ul className="ps-countdown">
                 <li>

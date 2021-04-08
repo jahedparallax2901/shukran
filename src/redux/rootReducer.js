@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
-// import shoppingCartReducer from './shopping-cart/shoppingCartReducer';
+import shoppingCartReducer from './shopping-cart/shoppingCartReducer';
 // import sidebarReducer from './sidebar/sidebarReducer';
-// import authReducer from './auth/authReducer';
+import authReducer from './auth/authReducer';
 // import productSearchReducer from './product-search/productSearchReducer';
 // import shippingAddressReducer from './shipping-address/shippingAddressReducer';
 // import billingAddressReducer from './billing-address/billingAddressReducer';
@@ -10,9 +10,9 @@ import {combineReducers} from 'redux'
 // import storeSearchReducer from './store-search/storeSearchReducer';
 
 const rootReducer = combineReducers({
-  // shoppingCart: shoppingCartReducer,
+  shoppingCart: shoppingCartReducer,
   // sidebar: sidebarReducer,
-  // auth: authReducer,
+  auth: authReducer,
   // productSearch: productSearchReducer,
   // shippingAddress: shippingAddressReducer,
   // billingAddress: billingAddressReducer,

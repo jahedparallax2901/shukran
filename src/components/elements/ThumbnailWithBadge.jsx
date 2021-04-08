@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import Lightbox from 'react-image-lightbox';
 import NextArrow from './carousel/NextArrow';
 import PrevArrow from './carousel/PrevArrow';
-import 'react-image-lightbox/style.css';
 
 const ThumbnailWithBadge = ({ product, vertical = true }) => {
     const galleryCarousel = useRef(null);

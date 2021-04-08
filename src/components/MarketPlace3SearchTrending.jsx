@@ -17,7 +17,6 @@ import "../assets/css/style.css";
 import "../assets/css/change.css";
 import "../assets/css/market-place-3.css";
 import "../assets/css/autopart.css";
-import "../assets/css/campaign.css";
 import {
   faBaseballBall,
   faBasketballBall,
@@ -28,6 +27,14 @@ import {
   faTshirt,
 } from "@fortawesome/free-solid-svg-icons";
 import { GrBaby } from "react-icons/gr";
+import Slider from "react-slick";
+import { carouselStandard } from "../utilities/carousel-helpers";
+import { BsPhone, BsStar } from "react-icons/bs";
+import { AiOutlineCar, AiOutlineDesktop } from "react-icons/ai";
+import { BiBaseball, BiBed } from "react-icons/bi";
+import { RiTShirtLine } from "react-icons/ri";
+import { FaBaby } from "react-icons/fa";
+import { GiEvilBook } from "react-icons/gi";
 
 const { TabPane } = Tabs;
 const MarketPlace3SearchTrending = () => {
@@ -67,12 +74,13 @@ const MarketPlace3SearchTrending = () => {
           <div className="ps-block--categories-tabs ps-tab-root">
             <div className="ps-block__header">
               <Tabs defaultActiveKey="2">
+                
                 <TabPane
                   tab={
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faStar} />
+                          <BsStar />
                         </i>
                         <span>Hot Trending</span>
                       </a>
@@ -96,7 +104,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faPhoneAlt} />
+                          <BsPhone />
                         </i>
                         {/* <i className="icon-smartphone"></i> */}
                         <span>Cell Phones</span>
@@ -112,7 +120,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faDesktop} />
+                          <AiOutlineDesktop />
                         </i>
                         {/* <i className="icon-desktop"></i> */}
                         <span>Computers</span>
@@ -128,7 +136,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faDesktop} />
+                          <BiBed />
                         </i>
                         {/* <i className="icon-lampshade"></i> */}
                         <span>Furnitures</span>
@@ -144,7 +152,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faTshirt} />
+                          <RiTShirtLine />
                         </i>
                         <i className="icon-shirt"></i>
                         <span>T-Shirts</span>
@@ -159,7 +167,10 @@ const MarketPlace3SearchTrending = () => {
                   tab={
                     <div className="ps-block__tab-list">
                       <a>
-                      <GrBaby/>
+                        <i>
+                        <FaBaby/>
+
+                        </i>
                         <span>Baby & Mom</span>
                       </a>
                     </div>
@@ -174,7 +185,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faBasketballBall} />
+                          <BiBaseball />
                         </i>
                         {/* <i className="icon-baseball"></i> */}
                         <span>Sports</span>
@@ -191,7 +202,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faBook} />
+                          <GiEvilBook />
                         </i>
                         {/* <i className="icon-book2"></i> */}
                         <span>Book & Office</span>
@@ -207,7 +218,7 @@ const MarketPlace3SearchTrending = () => {
                     <div className="ps-block__tab-list">
                       <a>
                         <i>
-                          <FontAwesomeIcon icon={faCar} />
+                          <AiOutlineCar />
                         </i>
                         {/* <i className="icon-car-siren"></i> */}
                         <span>Cars</span>
@@ -218,7 +229,9 @@ const MarketPlace3SearchTrending = () => {
                 >
                   <span>Cars</span>
                 </TabPane>
+              
               </Tabs>
+
             </div>
           </div>
         </div>

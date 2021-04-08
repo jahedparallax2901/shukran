@@ -1,3 +1,4 @@
+
 .header--market-place-1 .header__extra span i {
   color: #000;
   font-weight: 700;
@@ -19,6 +20,7 @@
   border-top: 1px solid #e1e1e1;
   border-bottom: 1px solid #e1e1e1;
   background-color: #fff;
+  
 }
 
 .header--market-place-1 .navigation > .container {

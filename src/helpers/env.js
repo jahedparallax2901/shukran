@@ -27,3 +27,4 @@ if (MODE === 'Local') {
 export const BASE_API_URL = `${base_api_url}`;
 export const MERCHANT_PANEL = `${merchant_panel}`;
 export const SITE_URL = `${site_url}`;
+export const OTP_RESEND_TIME = 60;

@@ -6,6 +6,7 @@ import ProductHorizontal from '../../components/elements/ProductHorizontal';
 import {dealOfTheDayProducts} from '../../temp-data/homeData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 const ProductGroupDealHot = ({ collectionSlug }) => {
     const sliderRef = useRef(null);
     const [productItems, setProductItems] = useState(null);
@@ -58,7 +59,7 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
                 <Slider
                     ref={(slider) => (sliderRef.current = slider)}
                     {...carouselSingle}
-                    fade={true}
+                    fade={false}
                     className="ps-carousel">
                     {slideItems}
                 </Slider>
@@ -87,21 +88,24 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
                     <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 ">
                         <div className="ps-block--deal-hot" data-mh="dealhot">
                             <div className="ps-block__header">
-                                <h3>Deal hot today</h3>
+                                <h3>Campaign</h3>
                                 <div className="ps-block__navigation">
                                     <a
                                         className="ps-carousel__prev"
                                         href="#"
                                         onClick={(e) => handleCarouselPrev(e)}>
-                                            <FontAwesomeIcon icon={faChevronCircleLeft}/>
-                                        {/* <i className="icon-chevron-left"></i> */}
+                                            
+                                        <i>
+                                        <BsChevronLeft/>
+                                        </i>
                                     </a>
                                     <a
                                         className="ps-carousel__next"
                                         href=".ps-carousel--deal-hot"
                                         onClick={(e) => handleCarouselNext(e)}>
-                                            <FontAwesomeIcon icon={faChevronCircleRight}/>
-                                        {/* <i className="icon-chevron-right"></i> */}
+                                            <i>
+                                            <BsChevronRight/>
+                                            </i>
                                     </a>
                                 </div>
                             </div>

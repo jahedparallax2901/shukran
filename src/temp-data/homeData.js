@@ -87,54 +87,60 @@ import downloadsBagpack from "../assets/img/downloads/bagpack.jpeg";
 import bike2 from "../assets/img/downloads/bike2.jpeg";
 import downloadsFridge1 from '../assets/img/downloads/fridge1.jpg';
 import downloadsFridge2 from '../assets/img/downloads/fridge2.jpg';
+import { IoIosLaptop } from "react-icons/io";
+import { AiOutlineCamera, AiOutlineMobile } from "react-icons/ai";
+import { RiEBikeLine, RiHealthBookLine } from "react-icons/ri";
+import { FaBaby } from "react-icons/fa";
+import { GiPikeman } from "react-icons/gi";
+import { GrUserFemale } from "react-icons/gr";
 
 export const menuContents = [
   {
     id: 1,
     link: "#",
-    icon: <FontAwesomeIcon icon={faLaptop} />,
+    icon: <IoIosLaptop />,
     title: "Computer and accessories",
   },
   {
     id: 2,
     link: "#",
-    icon: <FontAwesomeIcon icon={faCamera} />,
+    icon: <AiOutlineCamera />,
     title: "Cameras",
   },
   {
     id: 3,
     link: "#",
-    icon: <FontAwesomeIcon icon={faMedkit} />,
+    icon: <RiHealthBookLine />,
     title: "Health & Beauty",
   },
   {
     id: 4,
     link: "#",
-    icon: <FontAwesomeIcon icon={faBaby} />,
+    icon: <FaBaby />,
     title: "Mother & Baby",
   },
   {
     id: 5,
     link: "#",
-    icon: <FontAwesomeIcon icon={faMobile} />,
+    icon: <AiOutlineMobile />,
     title: "Mobile & Accessories",
   },
   {
     id: 6,
     link: "#",
-    icon: <FontAwesomeIcon icon={faUniversalAccess} />,
+    icon: <GiPikeman />,
     title: "Men's Fashion",
   },
   {
     id: 7,
     link: "#",
-    icon: <FontAwesomeIcon icon={faFemale} />,
+    icon: <GrUserFemale />,
     title: "Women's Fashion",
   },
   {
     id: 8,
     link: "#",
-    icon: <FontAwesomeIcon icon={faMotorcycle} />,
+    icon: <RiEBikeLine />,
     title: "Automotive and Motorbike",
   },
 ];
@@ -179,7 +185,7 @@ export const clothingAndApparelProducts = [
       { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
     ],
     price: 670,
-    discounted_price: 567,
+    discountedPrice: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
   },
   {
@@ -193,7 +199,7 @@ export const clothingAndApparelProducts = [
       { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
     ],
     price: 670,
-    discounted_price: 567,
+    discountedPrice: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
   },
   {
@@ -207,7 +213,7 @@ export const clothingAndApparelProducts = [
       { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
     ],
     price: 670,
-    discounted_price: 567,
+    discountedPrice: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
   },
   {
@@ -221,7 +227,7 @@ export const clothingAndApparelProducts = [
       { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
     ],
     price: 670,
-    discounted_price: 567,
+    discountedPrice: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
   },
   {
@@ -235,7 +241,7 @@ export const clothingAndApparelProducts = [
       { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
     ],
     price: 670,
-    discounted_price: 567,
+    discountedPrice: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
   },
   {
@@ -249,7 +255,7 @@ export const clothingAndApparelProducts = [
       { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
     ],
     price: 670,
-    discounted_price: 567,
+    discountedPrice: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
   },
 ];
@@ -697,7 +703,7 @@ export const dealOfTheDayProducts = [
       ext: ".jpg",
       mime: "image/jpeg",
       size: 7.62,
-      url: "/uploads/5a88e8516a6e44cb86ba41516dca0d56.jpg",
+      url: downloadsFridge1,
       previewUrl: null,
       provider: "local",
       provider_metadata: null,
@@ -1039,3 +1045,5 @@ export const dealOfTheDayProducts = [
     },
   },
 ];
+
+

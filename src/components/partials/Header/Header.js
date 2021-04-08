@@ -13,7 +13,7 @@ class Header extends Component {
     render() {
         return (
             <>
-                <div
+                {/* <div
           className="modal fade"
           id="login-modal-center"
           tabindex="-1"
@@ -99,7 +99,7 @@ class Header extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <HeaderPromotion/>
 

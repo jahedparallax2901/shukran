@@ -13,13 +13,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { BsList, BsChevronDown, BsHeart, BsBag } from "react-icons/all";
+import {handleShowAuthModal} from "../../../redux";
+import { connect } from "react-redux";
 
 class HeaderStandard extends Component {
   render() {
+    const {handleShowAuthModal} = this.props;
     return (
       <header
         className="header header--standard header--market-place-1"
-        data-sticky="true"
+        dataSticky="true"
       >
         <div className="header__content">
           <div className="container">
@@ -163,7 +166,7 @@ class HeaderStandard extends Component {
                   </div>
                   <div className="ps-block__right">
                     <a
-                      href="#"
+                      onClick={handleShowAuthModal}
                       data-toggle="modal"
                       data-target="#login-modal-center"
                     >
@@ -239,4 +242,10 @@ class HeaderStandard extends Component {
   }
 }
 
-export default HeaderStandard;
+const mapDispatchToProps = dispatch => {
+  return {
+    handleShowAuthModal: () => dispatch(handleShowAuthModal())
+  }
+};
+
+export default connect(null, mapDispatchToProps)(HeaderStandard);

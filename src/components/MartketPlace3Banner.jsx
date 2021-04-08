@@ -29,6 +29,7 @@ import downloadsBangladesh from '../assets/img/downloads/bangladesh.png';
 import downloadsBagpack from '../assets/img/downloads/bagpack.jpeg';
 import promotion2 from '../assets/img/downloads/promotion-2.webp';
 import promotion3 from '../assets/img/slider/home-5/promotion-3.jpg';
+import { menuContents } from "../temp-data/homeData";
 
 class MartketPlace3Banner extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class MartketPlace3Banner extends Component {
 
   render() {
     const carouselSettings = {
-      dots: true,
+      dots: false,
       arrows: false,
       infinite: true,
       speed: 1000,
@@ -45,56 +46,7 @@ class MartketPlace3Banner extends Component {
       slidesToScroll: 1,
     };
 
-    const menuContents = [
-      {
-        id: 1,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faLaptop} />,
-        title: "Computer and accessories",
-      },
-      {
-        id: 2,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faCamera} />,
-        title: "Cameras",
-      },
-      {
-        id: 3,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faMedkit} />,
-        title: "Health & Beauty",
-      },
-      {
-        id: 4,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faBaby} />,
-        title: "Mother & Baby",
-      },
-      {
-        id: 5,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faMobile} />,
-        title: "Mobile & Accessories",
-      },
-      {
-        id: 6,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faUniversalAccess} />,
-        title: "Men's Fashion",
-      },
-      {
-        id: 7,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faFemale} />,
-        title: "Women's Fashion",
-      },
-      {
-        id: 8,
-        link: "#",
-        icon: <FontAwesomeIcon icon={faMotorcycle} />,
-        title: "Automotive and Motorbike",
-      },
-    ];
+    
 
     const centerBanners = [
       { id: 1, src: banner1, link: "#" },
@@ -111,7 +63,10 @@ class MartketPlace3Banner extends Component {
                 {menuContents.map((item) => (
                   <li key={item.id}>
                     <a href={item.link}>
-                      {item.icon} {item.title}
+                      <i>
+                      {item.icon}
+                      </i>
+                       {item.title}
                     </a>
                   </li>
                 ))}

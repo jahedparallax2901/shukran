@@ -5,7 +5,6 @@ import "../assets/css/market-place-3.css";
 import "../assets/css/market-place-1.css";
 import "../assets/css/market-place-4.css";
 import "../assets/css/autopart.css";
-import "../assets/css/campaign.css";
 import Slider from "react-slick";
 
 // import '../assets/css/select2.min.css';
@@ -35,7 +34,6 @@ import downloadsFridge1 from "../assets/img/downloads/fridge1.jpg";
 import downloadsFridge2 from "../assets/img/downloads/fridge2.jpg";
 import bike1 from "../assets/img/downloads/bike1.jpeg";
 import camera from "../assets/img/downloads/camera.jpg";
-import watch from "../assets/img/downloads/watch.JPG";
 import downloadsChair1 from "../assets/img/downloads/chair1.JPG";
 import shirtBanner from "../assets/img/downloads/shirt-banner.jpg";
 // import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
@@ -72,18 +70,27 @@ import {
 import ProductGroupDealHot from "../components/product/ProductGroupDealHot";
 import { carouselStandard } from "../utilities/carousel-helpers";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
+import NextArrow from "../components/elements/carousel/NextArrow";
+import PrevArrow from "../components/elements/carousel/PrevArrow";
+import Rating from "../components/elements/Rating";
+import FloatingCart from "../components/partials/shared/shopping-cart/FloatingCart";
+import MiniShoppinCart from "../components/partials/shopping-cart/MiniShoppinCart";
+import { BsChevronDoubleUp } from "react-icons/bs";
+import { FaChevronUp } from "react-icons/fa";
 
 class Home extends Component {
   render() {
     const carouselSettings = {
       dots: false,
-      arrows: true,
       infinite: true,
       speed: 2000,
+      arrow: true,
       autoplay: true,
       autoplaySpeed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
+      nextArrow: <NextArrow />,
+      prevArrow: <PrevArrow />,
     };
     return (
       <ContainerMarketPlace3 title={"Shukran"}>
@@ -110,16 +117,16 @@ class Home extends Component {
                         data-time="December 30, 2021 15:37:25"
                       >
                         <li>
-                          <span className="days"></span>
+                          <span className="days">05</span>
                         </li>
                         <li>
-                          <span className="hours"></span>
+                          <span className="hours">07</span>
                         </li>
                         <li>
-                          <span className="minutes"></span>
+                          <span className="minutes">46</span>
                         </li>
                         <li>
-                          <span className="seconds"></span>
+                          <span className="seconds">37</span>
                         </li>
                       </ul>
                     </figure>
@@ -827,15 +834,15 @@ class Home extends Component {
               </div>
             </div>
           </div>
-        </div>
-        <div id="shop-now-home3">
-          <div className="container">
-            <div className="ps-section__content">
-              <div className="home-categories-top">
-                <h3>All Categories</h3>
-              </div>
-              <Slider {...carouselStandard}>
-                {/* <div
+
+          <div id="shop-now-home3">
+            <div className="container">
+              <div className="ps-section__content">
+                <div className="home-categories-top">
+                  <h3>All Categories</h3>
+                </div>
+                <Slider {...carouselStandard}>
+                  {/* <div
             className="ps-carousel--nav owl-slider bg-white home-categories-body"
             data-owl-auto="false"
             data-owl-loop="false"
@@ -852,86 +859,87 @@ class Home extends Component {
             data-owl-duration="1000"
             data-owl-mousedrag="on"
           > */}
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src="img/downloads/laptop1.jpeg" alt="" />
-                    </div>
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src="img/downloads/laptop1.jpeg" alt="" />
+                      </div>
 
-                    <p>Computer and accessories</p>
-                  </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src={camera} alt="" />
+                      <p>Computer and accessories</p>
                     </div>
-                    <p>Cameras</p>
                   </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src="img/categories/1.jpg" alt="" />
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src={camera} alt="" />
+                      </div>
+                      <p>Cameras</p>
                     </div>
-                    <p>Health & Beauty</p>
                   </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src="img/downloads/kids-care.JPG" alt="" />
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src="img/categories/1.jpg" alt="" />
+                      </div>
+                      <p>Health & Beauty</p>
                     </div>
-                    <p>Mother & Baby</p>
                   </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src={categoriesHome515} alt="" />
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src="img/downloads/kids-care.JPG" alt="" />
+                      </div>
+                      <p>Mother & Baby</p>
                     </div>
-                    <p>Mobile & Accessories</p>
                   </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src="img/downloads/shirt1.jpeg" alt="" />
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src={categoriesHome515} alt="" />
+                      </div>
+                      <p>Mobile & Accessories</p>
                     </div>
-                    <p>Men’s Fashion</p>
                   </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src={categoriesHome58} alt="" />
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src="img/downloads/shirt1.jpeg" alt="" />
+                      </div>
+                      <p>Men’s Fashion</p>
                     </div>
-                    <p>Women’s Fashion</p>
                   </div>
-                </div>
-                <div className="ps-product ps-product--inner">
-                  <div className="ps-block--category">
-                    <a className="ps-block__overlay" href="#"></a>
-                    <div className="all-category-single">
-                      <img src={bike1} alt="" />
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src={categoriesHome58} alt="" />
+                      </div>
+                      <p>Women’s Fashion</p>
                     </div>
-                    <p>Automotive and Motorbike</p>
                   </div>
-                </div>
-                {/* </div> */}
-              </Slider>
+                  <div className="ps-product ps-product--inner">
+                    <div className="ps-block--category">
+                      <a className="ps-block__overlay" href="#"></a>
+                      <div className="all-category-single">
+                        <img src={bike1} alt="" />
+                      </div>
+                      <p>Automotive and Motorbike</p>
+                    </div>
+                  </div>
+                  {/* </div> */}
+                </Slider>
+              </div>
             </div>
           </div>
         </div>
         <div id="homepage-3">
-          <div className="ps-section--gray">
+          <div className="">
             <div className="container">
               <div className="ps-block--products-of-category">
                 <div className="ps-block__categories">
@@ -967,19 +975,8 @@ class Home extends Component {
                         <img src={sliderHomeClothing3} alt="" />
                       </a>
                     </div>
-                    {/* {centerBanners.map((banner) => (
-                <div className="item">
-                  <Link to="#">
-                    <a key={banner.id} href="">
-                      <img src={banner.src} alt="" />
-                    </a>
-                  </Link>
-                </div>
-              ))} */}
                   </Slider>
                 </div>
-
-                {/* Now working */}
 
                 <div className="ps-block__product-box">
                   {clothingAndApparelProducts.map((item) => (
@@ -993,13 +990,12 @@ class Home extends Component {
                           {item.icons.map((icon) => (
                             <li>
                               <a
-                                href="#"
                                 data-placement="top"
                                 title="Quick View"
                                 data-toggle="modal"
                                 data-target="#product-quickview"
                               >
-                                {icon.icon}
+                                <i>{icon.icon}</i>
                               </a>
                             </li>
                           ))}
@@ -1014,13 +1010,7 @@ class Home extends Component {
                             {item.title}
                           </a>
                           <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option>
-                            </select>
+                            <Rating />
                             <span>01</span>
                           </div>
                           <p className="ps-product__price sale">
@@ -1078,13 +1068,12 @@ class Home extends Component {
                           {item.icons.map((icon) => (
                             <li>
                               <a
-                                href="#"
                                 data-placement="top"
                                 title="Quick View"
                                 data-toggle="modal"
                                 data-target="#product-quickview"
                               >
-                                {icon.icon}
+                                <i>{icon.icon}</i>
                               </a>
                             </li>
                           ))}
@@ -1099,13 +1088,7 @@ class Home extends Component {
                             {item.title}
                           </a>
                           <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option>
-                            </select>
+                            <Rating />
                             <span>01</span>
                           </div>
                           <p className="ps-product__price sale">
@@ -1163,13 +1146,12 @@ class Home extends Component {
                           {item.icons.map((icon) => (
                             <li>
                               <a
-                                href="#"
                                 data-placement="top"
                                 title="Quick View"
                                 data-toggle="modal"
                                 data-target="#product-quickview"
                               >
-                                {icon.icon}
+                                <i>{icon.icon}</i>
                               </a>
                             </li>
                           ))}
@@ -1184,13 +1166,7 @@ class Home extends Component {
                             {item.title}
                           </a>
                           <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option>
-                            </select>
+                            <Rating />
                             <span>01</span>
                           </div>
                           <p className="ps-product__price sale">
@@ -1248,13 +1224,12 @@ class Home extends Component {
                           {item.icons.map((icon) => (
                             <li>
                               <a
-                                href="#"
                                 data-placement="top"
                                 title="Quick View"
                                 data-toggle="modal"
                                 data-target="#product-quickview"
                               >
-                                {icon.icon}
+                                <i>{icon.icon}</i>
                               </a>
                             </li>
                           ))}
@@ -1269,13 +1244,7 @@ class Home extends Component {
                             {item.title}
                           </a>
                           <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option>
-                            </select>
+                            <Rating />
                             <span>01</span>
                           </div>
                           <p className="ps-product__price sale">
@@ -1333,13 +1302,12 @@ class Home extends Component {
                           {item.icons.map((icon) => (
                             <li>
                               <a
-                                href="#"
                                 data-placement="top"
                                 title="Quick View"
                                 data-toggle="modal"
                                 data-target="#product-quickview"
                               >
-                                {icon.icon}
+                                <i>{icon.icon}</i>
                               </a>
                             </li>
                           ))}
@@ -1354,13 +1322,7 @@ class Home extends Component {
                             {item.title}
                           </a>
                           <div className="ps-product__rating">
-                            <select className="ps-rating" data-read-only="true">
-                              <option value="1">1</option>
-                              <option value="1">2</option>
-                              <option value="1">3</option>
-                              <option value="1">4</option>
-                              <option value="2">5</option>
-                            </select>
+                            <Rating />
                             <span>01</span>
                           </div>
                           <p className="ps-product__price sale">
@@ -1377,355 +1339,16 @@ class Home extends Component {
         </div>
 
         {/* Start Aside Drower */}
-        <button className="asside-card-drower asside-card-drower-button">
-          <div className="asside-top">
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-            <p>
-              <span>2</span> Item
-            </p>
-          </div>
-          <div className="asside-body">
-            <span>৳৫৫০.০০</span>
-          </div>
-        </button>
-        <div className="asside-card-checkout">
-          <div className="aside-cart-header">
-            {/* <div className="ps-checkbox">
-          <input type="checkbox" id="select-all" />
-          <label for="select-all">Select All</label>
-        </div> */}
-            <h1>Your Cart</h1>
-            <div className="close-btn">
-              <i className="las la-times"></i>
-            </div>
-          </div>
-          <div className="select-all-div">
-            <div className="ps-checkbox">
-              <input type="checkbox" id="select-all" />
-              <label for="select-all">Select All</label>
-            </div>
-          </div>
-          <div className="store-div">
-            <div className="store">
-              <div className="store-name">
-                <div className="ps-checkbox">
-                  <input
-                    className="form-control"
-                    type="checkbox"
-                    id="store-1"
-                    name="brand"
-                  />
-                  <label for="store-1">ecstasy</label>
-                </div>
-                {/* <h1>ecstasy</h1> */}
-              </div>
-              <div className="product">
-                <div className="product-name">
-                  <div className="ps-checkbox">
-                    <input
-                      className="form-control"
-                      type="checkbox"
-                      id="brand-1"
-                      name="brand"
-                    />
-                    <label for="brand-1">Bagpack</label>
-                  </div>
-                </div>
-                <div className="product-details">
-                  <div className="product-details-div-img product-details-div">
-                    <img src="./img/downloads/bagpack.jpeg" alt="" />
-                  </div>
-                  <div className="quantity product-details-div">
-                    <h6 className="quantity-title product-details-div-title">
-                      quantity
-                    </h6>
-                    <div className="quantity-changer">
-                      <i className="fas fa-minus"></i>
-                      <p>2</p>
-                      <i className="fas fa-plus"></i>
-                    </div>
-                  </div>
-                  <div className="variant product-details-div">
-                    <h6 className="variant-title product-details-div-title">
-                      variant
-                    </h6>
-                    <div className="color-block"></div>
-                  </div>
-                  <div className="size product-details-div">
-                    <h6 className="size-title product-details-div-title">
-                      size
-                    </h6>
-                    <p>XL</p>
-                  </div>
-                </div>
-                <div className="product-price-div">
-                  <div className="product-price">
-                    <div className="product-price-title">
-                      <h6>price</h6>
-                    </div>
-                    <p>৳2000.00</p>
-                  </div>
-                  <div className="delivery-charge">
-                    <div className="delivery-charge-title">
-                      <h6>delivery charge</h6>
-                    </div>
-                    <p>৳60.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="product">
-                <div className="product-name">
-                  <div className="ps-checkbox">
-                    <input
-                      className="form-control"
-                      type="checkbox"
-                      id="brand-2"
-                      name="brand"
-                    />
-                    <label for="brand-2">shirt</label>
-                  </div>
-                </div>
-                <div className="product-details">
-                  <div className="product-details-div-img product-details-div">
-                    <img src="./img/downloads/shirt1.jpeg" alt="" />
-                  </div>
-                  <div className="quantity product-details-div">
-                    <h6 className="quantity-title product-details-div-title">
-                      quantity
-                    </h6>
-                    <div className="quantity-changer">
-                      <i className="fas fa-minus"></i>
-                      <p>2</p>
-                      <i className="fas fa-plus"></i>
-                    </div>
-                  </div>
-                  {/* <div className="variant product-details-div">
-                <h6 className="variant-title product-details-div-title">variant</h6>
-                <div className="color-block"></div>
-              </div> */}
-                  <div className="size product-details-div">
-                    <h6 className="size-title product-details-div-title">
-                      size
-                    </h6>
-                    <p>L</p>
-                  </div>
-                </div>
-                <div className="product-price-div">
-                  <div className="product-price">
-                    <div className="product-price-title">
-                      <h6>price</h6>
-                    </div>
-                    <p>৳2000.00</p>
-                  </div>
-                  <div className="delivery-charge">
-                    <div className="delivery-charge-title">
-                      <h6>delivery charge</h6>
-                    </div>
-                    <p>৳60.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="store-checkout-div">
-                <div className="store-coupon">
-                  {/* <a href="#">apply for coupon</a> */}
-                  <input
-                    type="text"
-                    placeholder="apply for coupon"
-                    name="search"
-                  />
-                  <button type="submit">✓</button>
-                </div>
-                <div className="store-checkout-div-right">
-                  <div className="delivery-charge">
-                    <h6 className="delivery-charge-title">delivery-charge :</h6>
-                    <p>৳2060.00</p>
-                  </div>
-                  <div className="subtotal">
-                    <h6 className="subtotal-title">subtotal :</h6>
-                    <p>৳2060.00</p>
-                  </div>
-                  <div className="total">
-                    <h6 className="total-title">total :</h6>
-                    <p>৳2060.00</p>
-                  </div>
-                  <a href="checkout.html" className="store-checkout">
-                    checkout
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="store-div">
-            <div className="store">
-              <div className="store-name">
-                <div className="ps-checkbox">
-                  <input
-                    className="form-control"
-                    type="checkbox"
-                    id="store-2"
-                    name="brand"
-                  />
-                  <label for="store-2">zara</label>
-                </div>
-                {/* <h1>ecstasy</h1> */}
-              </div>
-              <div className="product">
-                <div className="product-name">
-                  <div className="ps-checkbox">
-                    <input
-                      className="form-control"
-                      type="checkbox"
-                      id="brand-3"
-                      name="brand"
-                    />
-                    <label for="brand-3">watch</label>
-                  </div>
-                </div>
-                <div className="product-details">
-                  <div className="product-details-div-img product-details-div">
-                    <img src={watch} alt="" />
-                  </div>
-                  <div className="quantity product-details-div">
-                    <h6 className="quantity-title product-details-div-title">
-                      quantity
-                    </h6>
-                    <div className="quantity-changer">
-                      <i className="fas fa-minus"></i>
-                      <p>2</p>
-                      <i className="fas fa-plus"></i>
-                    </div>
-                  </div>
-                  <div className="variant product-details-div">
-                    <h6 className="variant-title product-details-div-title">
-                      variant
-                    </h6>
-                    <div className="color-block"></div>
-                  </div>
-                  {/* <div className="size product-details-div">
-                <h6 className="size-title product-details-div-title">size</h6>
-                <p>XL</p>
-              </div> */}
-                </div>
-                <div className="product-price-div">
-                  <div className="product-price">
-                    <div className="product-price-title">
-                      <h6>price</h6>
-                    </div>
-                    <p>৳2000.00</p>
-                  </div>
-                  <div className="delivery-charge">
-                    <div className="delivery-charge-title">
-                      <h6>delivery charge</h6>
-                    </div>
-                    <p>৳60.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="product">
-                <div className="product-name">
-                  <div className="ps-checkbox">
-                    <input
-                      className="form-control"
-                      type="checkbox"
-                      id="brand-4"
-                      name="brand"
-                    />
-                    <label for="brand-4">Lipstick</label>
-                  </div>
-                </div>
-                <div className="product-details">
-                  <div className="product-details-div-img product-details-div">
-                    <img src={categoriesHome58} alt="" />
-                  </div>
-                  <div className="quantity product-details-div">
-                    <h6 className="quantity-title product-details-div-title">
-                      quantity
-                    </h6>
-                    <div className="quantity-changer">
-                      <i className="fas fa-minus"></i>
-                      <p>2</p>
-                      <i className="fas fa-plus"></i>
-                    </div>
-                  </div>
-                  {/* <div className="variant product-details-div">
-                <h6 className="variant-title product-details-div-title">variant</h6>
-                <div className="color-block"></div>
-              </div> */}
-                  {/* <div className="size product-details-div">
-                <h6 className="size-title product-details-div-title">size</h6>
-                <p>L</p>
-              </div> */}
-                </div>
-                <div className="product-price-div">
-                  <div className="product-price">
-                    <div className="product-price-title">
-                      <h6>price</h6>
-                    </div>
-                    <p>৳2000.00</p>
-                  </div>
-                  <div className="delivery-charge">
-                    <div className="delivery-charge-title">
-                      <h6>delivery charge</h6>
-                    </div>
-                    <p>৳60.00</p>
-                  </div>
-                </div>
-              </div>
-              <div className="store-checkout-div">
-                <div className="store-coupon">
-                  {/* <a href="#">apply for coupon</a> */}
-                  <input
-                    type="text"
-                    placeholder="apply for coupon"
-                    name="search"
-                  />
-                  <button type="submit">✓</button>
-                </div>
-                <div className="store-checkout-div-right">
-                  <div className="delivery-charge">
-                    <h6 className="delivery-charge-title">delivery-charge :</h6>
-                    <p>৳2060.00</p>
-                  </div>
-                  <div className="subtotal">
-                    <h6 className="subtotal-title">subtotal :</h6>
-                    <p>৳2060.00</p>
-                  </div>
-                  <div className="total">
-                    <h6 className="total-title">total :</h6>
-                    <p>৳2060.00</p>
-                  </div>
-                  <a href="checkout.html" className="store-checkout">
-                    checkout
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="all-ckeckout">
-            <div className="delivery-charge">
-              <h6 className="delivery-charge-title">delivery-charge:</h6>
-              <p>৳200.00</p>
-            </div>
-            <div className="subtotal">
-              <h6 className="subtotal-title">subtotal Amount:</h6>
-              <p>৳2060.00</p>
-            </div>
-            <div className="total">
-              <h6 className="total-title">total Amount:</h6>
-              <p>৳2060.00</p>
-            </div>
-            <a href="checkout.html" className="store-checkout">
-              checkout
-            </a>
-          </div>
-        </div>
+
         {/* End Aside Drower */}
         {/*============ End Main Body Area =============*/}
 
         {/*============ Start Footer Area =============*/}
-        
+
         <div id="back2top">
-          <i className="icon icon-arrow-up"></i>
+          <i>
+            <FaChevronUp />
+          </i>
         </div>
         <div className="ps-site-overlay"></div>
         <div id="loader-wrapper">
