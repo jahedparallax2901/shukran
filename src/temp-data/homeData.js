@@ -176,87 +176,57 @@ export const centerBanners = [
 export const clothingAndApparelProducts = [
   {
     id: 1,
-    img: backpack,
+    thumbnail: backpack,
     discount: "-16%",
-    icons: [
-      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
-    ],
     price: 670,
-    discountedPrice: 567,
+    sale_price: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
+    is_sale: true
   },
   {
     id: 1,
-    img: backpack,
+    thumbnail: backpack,
     discount: "-16%",
-    icons: [
-      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
-    ],
     price: 670,
-    discountedPrice: 567,
+    sale_price: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
+    is_sale: true
   },
   {
     id: 1,
-    img: backpack,
+    thumbnail: backpack,
     discount: "-16%",
-    icons: [
-      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
-    ],
     price: 670,
-    discountedPrice: 567,
+    sale_price: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
+    is_sale: false
   },
   {
     id: 1,
-    img: backpack,
+    thumbnail: backpack,
     discount: "-16%",
-    icons: [
-      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
-    ],
     price: 670,
-    discountedPrice: 567,
+    sale_price: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
+    is_sale: true
   },
   {
     id: 1,
-    img: backpack,
+    thumbnail: backpack,
     discount: "-16%",
-    icons: [
-      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
-    ],
     price: 670,
-    discountedPrice: 567,
+    sale_price: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
+    is_sale: false
   },
   {
     id: 1,
-    img: backpack,
+    thumbnail: backpack,
     discount: "-16%",
-    icons: [
-      { id: 1, icon: <FontAwesomeIcon icon={faShoppingBag} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faEye} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faHeart} /> },
-      { id: 1, icon: <FontAwesomeIcon icon={faChartBar} /> },
-    ],
     price: 670,
-    discountedPrice: 567,
+    sale_price: 567,
     title: "Herschel Leather Duffle Bag In Brown Color",
+    is_sale: true
   },
 ];
 

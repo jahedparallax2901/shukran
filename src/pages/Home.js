@@ -1,83 +1,34 @@
 import React, { Component } from "react";
 import "../assets/css/style.css";
 import "../assets/css/change.css";
-import "../assets/css/market-place-3.css";
 import "../assets/css/market-place-1.css";
-import "../assets/css/market-place-4.css";
 import "../assets/css/autopart.css";
 import Slider from "react-slick";
-
+import { processGetRequest } from "../services/baseServices";
 // import '../assets/css/select2.min.css';
-import shukranLogo from "../assets/img/shukran.png";
-import clothing7 from "../assets/img/products/clothing/7.jpg";
 import categoriesHome58 from "../assets/img/categories/home-5/8.jpg";
 import categoriesHome515 from "../assets/img/categories/home-5/15.jpg";
-import homeTechnology1 from "../assets/img/slider/home-3/technology-1.jpg";
-import homeTechnology2 from "../assets/img/slider/home-3/technology-2.jpg";
-import downloadsTechnology1 from "../assets/img/downloads/technology-1.jpg";
-import downloadsElectronics1 from "../assets/img/downloads/electronics-1.jpg";
-import sliderHomeKitchen1 from "../assets/img/slider/home-3/kitchen-1.jpg";
-import sliderHomeKitchen2 from "../assets/img/slider/home-3/kitchen-2.jpg";
-import downloadsKitchen1 from "../assets/img/downloads/kitchen-1.jpg";
-import sliderHomeClothing2 from "../assets/img/slider/home-3/clothing-2.jpg";
-import sliderHomeClothing3 from "../assets/img/slider/home-3/clothing-3.jpg";
-import sliderHomeHealthy1 from "../assets/img/slider/home-3/healthy-1.jpg";
-import sliderHomeHealthy2 from "../assets/img/slider/home-3/healthy-2.jpg";
-import sliderHomeHealthy3 from "../assets/img/slider/home-3/healthy-3.jpg";
-import paymentMethod3 from "../assets/img/payment-method/3.jpg";
-import paymentMethod5 from "../assets/img/payment-method/5.jpg";
 import detailFullWidth1 from "../assets/img/products/detail/fullwidth/1.jpg";
 import detailFullWidth2 from "../assets/img/products/detail/fullwidth/2.jpg";
 import detailFullWidth3 from "../assets/img/products/detail/fullwidth/3.jpg";
-import downloadBodyspray from "../assets/img/downloads/bodyspray.JPG";
 import downloadsFridge1 from "../assets/img/downloads/fridge1.jpg";
-import downloadsFridge2 from "../assets/img/downloads/fridge2.jpg";
 import bike1 from "../assets/img/downloads/bike1.jpeg";
 import camera from "../assets/img/downloads/camera.jpg";
 import downloadsChair1 from "../assets/img/downloads/chair1.JPG";
-import shirtBanner from "../assets/img/downloads/shirt-banner.jpg";
 // import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import {
-  faBaby,
-  faBars,
-  faCamera,
-  faCartArrowDown,
-  faEye,
-  faFemale,
-  faLanguage,
-  faLaptop,
-  faList,
-  faMedkit,
-  faMobile,
-  faMotorcycle,
-  faSearch,
-  faShoppingBag,
-  faUniversalAccess,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartBar, faHeart } from "@fortawesome/free-regular-svg-icons";
-import { Link } from "react-router-dom";
 import MarketPlace3Banner from "../components/MartketPlace3Banner";
 import MarketPlace3SearchTrending from "../components/MarketPlace3SearchTrending";
-import {
-  menuContents,
-  navigationList,
-  centerBanners,
-  clothingAndApparelProducts,
-  sideCategories,
-  horizontalSliderProducts,
-} from "../temp-data/homeData";
 import ProductGroupDealHot from "../components/product/ProductGroupDealHot";
 import { carouselStandard } from "../utilities/carousel-helpers";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 import NextArrow from "../components/elements/carousel/NextArrow";
 import PrevArrow from "../components/elements/carousel/PrevArrow";
-import Rating from "../components/elements/Rating";
-import FloatingCart from "../components/partials/shared/shopping-cart/FloatingCart";
-import MiniShoppinCart from "../components/partials/shopping-cart/MiniShoppinCart";
-import { BsChevronDoubleUp } from "react-icons/bs";
 import { FaChevronUp } from "react-icons/fa";
-import { processGetRequest } from "../services/baseServices";
+import MarketClothingsAndApparel from "../components/partials/homepage/MarketClothingsAndApparel";
+import MarketConsumerElectronics from "../components/partials/homepage/MarketConsumerElectronics";
+import MarketComputerAndTechnology from "../components/partials/homepage/MarketComputerAndTechnology";
+import MarketGardenAndKitchen from "../components/partials/homepage/MarketGardenAndKitchen";
+import MarketHeathyAndBeauty from "../components/partials/homepage/MarketHeathyAndBeauty";
 
 class Home extends Component {
   state = {
@@ -111,20 +62,6 @@ class Home extends Component {
   }
 
   render() {
-    const carouselSettings = {
-      dots: false,
-      infinite: true,
-      speed: 2000,
-      arrow: true,
-      autoplay: true,
-      autoplaySpeed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />,
-    };
-
-    console.log("State",this.state);
     return (
       <ContainerMarketPlace3 title={"Shukran"} categories={this.state.categories} all_category={this.state.all_category}>
         {/*============ Start Main Body Area =============*/}
@@ -972,408 +909,17 @@ class Home extends Component {
           </div>
         </div>
         <div id="homepage-3">
-          <div className="">
+          <div className="mt-5">
             <div className="container">
-              <div className="ps-block--products-of-category">
-                <div className="ps-block__categories">
-                  <h3>Clothing & Apparel</h3>
-                  <ul>
-                    {sideCategories.map((cat) => (
-                      <li>
-                        <a href="#">{cat.title}</a>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="ps-block__more-link" href="#">
-                    View All
-                  </a>
-                </div>
-
-                {/* Now working */}
-
-                <div className="ps-block__slider">
-                  <Slider {...carouselSettings}>
-                    <div className="item">
-                      <a href="#">
-                        <img src={shirtBanner} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeClothing2} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeClothing3} alt="" />
-                      </a>
-                    </div>
-                  </Slider>
-                </div>
-
-                <div className="ps-block__product-box">
-                  {clothingAndApparelProducts.map((item) => (
-                    <div className="ps-product ps-product--simple">
-                      <div className="ps-product__thumbnail">
-                        <a href="product-default.html">
-                          <img src={item.img} alt="" />
-                        </a>
-                        <div className="ps-product__badge">{item.discount}</div>
-                        <ul className="ps-product__actions">
-                          {item.icons.map((icon) => (
-                            <li>
-                              <a
-                                data-placement="top"
-                                title="Quick View"
-                                data-toggle="modal"
-                                data-target="#product-quickview"
-                              >
-                                <i>{icon.icon}</i>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="ps-product__container">
-                        <div className="ps-product__content" data-mh="clothing">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                          >
-                            {item.title}
-                          </a>
-                          <div className="ps-product__rating">
-                            <Rating />
-                            <span>01</span>
-                          </div>
-                          <p className="ps-product__price sale">
-                            ৳{item.discountedPrice} <del>৳{item.price} </del>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="ps-block--products-of-category">
-                <div className="ps-block__categories">
-                  <h3>Computer & Techologies</h3>
-                  <ul>
-                    {sideCategories.map((cat) => (
-                      <li>
-                        <a href="#">{cat.title}</a>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="ps-block__more-link" href="#">
-                    View All
-                  </a>
-                </div>
-                <div className="ps-block__slider">
-                  <Slider {...carouselSettings}>
-                    <div className="item">
-                      <a href="#">
-                        <img src={homeTechnology1} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={homeTechnology2} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={downloadsTechnology1} alt="" />
-                      </a>
-                    </div>
-                  </Slider>
-                </div>
-
-                <div className="ps-block__product-box">
-                  {clothingAndApparelProducts.map((item) => (
-                    <div className="ps-product ps-product--simple">
-                      <div className="ps-product__thumbnail">
-                        <a href="product-default.html">
-                          <img src={item.img} alt="" />
-                        </a>
-                        <div className="ps-product__badge">{item.discount}</div>
-                        <ul className="ps-product__actions">
-                          {item.icons.map((icon) => (
-                            <li>
-                              <a
-                                data-placement="top"
-                                title="Quick View"
-                                data-toggle="modal"
-                                data-target="#product-quickview"
-                              >
-                                <i>{icon.icon}</i>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="ps-product__container">
-                        <div className="ps-product__content" data-mh="clothing">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                          >
-                            {item.title}
-                          </a>
-                          <div className="ps-product__rating">
-                            <Rating />
-                            <span>01</span>
-                          </div>
-                          <p className="ps-product__price sale">
-                            ৳{item.discountedPrice} <del>৳{item.price} </del>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="ps-block--products-of-category">
-                <div className="ps-block__categories">
-                  <h3>Consumer Electronics</h3>
-                  <ul>
-                    {sideCategories.map((cat) => (
-                      <li>
-                        <a href="#">{cat.title}</a>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="ps-block__more-link" href="#">
-                    View All
-                  </a>
-                </div>
-                <div className="ps-block__slider">
-                  <Slider {...carouselSettings}>
-                    <div className="item">
-                      <a href="#">
-                        <img src={downloadsElectronics1} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={homeTechnology2} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={downloadsTechnology1} alt="" />
-                      </a>
-                    </div>
-                  </Slider>
-                </div>
-
-                <div className="ps-block__product-box">
-                  {clothingAndApparelProducts.map((item) => (
-                    <div className="ps-product ps-product--simple">
-                      <div className="ps-product__thumbnail">
-                        <a href="product-default.html">
-                          <img src={item.img} alt="" />
-                        </a>
-                        <div className="ps-product__badge">{item.discount}</div>
-                        <ul className="ps-product__actions">
-                          {item.icons.map((icon) => (
-                            <li>
-                              <a
-                                data-placement="top"
-                                title="Quick View"
-                                data-toggle="modal"
-                                data-target="#product-quickview"
-                              >
-                                <i>{icon.icon}</i>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="ps-product__container">
-                        <div className="ps-product__content" data-mh="clothing">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                          >
-                            {item.title}
-                          </a>
-                          <div className="ps-product__rating">
-                            <Rating />
-                            <span>01</span>
-                          </div>
-                          <p className="ps-product__price sale">
-                            ৳{item.discountedPrice} <del>৳{item.price} </del>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="ps-block--products-of-category">
-                <div className="ps-block__categories">
-                  <h3>Mother & Baby</h3>
-                  <ul>
-                    {sideCategories.map((cat) => (
-                      <li>
-                        <a href="#">{cat.title}</a>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="ps-block__more-link" href="#">
-                    View All
-                  </a>
-                </div>
-                <div className="ps-block__slider">
-                  <Slider {...carouselSettings}>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeKitchen1} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeKitchen2} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={downloadsKitchen1} alt="" />
-                      </a>
-                    </div>
-                  </Slider>
-                </div>
-
-                <div className="ps-block__product-box">
-                  {clothingAndApparelProducts.map((item) => (
-                    <div className="ps-product ps-product--simple">
-                      <div className="ps-product__thumbnail">
-                        <a href="product-default.html">
-                          <img src={item.img} alt="" />
-                        </a>
-                        <div className="ps-product__badge">{item.discount}</div>
-                        <ul className="ps-product__actions">
-                          {item.icons.map((icon) => (
-                            <li>
-                              <a
-                                data-placement="top"
-                                title="Quick View"
-                                data-toggle="modal"
-                                data-target="#product-quickview"
-                              >
-                                <i>{icon.icon}</i>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="ps-product__container">
-                        <div className="ps-product__content" data-mh="clothing">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                          >
-                            {item.title}
-                          </a>
-                          <div className="ps-product__rating">
-                            <Rating />
-                            <span>01</span>
-                          </div>
-                          <p className="ps-product__price sale">
-                            ৳{item.discountedPrice} <del>৳{item.price} </del>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="ps-block--products-of-category">
-                <div className="ps-block__categories">
-                  <h3>Women's Fashion</h3>
-                  <ul>
-                    {sideCategories.map((cat) => (
-                      <li>
-                        <a href="#">{cat.title}</a>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="ps-block__more-link" href="#">
-                    View All
-                  </a>
-                </div>
-                <div className="ps-block__slider">
-                  <Slider {...carouselSettings}>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeHealthy1} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeHealthy2} alt="" />
-                      </a>
-                    </div>
-                    <div className="item">
-                      <a href="#">
-                        <img src={sliderHomeHealthy3} alt="" />
-                      </a>
-                    </div>
-                  </Slider>
-                </div>
-
-                <div className="ps-block__product-box">
-                  {clothingAndApparelProducts.map((item) => (
-                    <div className="ps-product ps-product--simple">
-                      <div className="ps-product__thumbnail">
-                        <a href="product-default.html">
-                          <img src={item.img} alt="" />
-                        </a>
-                        <div className="ps-product__badge">{item.discount}</div>
-                        <ul className="ps-product__actions">
-                          {item.icons.map((icon) => (
-                            <li>
-                              <a
-                                data-placement="top"
-                                title="Quick View"
-                                data-toggle="modal"
-                                data-target="#product-quickview"
-                              >
-                                <i>{icon.icon}</i>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="ps-product__container">
-                        <div className="ps-product__content" data-mh="clothing">
-                          <a
-                            className="ps-product__title"
-                            href="product-default.html"
-                          >
-                            {item.title}
-                          </a>
-                          <div className="ps-product__rating">
-                            <Rating />
-                            <span>01</span>
-                          </div>
-                          <p className="ps-product__price sale">
-                            ৳{item.discountedPrice} <del>৳{item.price} </del>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <MarketClothingsAndApparel collectionSlug="clothings" />
+              <MarketConsumerElectronics collectionSlug="consumer-electronics" />
+              <MarketComputerAndTechnology collectionSlug="customer-bought-products" />
+              <MarketGardenAndKitchen collectionSlug="garden-and-kitchen" />
+              <MarketHeathyAndBeauty collectionSlug="health-and-beauty" />
             </div>
           </div>
         </div>
 
-        {/* Start Aside Drower */}
-
-        {/* End Aside Drower */}
         {/*============ End Main Body Area =============*/}
 
         {/*============ Start Footer Area =============*/}
