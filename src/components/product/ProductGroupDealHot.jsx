@@ -7,6 +7,7 @@ import {dealOfTheDayProducts} from '../../temp-data/homeData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+
 const ProductGroupDealHot = ({ collectionSlug }) => {
     const sliderRef = useRef(null);
     const [productItems, setProductItems] = useState(null);
