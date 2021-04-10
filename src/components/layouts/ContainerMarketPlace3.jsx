@@ -8,7 +8,7 @@ import MiniShoppinCart from "../partials/shopping-cart/MiniShoppinCart";
 // import MarketPlacePromotionHeader from '../partials/MarketPlacePromotionHeader';
 // import HeaderMarketPlace from '../partials/HeaderMarketPlace';
 
-const ContainerMarketPlace3 = ({ children, title }) => {
+const ContainerMarketPlace3 = ({ children, title, categories, all_category }) => {
   let titleView;
   if (title !== null) {
     titleView = process.env.title + " | " + title;
@@ -26,7 +26,7 @@ const ContainerMarketPlace3 = ({ children, title }) => {
             <HeaderMarketPlace /> */}
       {/* <HeaderMobile />
             <NavigationList /> */}
-      <Header />
+      <Header categories={categories} all_category={all_category}/>
       <FloatingCart />
       <MiniShoppinCart />
       <main id="homepage-5">

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { BASE_API_URL } from "../helpers/env"
+import { getDeviceType, getLocalAuthData } from "../helpers/utils";
 
 /*
 params:
@@ -14,21 +15,61 @@ functionality:
   this function can be used for all types of http requests
 */
 
-export const processHttpRequest = (method, url, params, data = {}, token="", id) => {
-    return new Promise((resolve, reject) => {
-      axios[method](BASE_API_URL + `/` + url + (method==="delete" || method==="put" || method==="patch") && `/${id}`, data, {
-        params: params? params : {},
-        headers: token? {
-          Authorization: token
-        }: {}
-      }).then(res => {
-        if (res.data.error) {
-          reject(res.data.error)
-        } else {
-          resolve(res.data)
-        }
-      }).catch(err => {
-        reject(err.message)
+// export const processHttpRequest = (method, url, params, data = {}, token="", id) => {
+//     return new Promise((resolve, reject) => {
+//       axios[method](BASE_API_URL + `/` + url + (method==="delete" || method==="put" || method==="patch") && `/${id}`, data, {
+//         params: params? params : {},
+//         headers: token? {
+//           Authorization: token
+//         }: {}
+//       }).then(res => {
+//         if (res.data.error) {
+//           reject(res.data.error)
+//         } else {
+//           resolve(res.data)
+//         }
+//       }).catch(err => {
+//         reject(err.message)
+//       })
+//     })
+//   }
+
+export const processGetRequest = (url, paramsObj = {}) => {
+  const authData = getLocalAuthData();
+  console.log("BASE_API_URL",BASE_API_URL);
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${BASE_API_URL}${url}`, {
+        params: paramsObj,
+        headers: {
+          "x-auth-token": authData.token,
+          "x-api-client": getDeviceType(),
+        },
       })
-    })
-  }
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err.message);
+      });
+  });
+};
+
+export const processPostRequest = (url, data = {}) => {
+  const authData = getLocalAuthData();
+  return new Promise((resolve, reject) => {
+    axios.post(`${BASE_API_URL}${url}`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": authData.token || "",
+          "x-api-client": getDeviceType(),
+        },
+      }).then((res) => {
+        resolve(res.data);
+      }).catch((err) => {
+        console.error(err);
+        reject(err.message);
+      });
+  });
+};

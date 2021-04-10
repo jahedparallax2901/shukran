@@ -11,99 +11,13 @@ import HeaderStandard from './HeaderStandard';
 
 class Header extends Component {
     render() {
+  const {categories, all_category} = this.props;
+
         return (
             <>
-                {/* <div
-          className="modal fade"
-          id="login-modal-center"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="login-modal-centerTitle"
-          aria-hidden="true"
-        >
-          <div
-            className="modal-dialog modal-dialog-centered login-modal-dialog"
-            role="document"
-          >
-            <div className="modal-content">
-              <div className="modal-header">
-                <div className="modal-title h4">Login</div>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div className="modal-body login-modal-body">
-                <div className="login-form">
-                  <div className="login-form-group">
-                    <label for="userID" className="sr-only">
-                      User ID
-                    </label>
-                    <div className="input-group">
-                      <select
-                        name="country_code"
-                        className="form-control"
-                        style={{
-                          flex: "0 0 80px",
-                          padding: "0px 10px 0px 5px",
-                        }}
-                      >
-                        <option value="+880">+880</option>
-                        <option value="+1">+1</option>
-                        <option value="1234">1234</option>
-                      </select>
-                      <input
-                        type="text"
-                        name="phone_number"
-                        placeholder="Enter your phone number"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <button type="button" className="btn btn-block btn-sign">
-                      Sign In / SIgn Up
-                    </button>
-                    <button type="button" className="btn btn-block btn-sign">
-                      Forgot Password
-                    </button>
-                  </div>
-                  <span className="or-seperator">
-                    <div className="separator-outer">
-                      <span>or</span>
-                    </div>
-                  </span>
-                  <div className="login-buttons">
-                    <button className="btn-auth btn-google mb-3">
-                      <span className="icon">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 488 512"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-                        </svg>
-                      </span>
-                      <span className="text">Sign in with Google</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
         <HeaderPromotion/>
 
-        <HeaderStandard/>
+        <HeaderStandard categories={categories} all_category={all_category}/>
 
         <HeaderMobile/>
 

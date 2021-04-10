@@ -77,8 +77,39 @@ import FloatingCart from "../components/partials/shared/shopping-cart/FloatingCa
 import MiniShoppinCart from "../components/partials/shopping-cart/MiniShoppinCart";
 import { BsChevronDoubleUp } from "react-icons/bs";
 import { FaChevronUp } from "react-icons/fa";
+import { processGetRequest } from "../services/baseServices";
 
 class Home extends Component {
+  state = {
+    categories: [],
+    campaign_products: [],
+    all_category: [],
+    category_products: [],
+    deal_of_day_products: [],
+    top_products: [],
+    top_sliders: [],
+    top_sliders_box: [],
+    isLoading: false,
+  };
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    processGetRequest("/homepage")
+      .then((res) => {
+        this.setState({
+          categories: res.category,
+          campaign_products: res.campaign_products,
+          all_category: res.all_category,
+          category_products: res.category_products,
+          deal_of_day_products: res.deal_of_day_products,
+          top_products: res.top_products,
+          top_sliders: res.top_sliders,
+          top_sliders_box: res.top_sliders_box,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     const carouselSettings = {
       dots: false,
@@ -92,13 +123,15 @@ class Home extends Component {
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
     };
+
+    console.log("State",this.state);
     return (
-      <ContainerMarketPlace3 title={"Shukran"}>
+      <ContainerMarketPlace3 title={"Shukran"} categories={this.state.categories} all_category={this.state.all_category}>
         {/*============ Start Main Body Area =============*/}
         <div id="homepage-5">
-          <MarketPlace3Banner />
+          <MarketPlace3Banner categories={this.state.categories} top_sliders={this.state.top_sliders} top_sliders_box={this.state.top_sliders_box}/>
 
-          <ProductGroupDealHot collectionSlug="Campaign" />
+          <ProductGroupDealHot collectionSlug="Campaign" campaign_products={this.state.campaign_products} top_products={this.state.top_products}/>
 
           <MarketPlace3SearchTrending />
 

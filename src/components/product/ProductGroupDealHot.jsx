@@ -7,7 +7,7 @@ import {dealOfTheDayProducts} from '../../temp-data/homeData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-const ProductGroupDealHot = ({ collectionSlug }) => {
+const ProductGroupDealHot = ({ collectionSlug, top_products, campaign_products }) => {
     const sliderRef = useRef(null);
     const [productItems, setProductItems] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -46,11 +46,11 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
 
     let productItemsView, relatedView;
     if (!loading) {
-        if (productItems && productItems.length > 0) {
-            const slideItems = productItems.map((item) => (
+        if (campaign_products && campaign_products.length > 0) {
+            const slideItems = campaign_products.map((item) => (
                 <ProductDealHot product={item} key={item.id} />
             ));
-            const relatedItems = productItems.map((item, index) => {
+            const relatedItems = top_products && top_products.map((item, index) => {
                 if (index > 1 && index < 6) {
                     return <ProductHorizontal product={item} key={item.id} />;
                 }

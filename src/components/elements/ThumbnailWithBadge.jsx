@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import Lightbox from 'react-image-lightbox';
 import NextArrow from './carousel/NextArrow';
 import PrevArrow from './carousel/PrevArrow';
+import downloadsFridge1 from '../../assets/img/downloads/fridge1.jpg';
 
 const ThumbnailWithBadge = ({ product, vertical = true }) => {
     const galleryCarousel = useRef(null);
@@ -15,7 +16,7 @@ const ThumbnailWithBadge = ({ product, vertical = true }) => {
 
     useEffect(() => {
         let images = [];
-        if (product && product.images.length > 0) {
+        if (product && product.p > 0) {
             product.images.map((item) => {
                 images.push(item.url);
             });
@@ -118,32 +119,32 @@ const ThumbnailWithBadge = ({ product, vertical = true }) => {
             </Slider>
         );
     }
-    if (isOpen) {
-        lightboxView = (
-            <Lightbox
-                mainSrc={productImages[photoIndex]}
-                nextSrc={productImages[(photoIndex + 1) % productImages.length]}
-                prevSrc={
-                    productImages[
-                        (photoIndex + productImages.length - 1) %
-                            productImages.length
-                    ]
-                }
-                onCloseRequest={() => {
-                    setIsOpen(false);
-                }}
-                onMovePrevRequest={() => {
-                    setPhotoIndex(
-                        (photoIndex + productImages.length - 1) %
-                            productImages.length
-                    );
-                }}
-                onMoveNextRequest={() => {
-                    setPhotoIndex((photoIndex + 1) % productImages.length);
-                }}
-            />
-        );
-    }
+    // if (isOpen) {
+    //     lightboxView = (
+    //         <Lightbox
+    //             mainSrc={productImages[photoIndex]}
+    //             nextSrc={productImages[(photoIndex + 1) % productImages.length]}
+    //             prevSrc={
+    //                 productImages[
+    //                     (photoIndex + productImages.length - 1) %
+    //                         productImages.length
+    //                 ]
+    //             }
+    //             onCloseRequest={() => {
+    //                 setIsOpen(false);
+    //             }}
+    //             onMovePrevRequest={() => {
+    //                 setPhotoIndex(
+    //                     (photoIndex + productImages.length - 1) %
+    //                         productImages.length
+    //                 );
+    //             }}
+    //             onMoveNextRequest={() => {
+    //                 setPhotoIndex((photoIndex + 1) % productImages.length);
+    //             }}
+    //         />
+    //     );
+    // }
 
     return (
         <div

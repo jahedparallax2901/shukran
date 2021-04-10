@@ -13,12 +13,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { BsList, BsChevronDown, BsHeart, BsBag } from "react-icons/all";
-import {handleShowAuthModal} from "../../../redux";
+import { handleShowAuthModal } from "../../../redux";
 import { connect } from "react-redux";
+import Menu from "../../elements/menu/Menu";
 
 class HeaderStandard extends Component {
   render() {
-    const {handleShowAuthModal} = this.props;
+    const { handleShowAuthModal, categories, all_category } = this.props;
+    console.log("all_category", all_category);
     return (
       <header
         className="header header--standard header--market-place-1"
@@ -38,13 +40,11 @@ class HeaderStandard extends Component {
                 {/* changed */}
                 <div className="menu__content">
                   <ul className="menu--dropdown">
-                    {menuContents.map((item) => (
+                    {categories.map((item) => (
                       <li key={item.id}>
                         <a href={item.link}>
-                          <i>
-                          {item.icon}
-                          </i>
-                           {item.title}
+                          <i>{item.icon}</i>
+                          {item.title}
                         </a>
                       </li>
                     ))}
@@ -187,43 +187,22 @@ class HeaderStandard extends Component {
                 <div className="menu--product-categories">
                   <div className="menu__toggle">
                     <i>
-                    <BsList />
-
+                      <BsList />
                     </i>
                     <span> Shop by Department</span>
                   </div>
                   <div className="menu__content">
-                    <ul className="menu--dropdown">
-                      {/* changed */}
-                      {menuContents.map((item) => (
-                        <li key={item.id}>
-                          <a href={item.link}>
-                            {item.icon} {item.title}
-                          </a>
-                        </li>
-                      ))}
-                      {/* changed - end */}
-                    </ul>
+                    <Menu source={categories} className="menu menu--dropdown"/>
                   </div>
                 </div>
               </div>
               <div className="navigation__center">
                 <ul className="menu">
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li>
-                    <a href="campaign.html">Campaign</a>
-                  </li>
-                  <li>
-                    <a href="vendor-store.html">Vendor Stores</a>
-                  </li>
-                  <li>
-                    <a href="become-a-vendor.html">Become a Vendor</a>
-                  </li>
-                  <li>
-                    <a href="invoices.html">Order Tracking</a>
-                  </li>
+                  {all_category.slice(2, -1)?.map((cat) => (
+                    <li>
+                      <a href={cat.link || "#"}>{cat.name}</a>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="navigation__right">
@@ -242,10 +221,10 @@ class HeaderStandard extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    handleShowAuthModal: () => dispatch(handleShowAuthModal())
-  }
+    handleShowAuthModal: () => dispatch(handleShowAuthModal()),
+  };
 };
 
 export default connect(null, mapDispatchToProps)(HeaderStandard);
