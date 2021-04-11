@@ -38,7 +38,7 @@ class MartketPlace3Banner extends Component {
 
   render() {
     const carouselSettings = {
-      dots: false,
+      dots: true,
       arrows: false,
       infinite: true,
       speed: 1000,
@@ -46,7 +46,7 @@ class MartketPlace3Banner extends Component {
       slidesToScroll: 1,
     };
 
-    
+
 
     const centerBanners = [
       { id: 1, src: banner1, link: "#" },
@@ -64,9 +64,9 @@ class MartketPlace3Banner extends Component {
                   <li key={item.id}>
                     <a href={item.link}>
                       <i>
-                      {item.icon}
+                        {item.icon}
                       </i>
-                       {item.title}
+                      {item.title}
                     </a>
                   </li>
                 ))}

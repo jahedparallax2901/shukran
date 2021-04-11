@@ -3,6 +3,7 @@ import "../assets/css/style.css";
 import "../assets/css/change.css";
 import "../assets/css/market-place-1.css";
 import "../assets/css/autopart.css";
+import "../assets/css/broken.css";
 import Slider from "react-slick";
 
 // import '../assets/css/select2.min.css';
@@ -94,7 +95,7 @@ class Home extends Component {
     return (
       <ContainerMarketPlace3 title={"Shukran"}>
         {/*============ Start Main Body Area =============*/}
-        <div id="homepage-5">
+        <div id="homepage-5 pt-0">
           <MarketPlace3Banner />
 
           <ProductGroupDealHot collectionSlug="Campaign" />
@@ -152,7 +153,7 @@ class Home extends Component {
               data-owl-duration="1000"
               data-owl-mousedrag="on"
             > */}
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner pr-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src={bike1} alt="" />
@@ -203,7 +204,7 @@ class Home extends Component {
                     </div>
                     <div className="ps-product__container">
                       <p className="ps-product__price sale">
-                        ৳567.99 <del>৳670.00 </del>
+                        <del>৳670.00 </del> ৳567.99 
                         <small>18% off</small>
                       </p>
                       <div className="ps-product__content">
@@ -235,7 +236,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src="img/downloads/baby-toy.JPG" alt="" />
@@ -320,7 +321,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src={downloadsChair1} alt="" />
@@ -372,7 +373,7 @@ class Home extends Component {
                     </div>
                     <div className="ps-product__container">
                       <p className="ps-product__price sale">
-                        ৳42.00 <del>৳60.00 </del>
+                        <del>৳60.00 </del> ৳42.00 
                         <small>18% off</small>
                       </p>
                       <div className="ps-product__content">
@@ -404,7 +405,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src={downloadsFridge1} alt="" />
@@ -489,7 +490,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src="img/downloads/kids-food.JPG" alt="" />
@@ -575,7 +576,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src="img/downloads/kids-care.JPG" alt="" />
@@ -660,7 +661,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src="img/downloads/shirt1.jpeg" alt="" />
@@ -712,7 +713,7 @@ class Home extends Component {
                     </div>
                     <div className="ps-product__container">
                       <p className="ps-product__price sale">
-                        ৳42.00 <del>৳60.00 </del>
+                        <del>৳60.00 </del> ৳42.00 
                         <small>18% off</small>
                       </p>
                       <div className="ps-product__content">
@@ -744,7 +745,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src="img/downloads/shirt2.JPG" alt="" />
@@ -796,7 +797,7 @@ class Home extends Component {
                     </div>
                     <div className="ps-product__container">
                       <p className="ps-product__price sale">
-                        ৳42.00 <del>৳60.00 </del>
+                        <del>৳60.00 </del> ৳42.00 
                         <small>18% off</small>
                       </p>
                       <div className="ps-product__content">
@@ -840,6 +841,8 @@ class Home extends Component {
                 <div className="home-categories-top">
                   <h3>All Categories</h3>
                 </div>
+                <div className="home-categories-body">
+ 
                 <Slider {...carouselStandard}>
                   {/* <div
             className="ps-carousel--nav owl-slider bg-white home-categories-body"
@@ -858,7 +861,7 @@ class Home extends Component {
             data-owl-duration="1000"
             data-owl-mousedrag="on"
           > */}
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -868,7 +871,7 @@ class Home extends Component {
                       <p>Computer and accessories</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -877,7 +880,7 @@ class Home extends Component {
                       <p>Cameras</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -886,7 +889,7 @@ class Home extends Component {
                       <p>Health & Beauty</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -895,7 +898,7 @@ class Home extends Component {
                       <p>Mother & Baby</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -904,7 +907,7 @@ class Home extends Component {
                       <p>Mobile & Accessories</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -913,7 +916,7 @@ class Home extends Component {
                       <p>Men’s Fashion</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -922,7 +925,7 @@ class Home extends Component {
                       <p>Women’s Fashion</p>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner pl-3">
                     <div className="ps-block--category">
                       <a className="ps-block__overlay" href="#"></a>
                       <div className="all-category-single">
@@ -933,6 +936,9 @@ class Home extends Component {
                   </div>
                   {/* </div> */}
                 </Slider>
+              
+                </div>
+               
               </div>
             </div>
           </div>

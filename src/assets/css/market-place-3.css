@@ -77,10 +77,11 @@
   transform: translateY(8px);
 }
 
-#homepage-5 {
+/*=== Changed ===*/
+/* #homepage-5 {
   padding: 70px 0;
   background-color: #eeeeee;
-}
+} */
 
 #homepage-5 .ps-home-banner ul,
 #homepage-5 .ps-home-banner ol {

@@ -30,7 +30,7 @@ const ContainerMarketPlace3 = ({ children, title }) => {
       <FloatingCart />
       <MiniShoppinCart />
       <main id="homepage-5">
-        <div className="container">{children}</div>
+        <div className="">{children}</div>
       </main>
       <FooterMarketPlace2 />
     </div>

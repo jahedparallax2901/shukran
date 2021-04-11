@@ -4,7 +4,7 @@ import { formatCurrency } from '../../utilities/product-helper';
 import Rating from './Rating';
 import CountDown from './CountDown';
 import ThumbnailWithBadge from './ThumbnailWithBadge';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ProductDealHot = ({ product }) => {
     return (

@@ -1,0 +1,50 @@
+/*=== Banner Style ===*/
+.ps-block--user-header .ps-block__right a{
+    color: #000000;
+}
+.header .header__extra > i{
+    color: #000000;
+}
+.header--standard .ps-block--user-header a:hover {
+    color: #006c32 !important;
+}
+.ps-form--quick-search .form-control{
+    font-size: 14px;
+}
+#homepage-5 .ps-home-banner .ps-section__center img{
+    width: 100%;
+    height: auto;
+    display: inline-block;
+}
+#homepage-5 .ps-home-banner .ps-section__center .slick-dots li button{
+    position: absolute;
+    top: -35px;
+}
+#homepage-5 .ps-home-banner .ps-section__center .slick-dots li button:before{
+    font-size: 13px;
+    top: 0px;
+}
+#homepage-5 .ps-home-banner .ps-section__center .slick-dots li.slick-active button:before{
+    color: #006c32;
+}
+#homepage-5 .ps-home-banner .ps-section__center .slick-dots li button:hover:before{
+    color: #006c32;
+}
+
+/*=== Campaign style ===*/
+.ps-product--hot-deal .ps-product__header .ps-product__info .ant-progress-bg{
+    background: #ed1c24;
+    height: 15px !important;
+    border-radius: 0px;
+}
+.ps-product--hot-deal .ps-product__header .ps-product__info .ant-progress-inner{
+    border-radius: 0px;
+}
+
+/*=== Search Trending ===*/
+.ps-block--categories-tabs .ps-tab-list a:hover i, .ps-block--categories-tabs .ps-tab-list a:hover span {
+    color: #ed1c24;
+}
+.ant-tabs-tab + .ant-tabs-tab {
+    margin: 0 0 0 0px !important;
+}

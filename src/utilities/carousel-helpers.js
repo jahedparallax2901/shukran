@@ -150,7 +150,7 @@ export const carouselFullwidth = {
 
 export const carouselSingle = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: true,
     autoplay: true,
     speed: 500,
