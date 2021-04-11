@@ -83,19 +83,19 @@ export function StrapiProductBadge(product) {
 
 export function StrapiProductPrice(product) {
     let view;
-    if (product.is_sale === true) {
+    if (product?.product?.sale_price > 0) {
         view = (
             <p className="ps-product__price sale">
-                ${formatCurrency(product.price)}
+                ${formatCurrency(product.product.price)}
                 <del className="ml-2">
-                    ${formatCurrency(product.sale_price)}
+                    ${formatCurrency(product?.product?.sale_price)}
                 </del>
             </p>
         );
     } else {
         view = (
             <p className="ps-product__price">
-                ${formatCurrency(product.price)}
+                ${formatCurrency(product?.product?.price)}
             </p>
         );
     }
@@ -127,14 +127,14 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product) {
     let view;
 
-    if (product.thumbnail || product.thumbnail.length>0) {
+    if (product.thumbnail || product.product.single_image) {
         view = (
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/product/${product.product_id?  product.product_id : product.id}`}>
                 <a>
                     <LazyLoad>
                         <img
-                            src={product.thumbnail || product.thumbnail[0]}
-                            alt={product.title}
+                            src={ product?.product?.single_image || product.thumbnail}
+                            alt={ product?.product?.name || product.name}
                         />
                     </LazyLoad>
                 </a>
@@ -142,7 +142,7 @@ export function StrapiProductThumbnail(product) {
         );
     } else {
         view = (
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/product/${product.product_id?  product.product_id : product.id}`}>
                 <a>
                     <LazyLoad>
                         <img src="/static/img/not-found.jpg" alt="martfury" />

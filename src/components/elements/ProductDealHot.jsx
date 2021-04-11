@@ -23,7 +23,7 @@ const ProductDealHot = ({ product }) => {
                     </h3>
 
                     <div className="ps-product__meta">
-                        {product.is_sale === true ? (
+                        {product.sale_price > 0 ? (
                             <h4 className="ps-product__price sale">
                                 <del className="mr-2">
                                     ${formatCurrency(product.sale_price)}

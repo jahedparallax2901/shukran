@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "../assets/css/style.css";
 import "../assets/css/change.css";
 import "../assets/css/market-place-1.css";
-import "../assets/css/autopart.css";
+import "../assets/css/market-place-3.css";
+import "../assets/css/market-place-4.css";
+import "../assets/css/market-place-2.css";
 import Slider from "react-slick";
 import { processGetRequest } from "../services/baseServices";
 // import '../assets/css/select2.min.css';
@@ -16,8 +18,8 @@ import bike1 from "../assets/img/downloads/bike1.jpeg";
 import camera from "../assets/img/downloads/camera.jpg";
 import downloadsChair1 from "../assets/img/downloads/chair1.JPG";
 // import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import MarketPlace3Banner from "../components/MartketPlace3Banner";
-import MarketPlace3SearchTrending from "../components/MarketPlace3SearchTrending";
+import TopBanner from "../components/TopBanner";
+import SearchTrending from "../components/SearchTrending";
 import ProductGroupDealHot from "../components/product/ProductGroupDealHot";
 import { carouselStandard } from "../utilities/carousel-helpers";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
@@ -66,11 +68,11 @@ class Home extends Component {
       <ContainerMarketPlace3 title={"Shukran"} categories={this.state.categories} all_category={this.state.all_category}>
         {/*============ Start Main Body Area =============*/}
         <div id="homepage-5">
-          <MarketPlace3Banner categories={this.state.categories} top_sliders={this.state.top_sliders} top_sliders_box={this.state.top_sliders_box}/>
+          <TopBanner />
 
-          <ProductGroupDealHot collectionSlug="Campaign" campaign_products={this.state.campaign_products} top_products={this.state.top_products}/>
+          <ProductGroupDealHot collectionSlug="Campaign" />
 
-          <MarketPlace3SearchTrending />
+          <SearchTrending />
 
           <div className="ps-deal-of-day">
             <div className="container">

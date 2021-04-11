@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Tabs } from "antd";
 import categoriesHome51 from "../assets/img/categories/home-5/1.jpg";
 import categoriesHome55 from "../assets/img/categories/home-5/5.jpg";
@@ -7,26 +7,13 @@ import categoriesHome58 from "../assets/img/categories/home-5/8.jpg";
 import categoriesHome59 from "../assets/img/categories/home-5/9.jpg";
 import categoriesHome513 from "../assets/img/categories/home-5/13.jpg";
 import categoriesHome514 from "../assets/img/categories/home-5/14.jpg";
-import categoriesHome515 from "../assets/img/categories/home-5/15.jpg";
-import categoriesHome516 from "../assets/img/categories/home-5/16.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 import "../assets/css/market-place-3.css";
 import "../assets/css/style.css";
 import "../assets/css/change.css";
 import "../assets/css/market-place-3.css";
 import "../assets/css/autopart.css";
-import {
-  faBaseballBall,
-  faBasketballBall,
-  faBook,
-  faCar,
-  faDesktop,
-  faPhoneAlt,
-  faTshirt,
-} from "@fortawesome/free-solid-svg-icons";
-import { GrBaby } from "react-icons/gr";
+
 import Slider from "react-slick";
 import { carouselStandard } from "../utilities/carousel-helpers";
 import { BsPhone, BsStar } from "react-icons/bs";
@@ -37,7 +24,7 @@ import { FaBaby } from "react-icons/fa";
 import { GiEvilBook } from "react-icons/gi";
 
 const { TabPane } = Tabs;
-const MarketPlace3SearchTrending = () => {
+const SearchTrending = () => {
   const trendingCategories = [
     {
       imagePath: categoriesHome51,
@@ -62,6 +49,7 @@ const MarketPlace3SearchTrending = () => {
     },
     { imagePath: categoriesHome514, text: "Camping" },
   ];
+
   return (
     <div className="ps-search-trending">
       <div className="container">
@@ -240,4 +228,4 @@ const MarketPlace3SearchTrending = () => {
   );
 };
 
-export default MarketPlace3SearchTrending;
+export default SearchTrending;

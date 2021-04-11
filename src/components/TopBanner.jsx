@@ -28,10 +28,34 @@ import promotion2 from "../assets/img/downloads/promotion-2.webp";
 import promotion3 from "../assets/img/slider/home-5/promotion-3.jpg";
 import { menuContents } from "../temp-data/homeData";
 import Menu from "./elements/menu/Menu";
+import { processGetRequest } from "../services/baseServices";
 
-class MartketPlace3Banner extends Component {
+class TopBanner extends Component {
   constructor(props) {
     super(props);
+  }
+
+  state = {
+    categories: [],
+    top_sliders: [],
+    top_sliders_box: [],
+    isLoading: false,
+  };
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    processGetRequest("/homepage", { filter_type: 1 })
+      .then((res) => {
+        this.setState({
+          categories: res.category,
+          top_sliders_box: res.top_sliders_box,
+          top_sliders: res.top_sliders,
+          isLoading: false,
+        });
+      })
+      .catch((err) => {
+        this.setState({ isLoading: false });
+      });
   }
 
   render() {
@@ -44,7 +68,8 @@ class MartketPlace3Banner extends Component {
       slidesToScroll: 1,
     };
 
-    const { categories, top_sliders, top_sliders_box } = this.props;
+    const { categories, top_sliders, top_sliders_box } = this.state;
+
     return (
       <section className="ps-home-banner">
         <div className="container">
@@ -82,4 +107,4 @@ class MartketPlace3Banner extends Component {
   }
 }
 
-export default MartketPlace3Banner;
+export default TopBanner;
