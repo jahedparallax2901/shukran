@@ -47,7 +47,7 @@ const AuthModal = ({
   //   firebase.initializeApp(firebaseConfig);
   // }
 
-  const [authData, setAuthData] = useState({phone_number: '', country_code: '+880'});
+  const [authData, setAuthData] = useState({phone: '', country_code: '+880'});
   const [countryList, setCountryList] = useState([]);
   const [resendTime, setResendTime] = useState(OTP_RESEND_TIME)
   const [isOTPSent, setIsOTPSent] = useState(false)
@@ -64,9 +64,10 @@ const AuthModal = ({
   }, [])
 
   const handleOTPVerify = () => {
+    debugger;
     if (PasswordReset === true) {
       handleVerifyResetOtp({
-        token: authData.otp,
+        token: authData.token,
         password: authData.password,
         device_id: "",
         device_token: "f4as4f5as5f4as5f4as6",
@@ -87,7 +88,7 @@ const AuthModal = ({
     } else {
       handleVerifyOtp({
         country_code: authData.country_code,
-        phone_number: authData.phone_number,
+        phone: authData.phone,
         otp: authData.otp,
         password: authData.password,
         name: authData.name,
@@ -95,7 +96,8 @@ const AuthModal = ({
         device_token: "f4as4f5as5f4as5f4as6",
         device_type: getDeviceType()
       }, () => {
-        getCartItems()
+        debugger;
+        // getCartItems()
         authModalHide()
       })
     }
@@ -103,7 +105,7 @@ const AuthModal = ({
   };
 
   const handleInputOnChange = (e) => {
-    if (e.target.name === 'phone_number') {
+    if (e.target.name === 'phone') {
       setAuthData({
         ...authData,
         [e.target.name]: e.target.value.replace(/^0+/, '')
@@ -153,36 +155,36 @@ const AuthModal = ({
     console.log('Local: ', localData)
 
     handleHideAuthModal();
-    if (isTriggeredFromProduct) {
-      const productInfo = JSON.parse(localStorage.getItem('productInfo'));
-      const user = JSON.parse(localStorage.getItem('user'));
+    // if (isTriggeredFromProduct) {
+    //   const productInfo = JSON.parse(localStorage.getItem('productInfo'));
+    //   const user = JSON.parse(localStorage.getItem('user'));
 
-      handleAddToCart(productInfo.id, productInfo.qnt, user.token, () => {
-        handleShowShoppingCart();
-        destroyedTriggeredFlag();
-        getCartItems(user.token);
-        localStorage.removeItem('productInfo');
-      }, false, productInfo?.clear_cart)
-    } else if (localData?.voucherInfo) {
+    //   handleAddToCart(productInfo.id, productInfo.qnt, user.token, () => {
+    //     handleShowShoppingCart();
+    //     destroyedTriggeredFlag();
+    //     getCartItems(user.token);
+    //     localStorage.removeItem('productInfo');
+    //   }, false, productInfo?.clear_cart)
+    // } else if (localData?.voucherInfo) {
       // addToCollect()
       //   .then(res => {
       //     localStorage.removeItem('voucherInfo')
       //     window.location.reload()
       //   })
-    }
+    // }
   }
 
   const handleSendOTP = () => {
     if (LoginWithPassword === true) {
       handleAuthenticationWithPassword({
         country_code: authData.country_code,
-        phone_number: authData.phone_number,
+        phone: authData.phone,
         password: authData.password,
         device_id: "",
         device_token: "f4as4f5as5f4as5f4as6",
         device_type: getDeviceType()
       }, () => {
-        getCartItems()
+        // getCartItems()
         authModalHide()
       })
     } else {
@@ -280,13 +282,13 @@ const AuthModal = ({
                           className="form-control"
                           value={authData.country_code}
                           style={{flex: '0 0 80px', padding: '0 10px 0 5px'}}>
-                    <option value="">--</option>
-
+                    <option value="">+880</option>
+{/* 
                     {countryList.map((country, index) => <option key={index}
-                                                                 value={country.code}>{country.code}</option>)}
+                                                                 value={country.code}>{country.code}</option>)} */}
                   </select>
 
-                  <input type="text" name="phone_number"
+                  <input type="text" name="phone"
                          onChange={handleInputOnChange}
                          placeholder={"Enter your phone number"}
                          className="form-control"
@@ -370,7 +372,8 @@ const AuthModal = ({
               :
               <Button
                 onClick={handleOTPVerify}
-                variant={"secondary"} block={true} size="lg"> {!PasswordReset ? <p>Verify OTP</p> :
+                className="btn-auth-single"
+                variant={"secondary"} block={true}> {!PasswordReset ? <p>Verify OTP</p> :
                 <p>Reset Password</p>} </Button>
             }
 

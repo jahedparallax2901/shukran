@@ -17,7 +17,7 @@ class Header extends Component {
             <>
         <HeaderPromotion/>
 
-        <HeaderStandard categories={categories} all_category={all_category}/>
+        <HeaderStandard/>
 
         <HeaderMobile/>
 

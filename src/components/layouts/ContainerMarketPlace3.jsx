@@ -26,7 +26,7 @@ const ContainerMarketPlace3 = ({ children, title, categories, all_category }) =>
             <HeaderMarketPlace /> */}
       {/* <HeaderMobile />
             <NavigationList /> */}
-      <Header categories={categories} all_category={all_category}/>
+      <Header/>
       <FloatingCart />
       <MiniShoppinCart />
       <main id="homepage-5">

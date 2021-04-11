@@ -2,25 +2,33 @@ import React, { Component } from "react";
 import shukranLogo from "../../../assets/img/shukran.png";
 import clothing7 from "../../../assets/img/products/clothing/7.jpg";
 import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
-import { menuContents } from "../../../temp-data/homeData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronCircleDown,
-  faList,
-  faListAlt,
-  faShoppingBag,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import { BsList, BsChevronDown, BsHeart, BsBag } from "react-icons/all";
-import { handleShowAuthModal } from "../../../redux";
+import { handleShowAuthModal, handleSignOut } from "../../../redux";
 import { connect } from "react-redux";
 import Menu from "../../elements/menu/Menu";
+import { processGetRequest } from "../../../services/baseServices";
 
 class HeaderStandard extends Component {
+  state = {
+    categories: [],
+  };
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    processGetRequest("/homepage")
+      .then((res) => {
+        this.setState({
+          categories: res.category,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
   render() {
-    const { handleShowAuthModal, categories, all_category } = this.props;
-    console.log("all_category", all_category);
+    const { categories } = this.state;
+    const { handleShowAuthModal, user, handleSignOut } = this.props;
     return (
       <header
         className="header header--standard header--market-place-1"
@@ -158,23 +166,39 @@ class HeaderStandard extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="ps-block--user-header mr-0">
+                {user?.phone ? (
+                  <div className="ps-block--user-header mr-0">
                   <div className="ps-block__left">
-                    <i>
-                      <FontAwesomeIcon icon={faUser} />
-                    </i>
+                      <i>
+                        <FontAwesomeIcon icon={faUser} />
+                      </i>
+                    </div>
+                    <div className="ps-block__right">
+                      <a>
+                        {user.phone}
+                      </a>
+                      <a onClick={()=>handleSignOut()}>Logout</a>
+                    </div>
+
                   </div>
-                  <div className="ps-block__right">
-                    <a
-                      onClick={handleShowAuthModal}
-                      data-toggle="modal"
-                      data-target="#login-modal-center"
-                    >
-                      Login
-                    </a>
-                    <a href="my-account.html">Register</a>
+                ) : (
+                  <div className="ps-block--user-header mr-0">
+                    <div className="ps-block__left">
+                      <i>
+                        <FontAwesomeIcon icon={faUser} />
+                      </i>
+                    </div>
+                    <div className="ps-block__right">
+                      <a
+                        onClick={handleShowAuthModal}
+                        data-toggle="modal"
+                        data-target="#login-modal-center"
+                      >
+                        Login
+                      </a>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -192,13 +216,13 @@ class HeaderStandard extends Component {
                     <span> Shop by Department</span>
                   </div>
                   <div className="menu__content">
-                    <Menu source={categories} className="menu menu--dropdown"/>
+                    <Menu source={categories} className="menu menu--dropdown" />
                   </div>
                 </div>
               </div>
               <div className="navigation__center">
                 <ul className="menu">
-                  {all_category.slice(2, -1)?.map((cat) => (
+                  {categories.slice(2, -1)?.map((cat) => (
                     <li>
                       <a href={cat.link || "#"}>{cat.name}</a>
                     </li>
@@ -221,10 +245,17 @@ class HeaderStandard extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    handleShowAuthModal: () => dispatch(handleShowAuthModal()),
+    user: state.auth.userData,
   };
 };
 
-export default connect(null, mapDispatchToProps)(HeaderStandard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleShowAuthModal: () => dispatch(handleShowAuthModal()),
+    handleSignOut: ()=> dispatch(handleSignOut())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderStandard);

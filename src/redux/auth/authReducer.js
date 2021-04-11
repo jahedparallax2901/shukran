@@ -1,17 +1,19 @@
 import {
   AUTH_FAILURE,
   AUTH_REQUEST,
-  AUTH_SUCCESS, BACK_TO_PHONE_INPUT_SCREEN,
+  AUTH_SUCCESS,
+  BACK_TO_PHONE_INPUT_SCREEN,
   HIDE_AUTH_MODAL,
   SHOW_AUTH_MODAL,
+  SIGN_OUT,
   SOCIAL_LOGIN_FAILURE,
   SOCIAL_LOGIN_REQUEST,
   SOCIAL_LOGIN_SUCCESS,
   VERIFY_OTP_FAILURE,
   VERIFY_OTP_REQUEST,
-  VERIFY_OTP_SUCCESS
+  VERIFY_OTP_SUCCESS,
 } from "./actionTypes";
-import {userIsLoggedIn, userData} from "../../helpers/authUtils";
+import { userIsLoggedIn, userData } from "../../helpers/authUtils";
 
 const userInfo = userData();
 
@@ -27,7 +29,7 @@ export const initialState = {
   // TODO: OTP will be removed when twello will be connected
   otp: null,
   isTriggeredFromCollectVoucher: false,
-  callback: () => null
+  callback: () => null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,17 +38,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isShownAuthModal: true,
-        callback: action.payload
+        callback: action.payload,
       };
     case HIDE_AUTH_MODAL:
       return {
         ...state,
-        isShownAuthModal: false
+        isShownAuthModal: false,
       };
     case AUTH_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case AUTH_SUCCESS:
       return {
@@ -55,61 +57,76 @@ const reducer = (state = initialState, action) => {
         isLoading: false,
         errMessage: null,
         // TODO: OTP will be removed when twello will be connected
-        otp: action.payload
+        otp: action.payload,
       };
     case BACK_TO_PHONE_INPUT_SCREEN:
       return {
         ...state,
-        showOTP: false
-      }
+        showOTP: false,
+      };
     case AUTH_FAILURE:
       return {
         ...state,
         showOTP: false,
         isLoading: false,
-        errMessage: action.payload
+        errMessage: action.payload,
       };
     case VERIFY_OTP_REQUEST:
       return {
         ...state,
         errMessage: null,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     case VERIFY_OTP_SUCCESS:
-      state.callback()
+      // state.callback()
       return {
         ...state,
         isLoading: false,
         userData: action.payload,
         userIsLoggedIn: true,
         errMessage: null,
-        callback: null
-      }
+        callback: null,
+      };
     case VERIFY_OTP_FAILURE:
       return {
         ...state,
         isLoading: false,
-        errMessage: action.payload
-      }
+        errMessage: action.payload,
+      };
     case SOCIAL_LOGIN_REQUEST:
       return {
         ...state,
-        isLoading: true
-      }
+        isLoading: true,
+      };
     case SOCIAL_LOGIN_SUCCESS:
-      state.callback()
+      state.callback();
       return {
         ...state,
         isLoading: false,
         userData: action.payload,
         userIsLoggedIn: true,
-        callback: null
-      }
+        callback: null,
+      };
     case SOCIAL_LOGIN_FAILURE:
       return {
         ...state,
-        isLoading: false
-      }
+        isLoading: false,
+      };
+    case SIGN_OUT:
+      return {
+        ...state,
+        isShownAuthModal: false,
+        loggedIn: false,
+        isLoading: false,
+        showOTP: false,
+        authData: null,
+        userIsLoggedIn: userIsLoggedIn(),
+        userData: null,
+        errMessage: null,
+        otp: null,
+        isTriggeredFromCollectVoucher: false,
+        callback: () => null,
+      };
     default:
       return state;
   }
