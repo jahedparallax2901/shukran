@@ -2,9 +2,17 @@
   display: flex;
 }
 
-#shop-now-home3 .container{
+/*=== changed ===*/
+#shop-now-home3 .ps-section__content{
   background: #fff;
+  padding: 15px 25px;
 }
+#shop-now-home3 .ps-section__content .ps-block--category{
+  height: 242px;
+}
+#shop-now-home3 .ps-section__content .ps-block--category{
+  margin: 0px auto;
+} 
 #shop-now-home3 .ps-shop-brand,
 #shop-now-home3 .ps-shop-categories {
   background: #fff;
@@ -25,10 +33,10 @@
 .ps-block--promotion-header .header-top-shop-now{
   height: 36px;
 } */
-#homepage-5 {
+/* #homepage-5 {
   background: #f4f5f5;
   padding: 20px 0 !important;
-}
+} */
 
 #homepage-5 .ps-deal-of-day {
   margin-bottom: 0;
@@ -442,6 +450,7 @@
 }
 #homepage-5 {
   padding: 30px 0 50px 0;
+  background: #f4f5f5;
 }
 @media screen and (max-width: 1366px) {
   #homepage-5 {
@@ -543,7 +552,7 @@
   border-color: #ed1c24;
 }
 .ps-block--categories-tabs .ps-tab-list a.active i {
-  color: #ed1c24;
+  color: #ed1c24 !important;
 }
 .header--standard .header__extra span i {
   color: #fff;
@@ -706,6 +715,8 @@
 }
 .home-categories-top {
   margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #bfbfbf
 }
 .home-categories-body {
   padding: 30px 30px 0px 30px;
@@ -1958,9 +1969,11 @@ button.ps-btn:active {
 	padding-bottom: 0;
 }
 
+/*=== changed ===*/
 .ant-tabs .ps-block__tab-list a {
+  color: #000000;
 	display: block;
-	padding: 20px 0;
+	padding: 15px 25px;
 	text-align: center;
 	border-bottom: 2px solid transparent;
 }
@@ -1972,11 +1985,18 @@ button.ps-btn:active {
 .ant-tabs .ps-block__tab-list a span {
 	display: block;
 }
-
-.ant-tabs .ps-block__tab-list a span:hover {
-	color: #fb7c00;
+ 
+/*=== changed ===*/
+.ant-tabs .ps-block__tab-list a span {
+	color: #000000;
 }
 
+.ant-tabs .ps-block__tab-list:hover a span {
+	color: #fb7c00;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+	color: #fb7c00 !important;
+}
 .ant-tabs .ps-block__tab-list a:hover {
 	border-color: #fb7c00;
 }
@@ -1990,9 +2010,11 @@ button.ps-btn:active {
 }
 
 .ant-tabs .ps-block__tab-list a.active i {
-	color: #fb7c00;
+	color: #fb7c00 !important;
 }
-
+.ant-tabs .ps-block__tab-list a.active i svg{
+	fill: #fb7c00 !important;
+}
 .ant-tabs .ant-tabs-tab-active {
 	color: #fb7c00;
 }

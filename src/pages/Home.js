@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "../assets/css/style.css";
 import "../assets/css/change.css";
 import "../assets/css/market-place-1.css";
-import "../assets/css/market-place-3.css";
+import "../assets/css/autopart.css";
+import "../assets/css/broken.css";
 import Slider from "react-slick";
 import { processGetRequest } from "../services/baseServices";
 // import '../assets/css/select2.min.css';
@@ -74,16 +75,16 @@ class Home extends Component {
     return (
       <ContainerMarketPlace3
         title={"Shukran"}
-        categories={this.state.categories}
-        all_category={this.state.all_category}
       >
         {/*============ Start Main Body Area =============*/}
-        <div id="homepage-5">
+        <div id="homepage-5 pt-0">
           <TopBanner />
 
           <ProductGroupDealHot collectionSlug="Campaign" />
 
           <SearchTrending />
+
+          {/* Campaign section */}
 
           <div className="ps-deal-of-day">
             <div className="container">
@@ -121,7 +122,7 @@ class Home extends Component {
                 <Slider {...carouselStandard}>
                   {this.state.deal_of_day_products &&
                     this.state.deal_of_day_products.map((item) => (
-                      <div className="ps-product ps-product--inner">
+                      <div className="ps-product ps-product--inner pr-3">
                         <div className="ps-product__thumbnail">
                           <a href="product-default.html">
                             <img
@@ -355,7 +356,7 @@ class Home extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="ps-product ps-product--inner">
+                  <div className="ps-product ps-product--inner px-3">
                     <div className="ps-product__thumbnail">
                       <a href="product-default.html">
                         <img src="img/downloads/kids-care.JPG" alt="" />
@@ -446,16 +447,19 @@ class Home extends Component {
             </div>
           </div>
 
+{/* All categories section */}
           <div id="shop-now-home3">
             <div className="container">
               <div className="ps-section__content">
                 <div className="home-categories-top">
                   <h3>All Categories</h3>
                 </div>
+                <div className="home-categories-body">
+ 
                 <Slider {...carouselStandard}>
                   {this.state.all_category &&
                     this.state.all_category.map((item) => (
-                      <div className="ps-product ps-product--inner">
+                      <div className="ps-product ps-product--inner px-3">
                         <div className="ps-block--category">
                           <a className="ps-block__overlay" href="#"></a>
                           <div className="all-category-single">
@@ -467,10 +471,14 @@ class Home extends Component {
                       </div>
                     ))}
                 </Slider>
+              
+                </div>
+               
               </div>
             </div>
           </div>
         </div>
+
         <div id="homepage-3">
           <div className="mt-5">
             <div className="container">

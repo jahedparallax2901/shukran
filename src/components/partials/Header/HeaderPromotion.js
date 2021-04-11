@@ -12,7 +12,7 @@ class HeaderPromotion extends Component {
           <div className="container">
             <div className="ps-block__left">
               <h3>20%</h3>
-              <figure>
+              <figure className="mb-0"> {/*=== Changed ===*/}
                 <p>Discount</p>
                 <h4>For Books Of March</h4>
               </figure>

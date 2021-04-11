@@ -109,8 +109,8 @@ const MarketConsumerElectronics = ({ collectionSlug }) => {
             </Link>
           </li>
         </ul>
-        <Link to="/shop">
-          <a className="ps-block__more-link">View All</a>
+        <Link to="/shop" className="ps-block__more-link">
+          View All
         </Link>
       </div>
       <div className="ps-block__slider">

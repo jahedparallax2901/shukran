@@ -30,7 +30,7 @@ const ContainerMarketPlace3 = ({ children, title, categories, all_category }) =>
       <FloatingCart />
       <MiniShoppinCart />
       <main id="homepage-5">
-        <div className="container">{children}</div>
+        <div className="">{children}</div>
       </main>
       <FooterMarketPlace2 />
     </div>

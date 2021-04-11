@@ -1,40 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-// import MenuCategories from '../../../shared/headers/modules/MenuCategories';
-import promotion7 from "../assets/img/downloads/promotion7.jpg";
-import {
-  faBaby,
-  faBars,
-  faCamera,
-  faCartArrowDown,
-  faEye,
-  faFemale,
-  faLanguage,
-  faLaptop,
-  faList,
-  faMedkit,
-  faMobile,
-  faMotorcycle,
-  faSearch,
-  faShoppingBag,
-  faUniversalAccess,
-} from "@fortawesome/free-solid-svg-icons";
-import downloadsSmartwatch from "../assets/img/downloads/smartwatch.jpg";
-import downloadsBangladesh from "../assets/img/downloads/bangladesh.png";
-import downloadsBagpack from "../assets/img/downloads/bagpack.jpeg";
-import promotion2 from "../assets/img/downloads/promotion-2.webp";
-import promotion3 from "../assets/img/slider/home-5/promotion-3.jpg";
-import { menuContents } from "../temp-data/homeData";
 import Menu from "./elements/menu/Menu";
 import { processGetRequest } from "../services/baseServices";
+import banner1 from "../assets/img/downloads/banner-1.jpg";
+import downloadsBanner5 from "../assets/img/downloads/banner5.png";
+import downloadsBanner6 from "../assets/img/downloads/banner6.png";
 
 class TopBanner extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     categories: [],
     top_sliders: [],
@@ -60,7 +33,7 @@ class TopBanner extends Component {
 
   render() {
     const carouselSettings = {
-      dots: false,
+      dots: true,
       arrows: false,
       infinite: true,
       speed: 1000,
@@ -80,15 +53,13 @@ class TopBanner extends Component {
           </div>
           <div className="ps-section__center">
             <Slider {...carouselSettings}>
-              {top_sliders.map((banner) => (
+              {top_sliders.slice(0, -1).map((banner) => (
                 <div className="item">
                   <Link to={banner.deeplink}>
-                    <a key={banner.id} href={banner.deeplink}>
-                      <img
-                        src={banner.image}
-                        alt={banner.file_attach.file_name}
-                      />
-                    </a>
+                    <img
+                      src={banner.image}
+                      alt={banner.file_attach.file_name}
+                    />
                   </Link>
                 </div>
               ))}
@@ -97,7 +68,7 @@ class TopBanner extends Component {
           <div className="ps-section__right">
             {top_sliders_box.map((item) => (
               <a key={item.id} href={item.deeplink}>
-                <img src={item.image} alt={item.file_attach.file_name} />
+                <img src={item.file_attach.file_url} alt={item.file_attach.file_name} />
               </a>
             ))}
           </div>

@@ -15,12 +15,10 @@ const Menu = ({ source, className }) => {
             } else {
                 return (
                     <li key={item.text}>
-                        <Link href={item.url}>
                             <a>
                                 {item.icon && <i className={item.icon}></i>}
                                 {item.name}
                             </a>
-                        </Link>
                     </li>
                 );
             }
