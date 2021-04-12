@@ -21,7 +21,7 @@ const ContainerMarketPlace3 = ({ children, title }) => {
   }, []);
 
   return (
-    <div className="martfury">
+    <div className="shukran-layout">
       {/* <MarketPlacePromotionHeader />
             <HeaderMarketPlace /> */}
       {/* <HeaderMobile />

@@ -117,7 +117,7 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
                     </div>
                     <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 ">
                         <aside
-                            className="widget widget_best-sale"
+                            className="widget widget_best-sale mb-0"
                             data-mh="dealhot">
                             <h3 className="widget-title">Top 20 Best Seller</h3>
                             <div className="widget__content">{relatedView}</div>

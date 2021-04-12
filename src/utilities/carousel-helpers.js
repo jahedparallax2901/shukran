@@ -14,12 +14,12 @@ export const carouselStandard = {
     prevArrow: <PrevArrow />,
     responsive: [
         {
-            breakpoint: 1024,
+            breakpoint: 1025,
             settings: {
                 slidesToShow: 3,
                 slidesToScroll: 3,
                 infinite: true,
-                dots: true,
+                dots: false,
             },
         },
         {
@@ -152,7 +152,7 @@ export const carouselSingle = {
     dots: false,
     arrows: false,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
