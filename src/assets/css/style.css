@@ -3999,6 +3999,7 @@ textarea.form-control {
   align-items: center;
   background-color: #ed1c24;
   padding: 7px 20px;
+  margin-bottom: 0px;
   font-size: 18px;
   font-weight: 600;
   color: #fff;

@@ -54,7 +54,7 @@ const MarketHeathyAndBeauty = ({ collectionSlug }) => {
   }
 
   return (
-    <div className="ps-block--products-of-category">
+    <div className="ps-block--products-of-category pb-0">
       <div className="ps-block__categories">
         <h3>
           Health & <br /> Beauty

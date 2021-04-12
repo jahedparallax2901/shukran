@@ -10,7 +10,7 @@ const FooterWidgets = () => (
               <p>
                 Plot-314/A, Road-18, Block-E, Bashundhara Residential Area,<br />
                 Dhaka-1229, Bangladesh
-                <a href="info@shukran24seven.com">info@shukran24seven.com</a>
+                <a href="info@shukran24seven.com"> info@shukran24seven.com</a>
               </p>
               <ul className="ps-list--social">
                 <li>
