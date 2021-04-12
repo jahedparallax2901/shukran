@@ -91,6 +91,7 @@ class Home extends Component {
       slidesToScroll: 1,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
+      
     };
     return (
       <ContainerMarketPlace3 title={"Shukran"}>
