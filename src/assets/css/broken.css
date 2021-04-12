@@ -24,8 +24,37 @@
         font-size: 25px;
         margin-top: 15px;
     }
+    .header--mobile .ps-search--mobile .ps-form--search-mobile .form-group--nest input{
+        padding: 5px 15px;
+    }
+    .header--mobile .ps-search--mobile .ps-form--search-mobile .form-group--nest input:focus{
+        border: 0px;
+        box-shadow: none;
+        background: #f4f5f5;
+    }
 }
-
+@media screen and (max-width: 768px){
+    .header--mobile .ps-search--mobile{
+        position: absolute;
+        top: 5px;
+        width: 100%;
+        padding: 15px 25% 15px 35%;
+    }
+    .ps-block--products-of-category .ps-block__categories h3 br{
+        display: none;
+    }
+}
+@media screen and (max-width: 576px){
+    .header--mobile .ps-search--mobile{
+        position: absolute;
+        top: 5px;
+        width: 100%;
+        padding: 15px 25% 15px 33%;
+    }
+    .ps-block--products-of-category .ps-block__categories h3 br{
+        display: none;
+    }
+}
 /*=== Banner Style ===*/
 .ps-block--user-header .ps-block__right a{
     color: #000000;
@@ -58,16 +87,19 @@
 #homepage-5 .ps-home-banner .ps-section__center .slick-dots li button:hover:before{
     color: #006c32;
 }
+
 @media screen and (max-width: 1024px){
     #homepage-5 .ps-home-banner .ps-section__center {
         max-width: calc(100% - 382px) !important;
     }
 }
-@media screen and (max-width: 768px){
-    #homepage-5 .ps-home-banner .ps-section__center{
-        max-width: 100% !important;
+@media screen and (max-width: 769px){
+    #homepage-5 .ps-home-banner .ps-section__center {
+        max-width: calc(100% - 0px) !important;
+        width: 100% !important;
     }
 }
+
 /*=== Campaign style ===*/
 .ps-product--hot-deal .ps-product__header .ps-product__info .ant-progress-bg{
     background: #ed1c24;
