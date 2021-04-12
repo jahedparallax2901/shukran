@@ -2051,3 +2051,17 @@ button.ps-btn:active {
 .ps-product__rating i.open {
 	color: #555;
 }
+
+/* Product details view */
+.ps-product--quickview{
+  overflow-y: visible !important;
+}
+.ps-product--quickview .ps-product__meta {
+  align-items: center;
+}
+.ps-product--quickview .ps-product__rating {
+  align-items: center;
+}
+.ps-product--detail .ps-product__thumbnail .ps-product__badge {
+  width: 80px;
+}

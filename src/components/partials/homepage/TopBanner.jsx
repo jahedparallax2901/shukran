@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import Menu from "./elements/menu/Menu";
-import { processGetRequest } from "../services/baseServices";
-import banner1 from "../assets/img/downloads/banner-1.jpg";
-import downloadsBanner5 from "../assets/img/downloads/banner5.png";
-import downloadsBanner6 from "../assets/img/downloads/banner6.png";
+import banner1 from "../../../assets/img/downloads/banner-1.jpg";
+import downloadsBanner5 from "../../../assets/img/downloads/banner5.png";
+import downloadsBanner6 from "../../../assets/img/downloads/banner6.png";
+import { processGetRequest } from "../../../services/baseServices";
+import Menu from "../../elements/menu/Menu";
 
 class TopBanner extends Component {
   state = {

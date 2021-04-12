@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../assets/css/style.css";
 import "../assets/css/change.css";
 import "../assets/css/market-place-1.css";
+import "../assets/css/market-place-3.css";
 import "../assets/css/autopart.css";
 import "../assets/css/broken.css";
 import Slider from "react-slick";
@@ -17,8 +18,8 @@ import bike1 from "../assets/img/downloads/bike1.jpeg";
 import camera from "../assets/img/downloads/camera.jpg";
 import downloadsChair1 from "../assets/img/downloads/chair1.JPG";
 // import categoriesHome55 from '../assets/img/categories/home-5/5.jpg';
-import TopBanner from "../components/TopBanner";
-import SearchTrending from "../components/SearchTrending";
+import TopBanner from "../components/partials/homepage/TopBanner";
+import SearchTrending from "../components/partials/homepage/SearchTrending";
 import ProductGroupDealHot from "../components/product/ProductGroupDealHot";
 import { carouselStandard } from "../utilities/carousel-helpers";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
@@ -128,7 +129,7 @@ class Home extends Component {
           tabindex="-1"
           role="dialog"
           aria-labelledby="product-quickview"
-          aria-hidden="true"
+          aria-hidden="false"
         >
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">

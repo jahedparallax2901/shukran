@@ -25,7 +25,7 @@ const ProductDealOfDay = ({ product }) => {
           </div>
         )}
         {StrapiProductBadge(product)}
-        <ModuleProductActions />
+        <ModuleProductActions product={product}/>
       </div>
       <div className="ps-product__container">
         <div className="ps-product__content">

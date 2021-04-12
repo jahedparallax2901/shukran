@@ -60,10 +60,10 @@
 
 .ps-block--category {
     margin-bottom: 30px;
-    padding: 20px;
-    border: 1px solid #bfbfbf;
+    padding: 20px 10px;
     text-align: center;
     transition: all 0.4s ease;
+    border: 1px solid #bfbfbf;
 
     a {
         @include max-area();
@@ -354,6 +354,7 @@
             padding: 0 15px;
         }
     }
+
     @media (max-width: 1440px) {
         .ps-block__item {
             flex-flow: row wrap;
@@ -367,6 +368,7 @@
             padding-left: 0;
         }
     }
+
     @media (max-width: 1024px) {
         flex-flow: row wrap;
         .ps-block__item {
@@ -375,12 +377,14 @@
             padding: 0;
         }
     }
+
     @include media('<md') {
         justify-content: flex-start;
         .ps-block__item {
             max-width: 50%;
             max-width: 33.33333%;
         }
+
         &.ps-block--site-features-2 {
             .ps-block__item {
                 max-width: 50%;
@@ -395,7 +399,11 @@
             .ps-block__right {
                 padding-left: 20px;
             }
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
+
         &.ps-block--site-features-2 {
             .ps-block__item {
                 max-width: 100%;
@@ -420,13 +428,14 @@
     figure {
         display: flex;
         align-items: center;
-        background-color: #f14705;
+        margin-bottom: 0;
         padding: 7px 20px;
         font-size: 18px;
         font-weight: 600;
         color: #fff;
         border-radius: 3px;
         line-height: 1;
+        background-color: #f14705;
 
         figcaption {
             color: #ffffff;
@@ -513,15 +522,6 @@
             color: #690;
             line-height: 1;
         }
-
-        .br-wrapper {
-            margin-bottom: 0;
-
-            a {
-                font-size: 20px;
-            }
-        }
-
         span {
             display: block;
             color: $color-text;
@@ -675,10 +675,10 @@
             }
 
             &:hover {
-                border-color: $color-layout-2-1st;
+                border-color: $color-1st;
 
                 i {
-                    color: $color-layout-2-1st;
+                    border-color: $color-1st;
                 }
             }
         }
@@ -702,10 +702,6 @@
 
     @include media('<xs') {
         padding: 20px;
-    }
-
-    @media screen and (min-width: 992px) {
-        max-height: 500px;
     }
 }
 
@@ -752,6 +748,10 @@
             left: 30px;
             font-style: italic;
             color: $color-text;
+
+            &:hover {
+                color: $color-1st;
+            }
         }
     }
 
@@ -975,19 +975,54 @@
         padding: 20px 60px 60px;
     }
 
-    @media (max-width: 1680px) {
-        .owl-slider {
-            .owl-nav {
-                .owl-prev {
-                    margin-left: -30px;
+    .ant-tabs {
+        .ant-tabs-tab {
+            padding-bottom: 0;
+        }
+        .ps-block__tab-list {
+            a {
+                display: block;
+                padding: 20px 0;
+                text-align: center;
+                border-bottom: 2px solid transparent;
+
+                i {
+                    font-size: 36px;
                 }
 
-                .owl-next {
-                    margin-right: -30px;
+                span {
+                    display: block;
+                }
+
+                &:hover {
+                    i {
+                        color: $color-1st;
+                    }
+
+                    border-color: $color-1st;
+                }
+
+                &.active {
+                    i {
+                        color: $color-1st;
+                    }
+
+                    border-color: $color-1st;
                 }
             }
         }
+
+        .ant-tabs-tab-active {
+            color: $color-1st;
+            &:hover {
+                color: $color-1st;
+            }
+        }
+        .ant-tabs-ink-bar {
+            background-color: $color-1st;
+        }
     }
+
     @include media('<lg') {
         .ps-block__header {
             padding: 0 30px;
@@ -1007,6 +1042,7 @@
                 }
             }
         }
+
         .ps-tab {
             padding: 20px 30px;
         }
@@ -1052,11 +1088,9 @@
     background-color: #ffffff;
     @extend %list-reset;
 
-    .owl-slider {
-        .owl-item {
-            img {
-                width: 100%;
-            }
+    .ps-carousel {
+        img {
+            width: 100%;
         }
     }
 
@@ -1105,12 +1139,6 @@
         .ps-block__right {
             max-width: 320px;
             padding: 20px;
-        }
-    }
-
-    .ps-block__left {
-        .owl-slider {
-            margin-bottom: 20px;
         }
     }
 
@@ -2141,7 +2169,6 @@
 
             a {
                 display: block;
-                margin-left: 40px;
                 font-size: 14px;
             }
         }
@@ -2935,6 +2962,14 @@
     box-shadow: 0 0 4px 0 #ccc;
     @extend %list-reset;
 
+    .ant-rate {
+        .ant-rate-star {
+            i {
+                font-size: 12px !important;
+            }
+        }
+    }
+
     h4 {
         margin-bottom: 30px;
         font-size: 21px;
@@ -2944,15 +2979,6 @@
 
     .ps-block__thumbnail {
         min-height: 210px;
-    }
-
-    .br-wrapper {
-        display: inline-block;
-
-        a {
-            font-size: 13px;
-            color: #fcb800;
-        }
     }
 
     .ps-block__author {
@@ -3037,15 +3063,6 @@
 
 .ps-block--store-2 {
     box-shadow: 0px 0px 25px 0px #ddd;
-
-    .br-wrapper {
-        display: inline-block;
-
-        a {
-            font-size: 13px;
-            color: #fcb800;
-        }
-    }
 
     h4 {
         margin-bottom: 0;
@@ -3155,15 +3172,6 @@
                 margin-bottom: 10px;
                 border-radius: 50%;
             }
-
-            .br-wrapper {
-                display: block;
-
-                a {
-                    font-size: 13px;
-                    color: #fcb800;
-                }
-            }
         }
 
         p {
@@ -3268,6 +3276,39 @@
     }
 }
 
+.ps-block--address {
+    figcaption {
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        font-size: 20px;
+        font-weight: 600;
+        color: $color-heading;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    p {
+        color: $color-heading;
+    }
+
+    a {
+        font-size: 16px;
+        color: $color-link;
+    }
+}
+
+.ps-block--invoice {
+    margin-bottom: 30px;
+
+    figcaption {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        color: $color-heading;
+        border-bottom: 1px solid #eaeaea;
+    }
+}
+
 .ps-block--checkout-order {
     figure {
         margin-bottom: 25px;
@@ -3291,9 +3332,14 @@
             }
         }
     }
+    
+    h3 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
 
     .ps-block__items {
-        > a {
+        a {
             padding: 10px 0;
             display: flex;
             justify-content: space-between;
@@ -3338,6 +3384,7 @@
         padding: 30px 20px;
         margin-bottom: 10px;
         border-radius: 4px;
+        background-color: #fff;
         border: 2px solid #eaeaea;
     }
 
@@ -3432,37 +3479,6 @@
     margin-bottom: 50px;
     padding: 20px;
     background-color: #eaeaea;
-    @extend %list-reset;
-
-    .ps-tab-list {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 30px;
-
-        li {
-            margin-right: 10px;
-
-            .ps-btn {
-                background-color: #bfbfbf;
-
-                &:hover {
-                    background-color: $color-1st;
-                }
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            &.active {
-                .ps-btn {
-                    background-color: $color-1st;
-                    color: #fff;
-                }
-            }
-        }
-    }
 
     .ps-block__header {
         padding-top: 10px;
@@ -3476,6 +3492,10 @@
     .ps-block__content {
     }
 
+    .ant-select {
+        min-width: 100%;
+    }
+
     .ps-btn {
         &:hover {
             color: #fff;
@@ -3483,100 +3503,29 @@
     }
 }
 
-.ps-block--payment-success {
-    background-color: #fff;
-
-    h3 {
-        font-size: 48px;
-        color: $color-success;
-    }
-
-    p {
-        font-size: 18px;
-
-        a {
-            color: $color-link;
-        }
-    }
-
-    @media screen and (min-width: 992px) {
-        h3 {
-            font-size: 64px;
-        }
-        p {
-            font-size: 20px;
-        }
-    }
-}
-
-.ps-block--medicine-brand {
-    text-align: center;
-
-    img {
-        border-radius: 50%;
-        margin-bottom: 20px;
-        max-height: 80px;
-    }
-
-    a {
+.ps-block--demo {
+    .ps-block__title {
+        display: block;
+        font-size: 14px;
         font-weight: 600;
-        font-size: 16px;
         color: $color-heading;
-
         &:hover {
-            color: $color-med;
+            color: $color-1st;
         }
     }
 
-    @media screen and (min-width: 1200px) {
-        img {
-            max-height: 100%;
-        }
+    .ps-block__thumbnail {
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
     }
-}
 
-.ps-block--testimonial-medicine {
     .ps-block__content {
-        padding-bottom: 20px;
-
-        p {
-            font-size: 20px;
-            font-weight: 600;
-            color: $color-heading;
-            line-height: 1.2em;
-        }
+        padding: 10px 0;
+        text-align: center;
     }
-
-    .ps-block__author {
-        display: flex;
-        flex-flow: row nowrap;
-
-        .ps-block__author__thumbnail {
-            img {
-                max-width: 50px;
-            }
-        }
-
-        figure {
-            padding-left: 20px;
-
-            figcaption {
-                font-size: 18px;
-                font-weight: 600;
-                color: $color-heading;
-                line-height: 1.4em;
-            }
-
-            span {
-                color: $color-text;
-            }
-        }
-    }
-    @media screen and (min-width: 1200px) {
-        .ps-block__content {
-            p {
-                font-size: 30px;
-            }
+    &:hover {
+        .ps-block__thumbnail {
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
         }
     }
 }

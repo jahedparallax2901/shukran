@@ -1906,7 +1906,7 @@ button.ps-btn.ps-btn--gray {
 
 .ps-btn.ps-btn--black,
 button.ps-btn.ps-btn--black {
-  background-color: #000;
+  background-color: #000  !important;
 }
 
 .ps-btn.ps-btn--black.ps-btn--outline,
@@ -8452,6 +8452,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   margin-right: 10px;
 }
 
+.ps-product .ps-product__actions a i {
+  color: black !important;
+}
+
 .ps-product .ps-product__actions li a {
   display: flex;
   justify-content: center;
@@ -10578,8 +10582,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .ps-product--quickview {
   display: none;
   margin-bottom: 0;
-  max-height: 500px;
-  overflow: auto;
+  max-height: 90vh;
+  overflow: visible;
 }
 
 .ps-product--quickview .owl-slider img {
@@ -10619,6 +10623,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  visibility: none;
 }
 
 .ps-product--quickview .ps-product__images .slick-arrow:first-child {

@@ -1,21 +1,16 @@
 import React from "react";
 import { Tabs } from "antd";
-import categoriesHome51 from "../assets/img/categories/home-5/1.jpg";
-import categoriesHome55 from "../assets/img/categories/home-5/5.jpg";
-import categoriesHome57 from "../assets/img/categories/home-5/7.jpg";
-import categoriesHome58 from "../assets/img/categories/home-5/8.jpg";
-import categoriesHome59 from "../assets/img/categories/home-5/9.jpg";
-import categoriesHome513 from "../assets/img/categories/home-5/13.jpg";
-import categoriesHome514 from "../assets/img/categories/home-5/14.jpg";
+import categoriesHome51 from "../../../assets/img/categories/home-5/1.jpg";
+import categoriesHome55 from "../../../assets/img/categories/home-5/5.jpg";
+import categoriesHome57 from "../../../assets/img/categories/home-5/7.jpg";
+import categoriesHome58 from "../../../assets/img/categories/home-5/8.jpg";
+import categoriesHome59 from "../../../assets/img/categories/home-5/9.jpg";
+import categoriesHome513 from "../../../assets/img/categories/home-5/13.jpg";
+import categoriesHome514 from "../../../assets/img/categories/home-5/14.jpg";
 import { Link } from "react-router-dom";
-import "../assets/css/market-place-3.css";
-import "../assets/css/style.css";
-import "../assets/css/change.css";
-import "../assets/css/market-place-3.css";
-import "../assets/css/autopart.css";
+
 
 import Slider from "react-slick";
-import { carouselStandard } from "../utilities/carousel-helpers";
 import { BsPhone, BsStar } from "react-icons/bs";
 import { AiOutlineCar, AiOutlineDesktop } from "react-icons/ai";
 import { BiBaseball, BiBed } from "react-icons/bi";
