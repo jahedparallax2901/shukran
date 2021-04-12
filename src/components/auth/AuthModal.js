@@ -64,7 +64,6 @@ const AuthModal = ({
   }, [])
 
   const handleOTPVerify = () => {
-    debugger;
     if (PasswordReset === true) {
       handleVerifyResetOtp({
         token: authData.token,
@@ -96,7 +95,6 @@ const AuthModal = ({
         device_token: "f4as4f5as5f4as5f4as6",
         device_type: getDeviceType()
       }, () => {
-        debugger;
         // getCartItems()
         authModalHide()
       })

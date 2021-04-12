@@ -25,25 +25,17 @@ import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 import NextArrow from "../components/elements/carousel/NextArrow";
 import PrevArrow from "../components/elements/carousel/PrevArrow";
 import { FaBabyCarriage, FaChevronUp, FaShoppingBag } from "react-icons/fa";
-import MarketClothingsAndApparel from "../components/partials/homepage/MarketClothingsAndApparel";
-import MarketConsumerElectronics from "../components/partials/homepage/MarketConsumerElectronics";
-import MarketComputerAndTechnology from "../components/partials/homepage/MarketComputerAndTechnology";
-import MarketGardenAndKitchen from "../components/partials/homepage/MarketGardenAndKitchen";
-import MarketHeathyAndBeauty from "../components/partials/homepage/MarketHeathyAndBeauty";
-import { Badge } from "react-bootstrap";
 import ModuleProductActions from "../components/elements/product/ModuleProductActions";
 import Rating from "../components/elements/Rating";
+import CategoryProducts from "../components/partials/homepage/CategoryProducts";
+import AllCategories from "../components/partials/homepage/AllCategories";
+import DealOfTheDay from "../components/partials/homepage/DealOfTheDay";
 
 class Home extends Component {
   state = {
-    categories: [],
-    campaign_products: [],
     all_category: [],
-    category_products: [],
     deal_of_day_products: [],
-    top_products: [],
-    top_sliders: [],
-    top_sliders_box: [],
+    category_products: [],
     isLoading: false,
   };
 
@@ -59,10 +51,10 @@ class Home extends Component {
       .catch((err) => {
         this.setState({ isLoading: false });
       });
-    processGetRequest("/homepage", { filter_type: 5 })
+    processGetRequest("/homepage", { filter_type: 6 })
       .then((res) => {
         this.setState({
-          all_category: res.all_category,
+          category_products: res.category_products,
           isLoading: false,
         });
       })
@@ -79,414 +71,20 @@ class Home extends Component {
         {/*============ Start Main Body Area =============*/}
         <div id="homepage-5 pt-0">
           <TopBanner />
-
           <ProductGroupDealHot collectionSlug="Campaign" />
-
           <SearchTrending />
-
-          {/* Campaign section */}
-
-          <div className="ps-deal-of-day">
-            <div className="container">
-              <div className="ps-section__header">
-                <div className="ps-block--countdown-deal">
-                  <div className="ps-block__left">
-                    <h3>Deal of the day</h3>
-                  </div>
-                  <div className="ps-block__right">
-                    <figure>
-                      <figcaption>End in:</figcaption>
-                      <ul
-                        className="ps-countdown"
-                        data-time="December 30, 2021 15:37:25"
-                      >
-                        <li>
-                          <span className="days">05</span>
-                        </li>
-                        <li>
-                          <span className="hours">07</span>
-                        </li>
-                        <li>
-                          <span className="minutes">46</span>
-                        </li>
-                        <li>
-                          <span className="seconds">37</span>
-                        </li>
-                      </ul>
-                    </figure>
-                  </div>
-                </div>
-                <a href="shop-default.html">View all</a>
-              </div>
-              <div className="ps-section__content">
-                <Slider {...carouselStandard}>
-                  {this.state.deal_of_day_products &&
-                    this.state.deal_of_day_products.map((item) => (
-                      <div className="ps-product ps-product--inner pr-3">
-                        <div className="ps-product__thumbnail">
-                          <a href="product-default.html">
-                            <img
-                              src={item.product.single_image || bike1}
-                              alt=""
-                            />
-                          </a>
-                          {item.product.sale_price > 0 && (
-                            <>
-                              {item.product.quantity < 0 && (
-                                <div className="ps-product__badge out-stock">
-                                  Out Of Stock
-                                </div>
-                              )}
-                              <div className="ps-product__badge">
-                                -
-                                {(item.product.sale_price -
-                                  item.product.price) *
-                                  100}
-                                %
-                              </div>
-                            </>
-                          )}
-
-                          <ModuleProductActions />
-                        </div>
-                        <div className="ps-product__container">
-                          <p className="ps-product__price sale">
-                            ৳{item.product.sale_price}{" "}
-                            <del>৳{item.product.price} </del>
-                            <small>
-                              {(item.product.sale_price - item.product.price) *
-                                100}
-                              % off
-                            </small>
-                          </p>
-                          <div className="ps-product__content">
-                            <a
-                              className="ps-product__title"
-                              href="product-default.html"
-                            >
-                              {item.product.name}
-                            </a>
-                            <div className="ps-product__rating">
-                              <Rating count={4} />
-                              <span>01</span>
-                            </div>
-                            <div
-                              className="ps-product__progress-bar ps-progress"
-                              data-value="72"
-                            >
-                              <div className="ps-progress__value">
-                                <span></span>
-                              </div>
-                              <p>Sold:80</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-
-                  <div className="ps-product ps-product--inner">
-                    <div className="ps-product__thumbnail">
-                      <a href="product-default.html">
-                        <img src={downloadsFridge1} alt="" />
-                      </a>
-                      <div className="ps-product__badge out-stock">
-                        Out Of Stock
-                      </div>
-                      <ul className="ps-product__actions">
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Add to Cart"
-                            className="asside-card-drower-button"
-                          >
-                            <i className="icon-bag2"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Quick View"
-                          >
-                            <i className="icon-eye"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Add to Whishlist"
-                          >
-                            <i className="icon-heart"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Compare"
-                          >
-                            <i className="icon-chart-bars"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="ps-product__container">
-                      <p className="ps-product__price">
-                        ৳320.00<small>18% off</small>
-                      </p>
-                      <div className="ps-product__content">
-                        <a
-                          className="ps-product__title"
-                          href="product-default.html"
-                        >
-                          Walton Fridge
-                        </a>
-                        <div className="ps-product__rating">
-                          <select className="ps-rating" data-read-only="true">
-                            <option value="1">1</option>
-                            <option value="1">2</option>
-                            <option value="1">3</option>
-                            <option value="1">4</option>
-                            <option value="2">5</option>
-                          </select>
-                          <span>01</span>
-                        </div>
-                        <div
-                          className="ps-product__progress-bar ps-progress"
-                          data-value="4"
-                        >
-                          <div className="ps-progress__value">
-                            <span></span>
-                          </div>
-                          <p>Sold:78</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="ps-product ps-product--inner">
-                    <div className="ps-product__thumbnail">
-                      <a href="product-default.html">
-                        <img src={bike1} alt="" />
-                      </a>
-                      <div className="ps-product__badge out-stock">
-                        Out Of Stock
-                      </div>
-                      <ul className="ps-product__actions">
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Add to Cart"
-                            className="asside-card-drower-button"
-                          >
-                            <i className="icon-bag2"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Quick View"
-                          >
-                            <i className="icon-eye"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Add to Whishlist"
-                          >
-                            <i className="icon-heart"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Compare"
-                          >
-                            <i className="icon-chart-bars"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="ps-product__container">
-                      <p className="ps-product__price">
-                        ৳85.00<small>18% off</small>
-                      </p>
-                      <div className="ps-product__content">
-                        <a
-                          className="ps-product__title"
-                          href="product-default.html"
-                        >
-                          Eldomilk 2+ Growing Up Milk Powder BIB After 2 Years
-                          To 3 Years Old 350 Gm
-                        </a>
-                        <div className="ps-product__rating">
-                          <select className="ps-rating" data-read-only="true">
-                            <option value="1">1</option>
-                            <option value="1">2</option>
-                            <option value="1">3</option>
-                            <option value="1">4</option>
-                            <option value="2">5</option>
-                          </select>
-                          <span>01</span>
-                        </div>
-                        <div
-                          className="ps-product__progress-bar ps-progress"
-                          data-value="25"
-                        >
-                          <div className="ps-progress__value">
-                            <span></span>
-                          </div>
-                          <p>Sold:91</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="ps-product ps-product--inner px-3">
-                    <div className="ps-product__thumbnail">
-                      <a href="product-default.html">
-                        <img src="img/downloads/kids-care.JPG" alt="" />
-                      </a>
-                      <div className="ps-product__badge out-stock">
-                        Out Of Stock
-                      </div>
-                      <ul className="ps-product__actions">
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Add to Cart"
-                            className="asside-card-drower-button"
-                          >
-                            <i className="icon-bag2"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Quick View"
-                          >
-                            <i className="icon-eye"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Add to Whishlist"
-                          >
-                            <i className="icon-heart"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Compare"
-                          >
-                            <i className="icon-chart-bars"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="ps-product__container">
-                      <p className="ps-product__price">
-                        ৳92.00<small>18% off</small>
-                      </p>
-                      <div className="ps-product__content">
-                        <a
-                          className="ps-product__title"
-                          href="product-default.html"
-                        >
-                          Kidstar Baby Diaper Small 66pcs 3-8 Kg
-                        </a>
-                        <div className="ps-product__rating">
-                          <select className="ps-rating" data-read-only="true">
-                            <option value="1">1</option>
-                            <option value="1">2</option>
-                            <option value="1">3</option>
-                            <option value="1">4</option>
-                            <option value="2">5</option>
-                          </select>
-                          <span>01</span>
-                        </div>
-                        <div
-                          className="ps-product__progress-bar ps-progress"
-                          data-value="69"
-                        >
-                          <div className="ps-progress__value">
-                            <span></span>
-                          </div>
-                          <p>Sold:48</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 
-                </Slider>
-              </div>
-            </div>
-          </div>
-
-{/* All categories section */}
-          <div id="shop-now-home3">
-            <div className="container">
-              <div className="ps-section__content">
-                <div className="home-categories-top">
-                  <h3>All Categories</h3>
-                </div>
-                <div className="home-categories-body">
- 
-                <Slider {...carouselStandard}>
-                  {this.state.all_category &&
-                    this.state.all_category.map((item) => (
-                      <div className="ps-product ps-product--inner px-3">
-                        <div className="ps-block--category">
-                          <a className="ps-block__overlay" href="#"></a>
-                          <div className="all-category-single">
-                            <img src={item.image || bike1} alt="" />
-                          </div>
-
-                          <p>{item.name}</p>
-                        </div>
-                      </div>
-                    ))}
-                </Slider>
-              
-                </div>
-               
-              </div>
-            </div>
-          </div>
+          <DealOfTheDay deal_of_day_products={this.state.deal_of_day_products}/>
+          <AllCategories/>
         </div>
 
         <div id="homepage-3">
           <div className="mt-5">
             <div className="container">
-              <MarketClothingsAndApparel collectionSlug="clothings" />
-              <MarketConsumerElectronics collectionSlug="consumer-electronics" />
-              <MarketComputerAndTechnology collectionSlug="customer-bought-products" />
-              <MarketGardenAndKitchen collectionSlug="garden-and-kitchen" />
-              <MarketHeathyAndBeauty collectionSlug="health-and-beauty" />
+              {
+                this.state.category_products ? this.state.category_products.map(cat=>(
+                  <CategoryProducts cat={cat} />
+                )) : <p>No category exist</p>
+              }
             </div>
           </div>
         </div>

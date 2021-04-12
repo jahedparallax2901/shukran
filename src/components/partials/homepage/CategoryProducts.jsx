@@ -3,45 +3,19 @@ import Slider from "react-slick";
 import ProductSimple from "../../elements/product/ProductSimple";
 import { carouselSingle } from "../../../utilities/carousel-helpers";
 import { Link } from "react-router-dom";
-import { clothingAndApparelProducts } from "../../../temp-data/homeData";
+// import { clothingAndApparelProducts } from "../../../temp-data/homeData";
 import slider1 from "../../../assets/img/downloads/shirt-banner.jpg";
 import slider2 from "../../../assets/img/slider/home-3/clothing-2.jpg";
 import slider3 from "../../../assets/img/slider/home-3/clothing-3.jpg";
 
-const MarketClothingsAndApparel = ({ collectionSlug }) => {
+const CategoryProducts = ({ cat }) => {
   const [productItems, setProductItems] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const {items, category_id, category, sliders} = cat;
 
-  const clothingAndAppearalSlideImages = [
-    { id: 1, src: slider1, link: "/shop" },
-    { id: 2, src: slider2, link: "/shop" },
-    { id: 3, src: slider3, link: "/shop" },
-  ];
-
-  async function getProducts() {
-    setLoading(true);
-    // const responseData = await getProductsByCollectionHelper(
-    //     collectionSlug
-    // );
-    if (clothingAndApparelProducts.length > 0) {
-      setProductItems(clothingAndApparelProducts);
-      setTimeout(
-        function () {
-          setLoading(false);
-        }.bind(this),
-        250
-      );
-    }
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, []);
   // Views
   let productItemsView;
-  if (!loading) {
-    if (productItems && productItems.length > 0) {
-      productItemsView = productItems.map((item, index) => {
+    if (items && items.length > 0) {
+      productItemsView = items.map((item, index) => {
         if (index < 6) {
           return <ProductSimple product={item} key={item.id} />;
         }
@@ -49,18 +23,16 @@ const MarketClothingsAndApparel = ({ collectionSlug }) => {
     } else {
       productItemsView = <p>No product found.</p>;
     }
-  } else {
-    productItemsView = productItemsView = <p>Loading...</p>;
-  }
+  
 
   return (
     <div className="ps-block--products-of-category">
       <div className="ps-block__categories">
         <h3>
-          Clothing & <br /> Apparel
+          {category?.name || "Not exist"}
         </h3>
         <ul>
-          <li>
+          {/* <li>
             <Link to="/shop/best-seller">
               <a>Best Seller</a>
             </Link>
@@ -99,7 +71,7 @@ const MarketClothingsAndApparel = ({ collectionSlug }) => {
             <Link to="/shop/sale-and-deal">
               <a>Sales & Deals</a>
             </Link>
-          </li>
+          </li> */}
         </ul>
         <Link to="/shop" className="ps-block__more-link">
           View All
@@ -107,9 +79,9 @@ const MarketClothingsAndApparel = ({ collectionSlug }) => {
       </div>
       <div className="ps-block__slider">
         <Slider {...carouselSingle} className="ps-carousel">
-          {clothingAndAppearalSlideImages.map((item) => (
+          {sliders.map((item) => (
             <a>
-              <img src={item.src} alt="martfury" />
+              <img src={item.image} alt="martfury" />
             </a>
           ))}
         </Slider>
@@ -119,4 +91,4 @@ const MarketClothingsAndApparel = ({ collectionSlug }) => {
   );
 };
 
-export default MarketClothingsAndApparel;
+export default CategoryProducts;

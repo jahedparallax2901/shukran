@@ -53,7 +53,7 @@ class TopBanner extends Component {
           </div>
           <div className="ps-section__center">
             <Slider {...carouselSettings}>
-              {top_sliders.slice(0, -1).map((banner) => (
+              {top_sliders.map((banner) => (
                 <div className="item">
                   <Link to={banner.deeplink}>
                     <img
