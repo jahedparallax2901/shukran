@@ -57,8 +57,8 @@ class TopBanner extends Component {
                 <div className="item">
                   <Link to={banner.deeplink}>
                     <img
-                      src={banner.image}
-                      alt={banner.file_attach.file_name}
+                      src={banner?.image}
+                      alt={banner?.file_attach?.file_name}
                     />
                   </Link>
                 </div>
@@ -68,7 +68,7 @@ class TopBanner extends Component {
           <div className="ps-section__right">
             {top_sliders_box.map((item) => (
               <a key={item.id} href={item.deeplink}>
-                <img src={item.file_attach.file_url} alt={item.file_attach.file_name} />
+                <img src={item?.file_attach?.file_url} alt={item?.file_attach?.file_name} />
               </a>
             ))}
           </div>

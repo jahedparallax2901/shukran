@@ -1,5 +1,5 @@
-let MODE = 'Local';
-// let MODE = 'Staging';
+// let MODE = 'Local';
+let MODE = 'Staging';
 // let MODE = 'Live';
 
 let base_api_url = null;
@@ -12,7 +12,7 @@ if (MODE === 'Local') {
   site_url = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
 
 } else if (MODE === 'Staging') {
-  base_api_url = process.env.REACT_APP_BASE_API_URL_LOCAL;
+  base_api_url = "https://parallaxlogic.dev/shukran-admin/api/v1";
   merchant_panel = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
   site_url = process.env.REACT_APP_MERCHANT_PANEL_LOCAL
 } else if (MODE === 'Live') {
