@@ -1,3 +1,31 @@
+/*=== Layout ===*/
+@media screen and (max-width: 1200px){
+    .shukran-layout{
+        width: 103%;
+    }
+}
+@media screen and (max-width: 1025px){
+    .shukran-layout{
+        width: 100%;
+    }
+}
+/*=== Header ===*/
+.ps-form--search-mobile input{
+    font-size: 14px;
+}
+@media screen and (max-width: 1024px){
+    .header--mobile .ps-search--mobile{
+        position: absolute;
+        top: 5px;
+        width: 100%;
+    }
+    .header .header__extra svg{
+        color: #666;
+        font-size: 25px;
+        margin-top: 15px;
+    }
+}
+
 /*=== Banner Style ===*/
 .ps-block--user-header .ps-block__right a{
     color: #000000;
@@ -30,7 +58,16 @@
 #homepage-5 .ps-home-banner .ps-section__center .slick-dots li button:hover:before{
     color: #006c32;
 }
-
+@media screen and (max-width: 1024px){
+    #homepage-5 .ps-home-banner .ps-section__center {
+        max-width: calc(100% - 382px) !important;
+    }
+}
+@media screen and (max-width: 768px){
+    #homepage-5 .ps-home-banner .ps-section__center{
+        max-width: 100% !important;
+    }
+}
 /*=== Campaign style ===*/
 .ps-product--hot-deal .ps-product__header .ps-product__info .ant-progress-bg{
     background: #ed1c24;
@@ -48,10 +85,23 @@
 .ant-tabs-tab + .ant-tabs-tab {
     margin: 0 0 0 0px !important;
 }
-
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+    padding: 0px 65px;
+}
+.ant-tabs .ant-tabs-tab{
+    padding-top: 0px;
+}
+.ant-tabs-content-holder .ant-tabs-content{
+    padding: 0px 15px;
+}
 /*=== Category ===*/
 #shop-now-home3{
-    padding: 20px 0px;
+    padding: 16px 0px 20px 0px;
+}
+@media screen and (max-width: 1366px){
+    #shop-now-home3{
+        padding: 6px 0px 10px 0px;
+    }  
 }
 
 /*=== Cloth & Beauty ===*/
@@ -71,6 +121,11 @@
     color: #006c32;
     font-size: 24px;
     font-weight: 600;
+}
+@media screen and (max-width: 1366px){
+    .widget_contact-us .widget_content h3 {
+        font-size: 22px;
+    }  
 }
 .widget_footer .widget_content p a{
     color: #666;

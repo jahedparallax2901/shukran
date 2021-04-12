@@ -62,7 +62,6 @@ const SearchTrending = () => {
           <div className="ps-block--categories-tabs ps-tab-root">
             <div className="ps-block__header">
               <Tabs defaultActiveKey="2">
-                
                 <TabPane
                   tab={
                     <div className="ps-block__tab-list">
@@ -217,10 +216,10 @@ const SearchTrending = () => {
                 >
                   <span>Cars</span>
                 </TabPane>
-              
               </Tabs>
 
             </div>
+          
           </div>
         </div>
       </div>

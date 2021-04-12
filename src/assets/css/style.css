@@ -4472,7 +4472,7 @@ textarea.form-control {
 }
 
 .ps-block--categories-tabs .ps-block__header {
-  padding: 0 80px;
+  padding: 0 0px;
 }
 
 .ps-block--categories-tabs .ps-tab-list a {
@@ -4554,7 +4554,7 @@ textarea.form-control {
 
 @media (max-width: 1199px) {
   .ps-block--categories-tabs .ps-block__header {
-    padding: 0 30px;
+    padding: 0 0px;
   }
   .ps-block--categories-tabs .ps-block__header .ps-tab-list a {
     border: none;
@@ -4595,7 +4595,7 @@ textarea.form-control {
 
 @media (max-width: 479px) {
   .ps-block--categories-tabs .ps-block__header {
-    padding: 0 15px;
+    padding: 0 0px;
   }
   .ps-block--categories-tabs .ps-block__item a {
     max-width: 33.3333%;
