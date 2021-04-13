@@ -4321,7 +4321,17 @@ textarea.form-control {
   line-height: 20px;
   color: #000;
 }
-
+@media screen and (max-width: 576px){
+  .ps-block--products-of-category .ps-block__categories ul{
+    margin-bottom: 15px !important;
+  }
+  .ps-block--products-of-category .ps-block__categories ul li a {
+    display: block;
+    padding: 0px 0px;
+    line-height: 20px;
+    color: #000;
+  }
+}
 .ps-block--products-of-category .ps-block__categories ul li a:hover {
   color: #006c32;
 }
@@ -4386,6 +4396,13 @@ textarea.form-control {
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
+  }
+  @media screen and (max-width: 768px){
+    .ps-block--products-of-category .ps-block__categories ul li {
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 0px;
+    }
   }
   .ps-block--products-of-category .ps-block__categories ul li:last-child {
     margin-right: 0;
@@ -12990,6 +13007,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   display: inline-block;
   padding-bottom: 2px;
   color: #000;
+  text-align: center;
   border-bottom: 1px solid #000;
   min-width: 60px;
 }

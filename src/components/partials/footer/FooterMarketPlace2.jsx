@@ -3,7 +3,7 @@ import FooterCopyright from './FooterCopyright';
 import FooterWidgets from './FooterWidgets';
 
 const FooterMarketPlace2 = () => (
-    <footer className="ps-footer ps-footer--3">
+    <footer className="ps-footer ps-footer--3 pb-1">
         <div className="container">
             <FooterWidgets />
             <FooterCopyright />

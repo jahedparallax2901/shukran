@@ -46,10 +46,9 @@
 }
 @media screen and (max-width: 576px){
     .header--mobile .ps-search--mobile{
-        position: absolute;
-        top: 5px;
+        position: static;
         width: 100%;
-        padding: 15px 25% 15px 33%;
+        padding: 5px 5% 15px 5%;
     }
     .ps-block--products-of-category .ps-block__categories h3 br{
         display: none;
@@ -120,12 +119,26 @@
 .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
     padding: 0px 65px;
 }
+@media screen and (max-width: 1024px){
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+        padding: 0px 45px;
+    }
+}
+@media screen and (max-width: 768px){
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+        padding: 0px 25px;
+    }
+    .ps-search-trending .ps-section__header{
+        margin-bottom: 10px;
+    }
+}
 .ant-tabs .ant-tabs-tab{
     padding-top: 0px;
 }
 .ant-tabs-content-holder .ant-tabs-content{
     padding: 0px 15px;
 }
+
 /*=== Category ===*/
 #shop-now-home3{
     padding: 16px 0px 20px 0px;
@@ -135,7 +148,14 @@
         padding: 6px 0px 10px 0px;
     }  
 }
-
+@media screen and (max-width: 768px){
+    #shop-now-home3{
+        padding: 0px 0px 2px 0px;
+    }
+    .home-categories-top{
+        margin-bottom: 10px;
+    }
+}
 /*=== Cloth & Beauty ===*/
 .ps-block--products-of-category .ps-block__slider a img{
     width: 100%;
@@ -160,5 +180,15 @@
     }  
 }
 .widget_footer .widget_content p a{
+    color: #666;
+}
+
+
+/*=== Mobile ===*/
+.navigation--list .navigation__item {
+    text-align: center;
+    color: #666;
+}
+.navigation--list .navigation__item span{
     color: #666;
 }
