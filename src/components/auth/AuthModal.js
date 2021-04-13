@@ -86,14 +86,13 @@ const AuthModal = ({
       })
     } else {
       handleVerifyOtp({
-        country_code: authData.country_code,
         phone: authData.phone,
         otp: authData.otp,
         password: authData.password,
-        name: authData.name,
-        device_id: "",
-        device_token: "f4as4f5as5f4as5f4as6",
-        device_type: getDeviceType()
+        // name: authData.name,
+        // device_id: "",
+        // device_token: "f4as4f5as5f4as5f4as6",
+        // device_type: getDeviceType()
       }, () => {
         // getCartItems()
         authModalHide()
