@@ -42,7 +42,7 @@ export const processGetRequest = (url, paramsObj = {}) => {
       .get(`${BASE_API_URL}${url}`, {
         params: paramsObj,
         headers: {
-          "x-auth-token": authData.token,
+          "x-auth-token": authData?.token || "",
           "x-api-client": getDeviceType(),
         },
       })
@@ -62,7 +62,7 @@ export const processPostRequest = (url, data = {}) => {
     axios.post(`${BASE_API_URL}${url}`, data, {
         headers: {
           "Content-Type": "application/json",
-          "x-auth-token": authData.token || "",
+          "x-auth-token": authData?.token || "",
           "x-api-client": getDeviceType(),
         },
       }).then((res) => {

@@ -47,6 +47,7 @@ export const handleAuthentication = (credential, callback = () => null) => {
           // }
         })
         .catch((err) => {
+          console.log("err", err);
           dispatch(authFailure(err.message));
         });
     } else {
@@ -77,6 +78,7 @@ export const handleAuthenticationWithPassword = (
           // }
         })
         .catch((err) => {
+          console.log("err", err)
           dispatch(verifyOtpFailure(err.message));
         });
     } else {
@@ -185,7 +187,8 @@ export const handleVerifyOtp = (otpData, callback) => {
           // }
         })
         .catch((err) => {
-          // dispatch(verifyOtpFailure(err.message))
+          console.log("err",err)
+          dispatch(verifyOtpFailure(err.message))
         });
     } else {
       alert("Please insert valid OTP or Password");

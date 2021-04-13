@@ -4,6 +4,7 @@ import store from "./redux/store";
 import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AuthModal from "./components/auth/AuthModal";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Switch>
           <Route onUpdate={() => window.scrollTo(0, 0)} exact path="/">
             <Home />
+          </Route>
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
+            <ProductDetails />
           </Route>
         </Switch>
       </Router>
