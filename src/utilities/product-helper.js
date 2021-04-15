@@ -7,6 +7,7 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
+import noImage from '../assets/img/no_image.jpg'
 
 export function formatCurrency(num) {
   if (num !== undefined) {
@@ -75,19 +76,19 @@ export function StrapiProductBadge(product) {
 
 export function StrapiProductPrice(product) {
   let view;
-  if (product?.product?.sale_price > 0) {
+  if (product?.product?.sale_price > 0 || product?.sale_price > 0) {
     view = (
       <p className="ps-product__price sale">
-        ৳{formatCurrency(product.product.price)}
+        ৳{formatCurrency(product?.product?.price || product?.price)}
         <del className="ml-2">
-        ৳{formatCurrency(product?.product?.sale_price)}
+        ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
         </del>
       </p>
     );
   } else {
     view = (
       <p className="ps-product__price">
-        ৳{formatCurrency(product?.product?.price)}
+        ৳{formatCurrency(product?.product?.price || product?.price)}
       </p>
     );
   }
@@ -96,22 +97,22 @@ export function StrapiProductPrice(product) {
 
 export function StrapiProductPriceExpanded(product) {
   let view;
-  if (product.product.sale_price > 0) {
+  if (product?.product?.sale_price > 0 || product?.sale_price > 0) {
     view = (
       <p className="ps-product__price sale">
         <del className="ml-2">
-        ৳{formatCurrency(product.product.sale_price)}
+        ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
         </del>
-        ৳{formatCurrency(product.price)}
+        ৳{formatCurrency(product?.product?.price || product?.price)}
         <small>
-          {(product.product.sale_price - product.product.price) * 100}% off
+          {(product?.product?.price ? (product.product.sale_price - product.product.price ): (product.sale_price - product.price)) * 100}% off
         </small>
       </p>
     );
   } else {
     view = (
       <p className="ps-product__price">
-        ৳{formatCurrency(product.product.sale_price)}
+        ৳{formatCurrency(product.product.sale_price || product.price)}
       </p>
     );
   }
@@ -120,15 +121,15 @@ export function StrapiProductPriceExpanded(product) {
 
 export function StrapiProductThumbnail(product, isDealProduct = false) {
   let view;
-  if (product.thumbnail || product.product.single_image) {
+  if ( product?.product?.single_image || product?.single_image || product.thumbnail) {
     view = (
       <Link
-        to={`/product/${product.product_id ? product.product_id : product.id}`}
+        to={`/product/${product.product_id || product.id}`}
       >
           <a>
             <LazyLoad>
               <img
-                src={product?.product?.single_image || product.thumbnail}
+                src={product?.product?.single_image || product?.single_image || product.thumbnail.url}
                 alt={product?.product?.name || product.name}
               />
             </LazyLoad>
@@ -139,11 +140,11 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
   } else {
     view = (
       <Link
-        to={`/product/${product.product_id ? product.product_id : product.id}`}
+        to={`/product/${product.product_id || product.id}`}
       >
         <a>
           <LazyLoad>
-            <img src="/static/img/not-found.jpg" alt="martfury" />
+            <img src={noImage} alt="martfury" />
           </LazyLoad>
         </a>
       </Link>

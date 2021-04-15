@@ -1,37 +1,30 @@
 import React from 'react';
 
-const PartialSpecification = () => (
+const PartialSpecification = ({product}) => (
     <div className="table-responsive">
         <table className="table table-bordered ps-table ps-table--specification">
             <tbody>
                 <tr>
                     <td>Color</td>
-                    <td>Black, Gray</td>
+                    <td>{product?.details?.colors || "N/A"}</td>
                 </tr>
                 <tr>
-                    <td>Style</td>
-                    <td>Ear Hook</td>
-                </tr>
-                <tr>
-                    <td>Wireless</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Dimensions</td>
-                    <td>5.5 x 5.5 x 9.5 inches</td>
+                    <td>Height</td>
+                    <td>{product?.details?.height || "N/A"}</td>
                 </tr>
                 <tr>
                     <td>Weight</td>
-                    <td>6.61 pounds</td>
+                    <td>{product?.details?.weight || "N/A"}</td>
                 </tr>
                 <tr>
-                    <td>Battery Life</td>
-                    <td>20 hours</td>
+                    <td>Length</td>
+                    <td>{product?.details?.length || "N/A"}</td>
                 </tr>
                 <tr>
-                    <td>Bluetooth</td>
-                    <td>Yes</td>
+                    <td>Wide</td>
+                    <td>{product?.details?.wide || "N/A"}</td>
                 </tr>
+                
             </tbody>
         </table>
     </div>

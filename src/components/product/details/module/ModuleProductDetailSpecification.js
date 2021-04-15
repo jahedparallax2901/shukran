@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ModuleProductDetailSpecification = () => (
+const ModuleProductDetailSpecification = ({product}) => (
     <div className="ps-product__specification">
         <Link to="/page/blank">
             <a className="report">Report Abuse</a>
         </Link>
         <p>
-            <strong>SKU:</strong> SF1133569600-1
+            <strong>SKU:</strong> {product?.attributes?.sku}
         </p>
-        <p className="categories">
+        {/* <p className="categories">
             <strong> Categories:</strong>
             <Link to="/shop">
                 <a>Consumer Electronics</a>
@@ -32,7 +32,7 @@ const ModuleProductDetailSpecification = () => (
             <Link to="/shop">
                 <a>wireless</a>
             </Link>
-        </p>
+        </p> */}
     </div>
 );
 

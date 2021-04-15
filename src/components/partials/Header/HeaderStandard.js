@@ -10,6 +10,7 @@ import { handleShowAuthModal, handleSignOut } from "../../../redux";
 import { connect } from "react-redux";
 import Menu from "../../elements/menu/Menu";
 import { processGetRequest } from "../../../services/baseServices";
+import SearchHeader from '../../header/SearchHeader.jsx'
 
 class HeaderStandard extends Component {
   state = {
@@ -64,32 +65,9 @@ class HeaderStandard extends Component {
                 <img src={shukranLogo} alt="" />
               </a>
             </div>
-
             <div className="header__content-center">
-              <form
-                className="ps-form--quick-search"
-                action="index.html"
-                method="get"
-              >
-                <div className="form-group--icon">
-                  <i>
-                    <BsChevronDown />
-                  </i>
-                  <select className="form-control">
-                    <option value="1">All</option>
-                    <option value="1">Smartphone</option>
-                    <option value="1">Sounds</option>
-                    <option value="1">Technology</option>
-                  </select>
-                </div>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="I'm shopping for..."
-                />
-                <button>Search</button>
-              </form>
-            </div>
+                        <SearchHeader />
+                    </div>
             <div className="header__content-right">
               <div className="header__actions">
                 <a className="header__extra" href="#">

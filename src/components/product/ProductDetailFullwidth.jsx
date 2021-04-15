@@ -17,6 +17,7 @@ import ThumbnailDefault from './details/thumbnail/ThumbnailDefault';
 // import ModuleDetailTopInformation from '~/components/elements/detail/modules/ModuleDetailTopInformation';
 
 const ProductDetailFullwidth = ({ product }) => {
+    console.log("Product", product);
     return (
         <div className="ps-product--detail ps-product--fullwidth">
             <div className="ps-product__header">
@@ -25,12 +26,12 @@ const ProductDetailFullwidth = ({ product }) => {
                     <ModuleDetailTopInformation product={product} />
                     <ModuleProductDetailDescription product={product} />
                     <ModuleDetailShoppingActions product={product} />
-                    <ModuleProductDetailSpecification />
+                    <ModuleProductDetailSpecification product={product}/>
                     <ModuleProductDetailSharing />
                     <ModuleDetailActionsMobile />
                 </div>
             </div>
-            <DefaultDescription />
+            <DefaultDescription product={product}/>
         </div>
     );
 };

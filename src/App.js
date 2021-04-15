@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Redirect, Route } from "react-router-d
 import Home from "./pages/Home";
 import AuthModal from "./components/auth/AuthModal";
 import ProductDetails from "./pages/ProductDetails";
+import SearchProduct from "./pages/SearchProduct";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
             <ProductDetails />
+          </Route>
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
+            <SearchProduct />
           </Route>
         </Switch>
       </Router>
