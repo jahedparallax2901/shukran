@@ -1329,7 +1329,11 @@ button.ps-btn:active {
 }
 .ps-product .ps-product__thumbnail img {
   width: 100%;
+  height: 150px;
   object-fit: contain;
+}
+.ps-product--search-result .ps-product__thumbnail img {
+  height: auto;
 }
 .ps-page--product .ps-product--detail .ps-product__header {
   background: #ffffff;
