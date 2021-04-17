@@ -25,11 +25,10 @@ export default function SearchProduct() {
   const [productItems, setProductItems] = useState(null);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  async function getProducts() {
+  async function getProducts(params) {
     setLoading(true);
     // setProductItems(dealOfTheDayProducts);
-
-    processGetRequest("/search-engine", query)
+    processGetRequest("/search-engine", params)
       .then((res) => {
         const { current_page, last_page, per_page } = res.product;
         setProductItems(res.product.data);
@@ -46,7 +45,8 @@ export default function SearchProduct() {
   }
 
   useEffect(() => {
-    getProducts();
+    const params = query;
+    getProducts(params);
   }, []);
 
   return (
@@ -56,8 +56,8 @@ export default function SearchProduct() {
         <div className="ps-container">
           <div className="ps-layout--shop">
             <div className="ps-layout__left">
-              <WidgetSearchCategories />
-              <WidgetOtherFilters />
+              <WidgetSearchCategories setQuery={setQuery} query={query} getProducts={getProducts}/>
+              <WidgetOtherFilters query={query} setQuery={setQuery} getProducts={getProducts}/>
             </div>
             <div className="ps-layout__right">
               <SearchItems

@@ -1,133 +1,91 @@
-import React from "react";
+import { Slider } from "antd";
+import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useHistory } from "react-router";
+import { objToUrlPrams } from "../../../helpers/utils";
+import { all_brand } from "../../../temp-data/brands";
 
-export default function WidgetOtherFilters() {
+export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
+  const [starting_price, setStarting_price] = useState(0);
+  const [ending_price, setEnding_price] = useState(0);
+  const [brands, setBrands] = useState([]);
+  const [selected_brands, setSelected_brands] = useState([]);
+  const history = useHistory();
+
+  const onAfterChange = async (value) => {
+    setStarting_price(value[0] * 100);
+    setEnding_price(value[1] * 100);
+    const newQuery = { ...query };
+    newQuery.starting_price = value[0] * 100;
+    newQuery.ending_price = value[1] * 100;
+    await setQuery(newQuery);
+    const url = history.location.pathname + "?" + objToUrlPrams(newQuery);
+    history.push(url);
+    getProducts(newQuery);
+  };
+
+  const handleOnBrandChange = (e, id) => {
+    if (e.target.checked) {
+      setSelected_brands([...new Set([...selected_brands, id])]);
+    } else {
+      setSelected_brands(selected_brands.filter((selected) => selected !== id));
+    }
+  };
+
+  useEffect(() => {
+    setBrands(all_brand);
+  }, []);
+
+  console.log("selected_brands", selected_brands);
   return (
     <aside class="widget widget_shop">
       <h4 class="widget-title">BY BRANDS</h4>
       <form class="ps-form--widget-search" action="do_action" method="get">
-        <input class="form-control" type="text" placeholder="" />
+        <input class="form-control" type="text" placeholder="Search brand.." />
         <button>
           <FaSearch />
         </button>
       </form>
       <figure class="ps-custom-scrollbar" data-height="250">
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-1"
-            name="brand"
-          />
-          <label for="brand-1">Adidas (3)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-2"
-            name="brand"
-          />
-          <label for="brand-2">Amcrest (1)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-3"
-            name="brand"
-          />
-          <label for="brand-3">Apple (2)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-4"
-            name="brand"
-          />
-          <label for="brand-4">Asus (19)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-5"
-            name="brand"
-          />
-          <label for="brand-5">Baxtex (20)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-6"
-            name="brand"
-          />
-          <label for="brand-6">Adidas (11)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-7"
-            name="brand"
-          />
-          <label for="brand-7">Casio (9)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-8"
-            name="brand"
-          />
-          <label for="brand-8">Electrolux (0)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-9"
-            name="brand"
-          />
-          <label for="brand-9">Gallaxy (0)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-10"
-            name="brand"
-          />
-          <label for="brand-10">Samsung (0)</label>
-        </div>
-        <div class="ps-checkbox">
-          <input
-            class="form-control"
-            type="checkbox"
-            id="brand-11"
-            name="brand"
-          />
-          <label for="brand-11">Sony (0)</label>
-        </div>
+        <form>
+          {brands &&
+            brands.map((brand) => (
+              <div class="ps-checkbox">
+                <input
+                  class="form-control"
+                  type="checkbox"
+                  id={`brand-${brand.id}`}
+                  onChange={(e) => handleOnBrandChange(e, brand.id)}
+                />
+                <label for={`brand-${brand.id}`}>
+                  {brand.name} ({brand.count})
+                </label>
+              </div>
+            ))}
+        </form>
       </figure>
       <figure>
         <h4 class="widget-title">By Price</h4>
         <div id="nonlinear"></div>
         <p class="ps-slider__meta">
           Price:
+          <Slider
+            range={{ draggableTrack: true }}
+            step={5}
+            onAfterChange={onAfterChange}
+          />
           <span class="ps-slider__value">
-            $<span class="ps-slider__min"></span>
+            &#2547;<span class="ps-slider__min">{starting_price}</span>
           </span>
           -
           <span class="ps-slider__value">
-            $<span class="ps-slider__max"></span>
+            &#2547;<span class="ps-slider__max">{ending_price}</span>
           </span>
         </p>
       </figure>
+{/* 
       <figure>
-        <h4 class="widget-title">By Price</h4>
+        <h4 class="widget-title">By Rating</h4>
         <div class="ps-checkbox">
           <input
             class="form-control"
@@ -219,6 +177,7 @@ export default function WidgetOtherFilters() {
           </label>
         </div>
       </figure>
+      */}
       <figure>
         <h4 class="widget-title">By Color</h4>
         <div class="ps-checkbox ps-checkbox--color color-1 ps-checkbox--inline">
