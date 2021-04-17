@@ -46,9 +46,9 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
           {slideItems}
           <div className="ps-product ps-product--inner px-3">
             <div className="ps-product__thumbnail">
-              <a href="product-default.html">
+              <Link to={"/product/1"}>
                 <img src={bike1} alt="" />
-              </a>
+              </Link>
               <div className="ps-product__badge out-stock">Out Of Stock</div>
 
               <ModuleProductActions />
@@ -58,9 +58,9 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
                 ৳320.00<small>18% off</small>
               </p>
               <div className="ps-product__content">
-                <a className="ps-product__title" href="product-default.html">
+                <Link className="ps-product__title" to={"/product/1"}>
                   Walton Fridge
-                </a>
+                </Link>
                 <div className="ps-product__rating">
                   <select className="ps-rating" data-read-only="true">
                     <option value="1">1</option>
@@ -86,9 +86,9 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
 
           <div className="ps-product ps-product--inner px-3">
             <div className="ps-product__thumbnail">
-              <a href="product-default.html">
+              <Link to={"/product/1"}>
                 <img src={bike1} alt="" />
-              </a>
+              </Link>
               <div className="ps-product__badge out-stock">Out Of Stock</div>
               <ModuleProductActions />
             </div>
@@ -97,10 +97,10 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
                 ৳85.00<small>18% off</small>
               </p>
               <div className="ps-product__content">
-                <a className="ps-product__title" href="product-default.html">
+                <Link className="ps-product__title" to={"/product/1"}>
                   Eldomilk 2+ Growing Up Milk Powder BIB After 2 Years To 3
                   Years Old 350 Gm
-                </a>
+                </Link>
                 <div className="ps-product__rating">
                   <select className="ps-rating" data-read-only="true">
                     <option value="1">1</option>
@@ -125,9 +125,9 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
           </div>
           <div className="ps-product ps-product--inner px-3">
             <div className="ps-product__thumbnail">
-              <a href="product-default.html">
+              <Link to={"/product/1"}>
                 <img src="img/downloads/kids-care.JPG" alt="" />
-              </a>
+              </Link>
               <div className="ps-product__badge out-stock">Out Of Stock</div>
               <ul className="ps-product__actions">
                 <li>
@@ -178,9 +178,9 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
                 ৳92.00<small>18% off</small>
               </p>
               <div className="ps-product__content">
-                <a className="ps-product__title" href="product-default.html">
+                <Link className="ps-product__title" to={"/product/1"}>
                   Kidstar Baby Diaper Small 66pcs 3-8 Kg
-                </a>
+                </Link>
                 <div className="ps-product__rating">
                   <select className="ps-rating" data-read-only="true">
                     <option value="1">1</option>

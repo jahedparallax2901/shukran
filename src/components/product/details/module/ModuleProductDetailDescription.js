@@ -14,7 +14,7 @@ const ModuleProductDetailDescription = ({ product }) => (
         </p>
         <ul className="ps-list--dot">
             <li>
-                {parse(product?.content)}
+                {parse(product?.content || "")}
             </li>
             {/* <li>Unrestrained and portable active stereo speaker</li>
             <li> Free from the confines of wires and chords</li>

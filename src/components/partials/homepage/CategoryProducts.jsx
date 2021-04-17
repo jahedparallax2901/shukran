@@ -10,7 +10,7 @@ import slider3 from "../../../assets/img/slider/home-3/clothing-3.jpg";
 
 const CategoryProducts = ({ cat }) => {
   const [productItems, setProductItems] = useState(null);
-  const {items, category_id, category, sliders} = cat;
+  const {items, category, sliders} = cat;
 
   // Views
   let productItemsView;

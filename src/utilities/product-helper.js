@@ -7,7 +7,7 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
-import noImage from '../assets/img/no_image.jpg'
+import noImage from "../assets/img/no_image.jpg";
 
 export function formatCurrency(num) {
   if (num !== undefined) {
@@ -79,16 +79,21 @@ export function StrapiProductPrice(product) {
   if (product?.product?.sale_price > 0 || product?.sale_price > 0) {
     view = (
       <p className="ps-product__price sale">
-        ৳{formatCurrency(product?.product?.price || product?.price)}
-        <del className="ml-2">
         ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
+        <del className="ml-2">
+          ৳{formatCurrency(product?.product?.price || product?.price)}
         </del>
       </p>
     );
   } else {
+    console.log("price", product?.product?.price);
     view = (
       <p className="ps-product__price">
-        ৳{formatCurrency(product?.product?.price || product?.price)}
+        {product?.product?.price ? (
+          <>৳{formatCurrency(product.product.price)}</>
+        ) : (
+          <>৳{formatCurrency(0)}</>
+        )}
       </p>
     );
   }
@@ -101,18 +106,25 @@ export function StrapiProductPriceExpanded(product) {
     view = (
       <p className="ps-product__price sale">
         <del className="ml-2">
-        ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
+          ৳{formatCurrency(product?.product?.price || product?.price)}
         </del>
-        ৳{formatCurrency(product?.product?.price || product?.price)}
+        ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
         <small>
-          {(product?.product?.price ? (product.product.sale_price - product.product.price ): (product.sale_price - product.price)) * 100}% off
+          {(product?.product?.price
+            ? product.product.sale_price - product.product.price
+            : product.sale_price - product.price) * 100}
+          % off
         </small>
       </p>
     );
   } else {
     view = (
       <p className="ps-product__price">
-        ৳{formatCurrency(product.product.sale_price || product.price)}
+        {product?.product?.price ? (
+          <>৳{formatCurrency(product.product.price)}</>
+        ) : (
+          <>৳{formatCurrency(0)}</>
+        )}
       </p>
     );
   }
@@ -121,27 +133,32 @@ export function StrapiProductPriceExpanded(product) {
 
 export function StrapiProductThumbnail(product, isDealProduct = false) {
   let view;
-  if ( product?.product?.single_image || product?.single_image || product.thumbnail) {
+  let url;
+  console.log("strapi", product);
+  if (product?.product?.single_image) {
+    url = product.product.single_image;
+  } else if (product?.single_image) {
+    url = product.single_image;
+  } else {
+    url = product.thumbnail.url;
+  }
+  if (
+    product?.product?.single_image ||
+    product?.single_image ||
+    product.thumbnail
+  ) {
     view = (
-      <Link
-        to={`/product/${product.product_id || product.id}`}
-      >
-          <a>
-            <LazyLoad>
-              <img
-                src={product?.product?.single_image || product?.single_image || product.thumbnail.url}
-                alt={product?.product?.name || product.name}
-              />
-            </LazyLoad>
-          </a>
-          
+      <Link to={`/product/${product.product_id || product.id}`}>
+        <a>
+          <LazyLoad>
+            <img src={url} alt={product?.product?.name || product.name} />
+          </LazyLoad>
+        </a>
       </Link>
     );
   } else {
     view = (
-      <Link
-        to={`/product/${product.product_id || product.id}`}
-      >
+      <Link to={`/product/${product.product_id || product.id}`}>
         <a>
           <LazyLoad>
             <img src={noImage} alt="martfury" />

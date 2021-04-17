@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import Menu from "../../elements/menu/Menu";
 import { processGetRequest } from "../../../services/baseServices";
 import SearchHeader from '../../header/SearchHeader.jsx'
+import { Link } from "react-router-dom";
 
 class HeaderStandard extends Component {
   state = {
@@ -61,9 +62,9 @@ class HeaderStandard extends Component {
                   {/* changed - end */}
                 </div>
               </div>
-              <a className="ps-logo" href="index.html">
+              <Link className="ps-logo" to="/">
                 <img src={shukranLogo} alt="" />
-              </a>
+              </Link>
             </div>
             <div className="header__content-center">
                         <SearchHeader />

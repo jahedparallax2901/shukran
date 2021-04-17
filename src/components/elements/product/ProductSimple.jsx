@@ -16,12 +16,12 @@ const ProductSimple = ({ product }) => {
             <div className="ps-product__thumbnail">
                 {StrapiProductThumbnail(product)}
                 {StrapiProductBadge(product)}
-                <ModuleProductActions />
+                <ModuleProductActions product={product}/>
             </div>
             <div className="ps-product__container">
                 <div className="ps-product__content">
-                    <Link href="/product/[pid]">
-                        <a className="ps-product__title">{product.title}</a>
+                    <Link to={`/product/${product?.product_id || product?.id}`}>
+                        <a className="ps-product__title">{product?.product?.name || product.title}</a>
                     </Link>
                     <div className="ps-product__rating">
                         <Rating />

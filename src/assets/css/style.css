@@ -10582,7 +10582,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .ps-product--quickview {
   display: none;
   margin-bottom: 0;
-  max-height: 90vh;
+  max-height: auto;
   overflow: visible;
 }
 

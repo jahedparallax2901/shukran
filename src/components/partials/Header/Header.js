@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingBag, faTimes } from '@fortawesome/free-solid-svg-icons';
 import HeaderMobile from './HeaderMobile';
 import HeaderStandard from './HeaderStandard';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     render() {
@@ -163,7 +164,7 @@ class Header extends Component {
           <div className="ps-panel__content">
             <ul className="menu--mobile">
               <li>
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <a href="campaign.html">Campaign</a>

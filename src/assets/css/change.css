@@ -2068,6 +2068,10 @@ button.ps-btn:active {
 	margin-right: 0.5em;
 }
 
+.ps-product .ps-product__rating span{
+  margin-left: 0px;
+}
+
 .ps-product__rating span {
 	color: #faa806;
 }
