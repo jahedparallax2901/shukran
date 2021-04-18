@@ -1571,6 +1571,9 @@ button.ps-btn:active {
 .asside-card-checkout .store-div:first-child {
   padding-top: 0;
 }
+.asside-card-checkout .store-div-container{
+  margin-bottom: 165px;
+}
 /* .asside-card-checkout .store-div .ps-checkbox {
   width: 20px;
 }
@@ -1810,7 +1813,7 @@ button.ps-btn:active {
   width: fit-content;
   width: 100%;
   max-width: 403px;
-  z-index: 999;
+  z-index: 999 !important;
   box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.5);
 }
 .all-checkout .delivery-charge,
@@ -1840,6 +1843,24 @@ button.ps-btn:active {
 }
 .all-checkout .store-checkout {
   font-size: 16px;
+}
+
+.all-checkout .store-coupon{
+  width: 50%;
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+.all-checkout .store-coupon input{
+  border: 1px solid #eee;
+  padding: 6px 10px !important;
+  width: 100% !important;
+}
+.all-checkout .store-coupon button{
+  padding: 5px !important;
 }
 
 /* ====================== End Aside Css =======================*/
@@ -2295,4 +2316,35 @@ button.ps-btn:active {
   .ps-layout__right .ps-shopping .ps-shopping__header .ps-shopping__select{
     max-width: 77%;
   }
+}
+
+/* Search page css */
+.ps-list--categories .active{
+  background-color: #d6d7da;
+  color: #000;
+}
+
+.ps-list--categories .menu-item-has-children a{
+  padding: 5px 5px;
+  color: #000;
+}
+
+@media screen and (max-width: 480px) {
+  .ps-shop-items .row {
+    margin: 0 -5px !important;
+ }
+  .ps-shop-items .row > * {
+    padding: 0 5px !important;
+ }
+  .ps-shop-items .ps-product {
+    margin-bottom: 10px;
+ }
+}
+@media screen and (min-width: 768px) {
+  .ps-shop-items .row {
+    margin: 0;
+ }
+  .ps-shop-items .row > * {
+    padding: 0;
+ }
 }

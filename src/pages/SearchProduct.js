@@ -25,6 +25,8 @@ export default function SearchProduct() {
   const [productItems, setProductItems] = useState(null);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
+    const [paginanation, setPagination] = useState({});
+
   async function getProducts(params) {
     setLoading(true);
     // setProductItems(dealOfTheDayProducts);
@@ -33,7 +35,8 @@ export default function SearchProduct() {
         const { current_page, last_page, per_page } = res.product;
         setProductItems(res.product.data);
         setTotal(res.product.total);
-        setQuery({ ...query, current_page, last_page, per_page });
+        setQuery({ ...query});
+        setPagination({current_page, last_page, per_page})
         setTimeout(
           function () {
             setLoading(false);
@@ -68,6 +71,7 @@ export default function SearchProduct() {
                 query={query}
                 setQuery={setQuery}
                 getProducts={getProducts}
+                paginanation={paginanation}
               />
             </div>
           </div>

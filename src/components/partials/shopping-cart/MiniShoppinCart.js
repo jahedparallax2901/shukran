@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { Component } from "react";
+import { Modal } from "react-bootstrap";
 import watch from "../../../assets/img/downloads/watch.JPG";
 import categoriesHome58 from "../../../assets/img/categories/home-5/8.jpg";
 import bagPack from "../../../assets/img/downloads/bagpack.jpeg";
 import shirt from "../../../assets/img/downloads/shirt1.jpeg";
-import { handleHideShoppingCart } from '../../../redux';
-import { connect } from 'react-redux';
-import { TiTimesOutline } from 'react-icons/ti';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-
+import { handleHideShoppingCart } from "../../../redux";
+import { connect } from "react-redux";
+import { TiTimesOutline } from "react-icons/ti";
+import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 
 class MiniShoppinCart extends Component {
-    render() {
-        const {isShowingShoppingCart, handleHideShoppingCart } = this.props;
-        return (
-            
-        <div className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}>
+  render() {
+    const { isShowingShoppingCart, handleHideShoppingCart } = this.props;
+    return (
+      <div
+        className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}
+      >
         <div className="aside-cart-header">
           {/* <div className="ps-checkbox">
         <input type="checkbox" id="select-all" />
@@ -24,7 +25,7 @@ class MiniShoppinCart extends Component {
           <h1>Your Cart</h1>
           <div className="close-btn" onClick={handleHideShoppingCart}>
             <i>
-                <TiTimesOutline/>
+              <AiOutlineClose />
             </i>
           </div>
         </div>
@@ -34,6 +35,7 @@ class MiniShoppinCart extends Component {
             <label for="select-all">Select All</label>
           </div>
         </div>
+        <div className="store-div-container">
         <div className="store-div">
           <div className="store">
             <div className="store-name">
@@ -70,12 +72,11 @@ class MiniShoppinCart extends Component {
                   </h6>
                   <div className="quantity-changer">
                     <i>
-                    <AiOutlineMinus/>
-                        
+                      <AiOutlineMinus />
                     </i>
                     <p>2</p>
                     <i>
-                    <AiOutlinePlus/>
+                      <AiOutlinePlus />
                     </i>
                   </div>
                 </div>
@@ -86,9 +87,7 @@ class MiniShoppinCart extends Component {
                   <div className="color-block"></div>
                 </div>
                 <div className="size product-details-div">
-                  <h6 className="size-title product-details-div-title">
-                    size
-                  </h6>
+                  <h6 className="size-title product-details-div-title">size</h6>
                   <p>XL</p>
                 </div>
               </div>
@@ -128,13 +127,12 @@ class MiniShoppinCart extends Component {
                     quantity
                   </h6>
                   <div className="quantity-changer">
-                  <i>
-                    <AiOutlineMinus/>
-                        
+                    <i>
+                      <AiOutlineMinus />
                     </i>
                     <p>2</p>
                     <i>
-                    <AiOutlinePlus/>
+                      <AiOutlinePlus />
                     </i>
                   </div>
                 </div>
@@ -143,9 +141,7 @@ class MiniShoppinCart extends Component {
               <div className="color-block"></div>
             </div> */}
                 <div className="size product-details-div">
-                  <h6 className="size-title product-details-div-title">
-                    size
-                  </h6>
+                  <h6 className="size-title product-details-div-title">size</h6>
                   <p>L</p>
                 </div>
               </div>
@@ -229,13 +225,12 @@ class MiniShoppinCart extends Component {
                     quantity
                   </h6>
                   <div className="quantity-changer">
-                  <i>
-                    <AiOutlineMinus/>
-                        
+                    <i>
+                      <AiOutlineMinus />
                     </i>
                     <p>2</p>
                     <i>
-                    <AiOutlinePlus/>
+                      <AiOutlinePlus />
                     </i>
                   </div>
                 </div>
@@ -286,13 +281,12 @@ class MiniShoppinCart extends Component {
                     quantity
                   </h6>
                   <div className="quantity-changer">
-                  <i>
-                    <AiOutlineMinus/>
-                        
+                    <i>
+                      <AiOutlineMinus />
                     </i>
                     <p>2</p>
                     <i>
-                    <AiOutlinePlus/>
+                      <AiOutlinePlus />
                     </i>
                   </div>
                 </div>
@@ -350,7 +344,12 @@ class MiniShoppinCart extends Component {
             </div>
           </div>
         </div>
-        <div className="all-ckeckout">
+        </div>
+        <div className="all-checkout">
+          <div class="store-coupon">
+            <input type="text" placeholder="apply for coupon" name="search" />
+            <button type="submit">✓</button>
+          </div>
           <div className="delivery-charge">
             <h6 className="delivery-charge-title">delivery-charge:</h6>
             <p>৳200.00</p>
@@ -368,21 +367,20 @@ class MiniShoppinCart extends Component {
           </a>
         </div>
       </div>
-      
-        );
-    }
+    );
+  }
 }
 
-const mapStateToProps = (state)=>{
-    return{
-        isShowingShoppingCart: state.shoppingCart.isShowingShoppingCart
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    isShowingShoppingCart: state.shoppingCart.isShowingShoppingCart,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        handleHideShoppingCart: () => dispatch(handleHideShoppingCart())
-    }
-}
+  return {
+    handleHideShoppingCart: () => dispatch(handleHideShoppingCart()),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiniShoppinCart);

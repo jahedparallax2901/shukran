@@ -11,7 +11,7 @@ import { BsGrid3X3Gap } from "react-icons/bs";
 import { processGetRequest } from "../../services/baseServices";
 import {objToUrlPrams} from '../../helpers/utils';
 
-const SearchItems = ({ columns = 4, productItems, total , loading, query, setQuery, getProducts}) => {
+const SearchItems = ({ columns = 4, productItems, total , loading, query, setQuery, getProducts, paginanation}) => {
   const history = useHistory();
   const [listView, setListView] = useState(true);
   const [classes, setClasses] = useState(
@@ -121,10 +121,10 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
         <div className="ps-pagination">
           <Pagination
             total={total - 1}
-            pageSize={query?.per_page || 10}
+            pageSize={paginanation?.per_page || 10}
             responsive={true}
             showSizeChanger={false}
-            current={query?.current_page !== undefined ? parseInt(query?.current_page) : 1}
+            current={paginanation?.current_page !== undefined ? parseInt(paginanation?.current_page) : 1}
             onChange={(e) => handlePagination(e)}
           />
         </div>
