@@ -40,7 +40,6 @@ const ProductDetails = () => {
     setLoading(true);
     processGetRequest(`/product/detail/${id}`, {}, false)
       .then((res) => {
-        console.log("response", res.product);
         setProduct( res.product);
         setTimeout(
           function () {

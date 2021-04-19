@@ -7,7 +7,6 @@ import {
 import Rating from './Rating';
 
 const ProductHorizontal = ({ product }) => {
-    console.log("ProductHorizontal",product);
     return (
         <div className="ps-product--horizontal">
             <div className="ps-product__thumbnail">

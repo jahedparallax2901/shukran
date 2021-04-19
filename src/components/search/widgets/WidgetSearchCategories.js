@@ -73,7 +73,6 @@ export default function WidgetSearchCategories({
                       <FaChevronDown />
                     </span>
                     </a>
-                    
                   </li>
                 ))}
             </>

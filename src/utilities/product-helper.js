@@ -134,7 +134,6 @@ export function StrapiProductPriceExpanded(product) {
 export function StrapiProductThumbnail(product, isDealProduct = false) {
   let view;
   let url;
-  console.log("strapi", product);
   if (product?.product?.single_image) {
     url = product.product.single_image;
   } else if (product?.single_image) {

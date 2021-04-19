@@ -84,8 +84,6 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
     productItemsView = <p>Loading...</p>;
   }
 
-  console.log("top_products", top_products);
-
   return (
     <div className="ps-deal-hot">
       <div className="container">

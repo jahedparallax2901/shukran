@@ -12,7 +12,6 @@ import Rating from "../elements/Rating";
 import ModuleProductProgressbar from "../partials/shared/ModuleProductProgressbar";
 
 const ProductDealOfDay = ({ product }) => {
-  console.log();
   return (
     <div className="ps-product ps-product--inner px-3">
       <div className="ps-product__thumbnail">

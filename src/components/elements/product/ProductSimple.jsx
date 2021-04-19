@@ -10,7 +10,6 @@ import Rating from '../Rating';
 import { Link } from 'react-router-dom';
 
 const ProductSimple = ({ product }) => {
-    console.log(product);
     return (
         <div className="ps-product ps-product--simple">
             <div className="ps-product__thumbnail">

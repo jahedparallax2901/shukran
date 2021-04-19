@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { FaBars, FaHeart } from "react-icons/fa";
+import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-// import { addItem } from '~/store/cart/action';
-// import { addItemToCompare } from '~/store/compare/action';
-// import { addItemToWishlist } from '~/store/wishlist/action';
-// import { useDispatch } from 'react-redux';
-// import { useRouter } from 'next/router';
+import {
+  handleAddToCart,
+  handleShowAuthModal,
+  triggeredAddToCart,
+} from "../../../../redux";
 
-const ModuleDetailShoppingActions = ({ product, extended = false }) => {
-  // const dispatch = useDispatch();
+const ModuleDetailShoppingActions = ({
+  product,
+  extended = false,
+  handleAddToCart,
+}) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
-  // const Router = useRouter();
+  const { id, attributes } = product;
 
   const handleAddItemToCart = (e) => {
     e.preventDefault();
-    let tmp = product;
-    tmp.quantity = quantity;
-    // dispatch(addItem(tmp));
+    handleAddToCart(id, attributes.l);
   };
 
   const handleBuynow = (e) => {
@@ -52,6 +54,7 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
       setQuantity(quantity - 1);
     }
   };
+  console.log("product", product);
   if (!extended) {
     return (
       <div className="ps-product__shopping">
@@ -101,6 +104,29 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
   } else {
     return (
       <div className="ps-product__shopping extend">
+        <div class="ps-product__variations">
+          <figure>
+            <figcaption>Color</figcaption>
+            <div class="ps-variant ps-variant--color color--1">
+              <span class="ps-variant__tooltip">Black</span>
+            </div>
+            <div class="ps-variant ps-variant--color color--2">
+              <span class="ps-variant__tooltip"> Gray</span>
+            </div>
+          </figure>
+          <figure>
+            <figcaption>Size</figcaption>
+            <div class="ps-variant ps-variant--color color--1">
+              <span class="ps-variant__tooltip">Black</span>
+            </div>
+            <div class="ps-variant ps-variant--color color--2">
+              <span class="ps-variant__tooltip"> Gray</span>
+            </div>
+            <div class="ps-variant ps-variant--color color--2">
+              <span class="ps-variant__tooltip"> Gray</span>
+            </div>
+          </figure>
+        </div>
         <div className="ps-product__btn-group">
           <figure>
             <figcaption>Quantity</figcaption>
@@ -146,4 +172,27 @@ const ModuleDetailShoppingActions = ({ product, extended = false }) => {
   }
 };
 
-export default ModuleDetailShoppingActions;
+const mapStateToProps = (state) => {
+  return {
+    userIsLoggedIn: state.auth.userIsLoggedIn,
+    userToken: state.auth.userData?.token,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
+    handleShowAuthModal: (cb) => dispatch(handleShowAuthModal(cb)),
+    triggeredAddToCart: () => dispatch(triggeredAddToCart()),
+    handleAddToCart: (product_id, item_id, quantity, token, cb, isBuyNow) =>
+      dispatch(
+        handleAddToCart(product_id, item_id, quantity, token, cb, isBuyNow)
+      ),
+    // getCartItems: (token) => dispatch(getCartItems(token)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModuleDetailShoppingActions);

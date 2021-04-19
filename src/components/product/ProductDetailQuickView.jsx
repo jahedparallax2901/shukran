@@ -8,7 +8,6 @@ import ModuleProductDetailSpecification from "./details/module/ModuleProductDeta
 import ThumbnailDefault from "./details/thumbnail/ThumbnailDefault";
 
 const ProductDetailQuickView = ({ product }) => {
-    console.log("quick",product)
   return (
     <div className="ps-product--detail ps-product--quickview">
       <div className="ps-product__header">
