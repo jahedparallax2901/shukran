@@ -1,4 +1,5 @@
 import React from "react";
+import { Form } from "react-bootstrap";
 import DefaultDescription from "./details/description/DefaultDescription";
 import ModuleDetailActionsMobile from "./details/module/ModuleDetailActionsMobile";
 import ModuleDetailShoppingActions from "./details/module/ModuleDetailShoppingActions";
@@ -29,6 +30,24 @@ const ProductDetailFullwidth = ({ product }) => {
       </div>
       <div class="ps-product-info-other">
         <ModuleDetailShoppingActions product={product} />
+        <div>
+            <h5>Select Attributes</h5>
+            <div>
+                {
+                    product?.attribute && Object.keys(product?.attribute).map(item=>(
+                        <div>
+                            <h5>{item}</h5>
+                            <Form inline>
+                                <Form.Group>
+                                    <Form.Control type="checkbox" />
+                                    <Form.Label>{product?.attribute[item].attribute_item}</Form.Label>
+                                </Form.Group>
+                            </Form>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
         <ModuleProductDetailSpecification product={product} />
         <ModuleProductDetailSharing />
       </div>
