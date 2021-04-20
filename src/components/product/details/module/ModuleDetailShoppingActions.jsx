@@ -22,7 +22,7 @@ const ModuleDetailShoppingActions = ({
 
   const handleAddItemToCart = (e) => {
     e.preventDefault();
-    handleAddToCart(id, selectedAttributeProduct?.attribute_item?.id || 0, quantity, userData()?.token || "",()=>{},false );
+    handleAddToCart(id, selectedAttributeProduct?.attribute_item?.id || 0, quantity, userData()?.token || "",(data, sucess)=>{console.log(data)},false );
   };
 
   const handleBuynow = (e) => {

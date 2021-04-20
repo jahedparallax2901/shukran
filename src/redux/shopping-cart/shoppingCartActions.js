@@ -55,32 +55,31 @@ export const destroyedTriggeredFlag = () => {
   }
 };
 
-export const handleAddToCart = (prod_id, item_id, quantity, token, callback, isBuyNow = false) => {
+export const handleAddToCart = (prod_id, item_id, quantity,  token, callback, isBuyNow = false) => {
   const authData = userData();
+  const cart_id = localStorage.getItem("cart_id");
   return dispatch => {
     dispatch(addToCartRequest())
-    const bodyFormData = new FormData();
-    const product_id = [prod_id][item_id]
+    const formData = new FormData();
+    formData.append("cart_id", cart_id || null);
+    formData.append(`product_id[${prod_id}][${item_id}]`, quantity);
+    // const product_id = [];
+    // product_id[prod_id] = []
+    // product_id[item_id] = quantity;
 
-    axois.post(BASE_API_URL + '/cart', {
-      product_id[prod_id][item_id]: product_id,
-      quantity: quantity,
-      bundle_id: bundle_id,
-      is_buy_now: isBuyNow,
-      clear_cart: clear_cart
-    }, {
+    axois.post(BASE_API_URL + '/add-to-cart', formData, {
       headers: {
-        "x-auth-token": authData.token,
+        "x-auth-token": authData.token  || "",
         "x-api-client": "web"
       }
     })
       .then(res => {
         if(res.data.status === 1) {
           dispatch(addToCartSuccess())
-          callback(res.data.message, true)
+          callback(res.data, true)
         } else {
           dispatch(addToCartFailure(res.data.message))
-          callback(res.data.message, false)
+          callback(res.data, false)
         }
       })
       .catch(err => {
