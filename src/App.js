@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import AuthModal from "./components/auth/AuthModal";
 import ProductDetails from "./pages/ProductDetails";
 import SearchProduct from "./pages/SearchProduct";
+import Checkout from "./pages/Checkout"
 
 function App() {
   return (
@@ -13,15 +14,18 @@ function App() {
       <Router>
       <AuthModal/>
         <Switch>
-          <Route onUpdate={() => window.scrollTo(0, 0)} exact path="/">
-            <Home />
-          </Route>
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
-            <ProductDetails />
-          </Route>
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
-            <SearchProduct />
-          </Route>
+              <Route onUpdate={() => window.scrollTo(0, 0)} exact path="/">
+                <Home />
+              </Route>
+              <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
+                <ProductDetails />
+              </Route>
+              <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
+                <SearchProduct />
+              </Route>
+            <Route onUpdate={() => window.scrollTo(0, 0)} path="/checkout">
+                <Checkout/>
+            </Route>
         </Switch>
       </Router>
    </Provider>
