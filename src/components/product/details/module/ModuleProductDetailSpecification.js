@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ModuleProductDetailSpecification = ({product}) => (
+const ModuleProductDetailSpecification = ({product, selectedAttributeProduct}) => (
     <div className="ps-product__specification">
         <Link to="/page/blank">
             <a className="report">Report Abuse</a>
         </Link>
         <p>
-            <strong>SKU:</strong> {product?.attributes?.sku}
+            <strong>SKU:</strong> {selectedAttributeProduct?.sku}
         </p>
         {/* <p className="categories">
             <strong> Categories:</strong>

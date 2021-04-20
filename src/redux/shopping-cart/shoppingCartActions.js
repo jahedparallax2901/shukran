@@ -55,14 +55,15 @@ export const destroyedTriggeredFlag = () => {
   }
 };
 
-
-export const handleAddToCart = (skuId, quantity, token, callback, isBuyNow = false, clear_cart, bundle_id=null) => {
+export const handleAddToCart = (prod_id, item_id, quantity, token, callback, isBuyNow = false) => {
   const authData = userData();
   return dispatch => {
     dispatch(addToCartRequest())
+    const bodyFormData = new FormData();
+    const product_id = [prod_id][item_id]
 
     axois.post(BASE_API_URL + '/cart', {
-      sku_id: skuId,
+      product_id[prod_id][item_id]: product_id,
       quantity: quantity,
       bundle_id: bundle_id,
       is_buy_now: isBuyNow,

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaBars, FaHeart } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { userData } from "../../../../helpers/authUtils";
 import {
   handleAddToCart,
   handleShowAuthModal,
@@ -10,8 +11,10 @@ import {
 
 const ModuleDetailShoppingActions = ({
   product,
+  selectedAttributeProduct,
   extended = false,
   handleAddToCart,
+
 }) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
@@ -19,7 +22,7 @@ const ModuleDetailShoppingActions = ({
 
   const handleAddItemToCart = (e) => {
     e.preventDefault();
-    handleAddToCart(id, attributes.l);
+    handleAddToCart(id, selectedAttributeProduct?.attribute_item?.id || 0, quantity, userData()?.token || "",()=>{},false );
   };
 
   const handleBuynow = (e) => {

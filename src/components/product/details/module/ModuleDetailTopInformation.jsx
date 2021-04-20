@@ -2,27 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Rating from "../../../elements/Rating";
 
-const ModuleDetailTopInformation = ({ product }) => {
+const ModuleDetailTopInformation = ({ product, selectedAttributeProduct }) => {
   // Views
   let priceView;
 
   if (
-    product?.product?.sale_price < product?.product?.price ||
+    selectedAttributeProduct?.sale_price < selectedAttributeProduct?.price ||
     product?.sale_price < product?.price
   ) {
     priceView = (
       <h4 className="ps-product__price sale">
         <del className="mr-2">
-          &#2547;{product?.product?.sale_price || product.sale_price}
+          &#2547;{selectedAttributeProduct?.sale_price || product.sale_price}
         </del>
-        &#2547;{product?.product?.price || product.price}
+        &#2547;{selectedAttributeProduct?.price || product.price}
       </h4>
     );
   } else {
     priceView = (
       <h4 className="ps-product__price">
         &#2547;
-        {product?.product?.price > -1 ? product?.product?.price : product.price}
+        {selectedAttributeProduct?.price > -1 ? selectedAttributeProduct?.price : product.price}
       </h4>
     );
   }
