@@ -45,6 +45,7 @@ export const processGetRequest = (url, paramsObj = {}, isAuthenticationRequired 
           "Content-Type": "application/json",
           "x-auth-token": isAuthenticationRequired? authData?.token : "",
           "x-api-client": getDeviceType(),
+          "Authorization": authData.token
         },
       })
       .then((res) => {
@@ -65,6 +66,7 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
           "Content-Type": "application/json",
           "x-auth-token": isAuthenticationRequired? authData?.token : "",
           "x-api-client": getDeviceType(),
+          "Authorization": authData.token
         },
       }).then((res) => {
         resolve(res.data);
@@ -72,5 +74,25 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
         console.error(err);
         reject(err.message);
       });
+  });
+};
+
+
+export const processDeleteRequest = (url, data = {}, isAuthenticationRequired = false) => {
+  const authData = getLocalAuthData();
+  return new Promise((resolve, reject) => {
+    axios.delete(`${BASE_API_URL}${url}`,  {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": isAuthenticationRequired? authData?.token : "",
+        "x-api-client": getDeviceType(),
+        "Authorization": authData.token
+      },
+    }).then((res) => {
+      resolve(res.data);
+    }).catch((err) => {
+      console.error(err);
+      reject(err.message);
+    });
   });
 };

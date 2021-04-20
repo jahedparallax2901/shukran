@@ -25,6 +25,7 @@ import ProductDetailFullwidth from "../components/product/ProductDetailFullwidth
 import ProductWidgets from "../components/product/ProductWidgets";
 import RelatedProduct from "../components/product/RelatedProduct";
 import {
+    processDeleteRequest,
     processGetRequest,
     processPostRequest,
 } from "../services/baseServices";
@@ -54,17 +55,75 @@ import {
 
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
+import {toast} from "react-toastify";
 
 
 const Checkout = () => {
+
+    const [selectedAddress , setSelectedAddress] = useState(0);
+    const [isShowModal , setIsShowModal] = useState(false);
+    const [isEdited , setIsEdited] = useState(false);
+
+    const [deliverAddress , setDeliveryAddress ] = useState([]);
+    const [formData , setFormData] = useState({
+        country_code: '+880',
+        country: 'bangladesh'
+    });
+
 
     const [numberOfPicture , setNumberOfPicture ] = useState([
         {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}
     ])
 
 
+    useEffect( ()=>{
 
-    const Product = () => {
+        processGetRequest('/user-details').then((res)=>{
+            console.log(res)
+            setDeliveryAddress(res.user_info.addresses)
+        })
+
+    },[])
+
+
+    const handleShowModal = (request) =>{
+        if (request === 'put'){
+            setIsEdited(true)
+        }else {
+            setIsEdited(false)
+        }
+        setIsShowModal(true)
+    }
+
+    const handleHideModal = () =>{
+        setIsShowModal(false)
+    }
+
+    const handleOnChange = (e) =>{
+        setFormData({...formData, [e.target.name]: e.target.value})
+        console.log(formData)
+    }
+
+    const handleFormSubmit = (e) =>{
+        e.preventDefault()
+        processPostRequest('/add-address', formData).then((res)=>{
+            console.log(res)
+            toast.success(res.message)
+            handleHideModal()
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+
+
+
+
+    const setSelectAddress =(e) =>{
+        console.log(e)
+        setSelectedAddress(e)
+    }
+
+    const PaymentOption = () => {
         return (
             <ScrollMenu
                 arrowLeft={<div style={{ fontSize: "30px" }}><BiLeftArrowCircle/></div>}
@@ -89,12 +148,41 @@ const Checkout = () => {
     };
 
 
+    const DeliveryAddress = () => {
+        return(
+            <>
+                {deliverAddress && deliverAddress.map((data , index) =>(
+                    <>
+                        <div
+                            onClick={ (e) =>{ setSelectAddress(index) }}
+                            id={index}
+                            key={index}
+                            className="single-checkout-body single-checkout-body">
+
+                            <div className="checkout-body-location">
+                                <h4>Home</h4>
+                                <div className="location-edit">
+                                    <button onClick={()=>handleShowModal('put')} type="button"><MdEdit/></button>
+                                    <button onClick={()=>{ processDeleteRequest(`/remove-address/${data.id}`) }} style={{marginLeft: '5px'}} type="button"><FiX/></button>
+                                </div>
+                            </div>
+                            <p>{data.name}</p>
+                            <p>{data.address}</p>
+                            <p>post code : </p>
+                        </div>
+                    </>
+                ) )}
+            </>
+        )
+    }
+
+
     return (
         <ContainerMarketPlace3
             title="Checkout"
             isExpanded={true}>
 
-            <Modal className="info-modal" show={false} onHide={false}>
+            <Modal className="info-modal" show={isShowModal} onHide={()=> { handleHideModal()}}>
                 <Modal.Body>
                     <Modal.Header closeButton>
                         <Modal.Title>
@@ -106,7 +194,13 @@ const Checkout = () => {
 
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{marginTop: '1vw', fontSize: '14px'}}>Name <span className="text-danger">*</span> </Form.Label>
-                            <Form.Control style={{height: '40px' , fontSize: '12px'}} type="email" placeholder="Enter your name" />
+                            <Form.Control
+                                name={`name`}
+                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].name : ''}
+                                onChange={(e)=>handleOnChange(e)}
+                                style={{height: '40px' , fontSize: '12px'}}
+                                type="text"
+                                placeholder="Enter your name" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
@@ -119,17 +213,21 @@ const Checkout = () => {
 
                             <div  className="input-with-icon">
                                 <div  className="input-group">
-                                    <select name="country_code"
+                                    <select
+                                            onChange={(e)=>handleOnChange(e)}
+                                            name="country_code"
                                             className="form-control"
                                             style={{height: '40px' , fontSize: '12px', flex: '0 0 80px', padding: '0 10px 0 5px'}}>
                                         <option value="+880">+880</option>
                                     </select>
                                     <Form.Control
+                                        name={`phone_number`}
+                                        defaultValue={ isEdited ?  deliverAddress[selectedAddress].phone_number : ''}
+                                        onChange={(e)=>handleOnChange(e)}
                                         style={{height: '40px' , fontSize: '12px'}}
                                         pattern="[0-9]*"
                                         inputmode="numeric"
-
-                                        type="text" name={"phone"}
+                                        type="text"
                                         required
                                         autoComplete={`off`}
                                         placeholder={"your phone number"}/>
@@ -140,58 +238,87 @@ const Checkout = () => {
 
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Email <span className="text-danger">*</span> </Form.Label>
-                            <Form.Control style={{height: '40px' , fontSize: '12px'}} type="email" placeholder="Enter your name" />
+                            <Form.Control
+                                name={`email`}
+                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].email : ''}
+                                onChange={(e)=>handleOnChange(e)}
+                                style={{height: '40px' , fontSize: '12px'}}
+                                type="email"
+                                placeholder="Enter email address" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Address <span className="text-danger">*</span> </Form.Label>
-                            <Form.Control style={{height: '40px' , fontSize: '12px'}} type="email" placeholder="Enter your name" />
+                            <Form.Control
+                                name={`address`}
+                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].address : ''}
+                                onChange={(e)=>handleOnChange(e)}
+                                style={{height: '40px' , fontSize: '12px'}}
+                                type="email" placeholder="Enter address" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Country <span className="text-danger">*</span> </Form.Label>
-                        <Form.Control style={{height: '40px' , fontSize: '12px'}} as="select" size={'lg'}>
-                            <option>Bangladesh</option>
-                            <option>USA</option>
-                            <option>Nepal</option>
-                            <option>Uganda</option>
+                        <Form.Control
+                            name={`country`}
+
+                            onChange={(e)=>handleOnChange(e)}
+                            style={{height: '40px' , fontSize: '12px'}}
+                            as="select"
+                            size={'lg'}>
+                            <option value={`bangladesh`}>Bangladesh</option>
+                            <option value={`usa`}>USA</option>
+                            <option value={`nepal`}>Nepal</option>
+                            <option value={`uganda`}>Uganda</option>
 
                         </Form.Control>
 
 
                         <Form.Group style={{marginTop: '0.5vw', fontSize: '14px'}} controlId="formBasicEmail">
                             <Form.Label >Post Code <span className="text-danger">*</span> </Form.Label>
-                            <Form.Control style={{height: '40px' , fontSize: '12px'}} type="email" placeholder="Enter your name" />
+                            <Form.Control
+                                name={`post_code`}
+                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].post_code : ''}
+                                onChange={(e)=>handleOnChange(e)}
+                                style={{height: '40px' , fontSize: '12px'}}
+                                type="text"
+                                placeholder="Post code" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
 
 
-                        <Form.Group >
+                        <Form.Group
+                            onChange={(e)=>handleOnChange(e)}>
                             <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Address Type <span className="text-danger">*</span> </Form.Label>
                                <div className={'d-flex'}>
                                    <Form.Check
+                                       name={`address_type`}
+
+                                       value={0}
                                        type="radio"
                                        className={'mx-3'}
-                                       name="formHorizontalRadios"
                                        id="formHorizontalRadios1"
                                    />
                                    <Form.Check.Label>{`Home address`}</Form.Check.Label>
                                    <Form.Check
+                                       name={`address_type`}
+
+                                       value={1}
                                        className={'mx-3'}
                                        type="radio"
-
-                                       name="formHorizontalRadios"
                                        id="formHorizontalRadios2"
                                    />
                                    <Form.Check.Label>{`Office address`}</Form.Check.Label>
                                    <Form.Check
+                                       name={`address_type`}
+
+                                       value={2}
                                        className={'mx-3'}
                                        type="radio"
-                                       name="formHorizontalRadios"
                                        id="formHorizontalRadios3"
                                    />
                                    <Form.Check.Label>{`Other`}</Form.Check.Label>
@@ -200,8 +327,8 @@ const Checkout = () => {
 
                         <Modal.Footer>
 
-                            <Button style={{height: '2vw' , width: '5vw' ,fontSize: '12px'}} variant={`danger`}>Clode</Button>
-                            <Button  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}} variant={`primary`}>Save Address</Button>
+                            <Button onClick={handleHideModal} style={{height: '2vw' , width: '5vw' ,fontSize: '12px'}} variant={`danger`}>Close</Button>
+                            <Button onClick={(e)=> {handleFormSubmit(e)}}  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}} variant={`primary`}>Save Address</Button>
 
 
                         </Modal.Footer>
@@ -224,8 +351,7 @@ const Checkout = () => {
                                                     <h4><span>1</span></h4>
                                                     <p>Delivery Address</p>
                                                 </div>
-                                                <button type="submit" data-toggle="modal" data-target="#addAddress"><HiPlus/> Add
-                                                    Address</button>
+                                                <button onClick={()=> handleShowModal('post')} type="submit" data-toggle="modal" data-target="#addAddress"><HiPlus/> Add Address</button>
                                                 <div role="dialog" id="addAddress" aria-modal="true" className="fade modal show" tabIndex={-1}>
                                                     <div role="document" className="modal-dialog">
                                                         <div className="modal-content">
@@ -308,7 +434,12 @@ const Checkout = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="single-checkout-body single-checkout-body-first">
+
+                                            <DeliveryAddress/>
+
+
+
+                                            {/*<div className="single-checkout-body single-checkout-body-first">
                                                 <div className="checkout-body-location">
                                                     <h4>Home</h4>
                                                     <div className="location-edit">
@@ -331,7 +462,7 @@ const Checkout = () => {
                                                 <p>Shahjadpur,</p>
                                                 <p>Shahjadpur, Dhaka</p>
                                                 <p>po: 1212</p>
-                                            </div>
+                                            </div>*/}
                                         </div></form>
                                     <div className="single-checkout-area ">
                                         <div className="single-checkout-top">
@@ -394,7 +525,7 @@ const Checkout = () => {
                                         </div>
 
                                         <div className="owl-stage-outer">
-                                            <Product/>
+                                            <PaymentOption/>
                                         </div>
 
                                         <div className="voucher-area">
