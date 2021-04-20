@@ -437,9 +437,6 @@
   color: #fff;
 }
 
-.header--standard .ps-form--quick-search .ps-form__input{
-  width: 100%;
-}
 .header--standard .ps-form--quick-search .ps-form__categories select{
   border: .5px solid rgb(221, 218, 218);
 }

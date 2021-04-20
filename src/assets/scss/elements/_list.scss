@@ -21,30 +21,26 @@
                 i {
                     color: #3b5998;
                 }
-
             }
 
             &.twitter {
                 i {
                     color: #0084b4;
                 }
-
             }
 
             &.google-plus {
                 i {
-                    color: #FF0000;
+                    color: #ff0000;
                 }
-
             }
 
             &.instagram {
                 i {
-                    color: #C32AA3;
+                    color: #c32aa3;
                 }
             }
         }
-
     }
 }
 
@@ -88,7 +84,7 @@
                 width: 20px;
                 height: 20px;
                 border: solid 1px #8d8d8d;
-                @include transition(all .4s ease);
+                @include transition(all 0.4s ease);
             }
 
             &:after {
@@ -161,7 +157,7 @@
         color: #626262;
 
         &:before {
-            content: "\f0da";
+            content: '\f0da';
             @include vertical-align();
             left: 0;
             font-family: FontAwesome;
@@ -245,7 +241,6 @@
                 top: 0;
                 left: 0;
                 line-height: 20px;
-
             }
         }
     }
@@ -271,7 +266,7 @@
                 height: 1px;
                 background-color: $color-heading;
                 @include transform(scale3d(0, 1, 1));
-                transition: transform .4s $timing-1;
+                transition: transform 0.4s $timing-1;
                 @include transform-origin(100% 50%);
             }
 
@@ -307,12 +302,13 @@
                 @include center();
 
                 &:before {
-                    content: "\e93a";
+                    content: '\e93a';
                     font-family: 'Linearicons' !important;
                 }
             }
 
-            &:before, &:after {
+            &:before,
+            &:after {
                 display: none;
             }
         }
@@ -348,6 +344,12 @@
                 }
             }
         }
+
+        &.active {
+            a {
+                color: $color-1st;
+            }
+        }
     }
 }
 
@@ -380,8 +382,6 @@
             }
         }
     }
-
-
 }
 
 .ps-list--social-color {
@@ -421,6 +421,7 @@
 
             &.google-plus {
                 background-color: #cc0000;
+
                 &:hover {
                     background-color: lighten(#cc0000, 15%);
                 }
@@ -428,6 +429,7 @@
 
             &.linkedin {
                 background-color: #2d567f;
+
                 &:hover {
                     background-color: lighten(#2d567f, 15%);
                 }
@@ -435,11 +437,17 @@
 
             &.feed {
                 background-color: #f86a02;
+
                 &:hover {
                     background-color: lighten(#f86a02, 15%);
                 }
-
             }
         }
+    }
+}
+
+.ps-list--user-links {
+    li {
+        background-color: #fff;
     }
 }

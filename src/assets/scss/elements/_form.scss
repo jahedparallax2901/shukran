@@ -9,7 +9,7 @@
     border: 1px solid #dddddd;
     border-radius: 0;
     box-shadow: 0 0 rgba(#000, 0);
-    transition: all .4s ease;
+    transition: all 0.4s ease;
     box-shadow: 0 0 0 #000;
     @include placeholder() {
         opacity: 1;
@@ -19,6 +19,28 @@
         outline: none;
         box-shadow: 0 0 0 #000;
         border-color: $color-1st;
+    }
+
+    &.ant-input {
+        height: 50px;
+        border-radius: 0;
+        border: 1px solid #dddddd;
+        &:focus {
+            border-color: $color-1st;
+            outline: none;
+            box-shadow: 0 0 0 transparent;
+        }
+    }
+}
+
+.ant-select {
+    .ant-select-selection {
+        height: 50px;
+        border: none;
+        border-radius: 0;
+        .ant-select-selection__rendered {
+            line-height: 50px;
+        }
     }
 }
 
@@ -37,16 +59,6 @@ textarea.form-control {
     }
 }
 
-.ps-select {
-    display: inline-block;
-    min-width: 120px;
-    cursor: pointer;
-
-    .selectize-input {
-        vertical-align: top;
-    }
-}
-
 .ps-number {
     position: relative;
 
@@ -58,7 +70,7 @@ textarea.form-control {
         width: 30px;
         height: 50%;
         border-left: 1px solid #979797;
-        transition: all .4s ease;
+        transition: all 0.4s ease;
 
         &:before {
             font-family: FontAwesome;
@@ -70,7 +82,7 @@ textarea.form-control {
             border-bottom: 1px solid #979797;
 
             &:before {
-                content: "\f106";
+                content: '\f106';
             }
         }
 
@@ -79,8 +91,7 @@ textarea.form-control {
             bottom: 0;
 
             &:before {
-                content: "\f107";
-
+                content: '\f107';
             }
         }
 
@@ -90,7 +101,6 @@ textarea.form-control {
 
             &:before {
                 color: #fff;
-
             }
         }
     }
@@ -111,7 +121,7 @@ textarea.form-control {
         position: relative;
         padding-left: 30px;
         font-family: $font-1st;
-        color: rgba($color-heading, .5);
+        color: rgba($color-heading, 0.5);
         font-weight: 400;
         cursor: pointer;
 
@@ -125,8 +135,7 @@ textarea.form-control {
             width: 20px;
             z-index: 10;
             border: 1px solid $color-heading;
-            transition: all .4s ease;
-
+            transition: all 0.4s ease;
         }
 
         &:after {
@@ -143,11 +152,11 @@ textarea.form-control {
             z-index: 10;
             opacity: 0;
             @include transform(rotate(0deg));
-            transition: all .4s ease;
+            transition: all 0.4s ease;
         }
     }
 
-    input[type=checkbox]:checked ~ label {
+    input[type='checkbox']:checked ~ label {
         &:before {
             background-color: $color-2nd;
             border-color: $color-2nd;
@@ -174,7 +183,7 @@ textarea.form-control {
             padding-left: 0;
             background-color: transparent;
             border-radius: 50%;
-            transition: all .4s ease;
+            transition: all 0.4s ease;
 
             &:before {
                 width: 20px;
@@ -187,10 +196,9 @@ textarea.form-control {
             &:after {
                 display: none !important;
             }
-
         }
 
-        input[type=radio]:checked ~ label {
+        input[type='radio']:checked ~ label {
             background-color: transparent;
 
             &:before {
@@ -260,18 +268,18 @@ textarea.form-control {
             color: #222222;
             background-color: #f6f6f6;
             @include border-radius(0);
-            transition: all .4s ease;
+            transition: all 0.4s ease;
 
-            &:before, &:after {
+            &:before,
+            &:after {
                 display: none;
             }
         }
 
-        input[type=checkbox]:checked ~ label {
+        input[type='checkbox']:checked ~ label {
             color: #ffffff;
             background-color: #a7a7a7;
         }
-
     }
 }
 
@@ -304,7 +312,7 @@ textarea.form-control {
             z-index: 10;
             border: 1px solid rgba(19, 8, 1, 0.2);
             background-color: #fff;
-            transition: all .4s ease;
+            transition: all 0.4s ease;
             border-radius: 50%;
         }
 
@@ -321,11 +329,11 @@ textarea.form-control {
             z-index: 15;
             opacity: 0;
             @include transform(scale(1.5, 1.5));
-            @include transition(all .6s ease);
+            @include transition(all 0.6s ease);
         }
     }
 
-    input[type=radio]:checked ~ label {
+    input[type='radio']:checked ~ label {
         &:before {
             background-color: $color-2nd;
             border-color: $color-2nd;
@@ -334,7 +342,6 @@ textarea.form-control {
         &:after {
             @include transform(scale(1, 1));
             opacity: 1;
-
         }
     }
 
@@ -353,7 +360,7 @@ textarea.form-control {
             padding-left: 0;
             background-color: transparent;
             border-radius: 50%;
-            transition: all .4s ease;
+            transition: all 0.4s ease;
 
             &:before {
                 width: 16px;
@@ -365,16 +372,14 @@ textarea.form-control {
             &:after {
                 display: none !important;
             }
-
         }
 
-        input[type=radio]:checked ~ label {
-            background-color: rgba(#3dc47e, .5);
+        input[type='radio']:checked ~ label {
+            background-color: rgba(#3dc47e, 0.5);
         }
 
         &.color-1 {
             @include radio-color(#35dccb);
-
         }
 
         &.color-2 {
@@ -447,7 +452,7 @@ textarea.form-control {
         width: 100%;
     }
 
-    @include media("<lg") {
+    @include media('<lg') {
         padding-left: 0;
         label {
             position: static;
@@ -459,7 +464,7 @@ textarea.form-control {
             }
         }
     }
-    @include media("<sm") {
+    @include media('<sm') {
         display: block;
     }
 }
@@ -555,7 +560,6 @@ textarea.form-control {
     .form-control {
         @include appearance(none);
     }
-
 }
 
 .ps-dropdown {
@@ -568,7 +572,7 @@ textarea.form-control {
         padding-right: 20px;
 
         &:after {
-            content: "\e93a";
+            content: '\e93a';
             font: normal normal normal 12px/1 linearicons;
             @include vertical-align();
             right: 0;
@@ -585,7 +589,7 @@ textarea.form-control {
         width: 100%;
         padding: 4px 0;
         background-color: #fff;
-        @include box-shadow(0 1px 1px 2px rgba(#ccc, .2));
+        @include box-shadow(0 1px 1px 2px rgba(#ccc, 0.2));
         @include hidden;
         text-align: left;
 
@@ -633,15 +637,16 @@ textarea.form-control {
         left: 50%;
         padding: 5px 10px;
         @include transform(translate(-50%, -50%));
-        background-color: rgba(#000, .9);
+        background-color: rgba(#000, 0.9);
         @include border-radius(2px);
         color: #ffffff;
         font-size: 12px;
-        transition: all .4s ease;
+        transition: all 0.4s ease;
         @include hidden;
 
         &:before {
             content: '';
+
             position: absolute;
             top: 100%;
             left: 50%;
@@ -667,6 +672,7 @@ textarea.form-control {
         }
 
         &.active {
+            border-color: $color-1st;
             .ps-variant__size {
                 color: $color-heading;
             }
@@ -699,7 +705,7 @@ textarea.form-control {
 
         &.color--3 {
             &:before {
-                background-color: #F06292;
+                background-color: #f06292;
             }
         }
     }
@@ -714,6 +720,9 @@ textarea.form-control {
         img {
             position: relative;
         }
+        &.active {
+            border-color: $color-1st;
+        }
     }
 
     &:hover {
@@ -726,88 +735,7 @@ textarea.form-control {
         &:before {
             border-color: #000;
         }
-
-        .ps-variant__tooltip {
-            @include show;
-        }
     }
-}
-
-.select2 {
-    display: block;
-
-    .select2-selection--single {
-        height: auto;
-        outline: none;
-        border-radius: 0;
-
-        .select2-selection__rendered {
-            line-height: 20px;
-            padding: 10px 20px;
-        }
-
-        .select2-selection__arrow {
-            @include vertical-align();
-            right: 10px;
-            width: 20px;
-            height: 20px;
-
-            &:before {
-                content: '\f107';
-                font-family: FontAwesome;
-                @include center();
-            }
-
-            b {
-                display: none;
-            }
-        }
-    }
-
-    .select2-selection--multiple {
-        min-height: 0;
-        border: none !important;
-
-        .select2-selection__rendered {
-            margin-bottom: 0;
-            padding: 0;
-            padding-left: 10px;
-            vertical-align: top;
-
-            input {
-                margin-top: 0;
-                height: 40px;
-                padding: 0 10px;
-            }
-
-            .select2-selection__choice {
-                line-height: 20px;
-                margin-right: 10px;
-                margin-top: 10px;
-            }
-        }
-    }
-}
-
-.select2-container {
-    .select2-dropdown {
-        border-color: #ccc;
-    }
-
-    .select2-results {
-        li {
-            color: #93969a;
-        }
-    }
-}
-
-.slimScrollRail, .slimScrollBar {
-    border-radius: 0 !important;
-}
-
-.slimScrollBar {
-    opacity: 1 !important;
-    background-color: #222 !important;
 }
 
 .ps-progress {
@@ -819,4 +747,3 @@ textarea.form-control {
         height: 100%;
     }
 }
-

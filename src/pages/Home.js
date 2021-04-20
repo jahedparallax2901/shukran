@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import "../assets/css/style.css";
-import "../assets/css/change.css";
-import "../assets/css/market-place-1.css";
-import "../assets/css/market-place-3.css";
+import '../assets/scss/style.scss';
+// import "../assets/css/market-place-3.css";
+import '../assets/scss/market-place-3.scss';
+
+import '../assets/scss/market-place-1.scss';
+
+
+// import "../assets/css/market-place-1.css";
 import "../assets/css/autopart.css";
 import "../assets/css/broken.css";
+import "../assets/css/change.css";
+
 import Slider from "react-slick";
 import { processGetRequest } from "../services/baseServices";
 // import '../assets/css/select2.min.css';

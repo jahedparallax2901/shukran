@@ -90,9 +90,6 @@
 //|
 /////////////////////////////////////////////////////////////////////////////////////|
 
-
-
-
 ////////////
 ////////////
 // Variable
@@ -113,8 +110,6 @@ $dataColSm: 'data-col-sm';
 $dataColMd: 'data-col-md';
 $dataColLg: 'data-col-lg';
 
-
-
 // Map deep get
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
@@ -123,9 +118,8 @@ $dataColLg: 'data-col-lg';
     @return $map;
 }
 
-
 // Map deep merge
-@function extend($map, $maps.../*, $deep */) {
+@function extend($map, $maps... /*, $deep */) {
     $last: nth($maps, -1);
     $deep: $last == true;
     $max: if($deep, length($maps) - 1, length($maps));
@@ -137,19 +131,22 @@ $dataColLg: 'data-col-lg';
             $map: map-merge($map, $current);
         } @else {
             @each $key, $value in $current {
-
-                @if type-of($value) == "map" and type-of(map-get($map, $key)) == "map" {
+                @if type-of($value) == 'map' and type-of(map-get($map, $key)) == 'map' {
                     $value: extend(map-get($map, $key), $value, true);
                 }
 
-                $map: map-merge($map, ($key: $value));
+                $map: map-merge(
+                    $map,
+                    (
+                        $key: $value,
+                    )
+                );
             }
         }
     }
 
     @return $map;
 }
-
 
 %relative {
     position: relative;
@@ -164,21 +161,18 @@ $dataColLg: 'data-col-lg';
     margin: 0 !important;
 }
 
-
-
-
 ////////////
 ////////////
 // Grid
 @mixin grid($col) {
     #{$gridItem},
     #{$gridSizer} {
-        $widthDefault: (100 * 1/$col) * 1%;
+        $widthDefault: (100 * 1 / $col) * 1%;
         width: $widthDefault;
     }
     @if ($col > 1) {
         #{$gridItem} {
-            $widthLarge: (100 * 1/$col * 2) * 1%;
+            $widthLarge: (100 * 1 / $col * 2) * 1%;
             &#{$wideItem},
             &#{$largeItem} {
                 width: $widthLarge;
@@ -215,7 +209,7 @@ $dataColLg: 'data-col-lg';
 $gridRatio: (
     '100': 100%,
     '4by3': 3/4 * 100%,
-    '16by9': 9/16 * 100%
+    '16by9': 9/16 * 100%,
 );
 @each $key, $value in $gridRatio {
     %ratio#{$key} {
@@ -242,44 +236,43 @@ $gridRatio: (
 $gridBreakpoints: (
     'large': 1200px,
     'medium': 992px,
-    'small': 768px
+    'small': 768px,
 );
 
 %dataColumn {
     $maxCol: 10;
     @for $i from 1 through $maxCol {
-        &[#{$dataColXs}="#{$i}"] {
+        &[#{$dataColXs}='#{$i}'] {
             @include grid($i);
         }
     }
     @for $i from 1 through $maxCol {
         @media (min-width: map-get($gridBreakpoints, 'small')) {
-            &[#{$dataColSm}="#{$i}"] {
+            &[#{$dataColSm}='#{$i}'] {
                 @include grid($i);
             }
         }
     }
     @for $i from 1 through $maxCol {
         @media (min-width: map-get($gridBreakpoints, 'medium')) {
-            &[#{$dataColMd}="#{$i}"] {
+            &[#{$dataColMd}='#{$i}'] {
                 @include grid($i);
             }
         }
     }
     @for $i from 1 through $maxCol {
         @media (min-width: map-get($gridBreakpoints, 'large')) {
-            &[#{$dataColLg}="#{$i}"] {
+            &[#{$dataColLg}='#{$i}'] {
                 @include grid($i);
             }
         }
     }
-
 }
 %dataGap {
     @for $i from 1 through 6 {
         $gap: $i * 5;
         $valueGap: ($gap / 2) * 1px;
-        &[#{$dataGap}="#{$gap}"] {
+        &[#{$dataGap}='#{$gap}'] {
             margin: round(-$valueGap);
             #{$gridItem} {
                 #{$gridItemContentWrap} {
@@ -294,23 +287,32 @@ $gridBreakpoints: (
     }
 }
 
-
-
 // Start
 @mixin gridOptions($mainClass, $options) {
-    $default: extend((
-        'bgColorItem': #ccc,                        // Background color item
-        'columnGap': 0,                             // Space item default
-        'colDefault': 1,                            // Column default
-        'ratioItem': 100%,                          // Example ratio 4:3 = 3/4*100% = 75%
-        'responsive': (                             // Responsive Device large >=1200, medium >=992, small >=768, extraSmall <=767
-            'large': 4,
-            'medium': 3,
-            'small': 2,
-            'extraSmall': 1
+    $default: extend(
+        (
+            'bgColorItem': #ccc,
+            // Background color item
+                'columnGap': 0,
+            // Space item default
+                'colDefault': 1,
+            // Column default
+                'ratioItem': 100%,
+            // Example ratio 4:3 = 3/4*100% = 75%
+                'responsive':
+                (
+                    // Responsive Device large >=1200, medium >=992, small >=768, extraSmall <=767
+                        'large': 4,
+                    'medium': 3,
+                    'small': 2,
+                    'extraSmall': 1,
+                ),
+            'optionsData': false,
+            // Options with data html (data-gap, data-ratio, data-col-lg, data-col-md, data-col-sm, data-col-xs),
         ),
-        'optionsData': false,                       // Options with data html (data-gap, data-ratio, data-col-lg, data-col-md, data-col-sm, data-col-xs)
-    ), $options, true);
+        $options,
+        true
+    );
 
     // $maxColumn: map-get($default, 'maxColumn');
     // $maxGap: map-get($default, 'maxGap');
@@ -325,11 +327,6 @@ $gridBreakpoints: (
     $extraSmall: map-deep-get($default, 'responsive', 'extraSmall');
 
     $valueGapDefault: ($columnGap / 2) * 1px;
-
-
-
-
-
 
     ////////////
     ////////////
@@ -350,8 +347,6 @@ $gridBreakpoints: (
         }
 
         &#{$masonryGrid} {
-
-
             #{$gridItemContentWrap} {
                 @extend %absolute;
 
@@ -368,7 +363,7 @@ $gridBreakpoints: (
             @if $optionsData {
                 @extend %ratio100;
                 @each $key, $value in $gridRatio {
-                    &[#{$dataRatio}="#{$key}"] {
+                    &[#{$dataRatio}='#{$key}'] {
                         @extend %ratio#{$key};
                     }
                 }
@@ -376,7 +371,6 @@ $gridBreakpoints: (
                 @include ratio($ratioItem);
             }
         }
-
 
         @if $optionsData {
             ////////////
@@ -389,7 +383,6 @@ $gridBreakpoints: (
             // Column responsive
             @extend %dataColumn;
         } @else {
-
             $valueGap: ($columnGap / 2) * 1px;
             margin: round(-$valueGap);
             #{$gridItem} {
@@ -401,8 +394,6 @@ $gridBreakpoints: (
                     left: round($valueGap);
                 }
             }
-
-
 
             @if $extraSmall {
                 @include grid($extraSmall);
@@ -423,8 +414,5 @@ $gridBreakpoints: (
                 }
             }
         }
-
-
     }
 }
-

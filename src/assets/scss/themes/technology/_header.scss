@@ -69,6 +69,11 @@
             }
         }
 
+        .ps-form__categories {
+            border: 1px solid #e1e1e1;
+            border-right: none;
+        }
+
         input {
             border: 1px solid #e1e1e1;
             border-left: none;
@@ -120,9 +125,12 @@
 
 .navigation--list {
     .navigation__item {
-        &.active, &:focus, &:active, &:hover {
-            i, span {
-
+        &.active,
+        &:focus,
+        &:active,
+        &:hover {
+            i,
+            span {
                 color: $color-technology;
             }
         }
@@ -134,5 +142,3 @@
         background-color: $color-technology;
     }
 }
-
-

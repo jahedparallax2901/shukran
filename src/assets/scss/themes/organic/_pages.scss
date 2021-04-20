@@ -5,12 +5,39 @@
         }
     }
 
+    .ps-btn,
+    button.ps-btn {
+        background-color: $color-organic;
+        color: #ffffff;
+        &:hover {
+            background-color: darken($color-organic, 5%);
+        }
+    }
+
+    .ps-btn {
+        color: #fff;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    .ps-carousel {
+        .slick-arrow {
+            &:hover {
+                background-color: $color-organic;
+                color: #fff;
+            }
+        }
+    }
+
     .ps-product {
         .ps-product__title {
             &:hover {
                 color: $color-organic;
             }
         }
+
         .ps-product__actions {
             li {
                 a {
@@ -44,12 +71,18 @@
             .ps-progress span {
                 background-color: $color-organic;
             }
-
         }
     }
 
     .ps-block--deal-hot {
         border-color: $color-organic;
+        .ps-block__navigation {
+            > * {
+                &:hover {
+                    border-color: $color-organic;
+                }
+            }
+        }
     }
 
     .ps-block--testimonial {
@@ -60,21 +93,7 @@
         }
     }
 
-    .ps-home-banner {
-        .owl-slider {
-            .owl-nav {
-                left: 50%;
-                max-width: 1200px;
-                margin: 0 auto;
-                @include transform(translate(-50%, -50%));
 
-                > * {
-                    width: 48px;
-                    height: 48px;
-                }
-            }
-        }
-    }
 
     .ps-site-features {
         padding: 50px 0;
@@ -137,9 +156,7 @@
                 }
             }
         }
-
     }
-
 
     @media (min-width: 1680px) {
         .ps-product-list {

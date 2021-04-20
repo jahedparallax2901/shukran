@@ -138,6 +138,7 @@
     }
 }
 
+
 .ps-newsletter {
     padding: 65px 0;
     border-top: 1px solid #e1e1e1;
@@ -169,6 +170,12 @@
             &:last-child {
                 margin-right: 0;
             }
+
+            &.active {
+                a {
+                    color: $color-1st;
+                }
+            }
         }
     }
 
@@ -192,6 +199,10 @@
 
     .ps-section__content {
         padding-top: 55px;
+    }
+
+    .slick-slide {
+        padding-bottom: 2px;
     }
 
     &--2 {
@@ -222,8 +233,6 @@
 }
 
 .ps-shopping-product {
-    min-height: 80vh;
-
     @media (max-width: 1199px) {
         .ps-product {
             margin-bottom: 30px;
@@ -241,6 +250,7 @@
 
         .ps-product {
             margin-bottom: 4px;
+
             .ps-product__badge {
                 top: 5px;
                 right: 5px;
@@ -363,10 +373,6 @@
 
     .ps-layout__right {
         max-width: calc(100% - 320px);
-
-        .owl-slider {
-            max-width: 100%;
-        }
     }
 
     @include media('<lg') {
@@ -381,6 +387,7 @@
             margin-bottom: 50px;
         }
     }
+
     @include media('<sm') {
         padding-bottom: 45px;
     }
@@ -437,6 +444,16 @@
 
         .ps-shopping__view {
             padding-left: 40px;
+        }
+
+        .form-control {
+            height: 40px;
+            background-color: #fff;
+        }
+
+        .ps-tab-list {
+            display: flex;
+            flex-flow: row nowrap;
         }
     }
 
@@ -528,6 +545,23 @@
             }
         }
     }
+
+    @include media('<xs') {
+        .ps-shopping__header {
+            flex-flow: row wrap;
+
+            p {
+                display: block;
+                max-width: 100%;
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+
+            .ps-shopping__actions {
+                max-width: 100%;
+            }
+        }
+    }
 }
 
 .ps-customer-bought {
@@ -541,6 +575,11 @@
                 }
             }
         }
+    }
+
+    &.boxed {
+        background-color: #fff;
+        padding: 20px;
     }
 }
 
@@ -578,6 +617,10 @@
                 color: $color-heading;
             }
         }
+    }
+
+    .slick-slide {
+        padding: 0 15px;
     }
 }
 
@@ -627,6 +670,7 @@
             }
         }
     }
+
     @include media('<sm') {
         .ps-image-list {
             li {
@@ -635,6 +679,7 @@
             }
         }
     }
+
     @include media('<xs') {
         .ps-image-list {
             li {
@@ -992,14 +1037,6 @@
     }
 
     .ps-section__content {
-        .owl-slider {
-            a {
-                display: flex;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
-            }
-        }
     }
 
     @include media('<lg') {
@@ -1139,7 +1176,7 @@
     z-index: 10;
     padding: 160px 0;
 
-    &:before {
+    backgr &:before {
         @include max-area();
         z-index: -1;
         background-color: rgba(#000, 0.25);
@@ -1478,7 +1515,7 @@
 .ps-shopping-cart {
     .ps-section__cart-actions {
         padding-top: 30px;
-        padding-bottom: 90px;
+        padding-bottom: 30px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -1716,7 +1753,7 @@
     grid-gap: 15px;
     grid-template-columns: repeat(
         4,
-        minmax(200px, 1fr)
+                    minmax(200px, 1fr)
     ); /* [2] Make columns adjust according to the available viewport */
     grid-auto-rows: 100%;
 
@@ -1875,6 +1912,7 @@
 
 .ps-store-list {
     padding-top: 60px;
+
     .ps-block--store-2 {
         margin-bottom: 30px;
     }
@@ -1957,6 +1995,10 @@
         }
     }
 
+    .ps-stores-items {
+        padding-bottom: 60px;
+    }
+
     @media (max-width: 560px) {
         .ps-store-link {
             ul {
@@ -2017,113 +2059,213 @@
     }
 }
 
-.ps-section--account {
-    padding: 60px 0;
-    .ps-section__header {
-        padding-bottom: 30px;
-        h3 {
-            font-weight: 600;
-        }
-    }
-}
-
 .ps-section--account-setting {
-    .ps-table {
-        border: 1px solid #eaeaea;
-        thead {
-            tr {
-                th {
-                    text-transform: none;
-                    font-weight: 500;
-                    font-size: 16px;
-                    border: 1px solid #eaeaea;
-                    border-bottom: none;
-                    padding: 10px 15px;
-                }
-            }
-        }
-        tr {
-            td {
-                padding: 10px 15px;
-            }
-        }
-    }
-}
-
-.ps-shop-by-brand {
-    padding: 50px 0;
     .ps-section__header {
-        text-align: center;
-        padding-bottom: 50px;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d1d1d1;
+
         h3 {
             font-weight: 600;
-            font-size: 30px;
-            text-transform: uppercase;
-        }
-    }
-
-    .ps-section__links {
-        display: flex;
-        flex-flow: row wrap;
-        margin-bottom: 50px;
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            background-color: #ebebeb;
-            width: 50px;
-            height: 50px;
-            font-weight: 600;
-            text-transform: uppercase;
-            &.active, &:hover {
-                background-color: $color-1st;
-                color: #ffffff;
-            }
-        }
-    }
-    
-    .ps-section__items {
-        display: flex;
-        flex-flow: row wrap;
-        > * {
-            flex-basis: 100%;
-            max-width: 50%;
-        }
-        a {
-            display: inline-block;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-bottom: 0;
         }
     }
 
     .ps-section__content {
-        figure {
-            margin-bottom: 50px;
-            figcaption {
-                display: block;
-                padding-bottom: 20px;
-                font-size: 20px;
-                font-weight: 600;
-                margin-bottom: 20px;
-                border-bottom: 1px solid #eaeaea;
+        padding: 20px;
+        background-color: #fff;
+    }
+}
+
+.ps-related-products {
+    &.boxed {
+        padding: 20px;
+        background-color: #fff;
+    }
+}
+
+.ps-shop-banner {
+    img {
+        width: 100%;
+    }
+}
+
+.ps-consumer-electronics {
+    margin-top: 30px;
+}
+
+.ps-section--custom {
+    padding: 30px 0;
+
+    .ps-section__header {
+        margin-bottom: 30px;
+    }
+
+    @media screen and (min-width: 992px) {
+        padding: 60px 0;
+    }
+}
+
+.ps-section--switcher-demo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(#fff, 0.975);
+    display: none;
+
+    .ps-block--demo {
+        margin-bottom: 30px;
+    }
+
+    .ps-section__close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background-color: transparent;
+        font-size: 30px;
+        color: $color-heading;
+    }
+
+    .ps-section__header {
+        padding: 50px 0;
+
+        h3 {
+            font-size: 36px;
+            font-weight: 600;
+        }
+    }
+
+    .ps-section__content {
+        .ant-tabs {
+            .ant-tabs-nav {
+                margin-bottom: 30px;
+
+                .ant-tabs-nav-list {
+                    margin: 0 auto;
+
+                    button {
+                        font-size: 20px;
+                        font-weight: 600;
+
+                        &:hover {
+                            color: $color-1st;
+                        }
+
+                        &.ant-tabs-tab-active {
+                            color: $color-1st;
+                        }
+                    }
+
+                    .ant-tabs-ink-bar {
+                        background-color: $color-1st;
+                    }
+                }
             }
         }
     }
 
-    @media screen and (min-width: 992px) {
-        .ps-section__items {
-            > * {
-                max-width: 33.3333%;
-            }
+    &.active {
+        display: block;
+    }
+
+    @media screen and (min-width: 1200px) {
+        /*display: block;*/
+    }
+}
+
+.ps-demo-area {
+    display: none;
+
+    .ps-btn--demo {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 40%;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        border: none;
+        background-color: rgba(#000, 0.85);
+        transition: all 0.4s ease;
+        transform: translateY(-50%);
+
+        span {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        &:hover {
+            background-color: #000;
         }
     }
 
     @media screen and (min-width: 1200px) {
-        padding: 100px 0;
-        .ps-section__items {
+        display: block;
+    }
+}
+
+.ps-shop-items {
+    @media screen and (max-width: 480px) {
+        .row {
+            margin: 0 -5px !important;
+
             > * {
-                max-width: 33.3333%;
+                padding: 0 5px !important;
+            }
+        }
+
+        .ps-product {
+            margin-bottom: 10px;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        .row {
+            margin: 0;
+
+            > * {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.ps-shop--category {
+    padding-top: 30px;
+
+    .ps-shop__heading {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding-top: 60px;
+    }
+}
+
+.ps-shop--search {
+    .ps-shop__header {
+        padding: 60px 0 40px;
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-shop__header {
+            padding: 80px 0 40px;
+
+            h1 {
+                font-size: 30px;
             }
         }
     }

@@ -4,6 +4,22 @@
             color: $color-technology;
         }
     }
+    .ps-btn,
+    button.ps-btn {
+        background-color: $color-technology;
+        color: #ffffff;
+        &:hover {
+            background-color: darken($color-technology, 5%);
+            color: #ffffff;
+        }
+    }
+
+    .ps-btn {
+        color: #fff;
+        &:hover {
+            color: #fff;
+        }
+    }
 
     .ps-product {
         .ps-product__title {
@@ -13,8 +29,16 @@
         }
     }
 
-    .ps-deal-of-day {
+    .ps-carousel {
+        .slick-arrow {
+            &:hover {
+                background-color: $color-technology;
+                color: #fff;
+            }
+        }
+    }
 
+    .ps-deal-of-day {
     }
 
     .ps-product--hot-deal {
@@ -38,7 +62,6 @@
             .ps-progress span {
                 background-color: $color-technology;
             }
-
         }
     }
 
@@ -50,22 +73,6 @@
         .ps-block__content {
             i {
                 color: $color-technology;
-            }
-        }
-    }
-
-    .ps-home-banner {
-        .owl-slider {
-            .owl-nav {
-                left: 50%;
-                max-width: 1200px;
-                margin: 0 auto;
-                @include transform(translate(-50%, -50%));
-
-                > * {
-                    width: 48px;
-                    height: 48px;
-                }
             }
         }
     }
@@ -137,9 +144,7 @@
                 }
             }
         }
-
     }
-
 
     @media (min-width: 1680px) {
         .ps-product-list {

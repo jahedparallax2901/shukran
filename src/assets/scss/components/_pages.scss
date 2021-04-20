@@ -1,156 +1,3 @@
-#homepage-1 {
-    .ps-home-banner {
-        padding-top: 30px;
-        margin-bottom: 30px;
-
-        .owl-slider {
-            max-width: 100%;
-            height: 100%;
-            .owl-stage-outer {
-                height: 100%;
-                .owl-stage {
-                    height: 100%;
-                    .owl-item {
-                        height: 100%;
-                    }
-                }
-            }
-            .ps-banner {
-                height: 100%;
-            }
-        }
-
-        .ps-container {
-            display: flex;
-            flex-flow: row nowrap;
-
-            > * {
-                width: 100%;
-            }
-
-            .ps-section__left {
-                padding-right: 30px;
-                max-width: calc(100% - 390px);
-            }
-
-            .ps-section__right {
-                max-width: 390px;
-
-                .ps-collection {
-                    display: block;
-                    margin-bottom: 30px;
-
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-
-            @include media('<lg') {
-                display: block;
-                .ps-section__left {
-                    max-width: 100%;
-                    margin-bottom: 30px;
-                }
-                .ps-section__right {
-                    display: flex;
-                    flex-flow: row nowrap;
-                    margin: 0 -15px;
-                    max-width: 100%;
-
-                    .ps-collection {
-                        width: 100%;
-                        max-width: 50%;
-                        padding: 0 15px;
-
-                        img {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .ps-site-features {
-        padding-bottom: 90px;
-    }
-
-    .ps-deal-of-day {
-        padding-bottom: 80px;
-
-        .ps-product {
-            .ps-product__price {
-                color: #690;
-                font-size: 18px;
-                font-weight: 600;
-
-                del {
-                    margin-left: 10px;
-                    font-size: 14px;
-                }
-
-                small {
-                    margin-left: 10px;
-                    color: red;
-                }
-            }
-        }
-    }
-
-    .ps-top-categories {
-        padding: 80px 0 50px;
-
-        h3 {
-            text-transform: capitalize;
-        }
-
-        @media (min-width: 1440px) {
-            .row {
-                .col-xl-2 {
-                    max-width: calc(100% / 8);
-                }
-            }
-        }
-        @include media('<lg') {
-            padding: 60px 0;
-        }
-
-        @include media('<md') {
-            padding: 50px 0;
-        }
-
-        @include media('<sm') {
-            padding: 40px 0;
-        }
-
-        @include media('<xs') {
-            padding: 35px 0;
-        }
-    }
-
-    .ps-product-list {
-        padding-bottom: 80px;
-        @include media('<md') {
-            padding-bottom: 50px;
-        }
-        @include media('<sm') {
-            padding-bottom: 40px;
-        }
-        @include media('<xs') {
-            padding-bottom: 0px;
-        }
-    }
-
-    .ps-download-app {
-        margin-top: 80px;
-        margin-bottom: 100px;
-        @include media('<sm') {
-            margin-bottom: 50px;
-        }
-    }
-}
-
 #shop-carousel {
     .ps-carouse--nav-inside {
         margin-bottom: 60px;
@@ -229,7 +76,7 @@
 
         h1 {
             margin-bottom: 20px;
-            font-weight: 700;
+            font-weight: 600;
             color: $color-heading;
             font-size: 24px;
         }
@@ -238,6 +85,7 @@
     .ps-layout--shop {
         padding-top: 30px;
     }
+
 }
 
 #contact-us {
@@ -262,30 +110,6 @@
 
         @include media('<sm') {
             padding: 30px 0;
-        }
-    }
-}
-
-#homepage-medicine {
-    .ps-footer--medicine {
-        .widget_contact-us {
-            .widget_content {
-                h3 {
-                    color: $color-med;
-                }
-            }
-        }
-
-        .ps-form--newletter {
-            button {
-                background-color: $color-med;
-                color: #fff;
-
-                &:hover {
-                    background-color: darken($color-med, 5%);
-                    color: #fff;
-                }
-            }
         }
     }
 }
@@ -434,20 +258,23 @@
         }
     }
 
-    @media (max-width: 1199px) {
-        .ps-product:not(.ps-product--wide) {
-            border-color: #dfdfdf;
+    .ps-shopping {
+        padding-bottom: 40px;
+    }
 
-            .ps-product__content:not(.hover) {
-                position: relative;
-                display: block;
-                left: 0;
-                //width: calc(100% + 40px);
-                padding: 0 10px 20px;
-                border-bottom: 1px solid #dfdfdf;
-                border-top: none;
-            }
+    @media screen and (min-width: 992px) {
+        .ps-shopping {
+            padding-bottom: 60px;
         }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-shopping {
+            padding-bottom: 80px;
+        }
+    }
+
+    @media (max-width: 1199px) {
 
         .ps-shop-banner,
         .ps-shop-brand,
@@ -458,6 +285,7 @@
             display: none;
         }
     }
+
     @include media('<sm') {
         .ps-product {
             .ps-product__vendor {
@@ -520,6 +348,9 @@
     }
 
     @include media('<lg') {
+        .ps-page__right {
+            display: none;
+        }
         .ps-page__container {
             flex-flow: column wrap;
 
@@ -532,6 +363,7 @@
 }
 
 .ps-page--product-box {
+    padding-bottom: 30px;
     background-color: #f1f1f1;
 }
 
@@ -541,11 +373,15 @@
         text-align: center;
 
         h1 {
-            margin: 0 0 20px;
+            margin: 0;
             font-size: 48px;
             font-weight: 600;
             line-height: 1em;
         }
+    }
+
+    .ps-breadcrumb {
+        background-color: transparent;
     }
 
     @include media('<md') {
@@ -577,4 +413,49 @@
     }
 }
 
+.ps-page--account {
+    padding-top: 50px;
 
+    .ps-page__left {
+        height: 100%;
+        padding: 30px 20px;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+
+    .ps-page__dashboard {
+        p {
+            font-size: 16px;
+
+            a {
+                color: $color-linkedin;
+
+                &:hover {
+                    color: $color-1st;
+                }
+            }
+        }
+    }
+}
+
+.ps-site-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 100vh;
+    background-color: rgba(#000, 0.75);
+    @include transition(all 0.4s ease);
+    @include hidden;
+
+    &.active {
+        @include show;
+    }
+}
+
+.layout--product {
+    .navigation--list{
+        @include hidden;
+    }
+}

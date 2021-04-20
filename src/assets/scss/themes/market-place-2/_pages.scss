@@ -1,28 +1,23 @@
 #homepage-4 {
-
     .ps-home-banner {
         padding-top: 30px;
-        
-        .owl-slider {
-
-            img {
+        .container {
+            display: flex;
+            flex-flow: row nowrap;
+            > * {
                 width: 100%;
             }
+            .ps-section__left {
+                max-width: calc(100% - 370px);
+                padding-right: 30px;
+            }
+            .ps-section__right {
+                max-width: 370px;
+            }
         }
-        @media (min-width: 480px) {
-            .container {
-                display: flex;
-                flex-flow: row nowrap;
-                > * {
-                    width: 100%;
-                }
-                .ps-section__left {
-                    max-width: calc(100% - 370px);
-                    padding-right: 30px;
-                }
-                .ps-section__right {
-                    max-width: 370px;
-                }
+        .ps-carousel {
+            img {
+                width: 100%;
             }
         }
     }
@@ -45,10 +40,9 @@
                 }
             }
         }
-        @include media("<sm") {
+        @include media('<sm') {
             padding: 40px 0;
         }
-
     }
 
     .ps-product-list {
@@ -58,10 +52,10 @@
             border-bottom: 1px solid #e1e1e1;
         }
 
-        @include media("<sm") {
+        @include media('<sm') {
             padding: 45px;
         }
-        @include media("<xs") {
+        @include media('<xs') {
             padding: 35px;
         }
     }

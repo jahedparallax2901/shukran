@@ -42,7 +42,7 @@ export const carouselStandard = {
 
 export const carouselInSidebar = {
     dots: false,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 4,
@@ -150,7 +150,7 @@ export const carouselFullwidth = {
 
 export const carouselSingle = {
     dots: false,
-    arrows: false,
+    arrows: true,
     infinite: true,
     autoplay: false,
     speed: 500,

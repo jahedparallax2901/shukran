@@ -1,19 +1,5 @@
 #homepage-3 {
-
     .ps-home-banner {
-        .owl-slider {
-            .owl-nav {
-                left: 50%;
-                max-width: 1200px;
-                margin: 0 auto;
-                @include transform(translate(-50%, -50%));
-
-                > * {
-                    width: 48px;
-                    height: 48px;
-                }
-            }
-        }
         @media (max-width: 991px) {
             .ps-banner--market-1 {
                 background-size: cover;
@@ -24,18 +10,18 @@
 
     .ps-site-features {
         padding: 60px 0;
-        @include media("<sm") {
+        @include media('<sm') {
             padding: 40px 0;
         }
-        @include media("<xs") {
+        @include media('<xs') {
             padding: 30px 0;
         }
     }
 
     .ps-promotions {
         .ps-collection {
-            border: 1px solid rgba(#000, .15);
-            @include media("<sm") {
+            border: 1px solid rgba(#000, 0.15);
+            @include media('<sm') {
                 margin-bottom: 30px;
             }
         }
@@ -43,7 +29,7 @@
 
     .ps-deal-of-day {
         padding: 70px 0;
-        @include media("<sm") {
+        @include media('<sm') {
             padding: 45px 0;
         }
     }

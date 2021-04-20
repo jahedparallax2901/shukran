@@ -122,7 +122,6 @@
             background-color: #022335;
 
             .menu--product-categories {
-
                 .menu__toggle {
                     span {
                         display: block;
@@ -174,9 +173,12 @@
 
 .navigation--list {
     .navigation__item {
-        &.active, &:focus, &:active, &:hover {
-            i, span {
-
+        &.active,
+        &:focus,
+        &:active,
+        &:hover {
+            i,
+            span {
                 color: $color-electronic;
             }
         }

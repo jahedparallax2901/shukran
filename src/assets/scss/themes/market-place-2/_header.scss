@@ -13,6 +13,12 @@
             }
         }
     }
+    .ps-form--quick-search {
+        .ps-form__categories {
+            border: 1px solid #e1e1e1;
+            border-right: none;
+        }
+    }
 
     .navigation {
         border-bottom: 1px solid #e1e1e1;
@@ -79,7 +85,6 @@
                     background-color: #ffffff;
                     @include transform(rotate(45deg));
                     @include transform-origin(50% 50%);
-
                 }
             }
 
@@ -88,7 +93,7 @@
                     &:hover {
                         background-color: #fff;
 
-                        > a {
+                        a {
                             color: $color-1st;
                         }
                     }
@@ -118,7 +123,6 @@
             a {
                 display: inline-block;
                 margin-right: 10px;
-
             }
         }
     }
@@ -151,7 +155,6 @@
                     }
                 }
             }
-
         }
 
         .header__content-center {

@@ -1,15 +1,25 @@
 #homepage-7 {
+    .ps-btn,
+    button.ps-btn {
+        background-color: $color-electronic;
+        color: #ffffff;
+        &:hover {
+            background-color: darken($color-electronic, 5%);
+        }
+    }
+
+    .ps-carousel {
+        .slick-arrow {
+            &:hover {
+                background-color: $color-electronic;
+                color: #fff;
+            }
+        }
+    }
+
     .ps-home-banner {
         padding-top: 30px;
         padding-bottom: 40px;
-
-        .owl-slider {
-            .owl-item {
-                img {
-                    width: 100%;
-                }
-            }
-        }
 
         .container {
             display: flex;
@@ -36,10 +46,9 @@
                 }
             }
 
-            @include media("<lg") {
-
+            @include media('<lg') {
                 flex-flow: column wrap;
-                
+
                 .ps-section__left {
                     max-width: 100%;
                     margin-bottom: 30px;
@@ -60,7 +69,6 @@
                 }
             }
         }
-
     }
 
     .ps-top-categories {
@@ -73,7 +81,7 @@
         padding: 40px 0;
 
         .ps-collection {
-            @include media("<sm") {
+            @include media('<sm') {
                 margin-bottom: 30px;
             }
         }

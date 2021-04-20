@@ -12,10 +12,10 @@
             display: inline-block;
             font-size: 14px;
             line-height: 20px;
-            color: $color-heading;
+            color: $color-text;
 
             &:before {
-                content: "/";
+                content: '/';
                 //font-family: FontAwesome;
                 margin: 0 5px;
             }
@@ -43,7 +43,7 @@
         }
     }
 
-    @include media("<md") {
+    @include media('<md') {
         position: relative;
         padding: 10px 0;
         .breadcrumb {
@@ -74,7 +74,7 @@
             color: $color-1st;
 
             &:before {
-                content: "/";
+                content: '/';
                 margin: 0 5px;
             }
 
@@ -90,6 +90,7 @@
         a {
             line-height: 20px;
             color: $color-heading;
+
             &:hover {
                 color: $color-1st;
             }
@@ -99,5 +100,4 @@
             }
         }
     }
-
 }

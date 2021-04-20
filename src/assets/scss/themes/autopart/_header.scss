@@ -8,7 +8,6 @@
 }
 
 .header--autopart {
-
     .ps-form--quick-search {
         button {
             background-color: $color-autopart;
@@ -18,6 +17,11 @@
                 cursor: pointer;
             }
         }
+        .ps-form__categories {
+            border: 1px solid #e1e1e1;
+            border-right: none;
+        }
+
     }
 
     .menu--product-categories {
@@ -45,7 +49,6 @@
                 background-color: #ffffff;
                 @include transform(rotate(45deg));
                 @include transform-origin(50% 50%);
-
             }
         }
 
@@ -115,7 +118,6 @@
     }
 
     &.header--sticky {
-
         .menu--product-categories {
             .menu__toggle {
                 span {
@@ -152,8 +154,7 @@
         }
     }
 
-
-    @include media("<lg") {
+    @include media('<lg') {
         display: none;
     }
 }
@@ -180,9 +181,12 @@
 
 .navigation--list {
     .navigation__item {
-        &.active, &:focus, &:active, &:hover {
-            i, span {
-
+        &.active,
+        &:focus,
+        &:active,
+        &:hover {
+            i,
+            span {
                 color: $color-autopart;
             }
         }

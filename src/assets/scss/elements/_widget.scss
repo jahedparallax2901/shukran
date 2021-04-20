@@ -47,7 +47,7 @@
                     top: 10px;
                     left: 0;
                     line-height: 1em;
-                    @include transition(all .4s ease);
+                    @include transition(all 0.4s ease);
                 }
 
                 &:hover {
@@ -56,7 +56,7 @@
 
                     &:before {
                         @include show;
-                        @include transition-delay(.2s);
+                        @include transition-delay(0.2s);
                     }
                 }
             }
@@ -115,7 +115,7 @@
             font-size: 14px;
         }
 
-        input[type=checkbox]:checked ~ label {
+        input[type='checkbox']:checked ~ label {
             font-weight: 500;
             color: $color-1st;
 
@@ -125,7 +125,6 @@
             }
 
             &:after {
-
             }
         }
 
@@ -147,7 +146,6 @@
         }
     }
 
-
     .ps-slider {
         display: block;
         margin-bottom: 10px;
@@ -159,46 +157,22 @@
         border: none;
     }
 
-    .ui-slider-range {
-        top: 0;
-        left: 0;
-        height: 100%;
-        background-color: $color-heading;
-        @include border-radius(0);
-        border: none;
-    }
-
-    .ui-slider-handle {
-        display: inline-block;
-        top: 50%;
-        height: 16px;
-        width: 16px;
-        outline: none;
-        cursor: pointer;
-        border: none;
-        background-color: $color-heading;
-        @include transform(translateY(-50%));
-        @include border-radius(50%);
-    }
-
-    .ps-slider__meta {
-        margin-bottom: 0;
-        font-size: 16px;
-        line-height: 1.8em;
-        color: #999;
-
-        span {
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-    }
-
     .ps-filter__btn {
         background-color: #888888;
         color: #fff;
 
         &:hover {
             background-color: $color-2nd;
+        }
+    }
+
+    .ant-checkbox-group {
+        width: 100%;
+
+        .ant-checkbox-group-item {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
         }
     }
 
@@ -227,6 +201,12 @@
             }
         }
     }
+
+    .ant-slider {
+        .ant-slider-rail {
+            background-color: #e4e4e4;
+        }
+    }
 }
 
 .widget_search {
@@ -236,6 +216,15 @@
 
 .widget_category {
     @extend %list-reset;
+}
+
+.widget_shop--brand {
+    .ant-radio-group {
+        .ant-radio-wrapper {
+            display: block;
+            margin-bottom: 6px;
+        }
+    }
 }
 
 .widget_size {
@@ -350,7 +339,6 @@
         color: $color-heading;
         font-weight: 600;
     }
-
 }
 
 .widget_contact-us {
@@ -362,7 +350,6 @@
         .ps-list--social {
             padding-top: 25px;
         }
-
     }
 }
 
@@ -425,7 +412,7 @@
     .ps-product {
         margin-bottom: 30px;
         border: 1px solid #eaeaea;
-        transition: all .4s ease;
+        transition: all 0.4s ease;
 
         .ps-product__content {
             display: block;
@@ -451,7 +438,7 @@
     padding: 15px 10px;
     border: 1px solid #d9d9d9;
     border-bottom: 5px solid red;
-    max-height: 500px;
+
     .widget-title {
         font-weight: 600;
         color: $color-heading;
@@ -498,7 +485,6 @@
                 height: 40px;
             }
         }
-
     }
 
     &.widget--categories {
@@ -563,7 +549,6 @@
             }
 
             &:last-child {
-
             }
         }
     }
@@ -599,7 +584,6 @@
             color: $color-text;
             padding-top: 15px;
             padding-bottom: 15px;
-
         }
     }
 
@@ -608,7 +592,7 @@
             color: $color-heading;
 
             &:before {
-                content: "\f105";
+                content: '\f105';
                 font-size: 20px;
             }
         }
@@ -636,7 +620,6 @@
         }
     }
 }
-
 
 .ps-widget--account-dashboard {
     .ps-widget__header {
@@ -677,7 +660,8 @@
             border: 1px solid #d1d1d1;
 
             li {
-                border-bottom: 1px solid #d1d1d1;
+                border-bottom: 1px solid #eaeaea;
+
                 a {
                     display: block;
                     padding: 15px 20px;
@@ -686,9 +670,11 @@
                     font-weight: 500;
                     color: $color-heading;
                     text-transform: capitalize;
+
                     i {
                         margin-right: 10px;
                     }
+
                     &:hover {
                         background-color: $color-1st;
                         color: #fff;
@@ -701,6 +687,7 @@
 
                 &.active {
                     background-color: $color-1st;
+
                     a {
                         color: #fff;
                     }
@@ -709,39 +696,3 @@
         }
     }
 }
-
-#nonlinear {
-    width: 90%;
-    margin: 10px auto;
-}
-
-.noUi-connect {
-    background-color: $color-1st;
-}
-
-.noUi-horizontal {
-    height: 8px;
-}
-
-.noUi-handle:before,
-.noUi-handle:after {
-    display: none;
-}
-
-.noUi-horizontal .noUi-handle {
-    width: 16px;
-    height: 16px;
-    left: -17px;
-    top: -5px;
-}
-
-html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
-    right: -7px;
-}
-
-.noUi-handle {
-    border: 3px solid $color-1st;
-    border-radius: 50%;
-    box-shadow: none;
-}
-

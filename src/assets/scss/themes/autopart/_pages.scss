@@ -4,6 +4,23 @@
             color: $color-autopart;
         }
     }
+    .ps-btn,
+    button.ps-btn {
+        background-color: $color-autopart;
+        color: #ffffff;
+        &:hover {
+            background-color: darken($color-autopart, 5%);
+        }
+    }
+
+    .ps-carousel {
+        .slick-arrow {
+            &:hover {
+                background-color: $color-autopart;
+                color: #fff;
+            }
+        }
+    }
 
     .ps-block--category-auto-part {
         &:hover {
@@ -13,6 +30,13 @@
 
     .ps-block--deal-hot {
         border-color: $color-autopart;
+        .ps-block__navigation {
+            a {
+                &:hover {
+                    border-color: $color-autopart;
+                }
+            }
+        }
     }
 
     .ps-deal-hot {
@@ -36,10 +60,10 @@
 
     .ps-home-promotions {
         padding-bottom: 50px;
-        @include media("<sm") {
+        @include media('<sm') {
             padding-bottom: 30px;
         }
-        @include media("<xs") {
+        @include media('<xs') {
             padding-bottom: 20px;
         }
     }
@@ -58,22 +82,6 @@
         }
     }
 
-    .ps-home-banner {
-        .owl-slider {
-            .owl-nav {
-                left: 50%;
-                max-width: 1200px;
-                margin: 0 auto;
-                @include transform(translate(-50%, -50%));
-
-                > * {
-                    width: 48px;
-                    height: 48px;
-                }
-            }
-        }
-    }
-
     .ps-site-features {
         border-top: 1px solid #e1e1e1;
 
@@ -86,10 +94,10 @@
     .ps-top-categories {
         padding: 70px 0 50px;
 
-        @include media("<sm") {
+        @include media('<sm') {
             padding: 50px 0 30px;
         }
-        @include media("<xs") {
+        @include media('<xs') {
             padding: 50px 0 30px;
         }
     }

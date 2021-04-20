@@ -1,9 +1,10 @@
 button {
     cursor: pointer;
-    @include transition(all .4s ease);
+    @include transition(all 0.4s ease);
 }
 
-.menu-toggle, .ps-btn--hamburger {
+.menu-toggle,
+.ps-btn--hamburger {
     position: relative;
     display: inline-block;
     //display: none;
@@ -59,7 +60,7 @@ button {
             bottom: auto;
             width: 20px;
             @include transform-origin(50% 50%);
-            background-color: #fc354c;;
+            background-color: #fc354c;
         }
 
         &:before {
@@ -71,13 +72,13 @@ button {
         }
     }
 
-    @include media("<lg") {
+    @include media('<lg') {
         display: inline-block;
     }
 }
 
-
-.ps-btn, button.ps-btn {
+.ps-btn,
+button.ps-btn {
     display: inline-block;
     padding: 15px 45px;
     font-size: 16px;
@@ -88,7 +89,7 @@ button {
     font-weight: 600;
     border-radius: 4px;
     background-color: $color-1st;
-    transition: all .4s ease;
+    transition: all 0.4s ease;
     cursor: pointer;
 
     &--rounded {
@@ -118,7 +119,7 @@ button {
     }
 
     &--sm {
-        padding: .5rem 2rem;
+        padding: 0.5rem 2rem;
         font-size: 1.2rem;
 
         &.ps-btn--curve {
@@ -164,7 +165,8 @@ button {
         }
     }
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
         background-color: #222;
         color: #fff;
 
@@ -187,7 +189,7 @@ button {
     i {
         @include center();
         color: #000000;
-        @include transition(all .4s ease);
+        @include transition(all 0.4s ease);
     }
 
     &:hover {
@@ -195,7 +197,6 @@ button {
             color: $color-2nd;
         }
     }
-
 }
 
 .ps-btn--close {
@@ -203,10 +204,10 @@ button {
     position: relative;
     width: 30px;
     height: 30px;
-    @include transition(all .4s ease);
+    @include transition(all 0.4s ease);
     @include border-radius(50%);
-
-    &:before, &:after {
+    &:before,
+    &:after {
         content: '';
         position: absolute;
         top: 50%;
@@ -215,7 +216,7 @@ button {
         height: 50%;
         background-color: #9f9a98;
         @include transform-origin(center center);
-        @include transition(all .4s ease);
+        @include transition(all 0.4s ease);
     }
 
     &:before {
@@ -229,49 +230,40 @@ button {
     &:hover {
         @include transform(rotate(180deg));
 
-        &:before, &:after {
+        &:before,
+        &:after {
             background-color: #f44336;
-            @include transition-delay(.3s);
+            @include transition-delay(0.3s);
         }
     }
 }
 
-#back2top {
-    position: fixed;
+.ps-btn--backtop {
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 30px;
-    right: 30px;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     z-index: 10000;
-    border: none;
-    border: 1px solid #ddd;
-    transition: all .4s ease;
-    box-shado: 0 0 3px 0 rgba(0, 0, 0, .2);
-    background-color: transparent;
-    border-radius: 4px;
-    @include hidden;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
 
     i {
-        z-index: 10001;
-        font-size: 14px;
-        margin-bottom: -2px;
-        color: $color-heading;
+        color: $color-text;
     }
 
     &:hover {
         cursor: pointer;
-        background-color: $color-1st;
         border-color: $color-1st;
+        i {
+            color: $color-1st;
+        }
     }
 
-    &.active {
-        bottom: 30px;
-        @include show;
+    @include media('<lg') {
+        display: none;
     }
 }
-
-
-
+.ant-back-top {
+    right: 50px !important;
+}

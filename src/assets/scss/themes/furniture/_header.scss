@@ -1,5 +1,4 @@
 .header--furniture {
-
     .header__extra {
         span {
             background-color: $color-furniture;
@@ -21,7 +20,6 @@
             &:hover {
                 color: $color-furniture;
             }
-
         }
     }
 
@@ -75,6 +73,11 @@
             }
         }
 
+        .ps-form__categories {
+            border: 1px solid #e1e1e1;
+            border-right: none;
+        }
+
         input {
             border: 1px solid #e1e1e1;
             border-left: none;
@@ -118,7 +121,6 @@
     }
 }
 
-
 .header--mobile {
     &.furniture {
         background-color: #fff;
@@ -144,9 +146,12 @@
 
 .navigation--list {
     .navigation__item {
-        &.active, &:focus, &:active, &:hover {
-            i, span {
-
+        &.active,
+        &:focus,
+        &:active,
+        &:hover {
+            i,
+            span {
                 color: $color-furniture;
             }
         }

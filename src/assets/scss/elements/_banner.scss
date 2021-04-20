@@ -5,7 +5,7 @@
 .ps-banner--1 {
     position: relative;
     p {
-        color: #0099CC;
+        color: #0099cc;
         font-size: 16px;
     }
     h4 {
@@ -21,7 +21,6 @@
     .ps-btn {
         padding: 11px 24px;
         font-weight: 600;
-
     }
     .ps-banner__content {
         @include vertical-align();
@@ -36,3 +35,5 @@
         }
     }
 }
+
+

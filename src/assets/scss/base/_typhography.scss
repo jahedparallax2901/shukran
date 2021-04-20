@@ -75,6 +75,12 @@ a {
     }
 }
 
+.site-content {
+    a {
+        color: inherit;
+    }
+}
+
 a,
 input,
 textarea,
@@ -257,4 +263,26 @@ figure {
     &--out-stock {
         color: $color-heading;
     }
+}
+
+.ps-rating {
+    display: inline-block;
+    i {
+        margin-right: 0.5em;
+        &.fa-star {
+            color: $color-1st;
+        }
+        &.fa-star-o {
+            color: #999;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.layout--default {
+       a {
+           color: inherit;
+       }
 }

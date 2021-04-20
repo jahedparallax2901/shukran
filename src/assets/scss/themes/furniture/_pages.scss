@@ -1,4 +1,22 @@
 #homepage-8 {
+    .ps-btn,
+    button.ps-btn {
+        background-color: $color-furniture;
+        color: #ffffff;
+
+        &:hover {
+            background-color: darken($color-furniture, 5%);
+        }
+    }
+
+    .ps-carousel {
+        .slick-arrow {
+            &:hover {
+                background-color: $color-furniture;
+                color: #fff;
+            }
+        }
+    }
 
     .ps-block--site-features {
         .ps-block__left {
@@ -11,7 +29,7 @@
     .ps-site-features {
         padding: 50px 0;
 
-        @include media("<sm") {
+        @include media('<sm') {
             padding: 30px 0;
         }
     }
@@ -34,7 +52,7 @@
         }
 
         .ps-collection {
-            @include media("<sm") {
+            @include media('<sm') {
                 margin-bottom: 30px;
             }
         }
@@ -92,7 +110,6 @@
         }
     }
 }
-
 
 .ps-footer--furniture {
     border-top: 1px solid #e1e1e1;

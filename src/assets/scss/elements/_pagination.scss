@@ -45,13 +45,25 @@
             margin-right: 0;
         }
     }
+
+
 }
 
 .ps-pagination {
     padding-top: 70px;
-    @include clearfix;
     text-align: center;
-    @include media("<sm") {
+    @include clearfix;
+
+    .ant-pagination {
+        .ant-pagination-prev, .ant-pagination-next {
+            .ant-pagination-item-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    @include media('<sm') {
         .pagination {
             > li {
                 margin-bottom: 10px;
@@ -60,10 +72,7 @@
                     line-height: 40px;
                     font-size: 1.4rem;
                 }
-
             }
         }
     }
 }
-
-

@@ -123,10 +123,7 @@ $dataEffect: 'data-effect-name';
 }
 
 // Map deep merge
-@function extend($map, $maps...
-/*, $deep */
-
-) {
+@function extend($map, $maps... /*, $deep */) {
     $last: nth($maps, -1);
     $deep: $last==true;
     $max: if($deep, length($maps) - 1, length($maps));
@@ -134,14 +131,17 @@ $dataEffect: 'data-effect-name';
         $current: nth($maps, $i);
         @if not $deep {
             $map: map-merge($map, $current);
-        }
-        @else {
-            @each $key,
-            $value in $current {
-                @if type-of($value)=="map" and type-of(map-get($map, $key))=="map" {
+        } @else {
+            @each $key, $value in $current {
+                @if type-of($value) == 'map' and type-of(map-get($map, $key)) == 'map' {
                     $value: extend(map-get($map, $key), $value, true);
                 }
-                $map: map-merge($map, ($key: $value));
+                $map: map-merge(
+                    $map,
+                    (
+                        $key: $value,
+                    )
+                );
             }
         }
     }
@@ -150,7 +150,50 @@ $dataEffect: 'data-effect-name';
 
 // Start effectSettings
 @mixin effectSettings($mainClass, $options) {
-    $default: extend(( 'effectName': '', 'front': ( 'duration': 400, 'delay': 0, 'easing': cubic-bezier(.5, .72, .24, .94), 'opacity': 1, 'translate': (0, 0), 'skew': 0, 'scale': 1, 'rotate': 0, 'rotateX': 0, 'rotateY': 0, 'perspective': 0, 'origin': center center, ), 'back': ( 'duration': 400, 'delay': 0, 'easing': cubic-bezier(.5, .72, .24, .94), 'backgroundColor': none, 'opacity': 1, 'translate': (0, 0), 'skew': 0, 'scale': 1, 'rotate': 0, 'rotateX': 0, 'rotateY': 0, 'perspective': 0, 'origin': center center, ), 'dataDefault': false, 'effectType': false, ), $options, true);
+    $default: extend(
+        (
+            'effectName': '',
+            'front': (
+                'duration': 400,
+                'delay': 0,
+                'easing': cubic-bezier(0.5, 0.72, 0.24, 0.94),
+                'opacity': 1,
+                'translate': (
+                    0,
+                    0,
+                ),
+                'skew': 0,
+                'scale': 1,
+                'rotate': 0,
+                'rotateX': 0,
+                'rotateY': 0,
+                'perspective': 0,
+                'origin': center center,
+            ),
+            'back': (
+                'duration': 400,
+                'delay': 0,
+                'easing': cubic-bezier(0.5, 0.72, 0.24, 0.94),
+                'backgroundColor': none,
+                'opacity': 1,
+                'translate': (
+                    0,
+                    0,
+                ),
+                'skew': 0,
+                'scale': 1,
+                'rotate': 0,
+                'rotateX': 0,
+                'rotateY': 0,
+                'perspective': 0,
+                'origin': center center,
+            ),
+            'dataDefault': false,
+            'effectType': false,
+        ),
+        $options,
+        true
+    );
     // Variable map get
     $effectName: map-get($default, 'effectName');
     $dataDefault: map-get($default, 'dataDefault');
@@ -186,7 +229,32 @@ $dataEffect: 'data-effect-name';
     #{$mainClass} {
         @extend %styleBasic;
         // Variable easing
-        $easeCubic: ( 'easeInCubic': cubic-bezier(0.550, 0.055, 0.675, 0.190), 'easeOutCubic': cubic-bezier(0.215, 0.610, 0.355, 1.000), 'easeInOutCubic': cubic-bezier(0.645, 0.045, 0.355, 1.000), 'easeInCirc': cubic-bezier(0.600, 0.040, 0.980, 0.335), 'easeOutCirc': cubic-bezier(0.075, 0.820, 0.165, 1.000), 'easeInOutCirc': cubic-bezier(0.785, 0.135, 0.150, 0.860), 'easeInExpo': cubic-bezier(0.950, 0.050, 0.795, 0.035), 'easeOutExpo': cubic-bezier(0.190, 1.000, 0.220, 1.000), 'easeInOutExpo': cubic-bezier(1.000, 0.000, 0.000, 1.000), 'easeInQuad': cubic-bezier(0.550, 0.085, 0.680, 0.530), 'easeOutQuad': cubic-bezier(0.165, 0.840, 0.440, 1.000), 'easeInOutQuad': cubic-bezier(0.770, 0.000, 0.175, 1.000), 'easeInQuart': cubic-bezier(0.755, 0.050, 0.855, 0.060), 'easeOutQuart': cubic-bezier(0.165, 0.840, 0.440, 1.000), 'easeInOutQuart': cubic-bezier(0.770, 0.000, 0.175, 1.000), 'easeInQuint': cubic-bezier(0.755, 0.050, 0.855, 0.060), 'easeOutQuint': cubic-bezier(0.230, 1.000, 0.320, 1.000), 'easeInOutQuint': cubic-bezier(0.860, 0.000, 0.070, 1.000), 'easeInSine': cubic-bezier(0.470, 0.000, 0.745, 0.715), 'easeOutSine': cubic-bezier(0.390, 0.575, 0.565, 1.000), 'easeInOutSine': cubic-bezier(0.445, 0.050, 0.550, 0.950), 'easeInBack': cubic-bezier(0.600, -0.280, 0.735, 0.045), 'easeOutBack': cubic-bezier(0.175, 0.885, 0.320, 1.275), 'easeInOutBack': cubic-bezier(0.680, -0.550, 0.265, 1.550), );
+        $easeCubic: (
+            'easeInCubic': cubic-bezier(0.55, 0.055, 0.675, 0.19),
+            'easeOutCubic': cubic-bezier(0.215, 0.61, 0.355, 1),
+            'easeInOutCubic': cubic-bezier(0.645, 0.045, 0.355, 1),
+            'easeInCirc': cubic-bezier(0.6, 0.04, 0.98, 0.335),
+            'easeOutCirc': cubic-bezier(0.075, 0.82, 0.165, 1),
+            'easeInOutCirc': cubic-bezier(0.785, 0.135, 0.15, 0.86),
+            'easeInExpo': cubic-bezier(0.95, 0.05, 0.795, 0.035),
+            'easeOutExpo': cubic-bezier(0.19, 1, 0.22, 1),
+            'easeInOutExpo': cubic-bezier(1, 0, 0, 1),
+            'easeInQuad': cubic-bezier(0.55, 0.085, 0.68, 0.53),
+            'easeOutQuad': cubic-bezier(0.165, 0.84, 0.44, 1),
+            'easeInOutQuad': cubic-bezier(0.77, 0, 0.175, 1),
+            'easeInQuart': cubic-bezier(0.755, 0.05, 0.855, 0.06),
+            'easeOutQuart': cubic-bezier(0.165, 0.84, 0.44, 1),
+            'easeInOutQuart': cubic-bezier(0.77, 0, 0.175, 1),
+            'easeInQuint': cubic-bezier(0.755, 0.05, 0.855, 0.06),
+            'easeOutQuint': cubic-bezier(0.23, 1, 0.32, 1),
+            'easeInOutQuint': cubic-bezier(0.86, 0, 0.07, 1),
+            'easeInSine': cubic-bezier(0.47, 0, 0.745, 0.715),
+            'easeOutSine': cubic-bezier(0.39, 0.575, 0.565, 1),
+            'easeInOutSine': cubic-bezier(0.445, 0.05, 0.55, 0.95),
+            'easeInBack': cubic-bezier(0.6, -0.28, 0.735, 0.045),
+            'easeOutBack': cubic-bezier(0.175, 0.885, 0.32, 1.275),
+            'easeInOutBack': cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        );
         // Mixin Effect type
         @mixin effectType {
             #{$front},
@@ -194,7 +262,7 @@ $dataEffect: 'data-effect-name';
                 @extend %transitionDefault;
             }
             @each $eff in $effectsDefault {
-                @if ($effectType=="#{$eff}") {
+                @if ($effectType== '#{$eff}') {
                     @extend %#{$eff};
                 }
             }
@@ -206,7 +274,7 @@ $dataEffect: 'data-effect-name';
                 @extend %transitionDefault;
             }
             @each $eff in $effectsDefault {
-                &[#{$dataEffect}="#{$eff}"] {
+                &[#{$dataEffect}='#{$eff}'] {
                     @extend %#{$eff};
                 }
             }
@@ -217,25 +285,32 @@ $dataEffect: 'data-effect-name';
                 background-color: $backbackgroundColor;
                 transform: perspective($frontperspective) translate(0, 0) scale(1) rotate(0) skew(0);
                 transform-origin: $frontorigin;
-                transition: all $frontduration*1ms $fronteasing $frontdelay*1ms;
+                transition: all $frontduration * 1ms $fronteasing $frontdelay * 1ms;
             }
             #{$back} {
                 visibility: hidden;
                 opacity: $backopacity;
                 background-color: $backbackgroundColor;
                 @if ($backrotateX==0) and ($backrotateY==0) {
-                    transform: perspective($backperspective) translate($backtranslate) scale($backscale) rotate($backrotate) skew($backskew);
-                }
-                @else {
-                    transform: perspective($backperspective) translate($backtranslate) scale($backscale) rotateX($backrotateX) rotateY($backrotateY) skew($backskew);
+                    transform: perspective($backperspective)
+                        translate($backtranslate)
+                        scale($backscale)
+                        rotate($backrotate)
+                        skew($backskew);
+                } @else {
+                    transform: perspective($backperspective)
+                        translate($backtranslate)
+                        scale($backscale)
+                        rotateX($backrotateX)
+                        rotateY($backrotateY)
+                        skew($backskew);
                 }
                 transform-origin: $backorigin;
-                transition: all $backduration*1ms $backeasing $backdelay*1ms;
+                transition: all $backduration * 1ms $backeasing $backdelay * 1ms;
                 // Easing custom cubic-bezier
-                @each $easingName,
-                $cubic in $easeCubic {
+                @each $easingName, $cubic in $easeCubic {
                     @if ($backeasing==$easingName) {
-                        transition: all $backduration*1ms $cubic $backdelay*1ms;
+                        transition: all $backduration * 1ms $cubic $backdelay * 1ms;
                     }
                 }
             }
@@ -243,31 +318,38 @@ $dataEffect: 'data-effect-name';
                 #{$front} {
                     opacity: $frontopacity;
                     @if ($frontrotateX==0) and ($frontrotateY==0) {
-                        transform: perspective($frontperspective) translate($fronttranslate) scale($frontscale) rotate($frontrotate) skew($frontskew);
-                    }
-                    @else {
-                        transform: perspective($frontperspective) translate($fronttranslate) scale($frontscale) rotateX($frontrotateX) rotateY($frontrotateY) skew($frontskew);
+                        transform: perspective($frontperspective)
+                            translate($fronttranslate)
+                            scale($frontscale)
+                            rotate($frontrotate)
+                            skew($frontskew);
+                    } @else {
+                        transform: perspective($frontperspective)
+                            translate($fronttranslate)
+                            scale($frontscale)
+                            rotateX($frontrotateX)
+                            rotateY($frontrotateY)
+                            skew($frontskew);
                     }
                     // Easing custom cubic-bezier
-                    @each $easingName,
-                    $cubic in $easeCubic {
+                    @each $easingName, $cubic in $easeCubic {
                         @if ($fronteasing==$easingName) {
-                            transition: all $frontduration*1ms $cubic $frontdelay*1ms;
+                            transition: all $frontduration * 1ms $cubic $frontdelay * 1ms;
                         }
                     }
                 }
                 #{$back} {
                     visibility: visible;
                     opacity: 1;
-                    transform: perspective($backperspective) translate(0, 0) scale(1) rotate(0) skew(0);
+                    transform: perspective($backperspective) translate(0, 0) scale(1) rotate(0)
+                        skew(0);
                 }
             }
         }
         // Include mixin
         @if $dataDefault {
             @include dataDefault;
-        }
-        @else {
+        } @else {
             @if $effectType {
                 @include effectType;
                 @if ($effectType==true) {
@@ -276,8 +358,8 @@ $dataEffect: 'data-effect-name';
             }
         }
         @if ($effectType==false) {
-            @if not ($effectName=='') {
-                &[#{$dataEffect}="#{$effectName}"] {
+            @if not($effectName== '') {
+                &[#{$dataEffect}='#{$effectName}'] {
                     @include effectCustom;
                 }
             }
@@ -310,11 +392,20 @@ $dataEffect: 'data-effect-name';
 }
 
 %transitionDefault {
-    transition: all 400ms cubic-bezier(.5, .72, .24, .94);
+    transition: all 400ms cubic-bezier(0.5, 0.72, 0.24, 0.94);
 }
 
 // EFFECT DEFAULT
-$effectsDefault: ( 'classic', 'fade', 'fadeUp', 'fadeRight', 'fadeDown', 'fadeLeft', 'flipX', 'flipY');
+$effectsDefault: (
+    'classic',
+    'fade',
+    'fadeUp',
+    'fadeRight',
+    'fadeDown',
+    'fadeLeft',
+    'flipX',
+    'flipY'
+);
 // Classic
 %classic {
     #{$back} {
@@ -440,4 +531,3 @@ $effectsDefault: ( 'classic', 'fade', 'fadeUp', 'fadeRight', 'fadeDown', 'fadeLe
         }
     }
 }
-

@@ -16,7 +16,6 @@
             &:hover {
                 color: $color-organic;
             }
-
         }
     }
 
@@ -39,6 +38,11 @@
         button {
             background-color: $color-organic;
             color: #ffffff;
+        }
+
+        .ps-form__categories {
+            border: 1px solid #e1e1e1;
+            border-right: none;
         }
 
         .form-group--icon {
@@ -119,9 +123,12 @@
 
 .navigation--list {
     .navigation__item {
-        &.active, &:focus, &:active, &:hover {
-            i, span {
-
+        &.active,
+        &:focus,
+        &:active,
+        &:hover {
+            i,
+            span {
                 color: $color-organic;
             }
         }
@@ -133,4 +140,3 @@
         background-color: $color-organic;
     }
 }
-

@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     min-height: 100%;
     position: relative;
 }
@@ -15,17 +16,17 @@ html, body {
             width: 25%;
         }
     }
-    @include media("<md") {
+    @include media('<md') {
         .ps-column {
             width: calc(100% / 3);
         }
     }
-    @include media("<sm") {
+    @include media('<sm') {
         .ps-column {
             width: calc(100% / 2);
         }
     }
-    @include media("<xs") {
+    @include media('<xs') {
         .ps-column {
             width: 100%;
         }
@@ -33,12 +34,12 @@ html, body {
 }
 
 .ps-col-tiny {
-    @include media("<sm") {
+    @include media('<sm') {
         .col-xs-12 {
             width: 50%;
         }
     }
-    @include media("<xs") {
+    @include media('<xs') {
         .col-xs-12 {
             width: 100%;
         }
@@ -57,7 +58,7 @@ body {
         padding: 0 30px;
         max-width: 100%;
     }
-    @include media("<xs") {
+    @include media('<xs') {
         padding: 0 15px;
     }
 }
