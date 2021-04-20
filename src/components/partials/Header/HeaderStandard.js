@@ -5,13 +5,27 @@ import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
-import { BsList, BsChevronDown, BsHeart, BsBag } from "react-icons/all";
-import { handleShowAuthModal, handleSignOut } from "../../../redux";
+import {
+  BsList,
+  BsChevronDown,
+  BsHeart,
+  BsBag,
+  AiOutlineClose,
+} from "react-icons/all";
+import {
+  getCartItems,
+  handleAddToCart,
+  handleShowAuthModal,
+  handleShowShoppingCart,
+  handleSignOut,
+} from "../../../redux";
 import { connect } from "react-redux";
 import Menu from "../../elements/menu/Menu";
 import { processGetRequest } from "../../../services/baseServices";
-import SearchHeader from '../../header/SearchHeader.jsx'
+import SearchHeader from "../../header/SearchHeader.jsx";
 import { Link } from "react-router-dom";
+import { userData } from "../../../helpers/authUtils";
+import { toast } from "react-toastify";
 
 class HeaderStandard extends Component {
   state = {
@@ -20,6 +34,7 @@ class HeaderStandard extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
+    const cart_id = localStorage.getItem("cart_id");
     processGetRequest("/homepage")
       .then((res) => {
         this.setState({
@@ -27,10 +42,46 @@ class HeaderStandard extends Component {
         });
       })
       .catch((err) => console.log(err));
+
+    cart_id && this.props.getCartItems(cart_id);
   }
+
+  handleItemDelete = (e, product_id, item_id) => {
+    const newProductlist = this.props.shoppingCart.cartProductlist.filter(
+      (item) => item.item_id !== item_id || item.product_id !== product_id
+    );
+    console.log(
+      "newProductlist",
+      this.props.shoppingCart.cartProductlist,
+      newProductlist,
+      product_id,
+      item_id
+    );
+    this.props.handleAddToCart(
+      newProductlist,
+      userData()?.token || "",
+      async (data, isSuccess) => {
+        if (isSuccess) {
+          await this.props.getCartItems(data.cart.id);
+          // this.props.handleShowShoppingCart();
+        } else {
+          toast.error("Something went wrong.");
+        }
+      },
+      false
+    );
+  };
+
   render() {
     const { categories } = this.state;
-    const { handleShowAuthModal, user, handleSignOut } = this.props;
+    const {
+      handleShowAuthModal,
+      user,
+      handleSignOut,
+      shoppingCart,
+      handleShowShoppingCart,
+      handleAddToCart,
+    } = this.props;
     return (
       <header
         className="header header--standard header--market-place-1"
@@ -67,8 +118,8 @@ class HeaderStandard extends Component {
               </Link>
             </div>
             <div className="header__content-center">
-                        <SearchHeader />
-                    </div>
+              <SearchHeader />
+            </div>
             <div className="header__content-right">
               <div className="header__actions">
                 <a className="header__extra" href="#">
@@ -85,80 +136,105 @@ class HeaderStandard extends Component {
                       <BsBag />
                     </i>
                     <span>
-                      <i>0</i>
+                      <i>
+                        {shoppingCart?.cartSummery?.total_items ||
+                          shoppingCart?.cartItems?.length ||
+                          0}
+                      </i>
                     </span>
                   </a>
                   <div className="ps-cart__content">
-                    <div className="ps-cart__items">
-                      <div className="ps-product--cart-mobile">
-                        <div className="ps-product__thumbnail">
-                          <a href="#">
-                            <img src={clothing7} alt="" />
-                          </a>
+                    {shoppingCart.cartItems?.length > 0 ? (
+                      <>
+                        <div className="ps-cart__items">
+                          {shoppingCart.cartItems.map((item) => (
+                            <>
+                              {item?.store_product &&
+                                item.store_product.map((store_item) => (
+                                  <div className="ps-product--cart-mobile">
+                                    <div className="ps-product__thumbnail">
+                                      <a href="#">
+                                        <img
+                                          src={store_item.product.single_image}
+                                          alt=""
+                                        />
+                                      </a>
+                                    </div>
+                                    <div className="ps-product__content">
+                                      <i className="ps-product__remove">
+                                        <AiOutlineClose
+                                          onClick={(e) =>
+                                            this.handleItemDelete(
+                                              e,
+                                              store_item.product_attribute
+                                                .product_id,
+                                              store_item.product_attribute
+                                                .attribute_type === 2
+                                                ? 0
+                                                : store_item.product_attribute
+                                                    .id
+                                            )
+                                          }
+                                        />
+                                      </i>
+                                      <Link
+                                        to={`/product/${store_item.product_id}`}
+                                      >
+                                        {store_item.product.name}
+                                      </Link>
+                                      <p>
+                                        <strong>Sold by:</strong> {item.name}
+                                      </p>
+                                      <small>
+                                        {store_item.quantity} x ৳
+                                        {store_item.sub_total_amount}
+                                      </small>
+                                    </div>
+                                  </div>
+                                ))}
+                            </>
+                          ))}
                         </div>
-                        <div className="ps-product__content">
-                          <i className="ps-product__remove" href="#">
-                            <FontAwesomeIcon icon={faTimes} />
-                          </i>
-                          <a href="product-default.html">
-                            MVMTH classNameical Leather Watch In Black
-                          </a>
-                          <p>
-                            <strong>Sold by:</strong> YOUNG SHOP
-                          </p>
-                          <small>1 x ৳59.99</small>
-                        </div>
-                      </div>
-                      <div className="ps-product--cart-mobile">
-                        <div className="ps-product__thumbnail">
-                          <a href="#">
-                            <img src={downloadBodyspray} alt="" />
-                          </a>
-                        </div>
-                        <div className="ps-product__content">
-                          <i className="ps-product__remove" href="#">
-                            <FontAwesomeIcon icon={faTimes} />
-                          </i>
-                          <a href="product-default.html">
-                            Sleeve Linen Blend Caro Pane Shirt
-                          </a>
-                          <p>
-                            <strong>Sold by:</strong> YOUNG SHOP
-                          </p>
-                          <small>1 x ৳59.99</small>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className="ps-cart__footer">
-                      <h3>
-                        Sub Total:<strong>৳59.99</strong>
-                      </h3>
-                      <figure>
-                        <a className="ps-btn" href="#">
-                          View Cart
-                        </a>
-                        <a className="ps-btn" href="checkout.html">
-                          Checkout
-                        </a>
-                      </figure>
-                    </div>
+                        <div className="ps-cart__footer">
+                          <h3>
+                            Sub Total:
+                            <strong>
+                              ৳{shoppingCart?.cartSummery?.total_amount || 0}
+                            </strong>
+                          </h3>
+                          <figure>
+                            <a
+                              className="ps-btn"
+                              href="#"
+                              onClick={handleShowShoppingCart}
+                            >
+                              View Cart
+                            </a>
+                            <a className="ps-btn" href="checkout.html">
+                              Checkout
+                            </a>
+                          </figure>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="ps-cart__items">
+                        <p>No Items in cart</p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 {user?.phone ? (
                   <div className="ps-block--user-header mr-0">
-                  <div className="ps-block__left">
+                    <div className="ps-block__left">
                       <i>
                         <FontAwesomeIcon icon={faUser} />
                       </i>
                     </div>
                     <div className="ps-block__right">
-                      <a>
-                        {user.phone}
-                      </a>
-                      <a onClick={()=>handleSignOut()}>Logout</a>
+                      <a>{user.phone}</a>
+                      <a onClick={() => handleSignOut()}>Logout</a>
                     </div>
-
                   </div>
                 ) : (
                   <div className="ps-block--user-header mr-0">
@@ -227,13 +303,18 @@ class HeaderStandard extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.auth.userData,
+    shoppingCart: state.shoppingCart,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleShowAuthModal: () => dispatch(handleShowAuthModal()),
-    handleSignOut: ()=> dispatch(handleSignOut())
+    handleSignOut: () => dispatch(handleSignOut()),
+    getCartItems: (cart_id) => dispatch(getCartItems(cart_id)),
+    handleAddToCart: (productList, token, cb, isBuyNow) =>
+      dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
+    handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
   };
 };
 

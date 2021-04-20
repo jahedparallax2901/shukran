@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { FaBars, FaHeart } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { toast } from "react-toastify";
 import { userData } from "../../../../helpers/authUtils";
 import {
+  getCartItems,
   handleAddToCart,
   handleShowAuthModal,
   triggeredAddToCart,
@@ -14,15 +16,31 @@ const ModuleDetailShoppingActions = ({
   selectedAttributeProduct,
   extended = false,
   handleAddToCart,
-
+  shoppingCart,
+  getCartItems
 }) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
-  const { id, attributes } = product;
+  const { id } = product;
 
   const handleAddItemToCart = (e) => {
     e.preventDefault();
-    handleAddToCart(id, selectedAttributeProduct?.attribute_item?.id || 0, quantity, userData()?.token || "",(data, sucess)=>{console.log(data)},false );
+    const newList = shoppingCart.cartProductlist;
+    newList.push({product_id: id, item_id: selectedAttributeProduct?.attribute_item?.id || 0, quantity: quantity})
+    handleAddToCart(
+      newList,
+      userData()?.token || "",
+      async (data, isSuccess) => {
+        if (isSuccess) {
+          await getCartItems(data.cart.id);
+          localStorage.setItem("cart_id", data.cart.id);
+          // this.props.handleShowShoppingCart();
+        } else {
+          toast.error("Something went wrong.");
+        }
+      },
+      false
+    );
   };
 
   const handleBuynow = (e) => {
@@ -179,6 +197,7 @@ const mapStateToProps = (state) => {
   return {
     userIsLoggedIn: state.auth.userIsLoggedIn,
     userToken: state.auth.userData?.token,
+    shoppingCart: state.shoppingCart,
   };
 };
 
@@ -187,11 +206,11 @@ const mapDispatchToProps = (dispatch) => {
     // handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
     handleShowAuthModal: (cb) => dispatch(handleShowAuthModal(cb)),
     triggeredAddToCart: () => dispatch(triggeredAddToCart()),
-    handleAddToCart: (product_id, item_id, quantity, token, cb, isBuyNow) =>
+    handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(
-        handleAddToCart(product_id, item_id, quantity, token, cb, isBuyNow)
+        handleAddToCart(productList, token, cb, isBuyNow)
       ),
-    // getCartItems: (token) => dispatch(getCartItems(token)),
+    getCartItems: (cart_id) => dispatch(getCartItems(cart_id)),
   };
 };
 

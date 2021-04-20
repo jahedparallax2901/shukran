@@ -2348,3 +2348,10 @@ button.ps-btn:active {
     padding: 0;
  }
 }
+
+/* shopping cart css */
+
+.delivery-charge .delivery-charge-title h6,
+.product-price .product-price-title h6{
+  font-weight: 600;
+}
