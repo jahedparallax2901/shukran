@@ -4,6 +4,7 @@ import {
   getCartItems,
   handleAddToCart,
   handleHideShoppingCart,
+  handleClearCart
 } from "../../../redux";
 import { connect } from "react-redux";
 import { TiTimesOutline } from "react-icons/ti";
@@ -41,7 +42,7 @@ class MiniShoppinCart extends Component {
 
           // this.props.handleShowShoppingCart();
         } else {
-          toast.error("Something went wrong.");
+          this.props.handleClearCart();
           localStorage.removeItem("cart_id");
           this.setState({ isCartProcessing: false });
         }
@@ -190,7 +191,7 @@ class MiniShoppinCart extends Component {
         className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}
       >
         {this.state.isCartProcessing ? (
-          <div className="loading-wrapper border">
+          <div className="loading-wrapper">
             <Spinner animation="grow" />
           </div>
         ) : (
@@ -458,7 +459,10 @@ class MiniShoppinCart extends Component {
                 </div>
               </>
             ) : (
-              <p>No items in cart</p>
+              <div className="loading-wrapper">
+              <h3>No items in cart</h3>
+
+              </div>
             )}
           </>
         )}
@@ -480,6 +484,7 @@ const mapDispatchToProps = (dispatch) => {
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     getCartItems: () => dispatch(getCartItems()),
+    handleClearCart: () => dispatch(handleClearCart())
   };
 };
 

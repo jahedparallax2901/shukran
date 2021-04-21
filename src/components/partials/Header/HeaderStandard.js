@@ -15,6 +15,7 @@ import {
 import {
   getCartItems,
   handleAddToCart,
+  handleClearCart,
   handleShowAuthModal,
   handleShowShoppingCart,
   handleSignOut,
@@ -26,10 +27,12 @@ import SearchHeader from "../../header/SearchHeader.jsx";
 import { Link } from "react-router-dom";
 import { userData } from "../../../helpers/authUtils";
 import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
 class HeaderStandard extends Component {
   state = {
     categories: [],
+    isCartProcessing: false,
   };
 
   componentDidMount() {
@@ -47,6 +50,7 @@ class HeaderStandard extends Component {
   }
 
   handleItemDelete = (e, product_id, item_id) => {
+    this.setState({ isCartProcessing: true });
     const newProductlist = this.props.shoppingCart.cartProductlist.filter(
       (item) => item.item_id !== item_id || item.product_id !== product_id
     );
@@ -63,9 +67,13 @@ class HeaderStandard extends Component {
       async (data, isSuccess) => {
         if (isSuccess) {
           await this.props.getCartItems(data.cart.id);
+          this.setState({ isCartProcessing: false });
+
           // this.props.handleShowShoppingCart();
         } else {
-          toast.error("Something went wrong.");
+          localStorage.removeItem("cart_id");
+          this.props.handleClearCart();
+          this.setState({ isCartProcessing: false });
         }
       },
       false
@@ -143,84 +151,97 @@ class HeaderStandard extends Component {
                       </i>
                     </span>
                   </a>
-                  <div className="ps-cart__content">
-                    {shoppingCart.cartItems?.length > 0 ? (
-                      <>
-                        <div className="ps-cart__items">
-                          {shoppingCart.cartItems.map((item) => (
-                            <>
-                              {item?.store_product &&
-                                item.store_product.map((store_item) => (
-                                  <div className="ps-product--cart-mobile">
-                                    <div className="ps-product__thumbnail">
-                                      <a href="#">
-                                        <img
-                                          src={store_item.product.single_image}
-                                          alt=""
-                                        />
-                                      </a>
-                                    </div>
-                                    <div className="ps-product__content">
-                                      <i className="ps-product__remove">
-                                        <AiOutlineClose
-                                          onClick={(e) =>
-                                            this.handleItemDelete(
-                                              e,
-                                              store_item.product_attribute
-                                                .product_id,
-                                              store_item.product_attribute
-                                                .attribute_type === 2
-                                                ? 0
-                                                : store_item.product_attribute
-                                                    .id
-                                            )
-                                          }
-                                        />
-                                      </i>
-                                      <Link
-                                        to={`/product/${store_item.product_id}`}
-                                      >
-                                        {store_item.product.name}
-                                      </Link>
-                                      <p>
-                                        <strong>Sold by:</strong> {item.name}
-                                      </p>
-                                      <small>
-                                        {store_item.quantity} x ৳
-                                        {store_item.sub_total_amount}
-                                      </small>
-                                    </div>
-                                  </div>
-                                ))}
-                            </>
-                          ))}
-                        </div>
 
-                        <div className="ps-cart__footer">
-                          <h3>
-                            Sub Total:
-                            <strong>
-                              ৳{shoppingCart?.cartSummery?.total_amount || 0}
-                            </strong>
-                          </h3>
-                          <figure>
-                            <a
-                              className="ps-btn"
-                              href="#"
-                              onClick={handleShowShoppingCart}
-                            >
-                              View Cart
-                            </a>
-                            <a className="ps-btn" href="checkout.html">
-                              Checkout
-                            </a>
-                          </figure>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="ps-cart__items">
-                        <p>No Items in cart</p>
+                  <div className="ps-cart__content">
+                    {this.state.isCartProcessing ? (
+                      <div className="loading-wrapper">
+                        <Spinner animation="grow" />
                       </div>
+                    ) : (
+                      <>
+                        {shoppingCart.cartItems?.length > 0 ? (
+                          <>
+                            <div className="ps-cart__items">
+                              {shoppingCart.cartItems.map((item) => (
+                                <>
+                                  {item?.store_product &&
+                                    item.store_product.map((store_item) => (
+                                      <div className="ps-product--cart-mobile">
+                                        <div className="ps-product__thumbnail">
+                                          <a href="#">
+                                            <img
+                                              src={
+                                                store_item.product.single_image
+                                              }
+                                              alt=""
+                                            />
+                                          </a>
+                                        </div>
+                                        <div className="ps-product__content">
+                                          <i className="ps-product__remove">
+                                            <AiOutlineClose
+                                              onClick={(e) =>
+                                                this.handleItemDelete(
+                                                  e,
+                                                  store_item.product_attribute
+                                                    .product_id,
+                                                  store_item.product_attribute
+                                                    .attribute_type === 2
+                                                    ? 0
+                                                    : store_item
+                                                        .product_attribute.id
+                                                )
+                                              }
+                                            />
+                                          </i>
+                                          <Link
+                                            to={`/product/${store_item.product_id}`}
+                                          >
+                                            {store_item.product.name}
+                                          </Link>
+                                          <p>
+                                            <strong>Sold by:</strong>{" "}
+                                            {item.name}
+                                          </p>
+                                          <small>
+                                            {store_item.quantity} x ৳
+                                            {store_item.sub_total_amount}
+                                          </small>
+                                        </div>
+                                      </div>
+                                    ))}
+                                </>
+                              ))}
+                            </div>
+
+                            <div className="ps-cart__footer">
+                              <h3>
+                                Sub Total:
+                                <strong>
+                                  ৳
+                                  {shoppingCart?.cartSummery?.total_amount || 0}
+                                </strong>
+                              </h3>
+                              <figure>
+                                <a
+                                  className="ps-btn"
+                                  href="#"
+                                  onClick={handleShowShoppingCart}
+                                >
+                                  View Cart
+                                </a>
+                                <a className="ps-btn" href="checkout.html">
+                                  Checkout
+                                </a>
+                              </figure>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="loading-wrapper">
+                            <h3>No Items in cart</h3>
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                 </div>
@@ -315,6 +336,7 @@ const mapDispatchToProps = (dispatch) => {
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
+    handleClearCart: () => dispatch(handleClearCart()),
   };
 };
 

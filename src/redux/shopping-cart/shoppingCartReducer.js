@@ -2,6 +2,7 @@ import {
   CHECK_UNCHECK_CART_ITEM_FAILURE,
   CHECK_UNCHECK_CART_ITEM_REQUEST,
   CHECK_UNCHECK_CART_ITEM_SUCCESS,
+  CLEAR_CART,
   // ADD_TO_CART_REQUEST, ADD_TO_CART_SUCCESS,
   DESTROYED_TRIGGERED_FLAG,
   GET_CART_ITEMS_SUCCESS,
@@ -109,6 +110,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSkuLoading: false,
         skuListFailureMsg: action.payload,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        isTriggeredFromProduct: false,
+        cartItems: [],
+        isSummeryLoading: false,
+        cartSummery: null,
+        cartSummeryErrMsg: null,
+        isSkuLoading: false,
+        skuList: [],
+        skuListFailureMsg: null,
+        cartProductlist: [],
       };
     default:
       return state;

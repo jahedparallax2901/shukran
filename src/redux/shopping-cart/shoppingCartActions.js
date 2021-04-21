@@ -5,6 +5,7 @@ import {
   CHECK_UNCHECK_CART_ITEM_FAILURE,
   CHECK_UNCHECK_CART_ITEM_REQUEST,
   CHECK_UNCHECK_CART_ITEM_SUCCESS,
+  CLEAR_CART,
   COUNTER_UPDATE,
   DESTROYED_TRIGGERED_FLAG,
   GET_CART_ITEMS_FAILURE,
@@ -174,6 +175,14 @@ const getCartItemsFailure = (errMsg) => {
     payload: errMsg,
   };
 };
+
+// Clear cart
+
+export const handleClearCart = ()=>{
+  return{
+    type: CLEAR_CART
+  }
+}
 
 export const cartAmountUpdate = (cartItems, id) => {
   return (dispatch) => {
