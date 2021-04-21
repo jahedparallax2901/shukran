@@ -311,7 +311,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleShowAuthModal: () => dispatch(handleShowAuthModal()),
     handleSignOut: () => dispatch(handleSignOut()),
-    getCartItems: (cart_id) => dispatch(getCartItems(cart_id)),
+    getCartItems: () => dispatch(getCartItems()),
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),

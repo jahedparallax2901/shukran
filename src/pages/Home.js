@@ -37,6 +37,8 @@ import Rating from "../components/elements/Rating";
 import CategoryProducts from "../components/partials/homepage/CategoryProducts";
 import AllCategories from "../components/partials/homepage/AllCategories";
 import DealOfTheDay from "../components/partials/homepage/DealOfTheDay";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 class Home extends Component {
   state = {

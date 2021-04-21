@@ -56,7 +56,7 @@ const ProductDetailFullwidth = ({ product }) => {
                             onChange={()=>setSelectedAttributeProduct(attr || {})}
                           />
                           <Form.Label className="mr-2">
-                            {attr.attribute_item.value}
+                            {attr?.attribute_item?.value}
                           </Form.Label>
                         </Form.Group>
                       ))}

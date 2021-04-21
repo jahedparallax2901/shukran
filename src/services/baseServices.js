@@ -63,14 +63,14 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
     axios.post(`${BASE_API_URL}${url}`, data, {
         headers: {
           "Content-Type": "application/json",
-          "x-auth-token": isAuthenticationRequired? authData?.token : "",
+          "Authorization": isAuthenticationRequired? authData?.token : "",
           "x-api-client": getDeviceType(),
         },
       }).then((res) => {
-        resolve(res.data);
+        console.log("res",res)
+        resolve(res);
       }).catch((err) => {
-        console.error(err);
-        reject(err.message);
+        reject(err.response.data);
       });
   });
 };

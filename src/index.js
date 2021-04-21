@@ -11,11 +11,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'antd/dist/antd.css';
 import 'react-image-lightbox/style.css';
+import { ToastContainer } from 'react-toastify';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <ToastContainer position="bottom-right" autoClose={3000}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,41 @@
+.coupon-status-success {
+  background-color: hsla(0, 89%, 81%, 0.863);
+  padding: 5px;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: hsla(0, 94%, 87%, 0.4);
+  }
+
+  svg {
+    color: hsl(0, 92%, 49%);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.coupon-status-not-applicable{
+    background-color: hsla(42, 86%, 73%, 0.863);
+    padding: 5px;
+    border-radius: 2px;
+
+    &:hover {
+        background-color: hsla(42, 86%, 73%, 0.4);
+      }
+}
+
+.loading-wrapper {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 19px;
+
+  .spinner-grow{
+      width: 50px;
+      height: 50px;
+  }
+}

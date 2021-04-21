@@ -122,8 +122,9 @@ const addToCartFailure = (errMsg) => {
   };
 };
 
-export const getCartItems = (cart_id, callback) => {
+export const getCartItems = ( callback) => {
   const authData = userData();
+  const cart_id = localStorage.getItem("cart_id");
   if (authData?.token) {
     return (dispatch) => {
       dispatch(getCartItemsRequest());
@@ -132,7 +133,8 @@ export const getCartItems = (cart_id, callback) => {
         .get(BASE_API_URL + "/get-cart", {
           params: {cart_id: cart_id},
           headers: {
-            "Authorisation": authData.token,
+            "Content-Type": "application/json",
+            "Authorisation": authData.token || "",
             "x-api-client": getDeviceType(),
           },
         })

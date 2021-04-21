@@ -32,7 +32,7 @@ const ModuleDetailShoppingActions = ({
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
-          await getCartItems(data.cart.id);
+          await getCartItems();
           localStorage.setItem("cart_id", data.cart.id);
           // this.props.handleShowShoppingCart();
         } else {
@@ -210,7 +210,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(
         handleAddToCart(productList, token, cb, isBuyNow)
       ),
-    getCartItems: (cart_id) => dispatch(getCartItems(cart_id)),
+    getCartItems: () => dispatch(getCartItems()),
   };
 };
 
