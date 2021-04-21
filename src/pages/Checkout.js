@@ -56,35 +56,93 @@ import {
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
 import {toast} from "react-toastify";
+import ModalHeader from "react-bootstrap/ModalHeader";
 
 
 const Checkout = () => {
 
+    const [dynamicCountry , setDynamicCountry] = useState([
+       0
+    ]);
+
+    const [dynamicElements , setDynamicElements] = useState([
+        {
+            address: [ {id: 1, name: "--select country--"},
+                { id: 2, name: "Bangladesh",} ]
+        }
+    ])
+    const [defaultSelected , setDefaultSelected] = useState([0])
+
+
     const [selectedAddress , setSelectedAddress] = useState(0);
+    const [selectedContact , setSelectedContact] = useState(0);
+
     const [isShowModal , setIsShowModal] = useState(false);
+    const [isShowContactModal , setIsShowContactModal] = useState(false);
+
     const [isEdited , setIsEdited] = useState(false);
 
     const [deliverAddress , setDeliveryAddress ] = useState([]);
+    const [contacts , setContacts ] = useState([]);
+
     const [formData , setFormData] = useState({
         country_code: '+880',
         country: 'bangladesh'
     });
 
-
     const [numberOfPicture , setNumberOfPicture ] = useState([
-        {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}, {test: ""}
+        {
+            url: "https://parallaxlogic.dev/shukran-view/img/cash.jpg",
+            name: "Cash on Delivery"
+        },
+        {
+            url: "https://parallaxlogic.dev/shukran-view/img/ssl.jpg",
+            name: "SSL Commerce"
+        },
+        {
+            url: "https://parallaxlogic.dev/shukran-view/img/payment-method/02.png",
+            name: "Bkash"
+        },
+        {
+            url: "https://parallaxlogic.dev/shukran-view/img/payment-method/01.jpg",
+            name: "Rocket"
+        },
     ])
 
 
-    useEffect( ()=>{
 
+    const [country , setCountry] = useState([{id:0, name: "--select address--"},{id:1 , name: "Bangladesh"}])
+    const [division , setDivision] = useState([])
+    const [district , setDistrict] = useState([])
+    const [upazilla , setUpazilla] = useState([])
+    const [upazillaArea , setUpazillaArea] = useState([])
+
+
+    const [divisionShow , setDivisionShow] = useState(false)
+    const [districtShow , setDistrictShow] = useState(false)
+    const [upazillaShow , setUpdazillaShow] = useState(false)
+    const [upazillaAreaShow , setUpazillaAreaShow] = useState(false)
+
+
+
+
+    useEffect( ()=>{
+       getAllData()
+    },[])
+
+    useEffect( ()=>{
+        console.log(selectedContact)
+        console.log(selectedAddress)
+    },[selectedContact,selectedAddress])
+
+
+    const getAllData = () =>{
         processGetRequest('/user-details').then((res)=>{
             console.log(res)
             setDeliveryAddress(res.user_info.addresses)
+            setContacts(res.user_info.contacts)
         })
-
-    },[])
-
+    }
 
     const handleShowModal = (request) =>{
         if (request === 'put'){
@@ -95,32 +153,56 @@ const Checkout = () => {
         setIsShowModal(true)
     }
 
-    const handleHideModal = () =>{
-        setIsShowModal(false)
-    }
+    const handleHideModal = () =>{setIsShowModal(false)}
 
     const handleOnChange = (e) =>{
         setFormData({...formData, [e.target.name]: e.target.value})
         console.log(formData)
     }
 
-    const handleFormSubmit = (e) =>{
+    const handleShowContactModal = (request) =>{
+        if (request === 'put'){
+            setIsEdited(true)
+        }else {
+            setIsEdited(false)
+        }
+        setIsShowContactModal(true)
+    }
+    const handleHideContactModal = () =>{
+        setIsShowContactModal(false)
+    }
+
+
+
+    const handleFormSubmit = (e,url) =>{
         e.preventDefault()
-        processPostRequest('/add-address', formData).then((res)=>{
+        processPostRequest(url, formData).then((res)=>{
             console.log(res)
             toast.success(res.message)
+            getAllData()
             handleHideModal()
+            handleHideContactModal()
         }).catch((err)=>{
             console.log(err)
         })
     }
 
-
-
+    const handleDeleteData = (url) =>{
+        processDeleteRequest(url).then((res)=>{
+            getAllData()
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
 
     const setSelectAddress =(e) =>{
         console.log(e)
-        setSelectedAddress(e)
+        //setSelectedAddress(e)
+    }
+
+    const setSelectContact =(e) =>{
+        console.log(e)
+        //setSelectedContact(e)
     }
 
     const PaymentOption = () => {
@@ -128,17 +210,17 @@ const Checkout = () => {
             <ScrollMenu
                 arrowLeft={<div style={{ fontSize: "30px" }}><BiLeftArrowCircle/></div>}
                 arrowRight={<div style={{ fontSize: "30px" }}><BiRightArrowCircle/></div>}
-                data={numberOfPicture.map((picture, index) => (
+                data={numberOfPicture.map((data, index) => (
 
                     <div className="owl-item" style={{width: 230, marginRight: 25}}>
                         <div className="single-checkout-body single-checkout-body-first payment-body">
                             <div className="checkout-body-location">
-                                <h4><img src="https://reactjs.org/logo-og.png" alt /></h4>
+                                <h4><img src={data.url} alt /></h4>
                                 <div className="location-edit">
                                     <button type="button"><FiX/></button>
                                 </div>
                             </div>
-                            <span>Cash on Delivery</span>
+                            <span>{data.name}</span>
                         </div>
                     </div>
 
@@ -147,33 +229,197 @@ const Checkout = () => {
         );
     };
 
-
     const DeliveryAddress = () => {
         return(
             <>
                 {deliverAddress && deliverAddress.map((data , index) =>(
                     <>
                         <div
-                            onClick={ (e) =>{ setSelectAddress(index) }}
+                            onClick={ (e) =>{
+                              setSelectedAddress(index) }}
                             id={index}
                             key={index}
                             className="single-checkout-body single-checkout-body">
 
                             <div className="checkout-body-location">
-                                <h4>Home</h4>
+                                {deliverAddress[index].address_type === 0 && <h4>Home Address</h4>}
+                                {deliverAddress[index].address_type === 1 && <h4>Office Address</h4>}
+                                {deliverAddress[index].address_type === 2 && <h4>Other</h4>}
+
                                 <div className="location-edit">
                                     <button onClick={()=>handleShowModal('put')} type="button"><MdEdit/></button>
-                                    <button onClick={()=>{ processDeleteRequest(`/remove-address/${data.id}`) }} style={{marginLeft: '5px'}} type="button"><FiX/></button>
+                                    <button onClick={()=>{ handleDeleteData(`/remove-address/${data.id}`) }} style={{marginLeft: '5px'}} type="button"><FiX/></button>
                                 </div>
                             </div>
                             <p>{data.name}</p>
-                            <p>{data.address}</p>
-                            <p>post code : </p>
+                            <p>{data?.address} </p>
                         </div>
                     </>
                 ) )}
             </>
         )
+    }
+
+    const ContactNumber = () => {
+        return(
+            <>
+                {contacts && contacts.map((data , index) =>(
+                    <>
+                        <div
+                            onClick={ () =>{ setSelectContact(index) }}
+                            style={{marginTop: '5px'}}
+                            id={index}
+                            key={index}
+                            className="single-checkout-body card-number">
+                            <div className="checkout-body-location">
+                                <h4>phone number</h4>
+                                <div className="location-edit">
+                                    <button onClick={()=>handleShowContactModal('put')}  type="button"><MdEdit/></button>
+                                    <button onClick={()=>{handleDeleteData(`/remove-contact/${data.id}`) }}  style={{marginLeft: '5px'}}  type="button"><FiX/></button>
+                                </div>
+                            </div>
+                            <p>{data.phone_number}</p>
+                        </div>
+                    </>
+                ) )}
+            </>
+        )
+    }
+
+
+
+    const getLocation = (index , id) =>{
+
+        var url = ''
+
+        if (index === 0){
+            url = '/division-list'
+        }else if (index === 1){
+            url = '/division-district-list/'+id
+        }else if (index === 2){
+            url = '/district-upazila-list/'+id
+        }else if (index === 3){
+            url = '/upazila-area-list/'+id
+        }
+
+        processGetRequest(url).then((res)=>{
+            console.log(res)
+            setDynamicElements(dynamicElements => [...dynamicElements , {address: res}])
+        })
+    }
+
+
+    const DynamicAddress = () =>{
+        return(<>
+                {dynamicCountry && dynamicCountry.map( (data , index) =>{
+                        return(<>
+                            <Form.Control
+                                onChange={ (e) => {
+                                    if ( dynamicCountry.length < 4){
+                                        setDynamicCountry(dynamicCountry => [...dynamicCountry , 1])
+                                        console.log(dynamicCountry)
+                                        getLocation(index , e.target.value)
+
+                                    }
+                                }}
+
+                                id={index}
+                                name={index}
+                                style={{height: '40px' , fontSize: '12px'}}
+                                as="select"
+                                size={'lg'}>
+                                {dynamicElements[index]?.address && dynamicElements[index]?.address.map((data, index) =>(
+                                    <option id={data.id} value={data.id}> {data.name} </option>
+                                )) }
+
+                            </Form.Control>
+                        </>)
+                    }
+                )}
+            </>
+        )
+
+
+/*
+        return(
+            <>{dynamicCountry && dynamicCountry.map( (data , index) =>(
+
+                <Form.Control
+                    name={index}
+                    onChange={ (e) => { setDynamicCountry({...dynamicCountry , index})
+                        console.log('test') }}
+                    style={{height: '40px' , fontSize: '12px'}}
+                    as="select"
+                    size={'lg'}>
+
+                </Form.Control>
+
+                ))}
+            </>
+        )
+        */
+    }
+
+    const DynamicElement = ()=>{
+        return(
+            <>
+                {dynamicElements && dynamicElements.map( (data , index) =>(
+                    <>
+                    <option> {data.name}</option>
+                    </>
+                ))}
+            </>
+        )
+    }
+
+
+    const getLocationV2 = (url , id) =>{
+
+        if (id !== null){
+            processGetRequest(url+"/"+id).then((res)=>{
+                /*  console.log(res)
+                  setDynamicElements(dynamicElements => [...dynamicElements , {address: res}])*/
+                if (url === '/division-list'){
+                    setDivision(res)
+
+                }
+                if (url === '/division-district-list'){
+                    setDistrict(res)
+                    setDistrictShow(true)
+
+
+                    setUpdazillaShow(false)
+                    setUpazillaAreaShow(false)
+
+                }
+                if (url === '/district-upazila-list'){
+                    setUpazilla(res)
+                    setUpdazillaShow(true)
+                    setUpazillaAreaShow(false)
+
+                }
+                if (url === '/upazila-area-list'){
+                    setUpazillaArea(res)
+                    setUpazillaAreaShow(true)
+
+
+                }
+
+
+            })
+        }
+        else {
+            processGetRequest(url).then((res)=>{
+                /*  console.log(res)
+                  setDynamicElements(dynamicElements => [...dynamicElements , {address: res}])*/
+                if (url === '/division-list'){
+                    setDivision(res)
+                    setDivisionShow(true)
+                }
+            })
+        }
+
+
     }
 
 
@@ -248,52 +494,149 @@ const Checkout = () => {
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
-
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Address <span className="text-danger">*</span> </Form.Label>
                             <Form.Control
                                 name={`address`}
-                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].address : ''}
-                                onChange={(e)=>handleOnChange(e)}
-                                style={{height: '40px' , fontSize: '12px'}}
-                                type="email" placeholder="Enter address" />
-                            <Form.Text className="text-muted">
-                            </Form.Text>
-                        </Form.Group>
-
-                        <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Country <span className="text-danger">*</span> </Form.Label>
-                        <Form.Control
-                            name={`country`}
-
-                            onChange={(e)=>handleOnChange(e)}
-                            style={{height: '40px' , fontSize: '12px'}}
-                            as="select"
-                            size={'lg'}>
-                            <option value={`bangladesh`}>Bangladesh</option>
-                            <option value={`usa`}>USA</option>
-                            <option value={`nepal`}>Nepal</option>
-                            <option value={`uganda`}>Uganda</option>
-
-                        </Form.Control>
-
-
-                        <Form.Group style={{marginTop: '0.5vw', fontSize: '14px'}} controlId="formBasicEmail">
-                            <Form.Label >Post Code <span className="text-danger">*</span> </Form.Label>
-                            <Form.Control
-                                name={`post_code`}
-                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].post_code : ''}
+                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].email : ''}
                                 onChange={(e)=>handleOnChange(e)}
                                 style={{height: '40px' , fontSize: '12px'}}
                                 type="text"
-                                placeholder="Post code" />
+                                placeholder="Enter address" />
                             <Form.Text className="text-muted">
                             </Form.Text>
                         </Form.Group>
+
+
+                      {/*  <DynamicAddress/>*/}
+
+
+                      {/*Country*/}
+                        <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Country <span className="text-danger">*</span> </Form.Label>
+                        <Form.Control
+                            onChange={(e) => {
+                                console.log(e.target.value)
+                                getLocationV2('/division-list', null)
+                            }}
+                            index={`0`}
+                            style={{height: '40px' , fontSize: '12px'}}
+                            as="select"
+                            size={'lg'}>
+
+                            {country && country.map((data , index) =>(
+                                <>
+                                    <option id={data.id} value={data.id}> {data.name} </option>
+                                </>
+                            ))}
+
+                        </Form.Control>
+
+                        {divisionShow &&
+                       <>
+                           <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Division <span className="text-danger">*</span> </Form.Label>
+                           <Form.Control
+                           onChange={(e) => {
+                               console.log(e.target.value)
+                               getLocationV2('/division-district-list', e.target.value)
+                               handleOnChange(e)
+                           }}
+                           name={'division_id'}
+                           index={`0`}
+                           style={{height: '40px' , fontSize: '12px'}}
+                           as="select"
+                           size={'lg'}>
+
+                           {division && division.map((data , index) =>(
+                               <>
+                                   <option id={data.id} value={data.id}> {data.name} </option>
+                               </>
+                           ))}
+
+                       </Form.Control>
+                       </>
+                      }
+
+                        {districtShow &&
+                            <>
+                                <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>District <span className="text-danger">*</span> </Form.Label>
+                                <Form.Control
+                                    name={'district_id'}
+                                onChange={(e) => {
+                                    console.log(e.target.value)
+                                    getLocationV2('/district-upazila-list', e.target.value)
+                                    handleOnChange(e)
+                                }}
+                                index={`0`}
+                                style={{height: '40px' , fontSize: '12px'}}
+                                as="select"
+                                size={'lg'}>
+
+                                {district && district.map((data , index) =>(
+                                    <>
+                                        <option id={data.id} value={data.id}> {data.name} </option>
+                                    </>
+                                ))}
+
+                            </Form.Control>
+                            </>
+                         }
+
+                        {upazillaShow &&
+                            <>
+                                <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Upazilla <span className="text-danger">*</span> </Form.Label>
+                                <Form.Control
+                                    name={'upazila_id'}
+                                    onChange={(e) => {
+                                        console.log(e.target.value)
+                                        getLocationV2('/upazila-area-list', e.target.value)
+                                        handleOnChange(e)
+                                    }}
+                                    index={`0`}
+                                    style={{height: '40px' , fontSize: '12px'}}
+                                    as="select"
+                                    size={'lg'}>
+
+                                    {upazilla && upazilla.map((data , index) =>(
+                                        <>
+                                            <option id={data.id} value={data.id}> {data.name} </option>
+                                        </>
+                                    ))}
+
+                                </Form.Control>
+                            </>
+
+                         }
+
+
+                        {upazillaAreaShow &&
+
+                            <>
+                                <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Upazilla Thana <span className="text-danger">*</span> </Form.Label>
+                                <Form.Control
+                                    name={'area_id'}
+                                    onChange={(e) => {
+                                        console.log(e.target.value)
+                                    }}
+                                    index={`0`}
+                                    style={{height: '40px' , fontSize: '12px'}}
+                                    as="select"
+                                    size={'lg'}>
+
+                                    {upazillaArea && upazillaArea.map((data , index) =>(
+                                        <>
+                                            <option id={data.id} value={data.id}> {data.name} </option>
+                                        </>
+                                    ))}
+
+                                </Form.Control>
+                            </>
+                 }
+
 
 
                         <Form.Group
                             onChange={(e)=>handleOnChange(e)}>
-                            <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Address Type <span className="text-danger">*</span> </Form.Label>
+                            <Form.Label style={{marginTop: '1.5vw', fontSize: '14px'}}>Address Type <span className="text-danger">*</span> </Form.Label>
                                <div className={'d-flex'}>
                                    <Form.Check
                                        name={`address_type`}
@@ -328,7 +671,7 @@ const Checkout = () => {
                         <Modal.Footer>
 
                             <Button onClick={handleHideModal} style={{height: '2vw' , width: '5vw' ,fontSize: '12px'}} variant={`danger`}>Close</Button>
-                            <Button onClick={(e)=> {handleFormSubmit(e)}}  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}} variant={`primary`}>Save Address</Button>
+                            <Button onClick={(e)=> {handleFormSubmit(e,'/add-address')}}  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}} variant={`primary`}>Save Address</Button>
 
 
                         </Modal.Footer>
@@ -336,6 +679,26 @@ const Checkout = () => {
                     </Form>
 
                 </Modal.Body>
+            </Modal>
+
+            <Modal show={isShowContactModal} onHide={()=> { handleHideContactModal()}}>
+                <ModalBody>
+                    <ModalHeader>
+                        ADD NEW CONTACT
+                    </ModalHeader>
+                    <input required
+                           defaultValue={ isEdited ?  contacts[selectedContact].phone_number : ''}
+                           onChange={ (e) => handleOnChange(e)}
+                           style={{height: '40px' , fontSize: '12px'}}
+                           name="phone_number"
+                           placeholder="Enter your Phone Number"
+                           type="text"
+                           id="phone_number"
+                           className="form-control" />
+                    <ModalFooter>
+                        <Button  onClick={(e)=> {handleFormSubmit(e,'/add-contact')}}  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}}  variant={`primary`}>SAVE CHANGE</Button>
+                    </ModalFooter>
+                </ModalBody>
             </Modal>
 
             <div id="homepage-5">
@@ -351,7 +714,7 @@ const Checkout = () => {
                                                     <h4><span>1</span></h4>
                                                     <p>Delivery Address</p>
                                                 </div>
-                                                <button onClick={()=> handleShowModal('post')} type="submit" data-toggle="modal" data-target="#addAddress"><HiPlus/> Add Address</button>
+                                                <button onClick={()=> handleShowModal('post')} type="submit"><HiPlus/> Add Address</button>
                                                 <div role="dialog" id="addAddress" aria-modal="true" className="fade modal show" tabIndex={-1}>
                                                     <div role="document" className="modal-dialog">
                                                         <div className="modal-content">
@@ -470,7 +833,7 @@ const Checkout = () => {
                                                 <h4><span>2</span></h4>
                                                 <p>Contact Number</p>
                                             </div>
-                                            <button type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <button onClick={()=>handleShowContactModal('POST')} type="button" data-toggle="modal" data-target="#exampleModalCenter">
                                                 <HiPlus/> Add Contact</button>
                                             {/* Button trigger modal */}
                                             {/* Modal */}
@@ -495,7 +858,7 @@ const Checkout = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="single-checkout-body single-checkout-body-first card-number">
+                                        {/*<div className="single-checkout-body single-checkout-body-first card-number">
                                             <div className="checkout-body-location">
                                                 <h4>Primary</h4>
                                                 <div className="location-edit">
@@ -514,7 +877,8 @@ const Checkout = () => {
                                                 </div>
                                             </div>
                                             <p>202-555-0701</p>
-                                        </div>
+                                        </div>*/}
+                                        <ContactNumber/>
                                     </div>
                                     <div className="single-checkout-area ">
                                         <div className="single-checkout-top">
@@ -529,7 +893,10 @@ const Checkout = () => {
                                         </div>
 
                                         <div className="voucher-area">
-                                            <a href="invoices.html" className="proceed-checkout">Confirm Checkout</a>
+                                            <div
+
+                                                className="proceed-checkout">Place Order</div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -538,7 +905,7 @@ const Checkout = () => {
                                 <div className="checkout-order-summary">
                                     <div className="block-card">
                                         <div className="block-card-header">
-                                            <h3 className="block-card-title">Order Summery</h3>
+                                            <h3 className="block-card-title">Order Summary</h3>
                                         </div>
                                         <div className="block-card-body border-bottom pt-1">
                                             <h4>Zara</h4>
