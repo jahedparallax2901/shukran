@@ -680,8 +680,7 @@ const Checkout = () => {
                 </ModalBody>
             </Modal>
 
-
-            {checkoutData.length < 0 ?
+            {checkoutData?.checkout_items?.length > 0 ?
                 <div id="homepage-5">
                     <div className="container">
                         <div className="checkout-area-inner">

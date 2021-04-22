@@ -245,7 +245,8 @@ class MiniShoppinCart extends Component {
     }, true)
       .then((res) => {
         if (res.status === 200) {
-          toast.success("Checkout successfully");
+          this.props.handleHideShoppingCart();
+          this.props.history.push("/checkout");
           this.setState({ isCartProcessing: false });
         } else {
           toast.error("Something went wrong");
@@ -253,7 +254,7 @@ class MiniShoppinCart extends Component {
         }
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(err.message, {position: 'top-left'});
         this.setState({ isCartProcessing: false });
       });
   };
@@ -494,7 +495,6 @@ class MiniShoppinCart extends Component {
                               <p>৳{cart_items.total_amount || 0}</p>
                             </div>
                             <a
-                              href="checkout.html"
                               className="store-checkout"
                               onClick={(e) =>
                                 this.handleProceedCheckout(
@@ -584,7 +584,6 @@ class MiniShoppinCart extends Component {
                     <p>৳{shoppingCart?.cartSummery?.total_amount || 0}</p>
                   </div>
                   <a
-                    href="checkout.html"
                     className="store-checkout"
                     onClick={(e) =>
                       this.handleProceedCheckout(e, shoppingCart.cartSummery.id)
