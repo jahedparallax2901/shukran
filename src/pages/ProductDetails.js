@@ -40,7 +40,7 @@ const ProductDetails = () => {
     setLoading(true);
     processGetRequest(`/product/detail/${id}`, {}, false)
       .then((res) => {
-        setProduct( res.product);
+        setProduct(res.product);
         setTimeout(
           function () {
             setLoading(false);
@@ -51,10 +51,10 @@ const ProductDetails = () => {
       .catch((err) => {
         console.log(err);
         setTimeout(
-            function () {
-                setLoading(false);
-            }.bind(this),
-            250
+          function () {
+            setLoading(false);
+          }.bind(this),
+          250
         );
       });
   }
@@ -78,16 +78,16 @@ const ProductDetails = () => {
   ];
   // Views
   let productView, headerView;
-  // if (!loading) {
-  if (product) {
-    productView = <ProductDetailFullwidth product={product} />;
-    // headerView = <HeaderProduct product={product} />;
+  if (!loading) {
+    if (product) {
+      productView = <ProductDetailFullwidth product={product} />;
+      // headerView = <HeaderProduct product={product} />;
+    } else {
+      // headerView = <HeaderDefault />;
+    }
   } else {
-    // headerView = <HeaderDefault />;
+    productView = <SkeletonProductDetail />;
   }
-  // } else {
-  //     productView = <SkeletonProductDetail />;
-  // }
   return (
     <ContainerMarketPlace3
       title={product ? product.title : "Loading..."}

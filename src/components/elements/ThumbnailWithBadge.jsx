@@ -16,8 +16,11 @@ const ThumbnailWithBadge = ({ product, vertical = true }) => {
 
   useEffect(() => {
     let images = [];
-    if (product && product.product.single_image) {
+    if (product && product?.product?.single_image) {
       images.push(product.product.single_image);
+      setProductImages(images);
+    }else{
+      images.push(downloadsFridge1);
       setProductImages(images);
     }
     setGallery(galleryCarousel.current);

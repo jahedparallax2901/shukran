@@ -139,7 +139,7 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
   } else if (product?.single_image) {
     url = product.single_image;
   } else {
-    url = product.thumbnail.url;
+    url = product?.thumbnail?.url;
   }
   if (
     product?.product?.single_image ||

@@ -4,7 +4,7 @@ import {
   getCartItems,
   handleAddToCart,
   handleHideShoppingCart,
-  handleClearCart
+  handleClearCart,
 } from "../../../redux";
 import { connect } from "react-redux";
 import { TiTimesOutline } from "react-icons/ti";
@@ -18,167 +18,172 @@ import { BsTrash } from "react-icons/bs";
 import { Spinner } from "react-bootstrap";
 
 class MiniShoppinCart extends Component {
-  state = {
-    globalCoupon: "",
-    isGlobalCouponApplied: false,
-    storesWithCoupon: [],
-    isCartProcessing: false,
-  };
+  // state = {
+  //   globalCoupon: "",
+  //   isGlobalCouponApplied: false,
+  //   storesWithCoupon: [],
+  //   isCartProcessing: false,
+  // };
 
-  handleItemDelete = (e, product_id, item_id) => {
-    this.setState({ isCartProcessing: true });
+  // handleItemDelete = (e, product_id, item_id) => {
+  //   this.setState({ isCartProcessing: true });
 
-    const newProductlist = this.props.shoppingCart.cartProductlist.filter(
-      (item) => item.item_id !== item_id || item.product_id !== product_id
-    );
-    
-    this.props.handleAddToCart(
-      newProductlist,
-      userData()?.token || "",
-      async (data, isSuccess) => {
-        if (data.cart) {
-          await this.props.getCartItems();
-          this.setState({ isCartProcessing: false });
+  //   const newProductlist = this.props.shoppingCart.cartProductlist.filter(
+  //     (item) => item.item_id !== item_id || item.product_id !== product_id
+  //   );
 
-          // this.props.handleShowShoppingCart();
-        } else {
-          this.props.handleClearCart();
-          localStorage.removeItem("cart_id");
-          this.setState({ isCartProcessing: false });
-        }
-      },
-      false
-    );
-  };
+  //   this.props.handleAddToCart(
+  //     newProductlist,
+  //     userData()?.token || "",
+  //     async (data, isSuccess) => {
+  //       if (data.cart) {
+  //         await this.props.getCartItems();
+  //         this.setState({ isCartProcessing: false });
 
-  handleGlobalCouponChange = (e) => {
-    this.setState({ globalCoupon: e.target.value });
-  };
+  //         // this.props.handleShowShoppingCart();
+  //       } else {
+  //         this.props.handleClearCart();
+  //         localStorage.removeItem("cart_id");
+  //         this.setState({ isCartProcessing: false });
+  //       }
+  //     },
+  //     false
+  //   );
+  // };
 
-  /**
-   * Apply the gobal coupon
-   * @param {event} e
-   * @param {int} cart_id
-   */
-  handleGlobalCouponApply = (e, cart_id) => {
-    this.setState({ isCartProcessing: true });
-    processPostRequest(
-      "/add-cart-coupon",
-      { cart_id, coupon_code: this.state.globalCoupon },
-      false
-    )
-      .then((res) => {
-        this.setState({ isCartProcessing: false });
+  // handleGlobalCouponChange = (e) => {
+  //   this.setState({ globalCoupon: e.target.value }, () => {
+  //     console.log("State", this.state);
+  //   });
+  // };
 
-        if (res.status === 200) {
-          this.setState(
-            { globalCoupon: "", isGlobalCouponApplied: true },
-            () => {
-              toast.success("Coupon successfully applied", {
-                position: "top-left",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-              });
-            }
-          );
-          this.props.getCartItems();
-        } else {
-          this.setState({ isCartProcessing: false });
+  // /**
+  //  * Apply the gobal coupon
+  //  * @param {event} e
+  //  * @param {int} cart_id
+  //  */
+  // handleGlobalCouponApply = (e, cart_id) => {
+  //   this.setState({ isCartProcessing: true });
+  //   processPostRequest(
+  //     "/add-cart-coupon",
+  //     { cart_id, coupon_code: this.state.globalCoupon },
+  //     false
+  //   )
+  //     .then((res) => {
+  //       this.setState({ isCartProcessing: false });
 
-          toast.warn("Something went wrong.");
-        }
-      })
-      .catch((err) => {
-        this.setState({ isCartProcessing: false });
+  //       if (res.status === 200) {
+  //         this.setState(
+  //           { globalCoupon: "", isGlobalCouponApplied: true },
+  //           () => {
+  //             toast.success("Coupon successfully applied", {
+  //               position: "top-left",
+  //               autoClose: 5000,
+  //               hideProgressBar: false,
+  //               closeOnClick: true,
+  //               pauseOnHover: true,
+  //               draggable: true,
+  //             });
+  //           }
+  //         );
+  //         this.props.getCartItems();
+  //       } else {
+  //         this.setState({ isCartProcessing: false });
 
-        toast.error(err.message, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      });
-  };
+  //         toast.warn("Something went wrong.");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       this.setState({ isCartProcessing: false });
 
-  handleStoreCouponOnChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value }, () => {
-      console.log("state", this.state);
-    });
-  };
+  //       toast.error(err.message, {
+  //         position: "top-left",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //       });
+  //     });
+  // };
 
-  handleApplyStoreCoupon = (e, cart_id, store_id) => {
-    e.preventDefault();
-    this.setState({ isCartProcessing: true });
+  // handleStoreCouponOnChange = (e) => {
+  //   this.setState({ [e.target.name]: e.target.value }, () => {
+  //     console.log("state", this.state);
+  //   });
+  // };
 
-    processPostRequest(
-      "/add-cart-coupon",
-      {
-        cart_id,
-        coupon_code: this.state[`couponOfStore-${store_id}`],
-        store_id,
-      },
-      false
-    )
-      .then((res) => {
-        this.setState({ isCartProcessing: false });
+  // handleApplyStoreCoupon = (e, cart_id, store_id) => {
+  //   e.preventDefault();
+  //   this.setState({ isCartProcessing: true });
 
-        if (res.status === 200) {
-          let obj = this.state;
-          obj[`couponOfStore-${store_id}`] = "";
-          obj["storesWithCoupon"] = [...this.state.storesWithCoupon, store_id];
-          this.setState(obj, () => {
-            toast.success("Coupon successfully applied", {
-              position: "top-left",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-            });
-          });
-          this.props.getCartItems();
-        } else {
-          toast.warn("Something went wrong.");
-        }
-      })
-      .catch((err) => {
-        this.setState({ isCartProcessing: false });
+  //   processPostRequest(
+  //     "/add-cart-coupon",
+  //     {
+  //       cart_id,
+  //       coupon_code: this.state[`couponOfStore-${store_id}`],
+  //       store_id,
+  //     },
+  //     false
+  //   )
+  //     .then((res) => {
+  //       this.setState({ isCartProcessing: false });
 
-        toast.error(err.message, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      });
-  };
+  //       if (res.status === 200) {
+  //         let obj = this.state;
+  //         obj[`couponOfStore-${store_id}`] = "";
+  //         obj["storesWithCoupon"] = [...this.state.storesWithCoupon, store_id];
+  //         this.setState(obj, () => {
+  //           toast.success("Coupon successfully applied", {
+  //             position: "top-left",
+  //             autoClose: 5000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: true,
+  //           });
+  //         });
+  //         this.props.getCartItems();
+  //       } else {
+  //         toast.warn("Something went wrong.");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       this.setState({ isCartProcessing: false });
 
-  handleRemoveGlobalCoupon = (e, cart_id) => {
-    this.setState({ isCartProcessing: true });
+  //       toast.error(err.message, {
+  //         position: "top-left",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //       });
+  //     });
+  // };
 
-    processPostRequest("/remove-cart-coupon", { cart_id }, false)
-      .then((res) => {
-        this.setState({ isCartProcessing: false });
+  // handleRemoveCoupon = (e, cart_id, store_id = null) => {
+  //   this.setState({ isCartProcessing: true });
 
-        if (res.status === 200) {
-          this.props.getCartItems();
-          toast.success("Coupon removed successfully");
-        } else {
-          toast.error("Something went wrong");
-        }
-      })
-      .catch((err) => {
-        this.setState({ isCartProcessing: false });
-        toast.error(err.message);
-      });
-  };
+  //   let data;
+  //   store_id ? (data = { cart_id, store_id }) : (data = { cart_id });
+
+  //   processPostRequest("/remove-cart-coupon", data, false)
+  //     .then((res) => {
+  //       this.setState({ isCartProcessing: false });
+
+  //       if (res.status === 200) {
+  //         this.props.getCartItems();
+  //         toast.success("Coupon removed successfully");
+  //       } else {
+  //         toast.error("Something went wrong");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       this.setState({ isCartProcessing: false });
+  //       toast.error(err.message);
+  //     });
+  // };
 
   render() {
     const {
@@ -190,17 +195,13 @@ class MiniShoppinCart extends Component {
       <div
         className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}
       >
-        {this.state.isCartProcessing ? (
+        {/* {this.state.isCartProcessing ? (
           <div className="loading-wrapper">
             <Spinner animation="grow" />
           </div>
         ) : (
           <>
             <div className="aside-cart-header">
-              {/* <div className="ps-checkbox">
-        <input type="checkbox" id="select-all" />
-        <label for="select-all">Select All</label>
-      </div> */}
               <h1>Your Cart</h1>
               <div className="close-btn" onClick={handleHideShoppingCart}>
                 <i>
@@ -233,9 +234,11 @@ class MiniShoppinCart extends Component {
                               {cart_items?.store?.name || ""}
                             </label>
                           </div>
-                          {/* <h1>ecstasy</h1> */}
-                        </div>
-                        {cart_items?.store_product &&
+                        </div> */}
+
+                        {/* Product portion */}
+
+                        {/* {cart_items?.store_product &&
                           cart_items.store_product.map((store_item) => (
                             <div className="product">
                               <div className="product-name d-flex justify-content-between">
@@ -299,7 +302,10 @@ class MiniShoppinCart extends Component {
                                     <p>{store_item?.attribute_item?.value}</p>
                                   </div>
                                 )}
-                              </div>
+                              </div> */}
+
+                              {/* Product calculation portion */}
+
                               <div className="product-price-div">
                                 <div className="product-price">
                                   <div className="product-price-title">
@@ -317,9 +323,10 @@ class MiniShoppinCart extends Component {
                             </div>
                           ))}
 
+                        {/* Store coupon portion */}
+
                         <div className="store-checkout-div">
                           <div className="store-coupon">
-                            {/* <a href="#">apply for coupon</a> */}
                             {shoppingCart.cartSummery.coupon ? (
                               <div className="coupon-status-not-applicable">
                                 <span className="mr-4">Not Applicable</span>
@@ -329,18 +336,16 @@ class MiniShoppinCart extends Component {
                                 {cart_items.coupon ? (
                                   <div className="d-flex justify-content-between align-items-center coupon-status-success">
                                     <span className="mr-4">
-                                      {
-                                        shoppingCart?.cartSummery?.coupon
-                                          ?.coupon_code?.code
-                                      }{" "}
+                                      {cart_items?.coupon?.coupon_code?.code}{" "}
                                       Coupon Applied
                                     </span>
                                     <BsTrash
                                       title="Remove"
                                       onClick={(e) =>
-                                        this.handleRemoveGlobalCoupon(
+                                        this.handleRemoveCoupon(
                                           e,
-                                          shoppingCart.cartSummery.id
+                                          shoppingCart.cartSummery.id,
+                                          cart_items.store.id
                                         )
                                       }
                                     />
@@ -376,6 +381,9 @@ class MiniShoppinCart extends Component {
                               </>
                             )}
                           </div>
+
+                          {/* Store checkout calculation */}
+
                           <div className="store-checkout-div-right">
                             <div className="delivery-charge">
                               <h6 className="delivery-charge-title">
@@ -401,46 +409,64 @@ class MiniShoppinCart extends Component {
                   ))}
                 </div>
 
+                {/* Global coupon portion */}
+
                 <div className="all-checkout">
                   <div class="store-coupon">
-                    {!shoppingCart.cartSummery.coupon ? (
-                      <>
-                        <input
-                          type="text"
-                          placeholder="apply for coupon global"
-                          name="global_coupon"
-                          defaultValue={this.state.globalCoupon}
-                          onChange={this.handleGlobalCouponChange}
-                        />
-                        <button
-                          onClick={(e) =>
-                            this.handleGlobalCouponApply(
-                              e,
-                              shoppingCart.cartSummery.id
-                            )
-                          }
-                        >
-                          ✓
-                        </button>
-                      </>
-                    ) : (
-                      <div className="d-flex justify-content-between align-items-center coupon-status-success">
-                        <span className="mr-4">
-                          {shoppingCart?.cartSummery?.coupon?.coupon_code?.code}{" "}
-                          Coupon Applied
-                        </span>
-                        <BsTrash
-                          title="Remove"
-                          onClick={(e) =>
-                            this.handleRemoveGlobalCoupon(
-                              e,
-                              shoppingCart.cartSummery.id
-                            )
-                          }
-                        />
+                    {shoppingCart.cartItems.find(
+                      (item) => item.coupon !== null
+                    ) ? (
+                      <div className="coupon-status-not-applicable">
+                        <span className="mr-4">Not Applicable</span>
                       </div>
+                    ) : (
+                      <>
+                        {!shoppingCart.cartSummery.coupon ? (
+                          <>
+                            <input
+                              type="text"
+                              placeholder="apply for coupon global"
+                              name="global_coupon"
+                              defaultValue={this.state.globalCoupon}
+                              onChange={this.handleGlobalCouponChange}
+                            />
+                            <button
+                              onClick={(e) =>
+                                this.handleGlobalCouponApply(
+                                  e,
+                                  shoppingCart.cartSummery.id
+                                )
+                              }
+                            >
+                              ✓
+                            </button>
+                          </>
+                        ) : (
+                          <div className="d-flex justify-content-between align-items-center coupon-status-success">
+                            <span className="mr-4">
+                              {
+                                shoppingCart?.cartSummery?.coupon?.coupon_code
+                                  ?.code
+                              }{" "}
+                              Coupon Applied
+                            </span>
+                            <BsTrash
+                              title="Remove"
+                              onClick={(e) =>
+                                this.handleRemoveCoupon(
+                                  e,
+                                  shoppingCart.cartSummery.id
+                                )
+                              }
+                            />
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
+
+                  {/* Global chekout portion */}
+
                   <div className="delivery-charge">
                     <h6 className="delivery-charge-title">delivery-charge:</h6>
                     <p>৳{shoppingCart?.cartSummery?.delivery_charge || 0}</p>
@@ -460,8 +486,7 @@ class MiniShoppinCart extends Component {
               </>
             ) : (
               <div className="loading-wrapper">
-              <h3>No items in cart</h3>
-
+                <h3>No items in cart</h3>
               </div>
             )}
           </>
@@ -484,7 +509,7 @@ const mapDispatchToProps = (dispatch) => {
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     getCartItems: () => dispatch(getCartItems()),
-    handleClearCart: () => dispatch(handleClearCart())
+    handleClearCart: () => dispatch(handleClearCart()),
   };
 };
 

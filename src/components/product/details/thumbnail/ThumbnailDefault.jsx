@@ -93,6 +93,7 @@ const ThumbnailDefault = ({ product, vertical = true }) => {
       </div>
     ));
   }
+
   if (vertical) {
     variantCarouselView = (
       <Slider
@@ -128,6 +129,7 @@ const ThumbnailDefault = ({ product, vertical = true }) => {
       </Slider>
     );
   }
+  
   if (isOpen) {
     lightboxView = (
       <Lightbox

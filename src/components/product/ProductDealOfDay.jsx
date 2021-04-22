@@ -16,11 +16,11 @@ const ProductDealOfDay = ({ product }) => {
     <div className="ps-product ps-product--inner px-3">
       <div className="ps-product__thumbnail">
         {StrapiProductThumbnail(product, true)}
-        {product.product.quantity <= 0 ? (
+        {product?.product?.quantity <= 0 ? (
           <div className="ps-product__badge out-stock">Out Of Stock</div>
         ) : (
           <div className="ps-product__badge">
-            -{(product.product.sale_price - product.product.price) * 100}%
+            -{(product?.product?.sale_price - product?.product?.price) * 100}%
           </div>
         )}
         {StrapiProductBadge(product)}

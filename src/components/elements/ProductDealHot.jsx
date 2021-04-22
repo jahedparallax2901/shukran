@@ -18,21 +18,21 @@ const ProductDealHot = ({ product }) => {
                     <h3 className="ps-product__name">
                         <Link
                             to={`/product/${product.product_id}`}>
-                            <a>{product.product.name}</a>
+                            <a>{product?.product?.name}</a>
                         </Link>
                     </h3>
 
                     <div className="ps-product__meta">
-                        {product.sale_price > 0 ? (
+                        {product?.sale_price > 0 ? (
                             <h4 className="ps-product__price sale">
                                 <del className="mr-2">
-                                ৳{formatCurrency(product.sale_price)}
+                                ৳{formatCurrency(product?.sale_price)}
                                 </del>
-                                ৳{formatCurrency(product.price)}
+                                ৳{formatCurrency(product?.price)}
                             </h4>
                         ) : (
                             <h4 className="ps-product__price">
-                                ৳{formatCurrency(product.product.price)}
+                                ৳{formatCurrency(product?.product?.price)}
                             </h4>
                         )}
                         <div className="ps-product__rating">
@@ -42,7 +42,7 @@ const ProductDealHot = ({ product }) => {
                         <div className="ps-product__specification">
                             <p>
                                 Status:
-                                {product.product.quantity>0 ? <strong className="in-stock">In Stock</strong> : <strong className="in-stock">Out of Stock</strong>}
+                                {product?.product?.quantity>0 ? <strong className="in-stock">In Stock</strong> : <strong className="in-stock">Out of Stock</strong>}
                                 
                             </p>
                         </div>

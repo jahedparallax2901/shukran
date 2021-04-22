@@ -20,18 +20,18 @@ const ProductDetailFullwidth = ({ product }) => {
       <div className="ps-product__header">
         <ThumbnailDefault product={product} />
         <div className="ps-product__info">
-          <ModuleDetailTopInformation
+          {/* <ModuleDetailTopInformation
             product={product}
             selectedAttributeProduct={selectedAttributeProduct}
           />
           <ModuleProductDetailDescription
             product={product}
-          />
+          /> */}
           {/* <ModuleDetailActionsMobile /> */}
         </div>
       </div>
       <div class="ps-product-info-other">
-        <ModuleDetailShoppingActions
+        {/* <ModuleDetailShoppingActions
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
@@ -67,10 +67,10 @@ const ProductDetailFullwidth = ({ product }) => {
         </div>
         <hr />
         <ModuleProductDetailSpecification product={product} selectedAttributeProduct={selectedAttributeProduct}/>
-        <ModuleProductDetailSharing />
+        <ModuleProductDetailSharing /> */}
       </div>
 
-      <DefaultDescription product={product} />
+      {/* <DefaultDescription product={product} /> */}
     </div>
   );
 };
