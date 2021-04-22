@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { processPostRequest } from "../../../services/baseServices";
 import { BsTrash } from "react-icons/bs";
 import { Spinner } from "react-bootstrap";
+import { withRouter } from "react-router";
 
 class MiniShoppinCart extends Component {
   state = {
@@ -105,8 +106,6 @@ class MiniShoppinCart extends Component {
         });
       });
   };
-
-  
 
   handleApplyStoreCoupon = (e, cart_id, store_id) => {
     e.preventDefault();
@@ -214,6 +213,44 @@ class MiniShoppinCart extends Component {
         this.props.getCartItems(() => {
           this.setState({ isCartProcessing: false });
         });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+        this.setState({ isCartProcessing: false });
+      });
+  };
+
+  handleProceedCheckout = (e, cart_id, store_id = null) => {
+    e.preventDefault();
+    this.setState({ isCartProcessing: true });
+    let cart_store_product_ids = [];
+    if (store_id) {
+      const store = this.props.shoppingCart.cartItems.find(
+        (item) => item.store_id === store_id
+      );
+      store.store_product.map((item) => {
+        cart_store_product_ids.push(item.id);
+      });
+    } else {
+      this.props.shoppingCart.cartItems.map((cart_item) => {
+        cart_item.store_product.map((store_item) => {
+          cart_store_product_ids.push(store_item.id);
+        });
+      });
+    }
+
+    processPostRequest("/proceed-checkout", {
+      cart_id,
+      cart_store_product_ids,
+    }, true)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Checkout successfully");
+          this.setState({ isCartProcessing: false });
+        } else {
+          toast.error("Something went wrong");
+          this.setState({ isCartProcessing: false });
+        }
       })
       .catch((err) => {
         toast.error(err.message);
@@ -456,7 +493,17 @@ class MiniShoppinCart extends Component {
                               <h6 className="total-title">total :</h6>
                               <p>৳{cart_items.total_amount || 0}</p>
                             </div>
-                            <a href="checkout.html" className="store-checkout">
+                            <a
+                              href="checkout.html"
+                              className="store-checkout"
+                              onClick={(e) =>
+                                this.handleProceedCheckout(
+                                  e,
+                                  cart_items.cart_id,
+                                  cart_items.store_id
+                                )
+                              }
+                            >
                               checkout
                             </a>
                           </div>
@@ -536,7 +583,13 @@ class MiniShoppinCart extends Component {
                     <h6 className="total-title">total Amount:</h6>
                     <p>৳{shoppingCart?.cartSummery?.total_amount || 0}</p>
                   </div>
-                  <a href="checkout.html" className="store-checkout">
+                  <a
+                    href="checkout.html"
+                    className="store-checkout"
+                    onClick={(e) =>
+                      this.handleProceedCheckout(e, shoppingCart.cartSummery.id)
+                    }
+                  >
                     checkout
                   </a>
                 </div>
@@ -570,4 +623,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MiniShoppinCart);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(MiniShoppinCart));
