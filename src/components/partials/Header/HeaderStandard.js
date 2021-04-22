@@ -250,7 +250,7 @@ class HeaderStandard extends Component {
                       </i>
                     </div>
                     <div className="ps-block__right">
-                      <a>{user.phone}</a>
+                      <Link to="/account/my-account">{user.phone}</Link>
                       <a onClick={() => handleSignOut()}>Logout</a>
                     </div>
                   </div>
