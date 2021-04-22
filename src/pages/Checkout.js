@@ -61,16 +61,7 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 
 const Checkout = () => {
 
-    const [dynamicCountry , setDynamicCountry] = useState([
-       0
-    ]);
 
-    const [dynamicElements , setDynamicElements] = useState([
-        {
-            address: [ {id: 1, name: "--select country--"},
-                { id: 2, name: "Bangladesh",} ]
-        }
-    ])
     const [defaultSelected , setDefaultSelected] = useState([0])
 
 
@@ -81,6 +72,8 @@ const Checkout = () => {
     const [isShowContactModal , setIsShowContactModal] = useState(false);
 
     const [isEdited , setIsEdited] = useState(false);
+    const [editedId , setEditedId] = useState("");
+
 
     const [deliverAddress , setDeliveryAddress ] = useState([]);
     const [contacts , setContacts ] = useState([]);
@@ -118,22 +111,25 @@ const Checkout = () => {
     const [upazillaArea , setUpazillaArea] = useState([])
 
 
-    const [divisionShow , setDivisionShow] = useState(false)
+    const [divisionShow , setDivisionShow] = useState(true)
     const [districtShow , setDistrictShow] = useState(false)
     const [upazillaShow , setUpdazillaShow] = useState(false)
     const [upazillaAreaShow , setUpazillaAreaShow] = useState(false)
 
 
+    const [orderProductList , setOrderProductList] = useState([])
+    const [checkoutData , setCheckoutData] = useState([])
 
 
-    useEffect( ()=>{
-       getAllData()
+
+
+    useEffect(  async ()=>{
+        await orderSummary()
+        await getAllData()
+        await getLocationV2('/division-list', null)
+
     },[])
 
-    useEffect( ()=>{
-        console.log(selectedContact)
-        console.log(selectedAddress)
-    },[selectedContact,selectedAddress])
 
 
     const getAllData = () =>{
@@ -144,10 +140,32 @@ const Checkout = () => {
         })
     }
 
-    const handleShowModal = (request) =>{
+    const orderSummary = () =>{
+
+        processGetRequest('/get-checkout',{}, true).then((res)=>{
+            res.checkout_items.map( (data , index) =>{
+                data.store_product.map( (data1 , index1)=>{
+                    setOrderProductList([data1])
+                })
+
+            })
+            setCheckoutData(res)
+
+
+        }).catch((err)=>{
+            console.log(err)
+        })
+
+
+    }
+
+    const handleShowModal = (request,  id) =>{
         if (request === 'put'){
             setIsEdited(true)
+            setEditedId(id)
+
         }else {
+            setFormData(null)
             setIsEdited(false)
         }
         setIsShowModal(true)
@@ -177,11 +195,14 @@ const Checkout = () => {
     const handleFormSubmit = (e,url) =>{
         e.preventDefault()
         processPostRequest(url, formData).then((res)=>{
-            console.log(res)
-            toast.success(res.message)
-            getAllData()
-            handleHideModal()
-            handleHideContactModal()
+                setFormData(null)
+                console.log(res)
+                toast.success(res.message)
+                getAllData()
+                handleHideModal()
+                handleHideContactModal()
+
+
         }).catch((err)=>{
             console.log(err)
         })
@@ -247,7 +268,7 @@ const Checkout = () => {
                                 {deliverAddress[index].address_type === 2 && <h4>Other</h4>}
 
                                 <div className="location-edit">
-                                    <button onClick={()=>handleShowModal('put')} type="button"><MdEdit/></button>
+                                    <button onClick={()=>handleShowModal('put',data.id)} type="button"><MdEdit/></button>
                                     <button onClick={()=>{ handleDeleteData(`/remove-address/${data.id}`) }} style={{marginLeft: '5px'}} type="button"><FiX/></button>
                                 </div>
                             </div>
@@ -287,98 +308,10 @@ const Checkout = () => {
     }
 
 
-
-    const getLocation = (index , id) =>{
-
-        var url = ''
-
-        if (index === 0){
-            url = '/division-list'
-        }else if (index === 1){
-            url = '/division-district-list/'+id
-        }else if (index === 2){
-            url = '/district-upazila-list/'+id
-        }else if (index === 3){
-            url = '/upazila-area-list/'+id
-        }
-
-        processGetRequest(url).then((res)=>{
-            console.log(res)
-            setDynamicElements(dynamicElements => [...dynamicElements , {address: res}])
-        })
-    }
-
-
-    const DynamicAddress = () =>{
-        return(<>
-                {dynamicCountry && dynamicCountry.map( (data , index) =>{
-                        return(<>
-                            <Form.Control
-                                onChange={ (e) => {
-                                    if ( dynamicCountry.length < 4){
-                                        setDynamicCountry(dynamicCountry => [...dynamicCountry , 1])
-                                        console.log(dynamicCountry)
-                                        getLocation(index , e.target.value)
-
-                                    }
-                                }}
-
-                                id={index}
-                                name={index}
-                                style={{height: '40px' , fontSize: '12px'}}
-                                as="select"
-                                size={'lg'}>
-                                {dynamicElements[index]?.address && dynamicElements[index]?.address.map((data, index) =>(
-                                    <option id={data.id} value={data.id}> {data.name} </option>
-                                )) }
-
-                            </Form.Control>
-                        </>)
-                    }
-                )}
-            </>
-        )
-
-
-/*
-        return(
-            <>{dynamicCountry && dynamicCountry.map( (data , index) =>(
-
-                <Form.Control
-                    name={index}
-                    onChange={ (e) => { setDynamicCountry({...dynamicCountry , index})
-                        console.log('test') }}
-                    style={{height: '40px' , fontSize: '12px'}}
-                    as="select"
-                    size={'lg'}>
-
-                </Form.Control>
-
-                ))}
-            </>
-        )
-        */
-    }
-
-    const DynamicElement = ()=>{
-        return(
-            <>
-                {dynamicElements && dynamicElements.map( (data , index) =>(
-                    <>
-                    <option> {data.name}</option>
-                    </>
-                ))}
-            </>
-        )
-    }
-
-
     const getLocationV2 = (url , id) =>{
 
         if (id !== null){
             processGetRequest(url+"/"+id).then((res)=>{
-                /*  console.log(res)
-                  setDynamicElements(dynamicElements => [...dynamicElements , {address: res}])*/
                 if (url === '/division-list'){
                     setDivision(res)
 
@@ -410,8 +343,6 @@ const Checkout = () => {
         }
         else {
             processGetRequest(url).then((res)=>{
-                /*  console.log(res)
-                  setDynamicElements(dynamicElements => [...dynamicElements , {address: res}])*/
                 if (url === '/division-list'){
                     setDivision(res)
                     setDivisionShow(true)
@@ -420,6 +351,45 @@ const Checkout = () => {
         }
 
 
+    }
+
+
+    const OrderSummary = () =>{
+        return<>
+            {orderProductList && orderProductList.map((data,index) =>(
+                    <div className="block-card-body border-bottom pt-1">
+                        <h4>{data.product.name}</h4>
+                        <p className="d-flex justify-content-between">
+                            <span className>{data.quantity}</span>
+                            <span className="mx-auto">X</span>
+                            <span className="mx-auto">৳  {data?.product_attribute?.price}</span>
+                            <span className="mx-auto">X</span>
+                            <span className>৳ {data.price}</span>
+                        </p>
+                    </div>
+            ))}
+        </>
+    }
+
+    const DeliveryCharge = () =>{
+        return(
+            <>
+                <div className="block-card-body">
+                    <p className="d-flex mb-3">
+                        <span className="mr-2">Subtotal</span>
+                        <span className="ml-auto">৳ {checkoutData.checkout?.sub_total_amount}</span>
+                    </p>
+                    <p className="d-flex mb-3">
+                        <span className="mr-2">Discount amount</span>
+                        <span className="ml-auto">৳ {checkoutData.checkout?.discount_amount}</span>
+                    </p>
+                    <p className="d-flex">
+                        <span className="mr-2 font-weight-bold">Total</span>
+                        <span className="ml-auto text-secondary font-weight-bold">৳ {checkoutData.checkout?.total_amount}</span>
+                    </p>
+                </div>
+            </>
+        )
     }
 
 
@@ -441,6 +411,7 @@ const Checkout = () => {
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{marginTop: '1vw', fontSize: '14px'}}>Name <span className="text-danger">*</span> </Form.Label>
                             <Form.Control
+                                required
                                 name={`name`}
                                 defaultValue={ isEdited ?  deliverAddress[selectedAddress].name : ''}
                                 onChange={(e)=>handleOnChange(e)}
@@ -498,7 +469,7 @@ const Checkout = () => {
                             <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Address <span className="text-danger">*</span> </Form.Label>
                             <Form.Control
                                 name={`address`}
-                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].email : ''}
+                                defaultValue={ isEdited ?  deliverAddress[selectedAddress].address : ''}
                                 onChange={(e)=>handleOnChange(e)}
                                 style={{height: '40px' , fontSize: '12px'}}
                                 type="text"
@@ -512,7 +483,7 @@ const Checkout = () => {
 
 
                       {/*Country*/}
-                        <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Country <span className="text-danger">*</span> </Form.Label>
+                      {/*  <Form.Label style={{marginTop: '0.5vw', fontSize: '14px'}}>Country <span className="text-danger">*</span> </Form.Label>
                         <Form.Control
                             onChange={(e) => {
                                 console.log(e.target.value)
@@ -529,7 +500,7 @@ const Checkout = () => {
                                 </>
                             ))}
 
-                        </Form.Control>
+                        </Form.Control>*/}
 
                         {divisionShow &&
                        <>
@@ -546,6 +517,7 @@ const Checkout = () => {
                            as="select"
                            size={'lg'}>
 
+                               <option value=''> --select division-- </option>
                            {division && division.map((data , index) =>(
                                <>
                                    <option id={data.id} value={data.id}> {data.name} </option>
@@ -606,7 +578,6 @@ const Checkout = () => {
                             </>
 
                          }
-
 
                         {upazillaAreaShow &&
 
@@ -671,7 +642,15 @@ const Checkout = () => {
                         <Modal.Footer>
 
                             <Button onClick={handleHideModal} style={{height: '2vw' , width: '5vw' ,fontSize: '12px'}} variant={`danger`}>Close</Button>
-                            <Button onClick={(e)=> {handleFormSubmit(e,'/add-address')}}  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}} variant={`primary`}>Save Address</Button>
+                            <Button onClick={(e)=> {
+
+                                if (isEdited === true){
+                                    handleFormSubmit(e,'/edit-address/'+editedId)
+                                }else {
+                                    handleFormSubmit(e,'/add-address')
+                                }
+
+                            }}  style={{height: '2vw' , width: '7vw' ,fontSize: '12px'}} variant={`primary`}>Save Address</Button>
 
 
                         </Modal.Footer>
@@ -701,108 +680,110 @@ const Checkout = () => {
                 </ModalBody>
             </Modal>
 
-            <div id="homepage-5">
-                <div className="container">
-                    <div className="checkout-area-inner">
-                        <div className="row">
-                            <div className="col-md-8 col-sm-12">
-                                <div className="checkout-details">
-                                    <form action>
-                                        <div className="single-checkout-area ">
-                                            <div className="single-checkout-top">
-                                                <div className="checkout-top-title">
-                                                    <h4><span>1</span></h4>
-                                                    <p>Delivery Address</p>
-                                                </div>
-                                                <button onClick={()=> handleShowModal('post')} type="submit"><HiPlus/> Add Address</button>
-                                                <div role="dialog" id="addAddress" aria-modal="true" className="fade modal show" tabIndex={-1}>
-                                                    <div role="document" className="modal-dialog">
-                                                        <div className="modal-content">
-                                                            <div className="modal-header border-bottom-0">
-                                                               <div className="modal-title h4"> Add Address</div>
-                                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                    <span className="sr-only">Close</span>
-                                                                </button>
-                                                            </div>
-                                                            <div className="modal-body">
-                                                                <div className="form-group">
-                                                                    <label className="form-label" htmlFor="name">Name <span className="text-danger">*</span></label>
-                                                                    <input name="recipient_name" required placeholder="Name" id="name" className="form-control" defaultValue="sahed Rahman" />
-                                                                    <div className="invalid-feedback">Recipient name is required</div>
+
+            {checkoutData.length < 0 ?
+                <div id="homepage-5">
+                    <div className="container">
+                        <div className="checkout-area-inner">
+                            <div className="row">
+                                <div className="col-md-8 col-sm-12">
+                                    <div className="checkout-details">
+                                        <form action>
+                                            <div className="single-checkout-area ">
+                                                <div className="single-checkout-top">
+                                                    <div className="checkout-top-title">
+                                                        <h4><span>1</span></h4>
+                                                        <p>Delivery Address</p>
+                                                    </div>
+                                                    <button onClick={()=> handleShowModal('post')} type="submit"><HiPlus/> Add Address</button>
+                                                    <div role="dialog" id="addAddress" aria-modal="true" className="fade modal show" tabIndex={-1}>
+                                                        <div role="document" className="modal-dialog">
+                                                            <div className="modal-content">
+                                                                <div className="modal-header border-bottom-0">
+                                                                    <div className="modal-title h4"> Add Address</div>
+                                                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">×</span>
+                                                                        <span className="sr-only">Close</span>
+                                                                    </button>
                                                                 </div>
-                                                                <div className="form-group login-form-group">
-                                                                    <label className="form-label">Phone <span className="text-danger">*</span></label>
-                                                                    <div className="input-group">
-                                                                        <select name="country_code" className="form-control" required style={{flex: '0 0 85px', padding: '0px 10px 0px 5px'}}>
-                                                                            <option value={+880}>+880</option>
-                                                                            <option value={+880}>+880</option>
-                                                                            <option value={+1}>+1</option>
-                                                                            <option value={1234}>1234</option>
+                                                                <div className="modal-body">
+                                                                    <div className="form-group">
+                                                                        <label className="form-label" htmlFor="name">Name <span className="text-danger">*</span></label>
+                                                                        <input name="recipient_name" required placeholder="Name" id="name" className="form-control" defaultValue="sahed Rahman" />
+                                                                        <div className="invalid-feedback">Recipient name is required</div>
+                                                                    </div>
+                                                                    <div className="form-group login-form-group">
+                                                                        <label className="form-label">Phone <span className="text-danger">*</span></label>
+                                                                        <div className="input-group">
+                                                                            <select name="country_code" className="form-control" required style={{flex: '0 0 85px', padding: '0px 10px 0px 5px'}}>
+                                                                                <option value={+880}>+880</option>
+                                                                                <option value={+880}>+880</option>
+                                                                                <option value={+1}>+1</option>
+                                                                                <option value={1234}>1234</option>
+                                                                            </select>
+                                                                            <input required minLength={10} maxLength={10} name="recipient_phone" placeholder="Phone" info="hello" className="form-control" defaultValue={1610907012} />
+                                                                            <div className="invalid-feedback">Please provide a valid phone number.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="form-group">
+                                                                        <label className="form-label" htmlFor="email">Email </label>
+                                                                        <input required name="email" placeholder="Email" type="email" id="email" className="form-control" defaultValue="sahed@parallaxlogic.com" />
+                                                                        <div className="invalid-feedback">Please provide a valid email address.</div>
+                                                                    </div>
+                                                                    <div className="form-group">
+                                                                        <label className="form-label" htmlFor="address">Address <span className="text-danger">*</span></label>
+                                                                        <input required name="address" placeholder="Address" type="text" id="address" className="form-control" />
+                                                                        <div className="invalid-feedback">Address is required</div>
+                                                                    </div>
+                                                                    <div className="form-group">
+                                                                        <label htmlFor="locationCountry" className="form-label col-form-label">Country <span className="text-danger">*</span></label>
+                                                                        <select name="country" required id="locationCountry" className="form-control">
+                                                                            <option value>--Select--</option>
+                                                                            <option value="5f2a7c54e7abc4290b6c6212">Bangladesh</option>
+                                                                            <option value="5f2fb3783ab94e6114c603f9">USA</option>
+                                                                            <option value="5f8c318ea399dc0e03f625ce">Nepal</option>
+                                                                            <option value="5ffd230cb604706e685dd30b">Ugandan </option>
                                                                         </select>
-                                                                        <input required minLength={10} maxLength={10} name="recipient_phone" placeholder="Phone" info="hello" className="form-control" defaultValue={1610907012} />
-                                                                        <div className="invalid-feedback">Please provide a valid phone number.</div>
+                                                                        <div className="invalid-feedback">Please select country.</div>
                                                                     </div>
-                                                                </div>
-                                                                <div className="form-group">
-                                                                    <label className="form-label" htmlFor="email">Email </label>
-                                                                    <input required name="email" placeholder="Email" type="email" id="email" className="form-control" defaultValue="sahed@parallaxlogic.com" />
-                                                                    <div className="invalid-feedback">Please provide a valid email address.</div>
-                                                                </div>
-                                                                <div className="form-group">
-                                                                    <label className="form-label" htmlFor="address">Address <span className="text-danger">*</span></label>
-                                                                    <input required name="address" placeholder="Address" type="text" id="address" className="form-control" />
-                                                                    <div className="invalid-feedback">Address is required</div>
-                                                                </div>
-                                                                <div className="form-group">
-                                                                    <label htmlFor="locationCountry" className="form-label col-form-label">Country <span className="text-danger">*</span></label>
-                                                                    <select name="country" required id="locationCountry" className="form-control">
-                                                                        <option value>--Select--</option>
-                                                                        <option value="5f2a7c54e7abc4290b6c6212">Bangladesh</option>
-                                                                        <option value="5f2fb3783ab94e6114c603f9">USA</option>
-                                                                        <option value="5f8c318ea399dc0e03f625ce">Nepal</option>
-                                                                        <option value="5ffd230cb604706e685dd30b">Ugandan </option>
-                                                                    </select>
-                                                                    <div className="invalid-feedback">Please select country.</div>
-                                                                </div>
-                                                                <div className="form-group">
-                                                                    <label className="form-label" htmlFor="addressPostCode">Post Code <span className="text-danger">*</span></label>
-                                                                    <input required name="postcode" placeholder="Post Code" type="text" id="addressPostCode" className="form-control" />
-                                                                    <div className="invalid-feedback">Please enter postcode.</div>
-                                                                </div>
-                                                                <div className="form-group">
-                                                                    <label className="form-label" htmlFor="address">Address Type</label>
-                                                                    <div className="address-radio-button">
-                                                                        <div className="custom-control custom-radio custom-control-inline">
-                                                                            <input name="address_type" type="radio" id="homeAddress" className="custom-control-input" defaultValue={1} />
-                                                                            <label title htmlFor="homeAddress" className="custom-control-label">Home Address</label>
-                                                                        </div>
-                                                                        <div className="custom-control custom-radio custom-control-inline">
-                                                                            <input name="address_type" type="radio" id="officeAddress" className="custom-control-input" defaultValue={2} />
-                                                                            <label title htmlFor="officeAddress" className="custom-control-label">Office
-                                                                                Address</label>
-                                                                        </div>
-                                                                        <div className="custom-control custom-radio custom-control-inline">
-                                                                            <input name="address_type" type="radio" id="otherAddress" className="custom-control-input" defaultValue={3} />
-                                                                            <label title htmlFor="otherAddress" className="custom-control-label">Other</label>
+                                                                    <div className="form-group">
+                                                                        <label className="form-label" htmlFor="addressPostCode">Post Code <span className="text-danger">*</span></label>
+                                                                        <input required name="postcode" placeholder="Post Code" type="text" id="addressPostCode" className="form-control" />
+                                                                        <div className="invalid-feedback">Please enter postcode.</div>
+                                                                    </div>
+                                                                    <div className="form-group">
+                                                                        <label className="form-label" htmlFor="address">Address Type</label>
+                                                                        <div className="address-radio-button">
+                                                                            <div className="custom-control custom-radio custom-control-inline">
+                                                                                <input name="address_type" type="radio" id="homeAddress" className="custom-control-input" defaultValue={1} />
+                                                                                <label title htmlFor="homeAddress" className="custom-control-label">Home Address</label>
+                                                                            </div>
+                                                                            <div className="custom-control custom-radio custom-control-inline">
+                                                                                <input name="address_type" type="radio" id="officeAddress" className="custom-control-input" defaultValue={2} />
+                                                                                <label title htmlFor="officeAddress" className="custom-control-label">Office
+                                                                                    Address</label>
+                                                                            </div>
+                                                                            <div className="custom-control custom-radio custom-control-inline">
+                                                                                <input name="address_type" type="radio" id="otherAddress" className="custom-control-input" defaultValue={3} />
+                                                                                <label title htmlFor="otherAddress" className="custom-control-label">Other</label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className="modal-footer">
-                                                                <button type="button" className="btn btn-default close-button" data-dismiss="modal" aria-label="Close">Close</button>
-                                                                <button type="submit" className="btn btn-primary save-button">Save Address</button>
+                                                                <div className="modal-footer">
+                                                                    <button type="button" className="btn btn-default close-button" data-dismiss="modal" aria-label="Close">Close</button>
+                                                                    <button type="submit" className="btn btn-primary save-button">Save Address</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <DeliveryAddress/>
-
+                                                <DeliveryAddress/>
 
 
-                                            {/*<div className="single-checkout-body single-checkout-body-first">
+
+                                                {/*<div className="single-checkout-body single-checkout-body-first">
                                                 <div className="checkout-body-location">
                                                     <h4>Home</h4>
                                                     <div className="location-edit">
@@ -826,39 +807,39 @@ const Checkout = () => {
                                                 <p>Shahjadpur, Dhaka</p>
                                                 <p>po: 1212</p>
                                             </div>*/}
-                                        </div></form>
-                                    <div className="single-checkout-area ">
-                                        <div className="single-checkout-top">
-                                            <div className="checkout-top-title">
-                                                <h4><span>2</span></h4>
-                                                <p>Contact Number</p>
-                                            </div>
-                                            <button onClick={()=>handleShowContactModal('POST')} type="button" data-toggle="modal" data-target="#exampleModalCenter">
-                                                <HiPlus/> Add Contact</button>
-                                            {/* Button trigger modal */}
-                                            {/* Modal */}
-                                            <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div className="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
-                                                    <div className="modal-content add-contact-content">
-                                                        <div className="modal-header border-bottom-0">
-                                                            <h5 className="modal-title" id="exampleModalLongTitle">Add New Contact</h5>
-                                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div className="modal-body">
-                                                            <div className="form-group">
-                                                                <input type="text" className="form-control" />
+                                            </div></form>
+                                        <div className="single-checkout-area ">
+                                            <div className="single-checkout-top">
+                                                <div className="checkout-top-title">
+                                                    <h4><span>2</span></h4>
+                                                    <p>Contact Number</p>
+                                                </div>
+                                                <button onClick={()=>handleShowContactModal('POST')} type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                                                    <HiPlus/> Add Contact</button>
+                                                {/* Button trigger modal */}
+                                                {/* Modal */}
+                                                <div className="modal fade" id="exampleModalCenter" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div className="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
+                                                        <div className="modal-content add-contact-content">
+                                                            <div className="modal-header border-bottom-0">
+                                                                <h5 className="modal-title" id="exampleModalLongTitle">Add New Contact</h5>
+                                                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
                                                             </div>
-                                                        </div>
-                                                        <div className="modal-footer border-top-0">
-                                                            <button type="button" className="btn btn-primary">Save changes</button>
+                                                            <div className="modal-body">
+                                                                <div className="form-group">
+                                                                    <input type="text" className="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div className="modal-footer border-top-0">
+                                                                <button type="button" className="btn btn-primary">Save changes</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        {/*<div className="single-checkout-body single-checkout-body-first card-number">
+                                            {/*<div className="single-checkout-body single-checkout-body-first card-number">
                                             <div className="checkout-body-location">
                                                 <h4>Primary</h4>
                                                 <div className="location-edit">
@@ -878,71 +859,54 @@ const Checkout = () => {
                                             </div>
                                             <p>202-555-0701</p>
                                         </div>*/}
-                                        <ContactNumber/>
-                                    </div>
-                                    <div className="single-checkout-area ">
-                                        <div className="single-checkout-top">
-                                            <div className="checkout-top-title">
-                                                <h4><span>3</span></h4>
-                                                <p>Payment Option</p>
+                                            <ContactNumber/>
+                                        </div>
+                                        <div className="single-checkout-area ">
+                                            <div className="single-checkout-top">
+                                                <div className="checkout-top-title">
+                                                    <h4><span>3</span></h4>
+                                                    <p>Payment Option</p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="owl-stage-outer">
-                                            <PaymentOption/>
-                                        </div>
+                                            <div className="owl-stage-outer">
+                                                <PaymentOption/>
+                                            </div>
 
-                                        <div className="voucher-area">
-                                            <div
+                                            <div className="voucher-area">
+                                                <div
 
-                                                className="proceed-checkout">Place Order</div>
+                                                    className="proceed-checkout">Place Order</div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="col-md-4 col-sm-12">
-                                <div className="checkout-order-summary">
-                                    <div className="block-card">
-                                        <div className="block-card-header">
-                                            <h3 className="block-card-title">Order Summary</h3>
+                                <div className="col-md-4 col-sm-12">
+                                    <div className="checkout-order-summary">
+                                        <div className="block-card">
+                                            <div className="block-card-header">
+                                                <h3 className="block-card-title">Order Summary</h3>
+                                            </div>
+
+
+                                            <OrderSummary/>
+                                            <DeliveryCharge/>
+
                                         </div>
-                                        <div className="block-card-body border-bottom pt-1">
-                                            <h4>Zara</h4>
-                                            <p className="d-flex justify-content-between">
-                                                <span className>2</span>
-                                                <span className="mx-auto">X</span>
-                                                <span className="mx-auto">conputer</span>
-                                                <span className="mx-auto">X</span>
-                                                <span className>৳34000.00</span>
-                                            </p>
+                                        <div className="block-card">
+                                            <div className="block-card-header">
+                                                <p className="d-flex">
+                                                    <span className="mr-2 font-weight-bold">Payable Amount</span>
+                                                    <span className="ml-auto text-secondary font-weight-bold">৳ {checkoutData?.checkout?.total_amount}</span>
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className="block-card-body">
-                                            <p className="d-flex mb-3">
-                                                <span className="mr-2">Subtotal</span>
-                                                <span className="ml-auto">৳ 3400.00</span>
-                                            </p>
-                                            <p className="d-flex mb-3">
-                                                <span className="mr-2">Delivery Charge</span>
-                                                <span className="ml-auto">৳ 90.00</span>
-                                            </p>
-                                            <p className="d-flex">
-                                                <span className="mr-2 font-weight-bold">Total</span>
-                                                <span className="ml-auto text-secondary font-weight-bold">৳ 3490.00</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="block-card">
-                                        <div className="block-card-header">
-                                            <p className="d-flex">
-                                                <span className="mr-2 font-weight-bold">Payable Amount</span>
-                                                <span className="ml-auto text-secondary font-weight-bold">৳ 3490.00</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="block-card">
-                                        <div className="block-card-body place-button-area">
-                                            <a href="invoices.html" className="btn btn-primary btn-block">Place Order</a>
+                                        <div className="block-card">
+                                            <div className="block-card-body place-button-area">
+                                                <div onClick={() =>{
+                                                    console.log(orderProductList)}} className="btn btn-primary btn-block">Place Order</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -950,7 +914,9 @@ const Checkout = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+                :
+                <>No Item Selected</>
+            }
 
 
 
