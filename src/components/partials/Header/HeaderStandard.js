@@ -83,6 +83,7 @@ class HeaderStandard extends Component {
   handleSignOut = () =>{
     localStorage.clear();
     this.props.handleSignOut();
+    this.props.handleClearCart();
   }
 
   render() {

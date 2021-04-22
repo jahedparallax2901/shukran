@@ -40,6 +40,7 @@ export const handleAuthentication = (credential, callback = () => null) => {
         .then((res) => {
           // if (res.data.status === 1) {
           //TODO: OTP will be removed when twello will be connected
+          alert(res.data.otp);
           dispatch(authSuccess(res.data.otp));
           callback();
           // } else {

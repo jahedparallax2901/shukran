@@ -38,8 +38,9 @@ const ModuleDetailShoppingActions = ({
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
-          await getCartItems();
-          localStorage.setItem("cart_id", data.cart.id);
+          await getCartItems(() => {
+            localStorage.setItem("cart_id", data.cart.id);
+          });
           // this.props.handleShowShoppingCart();
         } else {
           toast.error("Something went wrong.");
@@ -214,7 +215,7 @@ const mapDispatchToProps = (dispatch) => {
     triggeredAddToCart: () => dispatch(triggeredAddToCart()),
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
-    getCartItems: () => dispatch(getCartItems()),
+    getCartItems: (cb) => dispatch(getCartItems(cb)),
   };
 };
 

@@ -123,10 +123,10 @@ const addToCartFailure = (errMsg) => {
   };
 };
 
-export const getCartItems = ( callback) => {
+export const getCartItems = (callback) => {
   const authData = userData();
   const cart_id = localStorage.getItem("cart_id");
-  if (authData?.token) {
+  
     return (dispatch) => {
       dispatch(getCartItemsRequest());
 
@@ -135,7 +135,7 @@ export const getCartItems = ( callback) => {
           params: {cart_id: cart_id},
           headers: {
             "Content-Type": "application/json",
-            "Authorisation": authData.token || "",
+            "Authorization": authData?.token || "",
             "x-api-client": getDeviceType(),
           },
         })
@@ -151,9 +151,6 @@ export const getCartItems = ( callback) => {
           getCartItemsFailure(err.message);
         });
     };
-  }
-
-  return (dispatch) => {};
 };
 
 const getCartItemsRequest = () => {
