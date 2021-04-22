@@ -14,6 +14,7 @@ import Disputes from "./pages/account/Disputes";
 import ShippingAddress from "./pages/account/ShippingAddress";
 import BillingAddress from "./pages/account/BillingAddress";
 import NotFound from "./pages/NotFound";
+import Checkout from "./pages/Checkout"
 
 function App() {
   return (
@@ -21,6 +22,18 @@ function App() {
       <Router>
       <AuthModal/>
         <Switch>
+              <Route onUpdate={() => window.scrollTo(0, 0)} exact path="/">
+                <Home />
+              </Route>
+              <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
+                <ProductDetails />
+              </Route>
+              <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
+                <SearchProduct />
+              </Route>
+            <Route onUpdate={() => window.scrollTo(0, 0)} path="/checkout">
+                <Checkout/>
+            </Route>
           <Route onUpdate={() => window.scrollTo(0, 0)} exact path="/">
             <Home />
           </Route>
