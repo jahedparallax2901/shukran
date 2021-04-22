@@ -56,11 +56,11 @@ class MiniShoppinCart extends Component {
     });
   };
 
-  // /**
-  //  * Apply the gobal coupon
-  //  * @param {event} e
-  //  * @param {int} cart_id
-  //  */
+  /**
+   * Apply the gobal coupon
+   * @param {event} e
+   * @param {int} cart_id
+   */
   handleGlobalCouponApply = (e, cart_id) => {
     this.setState({ isCartProcessing: true });
     processPostRequest(
@@ -69,12 +69,10 @@ class MiniShoppinCart extends Component {
       false
     )
       .then((res) => {
-        this.setState({ isCartProcessing: false });
-
         if (res.status === 200) {
           this.props.getCartItems(() => {
             this.setState(
-              { globalCoupon: "", isGlobalCouponApplied: true },
+              { globalCoupon: "", isGlobalCouponApplied: true, isCartProcessing: false },
               () => {
                 toast.success("Coupon successfully applied", {
                   position: "top-left",
@@ -121,7 +119,6 @@ class MiniShoppinCart extends Component {
       false
     )
       .then((res) => {
-        this.setState({ isCartProcessing: false });
 
         if (res.status === 200) {
           this.props.getCartItems(() => {
@@ -131,6 +128,7 @@ class MiniShoppinCart extends Component {
               ...this.state.storesWithCoupon,
               store_id,
             ];
+            obj.isCartProcessing = false;
             this.setState(obj, () => {
               toast.success("Coupon successfully applied", {
                 position: "top-left",
@@ -167,14 +165,14 @@ class MiniShoppinCart extends Component {
 
     processPostRequest("/remove-cart-coupon", data, false)
       .then((res) => {
-        this.setState({ isCartProcessing: false });
-
         if (res.status === 200) {
           this.props.getCartItems(() => {
             toast.success("Coupon removed successfully");
+            this.setState({ isCartProcessing: false });
           });
         } else {
           toast.error("Something went wrong");
+          this.setState({ isCartProcessing: false });
         }
       })
       .catch((err) => {
@@ -210,9 +208,14 @@ class MiniShoppinCart extends Component {
 
     processPostRequest("/cart-product-checker", formData, false)
       .then((res) => {
-        this.props.getCartItems(() => {
-          this.setState({ isCartProcessing: false });
-        });
+        if(res.status === 200) {
+          this.props.getCartItems(() => {
+            this.setState({ isCartProcessing: false });
+          });
+        }else{
+          toast.error("Something went wrong");
+        }
+        
       })
       .catch((err) => {
         toast.error(err.message);
@@ -305,15 +308,17 @@ class MiniShoppinCart extends Component {
                       <div className="store">
                         <div className="store-name">
                           <div className="ps-checkbox">
-                            <input
+                            {/* <input
                               className="form-control"
                               type="checkbox"
                               id="store-1"
                               name="brand"
-                            />
-                            <label for="store-1">
+                            /> */}
+                            {/* <label for="store-1">
                               {cart_items?.store?.name || ""}
-                            </label>
+                            </label> */}
+                            
+                            <h3 className="mt-2">{cart_items?.store?.name || ""}</h3>
                           </div>
                         </div>
 

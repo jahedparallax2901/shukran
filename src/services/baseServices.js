@@ -66,7 +66,6 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
           "Content-Type": "application/json",
           "Authorization": isAuthenticationRequired? authData?.token : "",
           "x-api-client": getDeviceType(),
-          "Authorization": authData.token
         },
       }).then((res) => {
         console.log("res",res)

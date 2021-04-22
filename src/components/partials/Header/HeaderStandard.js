@@ -186,10 +186,7 @@ class HeaderStandard extends Component {
                                                   store_item.product_attribute
                                                     .product_id,
                                                   store_item.product_attribute
-                                                    .attribute_type === 2
-                                                    ? 0
-                                                    : store_item
-                                                        .product_attribute.id
+                                                    .id
                                                 )
                                               }
                                             />
