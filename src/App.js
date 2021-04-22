@@ -15,6 +15,7 @@ import ShippingAddress from "./pages/account/ShippingAddress";
 import BillingAddress from "./pages/account/BillingAddress";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout"
+import Invoice from "./pages/invoice";
 
 function App() {
   return (
@@ -64,9 +65,15 @@ function App() {
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/account/billing-address">
             <BillingAddress />
           </Route>
+
+            <Route onUpdate={() => window.scrollTo(0, 0)} path="/invoice">
+                <Invoice/>
+            </Route>
+
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">
             <NotFound />
           </Route>
+
         </Switch>
       </Router>
    </Provider>

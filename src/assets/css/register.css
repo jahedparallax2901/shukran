@@ -135,10 +135,10 @@
     vertical-align: middle;
     font-size: 16px;
 }
- .invoice-table tbody tr td .dispute-review{
+.invoice-table tbody tr td .dispute-review{
     font-size: 16px;
-     opacity: 1;
- }
+    opacity: 1;
+}
 .invoice-table tbody tr td span{
     font-size: 16px;
 }
