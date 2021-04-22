@@ -678,6 +678,7 @@ const Checkout = () => {
                 </Modal.Body>
             </Modal>
 
+
             <Modal show={isShowContactModal} onHide={()=> { handleHideContactModal()}}>
                 <ModalBody>
                     <ModalHeader>
