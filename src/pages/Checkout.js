@@ -208,6 +208,24 @@ const Checkout = () => {
         })
     }
 
+    const placeOrder = (e) =>{
+        e.preventDefault()
+        processPostRequest('/place-order', {
+            checkout_id : 1,
+            address_id: deliverAddress[0]?.id,
+            contact_id: contacts[0]?.id,
+            payment_gateway_id: 1
+
+        }).then((res)=>{
+
+
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+
+
+
     const handleDeleteData = (url) =>{
         processDeleteRequest(url).then((res)=>{
             getAllData()
@@ -681,7 +699,7 @@ const Checkout = () => {
             </Modal>
 
 
-            {checkoutData.length < 0 ?
+            {checkoutData.checkout_items !== null ?
                 <div id="homepage-5">
                     <div className="container">
                         <div className="checkout-area-inner">
@@ -875,7 +893,7 @@ const Checkout = () => {
 
                                             <div className="voucher-area">
                                                 <div
-
+                                                    onClick={(e)=>{ placeOrder(e)}}
                                                     className="proceed-checkout">Place Order</div>
 
                                             </div>
@@ -904,7 +922,8 @@ const Checkout = () => {
                                         </div>
                                         <div className="block-card">
                                             <div className="block-card-body place-button-area">
-                                                <div onClick={() =>{
+                                                <div onClick={(e) =>{
+                                                    placeOrder(e)
                                                     console.log(orderProductList)}} className="btn btn-primary btn-block">Place Order</div>
                                             </div>
                                         </div>
