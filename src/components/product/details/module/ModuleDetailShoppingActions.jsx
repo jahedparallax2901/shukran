@@ -17,7 +17,7 @@ const ModuleDetailShoppingActions = ({
   extended = false,
   handleAddToCart,
   shoppingCart,
-  getCartItems
+  getCartItems,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
@@ -26,7 +26,13 @@ const ModuleDetailShoppingActions = ({
   const handleAddItemToCart = (e) => {
     e.preventDefault();
     const newList = shoppingCart.cartProductlist;
-    newList.push({product_id: id, item_id: selectedAttributeProduct?.attribute_item?.id || 0, quantity: quantity})
+    newList.push({
+      product_id: id,
+      item_id:
+        selectedAttributeProduct?.attribute_item?.id ||
+        selectedAttributeProduct?.id,
+      quantity: quantity,
+    });
     handleAddToCart(
       newList,
       userData()?.token || "",
@@ -75,7 +81,7 @@ const ModuleDetailShoppingActions = ({
       setQuantity(quantity - 1);
     }
   };
-  console.log("product", product);
+
   if (!extended) {
     return (
       <div className="ps-product__shopping">
@@ -207,9 +213,7 @@ const mapDispatchToProps = (dispatch) => {
     handleShowAuthModal: (cb) => dispatch(handleShowAuthModal(cb)),
     triggeredAddToCart: () => dispatch(triggeredAddToCart()),
     handleAddToCart: (productList, token, cb, isBuyNow) =>
-      dispatch(
-        handleAddToCart(productList, token, cb, isBuyNow)
-      ),
+      dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     getCartItems: () => dispatch(getCartItems()),
   };
 };

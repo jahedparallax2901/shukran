@@ -12,7 +12,9 @@ import ThumbnailDefault from "./details/thumbnail/ThumbnailDefault";
 
 const ProductDetailFullwidth = ({ product }) => {
   const [selectedAttributeProduct, setSelectedAttributeProduct] = useState(
-    product?.attributes[0] || {}
+    product?.attributes_types?.length > 0
+      ? product?.attributes_types[0].items[0]
+      : product?.default_attribute
   );
 
   return (
@@ -20,57 +22,61 @@ const ProductDetailFullwidth = ({ product }) => {
       <div className="ps-product__header">
         <ThumbnailDefault product={product} />
         <div className="ps-product__info">
-          {/* <ModuleDetailTopInformation
+          <ModuleDetailTopInformation
             product={product}
             selectedAttributeProduct={selectedAttributeProduct}
           />
-          <ModuleProductDetailDescription
-            product={product}
-          /> */}
+          <ModuleProductDetailDescription product={product} />
           {/* <ModuleDetailActionsMobile /> */}
         </div>
       </div>
       <div class="ps-product-info-other">
-        {/* <ModuleDetailShoppingActions
+        <ModuleDetailShoppingActions
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
-        <div>
-          <h4>Select Attributes</h4>
+        {product?.attributes_types?.length > 0 && (
           <div>
-            {product?.attribute &&
-              Object.keys(product?.attribute).map((item) => (
+            <h4>Select Attributes</h4>
+            <div>
+              {product?.attributes_types.map((item) => (
                 <div>
-                  <h5>{item}</h5>
+                  <h5>{item.name}</h5>
                   <Form inline>
-                    {product?.attribute[item] &&
-                      product?.attribute[item].map((attr) => (
-                        <Form.Group>
-                          <Form.Control
-                            type="radio"
-                            name="attribute"
-                            defaultChecked={
-                              selectedAttributeProduct?.attribute_item?.id ===
-                              attr?.attribute_item?.id
-                            }
-                            onChange={()=>setSelectedAttributeProduct(attr || {})}
-                          />
-                          <Form.Label className="mr-2">
-                            {attr?.attribute_item?.value}
-                          </Form.Label>
-                        </Form.Group>
-                      ))}
+                    {item.items.map((attr) => (
+                      <Form.Group>
+                        <Form.Control
+                          type="radio"
+                          name="attribute"
+                          defaultChecked={
+                            selectedAttributeProduct?.attribute_item?.id ===
+                            attr?.attribute_item?.id
+                          }
+                          onChange={() =>
+                            setSelectedAttributeProduct(attr || {})
+                          }
+                        />
+                        <Form.Label className="mr-2">
+                          {attr?.attribute_item?.value}
+                        </Form.Label>
+                      </Form.Group>
+                    ))}
                   </Form>
                 </div>
               ))}
+              <hr />
+            </div>
           </div>
-        </div>
-        <hr />
-        <ModuleProductDetailSpecification product={product} selectedAttributeProduct={selectedAttributeProduct}/>
-        <ModuleProductDetailSharing /> */}
+        )}
+
+        <ModuleProductDetailSpecification
+          product={product}
+          selectedAttributeProduct={selectedAttributeProduct}
+        />
+        <ModuleProductDetailSharing />
       </div>
 
-      {/* <DefaultDescription product={product} /> */}
+      <DefaultDescription product={product} />
     </div>
   );
 };
