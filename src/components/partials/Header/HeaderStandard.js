@@ -80,12 +80,16 @@ class HeaderStandard extends Component {
     );
   };
 
+  handleSignOut = () =>{
+    localStorage.clear();
+    this.props.handleSignOut();
+  }
+
   render() {
     const { categories } = this.state;
     const {
       handleShowAuthModal,
       user,
-      handleSignOut,
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
@@ -251,7 +255,7 @@ class HeaderStandard extends Component {
                     </div>
                     <div className="ps-block__right">
                       <Link to="/account/my-account">{user.phone}</Link>
-                      <a onClick={() => handleSignOut()}>Logout</a>
+                      <a onClick={() => this.handleSignOut()}>Logout</a>
                     </div>
                   </div>
                 ) : (

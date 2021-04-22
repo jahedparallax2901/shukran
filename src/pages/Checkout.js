@@ -30,16 +30,6 @@ import {
   processPostRequest,
 } from "../services/baseServices";
 import { singleProduct } from "../temp-data/product";
-
-/*
-import "../assets/css/style.css";
-import "../assets/css/change.css";
-import "../assets/css/market-place-1.css";
-import "../assets/css/market-place-3.css";
-import "../assets/css/autopart.css";
-import "../assets/css/broken.css";
-import "../assets/css/bootstrap.css"
-*/
 import "../assets/css/checkout.css";
 import {
   FiX,

@@ -45,7 +45,6 @@ export const processGetRequest = (url, paramsObj = {}, isAuthenticationRequired 
           "Content-Type": "application/json",
           "x-auth-token": isAuthenticationRequired? authData?.token : "",
           "x-api-client": getDeviceType(),
-          "Authorization": authData.token
         },
       })
       .then((res) => {
