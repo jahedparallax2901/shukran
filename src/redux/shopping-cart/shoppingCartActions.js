@@ -80,7 +80,7 @@ export const handleAddToCart = (
       .post(BASE_API_URL + "/add-to-cart", formData, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: authData.token || "",
+          "Authorization": authData?.token || "",
           "x-api-client": "web",
         },
       })
