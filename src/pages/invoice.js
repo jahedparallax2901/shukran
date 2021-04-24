@@ -50,10 +50,21 @@ import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
 import {toast} from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
+import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 
 const Invoice = () => {
 
+    const location = useLocation()
+
+    const [json ,setJson] = useState(location.state.json)
+
+    useEffect( ()=>{
+
+        console.log(json)
+
+    },[])
 
     return (
         <ContainerMarketPlace3
@@ -74,7 +85,7 @@ const Invoice = () => {
                                         <td className="text-right"><span className="d-block">Support@shukran24seven.com</span><span className="d-block">info@shukran24seven.com</span></td>
                                     </tr>
                                     <tr>
-                                        <td colSpan={2}><h3 className="invoice-title">BD-34559019048</h3></td>
+                                        <td colSpan={2}><h3 className="invoice-title">order id : #{json.order.id}</h3></td>
                                     </tr>
                                     <tr>
                                         <td colSpan={2}>
@@ -83,26 +94,20 @@ const Invoice = () => {
                                                 <tr>
                                                     <td width="20%" style={{paddingBottom: 20, paddingLeft: 0}}>
                                                         <h4 className="invoice-title-alt">Bill To</h4>
-                                                        <span className="d-block">md jahedul</span>
-                                                        <span className="d-block">1861270125</span>
-                                                        <span className="d-block">Dhaka</span>
+                                                        <span className="d-block">{json.customer_address.name}</span>
+                                                        <span className="d-block">{json.customer_address.phone}</span>
+                                                        <span className="d-block">{json.customer_address.address}</span>
                                                         <span className="d-block">
-                            <span>Bangladesh, </span>
-                            <span>SYLHET, </span>
-                            <span>KANAIGHAT, </span>
-                            <span>PURBA LAKKHIPRASAD</span>
+
                           </span>
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Ship To</h4>
-                                                        <span className="d-block">md jahedul</span>
-                                                        <span className="d-block">1861270125</span>
-                                                        <span className="d-block">Dhaka</span>
+                                                        <span className="d-block">{json.customer_address.name}</span>
+                                                        <span className="d-block">{json.customer_address.phone}</span>
+                                                        <span className="d-block">{json.customer_address.address}</span>
                                                         <span className="d-block">
-                            <span>Bangladesh, </span>
-                            <span>SYLHET, </span>
-                            <span>KANAIGHAT, </span>
-                            <span>PURBA LAKKHIPRASAD</span>
+
                           </span>
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
@@ -118,11 +123,13 @@ const Invoice = () => {
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                           <span className="d-block order-date-tag">
-                            <strong>Order Date: </strong>Mar 26, 2021
+                            <strong>Order Date: </strong>{moment(json.order?.created_at).format('ll')}
                           </span>
                                                         <span className="d-block pr-0">
                             <svg width="310px" height="92px" x="0px" y="0px" viewBox="0 0 310 92" xmlns="http://www.w3.org/2000/svg" version="1.1" style={{transform: 'translate(0,0)'}}>
-                              <rect x={0} y={0} width={310} height={92} style={{fill: '#ffffff'}} /><g transform="translate(10, 10)" style={{fill: '#000000'}}><rect x={0} y={0} width={4} height={50} /><rect x={6} y={0} width={2} height={50} /><rect x={12} y={0} width={2} height={50} /><rect x={22} y={0} width={2} height={50} /><rect x={30} y={0} width={2} height={50} /><rect x={34} y={0} width={4} height={50} /><rect x={44} y={0} width={2} height={50} /><rect x={48} y={0} width={4} height={50} /><rect x={58} y={0} width={2} height={50} /><rect x={66} y={0} width={2} height={50} /><rect x={72} y={0} width={4} height={50} /><rect x={78} y={0} width={6} height={50} /><rect x={88} y={0} width={4} height={50} /><rect x={96} y={0} width={2} height={50} /><rect x={100} y={0} width={6} height={50} /><rect x={110} y={0} width={2} height={50} /><rect x={114} y={0} width={6} height={50} /><rect x={122} y={0} width={8} height={50} /><rect x={132} y={0} width={2} height={50} /><rect x={136} y={0} width={6} height={50} /><rect x={144} y={0} width={4} height={50} /><rect x={154} y={0} width={6} height={50} /><rect x={166} y={0} width={4} height={50} /><rect x={172} y={0} width={2} height={50} /><rect x={176} y={0} width={4} height={50} /><rect x={184} y={0} width={4} height={50} /><rect x={190} y={0} width={4} height={50} /><rect x={198} y={0} width={4} height={50} /><rect x={204} y={0} width={8} height={50} /><rect x={214} y={0} width={4} height={50} /><rect x={220} y={0} width={6} height={50} /><rect x={228} y={0} width={6} height={50} /><rect x={236} y={0} width={4} height={50} /><rect x={242} y={0} width={4} height={50} /><rect x={250} y={0} width={2} height={50} /><rect x={256} y={0} width={6} height={50} /><rect x={264} y={0} width={4} height={50} /><rect x={274} y={0} width={6} height={50} /><rect x={282} y={0} width={2} height={50} /><rect x={286} y={0} width={4} height={50} /><text style={{font: '20px monospace'}} textAnchor="middle" x={145} y={72}>BD-34559019048</text></g>
+                              <rect x={0} y={0} width={310} height={92} style={{fill: '#ffffff'}} /><g transform="translate(10, 10)" style={{fill: '#000000'}}><rect x={0} y={0} width={4} height={50} /><rect x={6} y={0} width={2} height={50} /><rect x={12} y={0} width={2} height={50} /><rect x={22} y={0} width={2} height={50} /><rect x={30} y={0} width={2} height={50} /><rect x={34} y={0} width={4} height={50} /><rect x={44} y={0} width={2} height={50} /><rect x={48} y={0} width={4} height={50} /><rect x={58} y={0} width={2} height={50} /><rect x={66} y={0} width={2} height={50} /><rect x={72} y={0} width={4} height={50} /><rect x={78} y={0} width={6} height={50} /><rect x={88} y={0} width={4} height={50} /><rect x={96} y={0} width={2} height={50} /><rect x={100} y={0} width={6} height={50} /><rect x={110} y={0} width={2} height={50} /><rect x={114} y={0} width={6} height={50} /><rect x={122} y={0} width={8} height={50} /><rect x={132} y={0} width={2} height={50} /><rect x={136} y={0} width={6} height={50} /><rect x={144} y={0} width={4} height={50} /><rect x={154} y={0} width={6} height={50} /><rect x={166} y={0} width={4} height={50} /><rect x={172} y={0} width={2} height={50} /><rect x={176} y={0} width={4} height={50} /><rect x={184} y={0} width={4} height={50} /><rect x={190} y={0} width={4} height={50} /><rect x={198} y={0} width={4} height={50} /><rect x={204} y={0} width={8} height={50} /><rect x={214} y={0} width={4} height={50} /><rect x={220} y={0} width={6} height={50} /><rect x={228} y={0} width={6} height={50} /><rect x={236} y={0} width={4} height={50} /><rect x={242} y={0} width={4} height={50} /><rect x={250} y={0} width={2} height={50} /><rect x={256} y={0} width={6} height={50} /><rect x={264} y={0} width={4} height={50} /><rect x={274} y={0} width={6} height={50} /><rect x={282} y={0} width={2} height={50} /><rect x={286} y={0} width={4} height={50} /><text style={{font: '20px monospace'}} textAnchor="middle" x={145} y={72}>
+                                {json.order.id}
+                              </text></g>
                             </svg>
                           </span>
                                                     </td>
@@ -143,19 +150,50 @@ const Invoice = () => {
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                            {/*    <tr>
+                                                    <td colSpan={4}>
+                                                        <span
+                                                            className="store-name">
+                                                            <span className="icon">
+                                                                <svg stroke="currentColor"
+                                                                     fill="currentColor"
+                                                                     strokeWidth={0}
+                                                                     viewBox="0 0 616 512"
+                                                                     height="1em" width="1em"
+                                                                     xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M602 118.6L537.1 15C531.3 5.7 521 0 510 0H106C95 0 84.7 5.7 78.9 15L14 118.6c-33.5 53.5-3.8 127.9 58.8 136.4 4.5.6 9.1.9 13.7.9 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18.1 20.1 44.3 33.1 73.8 33.1 4.7 0 9.2-.3 13.7-.9 62.8-8.4 92.6-82.8 59-136.4zM529.5 288c-10 0-19.9-1.5-29.5-3.8V384H116v-99.8c-9.6 2.2-19.5 3.8-29.5 3.8-6 0-12.1-.4-18-1.2-5.6-.8-11.1-2.1-16.4-3.6V480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32V283.2c-5.4 1.6-10.8 2.9-16.4 3.6-6.1.8-12.1 1.2-18.2 1.2z" /></svg>
+                                                            </span>
+                                                            <span
+                                                                className="text">Jahanar import &amp; export
+                                                            </span>
+                                                        </span>
+                                                        <span className="badge badge-info ml-4">Pending</span></td>
+                                                </tr>*/}
                                                 <tr>
-                                                    <td colSpan={4}><span className="store-name"><span className="icon"><svg stroke="currentColor" fill="currentColor" strokeWidth={0} viewBox="0 0 616 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M602 118.6L537.1 15C531.3 5.7 521 0 510 0H106C95 0 84.7 5.7 78.9 15L14 118.6c-33.5 53.5-3.8 127.9 58.8 136.4 4.5.6 9.1.9 13.7.9 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18 20.1 44.3 33.1 73.8 33.1 29.6 0 55.8-13 73.8-33.1 18.1 20.1 44.3 33.1 73.8 33.1 4.7 0 9.2-.3 13.7-.9 62.8-8.4 92.6-82.8 59-136.4zM529.5 288c-10 0-19.9-1.5-29.5-3.8V384H116v-99.8c-9.6 2.2-19.5 3.8-29.5 3.8-6 0-12.1-.4-18-1.2-5.6-.8-11.1-2.1-16.4-3.6V480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32V283.2c-5.4 1.6-10.8 2.9-16.4 3.6-6.1.8-12.1 1.2-18.2 1.2z" /></svg> </span><span className="text">Jahanar import &amp; export</span></span><span className="badge badge-info ml-4">Pending</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span className="d-block"><strong><a href="/products/details/604092662146a37c6fe03ba3" target="_blank">test hunk 3</a></strong></span><span className="d-block text-muted" /></td>
-                                                    <td>1</td>
-                                                    <td className="text-right">145000</td>
-                                                    <td>
-                                                        <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
-                                                        </button>
-                                                        <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
-                                                        </button>
-                                                    </td>
+                                                    {json.ordered_items && json.ordered_items.map( (data,index) => (
+
+                                                        <>  {data.store_product.map((data1,index1) => (
+                                                            <>
+                                                                <td>
+                                                        <span className="d-block">
+                                                        <strong>
+                                                        <a href="/products/details/604092662146a37c6fe03ba3" target="_blank">
+                                                            {data1.product.name}
+                                                        </a>
+                                                    </strong></span><span className="d-block text-muted" /></td>
+                                                                <td>{data1.quantity}</td>
+                                                                <td className="text-right">{data1.total_amount}</td>
+                                                                <td>
+                                                                   {/* <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
+                                                                    </button>
+                                                                    <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
+                                                                    </button>*/}
+                                                                </td>
+                                                            </>
+                                                            ))}
+                                                            </>
+                                                    ) )}
+
                                                 </tr>
                                                 <tr>
                                                     <td colSpan={4} style={{padding: 0, backgroundColor: 'transparent'}}>
@@ -163,7 +201,7 @@ const Invoice = () => {
                                                             <span className="progress-line" />
                                                             <div className="timeline-inner">
                                                                 <div className="progress-block completed">
-                                                                    <div className="date">Mar 26, 2021</div>
+                                                                    <div className="date">{moment(json.order.created_at).format('ll')}</div>
                                                                     <div className="circle" />
                                                                     <div className="text"><h4>Pending</h4>
                                                                         <p /></div>
@@ -208,24 +246,18 @@ const Invoice = () => {
                                                 </tr>
                                                 <tr className="text-bold">
                                                     <td colSpan={3} className="text-right">Subtotal</td>
-                                                    <td className="text-right">145000</td>
+                                                    <td className="text-right">{json.order?.sub_total_amount}</td>
                                                 </tr>
                                                 <tr className="text-bold">
                                                     <td colSpan={3} className="text-right">Discount</td>
-                                                    <td className="text-right">0</td>
+                                                    <td className="text-right">{json.order?.discount_amount}</td>
                                                 </tr>
-                                                <tr className="text-bold">
-                                                    <td colSpan={3} className="text-right">Shipping Cost</td>
-                                                    <td className="text-right">0</td>
-                                                </tr>
+
                                                 <tr className="text-bold">
                                                     <td colSpan={3} className="text-right">Grand Total</td>
-                                                    <td className="text-right">145000</td>
+                                                    <td className="text-right">{json.order?.total_amount}</td>
                                                 </tr>
-                                                <tr className="text-bold">
-                                                    <td colSpan={3} className="text-right">Merchant Commission</td>
-                                                    <td className="text-right">100</td>
-                                                </tr>
+
                                                 </tbody>
                                             </table>
                                         </td>

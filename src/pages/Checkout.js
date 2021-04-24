@@ -58,7 +58,7 @@ import ReactDOM from "react-dom";
 import { toast } from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 
-const Checkout = () => {
+const Checkout = (props) => {
   const [defaultSelected, setDefaultSelected] = useState([0]);
 
   const [selectedAddress, setSelectedAddress] = useState(0);
@@ -205,7 +205,15 @@ const Checkout = () => {
       .then((res) => {
         if (res.status) {
           toast.success("Order successfully placed");
-          history.push("/invoice");
+
+          history.push({
+            pathname: '/invoice',
+            state: {  // location state
+              json: res.data
+            },
+          });
+
+
         }
       })
       .catch((err) => {
