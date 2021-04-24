@@ -78,7 +78,7 @@ const reducer = (state = initialState, action) => {
         isLoading: true,
       };
     case VERIFY_OTP_SUCCESS:
-      // state.callback()
+      state.callback()
       return {
         ...state,
         isLoading: false,

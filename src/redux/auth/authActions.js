@@ -52,7 +52,7 @@ export const handleAuthentication = (credential, callback = () => null) => {
           dispatch(authFailure(err.message));
         });
     } else {
-      alert("Please insert valid phone number");
+      alert("Please insert valid phone number of minimu 8 length");
     }
   };
 };

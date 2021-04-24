@@ -170,24 +170,25 @@ class HeaderMobile extends Component {
               <div className="ps-block--user-header">
                 {user?.phone ? (
                   <div className="ps-block--user-header mr-0">
-                    <div className="ps-block__left">
+                    <div className="ps-block__left mr-2">
                       <i>
                         <FontAwesomeIcon icon={faUser} />
                       </i>
                     </div>
-                    <div className="ps-block__right">
+                    <div>
                       <Link to="/account/my-account">{user.phone}</Link>
+                      <br/>
                       <a onClick={() => this.handleSignOut()}>Logout</a>
                     </div>
                   </div>
                 ) : (
                   <div className="ps-block--user-header mr-0">
-                    <div className="ps-block__left">
+                    <div className="ps-block__left mr-2">
                       <i>
                         <FontAwesomeIcon icon={faUser} />
                       </i>
                     </div>
-                    <div className="ps-block__right">
+                    <div>
                       <a
                         onClick={handleShowAuthModal}
                         data-toggle="modal"
