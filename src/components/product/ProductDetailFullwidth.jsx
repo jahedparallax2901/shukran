@@ -10,6 +10,7 @@ import ModuleProductDetailSharing from "./details/module/ModuleProductDetailShar
 import ModuleProductDetailSpecification from "./details/module/ModuleProductDetailSpecification";
 import ThumbnailDefault from "./details/thumbnail/ThumbnailDefault";
 import "../../assets/scss/custom-new.scss";
+import { Link } from "react-router-dom";
 
 const ProductDetailFullwidth = ({ product }) => {
   const [selectedAttributeProduct, setSelectedAttributeProduct] = useState(
@@ -31,78 +32,47 @@ const ProductDetailFullwidth = ({ product }) => {
         </div>
       </div>
       <div class="ps-product-info-other">
-      {/* <ModuleDetailActionsMobile /> */}
+        {/* <ModuleDetailActionsMobile /> */}
 
         <ModuleDetailShoppingActions
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
-        {/* {product?.attributes_types?.length > 0 && (
+        {product?.attributes_types?.length > 0 && (
           <div>
-            <h4>Select Attributes</h4>
-            <div>
-              {product?.attributes_types.map((item) => (
-                <div>
-                  <h5>{item.name}</h5>
-                  <Form inline>
-                    {item.items.map((attr) => (
-                      <Form.Group>
-                        <Form.Control
-                          type="radio"
-                          name="attribute"
-                          defaultChecked={
-                            selectedAttributeProduct?.attribute_item?.id ===
-                            attr?.attribute_item?.id
-                          }
-                          onChange={() =>
+            <h4 className="gray-md-title">Select Attributes</h4>
+            <div className="attribute_div">
+              <table>
+                <tbody>
+                  {product?.attributes_types.map((item) => (
+                    <tr>
+                      <td>
+                        <p>{item.name}</p>
+                      </td>
+                      <td>
+                        {item.items.map((attr) => (
+                          <Link
+                          onClick={(e) =>{
+                            e.preventDefault();
                             setSelectedAttributeProduct(attr || {})
-                          }
-                        />
-                        <Form.Label className="mr-2">
-                          {attr?.attribute_item?.value}
-                        </Form.Label>
-                      </Form.Group>
-                    ))}
-                  </Form>
-                </div>
-              ))}
+                          }}
+                            className={`attribute_selector ${
+                              selectedAttributeProduct?.attribute_item?.id ===
+                                attr?.attribute_item?.id && "active"
+                            }`}
+                          >
+                            {attr?.attribute_item?.value}
+                          </Link>
+                        ))}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
               <hr />
             </div>
           </div>
-        )} */}
-
-        <div className="attribute_div">
-          <table>
-            <tbody>
-              <tr>
-                <td><p>colors</p></td>
-                <td><a href="#" className="attribute_selector active">black</a>
-                <a href="#" className="attribute_selector">blue</a></td>
- 
-              </tr>
-              <tr>
-                <td><p>size</p></td>
-                <td><a href="#" className="attribute_selector">M</a>
-                <a href="#" className="attribute_selector active">L</a>
-                <a href="#" className="attribute_selector ">XL</a>
-                <a href="#" className="attribute_selector ">XXL</a></td>
-              </tr>
-              <tr>
-                <td><p>sleeve</p></td>
-                <td><a href="#" className="attribute_selector attribute_selector-img">
-                <div className="attribute-image-container">
-                <img src="https://ekshop-dev.s3-us-west-1.amazonaws.com/W-150-px-1607100658272_SPLjpg.webp" alt=""/>
-                </div>
-                  </a>
-                  <a href="#" className="attribute_selector attribute_selector-img active">
-                  <div className="attribute-image-container">
-                  <img src="https://ekshop-dev.s3-us-west-1.amazonaws.com/W-150-px-1607589613860_GMLTDILBjpg.webp" alt=""/>
-                  </div>
-                  </a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        )}
 
         <ModuleProductDetailSpecification
           product={product}
