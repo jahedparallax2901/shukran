@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
-import {userData} from "./helpers/authUtils";
+import { userData } from "../helpers/authUtils";
 
 const PrivateRoute = ({children, userIsLoggedIn, redirectTo, ...rest}) => {
   const authData = userData()

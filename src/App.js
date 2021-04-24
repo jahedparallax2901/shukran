@@ -21,8 +21,10 @@ import BillingAddress from "./pages/account/BillingAddress";
 import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Invoice from "./pages/invoice";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
+  const homePath = "/";
   return (
     <Provider store={store}>
       <Router>
@@ -37,12 +39,9 @@ function App() {
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
             <SearchProduct />
           </Route>
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/checkout">
+          <PrivateRoute redirectTo={homePath} onUpdate={() => window.scrollTo(0, 0)} path="/checkout">
             <Checkout />
-          </Route>
-          <Route onUpdate={() => window.scrollTo(0, 0)} exact path="/">
-            <Home />
-          </Route>
+          </PrivateRoute>
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
             <ProductDetails />
           </Route>

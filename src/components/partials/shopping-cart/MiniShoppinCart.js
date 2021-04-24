@@ -271,9 +271,7 @@ class MiniShoppinCart extends Component {
   handleProceedCheckout = (e, cart_id, store_id = null) => {
     e.preventDefault();
     const user = userData();
-    if (!user) {
-      console.log("I am here");
-      this.props.handleShowAuthModal(() => {
+    if (!user) {      this.props.handleShowAuthModal(() => {
         this.handleProceedCheckout(e, cart_id, store_id);
       });
     } else {
