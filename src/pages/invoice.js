@@ -51,149 +51,20 @@ import ReactDOM from "react-dom";
 import {toast} from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 
 const Invoice = () => {
 
-    const [json ,setJson] = useState({
-        "ordered_items": [
-            {
-                "id": 7,
-                "customer_id": 15,
-                "store_id": 1,
-                "cart_id": 96,
-                "checkout_id": 7,
-                "sub_total_amount": 10,
-                "discount_amount": 15,
-                "total_amount": -5,
-                "status": 1,
-                "created_at": "2021-04-24T08:34:34.000000Z",
-                "updated_at": "2021-04-24T08:34:34.000000Z",
-                "store_product": [
-                    {
-                        "id": 7,
-                        "customer_id": 15,
-                        "store_id": 1,
-                        "cart_store_id": 79,
-                        "cart_id": 96,
-                        "checkout_id": 7,
-                        "checkout_store_id": 7,
-                        "product_id": 6,
-                        "product_attribute_id": 1,
-                        "quantity": 1,
-                        "sub_total_amount": 10,
-                        "discount_amount": 15,
-                        "total_amount": -5,
-                        "status": 1,
-                        "created_at": "2021-04-24T08:34:34.000000Z",
-                        "updated_at": "2021-04-24T08:34:34.000000Z",
-                        "price": 10,
-                        "product": {
-                            "id": 6,
-                            "name": "Cone Ice Cream",
-                            "single_image": "https://parallaxlogic.dev/shukran-admin/application/public/storage/no_image.jpg",
-                            "file_attach_single": null
-                        },
-                        "attribute_item": {
-                            "id": 1,
-                            "status": 1,
-                            "value": "Blue",
-                            "slug": null,
-                            "attribute_id": 1,
-                            "created_at": null,
-                            "updated_at": null,
-                            "attribute": {
-                                "id": 1,
-                                "status": 1,
-                                "name": "Color",
-                                "slug": null,
-                                "created_at": null,
-                                "updated_at": null
-                            }
-                        },
-                        "product_attribute": {
-                            "id": 1,
-                            "product_id": 6,
-                            "attribute_id": 1,
-                            "attribute_item_id": 1,
-                            "sku": "Ez",
-                            "status": 1,
-                            "price": 10,
-                            "sale_price": 10,
-                            "quantity": 0,
-                            "created_at": null,
-                            "updated_at": null,
-                            "attribute_type": 1,
-                            "attribute_item": {
-                                "id": 1,
-                                "status": 1,
-                                "value": "Blue",
-                                "slug": null,
-                                "attribute_id": 1,
-                                "created_at": null,
-                                "updated_at": null,
-                                "attribute": {
-                                    "id": 1,
-                                    "status": 1,
-                                    "name": "Color",
-                                    "slug": null,
-                                    "created_at": null,
-                                    "updated_at": null
-                                }
-                            }
-                        }
-                    }
-                ],
-                "store": {
-                    "id": 1,
-                    "name": "Igloo Shop",
-                    "store_id": null,
-                    "vendor_id": 1,
-                    "created_at": null,
-                    "updated_at": "2021-04-08T12:25:21.000000Z",
-                    "status": 1,
-                    "approval_status": 0
-                }
-            }
-        ],
-        "customer_address": {
-            "id": 1,
-            "customer_id": 1,
-            "status": 1,
-            "name": "atik",
-            "phone_number": "007",
-            "email": "a@a.com",
-            "address": "dhaka mirpur 12",
-            "division_id": null,
-            "district_id": null,
-            "upazila_id": null,
-            "area_id": 1,
-            "address_type": 1,
-            "created_at": "2021-04-20T16:03:56.000000Z",
-            "updated_at": "2021-04-20T16:03:56.000000Z"
-        },
-        "customer_contact": {
-            "id": 1,
-            "customer_id": 1,
-            "status": 1,
-            "phone_number": "01725929764",
-            "created_at": "2021-04-21T04:14:42.000000Z",
-            "updated_at": "2021-04-21T04:14:42.000000Z"
-        },
-        "order": {
-            "id": 7,
-            "customer_id": 15,
-            "cart_id": 96,
-            "sub_total_amount": 10,
-            "discount_amount": 15,
-            "total_amount": -5,
-            "status": 1,
-            "created_at": "2021-04-24T08:34:34.000000Z",
-            "updated_at": "2021-04-24T08:34:34.000000Z",
-            "coupon": null
-        }
-    })
+    const location = useLocation()
 
+    const [json ,setJson] = useState(location.state.json)
+
+    useEffect( ()=>{
+
+        console.log(json)
+
+    },[])
 
     return (
         <ContainerMarketPlace3
@@ -330,7 +201,7 @@ const Invoice = () => {
                                                             <span className="progress-line" />
                                                             <div className="timeline-inner">
                                                                 <div className="progress-block completed">
-                                                                    <div className="date">Mar 26, 2021</div>
+                                                                    <div className="date">{moment(json.order.created_at).format('ll')}</div>
                                                                     <div className="circle" />
                                                                     <div className="text"><h4>Pending</h4>
                                                                         <p /></div>
