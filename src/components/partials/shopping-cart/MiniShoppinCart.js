@@ -5,6 +5,7 @@ import {
   handleAddToCart,
   handleHideShoppingCart,
   handleClearCart,
+  handleShowAuthModal,
 } from "../../../redux";
 import { connect } from "react-redux";
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -72,7 +73,11 @@ class MiniShoppinCart extends Component {
         if (res.status === 200) {
           this.props.getCartItems(() => {
             this.setState(
-              { globalCoupon: "", isGlobalCouponApplied: true, isCartProcessing: false },
+              {
+                globalCoupon: "",
+                isGlobalCouponApplied: true,
+                isCartProcessing: false,
+              },
               () => {
                 toast.success("Coupon successfully applied", {
                   position: "top-left",
@@ -119,7 +124,6 @@ class MiniShoppinCart extends Component {
       false
     )
       .then((res) => {
-
         if (res.status === 200) {
           this.props.getCartItems(() => {
             let obj = this.state;
@@ -208,14 +212,13 @@ class MiniShoppinCart extends Component {
 
     processPostRequest("/cart-product-checker", formData, false)
       .then((res) => {
-        if(res.status === 200) {
+        if (res.status === 200) {
           this.props.getCartItems(() => {
             this.setState({ isCartProcessing: false });
           });
-        }else{
+        } else {
           toast.error("Something went wrong");
         }
-        
       })
       .catch((err) => {
         toast.error(err.message);
@@ -223,8 +226,7 @@ class MiniShoppinCart extends Component {
       });
   };
 
-  handleProceedCheckout = (e, cart_id, store_id = null) => {
-    e.preventDefault();
+  processCheckout = (e, cart_id, store_id = null) => {
     this.setState({ isCartProcessing: true });
     let cart_store_product_ids = [];
     if (store_id) {
@@ -242,10 +244,14 @@ class MiniShoppinCart extends Component {
       });
     }
 
-    processPostRequest("/proceed-checkout", {
-      cart_id,
-      cart_store_product_ids,
-    }, true)
+    processPostRequest(
+      "/proceed-checkout",
+      {
+        cart_id,
+        cart_store_product_ids,
+      },
+      true
+    )
       .then((res) => {
         if (res.status === 200) {
           this.props.handleHideShoppingCart();
@@ -257,9 +263,22 @@ class MiniShoppinCart extends Component {
         }
       })
       .catch((err) => {
-        toast.error(err.message, {position: 'top-left'});
+        toast.error(err.message, { position: "top-left" });
         this.setState({ isCartProcessing: false });
       });
+  };
+
+  handleProceedCheckout = (e, cart_id, store_id = null) => {
+    e.preventDefault();
+    const user = userData();
+    if (!user) {
+      console.log("I am here");
+      this.props.handleShowAuthModal(() => {
+        this.handleProceedCheckout(e, cart_id, store_id);
+      });
+    } else {
+      this.processCheckout(e, cart_id, store_id);
+    }
   };
 
   render() {
@@ -317,8 +336,10 @@ class MiniShoppinCart extends Component {
                             {/* <label for="store-1">
                               {cart_items?.store?.name || ""}
                             </label> */}
-                            
-                            <h3 className="mt-2">{cart_items?.store?.name || ""}</h3>
+
+                            <h3 className="mt-2">
+                              {cart_items?.store?.name || ""}
+                            </h3>
                           </div>
                         </div>
 
@@ -619,6 +640,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    handleShowAuthModal: (cb) => dispatch(handleShowAuthModal(cb)),
     handleHideShoppingCart: () => dispatch(handleHideShoppingCart()),
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
