@@ -14,11 +14,11 @@
     font-size: 14px;
 }
 @media screen and (max-width: 1024px){
-    .header--mobile .ps-search--mobile{
+    /* .header--mobile .ps-search--mobile{
         position: absolute;
         top: 5px;
         width: 100%;
-    }
+    } */
     .header .header__extra svg{
         color: #666;
         font-size: 25px;
