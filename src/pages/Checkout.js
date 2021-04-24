@@ -123,7 +123,7 @@ const Checkout = () => {
   }, []);
 
   const getAllData = () => {
-    processGetRequest("/user-details").then((res) => {
+    processGetRequest("/user-details", {}, true).then((res) => {
       console.log(res);
       setDeliveryAddress(res.user_info.addresses);
       setContacts(res.user_info.contacts);
@@ -362,7 +362,7 @@ const Checkout = () => {
 
   const getLocationV2 = (url, id) => {
     if (id !== null) {
-      processGetRequest(url + "/" + id).then((res) => {
+      processGetRequest(url + "/" + id, {}, true).then((res) => {
         if (url === "/division-list") {
           setDivision(res);
         }
@@ -384,7 +384,7 @@ const Checkout = () => {
         }
       });
     } else {
-      processGetRequest(url).then((res) => {
+      processGetRequest(url, {}, true).then((res) => {
         if (url === "/division-list") {
           setDivision(res);
           setDivisionShow(true);

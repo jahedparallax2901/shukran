@@ -104,7 +104,7 @@ export const carouselFullwidth = {
                 slidesToShow: 5,
                 slidesToScroll: 2,
                 infinite: true,
-                dots: true,
+                dots: false,
                 arrows: false,
             },
         },
