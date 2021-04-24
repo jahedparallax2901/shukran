@@ -27,15 +27,16 @@ const ProductDetailFullwidth = ({ product }) => {
             selectedAttributeProduct={selectedAttributeProduct}
           />
           <ModuleProductDetailDescription product={product} />
-          {/* <ModuleDetailActionsMobile /> */}
         </div>
       </div>
       <div class="ps-product-info-other">
+      {/* <ModuleDetailActionsMobile /> */}
+
         <ModuleDetailShoppingActions
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
-        {product?.attributes_types?.length > 0 && (
+        {/* {product?.attributes_types?.length > 0 && (
           <div>
             <h4>Select Attributes</h4>
             <div>
@@ -67,7 +68,7 @@ const ProductDetailFullwidth = ({ product }) => {
               <hr />
             </div>
           </div>
-        )}
+        )} */}
 
         <ModuleProductDetailSpecification
           product={product}

@@ -99,6 +99,7 @@ class HeaderMobile extends Component {
             </div>
           </div>
           <div className="ps-search--mobile">
+            <h1>I am here</h1>
             <form
               className="ps-form--search-mobile"
               action="index.html"
