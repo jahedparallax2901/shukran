@@ -36,7 +36,7 @@ const ProductDetailFullwidth = ({ product }) => {
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
-        {/* {product?.attributes_types?.length > 0 && (
+        {product?.attributes_types?.length > 0 && (
           <div>
             <h4>Select Attributes</h4>
             <div>
@@ -68,7 +68,7 @@ const ProductDetailFullwidth = ({ product }) => {
               <hr />
             </div>
           </div>
-        )} */}
+        )}
 
         <ModuleProductDetailSpecification
           product={product}
