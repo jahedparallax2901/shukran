@@ -38,13 +38,7 @@
         max-width: 160px;
         vertical-align: top;
 
-        &:after {
-            content: '\e93a';
-            @include vertical-align();
-            right: 8px;
-            font-family: 'Linearicons';
-            font-size: 12px;
-        }
+        
 
         select.form-control {
             padding-right: 30px;

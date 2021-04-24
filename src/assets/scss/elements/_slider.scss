@@ -53,6 +53,10 @@
                 height: 10px;
                 background-color: rgba(#000, 0.3);
                 border-radius: 50%;
+
+                &::before{
+                    display: none;
+                }
             }
             &:last-child {
                 margin-right: 0;

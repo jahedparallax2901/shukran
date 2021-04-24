@@ -61,6 +61,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     getProduct(id);
+    window.scrollTo({top: 0, behavior: 'smooth'})
   }, [id]);
 
   const breadCrumb = [
