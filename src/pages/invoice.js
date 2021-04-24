@@ -2,34 +2,6 @@ import React, { useEffect, useState } from "react";
 // import { connect } from 'react-redux';
 // import { useRouter } from 'next/router';
 
-// import ContainerProductDetail from '~/components/layouts/ContainerProductDetail';
-// import ProductRepository from '~/repositories/ProductRepository';
-// import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
-// import BreadCrumb from '~/components/elements/BreadCrumb';
-// import ProductWidgets from '~/components/partials/product/ProductWidgets';
-// import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
-// import CustomerBought from '~/components/partials/product/CustomerBought';
-// import RelatedProduct from '~/components/partials/product/RelatedProduct';
-// import ContainerPage from '~/components/layouts/ContainerPage';
-// import HeaderProduct from '~/components/shared/headers/HeaderProduct';
-// import HeaderDefault from '~/components/shared/headers/HeaderDefault';
-
-import { useParams } from "react-router";
-import BreadCrumb from "../components/elements/BreadCrumb";
-import SkeletonProductDetail from "../components/elements/skeletons/SkeletonProductDetail";
-import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
-import CustomerBought from "../components/product/CustomerBought";
-// import HeaderDefault from '../components/product/details/header/HeaderDefault';
-// import HeaderProduct from '../components/product/details/header/HeaderProduct';
-import ProductDetailFullwidth from "../components/product/ProductDetailFullwidth";
-import ProductWidgets from "../components/product/ProductWidgets";
-import RelatedProduct from "../components/product/RelatedProduct";
-import {
-    processDeleteRequest,
-    processGetRequest,
-    processPostRequest,
-} from "../services/baseServices";
-import { singleProduct } from "../temp-data/product";
 
 import "../assets/css/checkout.css"
 import "../assets/css/register.css"
@@ -51,6 +23,7 @@ import ReactDOM from "react-dom";
 import {toast} from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
+import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
 import { useLocation } from "react-router-dom";
 
 
@@ -58,11 +31,10 @@ const Invoice = () => {
 
     const location = useLocation()
 
-    const [json ,setJson] = useState(location.state.json)
+    const [json ,setJson] = useState()
 
     useEffect( ()=>{
-
-        console.log(json)
+        setJson(location.state.json)
 
     },[])
 
@@ -85,7 +57,7 @@ const Invoice = () => {
                                         <td className="text-right"><span className="d-block">Support@shukran24seven.com</span><span className="d-block">info@shukran24seven.com</span></td>
                                     </tr>
                                     <tr>
-                                        <td colSpan={2}><h3 className="invoice-title">order id : #{json.order.id}</h3></td>
+                                        <td colSpan={2}><h3 className="invoice-title">order id : #{json?.order.id}</h3></td>
                                     </tr>
                                     <tr>
                                         <td colSpan={2}>
@@ -94,18 +66,18 @@ const Invoice = () => {
                                                 <tr>
                                                     <td width="20%" style={{paddingBottom: 20, paddingLeft: 0}}>
                                                         <h4 className="invoice-title-alt">Bill To</h4>
-                                                        <span className="d-block">{json.customer_address.name}</span>
-                                                        <span className="d-block">{json.customer_address.phone}</span>
-                                                        <span className="d-block">{json.customer_address.address}</span>
+                                                        <span className="d-block">{json?.customer_address?.name}</span>
+                                                        <span className="d-block">{json?.customer_address?.phone}</span>
+                                                        <span className="d-block">{json?.customer_address?.address}</span>
                                                         <span className="d-block">
 
                           </span>
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Ship To</h4>
-                                                        <span className="d-block">{json.customer_address.name}</span>
-                                                        <span className="d-block">{json.customer_address.phone}</span>
-                                                        <span className="d-block">{json.customer_address.address}</span>
+                                                        <span className="d-block">{json?.customer_address?.name}</span>
+                                                        <span className="d-block">{json?.customer_address?.phone}</span>
+                                                        <span className="d-block">{json?.customer_address?.address}</span>
                                                         <span className="d-block">
 
                           </span>
@@ -117,18 +89,18 @@ const Invoice = () => {
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Shipping Method</h4>
-                                                        <span className="d-block">ekShop Fulfillment</span>
-                                                        <span className="d-block">Fee: 0</span>
+                                                        <span className="d-block"> --</span>
+
                                                         <span className="d-block" />
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                           <span className="d-block order-date-tag">
-                            <strong>Order Date: </strong>{moment(json.order?.created_at).format('ll')}
+                            <strong>Order Date: </strong>{moment(json?.order?.created_at).format('ll')}
                           </span>
                                                         <span className="d-block pr-0">
                             <svg width="310px" height="92px" x="0px" y="0px" viewBox="0 0 310 92" xmlns="http://www.w3.org/2000/svg" version="1.1" style={{transform: 'translate(0,0)'}}>
                               <rect x={0} y={0} width={310} height={92} style={{fill: '#ffffff'}} /><g transform="translate(10, 10)" style={{fill: '#000000'}}><rect x={0} y={0} width={4} height={50} /><rect x={6} y={0} width={2} height={50} /><rect x={12} y={0} width={2} height={50} /><rect x={22} y={0} width={2} height={50} /><rect x={30} y={0} width={2} height={50} /><rect x={34} y={0} width={4} height={50} /><rect x={44} y={0} width={2} height={50} /><rect x={48} y={0} width={4} height={50} /><rect x={58} y={0} width={2} height={50} /><rect x={66} y={0} width={2} height={50} /><rect x={72} y={0} width={4} height={50} /><rect x={78} y={0} width={6} height={50} /><rect x={88} y={0} width={4} height={50} /><rect x={96} y={0} width={2} height={50} /><rect x={100} y={0} width={6} height={50} /><rect x={110} y={0} width={2} height={50} /><rect x={114} y={0} width={6} height={50} /><rect x={122} y={0} width={8} height={50} /><rect x={132} y={0} width={2} height={50} /><rect x={136} y={0} width={6} height={50} /><rect x={144} y={0} width={4} height={50} /><rect x={154} y={0} width={6} height={50} /><rect x={166} y={0} width={4} height={50} /><rect x={172} y={0} width={2} height={50} /><rect x={176} y={0} width={4} height={50} /><rect x={184} y={0} width={4} height={50} /><rect x={190} y={0} width={4} height={50} /><rect x={198} y={0} width={4} height={50} /><rect x={204} y={0} width={8} height={50} /><rect x={214} y={0} width={4} height={50} /><rect x={220} y={0} width={6} height={50} /><rect x={228} y={0} width={6} height={50} /><rect x={236} y={0} width={4} height={50} /><rect x={242} y={0} width={4} height={50} /><rect x={250} y={0} width={2} height={50} /><rect x={256} y={0} width={6} height={50} /><rect x={264} y={0} width={4} height={50} /><rect x={274} y={0} width={6} height={50} /><rect x={282} y={0} width={2} height={50} /><rect x={286} y={0} width={4} height={50} /><text style={{font: '20px monospace'}} textAnchor="middle" x={145} y={72}>
-                                {json.order.id}
+                                {json?.order.id}
                               </text></g>
                             </svg>
                           </span>
@@ -170,7 +142,7 @@ const Invoice = () => {
                                                         <span className="badge badge-info ml-4">Pending</span></td>
                                                 </tr>*/}
                                                 <tr>
-                                                    {json.ordered_items && json.ordered_items.map( (data,index) => (
+                                                    {json?.ordered_items && json?.ordered_items.map( (data,index) => (
 
                                                         <>  {data.store_product.map((data1,index1) => (
                                                             <>
@@ -201,7 +173,7 @@ const Invoice = () => {
                                                             <span className="progress-line" />
                                                             <div className="timeline-inner">
                                                                 <div className="progress-block completed">
-                                                                    <div className="date">{moment(json.order.created_at).format('ll')}</div>
+                                                                    <div className="date">{moment(json?.order.created_at).format('ll')}</div>
                                                                     <div className="circle" />
                                                                     <div className="text"><h4>Pending</h4>
                                                                         <p /></div>
@@ -246,16 +218,16 @@ const Invoice = () => {
                                                 </tr>
                                                 <tr className="text-bold">
                                                     <td colSpan={3} className="text-right">Subtotal</td>
-                                                    <td className="text-right">{json.order?.sub_total_amount}</td>
+                                                    <td className="text-right">{json?.order?.sub_total_amount}</td>
                                                 </tr>
                                                 <tr className="text-bold">
                                                     <td colSpan={3} className="text-right">Discount</td>
-                                                    <td className="text-right">{json.order?.discount_amount}</td>
+                                                    <td className="text-right">{json?.order?.discount_amount}</td>
                                                 </tr>
 
                                                 <tr className="text-bold">
                                                     <td colSpan={3} className="text-right">Grand Total</td>
-                                                    <td className="text-right">{json.order?.total_amount}</td>
+                                                    <td className="text-right">{json?.order?.total_amount}</td>
                                                 </tr>
 
                                                 </tbody>
