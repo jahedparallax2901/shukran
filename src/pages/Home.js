@@ -99,17 +99,17 @@ class Home extends Component {
 
         {/*============ Start Footer Area =============*/}
 
-        <div id="back2top">
+        {/* <div id="back2top">
           <i>
             <FaChevronUp />
           </i>
-        </div>
+        </div> */}
         <div className="ps-site-overlay"></div>
         <div id="loader-wrapper">
           <div className="loader-section section-left"></div>
           <div className="loader-section section-right"></div>
         </div>
-        <div className="ps-search" id="site-search">
+        {/* <div className="ps-search" id="site-search">
           <a className="ps-btn--close" href="#"></a>
           <div className="ps-search__content">
             <form
@@ -127,7 +127,7 @@ class Home extends Component {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
         <div
           className="modal fade"
           id="product-quickview"

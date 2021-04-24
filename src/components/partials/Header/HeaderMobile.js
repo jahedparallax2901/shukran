@@ -1,125 +1,247 @@
-import { faSearch, faShoppingBag, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSearch,
+  faShoppingBag,
+  faTimes,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clothing7 from "../../../assets/img/products/clothing/7.jpg";
 import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
 import shukranLogo from "../../../assets/img/shukran.png";
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import {
+  getCartItems,
+  handleAddToCart,
+  handleClearCart,
+  handleShowAuthModal,
+  handleShowShoppingCart,
+  handleSignOut,
+} from "../../../redux";
+import { connect } from "react-redux";
+import { userData } from "../../../helpers/authUtils";
+import { Spinner } from "react-bootstrap";
+import { AiOutlineClose } from "react-icons/ai";
+import '../../../assets/scss/my-changes.scss';
 
 class HeaderMobile extends Component {
-    render() {
-        return (
-            <header className="header header--mobile" data-sticky="true">
-          <div className="navigation--mobile">
-            <div className="navigation__left">
-              <a className="ps-logo" href="index.html">
-                <img src={shukranLogo} alt="" />
-              </a>
-            </div>
-            <div className="navigation__right">
-              <div className="header__actions">
-                <div className="ps-cart--mini">
-                  <a className="header__extra" href="#">
-                    <FontAwesomeIcon icon={faShoppingBag}/>
-                    <span>
-                      <i>5</i>
-                    </span>
-                  </a>
-                  <div className="ps-cart__content">
-                    <div className="ps-cart__items">
-                      <div className="ps-product--cart-mobile">
-                        <div className="ps-product__thumbnail">
-                          <a href="#">
-                            <img src={clothing7} alt="" />
-                          </a>
-                        </div>
-                        <div className="ps-product__content">
-                          <a className="ps-product__remove" href="#">
-                            <FontAwesomeIcon icon={faTimes}/>
-                          </a>
-                          <a href="product-default.html">
-                            MVMTH classNameical Leather Watch In Black
-                          </a>
-                          <p>
-                            <strong>Sold by:</strong> YOUNG SHOP
-                          </p>
-                          <small>1 x ৳59.99</small>
-                        </div>
-                      </div>
-                      <div className="ps-product--cart-mobile">
-                        <div className="ps-product__thumbnail">
-                          <a href="#">
-                            <img src={downloadBodyspray} alt="" />
-                          </a>
-                        </div>
-                        <div className="ps-product__content">
-                          <a className="ps-product__remove" href="#">
-                            <FontAwesomeIcon icon={faTimes}/>
-                          </a>
-                          <a href="product-default.html">
-                            Sleeve Linen Blend Caro Pane Shirt
-                          </a>
-                          <p>
-                            <strong>Sold by:</strong> YOUNG SHOP
-                          </p>
-                          <small>1 x ৳59.99</small>
-                        </div>
-                      </div>
+  state = {
+    isCartProcessing: false,
+  }
+
+  handleSignOut = () => {
+    localStorage.clear();
+    this.props.handleSignOut();
+    this.props.handleClearCart();
+  };
+
+  handleItemDelete = (e, product_id, item_id) => {
+    this.setState({ isCartProcessing: true });
+    const newProductlist = this.props.shoppingCart.cartProductlist.filter(
+      (item) => item.item_id !== item_id || item.product_id !== product_id
+    );
+    
+    this.props.handleAddToCart(
+      newProductlist,
+      userData()?.token || "",
+      async (data, isSuccess) => {
+        if (isSuccess) {
+          await this.props.getCartItems(data.cart.id);
+          this.setState({ isCartProcessing: false });
+
+          // this.props.handleShowShoppingCart();
+        } else {
+          localStorage.removeItem("cart_id");
+          this.props.handleClearCart();
+          this.setState({ isCartProcessing: false });
+        }
+      },
+      false
+    );
+  };
+  render() {
+    const { user, handleShowAuthModal, shoppingCart } = this.props;
+    return (
+      <header className="header header--mobile" data-sticky="true">
+        <div className="navigation--mobile">
+          <div className="navigation__left">
+            <Link to="/" className="ps-logo">
+              <img src={shukranLogo} alt="" />
+            </Link>
+          </div>
+          <div className="navigation__right">
+            <div className="header__actions">
+              <div className="ps-cart--mini">
+                <a className="header__extra" href="#">
+                  <FontAwesomeIcon icon={faShoppingBag} />
+                  <span>
+                    <i>5</i>
+                  </span>
+                </a>
+
+                <div className="ps-cart__content">
+                  {this.state.isCartProcessing ? (
+                    <div className="loading-wrapper">
+                      <Spinner animation="grow" />
                     </div>
-                    <div className="ps-cart__footer">
-                      <h3>
-                        Sub Total:<strong>৳59.99</strong>
-                      </h3>
-                      <figure>
-                        <a className="ps-btn" href="#">
-                          View Cart
-                        </a>
-                        <a className="ps-btn" href="checkout.html">
-                          Checkout
-                        </a>
-                      </figure>
+                  ) : (
+                    <>
+                      {shoppingCart.cartItems?.length > 0 ? (
+                        <>
+                          <div className="ps-cart__items">
+                            {shoppingCart.cartItems.map((item) => (
+                              <>
+                                {item?.store_product &&
+                                  item.store_product.map((store_item) => (
+                                    <div className="ps-product--cart-mobile">
+                                      <div className="ps-product__thumbnail">
+                                        <a href="#">
+                                          <img
+                                            src={
+                                              store_item.product.single_image
+                                            }
+                                            alt=""
+                                          />
+                                        </a>
+                                      </div>
+                                      <div className="ps-product__content">
+                                        <i className="ps-product__remove">
+                                          <AiOutlineClose
+                                            onClick={(e) =>
+                                              this.handleItemDelete(
+                                                e,
+                                                store_item.product_attribute
+                                                  .product_id,
+                                                store_item.product_attribute.id
+                                              )
+                                            }
+                                          />
+                                        </i>
+                                        <Link
+                                          to={`/product/${store_item.product_id}`}
+                                        >
+                                          {store_item.product.name}
+                                        </Link>
+                                        <p>
+                                          <strong>Sold by:</strong> {item.name}
+                                        </p>
+                                        <small>
+                                          {store_item.quantity} x ৳
+                                          {store_item.sub_total_amount}
+                                        </small>
+                                      </div>
+                                    </div>
+                                  ))}
+                              </>
+                            ))}
+                          </div>
+
+                          <div className="ps-cart__footer">
+                            <h3>
+                              Sub Total:
+                              <strong>
+                                ৳{shoppingCart?.cartSummery?.total_amount || 0}
+                              </strong>
+                            </h3>
+                            <figure>
+                              <a
+                                className="ps-btn"
+                                href="#"
+                                onClick={handleShowShoppingCart}
+                              >
+                                View Cart
+                              </a>
+                              <Link to="/checkout" className="ps-btn">
+                                Checkout
+                              </Link>
+                            </figure>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="loading-wrapper">
+                          <h3>No Items in cart</h3>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+
+              <div className="ps-block--user-header">
+                {user?.phone ? (
+                  <div className="ps-block--user-header mr-0">
+                    <div className="ps-block__left">
+                      <i>
+                        <FontAwesomeIcon icon={faUser} />
+                      </i>
+                    </div>
+                    <div className="ps-block__right">
+                      <Link to="/account/my-account">{user.phone}</Link>
+                      <a onClick={() => this.handleSignOut()}>Logout</a>
                     </div>
                   </div>
-                </div>
-                <div className="ps-block--user-header">
-                  <div className="ps-block__left">
-                    <i className="icon-user"></i>
+                ) : (
+                  <div className="ps-block--user-header mr-0">
+                    <div className="ps-block__left">
+                      <i>
+                        <FontAwesomeIcon icon={faUser} />
+                      </i>
+                    </div>
+                    <div className="ps-block__right">
+                      <a
+                        onClick={handleShowAuthModal}
+                        data-toggle="modal"
+                        data-target="#login-modal-center"
+                      >
+                        Login
+                      </a>
+                    </div>
                   </div>
-                  <div className="ps-block__right">
-                    <a
-                      href="#"
-                      data-toggle="modal"
-                      data-target="#login-modal-center"
-                    >
-                      Login
-                    </a>
-                    <a href="my-account.html">Register</a>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
-          <div className="ps-search--mobile">
-            <h1>I am here</h1>
-            <form
-              className="ps-form--search-mobile"
-              action="index.html"
-              method="get"
-            >
-              <div className="form-group--nest">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Search something..."
-                />
-                <button>
-                  <FontAwesomeIcon icon={faSearch}/>
-                </button>
-              </div>
-            </form>
-          </div>
-        </header>
-        );
-    }
+        </div>
+        <div className="ps-search--mobile">
+          <form
+            className="ps-form--search-mobile"
+            action="index.html"
+            method="get"
+          >
+            <div className="form-group--nest">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Search something..."
+              />
+              <button>
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </div>
+          </form>
+        </div>
+      </header>
+    );
+  }
 }
 
-export default HeaderMobile;
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth.userData,
+    shoppingCart: state.shoppingCart,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleShowAuthModal: () => dispatch(handleShowAuthModal()),
+    handleSignOut: () => dispatch(handleSignOut()),
+    getCartItems: () => dispatch(getCartItems()),
+    handleAddToCart: (productList, token, cb, isBuyNow) =>
+      dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
+    handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
+    handleClearCart: () => dispatch(handleClearCart()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderMobile);
