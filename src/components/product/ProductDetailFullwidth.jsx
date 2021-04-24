@@ -9,6 +9,7 @@ import ModuleProductDetailDescription from "./details/module/ModuleProductDetail
 import ModuleProductDetailSharing from "./details/module/ModuleProductDetailSharing";
 import ModuleProductDetailSpecification from "./details/module/ModuleProductDetailSpecification";
 import ThumbnailDefault from "./details/thumbnail/ThumbnailDefault";
+import "../../assets/scss/custom-new.scss";
 
 const ProductDetailFullwidth = ({ product }) => {
   const [selectedAttributeProduct, setSelectedAttributeProduct] = useState(
@@ -36,7 +37,7 @@ const ProductDetailFullwidth = ({ product }) => {
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
-        {product?.attributes_types?.length > 0 && (
+        {/* {product?.attributes_types?.length > 0 && (
           <div>
             <h4>Select Attributes</h4>
             <div>
@@ -68,7 +69,40 @@ const ProductDetailFullwidth = ({ product }) => {
               <hr />
             </div>
           </div>
-        )}
+        )} */}
+
+        <div className="attribute_div">
+          <table>
+            <tbody>
+              <tr>
+                <td><p>colors</p></td>
+                <td><a href="#" className="attribute_selector active">black</a>
+                <a href="#" className="attribute_selector">blue</a></td>
+ 
+              </tr>
+              <tr>
+                <td><p>size</p></td>
+                <td><a href="#" className="attribute_selector">M</a>
+                <a href="#" className="attribute_selector active">L</a>
+                <a href="#" className="attribute_selector ">XL</a>
+                <a href="#" className="attribute_selector ">XXL</a></td>
+              </tr>
+              <tr>
+                <td><p>sleeve</p></td>
+                <td><a href="#" className="attribute_selector attribute_selector-img">
+                <div className="attribute-image-container">
+                <img src="https://ekshop-dev.s3-us-west-1.amazonaws.com/W-150-px-1607100658272_SPLjpg.webp" alt=""/>
+                </div>
+                  </a>
+                  <a href="#" className="attribute_selector attribute_selector-img active">
+                  <div className="attribute-image-container">
+                  <img src="https://ekshop-dev.s3-us-west-1.amazonaws.com/W-150-px-1607589613860_GMLTDILBjpg.webp" alt=""/>
+                  </div>
+                  </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <ModuleProductDetailSpecification
           product={product}

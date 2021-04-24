@@ -1,0 +1,53 @@
+.attribute_div {
+  margin-bottom: 20px;
+  table {
+    tbody {
+      tr {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        td {
+          p {
+            color: #637381;
+            text-transform: capitalize;
+          }
+          .attribute_selector {
+            text-transform: capitalize;
+            background: transparent;
+            color: #637381;
+            border: 1px solid #9fa5a9;
+            padding: 4px 10px;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            .attribute-image-container {
+              width: 32px;
+              height: 32px;
+              img {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+          .attribute_selector.active {
+            text-transform: capitalize;
+            background: #3f4d68;
+            border: 1px solid #3f4d68;
+            color: #fff;
+          }
+          .attribute_selector-img {
+            padding: 2px;
+          }
+        }
+        td:first-child {
+          width: 100px;
+        }
+        td:last-child {
+          display: flex;
+          flex-wrap: wrap;
+          flex-basis: 188px;
+        }
+      }
+    }
+  }
+}
