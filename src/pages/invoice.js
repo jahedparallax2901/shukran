@@ -141,10 +141,36 @@ const Invoice = () => {
                                                         </span>
                                                         <span className="badge badge-info ml-4">Pending</span></td>
                                                 </tr>*/}
-                                                <tr>
-                                                    {json?.ordered_items && json?.ordered_items.map( (data,index) => (
+                                            {json?.ordered_items && json?.ordered_items.map( (data,index) => (
+                                                <>
+                                                {data.store_product.map((data1,index1) => (<>
 
-                                                        <>  {data.store_product.map((data1,index1) => (
+                                                   <tr>
+                                                       <td>
+                                                        <span className="d-block">
+                                                        <strong>
+                                                        <a href="/products/details/604092662146a37c6fe03ba3" target="_blank">
+                                                            {data1.product.name}
+                                                        </a>
+                                                    </strong></span><span className="d-block text-muted" /></td>
+                                                       <td>{data1.quantity}</td>
+                                                       <td className="text-right">{data1.total_amount}</td>
+                                                       <td>
+                                                           <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
+                                                           </button>
+                                                           <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
+                                                           </button>
+                                                       </td>
+
+                                                   </tr>
+
+                                                </>))}
+                                                </>
+                                            ) )}
+                                                <tr>
+
+{/*
+                                                         {data.store_product.map((data1,index1) => (
                                                             <>
                                                                 <td>
                                                         <span className="d-block">
@@ -156,15 +182,15 @@ const Invoice = () => {
                                                                 <td>{data1.quantity}</td>
                                                                 <td className="text-right">{data1.total_amount}</td>
                                                                 <td>
-                                                                   {/* <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
+                                                                    <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
                                                                     </button>
                                                                     <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
-                                                                    </button>*/}
+                                                                    </button>
                                                                 </td>
                                                             </>
                                                             ))}
-                                                            </>
-                                                    ) )}
+                                                           */}
+
 
                                                 </tr>
                                                 <tr>
