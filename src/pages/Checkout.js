@@ -443,7 +443,7 @@ const Checkout = (props) => {
                 <span className>{data.quantity}</span>
                 <span className="mx-auto">X</span>
                 <span className="mx-auto">
-                  ৳ {data?.product_attribute?.price}
+                  ৳ {data?.price}
                 </span>
                 <span className="mx-auto">X</span>
                 <span className>৳ {data.price}</span>
