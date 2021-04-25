@@ -683,7 +683,7 @@ const Checkout = (props) => {
                   as="select"
                   size={"lg"}
                 >
-                  <option value=""> --select upazilla-- </option>
+                  <option value=""> --select upazila-- </option>
                   {upazilla &&
                     upazilla.map((data, index) => (
                       <>
@@ -700,7 +700,7 @@ const Checkout = (props) => {
             {upazillaAreaShow && (
               <>
                 <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
-                  Upazilla Thana <span className="text-danger">*</span>{" "}
+                  Upazila Thana <span className="text-danger">*</span>{" "}
                 </Form.Label>
                 <Form.Control
                   name={"area_id"}
@@ -712,7 +712,7 @@ const Checkout = (props) => {
                   as="select"
                   size={"lg"}
                 >
-                  <option value=""> --select upazilla thana-- </option>
+                  <option value=""> --select upazila thana-- </option>
                   {upazillaArea &&
                     upazillaArea.map((data, index) => (
                       <>
