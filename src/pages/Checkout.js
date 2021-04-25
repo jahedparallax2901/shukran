@@ -139,7 +139,8 @@ const Checkout = (props) => {
       .then((res) => {
         res.checkout_items.map((data, index) => {
           data.store_product.map((data1, index1) => {
-            setOrderProductList([data1]);
+
+            setOrderProductList(orderProductList => [...orderProductList , data1]);
           });
         });
         setCheckoutData(res);
