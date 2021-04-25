@@ -38,10 +38,10 @@ class HeaderStandard extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     const cart_id = localStorage.getItem("cart_id");
-    processGetRequest("/homepage")
+    processGetRequest("/generic-info", {info_type: 1})
       .then((res) => {
         this.setState({
-          categories: res.category,
+          categories: res.categories,
         });
       })
       .catch((err) => console.log(err));
@@ -54,13 +54,7 @@ class HeaderStandard extends Component {
     const newProductlist = this.props.shoppingCart.cartProductlist.filter(
       (item) => item.item_id !== item_id || item.product_id !== product_id
     );
-    console.log(
-      "newProductlist",
-      this.props.shoppingCart.cartProductlist,
-      newProductlist,
-      product_id,
-      item_id
-    );
+   
     this.props.handleAddToCart(
       newProductlist,
       userData()?.token || "",
@@ -311,7 +305,7 @@ class HeaderStandard extends Component {
               </div>
               <div className="navigation__center">
                 <ul className="menu">
-                  {categories.slice(2, -1)?.map((cat) => (
+                  {categories.slice(0, 4)?.map((cat) => (
                     <li>
                       <a href={cat.link || "#"}>{cat.name}</a>
                     </li>
