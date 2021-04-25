@@ -29,7 +29,7 @@ import { useLocation } from "react-router-dom";
 import {processGetRequest, processPostRequest} from "../services/baseServices";
 
 
-const Vendor = () => {
+const MerchantForm = () => {
 
     const [isSuccess , setIsSuccess] = useState(false)
     const [formData , setFormData] = useState({})
@@ -150,7 +150,7 @@ const Vendor = () => {
                                             name={`owner_name`}
                                             required onChange={(e)=> {handleOnChange(e)}}
                                             style={{
-                                               padding: '2.3vw',
+                                               padding: '1.3vw',
                                                fontSize: '17px'
                                             }}
                                             className="form-control bg-white form-control-lg"
@@ -181,12 +181,12 @@ const Vendor = () => {
                                             name={`phone_number`}
                                             required onChange={(e)=> {handleOnChange(e)}}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             maxLength="11"
                                             className="form-control bg-white form-control-lg"
-                                            type="text" placeholder="phone Number" />
+                                            type="text" placeholder="Phone Number" />
                                         <Form.Text
                                             style={{
                                                 color: '#6c757d',
@@ -215,7 +215,7 @@ const Vendor = () => {
                                             name={`email_address`}
                                             required onChange={(e)=> {handleOnChange(e)}}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             className="form-control bg-white form-control-lg"
@@ -250,7 +250,7 @@ const Vendor = () => {
                                             name={`owner_address`}
                                             required onChange={(e)=> {handleOnChange(e)}}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             className="form-control bg-white form-control-lg"
@@ -287,7 +287,6 @@ const Vendor = () => {
                                         <Form.Control
                                             name={`owner_division`}
                                             style={{
-                                                padding: '2.3vw',
                                                 fontSize: '17px'
                                             }}
                                             required onChange={(e)=> {
@@ -478,7 +477,7 @@ const Vendor = () => {
                                             name={`owner_postcode`}
                                             required onChange={(e)=> {handleOnChange(e)}}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             className="form-control bg-white form-control-lg"
@@ -511,7 +510,7 @@ const Vendor = () => {
                                             name={`nid_number`}
                                             required onChange={(e)=> {handleOnChange(e)}}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             className="form-control bg-white form-control-lg"
@@ -622,7 +621,7 @@ const Vendor = () => {
                                         <Form.Control
                                             name={`business_name`}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             required onChange={(e)=> {handleOnChange(e)}}
@@ -654,7 +653,7 @@ const Vendor = () => {
                                         <Form.Control
                                             name={`business_registration_number`}
                                             style={{
-                                                padding: '2.3vw',
+                                                padding: '1.3vw',
                                                 fontSize: '17px'
                                             }}
                                             required onChange={(e)=> {handleOnChange(e)}}
@@ -699,4 +698,4 @@ const Vendor = () => {
     );
 };
 
-export default Vendor;
+export default MerchantForm;

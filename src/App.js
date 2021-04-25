@@ -22,7 +22,7 @@ import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Invoice from "./pages/invoice";
 import PrivateRoute from "./components/PrivateRoute";
-import Vendor from "./pages/Vendor"
+import MerchantForm from "./pages/MerchantForm"
 
 function App() {
   const homePath = "/";
@@ -92,9 +92,9 @@ function App() {
 
           <Route
               onUpdate={() => window.scrollTo(0, 0)}
-              path="/vendor"
+              path="/merchant-apply"
           >
-            <Vendor/>
+            <MerchantForm/>
           </Route>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/invoice">
