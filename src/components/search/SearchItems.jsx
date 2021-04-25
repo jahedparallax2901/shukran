@@ -23,8 +23,6 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
     setListView(!listView);
   }
 
-  
-
   function handlePagination(page, pageSize) {
     setQuery({...query, page}, ()=>{
         history.push(objToUrlPrams(query));

@@ -86,6 +86,17 @@ class HeaderStandard extends Component {
     this.props.handleClearCart();
   }
 
+  countTotalItems = () => {
+    let count = 0;
+    this.props?.shoppingCart?.cartItems?.map((cart_item) => {
+      cart_item.store_product.map((store_item) => {
+        count += 1;
+      });
+    });
+
+    return count;
+  };
+
   render() {
     const { categories } = this.state;
     const {
@@ -151,7 +162,7 @@ class HeaderStandard extends Component {
                     <span>
                       <i>
                         {shoppingCart?.cartSummery?.total_items ||
-                          shoppingCart?.cartItems?.length ||
+                          this.countTotalItems() ||
                           0}
                       </i>
                     </span>

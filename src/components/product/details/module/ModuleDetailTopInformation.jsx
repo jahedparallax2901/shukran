@@ -13,16 +13,16 @@ const ModuleDetailTopInformation = ({ product, selectedAttributeProduct }) => {
     priceView = (
       <h4 className="ps-product__price sale">
         <del className="mr-2">
-          &#2547;{selectedAttributeProduct?.sale_price || product.sale_price}
+          &#2547;{selectedAttributeProduct?.price > -1 ? selectedAttributeProduct?.price : product.price}
         </del>
-        &#2547;{selectedAttributeProduct?.price || product.price}
+        &#2547;{selectedAttributeProduct?.sale_price> -1 ? selectedAttributeProduct?.sale_price : product.sale_price}
       </h4>
     );
   } else {
     priceView = (
       <h4 className="ps-product__price">
         &#2547;
-        {selectedAttributeProduct?.price > -1 ? selectedAttributeProduct?.price : product.price}
+        {selectedAttributeProduct?.sale_price > -1 ? selectedAttributeProduct?.price : product.sale_price}
       </h4>
     );
   }

@@ -3,12 +3,24 @@ import { connect } from "react-redux";
 import { handleShowShoppingCart } from "../../../../redux";
 
 class FloatingCart extends Component {
+  countTotalItems = () => {
+    let count = 0;
+    this.props?.shoppingCart?.cartItems?.map((cart_item) => {
+      cart_item.store_product.map((store_item) => {
+        count += 1;
+      });
+    });
+
+    return count;
+  };
+
   render() {
     const {
       isShowingShoppingCart,
       handleShowShoppingCart,
       shoppingCart,
     } = this.props;
+
     return (
       !isShowingShoppingCart && (
         <button
@@ -20,7 +32,7 @@ class FloatingCart extends Component {
             <p>
               <span>
                 {shoppingCart?.cartSummery?.total_items ||
-                  shoppingCart?.cartItems?.length ||
+                  this.countTotalItems() ||
                   0}
               </span>{" "}
               Item

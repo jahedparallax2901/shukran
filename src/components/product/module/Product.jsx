@@ -26,11 +26,11 @@ const Product = ({ product }) => {
             </div>
             <div className="ps-product__container">
                 <Link to="/shop">
-                    <a className="ps-product__vendor">Young Shop</a>
+                    <a className="ps-product__vendor">{product?.store_name}</a>
                 </Link>
                 <div className="ps-product__content">
                     <Link to={`/product/${product.id}`}>
-                        <a className="ps-product__title">{product.title}</a>
+                        <a className="ps-product__title">{product?.name || product.title}</a>
                     </Link>
                     <div className="ps-product__rating">
                         <Rating />
