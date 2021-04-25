@@ -105,13 +105,13 @@ const Checkout = (props) => {
   ]);
   const [division, setDivision] = useState([]);
   const [district, setDistrict] = useState([]);
-  const [upazilla, setUpazilla] = useState([]);
-  const [upazillaArea, setUpazillaArea] = useState([]);
+  const [upazila, setupazila] = useState([]);
+  const [upazilaArea, setupazilaArea] = useState([]);
 
   const [divisionShow, setDivisionShow] = useState(true);
   const [districtShow, setDistrictShow] = useState(false);
-  const [upazillaShow, setUpdazillaShow] = useState(false);
-  const [upazillaAreaShow, setUpazillaAreaShow] = useState(false);
+  const [upazilaShow, setUpdazillaShow] = useState(false);
+  const [upazilaAreaShow, setupazilaAreaShow] = useState(false);
 
   const [orderProductList, setOrderProductList] = useState([]);
   const [checkoutData, setCheckoutData] = useState([]);
@@ -287,7 +287,7 @@ const Checkout = (props) => {
         }
         data={numberOfPicture.map((data, index) => (
           <div className="owl-item" style={{ width: 230, marginRight: 25 }}>
-            <div className="single-checkout-body single-checkout-body-first payment-body">
+            <div className="single-checkout-body payment-body">
               <div className="checkout-body-location">
                 <h4>
                   <img src={data.url} alt />
@@ -410,16 +410,16 @@ const Checkout = (props) => {
           setDistrictShow(true);
 
           setUpdazillaShow(false);
-          setUpazillaAreaShow(false);
+          setupazilaAreaShow(false);
         }
         if (url === "/district-upazila-list") {
-          setUpazilla(res);
+          setupazila(res);
           setUpdazillaShow(true);
-          setUpazillaAreaShow(false);
+          setupazilaAreaShow(false);
         }
         if (url === "/upazila-area-list") {
-          setUpazillaArea(res);
-          setUpazillaAreaShow(true);
+          setupazilaArea(res);
+          setupazilaAreaShow(true);
         }
       });
     } else {
@@ -696,10 +696,10 @@ const Checkout = (props) => {
               </>
             )}
 
-            {upazillaShow && (
+            {upazilaShow && (
               <>
                 <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
-                  Upazilla <span className="text-danger">*</span>{" "}
+                  upazila <span className="text-danger">*</span>{" "}
                 </Form.Label>
                 <Form.Control
                   name={"upazila_id"}
@@ -714,8 +714,8 @@ const Checkout = (props) => {
                   size={"lg"}
                 >
                   <option value=""> --select upazila-- </option>
-                  {upazilla &&
-                    upazilla.map((data, index) => (
+                  {upazila &&
+                    upazila.map((data, index) => (
                       <>
                         <option id={data.id} value={data.id}>
                           {" "}
@@ -727,7 +727,7 @@ const Checkout = (props) => {
               </>
             )}
 
-            {upazillaAreaShow && (
+            {upazilaAreaShow && (
               <>
                 <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                   Upazila Thana <span className="text-danger">*</span>{" "}
@@ -743,8 +743,8 @@ const Checkout = (props) => {
                   size={"lg"}
                 >
                   <option value=""> --select upazila thana-- </option>
-                  {upazillaArea &&
-                    upazillaArea.map((data, index) => (
+                  {upazilaArea &&
+                    upazilaArea.map((data, index) => (
                       <>
                         <option id={data.id} value={data.id}>
                           {" "}
@@ -1262,8 +1262,20 @@ const Checkout = (props) => {
                       <div className="voucher-area">
                         <div
                           onClick={(e) => {
-                            placeOrder(e);
+                            if (deliverAddress.length < 1 || contacts.length < 1){
+                              if (deliverAddress.length < 1){
+                                handleShowModal('post', null)
+                              }else if (contacts.length < 1){
+                                handleShowContactModal('post', null)
+                              }else {
+
+                              }
+                            }else {
+                              placeOrder(e);
+                            }
+
                           }}
+
                           className="proceed-checkout"
                         >
                           Place Order
@@ -1297,10 +1309,19 @@ const Checkout = (props) => {
                     <div className="block-card">
                       <div className="block-card-body place-button-area">
                         <div
-                          onClick={(e) => {
-                            placeOrder(e);
-                            console.log(orderProductList);
-                          }}
+                            onClick={(e) => {
+                              if (deliverAddress.length < 1 || contacts.length < 1){
+                                if (deliverAddress.length < 1){
+                                  handleShowModal('post', null)
+                                }else if (contacts.length < 1){
+                                  handleShowContactModal('post', null)
+                                }else {
+
+                                }
+                              }else {
+                                placeOrder(e);
+                              }
+                            }}
                           className="btn btn-primary btn-block"
                         >
                           Place Order
