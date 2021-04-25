@@ -57,8 +57,8 @@ const ProductDetailFullwidth = ({ product }) => {
                             setSelectedAttributeProduct(attr || {})
                           }}
                             className={`attribute_selector ${
-                              selectedAttributeProduct?.attribute_item?.id ===
-                                attr?.attribute_item?.id && "active"
+                              selectedAttributeProduct?.id ===
+                                attr?.id && "active"
                             }`}
                           >
                             {attr?.attribute_item?.value}

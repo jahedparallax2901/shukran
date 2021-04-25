@@ -30,7 +30,7 @@ const ModuleDetailShoppingActions = ({
     newList.push({
       product_id: id,
       item_id:
-        selectedAttributeProduct?.attribute_item?.id ||
+        selectedAttributeProduct?.id ||
         selectedAttributeProduct?.id,
       quantity: quantity,
     });

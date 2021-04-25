@@ -61,10 +61,7 @@ const reducer = (state = initialState, action) => {
         item.store_product.map((store_item) => {
           const obj = {
             product_id: store_item.product_id,
-            item_id:
-              store_item.product_attribute.attribute_type === 2
-                ? 0
-                : store_item.product_attribute.id,
+            item_id: store_item.product_attribute.id,
             quantity: store_item.quantity,
           };
           productArray.push(obj);
