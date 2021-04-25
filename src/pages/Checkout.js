@@ -151,7 +151,9 @@ const Checkout = (props) => {
   };
 
   const handleShowModal = (request, id) => {
+    console.log('checkX', deliverAddress)
     if (request === "put") {
+      setFormData(deliverAddress[selectedAddress])
       setIsEdited(true);
       setEditedId(id);
     } else {
@@ -171,6 +173,8 @@ const Checkout = (props) => {
   };
 
   const handleShowContactModal = (request,id) => {
+
+
     if (request === "put") {
       setIsEdited(true);
       setEditedId(id);
@@ -488,7 +492,15 @@ const Checkout = (props) => {
             </Modal.Title>
           </Modal.Header>
 
-          <Form>
+
+          <Form onSubmit={(e) => {
+              if (isEdited === true) {
+                handleFormSubmit(e, "/edit-address/" + editedId);
+              } else {
+                handleFormSubmit(e, "/add-address");
+              }
+          }}
+          >
             <Form.Group controlId="formBasicEmail">
               <Form.Label style={{ marginTop: "1vw", fontSize: "14px" }}>
                 Name <span className="text-danger">*</span>{" "}
@@ -497,7 +509,7 @@ const Checkout = (props) => {
                 required
                 name={`name`}
                 defaultValue={
-                  isEdited ? deliverAddress[selectedAddress].name : ""
+                  isEdited ? deliverAddress[selectedAddress]?.name : ""
                 }
                 onChange={(e) => handleOnChange(e)}
                 style={{ height: "40px", fontSize: "12px" }}
@@ -732,7 +744,13 @@ const Checkout = (props) => {
                 Address Type <span className="text-danger">*</span>{" "}
               </Form.Label>
               <div className={"d-flex"}>
+{/*
+                defaultValue={
+                isEdited ? deliverAddress[selectedAddress].address : ""
+              }
+                */}
                 <Form.Check
+                  defaultChecked={deliverAddress[selectedAddress]?.address_type === 0 && true}
                   name={`address_type`}
                   value={0}
                   type="radio"
@@ -741,6 +759,7 @@ const Checkout = (props) => {
                 />
                 <Form.Check.Label>{`Home address`}</Form.Check.Label>
                 <Form.Check
+                  defaultChecked={deliverAddress[selectedAddress]?.address_type === 1 && true}
                   name={`address_type`}
                   value={1}
                   className={"mx-3"}
@@ -749,6 +768,7 @@ const Checkout = (props) => {
                 />
                 <Form.Check.Label>{`Office address`}</Form.Check.Label>
                 <Form.Check
+                  defaultChecked={deliverAddress[selectedAddress]?.address_type === 2 && true}
                   name={`address_type`}
                   value={2}
                   className={"mx-3"}
@@ -768,17 +788,12 @@ const Checkout = (props) => {
                 Close
               </Button>
               <Button
-                onClick={(e) => {
-                  if (isEdited === true) {
-                    handleFormSubmit(e, "/edit-address/" + editedId);
-                  } else {
-                    handleFormSubmit(e, "/add-address");
-                  }
-                }}
+                type={`submit`}
                 style={{ height: "2vw", width: "7vw", fontSize: "12px" }}
                 variant={`primary`}
               >
-                Save Address
+                {isEdited === true && 'Update Address'}
+                {isEdited === false && 'Save Address'}
               </Button>
             </Modal.Footer>
           </Form>
