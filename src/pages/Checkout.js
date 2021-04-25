@@ -36,7 +36,7 @@ import {
   MdEdit,
   HiPlus,
   BiLeftArrowCircle,
-  BiRightArrowCircle,
+  BiRightArrowCircle, IoIosArrowForward, IoIosArrowBack,
 } from "react-icons/all";
 import {
   Modal,
@@ -260,13 +260,29 @@ const Checkout = (props) => {
     return (
       <ScrollMenu
         arrowLeft={
-          <div style={{ fontSize: "30px" }}>
-            <BiLeftArrowCircle />
+          <div style={{
+            height: '45px',
+            width: '45px',
+            backgroundColor: '#e2e2e2',
+            borderRadius: '50%',
+            lineHeight: '45px',
+            textAlign: 'center'
+
+          }}>
+            <IoIosArrowBack />
           </div>
         }
         arrowRight={
-          <div style={{ fontSize: "30px" }}>
-            <BiRightArrowCircle />
+          <div style={{
+            height: '45px',
+            width: '45px',
+            backgroundColor: '#e2e2e2',
+            borderRadius: '50%',
+            lineHeight: '45px',
+            textAlign: 'center'
+
+          }}>
+            <IoIosArrowForward />
           </div>
         }
         data={numberOfPicture.map((data, index) => (
@@ -555,6 +571,7 @@ const Checkout = (props) => {
                     inputmode="numeric"
                     type="text"
                     required
+                    maxLength="11"
                     autoComplete={`off`}
                     placeholder={"your phone number"}
                   />
