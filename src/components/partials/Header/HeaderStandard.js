@@ -161,10 +161,10 @@ class HeaderStandard extends Component {
                     </i>
                     <span>
                       <i>
-                        {shoppingCart?.cartSummery?.total_items ||
+                        {shoppingCart?.cartSummery?.total_prdoucts ||
                           this.countTotalItems() ||
                           0}
-                      </i>
+                      </i>  
                     </span>
                   </a>
 

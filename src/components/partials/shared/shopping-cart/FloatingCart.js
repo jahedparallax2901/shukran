@@ -31,7 +31,7 @@ class FloatingCart extends Component {
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             <p>
               <span>
-                {shoppingCart?.cartSummery?.total_items ||
+                {shoppingCart?.cartSummery?.total_prdoucts ||
                   this.countTotalItems() ||
                   0}
               </span>{" "}
