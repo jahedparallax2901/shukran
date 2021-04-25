@@ -6,7 +6,7 @@ const WidgetSaleOnSite = () => {
         <aside className="widget widget_sell-on-site">
             <p>
                 <i className="icon-store"></i> Sell on Martfury?
-                <Link to="/account/register">
+                <Link to="/merchant-apply">
                     <a> Register Now !</a>
                 </Link>
             </p>
