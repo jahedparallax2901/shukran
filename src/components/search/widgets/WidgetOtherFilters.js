@@ -1,12 +1,15 @@
 import { Slider } from "antd";
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { FiChevronRight } from "react-icons/fi";
 import { useHistory } from "react-router";
 import { arrayToUrlParams, objToUrlPrams } from "../../../helpers/utils";
 import { processGetRequest } from "../../../services/baseServices";
 import { all_brand } from "../../../temp-data/brands";
+import '../../../assets/scss/my-changes.scss'
 
 export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
+  const [range, setRange] = useState({starting_price: "", ending_price: ""})
   const [starting_price, setStarting_price] = useState(0);
   const [ending_price, setEnding_price] = useState(0);
   const [brands, setBrands] = useState([]);
@@ -17,12 +20,11 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
   const [isAttributesFetching, setIsAttributesFetching] = useState(true);
   const history = useHistory();
 
-  const onAfterChange = async (value) => {
-    setStarting_price(value[0] * 100);
-    setEnding_price(value[1] * 100);
+  const handlePriceFilter = async (e) => {
+    e.preventDefault();
     const newQuery = { ...query };
-    newQuery.starting_price = value[0] * 100;
-    newQuery.ending_price = value[1] * 100;
+    newQuery.starting_price = range.starting_price;
+    newQuery.ending_price = range.ending_price;
     await setQuery(newQuery);
     const url = history.location.pathname + "?" + objToUrlPrams(newQuery);
     history.push(url);
@@ -85,6 +87,12 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
     }
   };
 
+  const rangerInputOnChange = (e)=>{
+    const newRange  = {...range};
+    newRange[e.target.name] = e.target.value;
+    setRange(newRange);
+  }
+
   useEffect(() => {
     processGetRequest("/generic-info", { info_type: 2 })
       .then((res) => {
@@ -103,8 +111,15 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       .catch((err) => {
         setIsAttributesFetching(false);
       });
-      setStarting_price(query.starting_price? parseInt(query.starting_price) : 0);
-      setEnding_price(query.ending_price? parseInt(query.ending_price) : 0);
+      const range = {
+        starting_price: parseInt(query.starting_price) || "",
+        ending_price: parseInt(query.ending_price) || ""
+      }
+      setRange(range);
+    // setStarting_price(
+    //   query.starting_price ? parseInt(query.starting_price) : 0
+    // );
+    // setEnding_price(query.ending_price ? parseInt(query.ending_price) : 0);
   }, []);
 
   return (
@@ -128,7 +143,9 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
                     class="form-control"
                     type="checkbox"
                     id={`brand-${brand.id}`}
-                    defaultChecked={query?.brand_id?.includes(brand.id.toString())}
+                    defaultChecked={query?.brand_id?.includes(
+                      brand.id.toString()
+                    )}
                     onChange={(e) => handleOnBrandChange(e, brand.id)}
                   />
                   <label for={`brand-${brand.id}`}>{brand.name}</label>
@@ -142,10 +159,26 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
         <div id="nonlinear"></div>
         <p class="ps-slider__meta">
           Price:
-          <Slider
+
+          <div className="price-rang">
+              <input type="number" name={`starting_price`}
+                     onChange={rangerInputOnChange}
+                     placeholder="Min"
+                     defaultValue={range.starting_price}/>
+              <span>-</span>
+              <input type="number" name={`ending_price`}
+                     onChange={rangerInputOnChange}
+                     placeholder="Max"
+                     defaultValue={range.ending_price}/>
+              <button
+                // onChange={this.rangerInputOnChange}
+                onClick={handlePriceFilter}
+                type="button"><FiChevronRight/></button>
+            </div>
+          {/* <Slider
             range={{ draggableTrack: true }}
             step={5}
-            defaultValue={[(starting_price/100), (ending_price/100)]}
+            defaultValue={[starting_price / 100, ending_price / 100]}
             onAfterChange={onAfterChange}
           />
           <span class="ps-slider__value">
@@ -154,7 +187,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
           -
           <span class="ps-slider__value">
             &#2547;<span class="ps-slider__max">{ending_price}</span>
-          </span>
+          </span> */}
         </p>
       </figure>
       {/* 
@@ -264,7 +297,9 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
                     type="checkbox"
                     name={attr.name}
                     id={`${attr.name}-${item.id}`}
-                    defaultChecked={query?.attribute_id?.includes(item.id.toString())}
+                    defaultChecked={query?.attribute_id?.includes(
+                      item.id.toString()
+                    )}
                     onChange={(e) => handleAttributeOnChange(e, item.id)}
                   />
                   <label className="mr-2" for={`${attr.name}-${item.id}`}>
