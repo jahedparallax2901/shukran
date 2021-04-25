@@ -106,7 +106,7 @@ const ModuleProductActions = ({ product }) => {
           </i>
         }
       >
-        <ProductDetailQuickView product={product} />
+        <ProductDetailQuickView id={product?.id} />
       </Modal>
     </ul>
   );

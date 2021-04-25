@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaBars, FaHeart } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { userData } from "../../../../helpers/authUtils";
 import {
@@ -105,7 +106,6 @@ const ModuleDetailShoppingActions = ({
         </figure>
         <button
           className="ps-btn ps-btn--black"
-          href="#"
           onClick={(e) => handleAddItemToCart(e)}
         >
           Add to cart
@@ -132,29 +132,6 @@ const ModuleDetailShoppingActions = ({
   } else {
     return (
       <div className="ps-product__shopping extend">
-        <div class="ps-product__variations">
-          <figure>
-            <figcaption>Color</figcaption>
-            <div class="ps-variant ps-variant--color color--1">
-              <span class="ps-variant__tooltip">Black</span>
-            </div>
-            <div class="ps-variant ps-variant--color color--2">
-              <span class="ps-variant__tooltip"> Gray</span>
-            </div>
-          </figure>
-          <figure>
-            <figcaption>Size</figcaption>
-            <div class="ps-variant ps-variant--color color--1">
-              <span class="ps-variant__tooltip">Black</span>
-            </div>
-            <div class="ps-variant ps-variant--color color--2">
-              <span class="ps-variant__tooltip"> Gray</span>
-            </div>
-            <div class="ps-variant ps-variant--color color--2">
-              <span class="ps-variant__tooltip"> Gray</span>
-            </div>
-          </figure>
-        </div>
         <div className="ps-product__btn-group">
           <figure>
             <figcaption>Quantity</figcaption>
@@ -176,19 +153,22 @@ const ModuleDetailShoppingActions = ({
               />
             </div>
           </figure>
-          <a
+          <button
             className="ps-btn ps-btn--black"
-            href="#"
             onClick={(e) => handleAddItemToCart(e)}
           >
             Add to cart
-          </a>
+          </button>
           <div className="ps-product__actions">
             <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
-              <i></i>
+            <i>
+              <FaHeart />
+            </i>
             </a>
             <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
-              <i className="icon-chart-bars"></i>
+            <i>
+              <FaBars />
+            </i>
             </a>
           </div>
         </div>
