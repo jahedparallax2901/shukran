@@ -1,35 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import { connect } from 'react-redux';
-// import { useRouter } from 'next/router';
-
-// import ContainerProductDetail from '~/components/layouts/ContainerProductDetail';
-// import ProductRepository from '~/repositories/ProductRepository';
-// import SkeletonProductDetail from '~/components/elements/skeletons/SkeletonProductDetail';
-// import BreadCrumb from '~/components/elements/BreadCrumb';
-// import ProductWidgets from '~/components/partials/product/ProductWidgets';
-// import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
-// import CustomerBought from '~/components/partials/product/CustomerBought';
-// import RelatedProduct from '~/components/partials/product/RelatedProduct';
-// import ContainerPage from '~/components/layouts/ContainerPage';
-// import HeaderProduct from '~/components/shared/headers/HeaderProduct';
-// import HeaderDefault from '~/components/shared/headers/HeaderDefault';
-
 import { useHistory, useParams } from "react-router";
-import BreadCrumb from "../components/elements/BreadCrumb";
-import SkeletonProductDetail from "../components/elements/skeletons/SkeletonProductDetail";
-import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
-import CustomerBought from "../components/product/CustomerBought";
-// import HeaderDefault from '../components/product/details/header/HeaderDefault';
-// import HeaderProduct from '../components/product/details/header/HeaderProduct';
-import ProductDetailFullwidth from "../components/product/ProductDetailFullwidth";
-import ProductWidgets from "../components/product/ProductWidgets";
-import RelatedProduct from "../components/product/RelatedProduct";
+import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 import {
   processDeleteRequest,
   processGetRequest,
   processPostRequest,
 } from "../services/baseServices";
-import { singleProduct } from "../temp-data/product";
+
 import "../assets/css/checkout.css";
 import {
   FiX,
@@ -96,7 +73,7 @@ const Checkout = (props) => {
     {
       url: "https://parallaxlogic.dev/shukran-view/img/payment-method/01.jpg",
       name: "Rocket",
-    },
+    }
   ]);
 
   const [country, setCountry] = useState([
@@ -286,7 +263,7 @@ const Checkout = (props) => {
           </div>
         }
         data={numberOfPicture.map((data, index) => (
-          <div className="owl-item" style={{ width: 230, marginRight: 25 }}>
+          <div key={index} className="owl-item" style={{ width: 230, marginRight: 25 }}>
             <div className="single-checkout-body payment-body">
               <div className="checkout-body-location">
                 <h4>
@@ -437,7 +414,7 @@ const Checkout = (props) => {
       <>
         {orderProductList &&
           orderProductList.map((data, index) => (
-            <div className="block-card-body border-bottom pt-1">
+            <div key={index} className="block-card-body border-bottom pt-1">
               <h4>{data.product.name}</h4>
               <p className="d-flex justify-content-between">
                 <span className>{data.quantity}</span>
@@ -457,7 +434,7 @@ const Checkout = (props) => {
   const DeliveryCharge = () => {
     return (
       <>
-        <div className="block-card-body">
+        <div key={`500`} className="block-card-body">
           <p className="d-flex mb-3">
             <span className="mr-2">Subtotal</span>
             <span className="ml-auto">
