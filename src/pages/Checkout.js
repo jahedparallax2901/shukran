@@ -36,7 +36,7 @@ import {
   MdEdit,
   HiPlus,
   BiLeftArrowCircle,
-  BiRightArrowCircle,
+  BiRightArrowCircle, IoIosArrowForward, IoIosArrowBack,
 } from "react-icons/all";
 import {
   Modal,
@@ -139,7 +139,8 @@ const Checkout = (props) => {
       .then((res) => {
         res.checkout_items.map((data, index) => {
           data.store_product.map((data1, index1) => {
-            setOrderProductList([data1]);
+
+            setOrderProductList(orderProductList => [...orderProductList , data1]);
           });
         });
         setCheckoutData(res);
@@ -150,7 +151,9 @@ const Checkout = (props) => {
   };
 
   const handleShowModal = (request, id) => {
+    console.log('checkX', deliverAddress)
     if (request === "put") {
+      setFormData(deliverAddress[selectedAddress])
       setIsEdited(true);
       setEditedId(id);
     } else {
@@ -170,6 +173,8 @@ const Checkout = (props) => {
   };
 
   const handleShowContactModal = (request,id) => {
+
+
     if (request === "put") {
       setIsEdited(true);
       setEditedId(id);
@@ -255,13 +260,29 @@ const Checkout = (props) => {
     return (
       <ScrollMenu
         arrowLeft={
-          <div style={{ fontSize: "30px" }}>
-            <BiLeftArrowCircle />
+          <div style={{
+            height: '45px',
+            width: '45px',
+            backgroundColor: '#e2e2e2',
+            borderRadius: '50%',
+            lineHeight: '45px',
+            textAlign: 'center'
+
+          }}>
+            <IoIosArrowBack />
           </div>
         }
         arrowRight={
-          <div style={{ fontSize: "30px" }}>
-            <BiRightArrowCircle />
+          <div style={{
+            height: '45px',
+            width: '45px',
+            backgroundColor: '#e2e2e2',
+            borderRadius: '50%',
+            lineHeight: '45px',
+            textAlign: 'center'
+
+          }}>
+            <IoIosArrowForward />
           </div>
         }
         data={numberOfPicture.map((data, index) => (
@@ -487,7 +508,15 @@ const Checkout = (props) => {
             </Modal.Title>
           </Modal.Header>
 
-          <Form>
+
+          <Form onSubmit={(e) => {
+              if (isEdited === true) {
+                handleFormSubmit(e, "/edit-address/" + editedId);
+              } else {
+                handleFormSubmit(e, "/add-address");
+              }
+          }}
+          >
             <Form.Group controlId="formBasicEmail">
               <Form.Label style={{ marginTop: "1vw", fontSize: "14px" }}>
                 Name <span className="text-danger">*</span>{" "}
@@ -496,7 +525,7 @@ const Checkout = (props) => {
                 required
                 name={`name`}
                 defaultValue={
-                  isEdited ? deliverAddress[selectedAddress].name : ""
+                  isEdited ? deliverAddress[selectedAddress]?.name : ""
                 }
                 onChange={(e) => handleOnChange(e)}
                 style={{ height: "40px", fontSize: "12px" }}
@@ -542,6 +571,7 @@ const Checkout = (props) => {
                     inputmode="numeric"
                     type="text"
                     required
+                    maxLength="11"
                     autoComplete={`off`}
                     placeholder={"your phone number"}
                   />
@@ -731,7 +761,13 @@ const Checkout = (props) => {
                 Address Type <span className="text-danger">*</span>{" "}
               </Form.Label>
               <div className={"d-flex"}>
+{/*
+                defaultValue={
+                isEdited ? deliverAddress[selectedAddress].address : ""
+              }
+                */}
                 <Form.Check
+                  defaultChecked={deliverAddress[selectedAddress]?.address_type === 0 && true}
                   name={`address_type`}
                   value={0}
                   type="radio"
@@ -740,6 +776,7 @@ const Checkout = (props) => {
                 />
                 <Form.Check.Label>{`Home address`}</Form.Check.Label>
                 <Form.Check
+                  defaultChecked={deliverAddress[selectedAddress]?.address_type === 1 && true}
                   name={`address_type`}
                   value={1}
                   className={"mx-3"}
@@ -748,6 +785,7 @@ const Checkout = (props) => {
                 />
                 <Form.Check.Label>{`Office address`}</Form.Check.Label>
                 <Form.Check
+                  defaultChecked={deliverAddress[selectedAddress]?.address_type === 2 && true}
                   name={`address_type`}
                   value={2}
                   className={"mx-3"}
@@ -767,17 +805,12 @@ const Checkout = (props) => {
                 Close
               </Button>
               <Button
-                onClick={(e) => {
-                  if (isEdited === true) {
-                    handleFormSubmit(e, "/edit-address/" + editedId);
-                  } else {
-                    handleFormSubmit(e, "/add-address");
-                  }
-                }}
+                type={`submit`}
                 style={{ height: "2vw", width: "7vw", fontSize: "12px" }}
                 variant={`primary`}
               >
-                Save Address
+                {isEdited === true && 'Update Address'}
+                {isEdited === false && 'Save Address'}
               </Button>
             </Modal.Footer>
           </Form>
