@@ -122,6 +122,10 @@ const Checkout = (props) => {
     await getLocationV2("/division-list", null);
   }, []);
 
+  useEffect( ()=>{
+    console.log(isEdited)
+  },[isEdited])
+
   const getAllData = () => {
     processGetRequest("/user-details", {}, true).then((res) => {
       console.log(res);
@@ -165,9 +169,10 @@ const Checkout = (props) => {
     console.log(formData);
   };
 
-  const handleShowContactModal = (request) => {
+  const handleShowContactModal = (request,id) => {
     if (request === "put") {
       setIsEdited(true);
+      setEditedId(id);
     } else {
       setIsEdited(false);
     }
@@ -181,12 +186,17 @@ const Checkout = (props) => {
     e.preventDefault();
     processPostRequest(url, formData, true)
       .then((res) => {
-        setFormData(null);
-        console.log(res);
-        toast.success(res.message);
-        getAllData();
-        handleHideModal();
-        handleHideContactModal();
+        if (res.status) {
+          setIsEdited(false)
+          setEditedId(null)
+          setFormData(null);
+          console.log(res);
+          toast.success(res.message);
+          getAllData();
+          handleHideModal();
+          handleHideContactModal();
+        }
+
       })
       .catch((err) => {
         toast.error(err.message);
@@ -344,7 +354,7 @@ const Checkout = (props) => {
                   <h4>phone number</h4>
                   <div className="location-edit">
                     <button
-                      onClick={() => handleShowContactModal("put")}
+                      onClick={() => handleShowContactModal("put" , data.id)}
                       type="button"
                     >
                       <MdEdit />
@@ -470,7 +480,9 @@ const Checkout = (props) => {
                   fontWeight: "bold",
                 }}
               >
-                ADD ADDRESS
+                {isEdited === true && 'Edit ADDRESS'}
+                {isEdited === false && 'ADD ADDRESS'}
+
               </h2>
             </Modal.Title>
           </Modal.Header>
@@ -640,6 +652,7 @@ const Checkout = (props) => {
                   as="select"
                   size={"lg"}
                 >
+                  <option value=""> --select District-- </option>
                   {district &&
                     district.map((data, index) => (
                       <>
@@ -670,6 +683,7 @@ const Checkout = (props) => {
                   as="select"
                   size={"lg"}
                 >
+                  <option value=""> --select upazilla-- </option>
                   {upazilla &&
                     upazilla.map((data, index) => (
                       <>
@@ -698,6 +712,7 @@ const Checkout = (props) => {
                   as="select"
                   size={"lg"}
                 >
+                  <option value=""> --select upazilla thana-- </option>
                   {upazillaArea &&
                     upazillaArea.map((data, index) => (
                       <>
@@ -793,7 +808,12 @@ const Checkout = (props) => {
           <ModalFooter>
             <Button
               onClick={(e) => {
-                handleFormSubmit(e, "/add-contact");
+                if (isEdited === true){
+                  handleFormSubmit(e, "/edit-contact/"+editedId);
+                }else {
+                  handleFormSubmit(e, "/add-contact");
+                }
+
               }}
               style={{ height: "2vw", width: "7vw", fontSize: "12px" }}
               variant={`primary`}
