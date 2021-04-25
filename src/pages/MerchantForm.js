@@ -514,7 +514,7 @@ const MerchantForm = () => {
                                                 fontSize: '17px'
                                             }}
                                             className="form-control bg-white form-control-lg"
-                                            type="text"
+                                            type="number"
                                             placeholder="Enter NID" />
                                         <Form.Text
                                             style={{
