@@ -1,10 +1,10 @@
-import React from 'react'
-import ContainerMarketPlace3 from '../../components/layouts/ContainerMarketPlace3'
-import AccountMenuSidebar from '../../components/partials/account/AccountMenuSidebar'
+import React from "react";
+import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
+import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
 
 export default function MyAccount() {
-    return (
-        <ContainerMarketPlace3>
+  return (
+    <ContainerMarketPlace3>
       <section className="ps-my-account ps-page--account">
         <div className="container">
           <div className="row">
@@ -24,7 +24,7 @@ export default function MyAccount() {
                     </h3>
                   </div>
 
-                  <div class="card-body pt-0 pb-3" id="pills-tabContent">
+                  <div class="card-body pt-3 pb-3" id="pills-tabContent">
                     <div class="table-responsive">
                       <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
                         <thead>
@@ -135,5 +135,5 @@ export default function MyAccount() {
         </div>
       </section>
     </ContainerMarketPlace3>
-    )
+  );
 }

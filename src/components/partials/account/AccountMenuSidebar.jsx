@@ -30,7 +30,7 @@ const AccountMenuSidebar = ({ selectedTab }) => {
       icon: <AiOutlineHeart />,
     },
     {
-      text: "Disputes ",
+      text: "Disputes",
       url: "/account/disputes",
       icon: <RiSignalWifiErrorLine />,
     },

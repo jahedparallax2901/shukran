@@ -24,7 +24,7 @@ export default function MyCoupons() {
                     </h3>
                   </div>
                  
-                  <div class="card-body pt-0 pb-3" id="pills-tabContent">
+                  <div class="card-body pt-3 pb-3" id="pills-tabContent">
                     <div class="card" style={{width: '30rem', borderRadius: '10px'}}>
                       <div
                         class="card-body bg-secondary"

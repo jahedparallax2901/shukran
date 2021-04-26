@@ -24,7 +24,7 @@ const MyOrders = () => {
                     </h3>
                   </div>
 
-                  <div class="card-body pt-0 pb-3" id="pills-tabContent">
+                  <div class="card-body pt-3 pb-3" id="pills-tabContent">
                     <div class="table-responsive">
                       <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
                         <thead>

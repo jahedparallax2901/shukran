@@ -23,7 +23,7 @@ export default function MyWishlist() {
                       </span>
                     </h3>
                   </div>
-                  <div className="card-body pt-0 pb-3" id="pills-tabContent">
+                  <div className="card-body pt-3 pb-3" id="pills-tabContent">
                     <div className="wishlist">
                       <div className="wishlist-item py-0">
                         <div

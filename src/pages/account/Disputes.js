@@ -23,7 +23,7 @@ export default function Disputes() {
                         </span>
                       </h3>
                     </div>
-                    <div className="card-body pt-0 pb-3" id="pills-tabContent">
+                    <div className="card-body pt-3 pb-3" id="pills-tabContent">
                     <div className="table-responsive">
                       <table
                         className="table table-head-custom table-head-bg table-borderless table-vertical-center"
