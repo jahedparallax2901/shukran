@@ -1,0 +1,111 @@
+.asside-card-drower {
+  animation: pulse 6s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  box-shadow: 0 0 0 0 rgb(0, 108, 50);
+}
+.button-pulse-primary {
+  animation: pulse 2s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  box-shadow: 0 0 0 0 #ed1c24;
+}
+@keyframes pulse {
+  68% {
+    box-shadow: 0 0 0 0 rgb(0, 108, 50);
+  }
+  83% {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+  84% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  85% {
+    box-shadow: 0 0 0 0 rgb(0, 108, 50);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+}
+
+.btn-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(90deg, #69cec2 0%, #41bbac 100%);
+  background: black;
+  color: white;
+  z-index: 1;
+}
+.btn-wave:after,
+.btn-wave:before {
+  width: 0%;
+  height: 0%;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.btn-wave:after {
+  transition: all 0.5s ease;
+  background-color: white;
+  background: #7de1c2;
+  background-color: rgb(0, 108, 50);
+  transition: all 0.7s ease-in-out;
+}
+
+.btn-wave:before {
+  transition: all 0.5s ease-out;
+  background: rgb(0, 108, 50);
+  background: #7de1c2;
+  background: white;
+  transition: all 0.5s ease-in-out;
+}
+.btn-wave:hover:after,
+.btn-wave:hover:before {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+}
+.ps-product__thumbnail img {
+  transition: all 0.3s ease-in-out;
+}
+.ps-product__thumbnail:hover img {
+  transform: scale(1.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-gradiant {
+  background-image: linear-gradient(to right, #f05a28, #ec008c, #f05a28);
+  background-image: linear-gradient(
+    to right,
+    #ec0033,
+    rgb(0, 108, 50),
+    #ec0033
+  );
+  /* background-image: linear-gradient(to right, #f05a28, #f72930, #f05a28); */
+  background-size: 300% 100%;
+  display: inline-block;
+  opacity: 1;
+  white-space: nowrap;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  animation: clr-change 5s linear infinite;
+  transition: all 0.5s ease-in-out;
+}
+.btn-gradiant:hover {
+  background: #ed1c24 !important;
+  transition: all 0.5s ease-in-out;
+}
+@keyframes clr-change {
+  0% {
+    background-position: 0% 0;
+  }
+  50% {
+    background-position: -50% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}

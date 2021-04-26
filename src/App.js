@@ -22,7 +22,11 @@ import NotFound from "./pages/NotFound";
 import Checkout from "./pages/Checkout";
 import Invoice from "./pages/invoice";
 import PrivateRoute from "./components/PrivateRoute";
-import MerchantForm from "./pages/MerchantForm"
+import MerchantForm from "./pages/MerchantForm";
+import Campaign from "./pages/Campaign";
+import BecomeAVendor from "./pages/vendor/BecomeAVendor";
+import Wishlist from "./pages/Wishlist";
+import StoreDetails from "./pages/store/StoreDetails";
 
 function App() {
   const homePath = "/";
@@ -40,7 +44,11 @@ function App() {
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
             <SearchProduct />
           </Route>
-          <PrivateRoute redirectTo={homePath} onUpdate={() => window.scrollTo(0, 0)} path="/checkout">
+          <PrivateRoute
+            redirectTo={homePath}
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/checkout"
+          >
             <Checkout />
           </PrivateRoute>
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
@@ -89,16 +97,28 @@ function App() {
             <BillingAddress />
           </Route>
 
-
-          <Route
-              onUpdate={() => window.scrollTo(0, 0)}
-              path="/merchant-apply"
-          >
-            <MerchantForm/>
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/merchant-apply">
+            <MerchantForm />
           </Route>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/invoice">
             <Invoice />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/campaign">
+            <Campaign />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/vendor/become-a-vendor">
+            <BecomeAVendor />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/wishlist">
+            <Wishlist />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/store/store-details">
+            <StoreDetails />
           </Route>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">

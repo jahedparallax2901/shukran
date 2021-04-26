@@ -1,6 +1,5 @@
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { BsChevronRight } from "react-icons/bs";
 
 const NextArrow = (props) => {
   const { className, onClick, icon } = props;
@@ -12,7 +11,7 @@ const NextArrow = (props) => {
         </i>
       ) : (
         <i>
-          <FontAwesomeIcon icon={faChevronRight} />
+          <BsChevronRight />
         </i>
       )}
     </a>
