@@ -27,6 +27,7 @@ import Campaign from "./pages/Campaign";
 import BecomeAVendor from "./pages/vendor/BecomeAVendor";
 import Wishlist from "./pages/Wishlist";
 import StoreDetails from "./pages/store/StoreDetails";
+import VendorStore from "./pages/vendor/VendorStore";
 
 function App() {
   const homePath = "/";
@@ -109,7 +110,10 @@ function App() {
             <Campaign />
           </Route>
 
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/vendor/become-a-vendor">
+          <Route
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/vendor/become-a-vendor"
+          >
             <BecomeAVendor />
           </Route>
 
@@ -117,8 +121,15 @@ function App() {
             <Wishlist />
           </Route>
 
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/store/store-details">
+          <Route
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/store/store-details"
+          >
             <StoreDetails />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/vendor/store">
+            <VendorStore />
           </Route>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">
