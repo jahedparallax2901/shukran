@@ -6,7 +6,7 @@ import cardBackground from "../assets/img/downloads/card-background.png";
 import campaignCard4 from "../assets/img/downloads/campaign-card4.jpg";
 import campaignCard3 from "../assets/img/downloads/campaign-card3.jpg";
 import campaignCard2 from "../assets/img/downloads/campaign-card2.jpg";
-import "../assets/css/campaign.css";
+// import "../assets/css/campaign.css";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 
 const Campaign = () => {

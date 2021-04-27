@@ -28,6 +28,7 @@ import BecomeAVendor from "./pages/vendor/BecomeAVendor";
 import Wishlist from "./pages/Wishlist";
 import StoreDetails from "./pages/store/StoreDetails";
 import VendorStore from "./pages/vendor/VendorStore";
+import ProductCompare from "./pages/product/ProductCompare";
 
 function App() {
   const homePath = "/";
@@ -130,6 +131,10 @@ function App() {
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/vendor/store">
             <VendorStore />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/compare">
+            <ProductCompare />
           </Route>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">
