@@ -24,6 +24,26 @@ class MiniShoppinCart extends Component {
     isCartProcessing: false,
   };
 
+  componentDidMount() {
+    const scrollbody = document.querySelector(".asside-card-checkout");
+    scrollbody.onscroll = function () {
+      let cartFooter = document.getElementById("all-checkout");
+      console.log(cartFooter);
+      let sticky = cartFooter.offsetTop;
+      if (scrollbody.scrollTop * 4 > sticky) {
+        cartFooter.classList.add("custom-sticky");
+        let lastStore = document.querySelectorAll(".store-div");
+        lastStore = lastStore[lastStore.length - 1];
+        lastStore.style.marginBottom = "165px";
+      } else {
+        cartFooter.classList.remove("custom-sticky");
+        let lastStore = document.querySelectorAll(".store-div");
+        lastStore = lastStore[lastStore.length - 1];
+        lastStore.style.marginBottom = "0px";
+      }
+    };
+  }
+
   handleItemDelete = (e, product_id, item_id) => {
     this.setState({ isCartProcessing: true });
 
@@ -271,7 +291,8 @@ class MiniShoppinCart extends Component {
   handleProceedCheckout = (e, cart_id, store_id = null) => {
     e.preventDefault();
     const user = userData();
-    if (!user) {      this.props.handleShowAuthModal(() => {
+    if (!user) {
+      this.props.handleShowAuthModal(() => {
         this.handleProceedCheckout(e, cart_id, store_id);
       });
     } else {
@@ -539,7 +560,7 @@ class MiniShoppinCart extends Component {
 
                 {/* Global coupon portion */}
 
-                <div className="all-checkout">
+                <div className="all-checkout"  id="all-checkout">
                   <div class="store-coupon">
                     {shoppingCart.cartItems.find(
                       (item) => item.coupon !== null
