@@ -135,14 +135,14 @@
   font-weight: 600;
 }
 
-.ps-countdown {
+.ps-countdown-campaign{
   list-style: none;
   display: flex;
   position: absolute;
   top: -52px;
   right: 0;
 }
-.ps-countdown li {
+.ps-countdown-campaign li {
   padding-top: 0;
   text-align: center;
   border-radius: 0 0 50px 50px;
@@ -151,10 +151,10 @@
   background: #f4f5f5;
   padding: 10px;
 }
-.ps-countdown li p {
+.ps-countdown-campaign li p {
   margin-bottom: 0;
 }
-.ps-countdown span {
+.ps-countdown-campaign span {
   width: 40px;
   height: 40px;
   display: block;
@@ -213,7 +213,7 @@
   .campaign-card {
     box-shadow: none;
   }
-  .ps-countdown li {
+  .ps-countdown-campaign li {
     padding-top: 0;
     text-align: center;
     border-radius: 0 0 50px 50px;

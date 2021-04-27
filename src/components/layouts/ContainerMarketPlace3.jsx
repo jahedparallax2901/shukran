@@ -8,7 +8,7 @@ import MiniShoppinCart from "../partials/shopping-cart/MiniShoppinCart";
 // import MarketPlacePromotionHeader from '../partials/MarketPlacePromotionHeader';
 // import HeaderMarketPlace from '../partials/HeaderMarketPlace';
 
-const ContainerMarketPlace3 = ({ children, title, categories, all_category, isExpanded=false }) => {
+const ContainerMarketPlace3 = ({ children, title, categories, all_category, isExpanded=false, requiredTopPadding= false }) => {
   let titleView;
   if (title !== null) {
     titleView = process.env.title + " | " + title;
@@ -29,7 +29,7 @@ const ContainerMarketPlace3 = ({ children, title, categories, all_category, isEx
       <Header/>
       <FloatingCart />
       <MiniShoppinCart />
-      <main id="homepage-5">
+      <main id="homepage-5" className={`${requiredTopPadding && "pt-4"}`}>
         <div className="">{children}</div>
       </main>
       <FooterMarketPlace2 isExpanded={isExpanded}/>

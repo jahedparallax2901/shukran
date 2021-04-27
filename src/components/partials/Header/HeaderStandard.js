@@ -100,6 +100,12 @@ class HeaderStandard extends Component {
       handleShowShoppingCart,
       handleAddToCart,
     } = this.props;
+    const menuItems = [
+      {id: 1, name: 'Home', url: '/'},
+      {id: 2, name: 'Campaign', url: '/campaign'},
+      {id: 3, name: 'Vendor Stores', url: '/vendor/store'},
+      {id: 2, name: 'Become a Vendor', url: '/vendor/become-a-vendor'},
+    ]
     return (
       <header
         className="header header--standard header--market-place-1"
@@ -121,10 +127,10 @@ class HeaderStandard extends Component {
                   <ul className="menu--dropdown">
                     {categories.map((item) => (
                       <li key={item.id}>
-                        <a href={item.link}>
+                        <Link to={item.link}>
                           <i>{item.icon}</i>
                           {item.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -140,14 +146,14 @@ class HeaderStandard extends Component {
             </div>
             <div className="header__content-right">
               <div className="header__actions">
-                <a className="header__extra" href="#">
+                <Link className="header__extra" to="/wishlist">
                   <i>
                     <BsHeart />
                   </i>
                   <span>
                     <i>0</i>
                   </span>
-                </a>
+                </Link>
                 <div className="ps-cart--mini">
                   <a className="header__extra" href="#">
                     <i>
@@ -305,9 +311,9 @@ class HeaderStandard extends Component {
               </div>
               <div className="navigation__center">
                 <ul className="menu">
-                  {categories.slice(0, 4)?.map((cat) => (
-                    <li>
-                      <a href={cat.link || "#"}>{cat.name}</a>
+                  {menuItems.map((cat) => (
+                    <li key={cat.id}>
+                      <Link to={cat.url || "#"}>{cat.name}</Link>
                     </li>
                   ))}
                 </ul>

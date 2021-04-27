@@ -73,15 +73,14 @@ class Home extends Component {
     return (
       <ContainerMarketPlace3
         title={"Shukran"}
+        requiredTopPadding={true}
       >
         {/*============ Start Main Body Area =============*/}
-        <div id="homepage-5 pt-0">
           <TopBanner />
           <ProductGroupDealHot collectionSlug="Campaign" />
           <SearchTrending />
           <DealOfTheDay deal_of_day_products={this.state.deal_of_day_products}/>
           <AllCategories/>
-        </div>
 
         <div id="homepage-3">
           <div className="mt-5">

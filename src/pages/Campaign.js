@@ -6,15 +6,15 @@ import cardBackground from "../assets/img/downloads/card-background.png";
 import campaignCard4 from "../assets/img/downloads/campaign-card4.jpg";
 import campaignCard3 from "../assets/img/downloads/campaign-card3.jpg";
 import campaignCard2 from "../assets/img/downloads/campaign-card2.jpg";
-// import "../assets/css/campaign.css";
+import "../assets/css/campaign.css";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 
 const Campaign = () => {
   return (
     <ContainerMarketPlace3>
       <div id="campaign">
-        <div class="campaign-banner-area">
-          <div class="banner-center">
+        <div className="campaign-banner-area">
+          <div className="banner-center">
             <img src={campaignBannerBorder} alt="" />
             <h1>
               dhamaka <br />
@@ -22,125 +22,125 @@ const Campaign = () => {
             </h1>
           </div>
 
-          <img class="spinner1" src={campaignBannerSpinner} alt="" />
-          <img class="spinner2" src={campaignBannerSpinner} alt="" />
+          <img className="spinner1" src={campaignBannerSpinner} alt="" />
+          <img className="spinner2" src={campaignBannerSpinner} alt="" />
         </div>
 
-        <div class="campaign-cards">
-          <div class="container">
-            <div class="campaign-card">
-              <div class="card-image-container">
+        <div className="campaign-cards">
+          <div className="container">
+            <div className="campaign-card">
+              <div className="card-image-container">
                 <a href="#">
-                  <img class="card-inside" src={campaignCard1} alt="" />
+                  <img className="card-inside" src={campaignCard1} alt="" />
                 </a>
               </div>
-              <div class="card-name">
+              <div className="card-name">
                 <h6>dhakama signature card</h6>
               </div>
-              <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <img className="card-background-img" src={cardBackground} alt="" />
+              <ul className="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
-                  <span class="days">279</span>
+                  <span className="days">279</span>
                 </li>
                 <li>
                   <p>Hours</p>
-                  <span class="hours">23</span>
+                  <span className="hours">23</span>
                 </li>
                 <li>
                   <p>Min</p>
-                  <span class="minutes">37</span>
+                  <span className="minutes">37</span>
                 </li>
                 <li>
                   <p>Sec</p>
-                  <span class="seconds">53</span>
+                  <span className="seconds">53</span>
                 </li>
               </ul>
             </div>
-            <div class="campaign-card">
-              <div class="card-image-container">
+            <div className="campaign-card">
+              <div className="card-image-container">
                 <a href="#">
-                  <img class="card-inside" src={campaignCard4} alt="" />
+                  <img className="card-inside" src={campaignCard4} alt="" />
                 </a>
               </div>
-              <div class="card-name">
+              <div className="card-name">
                 <h6>dhakama signature card</h6>
               </div>
-              <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <img className="card-background-img" src={cardBackground} alt="" />
+              <ul className="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
-                  <span class="days">279</span>
+                  <span className="days">279</span>
                 </li>
                 <li>
                   <p>Hours</p>
-                  <span class="hours">23</span>
+                  <span className="hours">23</span>
                 </li>
                 <li>
                   <p>Min</p>
-                  <span class="minutes">37</span>
+                  <span className="minutes">37</span>
                 </li>
                 <li>
                   <p>Sec</p>
-                  <span class="seconds">53</span>
+                  <span className="seconds">53</span>
                 </li>
               </ul>
             </div>
-            <div class="campaign-card">
-              <div class="card-image-container">
+            <div className="campaign-card">
+              <div className="card-image-container">
                 <a href="#">
-                  <img class="card-inside" src={campaignCard3} alt="" />
+                  <img className="card-inside" src={campaignCard3} alt="" />
                 </a>
               </div>
-              <div class="card-name">
+              <div className="card-name">
                 <h6>dhakama signature card</h6>
               </div>
-              <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <img className="card-background-img" src={cardBackground} alt="" />
+              <ul className="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
-                  <span class="days">279</span>
+                  <span className="days">279</span>
                 </li>
                 <li>
                   <p>Hours</p>
-                  <span class="hours">23</span>
+                  <span className="hours">23</span>
                 </li>
                 <li>
                   <p>Min</p>
-                  <span class="minutes">37</span>
+                  <span className="minutes">37</span>
                 </li>
                 <li>
                   <p>Sec</p>
-                  <span class="seconds">53</span>
+                  <span className="seconds">53</span>
                 </li>
               </ul>
             </div>
-            <div class="campaign-card">
-              <div class="card-image-container">
+            <div className="campaign-card">
+              <div className="card-image-container">
                 <a href="#">
-                  <img class="card-inside" src={campaignCard2} alt="" />
+                  <img className="card-inside" src={campaignCard2} alt="" />
                 </a>
               </div>
-              <div class="card-name">
+              <div className="card-name">
                 <h6>dhakama signature card</h6>
               </div>
-              <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <img className="card-background-img" src={cardBackground} alt="" />
+              <ul className="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
-                  <span class="days">279</span>
+                  <span className="days">279</span>
                 </li>
                 <li>
                   <p>Hours</p>
-                  <span class="hours">23</span>
+                  <span className="hours">23</span>
                 </li>
                 <li>
                   <p>Min</p>
-                  <span class="minutes">37</span>
+                  <span className="minutes">37</span>
                 </li>
                 <li>
                   <p>Sec</p>
-                  <span class="seconds">53</span>
+                  <span className="seconds">53</span>
                 </li>
               </ul>
             </div>

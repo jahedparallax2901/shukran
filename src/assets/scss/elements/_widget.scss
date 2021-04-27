@@ -686,7 +686,7 @@
                 }
 
                 &.active {
-                    background-color: $color-1st;
+                    background-color: $color-1st !important;
 
                     a {
                         color: #fff;
