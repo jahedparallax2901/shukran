@@ -23,6 +23,7 @@ import { userData } from "../../../helpers/authUtils";
 import { Spinner } from "react-bootstrap";
 import { AiOutlineClose } from "react-icons/ai";
 import '../../../assets/scss/my-changes.scss';
+import SearchHeader from "../../header/SearchHeader";
 
 class HeaderMobile extends Component {
   state = {
@@ -204,7 +205,8 @@ class HeaderMobile extends Component {
           </div>
         </div>
         <div className="ps-search--mobile">
-          <form
+        <SearchHeader />
+          {/* <form
             className="ps-form--search-mobile"
             action="index.html"
             method="get"
@@ -219,7 +221,7 @@ class HeaderMobile extends Component {
                 <FontAwesomeIcon icon={faSearch} />
               </button>
             </div>
-          </form>
+          </form> */}
         </div>
       </header>
     );
