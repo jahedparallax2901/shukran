@@ -6,7 +6,7 @@ import cardBackground from "../assets/img/downloads/card-background.png";
 import campaignCard4 from "../assets/img/downloads/campaign-card4.jpg";
 import campaignCard3 from "../assets/img/downloads/campaign-card3.jpg";
 import campaignCard2 from "../assets/img/downloads/campaign-card2.jpg";
-// import "../assets/css/campaign.css";
+import "../assets/css/campaign.css";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 
 const Campaign = () => {
@@ -38,7 +38,7 @@ const Campaign = () => {
                 <h6>dhakama signature card</h6>
               </div>
               <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <ul class="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
                   <span class="days">279</span>
@@ -67,7 +67,7 @@ const Campaign = () => {
                 <h6>dhakama signature card</h6>
               </div>
               <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <ul class="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
                   <span class="days">279</span>
@@ -96,7 +96,7 @@ const Campaign = () => {
                 <h6>dhakama signature card</h6>
               </div>
               <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <ul class="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
                   <span class="days">279</span>
@@ -125,7 +125,7 @@ const Campaign = () => {
                 <h6>dhakama signature card</h6>
               </div>
               <img class="card-background-img" src={cardBackground} alt="" />
-              <ul class="ps-countdown" data-time="December 30, 2021 23:00:00">
+              <ul class="ps-countdown-campaign" data-time="December 30, 2021 23:00:00">
                 <li>
                   <p>Days</p>
                   <span class="days">279</span>
