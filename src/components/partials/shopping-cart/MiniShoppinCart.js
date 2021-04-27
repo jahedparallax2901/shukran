@@ -25,23 +25,23 @@ class MiniShoppinCart extends Component {
   };
 
   componentDidMount() {
-    const scrollbody = document.querySelector(".asside-card-checkout");
-    scrollbody.onscroll = function () {
-      let cartFooter = document.getElementById("all-checkout");
-      console.log(cartFooter);
-      let sticky = cartFooter.offsetTop;
-      if (scrollbody.scrollTop * 4 > sticky) {
-        cartFooter.classList.add("custom-sticky");
-        let lastStore = document.querySelectorAll(".store-div");
-        lastStore = lastStore[lastStore.length - 1];
-        lastStore.style.marginBottom = "165px";
-      } else {
-        cartFooter.classList.remove("custom-sticky");
-        let lastStore = document.querySelectorAll(".store-div");
-        lastStore = lastStore[lastStore.length - 1];
-        lastStore.style.marginBottom = "0px";
-      }
-    };
+    // const scrollbody = document.querySelector(".asside-card-checkout");
+    // scrollbody.onscroll = function () {
+    //   let cartFooter = document.getElementById("all-checkout");
+    //   console.log(cartFooter);
+    //   let sticky = cartFooter.offsetTop;
+    //   if (scrollbody.scrollTop * 4 > sticky) {
+    //     cartFooter.classList.add("custom-sticky");
+    //     let lastStore = document.querySelectorAll(".store-div");
+    //     lastStore = lastStore[lastStore.length - 1];
+    //     lastStore.style.marginBottom = "165px";
+    //   } else {
+    //     cartFooter.classList.remove("custom-sticky");
+    //     let lastStore = document.querySelectorAll(".store-div");
+    //     lastStore = lastStore[lastStore.length - 1];
+    //     lastStore.style.marginBottom = "0px";
+    //   }
+    // };
   }
 
   handleItemDelete = (e, product_id, item_id) => {
@@ -454,10 +454,10 @@ class MiniShoppinCart extends Component {
                                   <p>৳{store_item?.total_amount}</p>
                                 </div>
                                 <div className="delivery-charge">
-                                  <div className="delivery-charge-title">
+                                  {/* <div className="delivery-charge-title">
                                     <h6>delivery charge</h6>
                                   </div>
-                                  <p>৳{store_item?.delivery_charge || 0}</p>
+                                  <p>৳{store_item?.delivery_charge || 0}</p> */}
                                 </div>
                               </div>
                             </div>
@@ -534,6 +534,10 @@ class MiniShoppinCart extends Component {
                             <div className="subtotal">
                               <h6 className="subtotal-title">subtotal :</h6>
                               <p>৳{cart_items?.sub_total_amount || 0}</p>
+                            </div>
+                            <div className="subtotal">
+                              <h6 className="subtotal-title">discount :</h6>
+                              <p>৳{cart_items?.discount_amount || 0}</p>
                             </div>
                             <div className="total">
                               <h6 className="total-title">total :</h6>
@@ -623,6 +627,10 @@ class MiniShoppinCart extends Component {
                   <div className="subtotal">
                     <h6 className="subtotal-title">subtotal Amount:</h6>
                     <p>৳{shoppingCart?.cartSummery?.sub_total_amount || 0}</p>
+                  </div>
+                  <div className="subtotal">
+                    <h6 className="subtotal-title">Discount Amount:</h6>
+                    <p>৳{shoppingCart?.cartSummery?.discount_amount || 0}</p>
                   </div>
                   <div className="total">
                     <h6 className="total-title">total Amount:</h6>
