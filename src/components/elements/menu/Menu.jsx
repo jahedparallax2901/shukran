@@ -14,11 +14,11 @@ const Menu = ({ source, className }) => {
                 return <MegaMenu source={item} key={item.text} />;
             } else {
                 return (
-                    <li key={item.text}>
-                            <a>
-                                {item.icon && <i className={item.icon}></i>}
+                    <li key={item?.id}>
+                            <Link to={item?.url}>
+                                {item?.icon && <i className={item.icon}></i>}
                                 {item.name}
-                            </a>
+                            </Link>
                     </li>
                 );
             }

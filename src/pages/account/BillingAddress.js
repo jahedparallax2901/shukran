@@ -1,12 +1,22 @@
-import React, { Component } from 'react'
-import ContainerMarketPlace3 from '../../components/layouts/ContainerMarketPlace3'
-import AccountMenuSidebar from '../../components/partials/account/AccountMenuSidebar'
+import React, { Component } from "react";
+import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
+import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
 
 export default class BillingAddress extends Component {
-    render() {
-        return (
-            <ContainerMarketPlace3>
-        <section className="ps-my-account ps-page--account">
+  render() {
+    const breadCrumb = [
+      {
+        text: "Home",
+        url: "/",
+      },
+      {
+        text: "Account / Billing Address",
+      },
+    ];
+    
+    return (
+      <ContainerMarketPlace3>
+        <section className="ps-my-account ps-page--account pt-3">
           <div className="container">
             <div className="row">
               <div className="col-lg-3">
@@ -127,7 +137,7 @@ export default class BillingAddress extends Component {
                               />
                               <span
                                 class="d-inline-block"
-                                style={{transform: "translateY(-2px)"}}
+                                style={{ transform: "translateY(-2px)" }}
                               >
                                 Default Billing Address
                               </span>
@@ -151,6 +161,6 @@ export default class BillingAddress extends Component {
           </div>
         </section>
       </ContainerMarketPlace3>
-        )
-    }
+    );
+  }
 }

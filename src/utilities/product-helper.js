@@ -60,7 +60,7 @@ export function convertSlugsQueryString(payload) {
 
 export function StrapiProductBadge(product) {
   let view;
-  if (product.badge && product.badge !== null) {
+  if (product?.badge && product?.badge !== null) {
     view = product.badge.map((badge) => {
       if (badge.type === "sale") {
         return <div className="ps-product__badge">{badge.value}</div>;
@@ -144,7 +144,7 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
   if (
     product?.product?.single_image ||
     product?.single_image ||
-    product.thumbnail
+    product?.thumbnail
   ) {
     view = (
       <Link to={`/product/${product.product_id || product.id}`}>
@@ -157,7 +157,7 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
     );
   } else {
     view = (
-      <Link to={`/product/${product.product_id || product.id}`}>
+      <Link to={`/product/${product?.product_id || product?.id}`}>
         <a>
           <LazyLoad>
             <img src={noImage} alt="martfury" />

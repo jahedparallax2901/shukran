@@ -40,6 +40,7 @@ const ProductDetails = () => {
     setLoading(true);
     processGetRequest(`/product/detail/${id}`, {}, false)
       .then((res) => {
+        console.log("response", res);
         setProduct(res.product);
         setTimeout(
           function () {
@@ -89,6 +90,8 @@ const ProductDetails = () => {
   } else {
     productView = <SkeletonProductDetail />;
   }
+
+  console.log("Product full width", product);
   return (
     <ContainerMarketPlace3
       title={product ? product.title : "Loading..."}
@@ -105,8 +108,8 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <CustomerBought layout="fullwidth" collectionSlug="deal-of-the-day" />
-          <RelatedProduct collectionSlug="shop-recommend-items" />
+          {/* <CustomerBought layout="fullwidth" collectionSlug="deal-of-the-day" /> */}
+          <RelatedProduct product={product} />
         </div>
       </div>
     </ContainerMarketPlace3>
