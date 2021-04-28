@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { BsChevronRight, BsPhone } from "react-icons/bs";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import ShopBanner from "../../components/partials/store/ShopBanner";
@@ -12,8 +12,21 @@ import banner6 from "../../assets/img/downloads/banner6.png";
 import shoeShopLogo from "../../assets/img/downloads/shoe-shop-logo.jpg";
 import girlsShopLogo from "../../assets/img/downloads/girls-shop-logo.jpg";
 import girlsShopLogo2 from "../../assets/img/downloads/girls-shop-logo2.jpg";
+import {processGetRequest} from "../../services/baseServices";
 
 const VendorStore = () => {
+
+  const [storeData , setStoreData] = useState([])
+
+  useEffect(()=>{
+
+    processGetRequest('/merchant/store-list',{},true).then((res)=>{
+      setStoreData(res.merchants.data)
+    })
+
+  },[])
+
+
   return (
     <ContainerMarketPlace3>
       <div className="ps-page--single ps-page--vendor">
@@ -194,61 +207,65 @@ const VendorStore = () => {
                 </nav>
                 <div className="vendor-category-area">
                   <div className="row">
-                    <div className="col-md-6 col-sm-12">
-                      <div className="single-category-vendor">
-                        <div className="category-vendor-top">
-                          <img src={img1} alt="fail" />
-                        </div>
-                        <div className="category-vendor-body">
-                          <div className="shop-owner">
-                            <img src={shopLogo1} alt="fail" />
-                            <a className="visit-store" href="vendor-store.html">
-                              Visit Store
-                            </a>
+                    {storeData.map((item , index) => (
+                        <div key={index} className="col-md-6 col-sm-12">
+                          <div className="single-category-vendor">
+                            <div className="category-vendor-top">
+                              <img src={item?.store_detail?.file_attach_cover?.file_url} alt="fail" />
+                            </div>
+                            <div className="category-vendor-body">
+                              <div className="shop-owner">
+                                <img src={item?.store_detail?.file_attach_logo?.file_url} alt="fail" />
+                                <a className="visit-store" href="vendor-store.html">
+                                  Visit Store
+                                </a>
+                              </div>
+                              <div className="shop-details">
+                                <h1 className="shop-name">{item?.name}</h1>
+                                <p className="shop-review">
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i className="las la-star-of-david"></i>
+                                </p>
+                                <p className="shop-email">
+                                  <i>
+                                    <BiEnvelope />
+                                  </i>{" "}
+                                  {item?.vendor?.email}
+                                </p>
+                                <p className="shop-number">
+                                  <i>
+                                    <BsPhone />
+                                  </i>{" "}
+                                  {item?.vendor?.phone}
+                                </p>
+                                <button className="shop-inquiry">
+                                  <i>
+                                    <AiOutlineQuestionCircle />
+                                  </i>
+                                  Inquiry
+                                </button>
+                              </div>
+                            </div>
                           </div>
-                          <div className="shop-details">
-                            <h1 className="shop-name">Shopping Girl</h1>
-                            <p className="shop-review">
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i className="las la-star-of-david"></i>
-                            </p>
-                            <p className="shop-email">
-                              <i>
-                                <BiEnvelope />
-                              </i>{" "}
-                              info@shopping.com
-                            </p>
-                            <p className="shop-number">
-                              <i>
-                                <BsPhone />
-                              </i>{" "}
-                              +880-54121393
-                            </p>
-                            <button className="shop-inquiry">
-                              <i>
-                                <AiOutlineQuestionCircle />
-                              </i>
-                              Inquiry
-                            </button>
-                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-sm-12">
+                    ))}
+
+
+                   {/* <div className="col-md-6 col-sm-12">
                       <div className="single-category-vendor">
                         <div className="category-vendor-top">
                           <img src={banner5} alt="fail" />
@@ -409,7 +426,7 @@ const VendorStore = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>*/}
                   </div>
                 </div>
               </div>
