@@ -17,6 +17,11 @@
   justify-content: center;
   overflow: hidden;
 }
+@media screen and (max-width: 1440px){
+  .campaign-banner-area {
+    height: 50rem;
+  }
+}
 .campaign-banner-area h1 {
   text-align: center;
   text-transform: uppercase;
@@ -41,6 +46,14 @@
   width: 32%;
   animation: animate2 30s linear infinite;
 }
+@media screen and (max-width: 375px) {
+  .spinner1{
+    width: 35%;
+  }
+  .spinner2{
+    width: 35%;
+  }
+}
 .banner-center {
   position: absolute;
   width: 32%;
@@ -51,11 +64,25 @@
   align-items: center;
   justify-content: center;
 }
+@media screen and (max-width: 576px) {
+  .banner-center {
+    width: 40%;
+    top: -20px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .banner-center {
+    width: 45%;
+    top: -20px;
+  }
+}
 .banner-center h1 {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 600;
 }
 .banner-center img {
   width: 100%;
@@ -82,12 +109,16 @@
   background: #f4f5f5;
 }
 .campaign-cards .container {
-  padding: 12rem 1.7rem 70px 1.7rem;
+  padding: 12rem 1.7rem 50px 1.7rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 9rem 3rem;
 }
-
+@media screen and (max-width: 1440px){
+  .campaign-cards .container {
+    padding: 2rem 1.7rem 50px 1.7rem;
+  }
+}
 .campaign-card {
   width: 100%;
   height: fit-content;
@@ -166,12 +197,17 @@
 }
 @media screen and (max-width: 1367px) {
   .campaign-banner-area {
-    height: 45vh;
+    height: 60vh;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .campaign-banner-area {
+    height: 53vh;
   }
 }
 @media screen and (max-width: 1025px) {
   .campaign-banner-area {
-    height: 34vh;
+    height: 46vh;
   }
   .campaign-banner-area h1 {
     font-size: 3rem;
@@ -182,7 +218,15 @@
 }
 @media screen and (max-width: 769px) {
   .campaign-banner-area {
-    height: 25vh;
+    height: 35vh;
+  }
+  .campaign-banner-area h1 {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 577px) {
+  .campaign-banner-area {
+    height: 30vh;
   }
   .campaign-banner-area h1 {
     font-size: 2.5rem;
@@ -190,7 +234,7 @@
 }
 @media screen and (max-width: 541px) {
   .campaign-banner-area {
-    height: 25vh;
+    height: 30vh;
   }
   .campaign-banner-area h1 {
     font-size: 2rem;
@@ -198,14 +242,14 @@
 }
 @media screen and (max-width: 520px) {
   .campaign-banner-area {
-    height: 18vh;
+    height: 20vh;
   }
   .campaign-banner-area h1 {
-    font-size: 1.3rem;
+    font-size: 2rem;
     /* margin-top: 50px; */
   }
   .campaign-cards .container {
-    padding: 8rem 2rem 50px 2rem;
+    padding: 8rem 2rem 40px 2rem;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 7rem;
@@ -223,43 +267,46 @@
     padding: 10px;
   }
 }
-@media screen and (max-width: 415px) {
-  .campaign-banner-area {
-    height: 19vh;
-  }
-  .campaign-banner-area h1 {
-    font-size: 1.4rem;
-  }
-}
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 425px) {
   .campaign-banner-area {
     height: 18vh;
   }
   .campaign-banner-area h1 {
-    font-size: 1rem;
+    font-size: 1.8rem;
   }
 }
-@media screen and (max-width: 361px) {
-  .campaign-banner-area {
-    height: 19vh;
+@media screen and (max-width: 376px) {
+  .campaign-cards .container {
+    padding: 7rem 2rem 30px 2rem;
   }
-  .campaign-banner-area h1 {
-    font-size: 1.3rem;
-  }
-}
-@media screen and (max-width: 321px) {
-  .campaign-banner-area {
-    height: 19vh;
-  }
-  .campaign-banner-area h1 {
-    font-size: 1rem;
-  }
-}
-@media screen and (max-width: 281px) {
   .campaign-banner-area {
     height: 16vh;
   }
   .campaign-banner-area h1 {
-    font-size: 1rem;
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 361px) {
+  .campaign-banner-area {
+    height: 15vh;
+  }
+  .campaign-banner-area h1 {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 321px) {
+  .campaign-banner-area {
+    height: 15vh;
+  }
+  .campaign-banner-area h1 {
+    font-size: 1.8rem;
+  }
+}
+@media screen and (max-width: 281px) {
+  .campaign-banner-area {
+    height: 15vh;
+  }
+  .campaign-banner-area h1 {
+    font-size: 1.7rem;
   }
 }

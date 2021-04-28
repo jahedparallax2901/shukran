@@ -1824,6 +1824,7 @@
     }
 
     a {
+        color: #666;
         text-decoration: underline;
         font-size: 16px;
     }
@@ -1957,7 +1958,7 @@
     display: flex;
     flex-flow: row nowrap;
     position: relative;
-    padding-bottom: 90px;
+    padding-bottom: 50px;
 
     &:before {
         content: '';
