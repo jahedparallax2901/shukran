@@ -16,7 +16,7 @@ import girlsShopLogo2 from "../../assets/img/downloads/girls-shop-logo2.jpg";
 const VendorStore = () => {
   return (
     <ContainerMarketPlace3>
-      <div className="ps-page--single ps-page--vendor">
+      <div className="ps-page--single ps-page--vendor custom-layout">
         <section className="ps-store-list">
           <ShopBanner />
           <div className="container">

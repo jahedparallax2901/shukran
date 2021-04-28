@@ -1991,8 +1991,16 @@
 
     .ps-section__right {
         margin-bottom: 50px;
+        @media screen and (max-width: 1024px){
+            margin-bottom: 0px;
+        }
     }
-
+    .ps-section__left{
+        @media screen and (max-width: 1024px){
+            margin-top: 0px !important;
+            margin-bottom: 30px;
+        }
+    }
     .ps-store-link {
         margin-bottom: 50px;
         padding: 14px 15px;
