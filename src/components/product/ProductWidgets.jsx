@@ -14,7 +14,7 @@ const ProductWidgets = () => {
             <WidgetProductFeatures />
             <WidgetSaleOnSite />
             <WidgetShopAds />
-            <WidgetProductSameBrands collectionSlug="shop-same-brand" />
+            {/* <WidgetProductSameBrands collectionSlug="shop-same-brand" /> */}
         </section>
     );
 };

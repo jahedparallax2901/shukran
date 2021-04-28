@@ -205,8 +205,8 @@ class HeaderMobile extends Component {
           </div>
         </div>
         <div className="ps-search--mobile">
-        <SearchHeader />
-          {/* <form
+        {/* <SearchHeader /> */}
+          <form
             className="ps-form--search-mobile"
             action="index.html"
             method="get"
@@ -221,7 +221,7 @@ class HeaderMobile extends Component {
                 <FontAwesomeIcon icon={faSearch} />
               </button>
             </div>
-          </form> */}
+          </form>
         </div>
       </header>
     );

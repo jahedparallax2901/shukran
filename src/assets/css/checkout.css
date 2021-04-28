@@ -1,12 +1,10 @@
 /* ================= Start Checkout Section ================== */
 @media screen and (max-width: 768px) {
     #homepage-5 {
-        padding: 20px 0 30px 0;
     }
 }
 @media screen and (max-width: 576px) {
     #homepage-5 {
-        padding: 20px 0 20px 0;
     }
 }
 .checkout-order-summary{
