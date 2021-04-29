@@ -40,11 +40,11 @@ const AccountMenuSidebar = ({ selectedTab }) => {
       url: "/account/shipping-address",
       icon: <FaRegAddressCard />,
     },
-    /*{
-      text: "Billing Address",
-      url: "/account/billing-address",
+    {
+      text: "My Contacts",
+      url: "/account/contacts",
       icon: <FaRegMoneyBillAlt />,
-    },*/
+    },
   ];
 
 
