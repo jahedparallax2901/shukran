@@ -23,8 +23,8 @@ const ProductSimple = ({ product }) => {
                         <a className="ps-product__title">{product?.product?.name || product.title}</a>
                     </Link>
                     <div className="ps-product__rating">
-                        <Rating />
-                        <span>{product.ratingCount}</span>
+                        {/* <Rating />
+                        <span>{product.ratingCount}</span> */}
                     </div>
                     {StrapiProductPrice(product)}
                 </div>
