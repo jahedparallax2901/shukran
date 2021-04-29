@@ -17,14 +17,27 @@ import {processGetRequest} from "../../services/baseServices";
 const VendorStore = () => {
 
   const [storeData , setStoreData] = useState([])
+  const [storeCategory , setStoreCategory] = useState([])
+  const [query , setQuery] = useState({})
+
 
   useEffect(()=>{
-
-    processGetRequest('/merchant/store-list',{},true).then((res)=>{
-      setStoreData(res.merchants.data)
-    })
-
+    setQuery({page: "1"})
   },[])
+
+
+  useEffect( () =>{
+    getData()
+  },[query])
+
+
+
+  const getData = () =>{
+    processGetRequest('/merchant/store-list',query,true).then((res)=>{
+      setStoreData(res.merchants.data)
+      setStoreCategory(res.store_categories);
+    })
+  }
 
 
   return (
@@ -37,9 +50,12 @@ const VendorStore = () => {
               role="search"
               method="get"
               className="store-search-form"
-              action="#"
+              action={()=> {}}
             >
               <input
+                onChange={(e)=>{
+                  console.log(e.target.value)
+                }}
                 type="search"
                 id="search"
                 className="search-field wcfmmp-store-search"
@@ -49,6 +65,11 @@ const VendorStore = () => {
                 title="Search store &hellip;"
               />
               <select
+                  onChange={
+                    (e)=> {
+                      setQuery({...query , store_category_id : e.target.value })
+                    }
+                  }
                 id="search-select-field"
                 name="store-select-field"
                 className="store-select-field"
@@ -96,7 +117,7 @@ const VendorStore = () => {
             </form>
             <div className="ps-section__wrapper">
               <div className="ps-section__left">
-                <aside className="widget widget--vendor">
+           {/*     <aside className="widget widget--vendor">
                   <h3 className="widget-title">Product Search</h3>
                   <div className="form-group--icon">
                     <input
@@ -108,35 +129,17 @@ const VendorStore = () => {
                       <BiSearchAlt2 />
                     </i>
                   </div>
-                </aside>
+                </aside>*/}
                 <aside className="widget widget--vendor">
                   <h3 className="widget-title">Store Categories</h3>
                   <ul className="ps-list--arrow">
-                    <li>
-                      <a href="#">Interior</a>
-                    </li>
-                    <li>
-                      <a href="#">Lighting</a>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <a href="#">Exterior</a>
-                      <ul className="sub-menu ps-list--arrow">
-                        <li>
-                          <a href="#"> Custom Grilles</a>
+
+                    {storeCategory && storeCategory.map( (res , index)=>(
+                        <li key={index}>
+                          <a href="#">{res.name}</a>
                         </li>
-                      </ul>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <a href="#">Wheels & Tires</a>
-                      <ul className="sub-menu ps-list--categories">
-                        <li>
-                          <a href="#"> Custom Grilles</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">Factory Wheels</a>
-                    </li>
+                    ))}
+
                   </ul>
                 </aside>
               </div>
@@ -151,6 +154,11 @@ const VendorStore = () => {
                         action="#"
                       >
                         <select
+                          onChange={
+                            (e)=> {
+                              setQuery({...query , store_category_id : e.target.value })
+                            }
+                          }
                           id="search-select-field1"
                           name="store-select-field1"
                           className="store-select-field1"
@@ -264,169 +272,6 @@ const VendorStore = () => {
                         </div>
                     ))}
 
-
-                   {/* <div className="col-md-6 col-sm-12">
-                      <div className="single-category-vendor">
-                        <div className="category-vendor-top">
-                          <img src={banner5} alt="fail" />
-                        </div>
-                        <div className="category-vendor-body">
-                          <div className="shop-owner">
-                            <img src={shoeShopLogo} alt="fail" />
-                            <a className="visit-store" href="vendor-store.html">
-                              Visit Store
-                            </a>
-                          </div>
-                          <div className="shop-details">
-                            <h1 className="shop-name">Shoe Shop</h1>
-                            <p className="shop-review">
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                            </p>
-                            <p className="shop-email">
-                              <i>
-                                <BiEnvelope />
-                              </i>{" "}
-                              info@shoeshop.com
-                            </p>
-                            <p className="shop-number">
-                              <i>
-                                <BsPhone />
-                              </i>{" "}
-                              +880-05412133
-                            </p>
-                            <button className="shop-inquiry">
-                              <i>
-                                <AiOutlineQuestionCircle />
-                              </i>
-                              Inquiry
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-sm-12">
-                      <div className="single-category-vendor">
-                        <div className="category-vendor-top">
-                          <img src={banner6} alt="fail" />
-                        </div>
-                        <div className="category-vendor-body">
-                          <div className="shop-owner">
-                            <img src={girlsShopLogo} alt="fail" />
-                            <a className="visit-store" href="vendor-store.html">
-                              Visit Store
-                            </a>
-                          </div>
-                          <div className="shop-details">
-                            <h1 className="shop-name">Lokum Guru</h1>
-                            <p className="shop-review">
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                            </p>
-                            <p className="shop-email">
-                              <i>
-                                <BiEnvelope />
-                              </i>{" "}
-                              info@lokumguru.com
-                            </p>
-                            <p className="shop-number">
-                              <i>
-                                <BsPhone />
-                              </i>{" "}
-                              +880-54121393
-                            </p>
-                            <button className="shop-inquiry">
-                              <i>
-                                <AiOutlineQuestionCircle />
-                              </i>
-                              Inquiry
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-6 col-sm-12">
-                      <div className="single-category-vendor">
-                        <div className="category-vendor-top">
-                          <img src={banner4} alt="fail" />
-                        </div>
-                        <div className="category-vendor-body">
-                          <div className="shop-owner">
-                            <img src={girlsShopLogo2} alt="fail" />
-                            <a className="visit-store" href="vendor-store.html">
-                              Visit Store
-                            </a>
-                          </div>
-                          <div className="shop-details">
-                            <h1 className="shop-name">Fashion Girl</h1>
-                            <p className="shop-review">
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                              <i>
-                                <AiOutlineStar />
-                              </i>
-                            </p>
-                            <p className="shop-email">
-                              <i>
-                                <BiEnvelope />
-                              </i>{" "}
-                              info@fashiongirl.com
-                            </p>
-                            <p className="shop-number">
-                              <i>
-                                <BsPhone />
-                              </i>{" "}
-                              +880-54121394
-                            </p>
-                            <button className="shop-inquiry">
-                              <i>
-                                <AiOutlineQuestionCircle />
-                              </i>
-                              <span>
-                              Inquiry
-
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>*/}
                   </div>
                 </div>
               </div>
