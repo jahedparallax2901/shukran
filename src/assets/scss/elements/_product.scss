@@ -133,7 +133,7 @@
     margin: 0;
     display: block;
     padding: 0 0 5px;
-    font-size: 14px;
+    font-size: 19px;
     line-height: 1.2em;
     color: #06c;
     --max-lines: 2;
@@ -203,6 +203,12 @@
 
   .ps-product__container {
     padding-top: 10px;
+    .ps-product__content {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 
   &.ps-product--inner {
