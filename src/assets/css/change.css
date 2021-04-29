@@ -11,7 +11,7 @@
 }
 
 #shop-now-home3 .ps-section__content .ps-block--category {
-  height: 230px;
+  height: 200px;
   margin: 0px auto 30px auto;
 }
 #shop-now-home3 .ps-shop-brand,
@@ -481,6 +481,7 @@
 }
 #homepage-5 .ps-deal-of-day .ps-product .ps-product__price {
   color: #006c32;
+  margin-bottom: 10px;
 }
 .ps-product .ps-product__price.sale {
   color: #006c32;
