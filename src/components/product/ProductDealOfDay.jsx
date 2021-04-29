@@ -20,7 +20,7 @@ const ProductDealOfDay = ({ product }) => {
           <div className="ps-product__badge out-stock">Out Of Stock</div>
         ) : (
           <div className="ps-product__badge">
-            -{(product?.product?.sale_price - product?.product?.price) * 100}%
+            {(product?.product?.sale_price - product?.product?.price) * 100}%
           </div>
         )}
         {StrapiProductBadge(product)}
@@ -34,8 +34,8 @@ const ProductDealOfDay = ({ product }) => {
             <a className="ps-product__title">{product?.product?.name}</a>
           </Link>
           <div className="ps-product__rating">
-            <Rating />
-            <span>{product.ratingCount}</span>
+            {/* <Rating />
+            <span>{product.ratingCount}</span> */}
           </div>
           <ModuleProductProgressbar product={product} />
         </div>
