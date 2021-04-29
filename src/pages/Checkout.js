@@ -237,7 +237,7 @@ const Checkout = (props) => {
     return (
       <ScrollMenu
         arrowLeft={
-          <div style={{
+          <div className="payment-mathod-arrowLeft" style={{
             height: '45px',
             width: '45px',
             backgroundColor: '#e2e2e2',
@@ -250,7 +250,7 @@ const Checkout = (props) => {
           </div>
         }
         arrowRight={
-          <div style={{
+          <div className="payment-mathod-arrowRight" style={{
             height: '45px',
             width: '45px',
             backgroundColor: '#e2e2e2',
@@ -837,9 +837,9 @@ const Checkout = (props) => {
       {checkoutData?.checkout_items?.length > 0 ? (
         <div id="homepage-5">
           <div className="container">
-            <div className="checkout-area-inner">
+            <div className="checkout-area-inner custom-layout">
               <div className="row">
-                <div className="col-md-8 col-sm-12">
+                <div className="col-lg-8 col-md-12 col-sm-12">
                   <div className="checkout-details">
                     <form action>
                       <div className="single-checkout-area ">
@@ -1261,7 +1261,7 @@ const Checkout = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-4 col-sm-12">
+                <div className="col-lg-4 col-md-12 col-sm-12">
                   <div className="checkout-order-summary">
                     <div className="block-card">
                       <div className="block-card-header">

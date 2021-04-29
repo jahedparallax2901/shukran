@@ -6,7 +6,7 @@ import sliderShop1 from '../../../assets/img/slider/shop-default/1.jpg'
 import sliderShop2 from '../../../assets/img/slider/shop-default/2.jpg'
 
 
-const ShopBanner =()=>  {
+const ShopBanner = () => {
     const carouselSetting = {
         dots: false,
         arrows: true,
@@ -18,11 +18,13 @@ const ShopBanner =()=>  {
         prevArrow: <PrevArrow />,
     };
     return (
-        <div className="ps-shop-banner">
-            <Slider {...carouselSetting} fade={true} className="ps-carousel">
-                <img src={sliderShop1} alt="martfury" />
-                <img src={sliderShop2} alt="martfury" />
-            </Slider>
+        <div className="container">
+            <div className="ps-shop-banner">
+                <Slider {...carouselSetting} fade={true} className="ps-carousel">
+                    <img src={sliderShop1} alt="martfury" />
+                    <img src={sliderShop2} alt="martfury" />
+                </Slider>
+            </div>
         </div>
     );
 }

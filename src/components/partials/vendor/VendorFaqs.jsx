@@ -1,7 +1,7 @@
 import React from 'react';
 
 const VendorFaqs = () => (
-    <div className="ps-section--vendor ps-vendor-faqs">
+    <div className="ps-section--vendor ps-vendor-faqs bg-white">
         <div className="container">
             <div className="ps-section__header">
                 <p>FREQUENTLY ASKED QUESTIONS</p>

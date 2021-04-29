@@ -4,7 +4,7 @@ import vendor2 from '../../../assets/img/icons/vendor-2.png';
 import vendor3 from '../../../assets/img/icons/vendor-3.png';
 
 const VendorAbout = () => (
-    <div className="ps-section--vendor ps-vendor-about">
+    <div className="ps-section--vendor ps-vendor-about bg-white">
         <div className="container">
             <div className="ps-section__header">
                 <p>WHY SELL ON MARTFURY</p>

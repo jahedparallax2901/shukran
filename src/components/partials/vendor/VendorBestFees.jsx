@@ -2,7 +2,7 @@ import React from 'react';
 import vendor4 from '../../../assets/img/icons/vendor-4.png'
 
 const VendorBestFrees = () => (
-    <div className="ps-section--vendor ps-vendor-best-fees">
+    <div className="ps-section--vendor ps-vendor-best-fees bg-white">
         <div className="container">
             <div className="ps-section__header">
                 <p>BEST FEES TO START</p>

@@ -156,13 +156,14 @@
             display: block;
             height: 11px;
             background-color: #e4e4e4;
-
+            border-radius: 10px;
             > span {
                 @include vertical-align();
                 left: 0;
                 height: 100%;
                 background-color: $color-1st;
                 width: 50%;
+                border-radius: 10px;
             }
         }
     }
@@ -260,6 +261,9 @@
 
     .ps-product__content {
         padding-bottom: 10px;
+        .ps-product__rating{
+            display: none;
+        }
     }
 
     .ps-product__actions {
