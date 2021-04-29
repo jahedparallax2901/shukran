@@ -13,12 +13,15 @@ import shoeShopLogo from "../../assets/img/downloads/shoe-shop-logo.jpg";
 import girlsShopLogo from "../../assets/img/downloads/girls-shop-logo.jpg";
 import girlsShopLogo2 from "../../assets/img/downloads/girls-shop-logo2.jpg";
 import {processGetRequest} from "../../services/baseServices";
+import Pagination from "react-js-pagination";
 
 const VendorStore = () => {
 
   const [storeData , setStoreData] = useState([])
   const [storeCategory , setStoreCategory] = useState([])
   const [query , setQuery] = useState({})
+  const [searchKey , setSearchKey] = useState("")
+  const [pagination, setPagination] = useState({});
 
 
   useEffect(()=>{
@@ -40,6 +43,19 @@ const VendorStore = () => {
   }
 
 
+
+  const handlePageChange = async (pageNumber) => {
+    console.log(pageNumber)
+    setQuery({...query , page : pageNumber })
+
+
+    /*const params = { ...queryParams, page: pageNumber };
+    const result = await getTableData('/users',params);
+    setTableList(result.items);
+    setPagination({ ...pagination, ...result.pagination });*/
+  };
+
+
   return (
     <ContainerMarketPlace3>
       <div className="ps-page--single ps-page--vendor custom-layout">
@@ -50,17 +66,21 @@ const VendorStore = () => {
               role="search"
               method="get"
               className="store-search-form"
-              action={()=> {}}
+              onSubmit={(e)=>{
+                e.preventDefault();
+                setQuery({
+                  q: searchKey
+                })
+              }}
             >
               <input
                 onChange={(e)=>{
-                  console.log(e.target.value)
+                  setSearchKey(e.target.value)
                 }}
                 type="search"
                 id="search"
                 className="search-field wcfmmp-store-search"
                 placeholder="Search &hellip;"
-                value=""
                 name="wcfmmp_store_search"
                 title="Search store &hellip;"
               />
@@ -190,7 +210,19 @@ const VendorStore = () => {
                       </form>
                     </li>
                     <li>
-                      <ul className="pagination">
+
+
+                      <Pagination
+                          itemClass="page-item"
+                          linkClass="page-link"
+                          activePage={query?.page}
+                          itemsCountPerPage={storeData?.per_page}
+                          totalItemsCount={storeData?.total}
+                          pageRangeDisplayed={3}
+                          onChange={handlePageChange}
+                      />
+
+                     {/* <ul className="pagination">
                         <li className="active">
                           <a href="#">1</a>
                         </li>
@@ -209,7 +241,7 @@ const VendorStore = () => {
                             </i>
                           </a>
                         </li>
-                      </ul>
+                      </ul>*/}
                     </li>
                   </ul>
                 </nav>
