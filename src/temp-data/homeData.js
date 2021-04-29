@@ -94,6 +94,13 @@ import { FaBaby } from "react-icons/fa";
 import { GiPikeman } from "react-icons/gi";
 import { GrUserFemale } from "react-icons/gr";
 
+export const menuItems = [
+  {id: 1, name: 'Digital Sheba', url: '/'},
+  {id: 2, name: 'Campaign', url: '/campaign'},
+  {id: 3, name: 'Vendor Stores', url: '/vendor/store'},
+  {id: 3, name: 'Little Bangladesh', url: '/'},
+  {id: 2, name: 'Become a Vendor', url: '/vendor/become-a-vendor'},
+]
 export const menuContents = [
   {
     id: 1,

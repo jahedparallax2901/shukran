@@ -18,8 +18,8 @@ const ProductSearchResult = ({ product }) => {
                     <a className="ps-product__title">{product.name}</a>
                 </Link>
                 <div className="ps-product__rating">
-                    <Rating count={product.rating || 3}/>
-                    <span>{product?.total_review || 5}</span>
+                    {/* <Rating count={product.rating || 3}/> */}
+                    {/* <span>{product?.total_review || 5}</span> */}
                 </div>
                 {StrapiProductPrice(product)}
             </div>

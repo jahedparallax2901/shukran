@@ -160,7 +160,7 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
       <Link to={`/product/${product?.product_id || product?.id}`}>
         <a>
           <LazyLoad>
-            <img src={noImage} alt="martfury" />
+            <img src={noImage} alt="shukran" />
           </LazyLoad>
         </a>
       </Link>

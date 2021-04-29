@@ -103,7 +103,7 @@ class VendorTestimonials extends Component {
             >
               <div className="ps-block--testimonial">
                 <div className="ps-block__header">
-                  <img src={user1} alt="martfury" />
+                  <img src={user1} alt="shukran" />
                 </div>
                 <div className="ps-block__content">
                   <i>
@@ -121,7 +121,7 @@ class VendorTestimonials extends Component {
               </div>
               <div className="ps-block--testimonial">
                 <div className="ps-block__header">
-                  <img src={user2} alt="martfury" />
+                  <img src={user2} alt="shukran" />
                 </div>
                 <div className="ps-block__content">
                   <i>
@@ -139,7 +139,7 @@ class VendorTestimonials extends Component {
               </div>
               <div className="ps-block--testimonial">
                 <div className="ps-block__header">
-                  <img src={user3} alt="martfury" />
+                  <img src={user3} alt="shukran" />
                 </div>
                 <div className="ps-block__content">
                   <i>

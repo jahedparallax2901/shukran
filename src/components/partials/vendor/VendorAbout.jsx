@@ -7,7 +7,7 @@ const VendorAbout = () => (
     <div className="ps-section--vendor ps-vendor-about bg-white">
         <div className="container">
             <div className="ps-section__header">
-                <p>WHY SELL ON MARTFURY</p>
+                <p>WHY SELL ON SHUKRAN</p>
                 <h4>
                     Join a marketplace where nearly 50 million buyers around <br /> the world shop
                     for unique items
@@ -18,14 +18,14 @@ const VendorAbout = () => (
                     <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                         <div className="ps-block--icon-box-2">
                             <div className="ps-block__thumbnail">
-                                <img src={vendor1} alt="martfury" />
+                                <img src={vendor1} alt="shukran" />
                             </div>
                             <div className="ps-block__content">
                                 <h4>Low Fees</h4>
                                 <div className="ps-block__desc" data-mh="about-desc">
                                     <p>
                                         It doesn’t take much to list your items and once you make a
-                                        sale, Martfury’s transaction fee is just 2.5%.
+                                        sale, shukran’s transaction fee is just 2.5%.
                                     </p>
                                 </div>
                                 <a href="#">Learn more</a>

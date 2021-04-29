@@ -81,7 +81,7 @@ const CategoryProducts = ({ cat }) => {
         <Slider {...carouselSingle} className="ps-carousel">
           {sliders.map((item) => (
             <a>
-              <img src={item.image} alt="martfury" />
+              <img src={item.image} alt="shukran" />
             </a>
           ))}
         </Slider>

@@ -5,7 +5,7 @@ const WidgetSaleOnSite = () => {
     return (
         <aside className="widget widget_sell-on-site">
             <p>
-                <i className="icon-store"></i> Sell on Martfury?
+                <i className="icon-store"></i> Sell on Shukran?
                 <Link to="/merchant-apply">
                     <a> Register Now !</a>
                 </Link>

@@ -102,7 +102,7 @@ const VendorStore = () => {
                 type="hidden"
                 id="pagination_base"
                 name="pagination_base"
-                value="https://demo2.drfuri.com/martfury9/store-list/page/%#%/"
+                value=""
               />
               <input
                 type="hidden"
