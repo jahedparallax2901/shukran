@@ -12715,7 +12715,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .ps-section--vendor {
-  padding: 50px 0;
+  padding: 50px 0 !important;
 }
 @media screen and (max-width: 1366px){
   .ps-section--vendor {
@@ -12739,13 +12739,13 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 @media screen and (max-width: 1366px){
   .ps-section--vendor .ps-section__header {
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
   }
 }
 @media screen and (max-width: 1024px){
   .ps-section--vendor .ps-section__header {
     text-align: center;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
   }
 }
 .ps-section--vendor .ps-section__header p {
@@ -12767,7 +12767,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     padding: 75px 0;
   }
   .ps-section--vendor .ps-section__header {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
   }
   .ps-section--vendor .ps-section__header p {
     margin-bottom: 16px;
@@ -12779,7 +12779,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     padding: 60px 0;
   }
   .ps-section--vendor .ps-section__header {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
   }
   .ps-section--vendor .ps-section__header h4 {
     font-size: 24px;
@@ -16195,6 +16195,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .header--standard .menu--product-categories .menu__toggle i {
   font-size: 30px;
+  line-height: 15px;
 }
 
 .header--standard .ps-form--quick-search {

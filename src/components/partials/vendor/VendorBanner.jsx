@@ -7,19 +7,19 @@ const VendorBanner = () => (
         className="ps-vendor-banner bg--cover"
         style={{ backgroundImage: `url('${vendor}')` }}
     >
-        <div className="ps-vendor-banner">
-            <div className="container">
-                <h2>
-                    Millions Of Shoppers Can’t Wait To See What You Have In
-                    Store
+        {/* <div className="ps-vendor-banner"> */}
+        <div className="container">
+            <h2>
+                Millions Of Shoppers Can’t Wait To See What You Have In
+                Store
                 </h2>
-                <Link to="/vendor/store-list">
-                    <a className="ps-btn ps-btn--lg" href="#">
-                        Start Selling
+            <Link to="/vendor/store-list">
+                <a className="ps-btn ps-btn--lg" href="#">
+                    Start Selling
                     </a>
-                </Link>
-            </div>
+            </Link>
         </div>
+        {/* </div> */}
     </div>
 );
 

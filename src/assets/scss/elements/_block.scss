@@ -60,7 +60,7 @@
 
 .ps-block--category {
     margin-bottom: 30px;
-    padding: 20px 10px;
+    padding: 10px 10px;
     text-align: center;
     transition: all 0.4s ease;
     border: 1px solid #bfbfbf;
@@ -897,7 +897,7 @@
     background-color: #fff;
 
     .ps-block__header {
-        padding: 0 80px;
+        /* padding: 0 80px; */
     }
 
     .ps-tab-list {
@@ -982,7 +982,7 @@
         .ps-block__tab-list {
             a {
                 display: block;
-                padding: 20px 0;
+                padding: 10px 25px 20px 25px;
                 text-align: center;
                 border-bottom: 2px solid transparent;
 
@@ -996,30 +996,30 @@
 
                 &:hover {
                     i {
-                        color: $color-1st;
+                        color: $color-furniture;
                     }
 
-                    border-color: $color-1st;
+                    border-color: $color-furniture;
                 }
 
                 &.active {
                     i {
-                        color: $color-1st;
+                        color: $color-furniture;
                     }
 
-                    border-color: $color-1st;
+                    border-color: $color-furniture;
                 }
             }
         }
 
         .ant-tabs-tab-active {
-            color: $color-1st;
+            color: $color-furniture;
             &:hover {
                 color: $color-1st;
             }
         }
         .ant-tabs-ink-bar {
-            background-color: $color-1st;
+            background-color: $color-furniture;
         }
     }
 
@@ -1824,6 +1824,7 @@
     }
 
     a {
+        color: #666;
         text-decoration: underline;
         font-size: 16px;
     }
@@ -1957,7 +1958,7 @@
     display: flex;
     flex-flow: row nowrap;
     position: relative;
-    padding-bottom: 90px;
+    padding-bottom: 50px;
 
     &:before {
         content: '';

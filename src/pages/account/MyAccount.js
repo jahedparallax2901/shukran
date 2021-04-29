@@ -3,9 +3,18 @@ import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace
 import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
 
 export default function MyAccount() {
+  const breadCrumb = [
+    {
+        text: 'Home',
+        url: '/',
+    },
+    {
+        text: 'Account / My Account',
+    },
+];
   return (
     <ContainerMarketPlace3>
-      <section className="ps-my-account ps-page--account">
+      <section className="ps-my-account ps-page--account pt-3">
         <div className="container">
           <div className="row">
             <div className="col-lg-3">

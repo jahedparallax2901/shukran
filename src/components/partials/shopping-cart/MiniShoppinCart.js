@@ -25,23 +25,23 @@ class MiniShoppinCart extends Component {
   };
 
   componentDidMount() {
-    // const scrollbody = document.querySelector(".asside-card-checkout");
-    // scrollbody.onscroll = function () {
-    //   let cartFooter = document.getElementById("all-checkout");
-    //   console.log(cartFooter);
-    //   let sticky = cartFooter.offsetTop;
-    //   if (scrollbody.scrollTop * 4 > sticky) {
-    //     cartFooter.classList.add("custom-sticky");
-    //     let lastStore = document.querySelectorAll(".store-div");
-    //     lastStore = lastStore[lastStore.length - 1];
-    //     lastStore.style.marginBottom = "165px";
-    //   } else {
-    //     cartFooter.classList.remove("custom-sticky");
-    //     let lastStore = document.querySelectorAll(".store-div");
-    //     lastStore = lastStore[lastStore.length - 1];
-    //     lastStore.style.marginBottom = "0px";
-    //   }
-    // };
+    const scrollbody = document.querySelector(".asside-card-checkout");
+    scrollbody.onscroll = function () {
+      let cartFooter = document.getElementById("all-checkout");
+      console.log(cartFooter);
+      let sticky = cartFooter.offsetTop;
+      if (scrollbody.scrollTop * 4 > sticky) {
+        cartFooter.classList.add("custom-sticky");
+        let lastStore = document.querySelectorAll(".store-div");
+        lastStore = lastStore[lastStore.length - 1];
+        lastStore.style.marginBottom = "165px";
+      } else {
+        cartFooter.classList.remove("custom-sticky");
+        let lastStore = document.querySelectorAll(".store-div");
+        lastStore = lastStore[lastStore.length - 1];
+        lastStore.style.marginBottom = "0px";
+      }
+    };
   }
 
   handleItemDelete = (e, product_id, item_id) => {

@@ -79,7 +79,7 @@
 }
 
 /*=== Search Trending ===*/
-/* .ps-block--categories-tabs .ps-tab-list a:hover i, .ps-block--categories-tabs .ps-tab-list a:hover span {
+.ps-block--categories-tabs .ps-tab-list a:hover i, .ps-block--categories-tabs .ps-tab-list a:hover span {
     color: #ed1c24;
 }
 .ant-tabs-tab + .ant-tabs-tab {
@@ -93,7 +93,7 @@
 }
 .ant-tabs-content-holder .ant-tabs-content{
     padding: 0px 15px;
-} */
+}
 /*=== Category ===*/
 #shop-now-home3{
     padding: 16px 0px 20px 0px;
