@@ -106,15 +106,15 @@ export function StrapiProductPriceExpanded(product) {
     view = (
       <p className="ps-product__price sale">
         <del className="ml-2">
-          ৳{formatCurrency(product?.product?.price || product?.price)}
+          {formatCurrency(product?.product?.price || product?.price)}
         </del>
-        ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
-        <small>
-          {(product?.product?.price
-            ? product.product.sale_price - product.product.price
-            : product.sale_price - product.price) * 100}
+        {formatCurrency(product?.product?.sale_price || product?.sale_price)}
+        {/* <small>
+          {(product?.product?.sale_price >= 0
+            && ((((product?.product?.sale_price - product?.product?.price) / product?.product?.price) * 100).toFixed(2))
+          }
           % off
-        </small>
+        </small> */}
       </p>
     );
   } else {
@@ -160,7 +160,7 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
       <Link to={`/product/${product?.product_id || product?.id}`}>
         <a>
           <LazyLoad>
-            <img src={noImage} alt="martfury" />
+            <img src={noImage} alt="shukran" />
           </LazyLoad>
         </a>
       </Link>

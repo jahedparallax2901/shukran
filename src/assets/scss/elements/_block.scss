@@ -248,7 +248,10 @@
             line-height: 1em;
         }
     }
-
+    .user-phone-number{
+        color: #666;
+        white-space: nowrap;
+    }
     .ps-block__right {
         padding-left: 10px;
 
@@ -419,8 +422,8 @@
     .ps-block__left {
         h3 {
             margin-bottom: 0;
-            font-size: 24px;
-            font-weight: 400;
+            font-size: 20px;
+            font-weight: 600;
             margin-right: 70px;
         }
     }
