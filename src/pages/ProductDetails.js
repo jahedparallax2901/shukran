@@ -100,7 +100,7 @@ const ProductDetails = () => {
       {/* {headerView} */}
       <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
       <div className="ps-page--product">
-        <div className="ps-container">
+        <div className="ps-container mb-4">
           <div className="ps-page__container">
             <div className="ps-page__left">{productView}</div>
             <div className="ps-page__right">
