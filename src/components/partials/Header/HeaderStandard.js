@@ -28,6 +28,7 @@ import { Link } from "react-router-dom";
 import { userData } from "../../../helpers/authUtils";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
+import { menuItems } from "../../../temp-data/homeData";
 
 class HeaderStandard extends Component {
   state = {
@@ -100,13 +101,7 @@ class HeaderStandard extends Component {
       handleShowShoppingCart,
       handleAddToCart,
     } = this.props;
-    const menuItems = [
-      {id: 1, name: 'Digital Sheba', url: '#'},
-      {id: 2, name: 'Campaign', url: '/campaign'},
-      {id: 2, name: 'Little Bangladesh', url: '#'},
-      {id: 3, name: 'Vendor Stores', url: '/vendor/store'},
-      {id: 2, name: 'Become a Vendor', url: '/vendor/become-a-vendor'},
-    ]
+    
     return (
       <header
         className="header header--standard header--market-place-1"
