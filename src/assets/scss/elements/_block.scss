@@ -728,6 +728,9 @@
             margin-bottom: 35px;
             font-weight: 400;
             font-size: 24px;
+            @media screen and (max-width: 1024px){
+                font-size: 22px;
+            }
         }
 
         ul {
