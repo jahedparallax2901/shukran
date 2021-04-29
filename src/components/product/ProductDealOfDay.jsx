@@ -20,7 +20,7 @@ const ProductDealOfDay = ({ product }) => {
           <div className="ps-product__badge out-stock">Out Of Stock</div>
         ) : (
           <div className="ps-product__badge">
-            {(product?.product?.sale_price - product?.product?.price) * 100}%
+            {(((product?.product?.sale_price - product?.product?.price) / product?.product?.price) * 100).toFixed(2)}%
           </div>
         )}
         {StrapiProductBadge(product)}
