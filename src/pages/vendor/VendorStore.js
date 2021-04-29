@@ -19,6 +19,7 @@ const VendorStore = () => {
   const [storeData , setStoreData] = useState([])
   const [storeCategory , setStoreCategory] = useState([])
   const [query , setQuery] = useState({})
+  const [searchKey , setSearchKey] = useState("")
 
 
   useEffect(()=>{
@@ -50,17 +51,21 @@ const VendorStore = () => {
               role="search"
               method="get"
               className="store-search-form"
-              action={()=> {}}
+              onSubmit={(e)=>{
+                e.preventDefault();
+                setQuery({
+                  q: searchKey
+                })
+              }}
             >
               <input
                 onChange={(e)=>{
-                  console.log(e.target.value)
+                  setSearchKey(e.target.value)
                 }}
                 type="search"
                 id="search"
                 className="search-field wcfmmp-store-search"
                 placeholder="Search &hellip;"
-                value=""
                 name="wcfmmp_store_search"
                 title="Search store &hellip;"
               />
