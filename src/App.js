@@ -29,6 +29,7 @@ import Wishlist from "./pages/Wishlist";
 import StoreDetails from "./pages/store/StoreDetails";
 import VendorStore from "./pages/vendor/VendorStore";
 import ProductCompare from "./pages/product/ProductCompare";
+import MyContacts from "./pages/account/MyContacts";
 
 function App() {
   const homePath = "/";
@@ -91,6 +92,12 @@ function App() {
             path="/account/shipping-address"
           >
             <ShippingAddress />
+          </Route>
+          <Route
+              onUpdate={() => window.scrollTo(0, 0)}
+              path="/account/contacts"
+          >
+            <MyContacts />
           </Route>
           <Route
             onUpdate={() => window.scrollTo(0, 0)}
