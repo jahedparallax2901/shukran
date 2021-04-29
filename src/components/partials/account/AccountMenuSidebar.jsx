@@ -6,6 +6,7 @@ import user from "../../../assets/img/users/3.jpg";
 import { FiUser } from "react-icons/fi";
 import { RiCouponLine, RiSignalWifiErrorLine } from "react-icons/ri";
 import { FaRegAddressCard, FaRegMoneyBillAlt } from "react-icons/fa";
+import {FiX, MdEdit} from "react-icons/all";
 
 const AccountMenuSidebar = ({ selectedTab }) => {
   const accountLinks = [
@@ -39,16 +40,18 @@ const AccountMenuSidebar = ({ selectedTab }) => {
       url: "/account/shipping-address",
       icon: <FaRegAddressCard />,
     },
-    {
+    /*{
       text: "Billing Address",
       url: "/account/billing-address",
       icon: <FaRegMoneyBillAlt />,
-    },
+    },*/
   ];
+
+
   return (
     <aside className="ps-widget--account-dashboard">
       <div className="ps-widget__header">
-        <img src={user} />
+        <img src={``} />
         <figure>
           <figcaption>Michel Schofiled</figcaption>
           <p>
