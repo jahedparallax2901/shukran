@@ -177,7 +177,7 @@ class HeaderMobile extends Component {
                       </i>
                     </div>
                     <div>
-                      <Link to="/account/my-account">{user.phone}</Link>
+                      <Link className="user-phone-number" to="/account/my-account">{user.phone}</Link>
                       <br/>
                       <a onClick={() => this.handleSignOut()}>Logout</a>
                     </div>

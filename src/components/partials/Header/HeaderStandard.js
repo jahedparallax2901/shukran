@@ -101,8 +101,9 @@ class HeaderStandard extends Component {
       handleAddToCart,
     } = this.props;
     const menuItems = [
-      {id: 1, name: 'Home', url: '/'},
+      {id: 1, name: 'Digital Sheba', url: '#'},
       {id: 2, name: 'Campaign', url: '/campaign'},
+      {id: 2, name: 'Little Bangladesh', url: '#'},
       {id: 3, name: 'Vendor Stores', url: '/vendor/store'},
       {id: 2, name: 'Become a Vendor', url: '/vendor/become-a-vendor'},
     ]

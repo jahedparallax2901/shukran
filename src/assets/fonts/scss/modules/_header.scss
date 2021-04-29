@@ -49,7 +49,7 @@
         justify-content: flex-end;
 
         > * {
-            margin: 0 20px;
+            margin: 0 10px;
         }
     }
 
@@ -436,6 +436,7 @@
 
     .ps-block--user-header {
         i {
+            color: #666;
             font-size: 24px;
         }
     }
