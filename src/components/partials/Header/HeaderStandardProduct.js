@@ -29,8 +29,9 @@ import { userData } from "../../../helpers/authUtils";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
 import { menuItems } from "../../../temp-data/homeData";
+import ProductOnHeader from "./ProductOnHeader";
 
-class HeaderStandard extends Component {
+class HeaderStandardProduct extends Component {
   state = {
     categories: [],
     isCartProcessing: false,
@@ -122,11 +123,12 @@ class HeaderStandard extends Component {
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
+      product
     } = this.props;
     
     return (
       <header
-        className="header header--standard header--market-place-1"
+        className="header header--product header--market-place-1 header--standard"
         dataSticky="true"
         id="headerSticky"
       >
@@ -348,6 +350,12 @@ class HeaderStandard extends Component {
             </div>
           </div>
         </nav>
+      
+        <nav className="navigation navigation--product">
+                <div className="container">
+                    <ProductOnHeader product={product} />
+                </div>
+            </nav>
       </header>
     );
   }
@@ -372,4 +380,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderStandard);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderStandardProduct);

@@ -18,6 +18,8 @@ import { useParams } from "react-router";
 import BreadCrumb from "../components/elements/BreadCrumb";
 import SkeletonProductDetail from "../components/elements/skeletons/SkeletonProductDetail";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
+import ContainerProductDetail from "../components/layouts/ContainerProductDetail";
+import Header from "../components/partials/Header/Header";
 import CustomerBought from "../components/product/CustomerBought";
 // import HeaderDefault from '../components/product/details/header/HeaderDefault';
 // import HeaderProduct from '../components/product/details/header/HeaderProduct';
@@ -83,9 +85,9 @@ const ProductDetails = () => {
   if (!loading) {
     if (product) {
       productView = <ProductDetailFullwidth product={product} />;
-      // headerView = <HeaderProduct product={product} />;
+      headerView = <Header product={product} isProduct={true} />;
     } else {
-      // headerView = <HeaderDefault />;
+      headerView = <Header isProduct={false}/>;
     }
   } else {
     productView = <SkeletonProductDetail />;
@@ -93,11 +95,11 @@ const ProductDetails = () => {
 
   console.log("Product full width", product);
   return (
-    <ContainerMarketPlace3
+    <ContainerProductDetail
       title={product ? product.title : "Loading..."}
       isExpanded={true}
     >
-      {/* {headerView} */}
+      {headerView}
       <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
       <div className="ps-page--product">
         <div className="ps-container mb-4">
@@ -112,7 +114,7 @@ const ProductDetails = () => {
           <RelatedProduct product={product} />
         </div>
       </div>
-    </ContainerMarketPlace3>
+    </ContainerProductDetail>
   );
 };
 

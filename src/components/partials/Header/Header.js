@@ -9,16 +9,18 @@ import { faSearch, faShoppingBag, faTimes } from '@fortawesome/free-solid-svg-ic
 import HeaderMobile from './HeaderMobile';
 import HeaderStandard from './HeaderStandard';
 import { Link } from 'react-router-dom';
+import HeaderStandardProduct from './HeaderStandardProduct';
 
 class Header extends Component {
     render() {
-  const {categories, all_category} = this.props;
+  const {categories, all_category, isProduct, product} = this.props;
 
         return (
             <>
         <HeaderPromotion/>
-
-        <HeaderStandard/>
+        {
+isProduct ? <HeaderStandardProduct product={product}/> : <HeaderStandard/>
+        }
 
         <HeaderMobile/>
 

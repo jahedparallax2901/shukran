@@ -79,9 +79,9 @@ export function StrapiProductPrice(product) {
   if (product?.product?.sale_price > 0 || product?.sale_price > 0) {
     view = (
       <p className="ps-product__price sale">
-        ৳{formatCurrency(product?.product?.sale_price || product?.sale_price)}
+        {formatCurrency(product?.product?.sale_price || product?.sale_price)}
         <del className="ml-2">
-          ৳{formatCurrency(product?.product?.price || product?.price)}
+          {formatCurrency(product?.product?.price || product?.price)}
         </del>
       </p>
     );
@@ -90,9 +90,9 @@ export function StrapiProductPrice(product) {
     view = (
       <p className="ps-product__price">
         {product?.product?.price ? (
-          <>৳{formatCurrency(product.product.price)}</>
+          <>{formatCurrency(product.product.price)}</>
         ) : (
-          <>৳{formatCurrency(0)}</>
+          <>{formatCurrency(0)}</>
         )}
       </p>
     );

@@ -6,7 +6,7 @@ import Header from '../components/partials/Header/Header'
 export default function NotFound() {
     return (
         <div className="site-content">
-        <Header />
+        <Header isProduct={false}/>
         <div className="ps-page--404">
             <div className="container">
                 <div className="ps-section__content">
