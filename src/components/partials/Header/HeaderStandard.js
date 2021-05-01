@@ -143,17 +143,9 @@ class HeaderStandard extends Component {
 
                 {/* changed */}
                 <div className="menu__content">
-                  <ul className="menu--dropdown">
-                    {categories.map((item) => (
-                      <li key={item.id}>
-                        <Link to={item.link}>
-                          <i>{item.icon}</i>
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  {/* changed - end */}
+                <div className="menu__content">
+                    <Menu source={categories} className="menu menu--dropdown" />
+                  </div>
                 </div>
               </div>
               <Link className="ps-logo" to="/">

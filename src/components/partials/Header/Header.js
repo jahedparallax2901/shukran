@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import { menuContents, navigationList } from '../../../temp-data/homeData';
+import React, { Component } from "react";
+import { menuContents, navigationList } from "../../../temp-data/homeData";
 import shukranLogo from "../../../assets/img/shukran.png";
 import clothing7 from "../../../assets/img/products/clothing/7.jpg";
 import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
-import HeaderPromotion from './HeaderPromotion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faShoppingBag, faTimes } from '@fortawesome/free-solid-svg-icons';
-import HeaderMobile from './HeaderMobile';
-import HeaderStandard from './HeaderStandard';
-import { Link } from 'react-router-dom';
-import HeaderStandardProduct from './HeaderStandardProduct';
+import HeaderPromotion from "./HeaderPromotion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSearch,
+  faShoppingBag,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import HeaderMobile from "./HeaderMobile";
+import HeaderStandard from "./HeaderStandard";
+import { Link } from "react-router-dom";
+import HeaderStandardProduct from "./HeaderStandardProduct";
 
 class Header extends Component {
-    render() {
-  const {categories, all_category, isProduct, product} = this.props;
+  render() {
+    const { categories, all_category, isProduct, product } = this.props;
 
-        return (
-            <>
-        <HeaderPromotion/>
-        {
-isProduct ? <HeaderStandardProduct product={product}/> : <HeaderStandard/>
-        }
+    return (
+      <>
+        <HeaderPromotion />
+        {isProduct ? (
+          <HeaderStandardProduct product={product} />
+        ) : (
+          <HeaderStandard />
+        )}
 
-        <HeaderMobile/>
+        <HeaderMobile />
 
         <div className="ps-panel--sidebar" id="cart-mobile">
           <div className="ps-panel__header">
@@ -100,7 +106,6 @@ isProduct ? <HeaderStandardProduct product={product}/> : <HeaderStandard/>
                 </a>
               </li>
 
-              
               <li>
                 <a href="#">
                   <i className="las la-universal-access"></i> Men’s Fashion
@@ -136,9 +141,9 @@ isProduct ? <HeaderStandardProduct product={product}/> : <HeaderStandard/>
             ))}
           </div>
         </div>
-         {/* changed-end */}
+        {/* changed-end */}
 
-         <div className="ps-panel--sidebar" id="search-sidebar">
+        <div className="ps-panel--sidebar" id="search-sidebar">
           <div className="ps-panel__header">
             <form
               className="ps-form--search-mobile"
@@ -183,11 +188,9 @@ isProduct ? <HeaderStandardProduct product={product}/> : <HeaderStandard/>
             </ul>
           </div>
         </div>
-        
-        
-            </>
-        );
-    }
+      </>
+    );
+  }
 }
 
 export default Header;

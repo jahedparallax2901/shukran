@@ -30,6 +30,10 @@ class HeaderMobile extends Component {
     isCartProcessing: false,
   }
 
+  componentDidMount(){
+    
+  }
+
   handleSignOut = () => {
     localStorage.clear();
     this.props.handleSignOut();
