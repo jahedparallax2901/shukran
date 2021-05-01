@@ -71,13 +71,13 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
         <Slider {...carouselSingle}>
           {relatedItems.map((item, index) => {
             if (index % 4 === 0) {
-              const newItem = relatedItems.slice(index, index + 5);
+              const newItem = relatedItems.slice(index, index + 4);
               return (
                 <div className="ps-product-group" key="group-1">
                   {newItem}
                 </div>
               );
-            } 
+            }
             // else if (index === relatedItems.length - 1) {
             //   debugger;
             //   const newItem = relatedItems.slice(
