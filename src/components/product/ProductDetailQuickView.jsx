@@ -16,7 +16,6 @@ const ProductDetailQuickView = ({ id }) => {
   const [selectedAttributeProduct, setSelectedAttributeProduct] = useState({});
 
   const getProduct = (id) => {
-    debugger;
     setLoading(true);
     processGetRequest(`/product/detail/${id}`, {}, false)
       .then((res) => {

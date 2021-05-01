@@ -21,18 +21,38 @@ import {
 import { connect } from "react-redux";
 import { userData } from "../../../helpers/authUtils";
 import { Spinner } from "react-bootstrap";
-import { AiOutlineClose } from "react-icons/ai";
-import '../../../assets/scss/my-changes.scss';
+import { AiOutlineClose, AiOutlineUser } from "react-icons/ai";
+import "../../../assets/scss/my-changes.scss";
 import SearchHeader from "../../header/SearchHeader";
+import { RiLogoutBoxRLine, RiShoppingBagLine } from "react-icons/ri";
+import { IoMdLogOut } from "react-icons/io";
 
 class HeaderMobile extends Component {
   state = {
     isCartProcessing: false,
+  };
+
+  componentDidMount() {
+    if (process.browser) {
+      window.addEventListener("scroll", this.stickyHeader);
+    }
   }
 
-  componentDidMount(){
-    
-  }
+  stickyHeader = () => {
+    let number =
+      window.pageXOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const header = document.getElementById("headerSticky");
+    if (header !== null) {
+      if (number >= 300) {
+        header.classList.add("header--sticky");
+      } else {
+        header.classList.remove("header--sticky");
+      }
+    }
+  };
 
   handleSignOut = () => {
     localStorage.clear();
@@ -45,7 +65,7 @@ class HeaderMobile extends Component {
     const newProductlist = this.props.shoppingCart.cartProductlist.filter(
       (item) => item.item_id !== item_id || item.product_id !== product_id
     );
-    
+
     this.props.handleAddToCart(
       newProductlist,
       userData()?.token || "",
@@ -67,7 +87,11 @@ class HeaderMobile extends Component {
   render() {
     const { user, handleShowAuthModal, shoppingCart } = this.props;
     return (
-      <header className="header header--mobile" data-sticky="true">
+      <header
+        className="header header--mobile"
+        data-sticky="true"
+        id="headerSticky"
+      >
         <div className="navigation--mobile">
           <div className="navigation__left">
             <Link to="/" className="ps-logo">
@@ -78,7 +102,7 @@ class HeaderMobile extends Component {
             <div className="header__actions">
               <div className="ps-cart--mini">
                 <a className="header__extra" href="#">
-                  <FontAwesomeIcon icon={faShoppingBag} />
+                  <RiShoppingBagLine />
                   <span>
                     <i>5</i>
                   </span>
@@ -175,22 +199,27 @@ class HeaderMobile extends Component {
               <div className="ps-block--user-header">
                 {user?.phone ? (
                   <div className="ps-block--user-header mr-0">
-                    <div className="ps-block__left mr-2">
+                    <a className="ps-block__left mr-2 header__extra">
                       <i>
-                        <FontAwesomeIcon icon={faUser} />
+                        <IoMdLogOut onClick={() => this.handleSignOut()} />
                       </i>
-                    </div>
-                    <div>
-                      <Link className="user-phone-number" to="/account/my-account">{user.phone}</Link>
-                      <br/>
-                      <a onClick={() => this.handleSignOut()}>Logout</a>
-                    </div>
+                    </a>
+                    <a className="ps-block__right">
+                        <Link
+                          className="user-phone-number my-auto"
+                          to="/account/my-account"
+                        >
+                          {user.phone}
+                        </Link>
+                      {/* <br/>
+                      <a onClick={() => this.handleSignOut()}>Logout</a> */}
+                    </a>
                   </div>
                 ) : (
                   <div className="ps-block--user-header mr-0">
                     <div className="ps-block__left mr-2">
                       <i>
-                        <FontAwesomeIcon icon={faUser} />
+                        <AiOutlineUser />
                       </i>
                     </div>
                     <div>
@@ -209,7 +238,7 @@ class HeaderMobile extends Component {
           </div>
         </div>
         <div className="ps-search--mobile">
-        {/* <SearchHeader /> */}
+          {/* <SearchHeader /> */}
           <form
             className="ps-form--search-mobile"
             action="index.html"

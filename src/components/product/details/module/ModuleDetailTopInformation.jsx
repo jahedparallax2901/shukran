@@ -41,8 +41,8 @@ const ModuleDetailTopInformation = ({ product, selectedAttributeProduct }) => {
           </Link>
         </p>
         <div className="ps-product__rating">
-          <Rating count={product?.product?.rating || 3} />
-          <span>({product?.product?.total_review || 1} review)</span>
+          {/* <Rating count={product?.product?.rating || 3} />
+          <span>({product?.product?.total_review || 1} review)</span> */}
         </div>
       </div>
       {priceView}

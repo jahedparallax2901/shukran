@@ -37,14 +37,13 @@ class HeaderStandard extends Component {
   };
 
   componentDidMount() {
-
     if (process.browser) {
-      window.addEventListener('scroll', this.stickyHeader);
-  }
+      window.addEventListener("scroll", this.stickyHeader);
+    }
 
     this.setState({ isLoading: true });
     const cart_id = localStorage.getItem("cart_id");
-    processGetRequest("/generic-info", {info_type: 1})
+    processGetRequest("/generic-info", { info_type: 1 })
       .then((res) => {
         this.setState({
           categories: res.categories,
@@ -56,28 +55,27 @@ class HeaderStandard extends Component {
   }
 
   stickyHeader = () => {
-    console.log("Scrolling");
     let number =
-        window.pageXOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-    const header = document.getElementById('headerSticky');
+      window.pageXOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const header = document.getElementById("headerSticky");
     if (header !== null) {
-        if (number >= 300) {
-            header.classList.add('header--sticky');
-        } else {
-            header.classList.remove('header--sticky');
-        }
+      if (number >= 300) {
+        header.classList.add("header--sticky");
+      } else {
+        header.classList.remove("header--sticky");
+      }
     }
-};
+  };
 
   handleItemDelete = (e, product_id, item_id) => {
     this.setState({ isCartProcessing: true });
     const newProductlist = this.props.shoppingCart.cartProductlist.filter(
       (item) => item.item_id !== item_id || item.product_id !== product_id
     );
-   
+
     this.props.handleAddToCart(
       newProductlist,
       userData()?.token || "",
@@ -97,11 +95,11 @@ class HeaderStandard extends Component {
     );
   };
 
-  handleSignOut = () =>{
+  handleSignOut = () => {
     localStorage.clear();
     this.props.handleSignOut();
     this.props.handleClearCart();
-  }
+  };
 
   countTotalItems = () => {
     let count = 0;
@@ -123,7 +121,7 @@ class HeaderStandard extends Component {
       handleShowShoppingCart,
       handleAddToCart,
     } = this.props;
-    
+
     return (
       <header
         className="header header--standard header--market-place-1"
@@ -143,7 +141,7 @@ class HeaderStandard extends Component {
 
                 {/* changed */}
                 <div className="menu__content">
-                <div className="menu__content">
+                  <div className="menu__content">
                     <Menu source={categories} className="menu menu--dropdown" />
                   </div>
                 </div>
@@ -175,7 +173,7 @@ class HeaderStandard extends Component {
                         {shoppingCart?.cartSummery?.total_prdoucts ||
                           this.countTotalItems() ||
                           0}
-                      </i>  
+                      </i>
                     </span>
                   </a>
 
