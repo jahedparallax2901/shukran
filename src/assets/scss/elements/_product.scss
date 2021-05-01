@@ -561,6 +561,12 @@
     }
   }
 
+  .ant-tabs-nav-list{
+    .ant-tabs-tab{
+      padding: 5px 15px;
+    }
+  }
+
   .slick-slide {
     outline: none;
     @include box-shadow(none);

@@ -10,6 +10,7 @@ import { FiEye, FiShoppingBag } from "react-icons/fi";
 import { FaChartBar, FaRegHeart } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
+import { Link } from "react-router-dom";
 
 const ModuleProductActions = ({ product }) => {
   // const dispatch = useDispatch();
@@ -41,8 +42,8 @@ const ModuleProductActions = ({ product }) => {
   return (
     <ul className="ps-product__actions">
       <li>
-        <a
-          href="#"
+        <Link
+          to={`/product/detail/${product?.product_id}`}
           data-toggle="tooltip"
           data-placement="top"
           title="Add To Cart"
@@ -51,11 +52,10 @@ const ModuleProductActions = ({ product }) => {
           <i>
             <FiShoppingBag />
           </i>
-        </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#"
+        <Link
           data-toggle="tooltip"
           data-placement="top"
           title="Quick View"
@@ -64,11 +64,11 @@ const ModuleProductActions = ({ product }) => {
           <i>
             <FiEye />
           </i>
-        </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#"
+        <Link
+          to={`/product/detail/${product?.product_id}`}
           data-toggle="tooltip"
           data-placement="top"
           title="Add to wishlist"
@@ -77,11 +77,11 @@ const ModuleProductActions = ({ product }) => {
           <i>
             <FaRegHeart />
           </i>
-        </a>
+        </Link>
       </li>
       <li>
-        <a
-          href="#"
+        <Link
+          to={`/product/detail/${product?.product_id}`}
           data-toggle="tooltip"
           data-placement="top"
           title="Compare"
@@ -90,7 +90,7 @@ const ModuleProductActions = ({ product }) => {
           <i>
             <FaChartBar />
           </i>
-        </a>
+        </Link>
       </li>
       <Modal
         title="Quickview"
@@ -106,7 +106,7 @@ const ModuleProductActions = ({ product }) => {
           </i>
         }
       >
-        <ProductDetailQuickView id={product?.id} />
+        <ProductDetailQuickView id={product?.product_id} />
       </Modal>
     </ul>
   );

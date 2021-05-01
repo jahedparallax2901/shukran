@@ -13,10 +13,11 @@ const VendorBanner = () => (
                 Millions Of Shoppers Can’t Wait To See What You Have In
                 Store
                 </h2>
-            <Link to="/vendor/store-list">
-                <a className="ps-btn ps-btn--lg" href="#">
+            <Link to="/merchant-apply">
+                <a className="ps-btn ps-btn--lg" href="/merchant-apply">
                     Start Selling
                     </a>
+
             </Link>
         </div>
         {/* </div> */}

@@ -368,7 +368,7 @@ const Checkout = (props) => {
                     </button>
                   </div>
                 </div>
-                <p>{data.phone_number}</p>
+                <p>{data?.phone_number}</p>
               </div>
             </>
           ))}

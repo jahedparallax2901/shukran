@@ -26,7 +26,7 @@ const ContainerMarketPlace3 = ({ children, title, categories, all_category, isEx
             <HeaderMarketPlace /> */}
       {/* <HeaderMobile />
             <NavigationList /> */}
-      <Header/>
+      <Header isProduct={false}/>
       <FloatingCart />
       <MiniShoppinCart />
       <main id="homepage-5" className={`${requiredTopPadding && "pt-4"}`}>

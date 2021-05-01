@@ -13,7 +13,7 @@ const DefaultDescription = ({product}) => {
     return (
         <div className="ps-product__content ps-tab-root">
             <Tabs defaultActiveKey="1">
-                <TabPane tab="Description" key="1">
+                <TabPane tab="Description" key="1" className="mr-2">
                     <PartialDescription product={product}/>
                 </TabPane>
                 <TabPane tab="Specification" key="2">

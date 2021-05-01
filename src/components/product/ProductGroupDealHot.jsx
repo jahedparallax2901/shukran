@@ -53,9 +53,9 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
         <ProductDealHot product={item} key={item.id} />
       ));
       const relatedItems =
-        top_products.length> 0 &&
+        top_products.length > 0 &&
         top_products.map((item, index) => {
-            return <ProductHorizontal product={item} key={item.id} />;
+          return <ProductHorizontal product={item} key={item.id} />;
         });
       productItemsView = (
         <Slider
@@ -69,14 +69,31 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
       );
       relatedView = (
         <Slider {...carouselSingle}>
-          <div className="ps-product-group" key="group-1">
-            {relatedItems}
-          </div>
-          <div className="ps-product-group" key="group-1">
-            {relatedItems}
-          </div>
+          {relatedItems.map((item, index) => {
+            if (index % 4 === 0) {
+              const newItem = relatedItems.slice(index, index + 5);
+              return (
+                <div className="ps-product-group" key="group-1">
+                  {newItem}
+                </div>
+              );
+            } 
+            // else if (index === relatedItems.length - 1) {
+            //   debugger;
+            //   const newItem = relatedItems.slice(
+            //     index,
+            //     relatedItems.length - 1
+            //   );
+            //   return (
+            //     <div className="ps-product-group" key="group-1">
+            //       {newItem}
+            //     </div>
+            //   );
+            // }
+          })}
         </Slider>
       );
+      console.log("relatedItems", relatedItems);
     } else {
       productItemsView = <p>No product found.</p>;
     }
