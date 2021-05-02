@@ -56,8 +56,14 @@ class Store extends Component {
     return (
       <>
         {this.state.isLoading ? (
-          <div className="loading-wrapper">
-            <Spinner animation="border" />
+          <div className="ps-vendor-store">
+            <div className="container">
+              <div className="ps-section__container">
+                <div className="loading-wrapper" style={{position: 'relative', height: '10vh'}}>
+                  <Spinner animation="border" />
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="ps-vendor-store">
@@ -201,19 +207,18 @@ class Store extends Component {
                   */}
                   <VendorProducts products={product} />
                   <div className="ps-shopping__footer text-center">
-                  <div className="ps-pagination">
-                    <Pagination
-                      total={product?.total}
-                      pageSize={product?.per_page || 5}
-                      responsive={true}
-                      showSizeChanger={false}
-                      current={product?.current_page}
-                      onChange={(e) => this.handlePagination(e)}
-                    />
+                    <div className="ps-pagination">
+                      <Pagination
+                        total={product?.total}
+                        pageSize={product?.per_page || 5}
+                        responsive={true}
+                        showSizeChanger={false}
+                        current={product?.current_page}
+                        onChange={(e) => this.handlePagination(e)}
+                      />
+                    </div>
                   </div>
                 </div>
-                </div>
-                
               </div>
             </div>
           </div>
