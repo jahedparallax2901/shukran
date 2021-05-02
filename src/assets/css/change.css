@@ -490,8 +490,9 @@
   color: #006c32;
 }
 .ps-product .ps-product__price.sale del {
-  /* color: #ed1c24; */
-  color: #525252;
+  color: #ed1c24;
+  padding-right: 10px;
+  /* color: #525252; */
 }
 .ps-footer {
   padding-top: 50px;
@@ -1402,7 +1403,7 @@ button.ps-btn:active {
 }
 .ps-page--product .ps-product--detail .ps-product-info-other {
   background: #ffffff;
-  padding: 20px 20px 50px 20px;
+  padding: 20px 20px 30px 20px;
 }
 .ps-product--detail .ps-product__variations figure {
   margin-bottom: -7px;
@@ -1410,13 +1411,13 @@ button.ps-btn:active {
 @media screen and (max-width: 1366px) {
   .ps-page--product .ps-product--detail .ps-product-info-other {
     background: #ffffff;
-    padding: 20px 20px 40px 20px;
+    padding: 20px 20px 30px 20px;
   }
 }
 @media screen and (max-width: 768px) {
   .ps-page--product .ps-product--detail .ps-product-info-other {
     background: #ffffff;
-    padding: 20px 20px 30px 20px;
+    padding: 20px 20px 20px 20px;
   }
 }
 @media screen and (max-width: 576px) {
