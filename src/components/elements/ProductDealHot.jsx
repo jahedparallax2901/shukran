@@ -4,7 +4,7 @@ import { formatCurrency } from '../../utilities/product-helper';
 import Rating from './Rating';
 import CountDown from './CountDown';
 import ThumbnailWithBadge from './ThumbnailWithBadge';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import downloadsFridge1 from '../../assets/img/downloads/fridge1.jpg';
 
 
@@ -26,9 +26,9 @@ const ProductDealHot = ({ product }) => {
                         {product?.sale_price > 0 ? (
                             <h4 className="ps-product__price sale">
                                 <del className="mr-2">
-                                {formatCurrency(product?.sale_price)}
+                                    &#2547;{formatCurrency(product?.sale_price)}
                                 </del>
-                                {formatCurrency(product?.price)}
+                                &#2547;{formatCurrency(product?.price)}
                             </h4>
                         ) : (
                             <h4 className="ps-product__price">
@@ -42,7 +42,7 @@ const ProductDealHot = ({ product }) => {
                         <div className="ps-product__specification">
                             <p>
                                 Status:&nbsp;
-                                {product?.product?.quantity>0 ? <strong className="in-stock">In Stock</strong> : <strong className="in-stock">Out of Stock</strong>}
+                                {product?.product?.quantity > 0 ? <strong className="in-stock">In Stock</strong> : <strong className="in-stock">Out of Stock</strong>}
                             </p>
                         </div>
                     </div>
