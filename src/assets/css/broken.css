@@ -113,11 +113,21 @@
 .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
     padding: 0px 65px;
 }
+@media screen and (max-width: 1366px){
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+    padding: 0px 35px;
+  }
+}
+@media screen and (max-width: 768px){
+  .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap{
+    padding: 0px 0px;
+  }
+}
 .ant-tabs .ant-tabs-tab{
     padding-top: 0px;
 }
 .ant-tabs-content-holder .ant-tabs-content{
-    padding: 0px 15px;
+    padding: 0px 0px;
 }
 /*=== Category ===*/
 #shop-now-home3 {
