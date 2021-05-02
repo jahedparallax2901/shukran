@@ -21,9 +21,9 @@
 
 .ps-product {
   position: relative;
-  padding: 20px 20px 0;
+  padding: 20px 20px 15px;
   border: 1px solid transparent;
-  border-bottom: none;
+  /* border-bottom: none; */
   @extend %list-reset;
 
   .ant-rate {
@@ -233,8 +233,8 @@
     }
 
     .ps-product__content {
-      @include hidden;
-      height: 0;
+      /* @include hidden;
+      height: 0; */
 
       &.hover {
         height: auto;

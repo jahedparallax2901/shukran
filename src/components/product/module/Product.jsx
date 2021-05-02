@@ -42,12 +42,12 @@ const Product = ({ product }) => {
           </div>
           {priceView}
         </div>
-        <div className="ps-product__content hover">
+        {/* <div className="ps-product__content hover">
           <Link to={`/product/${product.id}`}>
             <a className="ps-product__title">{product.title}</a>
           </Link>
           {priceView}
-        </div>
+        </div> */}
       </div>
     </div>
   );
