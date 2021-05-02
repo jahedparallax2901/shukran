@@ -123,7 +123,8 @@ class HeaderStandardProduct extends Component {
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
-      product
+      product,
+      wishlist
     } = this.props;
     
     return (
@@ -167,12 +168,12 @@ class HeaderStandardProduct extends Component {
             </div>
             <div className="header__content-right">
               <div className="header__actions">
-                <Link className="header__extra" to="/wishlist">
+                <Link className="header__extra" to="/account/wishlist">
                   <i>
-                    <BsHeart />
+                    <BsHeart  />
                   </i>
                   <span>
-                    <i>0</i>
+                    <i>{wishlist?.length || 0}</i>
                   </span>
                 </Link>
                 <div className="ps-cart--mini">
@@ -365,6 +366,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.userData,
     shoppingCart: state.shoppingCart,
+    wishlist: state.wishlist.wishListItems
   };
 };
 

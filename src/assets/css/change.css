@@ -1568,11 +1568,10 @@ button.ps-btn:active {
   width: 100%;
   max-width: 420px;
   background-color: #fff;
-  z-index: 1000;
   border-left: 1px solid #f0f2f3;
   overflow-y: scroll;
   transition: all 0.7s ease-in-out;
-  z-index: 10001;
+  z-index: 540;
   overflow-x: hidden;
 }
 .asside-card-checkout.active {

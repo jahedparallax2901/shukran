@@ -2,6 +2,7 @@ import {combineReducers} from 'redux'
 import shoppingCartReducer from './shopping-cart/shoppingCartReducer';
 // import sidebarReducer from './sidebar/sidebarReducer';
 import authReducer from './auth/authReducer';
+import wishlistReducer from './wishlist/wishlistReducer';
 // import productSearchReducer from './product-search/productSearchReducer';
 // import shippingAddressReducer from './shipping-address/shippingAddressReducer';
 // import billingAddressReducer from './billing-address/billingAddressReducer';
@@ -11,6 +12,7 @@ import authReducer from './auth/authReducer';
 
 const rootReducer = combineReducers({
   shoppingCart: shoppingCartReducer,
+  wishlist: wishlistReducer,
   // sidebar: sidebarReducer,
   auth: authReducer,
   // productSearch: productSearchReducer,

@@ -29,6 +29,7 @@ import { userData } from "../../../helpers/authUtils";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
 import { menuItems } from "../../../temp-data/homeData";
+import { getWishlistItems } from "../../../redux/wishlist/wishlistActions";
 
 class HeaderStandard extends Component {
   state = {
@@ -43,6 +44,8 @@ class HeaderStandard extends Component {
 
     this.setState({ isLoading: true });
     const cart_id = localStorage.getItem("cart_id");
+    const authData = userData();
+
     processGetRequest("/generic-info", { info_type: 1 })
       .then((res) => {
         this.setState({
@@ -52,6 +55,8 @@ class HeaderStandard extends Component {
       .catch((err) => console.log(err));
 
     cart_id && this.props.getCartItems(cart_id);
+
+    authData?.token && this.props.getWishlistItems();
   }
 
   stickyHeader = () => {
@@ -120,8 +125,9 @@ class HeaderStandard extends Component {
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
+      wishlist
     } = this.props;
-
+    
     return (
       <header
         className="header header--standard header--market-place-1"
@@ -155,12 +161,12 @@ class HeaderStandard extends Component {
             </div>
             <div className="header__content-right">
               <div className="header__actions">
-                <Link className="header__extra" to="/wishlist">
+                <Link className="header__extra" to="/account/wishlist">
                   <i>
                     <BsHeart />
                   </i>
                   <span>
-                    <i>0</i>
+                    <i>{wishlist?.length || 0}</i>
                   </span>
                 </Link>
                 <div className="ps-cart--mini">
@@ -347,6 +353,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.userData,
     shoppingCart: state.shoppingCart,
+    wishlist: state.wishlist.wishListItems
   };
 };
 
@@ -359,6 +366,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
     handleClearCart: () => dispatch(handleClearCart()),
+    getWishlistItems: (cb) => dispatch(getWishlistItems(cb))
   };
 };
 
