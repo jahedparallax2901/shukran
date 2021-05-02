@@ -201,6 +201,7 @@ const VendorStore = () => {
                     </li>
                     <li>
 
+
                       <Pagination
                           itemClass="page-item"
                           linkClass="page-link"
