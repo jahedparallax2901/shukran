@@ -29,6 +29,9 @@
 
         &.slick-next {
             right: 0;
+            &::before{
+                margin-left: 15px;
+            }
         }
     }
 

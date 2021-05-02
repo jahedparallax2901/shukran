@@ -323,14 +323,16 @@
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid #ccc;
-
+        @media screen and (max-width: 425px) {
+            align-items: flex-end;
+        }
         > a {
             display: inline-block;
             padding-bottom: 2px;
             color: #000;
             border-bottom: 1px solid #000;
             min-width: 60px;
-
+            text-align: center;
             &:hover {
                 color: $color-1st;
                 border-color: $color-1st;

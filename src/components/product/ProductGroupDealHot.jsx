@@ -77,17 +77,19 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
                   {newItem}
                 </div>
               );
-            } else if (index === relatedItems.length - 1) {
-              const newItem = relatedItems.slice(
-                index,
-                relatedItems.length - 1
-              );
-              return (
-                <div className="ps-product-group" key="group-1">
-                  {newItem}
-                </div>
-              );
-            }
+            } 
+            // else if (index === relatedItems.length - 1) {
+            //   debugger;
+            //   const newItem = relatedItems.slice(
+            //     index,
+            //     relatedItems.length - 1
+            //   );
+            //   return (
+            //     <div className="ps-product-group" key="group-1">
+            //       {newItem}
+            //     </div>
+            //   );
+            // }
           })}
         </Slider>
       );
