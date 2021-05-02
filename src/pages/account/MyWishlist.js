@@ -9,6 +9,7 @@ import Shimmer from "react-shimmer-effect"
 import Pagination from "react-js-pagination";
 import {Spinner} from "react-bootstrap";
 import {faAlignCenter} from "@fortawesome/free-solid-svg-icons";
+import {getLocalAuthData} from "../../helpers/utils";
 
 
 export default function MyWishlist() {
@@ -41,12 +42,15 @@ export default function MyWishlist() {
 
 
   const getData =() =>{
-    processGetRequest('/get-wishlist',query,true).then((res)=>{
-      console.log(res)
-      setAllData(res.wish_lists)
-      setWishList(res.wish_lists.data)
-      setIsLoading(false)
-    })
+    const authData = getLocalAuthData()
+    if(authData !== null){
+      processGetRequest('/get-wishlist',query,true).then((res)=>{
+        console.log(res)
+        setAllData(res.wish_lists)
+        setWishList(res.wish_lists.data)
+        setIsLoading(false)
+      })
+    }
   }
 
 

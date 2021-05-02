@@ -14,19 +14,17 @@ import girlsShopLogo from "../../assets/img/downloads/girls-shop-logo.jpg";
 import girlsShopLogo2 from "../../assets/img/downloads/girls-shop-logo2.jpg";
 import {processGetRequest} from "../../services/baseServices";
 import Pagination from "react-js-pagination";
+import ReactRoundedImage from "react-rounded-image";
 
 const VendorStore = () => {
 
   const [storeData , setStoreData] = useState([])
   const [storeCategory , setStoreCategory] = useState([])
-  const [query , setQuery] = useState({})
+  const [query , setQuery] = useState({page: "1"})
   const [searchKey , setSearchKey] = useState("")
   const [pagination, setPagination] = useState({});
 
 
-  useEffect(()=>{
-    setQuery({page: "1"})
-  },[])
 
 
   useEffect( () =>{
@@ -211,7 +209,6 @@ const VendorStore = () => {
                     </li>
                     <li>
 
-
                       <Pagination
                           itemClass="page-item"
                           linkClass="page-link"
@@ -251,11 +248,17 @@ const VendorStore = () => {
                         <div key={index} className="col-md-6 col-sm-12">
                           <div className="single-category-vendor">
                             <div className="category-vendor-top">
-                              <img src={item?.store_detail?.file_attach_cover?.file_url} alt="fail" />
+                              {item?.store_detail?.file_attach_cover?.file_url != null &&
+                              <img
+                                  width={`380`}
+                                  height={`110`}
+                                  src={item?.store_detail?.file_attach_cover?.file_url} alt="" />
+                              }
                             </div>
                             <div className="category-vendor-body">
                               <div className="shop-owner">
-                                <img src={item?.store_detail?.file_attach_logo?.file_url} alt="fail" />
+                                <img style={{width: 80, height: 100, borderRadius: 100/ 2}}
+                                     src={item?.store_detail?.file_attach_logo?.file_url} alt="fail" />
                                 <a className="visit-store" href="vendor-store.html">
                                   Visit Store
                                 </a>

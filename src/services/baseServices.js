@@ -37,24 +37,49 @@ functionality:
 export const processGetRequest = (url, paramsObj = {}, isAuthenticationRequired = false) => {
   const authData = getLocalAuthData();
   console.log("BASE_API_URL",BASE_API_URL);
-  return new Promise((resolve, reject) => {
-    axios
-      .get(`${BASE_API_URL}${url}`, {
-        params: paramsObj,
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": isAuthenticationRequired? authData?.token : "",
-          "x-api-client": getDeviceType(),
-        },
-      })
-      .then((res) => {
-        resolve(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err.message);
+
+  if (isAuthenticationRequired === true){
+    if (authData != null){
+      return new Promise((resolve, reject) => {
+        axios
+            .get(`${BASE_API_URL}${url}`, {
+              params: paramsObj,
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": isAuthenticationRequired? authData?.token : "",
+                "x-api-client": getDeviceType(),
+              },
+            })
+            .then((res) => {
+              resolve(res.data);
+            })
+            .catch((err) => {
+              console.error(err);
+              reject(err.message);
+            });
       });
-  });
+    }
+  }else {
+    return new Promise((resolve, reject) => {
+      axios
+          .get(`${BASE_API_URL}${url}`, {
+            params: paramsObj,
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": isAuthenticationRequired? authData?.token : "",
+              "x-api-client": getDeviceType(),
+            },
+          })
+          .then((res) => {
+            resolve(res.data);
+          })
+          .catch((err) => {
+            console.error(err);
+            reject(err.message);
+          });
+    });
+  }
+
 };
 
 export const processPostRequest = (url, data = {}, isAuthenticationRequired = false) => {
