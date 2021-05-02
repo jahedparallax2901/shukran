@@ -243,7 +243,7 @@ const VendorStore = () => {
                             <img
                             onClick={()=>{
                               history.push(
-                                `/store/products/${item?.store_detail?.id}`
+                                `/store/product/${item?.store_detail?.id}`
                               );
                             }}
                               src={
@@ -304,7 +304,7 @@ const VendorStore = () => {
                                 onClick={(e) => {
                                   e.preventDefault();
                                   history.push(
-                                    `/store/products/${item?.store_detail?.id}`
+                                    `/store/product/${item?.store_detail?.id}`
                                   );
                                 }}
                               >
