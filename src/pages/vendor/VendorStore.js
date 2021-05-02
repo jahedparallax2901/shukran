@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { BsChevronRight, BsPhone } from "react-icons/bs";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import ShopBanner from "../../components/partials/store/ShopBanner";
@@ -12,9 +12,9 @@ import banner6 from "../../assets/img/downloads/banner6.png";
 import shoeShopLogo from "../../assets/img/downloads/shoe-shop-logo.jpg";
 import girlsShopLogo from "../../assets/img/downloads/girls-shop-logo.jpg";
 import girlsShopLogo2 from "../../assets/img/downloads/girls-shop-logo2.jpg";
-import {processGetRequest} from "../../services/baseServices";
+import { processGetRequest } from "../../services/baseServices";
 import Pagination from "react-js-pagination";
-import ReactRoundedImage from "react-rounded-image";
+import { Link, useHistory } from "react-router-dom";
 
 const VendorStore = () => {
 
@@ -23,36 +23,30 @@ const VendorStore = () => {
   const [query , setQuery] = useState({page: "1"})
   const [searchKey , setSearchKey] = useState("")
   const [pagination, setPagination] = useState({});
+  const history = useHistory();
 
 
 
+  useEffect(() => {
+    getData();
+  }, [query]);
 
-  useEffect( () =>{
-    getData()
-  },[query])
-
-
-
-  const getData = () =>{
-    processGetRequest('/merchant/store-list',query,true).then((res)=>{
-      setStoreData(res.merchants.data)
+  const getData = () => {
+    processGetRequest("/merchant/store-list", query, true).then((res) => {
+      setStoreData(res.merchants.data);
       setStoreCategory(res.store_categories);
-    })
-  }
-
-
+    });
+  };
 
   const handlePageChange = async (pageNumber) => {
-    console.log(pageNumber)
-    setQuery({...query , page : pageNumber })
-
+    console.log(pageNumber);
+    setQuery({ ...query, page: pageNumber });
 
     /*const params = { ...queryParams, page: pageNumber };
     const result = await getTableData('/users',params);
     setTableList(result.items);
     setPagination({ ...pagination, ...result.pagination });*/
   };
-
 
   return (
     <ContainerMarketPlace3>
@@ -64,16 +58,16 @@ const VendorStore = () => {
               role="search"
               method="get"
               className="store-search-form"
-              onSubmit={(e)=>{
+              onSubmit={(e) => {
                 e.preventDefault();
                 setQuery({
-                  q: searchKey
-                })
+                  q: searchKey,
+                });
               }}
             >
               <input
-                onChange={(e)=>{
-                  setSearchKey(e.target.value)
+                onChange={(e) => {
+                  setSearchKey(e.target.value);
                 }}
                 type="search"
                 id="search"
@@ -83,11 +77,9 @@ const VendorStore = () => {
                 title="Search store &hellip;"
               />
               <select
-                  onChange={
-                    (e)=> {
-                      setQuery({...query , store_category_id : e.target.value })
-                    }
-                  }
+                onChange={(e) => {
+                  setQuery({ ...query, store_category_id: e.target.value });
+                }}
                 id="search-select-field"
                 name="store-select-field"
                 className="store-select-field"
@@ -129,13 +121,13 @@ const VendorStore = () => {
                 value="1"
               />
               <input type="hidden" id="nonce" name="nonce" value="4efca6309d" />
-              <div className="wcfmmp-overlay" style={{display: 'none'}}>
+              <div className="wcfmmp-overlay" style={{ display: "none" }}>
                 <span className="wcfmmp-ajax-loader"></span>
               </div>
             </form>
             <div className="ps-section__wrapper">
               <div className="ps-section__left">
-           {/*     <aside className="widget widget--vendor">
+                {/*     <aside className="widget widget--vendor">
                   <h3 className="widget-title">Product Search</h3>
                   <div className="form-group--icon">
                     <input
@@ -151,13 +143,12 @@ const VendorStore = () => {
                 <aside className="widget widget--vendor">
                   <h3 className="widget-title">Store Categories</h3>
                   <ul className="ps-list--arrow">
-
-                    {storeCategory && storeCategory.map( (res , index)=>(
+                    {storeCategory &&
+                      storeCategory.map((res, index) => (
                         <li key={index}>
                           <a href="#">{res.name}</a>
                         </li>
-                    ))}
-
+                      ))}
                   </ul>
                 </aside>
               </div>
@@ -172,11 +163,12 @@ const VendorStore = () => {
                         action="#"
                       >
                         <select
-                          onChange={
-                            (e)=> {
-                              setQuery({...query , store_category_id : e.target.value })
-                            }
-                          }
+                          onChange={(e) => {
+                            setQuery({
+                              ...query,
+                              store_category_id: e.target.value,
+                            });
+                          }}
                           id="search-select-field1"
                           name="store-select-field1"
                           className="store-select-field1"
@@ -219,7 +211,7 @@ const VendorStore = () => {
                           onChange={handlePageChange}
                       />
 
-                     {/* <ul className="pagination">
+                      {/* <ul className="pagination">
                         <li className="active">
                           <a href="#">1</a>
                         </li>
@@ -250,6 +242,11 @@ const VendorStore = () => {
                             <div className="category-vendor-top">
                               {item?.store_detail?.file_attach_cover?.file_url != null &&
                               <img
+                                  onClick={()=>{
+                                    history.push(
+                                        `/store/product/${item?.store_detail?.id}`
+                                    );
+                                  }}
                                   width={`380`}
                                   height={`110`}
                                   src={item?.store_detail?.file_attach_cover?.file_url} alt="" />

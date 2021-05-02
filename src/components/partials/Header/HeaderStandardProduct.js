@@ -29,21 +29,23 @@ import { userData } from "../../../helpers/authUtils";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
 import { menuItems } from "../../../temp-data/homeData";
+import ProductOnHeader from "./ProductOnHeader";
 
-class HeaderStandard extends Component {
+class HeaderStandardProduct extends Component {
   state = {
     categories: [],
     isCartProcessing: false,
   };
 
   componentDidMount() {
+
     if (process.browser) {
-      window.addEventListener("scroll", this.stickyHeader);
-    }
+      window.addEventListener('scroll', this.stickyHeader);
+  }
 
     this.setState({ isLoading: true });
     const cart_id = localStorage.getItem("cart_id");
-    processGetRequest("/generic-info", { info_type: 1 })
+    processGetRequest("/generic-info", {info_type: 1})
       .then((res) => {
         this.setState({
           categories: res.categories,
@@ -55,27 +57,28 @@ class HeaderStandard extends Component {
   }
 
   stickyHeader = () => {
+    console.log("Scrolling");
     let number =
-      window.pageXOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-    const header = document.getElementById("headerSticky");
+        window.pageXOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+    const header = document.getElementById('headerSticky');
     if (header !== null) {
-      if (number >= 300) {
-        header.classList.add("header--sticky");
-      } else {
-        header.classList.remove("header--sticky");
-      }
+        if (number >= 300) {
+            header.classList.add('header--sticky');
+        } else {
+            header.classList.remove('header--sticky');
+        }
     }
-  };
+};
 
   handleItemDelete = (e, product_id, item_id) => {
     this.setState({ isCartProcessing: true });
     const newProductlist = this.props.shoppingCart.cartProductlist.filter(
       (item) => item.item_id !== item_id || item.product_id !== product_id
     );
-
+   
     this.props.handleAddToCart(
       newProductlist,
       userData()?.token || "",
@@ -95,11 +98,11 @@ class HeaderStandard extends Component {
     );
   };
 
-  handleSignOut = () => {
+  handleSignOut = () =>{
     localStorage.clear();
     this.props.handleSignOut();
     this.props.handleClearCart();
-  };
+  }
 
   countTotalItems = () => {
     let count = 0;
@@ -120,11 +123,12 @@ class HeaderStandard extends Component {
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
+      product
     } = this.props;
-
+    
     return (
       <header
-        className="header header--standard header--market-place-1"
+        className="header header--product header--market-place-1 header--standard"
         dataSticky="true"
         id="headerSticky"
       >
@@ -141,9 +145,17 @@ class HeaderStandard extends Component {
 
                 {/* changed */}
                 <div className="menu__content">
-                  <div className="menu__content">
-                    <Menu source={categories} className="menu menu--dropdown" />
-                  </div>
+                  <ul className="menu--dropdown">
+                    {categories.map((item) => (
+                      <li key={item.id}>
+                        <Link to={item.link}>
+                          <i>{item.icon}</i>
+                          {item.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  {/* changed - end */}
                 </div>
               </div>
               <Link className="ps-logo" to="/">
@@ -173,7 +185,7 @@ class HeaderStandard extends Component {
                         {shoppingCart?.cartSummery?.total_prdoucts ||
                           this.countTotalItems() ||
                           0}
-                      </i>
+                      </i>  
                     </span>
                   </a>
 
@@ -338,6 +350,12 @@ class HeaderStandard extends Component {
             </div>
           </div>
         </nav>
+      
+        <nav className="navigation navigation--product">
+                <div className="container">
+                    <ProductOnHeader product={product} />
+                </div>
+            </nav>
       </header>
     );
   }
@@ -362,4 +380,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderStandard);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderStandardProduct);

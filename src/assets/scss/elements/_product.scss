@@ -133,16 +133,23 @@
     margin: 0;
     display: block;
     padding: 0 0 5px;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.2em;
     color: #06c;
     --max-lines: 2;
     max-height: calc(1.2em * var(--max-lines));
     overflow: hidden;
     padding-right: 1rem;
-    min-height: 35px;
+    min-height: 43px;
     overflow: hidden;
     text-overflow: ellipsis; 
+    @media screen and (max-width: 992px){
+      min-height: 43px;
+    }
+    @media screen and (max-width: 768px){
+      font-size: 16px;
+      min-height: 40px;
+    }
     &:hover {
       color: $color-1st;
     }
@@ -429,7 +436,7 @@
   display: flex;
   flex-flow: row nowrap;
   margin-bottom: 30px;
-  padding-right: 15px;
+  /* padding-right: 15px; */
 
   .ps-product__rating {
     .ps-rating {
@@ -444,10 +451,12 @@
   .ps-product__title {
     margin: 0;
     padding: 0 0 5px;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.2em;
     color: #06c;
-
+    @media screen and (max-width: 768px){
+      font-size: 16px;
+    }
     &:hover {
       color: $color-1st;
     }

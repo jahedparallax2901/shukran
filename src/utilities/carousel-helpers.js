@@ -37,6 +37,13 @@ export const carouselStandard = {
                 slidesToScroll: 2,
             },
         },
+        {
+            breakpoint: 375,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
     ],
 };
 
@@ -141,6 +148,14 @@ export const carouselFullwidth = {
             breakpoint: 480,
             settings: {
                 slidesToShow: 2,
+                dots: true,
+                arrows: false,
+            },
+        },
+        {
+            breakpoint: 375,
+            settings: {
+                slidesToShow: 1,
                 dots: true,
                 arrows: false,
             },

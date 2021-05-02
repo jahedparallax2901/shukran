@@ -39,11 +39,13 @@
         vertical-align: top;
 
         &:after {
-            content: '\e93a';
-            @include vertical-align();
+            content: ">";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
             right: 8px;
-            font-family: 'Linearicons';
-            font-size: 12px;
+            font-family: "Linearicons";
+            font-size: 21px;
         }
 
         select.form-control {

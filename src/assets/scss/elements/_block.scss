@@ -791,16 +791,17 @@
     .ps-block__product-box {
         display: flex;
         flex-flow: row wrap;
-
+        background: #fff;
         > * {
             max-width: 33.333333%;
+            height: 50%;
         }
     }
 
     .ps-product--simple {
         background-color: #fff;
         border-right: 1px solid #e1e1e1;
-        border-top: 1px solid #e1e1e1;
+        border-bottom: 1px solid #e1e1e1;
 
         &:hover {
             border-color: #e1e1e1;
@@ -859,10 +860,10 @@
         }
 
         .ps-product--simple {
-            padding: 20px;
-            border: 1px solid #e1e1e1;
+            padding: 20px;  
+            /* border: 1px solid #e1e1e1;
             border-right: none;
-            border-bottom: none;
+            border-bottom: none; */
         }
     }
 
