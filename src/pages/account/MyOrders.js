@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
+import {Link} from 'react-router-dom'
+import {processGetRequest} from "../../services/baseServices";
 
 const MyOrders = () => {
   const breadCrumb = [
@@ -12,6 +14,97 @@ const MyOrders = () => {
         text: 'Account / Orders',
     },
 ];
+
+
+  const [orderList , setOrderList] = useState(["1"])
+
+
+  useEffect(()=>{
+/*
+    processGetRequest('',{} ,true).then((res)=>{
+      setOrderList(res)
+    })*/
+
+  },[])
+
+
+  const OrderComponent = () => {
+
+    return(
+        <>{orderList && orderList.map((data , index) =>(
+              <>
+                <tr>
+                  <td className="pl-0">
+                    <a
+                        href="#"
+                        className="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">
+                      1
+                    </a>
+                  </td>
+                  <td>
+                              <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                Mar 21, 2021
+                              </span>
+                    <span className="d-block text-muted font-weight-bolder font-size-sm">
+                                5:21 PM
+                              </span>
+                  </td>
+                  <td>
+                    <a
+                        href="#"
+                        className="text-primary font-weight-bolder text-hover-primary font-size-lg"
+                    >
+                      BD-42323179380
+                    </a>
+                    <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                Total Item: 1
+                              </span>
+                  </td>
+                  <td>
+                              <span className="d-block text-muted font-weight-bolder font-size-sm">
+                                520.00
+                              </span>
+                  </td>
+                  <td>
+                              <span className="d-block text-muted font-weight-bolder font-size-sm">
+                                COD
+                              </span>
+                  </td>
+                  <td>
+                              <span className="d-block text-muted font-weight-bolder font-size-sm">
+                                Unpaid
+                              </span>
+                  </td>
+                  <td>
+                              <span className="d-block text-muted font-weight-bolder font-size-sm">
+                                Pending
+                              </span>
+                  </td>
+                  <td className="pr-0 text-right">
+                    <a
+                        className="btn btn-block btn-sm btn-outline-primary"
+                        target="_blank"
+                        href="http://localhost/shukran-backend/admin/order-detail"
+                    >
+                      View
+                    </a>
+
+                    <Link
+                        className="btn btn-block btn-sm btn-outline-success"
+                        target="_blank"
+                        to={`/invoice/`}>
+                      Invoice
+
+                    </Link>
+
+                  </td>
+                </tr>
+              </>
+          ))}
+        </>)}
+
+
+
   return (
     <ContainerMarketPlace3>
       <section className="ps-my-account ps-page--account pt-3">
@@ -68,71 +161,7 @@ const MyOrders = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td class="pl-0">
-                              <a
-                                href="#"
-                                class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg"
-                              >
-                                1
-                              </a>
-                            </td>
-                            <td>
-                              <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                Mar 21, 2021
-                              </span>
-                              <span class="d-block text-muted font-weight-bolder font-size-sm">
-                                5:21 PM
-                              </span>
-                            </td>
-                            <td>
-                              <a
-                                href="#"
-                                class="text-primary font-weight-bolder text-hover-primary font-size-lg"
-                              >
-                                BD-42323179380
-                              </a>
-                              <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                Total Item: 1
-                              </span>
-                            </td>
-                            <td>
-                              <span class="d-block text-muted font-weight-bolder font-size-sm">
-                                520.00
-                              </span>
-                            </td>
-                            <td>
-                              <span class="d-block text-muted font-weight-bolder font-size-sm">
-                                COD
-                              </span>
-                            </td>
-                            <td>
-                              <span class="d-block text-muted font-weight-bolder font-size-sm">
-                                Unpaid
-                              </span>
-                            </td>
-                            <td>
-                              <span class="d-block text-muted font-weight-bolder font-size-sm">
-                                Pending
-                              </span>
-                            </td>
-                            <td class="pr-0 text-right">
-                              <a
-                                class="btn btn-block btn-sm btn-outline-primary"
-                                target="_blank"
-                                href="http://localhost/shukran-backend/admin/order-detail"
-                              >
-                                View
-                              </a>
-                              <a
-                                class="btn btn-block btn-sm btn-outline-success"
-                                target="_blank"
-                                href="http://localhost/shukran-backend/admin/order-invoice"
-                              >
-                                Invoice
-                              </a>
-                            </td>
-                          </tr>
+                            <OrderComponent/>
                         </tbody>
                       </table>
                     </div>

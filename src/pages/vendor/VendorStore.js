@@ -17,16 +17,15 @@ import Pagination from "react-js-pagination";
 import { Link, useHistory } from "react-router-dom";
 
 const VendorStore = () => {
-  const [storeData, setStoreData] = useState([]);
-  const [storeCategory, setStoreCategory] = useState([]);
-  const [query, setQuery] = useState({});
-  const [searchKey, setSearchKey] = useState("");
+
+  const [storeData , setStoreData] = useState([])
+  const [storeCategory , setStoreCategory] = useState([])
+  const [query , setQuery] = useState({page: "1"})
+  const [searchKey , setSearchKey] = useState("")
   const [pagination, setPagination] = useState({});
   const history = useHistory();
 
-  useEffect(() => {
-    setQuery({ page: "1" });
-  }, []);
+
 
   useEffect(() => {
     getData();
@@ -201,14 +200,16 @@ const VendorStore = () => {
                       </form>
                     </li>
                     <li>
+
+
                       <Pagination
-                        itemClass="page-item"
-                        linkClass="page-link"
-                        activePage={query?.page}
-                        itemsCountPerPage={storeData?.per_page}
-                        totalItemsCount={storeData?.total}
-                        pageRangeDisplayed={3}
-                        onChange={handlePageChange}
+                          itemClass="page-item"
+                          linkClass="page-link"
+                          activePage={query?.page}
+                          itemsCountPerPage={storeData?.per_page}
+                          totalItemsCount={storeData?.total}
+                          pageRangeDisplayed={3}
+                          onChange={handlePageChange}
                       />
 
                       {/* <ul className="pagination">
@@ -236,88 +237,74 @@ const VendorStore = () => {
                 </nav>
                 <div className="vendor-category-area">
                   <div className="row">
-                    {storeData.map((item, index) => (
-                      <div key={index} className="col-md-6 col-sm-12">
-                        <div className="single-category-vendor">
-                          <div className="category-vendor-top">
-                            <img
-                            onClick={()=>{
-                              history.push(
-                                `/store/product/${item?.store_detail?.id}`
-                              );
-                            }}
-                              src={
-                                item?.store_detail?.file_attach_cover?.file_url
-                              }
-                              alt="fail"
-                            />
-                          </div>
-                          <div className="category-vendor-body">
-                            <div className="shop-owner">
+                    {storeData.map((item , index) => (
+                        <div key={index} className="col-md-6 col-sm-12">
+                          <div className="single-category-vendor">
+                            <div className="category-vendor-top">
+                              {item?.store_detail?.file_attach_cover?.file_url != null &&
                               <img
-                                src={
-                                  item?.store_detail?.file_attach_logo?.file_url
-                                }
-                                alt="fail"
-                              />
-                              <Link
-                                to={`/store/product/${item?.store_detail?.id}`}
-                                className="visit-store"
-                              >
-                                Visit Store
-                              </Link>
+                                  onClick={()=>{
+                                    history.push(
+                                        `/store/product/${item?.store_detail?.id}`
+                                    );
+                                  }}
+                                  width={`380`}
+                                  height={`110`}
+                                  src={item?.store_detail?.file_attach_cover?.file_url} alt="" />
+                              }
                             </div>
-                            <div className="shop-details">
-                              <h1 className="shop-name">{item?.name}</h1>
-                              <p className="shop-review">
-                                <i>
-                                  <AiOutlineStar />
-                                </i>
-                                <i>
-                                  <AiOutlineStar />
-                                </i>
-                                <i>
-                                  <AiOutlineStar />
-                                </i>
-                                <i>
-                                  <AiOutlineStar />
-                                </i>
-                                <i>
-                                  <AiOutlineStar />
-                                </i>
-                                <i className="las la-star-of-david"></i>
-                              </p>
-                              <p className="shop-email">
-                                <i>
-                                  <BiEnvelope />
-                                </i>{" "}
-                                {item?.vendor?.email}
-                              </p>
-                              <p className="shop-number">
-                                <i>
-                                  <BsPhone />
-                                </i>{" "}
-                                {item?.vendor?.phone}
-                              </p>
-                              <button
-                                className="shop-inquiry"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  history.push(
-                                    `/store/product/${item?.store_detail?.id}`
-                                  );
-                                }}
-                              >
-                                <i>
-                                  <AiOutlineQuestionCircle />
-                                </i>
-                                Inquiry
-                              </button>
+                            <div className="category-vendor-body">
+                              <div className="shop-owner">
+                                <img style={{width: 80, height: 100, borderRadius: 100/ 2}}
+                                     src={item?.store_detail?.file_attach_logo?.file_url} alt="fail" />
+                                <a className="visit-store" href="vendor-store.html">
+                                  Visit Store
+                                </a>
+                              </div>
+                              <div className="shop-details">
+                                <h1 className="shop-name">{item?.name}</h1>
+                                <p className="shop-review">
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i>
+                                    <AiOutlineStar />
+                                  </i>
+                                  <i className="las la-star-of-david"></i>
+                                </p>
+                                <p className="shop-email">
+                                  <i>
+                                    <BiEnvelope />
+                                  </i>{" "}
+                                  {item?.vendor?.email}
+                                </p>
+                                <p className="shop-number">
+                                  <i>
+                                    <BsPhone />
+                                  </i>{" "}
+                                  {item?.vendor?.phone}
+                                </p>
+                                <button className="shop-inquiry">
+                                  <i>
+                                    <AiOutlineQuestionCircle />
+                                  </i>
+                                  Inquiry
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
                     ))}
+
                   </div>
                 </div>
               </div>
