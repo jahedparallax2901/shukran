@@ -11,14 +11,27 @@ import { FaChartBar, FaRegHeart } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
 import { Link } from "react-router-dom";
+import { userData } from "../../../helpers/authUtils";
 
 const ModuleProductActions = ({ product }) => {
   // const dispatch = useDispatch();
   const [isQuickView, setIsQuickView] = useState(false);
 
+  const addItemToWishlist = (id) =>{
+
+  }
+  
   const handleAddItemToCart = (e) => {
     e.preventDefault();
-    // dispatch(addItem(product));
+    e.preventDefault();
+    const user = userData();
+    if (!user) {
+      this.props.handleShowAuthModal(() => {
+        
+      });
+    } else {
+      
+    }
   };
 
   const handleAddItemToCompare = (e) => {
@@ -72,7 +85,7 @@ const ModuleProductActions = ({ product }) => {
           data-toggle="tooltip"
           data-placement="top"
           title="Add to wishlist"
-          // onClick={handleAddItemToWishlist}
+          onClick={handleAddItemToWishlist}
         >
           <i>
             <FaRegHeart />
