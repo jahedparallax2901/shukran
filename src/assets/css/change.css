@@ -11,7 +11,7 @@
 }
 
 #shop-now-home3 .ps-section__content .ps-block--category {
-  height: 190px;
+  height: 200px;
   margin: 0px auto 30px auto;
 }
 #shop-now-home3 .ps-shop-brand,
@@ -490,7 +490,8 @@
   color: #006c32;
 }
 .ps-product .ps-product__price.sale del {
-  color: #ed1c24;
+  /* color: #ed1c24; */
+  color: #525252;
 }
 .ps-footer {
   padding-top: 50px;
@@ -672,11 +673,11 @@
   background: #ffffff;
 }
 .ps-shopping .ps-shopping__header {
-  font-size: 24px;
+  font-size: 20;
   padding: 8px 0px;
 }
 .ps-shopping .ps-shopping__header p {
-  font-size: 24px;
+  font-size: 20px;
 }
 .shop-default-layout {
   margin-top: 50px;
@@ -739,14 +740,17 @@
   background: #ffffff;
 }
 .home-categories-body .all-category-single {
-  height: 120px;
+  height: 110px;
 }
 .home-categories-body .ps-block--category {
   height: 242px;
 }
+.home-categories-body .ps-block--category p {
+  margin-top: 5px;
+}
 .home-categories-body .ps-product--inner .ps-block--category img {
   width: 100%;
-  height: 115px;
+  height: 100%;
   object-fit: contain;
 }
 @media screen and (max-width: 425px) {

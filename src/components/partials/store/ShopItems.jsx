@@ -8,12 +8,6 @@ import SkeletonProduct from '../shared/SkeletonProduct';
 import ModuleShopSortBy from './module/ModuleShopSortBy';
 import { BsGrid3X3Gap } from 'react-icons/bs';
 import { ImList } from 'react-icons/im';
-// import Product from '~/components/elements/products/Product';
-// import ProductWide from '~/components/elements/products/ProductWide';
-// import ProductRepository from '~/repositories/ProductRepository';
-// import ModuleShopSortBy from '~/components/partials/shop/modules/ModuleShopSortBy';
-// import { generateTempArray } from '~/utilities/common-helpers';
-// import SkeletonProduct from '~/components/elements/skeletons/SkeletonProduct';
 
 const ShopItems = ({ columns = 4, pageSize = 12 }) => {
     const [listView, setListView] = useState(true);
