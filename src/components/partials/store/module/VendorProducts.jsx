@@ -20,13 +20,16 @@ class VendorProducts extends Component {
 
     render() {
         const viewMode = this.state.listView;
+        const products = this.props?.products?.data;
+        console.log("Products", products)
+
         return (
             <div className="ps-shopping vendor-shop">
                 <div className="ps-shopping__header">
                     <p>
                         <strong>
                             {' '}
-                            {dealOfTheDayProducts ? dealOfTheDayProducts.length : 0}
+                            {products ? products.length : 0}
                         </strong>{' '}
                         Products found
                     </p>
@@ -71,8 +74,8 @@ class VendorProducts extends Component {
                     {viewMode === true ? (
                         <div className="ps-shopping-product">
                             <div className="row">
-                                {dealOfTheDayProducts && dealOfTheDayProducts.length > 0
-                                    ? dealOfTheDayProducts.map((product) => (
+                                {products && products.length > 0
+                                    ? products.map((product) => (
                                           <div
                                               className="col-lg-3 col-md-4 col-sm-6 col-6 "
                                               key={product.id}>
@@ -86,8 +89,8 @@ class VendorProducts extends Component {
                         </div>
                     ) : (
                         <div className="ps-shopping-product">
-                            {dealOfTheDayProducts && dealOfTheDayProducts.length > 0
-                                ? dealOfTheDayProducts.map((product) => (
+                            {products && products.length > 0
+                                ? products.map((product) => (
                                       <ProductWide
                                           product={product}
                                           key={product.id}

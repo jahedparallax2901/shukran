@@ -6,12 +6,8 @@ import { Link } from 'react-router-dom';
 import Rating from '../Rating';
 import { formatCurrency } from '../../../utilities/product-helper';
 import ProductDetailQuickView from '../../product/ProductDetailQuickView';
-// import ProductDetailQuickView from '../detail/ProductDetailQuickView';
-// import Rating from '../Rating';
-// import { formatCurrency } from '../../../utilities/product-helper';
-// import { addItem } from '../../../store/cart/action';
-// import { addItemToCompare } from '../../../store/compare/action';
-// import { addItemToWishlist } from '../../../store/wishlist/action';
+import noImage from '../../../assets/img/no_image.jpg';
+import ModuleProductActions from './ModuleProductActions';
 
 class Product extends Component {
     constructor(props) {
@@ -52,27 +48,27 @@ class Product extends Component {
     render() {
         const { product, currency } = this.props;
         let productBadge = null;
-        if (product.badge && product.badge !== null) {
-            product.badge.map((badge) => {
-                if (badge.type === 'sale') {
-                    return (productBadge = (
-                        <div className="ps-product__badge">{badge.value}</div>
-                    ));
-                } else if (badge.type === 'outStock') {
-                    return (productBadge = (
-                        <div className="ps-product__badge out-stock">
-                            {badge.value}
-                        </div>
-                    ));
-                } else {
-                    return (productBadge = (
-                        <div className="ps-product__badge hot">
-                            {badge.value}
-                        </div>
-                    ));
-                }
-            });
-        }
+        // if (product.badge && product.badge !== null) {
+        //     product.badge.map((badge) => {
+        //         if (badge.type === 'sale') {
+        //             return (productBadge = (
+        //                 <div className="ps-product__badge">{badge.value}</div>
+        //             ));
+        //         } else if (badge.type === 'outStock') {
+        //             return (productBadge = (
+        //                 <div className="ps-product__badge out-stock">
+        //                     {badge.value}
+        //                 </div>
+        //             ));
+        //         } else {
+        //             return (productBadge = (
+        //                 <div className="ps-product__badge hot">
+        //                     {badge.value}
+        //                 </div>
+        //             ));
+        //         }
+        //     });
+        // }
         return (
             <div className="ps-product">
                 <div className="ps-product__thumbnail">
@@ -80,109 +76,64 @@ class Product extends Component {
                         <a>
                             <LazyLoad>
                                 <img
-                                    src={product.thumbnail.url}
+                                    src={product?.single_image || noImage}
                                     alt="shukran"
                                 />
                             </LazyLoad>
                         </a>
                     </Link>
                     {product.badge ? productBadge : ''}
-                    <ul className="ps-product__actions">
-                        <li>
-                            <a
-                                href="#"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Read More"
-                                onClick={this.handleAddItemToCart.bind(this)}>
-                                <i className="icon-bag2"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Quick View"
-                                onClick={this.handleShowQuickView.bind(this)}>
-                                <i className="icon-eye"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Add to wishlist"
-                                onClick={this.handleAddItemToWishlist.bind(
-                                    this
-                                )}>
-                                <i className="icon-heart"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Compare"
-                                onClick={this.handleAddItemToCompare.bind(
-                                    this
-                                )}>
-                                <i className="icon-chart-bars"></i>
-                            </a>
-                        </li>
-                    </ul>
+
+                    <ModuleProductActions product={product}/>
                 </div>
+                
                 <div className="ps-product__container">
-                    <Link href="/shop">
+                    {/* <Link to="/shop">
                         <a className="ps-product__vendor">Young Shop</a>
-                    </Link>
+                    </Link> */}
                     <div className="ps-product__content">
                         <Link
-                            href="/product/[pid]"
-                            as={`/product/${product.id}`}>
-                            <a className="ps-product__title">{product.title}</a>
+                            to={`/product/${product.id}`}>
+                            <a className="ps-product__title">{product?.name}</a>
                         </Link>
-                        <div className="ps-product__rating">
+                        {/* <div className="ps-product__rating">
                             <Rating />
                             <span>{product.ratingCount}</span>
-                        </div>
-                        {product.is_sale === true ? (
+                        </div> */}
+                        {product.sale_price < product.price ? (
                             <p className="ps-product__price sale">
-                                {currency ? currency.symbol : '$'}
-                                {formatCurrency(product.price)}
+                                {/* {currency ? currency.symbol : '$'} */}
+                                ৳ {product.price}{' '}
                                 <del className="ml-2">
-                                    {currency ? currency.symbol : '$'}
-                                    {formatCurrency(product.sale_price)}
+                                    {/* {currency ? currency.symbol : '$'} */}
+                                    ৳ {product.sale_price}
                                 </del>
                             </p>
                         ) : (
                             <p className="ps-product__price">
-                                {currency ? currency.symbol : '$'}
-                                {formatCurrency(product.price)}
+                                {/* {currency ? currency.symbol : '$'} */}
+                                ৳ {product.price}
                             </p>
                         )}
                     </div>
                     <div className="ps-product__content hover">
                         <Link
-                            href="/product/[pid]"
-                            as={`/product/${product.id}`}>
-                            <a className="ps-product__title">{product.title}</a>
+                            to={`/product/${product?.id}`}>
+                            <a className="ps-product__title">{product?.name}</a>
                         </Link>
-                        {product.is_sale === true ? (
+                        {product.sale_price < product.price ? (
                             <p className="ps-product__price sale">
-                                {currency ? currency.symbol : '$'}
-                                {formatCurrency(product.price)}{' '}
+                                {/* {currency ? currency.symbol : '$'} */}
+                                ৳ {product.price}{' '}
                                 <del className="ml-2">
-                                    {currency ? currency.symbol : '$'}
-                                    {product.sale_price}
+                                    {/* {currency ? currency.symbol : '$'} */}
+                                    ৳ {product.sale_price}
                                 </del>
                             </p>
                         ) : (
                             <p className="ps-product__price">
-                                {currency ? currency.symbol : '$'}
-                                {formatCurrency(product.price)}
+                                {/* {currency ? currency.symbol : '$'} */}
+                                ৳ {product.price}
                             </p>
                         )}
                     </div>

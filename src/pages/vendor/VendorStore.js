@@ -261,7 +261,7 @@ const VendorStore = () => {
                                 alt="fail"
                               />
                               <Link
-                                to={`store/product/${item?.store_detail?.id}`}
+                                to={`/store/product/${item?.store_detail?.id}`}
                                 className="visit-store"
                               >
                                 Visit Store

@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router";
 import BreadCrumb from "../../components/elements/BreadCrumb";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import FooterMarketPlace2 from "../../components/partials/footer/FooterMarketPlace2";
@@ -15,9 +16,12 @@ const VendorStoreDetails = () => {
       url: "/",
     },
     {
-      text: "Vendor store",
+      text: "Store",
     },
   ];
+
+  const {id} = useParams();
+
   return (
     <div className="site-content">
       <Header isProduct={false} />
@@ -25,7 +29,7 @@ const VendorStoreDetails = () => {
       <MiniShoppinCart />
       <div className="ps-page--single ps-page--vendor">
         <BreadCrumb breacrumb={breadCrumb} />
-        <Store />
+        <Store store_id={id}/>
       </div>
       <FooterMarketPlace2 isExpanded={true} />
     </div>
