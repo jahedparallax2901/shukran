@@ -640,6 +640,7 @@
 }
 .ps-deal-hot .widget_best-sale {
   background: #ffffff;
+  height: 464px;
 }
 .ps-product--detail .ps-product__specification .in-stock {
   color: #006c32;
@@ -855,7 +856,7 @@
   padding: 30px 20px;
   background: #ffffff;
 }
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .store-search-form {
     padding: 15px;
   }
@@ -1005,7 +1006,7 @@
   background: #fff;
   margin-top: 25px;
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   .ps-store-list .ps-store-link {
     margin-bottom: 20px;
     margin-top: 20px;
@@ -1074,7 +1075,7 @@
   left: 20px;
   border: 5px solid #efefef;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-owner img {
     max-height: 70px;
     left: 15px;
@@ -1098,7 +1099,7 @@
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-owner .visit-store {
     top: -15px;
     right: 15px;
@@ -1166,7 +1167,7 @@
   display: flex;
   align-items: center;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-details .shop-inquiry {
     padding: 5px 15px;
     align-items: center;
@@ -1181,7 +1182,7 @@
   padding: 4px 20px;
   border-radius: 5px;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-details .shop-inquiry:hover {
     padding: 5px 15px;
     align-items: center;
@@ -1630,7 +1631,8 @@ button.ps-btn:active {
 }
 .asside-card-checkout .store-div-container {
   margin-bottom: 165px;
-} */
+}
+*/
 /* .asside-card-checkout .store-div .ps-checkbox {
   width: 20px;
 }
@@ -2449,16 +2451,16 @@ button.ps-btn:active {
   font-weight: 600;
 }
 
-.custom-layout{
+.custom-layout {
   padding: 30px 0px 50px 0px;
 }
-@media screen and (max-width: 1366px){
-  .custom-layout{
+@media screen and (max-width: 1366px) {
+  .custom-layout {
     padding: 20px 0px 40px 0px;
   }
 }
-@media screen and (max-width: 768px){
-  .custom-layout{
+@media screen and (max-width: 768px) {
+  .custom-layout {
     padding: 20px 0px 30px 0px;
   }
 }
