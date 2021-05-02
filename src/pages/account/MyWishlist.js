@@ -22,7 +22,7 @@ export default function MyWishlist() {
     },
 ];
 
-  const [storeData , setStoreData] = useState([])
+  const [allData , setAllData] = useState([])
   const [wishlist , setWishList] = useState([])
   const [query , setQuery] = useState({})
   const [pagination, setPagination] = useState({});
@@ -43,7 +43,7 @@ export default function MyWishlist() {
   const getData =() =>{
     processGetRequest('/get-wishlist',query,true).then((res)=>{
       console.log(res)
-      setStoreData(res.wish_lists)
+      setAllData(res.wish_lists)
       setWishList(res.wish_lists.data)
       setIsLoading(false)
     })
@@ -61,10 +61,8 @@ export default function MyWishlist() {
   const handleRemoveData = (e, id) =>{
     e.preventDefault()
     processDeleteRequest(`/remove-wishlist/${id}`,{} , true).then((res)=>{
-      if (res.status){
         getData()
-        toast.success(res.message)
-      }
+        toast.success('Wish list remove successfully')
     })
   }
 
@@ -178,15 +176,18 @@ export default function MyWishlist() {
                               animation="border"
                               variant="secondary"/>
                         </div> :
-                    <WishListComponent/> }
+                        <>
+                          {wishlist.length > 0 ? <><WishListComponent/></> :
+                              <><span className="d-flex justify-content-center w-100 align-items-center">Wishlist is empty</span></>}
+                        </> }
                   </div>
 
                   <Pagination
                       itemClass="page-item"
                       linkClass="page-link"
                       activePage={query?.page}
-                      itemsCountPerPage={storeData?.per_page}
-                      totalItemsCount={storeData?.total}
+                      itemsCountPerPage={allData?.per_page}
+                      totalItemsCount={allData?.total}
                       pageRangeDisplayed={3}
                       onChange={handlePageChange}
                   />
