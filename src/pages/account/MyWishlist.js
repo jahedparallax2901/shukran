@@ -76,6 +76,7 @@ export default function MyWishlist() {
                       className="product-hr d-flex align-items-center justify-content-between my-2"
                       style={{ height: "100px" }}
                   >
+
                     <div
                         className="product-details d-flex align-items-center"
                         style={{ height: "100px" }}
