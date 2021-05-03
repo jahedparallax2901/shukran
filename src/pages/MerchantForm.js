@@ -27,7 +27,7 @@ import {toast} from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
-import { useLocation } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {processGetRequest, processPostRequest} from "../services/baseServices";
 
 
@@ -725,7 +725,7 @@ const MerchantForm = () => {
                                     </span>
                                         <h3 className="success-title">{`Registration Success`}</h3>
                                         <p>{`Merchant registration successfully`}</p>
-                                        <a className="btn btn-primary" href={`/`}>{`Go Back`}</a>
+                                        <Link className="btn btn-primary" to={`/`}>{`Go Back`}</Link>
                                     </div>
                                 </div>
                             }

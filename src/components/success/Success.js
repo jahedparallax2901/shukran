@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useHistory } from "react-router";
 import "../../assets/css/success.css"
+import {Link} from "react-router-dom";
 
 const Success = ({title, message, link, button_text ,link2 , button_text_2}) => {
 
@@ -16,8 +17,9 @@ const Success = ({title, message, link, button_text ,link2 , button_text_2}) => 
                 </span>
                 <h3 className="success-title">{title}</h3>
                 <p>{message}</p>
-                <a className="btn btn-primary" href={link}>{button_text}</a>
-                <a style={{marginLeft: '5px'}} className="btn btn-primary" href={link2}>{button_text_2}</a>
+                <Link className="btn btn-primary" to={link}>{button_text} >{button_text}</Link>
+                <Link style={{marginLeft: '5px'}} className="btn btn-primary" to={link2}>{button_text} >{button_text_2}</Link>
+
             </div>
         </div>
 

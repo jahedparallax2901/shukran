@@ -23,7 +23,7 @@ import {toast} from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
-import { useLocation } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {processGetRequest} from "../services/baseServices";
 
 
@@ -152,30 +152,30 @@ const Invoice = () => {
                                                         </span>
                                                         <span className="badge badge-info ml-4">Pending</span></td>
                                                 </tr>*/}
-                                            {json?.ordered_items && json?.ordered_items.map( (data,index) => (
+                                            {json?.store_product && json?.store_product.map( (data1,index) => (
                                                 <>
-                                                {data.store_product.map((data1,index1) => (<>
-
-                                                   <tr>
-                                                       <td>
+                                                    <tr>
+                                                        <td>
                                                         <span className="d-block">
                                                         <strong>
-                                                        <a href="/products/details/604092662146a37c6fe03ba3" target="_blank">
-                                                            {data1.product.name}
-                                                        </a>
+                                                            <Link to={`/product/${data1.product.id}`}> {data1.product.name} </Link>
+
                                                     </strong></span><span className="d-block text-muted" /></td>
-                                                       <td>{data1.quantity}</td>
-                                                       <td className="text-right">{data1.total_amount}</td>
-                                                       <td>
-                                                           <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
-                                                           </button>
-                                                           <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
-                                                           </button>
-                                                       </td>
+                                                        <td>{data1.quantity}</td>
+                                                        <td className="text-right">{data1.total_amount}</td>
+                                                        <td>
+                                                            <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
+                                                            </button>
+                                                            <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
+                                                            </button>
+                                                        </td>
 
-                                                   </tr>
+                                                    </tr>
+                                               {/* {json.store_product.map((data1,index1) => (<>
 
-                                                </>))}
+
+
+                                                </>))}*/}
                                                 </>
                                             ) )}
                                                 <tr>
@@ -215,7 +215,7 @@ const Invoice = () => {
                                                                     <div className="text"><h4>Pending</h4>
                                                                         <p /></div>
                                                                 </div>
-                                                                <div className="progress-block">
+                                                                <div className="progress-block ">
                                                                     <div className="date">-</div>
                                                                     <div className="circle" />
                                                                     <div className="text"><h4>Confirmed</h4>
