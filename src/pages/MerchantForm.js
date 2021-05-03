@@ -456,7 +456,7 @@ const MerchantForm = () => {
                                                                 fontSize: '15px',
                                                                 color: '#000000'
 
-                                                            }}>Union</Form.Label>
+                                                            }}>Upazila Thana</Form.Label>
                                                         <Form.Control
                                                             name={`owner_union`}
                                                             style={{

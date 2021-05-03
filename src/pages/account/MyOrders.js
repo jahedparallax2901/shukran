@@ -84,16 +84,16 @@ const MyOrders = () => {
                               </span>
                   </td>
                   <td className="pr-0 text-right">
-                    <a className="btn btn-block btn-sm btn-outline-primary"
+                   {/* <a className="btn btn-block btn-sm btn-outline-primary"
                         target="_blank"
                         href={`/product/`+data?.store_product[0]?.product_id}>
                       View
-                    </a>
+                    </a>*/}
 
                     <Link
                         className="btn btn-block btn-sm btn-outline-success"
                         target="_blank"
-                        to={`/invoice/`}>
+                        to={`/invoice/${data.id}`}>
                       Invoice
 
                     </Link>

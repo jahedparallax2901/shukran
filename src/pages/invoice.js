@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { connect } from 'react-redux';
 // import { useRouter } from 'next/router';
-
-
+import { useParams } from "react-router";
 import "../assets/css/checkout.css"
 import "../assets/css/register.css"
 
@@ -25,20 +24,21 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
 import { useLocation } from "react-router-dom";
+import {processGetRequest} from "../services/baseServices";
 
 
 const Invoice = () => {
 
+    const {id} = useParams();
     const location = useLocation()
-
     const [json ,setJson] = useState()
 
     useEffect( ()=>{
-        /* processGetRequest('',{} ,true).then((res)=>{
-         setOrderList(res)
-       })*/
+         processGetRequest(`/order-details/${id}`,{} ,true).then((res)=>{
+             setJson(res.ordered_item)
+       })
 
-        setJson(location.state.json)
+
 
     },[])
 
@@ -86,9 +86,9 @@ const Invoice = () => {
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Ship To</h4>
-                                                        <span className="d-block">{json?.customer_address?.name}</span>
-                                                        <span className="d-block">{json?.customer_address?.phone}</span>
-                                                        <span className="d-block">{json?.customer_address?.address}</span>
+                                                        <span className="d-block">{json?.order?.address?.name}</span>
+                                                        <span className="d-block">{json?.order?.address?.phone_number}</span>
+                                                        <span className="d-block">{json?.order?.address?.address}</span>
                                                         <span className="d-block">
 
                           </span>
@@ -96,11 +96,11 @@ const Invoice = () => {
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Payment Method</h4>
                                                         <span className="d-block" />
-                                                        <span className="d-block">Unpaid</span>
+                                                        <span className="d-block"> {json?.order?.payment?.name}</span>
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Shipping Method</h4>
-                                                        <span className="d-block"> --</span>
+                                                        <span className="d-block"> -- </span>
 
                                                         <span className="d-block" />
                                                     </td>
