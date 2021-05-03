@@ -88,6 +88,7 @@ const MerchantForm = () => {
             .catch((err) => {
                 toast.error(err.message);
                 console.log(err);
+                setIsLoading(false)
             });
     };
 
