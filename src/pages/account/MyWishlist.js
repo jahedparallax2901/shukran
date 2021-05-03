@@ -5,7 +5,6 @@ import AccountMenuSidebar from "../../components/partials/account/AccountMenuSid
 import {processDeleteRequest, processGetRequest} from "../../services/baseServices";
 import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
-import Shimmer from "react-shimmer-effect"
 import Pagination from "react-js-pagination";
 import {Spinner} from "react-bootstrap";
 import {faAlignCenter} from "@fortawesome/free-solid-svg-icons";

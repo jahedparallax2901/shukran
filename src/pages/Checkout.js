@@ -92,6 +92,9 @@ const Checkout = (props) => {
 
   const [orderProductList, setOrderProductList] = useState([]);
   const [checkoutData, setCheckoutData] = useState([]);
+  const [select , setSelect] = useState(0)
+  const [selectCntct , setSelectCntct] = useState(0)
+
 
   useEffect(async () => {
     await orderSummary();
@@ -190,8 +193,8 @@ const Checkout = (props) => {
     e.preventDefault();
     processPostRequest("/place-order", {
       checkout_id: checkoutData?.checkout?.id,
-      address_id: deliverAddress[0]?.id,
-      contact_id: contacts[0]?.id,
+      address_id: select,
+      contact_id: selectCntct,
       payment_gateway_id: 1,
     }, true)
       .then((res) => {
@@ -292,10 +295,12 @@ const Checkout = (props) => {
               <div
                 onClick={(e) => {
                   setSelectedAddress(index);
+                  setSelect(index)
                 }}
                 id={index}
                 key={index}
-                className="single-checkout-body single-checkout-body"
+                //single-checkout-body single-checkout-body-first
+                className={"single-checkout-body single-checkout"+(index === select ? "-body-first" : "" )}
               >
                 <div className="checkout-body-location">
                   {deliverAddress[index].address_type === 0 && (
@@ -342,11 +347,13 @@ const Checkout = (props) => {
               <div
                 onClick={() => {
                   setSelectContact(index);
+                  setSelectCntct(index)
                 }}
                 style={{ marginTop: "5px" }}
                 id={index}
                 key={index}
-                className="single-checkout-body card-number"
+                className={"single-checkout-body "+(index === selectCntct ? "single-checkout-body-first" : "" ) +" card-number"}
+
               >
                 <div className="checkout-body-location">
                   <h4>phone number</h4>
@@ -415,7 +422,7 @@ const Checkout = (props) => {
         {orderProductList &&
           orderProductList.map((data, index) => (
             <div key={index} className="block-card-body border-bottom pt-1">
-              <h4>{data.product.name}</h4>
+              <h4>{data?.product?.name}</h4>
               <p className="d-flex justify-content-between">
                 <span className>{data.quantity}</span>
                 <span className="mx-auto">X</span>
@@ -423,7 +430,7 @@ const Checkout = (props) => {
                   ৳ {data?.price}
                 </span>
                 <span className="mx-auto">X</span>
-                <span className>৳ {data.price}</span>
+                <span className>৳ {data?.price}</span>
               </p>
             </div>
           ))}
@@ -438,19 +445,19 @@ const Checkout = (props) => {
           <p className="d-flex mb-3">
             <span className="mr-2">Subtotal</span>
             <span className="ml-auto">
-              ৳ {checkoutData.checkout?.sub_total_amount}
+              ৳ {checkoutData?.checkout?.sub_total_amount}
             </span>
           </p>
           <p className="d-flex mb-3">
             <span className="mr-2">Discount amount</span>
             <span className="ml-auto">
-              ৳ {checkoutData.checkout?.discount_amount}
+              ৳ {checkoutData?.checkout?.discount_amount}
             </span>
           </p>
           <p className="d-flex">
             <span className="mr-2 font-weight-bold">Total</span>
             <span className="ml-auto text-secondary font-weight-bold">
-              ৳ {checkoutData.checkout?.total_amount}
+              ৳ {checkoutData?.checkout?.total_amount}
             </span>
           </p>
         </div>
