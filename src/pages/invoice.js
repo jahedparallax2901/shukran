@@ -34,9 +34,20 @@ const Invoice = () => {
     const [json ,setJson] = useState()
 
     useEffect( ()=>{
+        /* processGetRequest('',{} ,true).then((res)=>{
+         setOrderList(res)
+       })*/
+
         setJson(location.state.json)
 
     },[])
+
+
+    const getInvoiceData = () => {
+
+
+
+    }
 
     return (
         <ContainerMarketPlace3
