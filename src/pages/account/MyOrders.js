@@ -3,6 +3,8 @@ import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace
 import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
 import {Link} from 'react-router-dom'
 import {processGetRequest} from "../../services/baseServices";
+import {getLocalAuthData} from "../../helpers/utils";
+import moment from "moment"
 
 const MyOrders = () => {
   const breadCrumb = [
@@ -16,14 +18,16 @@ const MyOrders = () => {
 ];
 
 
-  const [orderList , setOrderList] = useState(["1"])
+  const [orderList , setOrderList] = useState([])
 
 
   useEffect(()=>{
-/*
-    processGetRequest('',{} ,true).then((res)=>{
-      setOrderList(res)
-    })*/
+    if (getLocalAuthData() !== null){
+        processGetRequest('/order-lists',{} ,true).then((res)=>{
+          setOrderList(res.ordered_items)
+        })
+    }
+
 
   },[])
 
@@ -38,31 +42,30 @@ const MyOrders = () => {
                     <a
                         href="#"
                         className="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">
-                      1
+                      {index+1}
                     </a>
                   </td>
                   <td>
                               <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                Mar 21, 2021
+                                {moment(data?.created_at).format('ll')}
                               </span>
                     <span className="d-block text-muted font-weight-bolder font-size-sm">
-                                5:21 PM
+                                {moment(data?.created_at).fromNow()}
                               </span>
                   </td>
                   <td>
-                    <a
-                        href="#"
-                        className="text-primary font-weight-bolder text-hover-primary font-size-lg"
-                    >
-                      BD-42323179380
-                    </a>
+                    <Link
+                      to={`/product/`+data?.store_product[0]?.product_id}
+                      className="text-primary font-weight-bolder text-hover-primary font-size-lg"
+                    >{data?.id}</Link>
+
                     <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                Total Item: 1
+                                {/*Total Item:*/}
                               </span>
                   </td>
                   <td>
                               <span className="d-block text-muted font-weight-bolder font-size-sm">
-                                520.00
+                                {data?.total_amount}
                               </span>
                   </td>
                   <td>
@@ -77,15 +80,13 @@ const MyOrders = () => {
                   </td>
                   <td>
                               <span className="d-block text-muted font-weight-bolder font-size-sm">
-                                Pending
+                                {data?.status === 1 && <>Pending</>}
                               </span>
                   </td>
                   <td className="pr-0 text-right">
-                    <a
-                        className="btn btn-block btn-sm btn-outline-primary"
+                    <a className="btn btn-block btn-sm btn-outline-primary"
                         target="_blank"
-                        href="http://localhost/shukran-backend/admin/order-detail"
-                    >
+                        href={`/product/`+data?.store_product[0]?.product_id}>
                       View
                     </a>
 
