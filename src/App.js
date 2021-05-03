@@ -30,6 +30,7 @@ import StoreDetails from "./pages/store/StoreDetails";
 import VendorStore from "./pages/vendor/VendorStore";
 import ProductCompare from "./pages/product/ProductCompare";
 import MyContacts from "./pages/account/MyContacts";
+import VendorStoreDetails from "./pages/store/VendorStoreDetails";
 
 function App() {
   const homePath = "/";
@@ -138,6 +139,10 @@ function App() {
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/vendor/store">
             <VendorStore />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/store/product/:id">
+            <VendorStoreDetails />
           </Route>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/compare">

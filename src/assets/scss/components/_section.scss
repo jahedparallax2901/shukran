@@ -48,18 +48,20 @@
 }
 
 .ps-section--vendor {
-  padding: 50px 0;
+  padding: 100px 0;
 
   .ps-section__header {
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 90px;
+
     p {
-      margin-bottom: 15px;
+      margin-bottom: 30px;
       font-size: 16px;
       font-weight: 600;
       color: #666666;
       text-transform: uppercase;
     }
+
     h4 {
       font-weight: 400;
       color: $color-heading;
@@ -101,7 +103,7 @@
 }
 
 .ps-section--shopping {
-  padding: 60px 0;
+  padding: 50px 0;
   padding-top: 0;
 
   .container {
@@ -110,7 +112,7 @@
 
   .ps-section__header {
     text-align: center;
-    padding: 40px 0;
+    padding: 30px;
 
     h1 {
       font-size: 48px;
@@ -129,7 +131,7 @@
     }
   }
   @include media("<sm") {
-    padding: 40px 0;
+    padding: 30px 0;
     padding-top: 0;
     .ps-section__header {
       padding-bottom: 40px;
@@ -140,7 +142,7 @@
     }
   }
   @include media("<xs") {
-    padding: 40px 0;
+    padding: 30px 0;
     padding-top: 0;
   }
 }
@@ -326,16 +328,12 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
-    @media screen and (max-width: 425px) {
-      align-items: flex-end;
-    }
     > a {
       display: inline-block;
       padding-bottom: 2px;
       color: #000;
       border-bottom: 1px solid #000;
       min-width: 60px;
-      text-align: center;
       &:hover {
         color: $color-1st;
         border-color: $color-1st;
@@ -592,14 +590,9 @@
 }
 
 .ps-client-say {
-  padding: 50px 0;
+  padding: 70px 0;
   background-color: #f5f5f5;
-  @media screen and (max-width: 1366px) {
-    padding: 40px 0px;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 30px 0px;
-  }
+
   .ps-section__header {
     margin-bottom: 30px;
     display: flex;
@@ -709,6 +702,17 @@
 
   .widget_best-sale {
     border-bottom: 1px solid #d9d9d9;
+    max-height: 465px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-top: 0;
+    .widget-title {
+      padding-top: 17px;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
   }
 }
 
@@ -736,7 +740,7 @@
     h3 {
       margin-bottom: 0;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 400;
 
       span {
         font-size: 14px;
@@ -1049,8 +1053,8 @@
     }
   }
 
-  .ps-section__content {
-  }
+  // .ps-section__content {
+  // }
 
   @include media("<lg") {
     padding: 100px 0;
@@ -1258,8 +1262,8 @@
 .ps-vendor-milestone {
   background-color: #f6f6f6;
 
-  .ps-section__content {
-  }
+  // .ps-section__content {
+  // }
 }
 
 .ps-vendor-best-fees {
@@ -1415,12 +1419,7 @@
 .ps-vendor-faqs {
   figure {
     margin-bottom: 50px;
-    @media screen and (max-width: 1366px) {
-      margin-bottom: 40px;
-    }
-    @media screen and (max-width: 768px) {
-      margin-bottom: 30px;
-    }
+
     figcaption {
       font-size: 18px;
       color: $color-heading;
@@ -1428,63 +1427,51 @@
       margin-bottom: 20px;
       line-height: 1.4em;
     }
-
-    p {
-      font-size: 16px;
-      margin-bottom: 50px;
-      @media screen and (max-width: 1366px) {
-        margin-bottom: 40px;
-      }
-      @media screen and (max-width: 768px) {
-        margin-bottom: 30px;
-      }
-    }
   }
 
+  p {
+    font-size: 16px;
+  }
+}
+
+.ps-section__footer {
+  padding-top: 100px;
+  text-align: center;
+  border-top: 1px solid #e1e1e1;
+
+  p {
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-weight: 400;
+    color: $color-heading;
+  }
+}
+
+.ps-btn {
+  padding: 20px 40px;
+  font-size: 24px;
+}
+
+@include media("<md") {
   .ps-section__footer {
-    padding-top: 50px;
-    text-align: center;
-    border-top: 1px solid #e1e1e1;
-    @media screen and (max-width: 1366px) {
-      padding-top: 40px;
-    }
-    @media screen and (max-width: 768px) {
-      padding-top: 30px;
-    }
+    padding-top: 60px;
+
     p {
-      margin-bottom: 40px;
-      font-size: 30px;
-      font-weight: 400;
-      color: $color-heading;
+      font-size: 20px;
     }
 
     .ps-btn {
-      padding: 20px 40px;
-      font-size: 24px;
+      font-size: 16px;
+      padding: 15px 30px;
     }
   }
+}
+@include media("<xs") {
+  .ps-section__footer {
+    padding-top: 50px;
 
-  @include media("<md") {
-    .ps-section__footer {
-      padding-top: 60px;
-
-      p {
-        font-size: 20px;
-      }
-
-      .ps-btn {
-        font-size: 16px;
-        padding: 15px 30px;
-      }
-    }
-  }
-  @include media("<xs") {
-    .ps-section__footer {
-      padding-top: 50px;
-
-      p {
-        font-size: 18px;
-      }
+    p {
+      font-size: 18px;
     }
   }
 }
@@ -1646,30 +1633,30 @@
     .ps-section__left {
       max-width: 25%;
     }
+  }
+
+  .ps-section__right {
+    max-width: 75%;
+    padding-left: 30px;
+  }
+}
+
+.ps-block--vendor-filter {
+  margin-bottom: 45px;
+}
+
+@include media("<lg") {
+  .ps-section__container {
+    flex-flow: column wrap;
+
+    .ps-section__left {
+      max-width: 450px;
+      margin-bottom: 30px;
+    }
 
     .ps-section__right {
-      max-width: 75%;
-      padding-left: 30px;
-    }
-  }
-
-  .ps-block--vendor-filter {
-    margin-bottom: 45px;
-  }
-
-  @include media("<lg") {
-    .ps-section__container {
-      flex-flow: column wrap;
-
-      .ps-section__left {
-        max-width: 450px;
-        margin-bottom: 30px;
-      }
-
-      .ps-section__right {
-        max-width: 100%;
-        padding-left: 0;
-      }
+      max-width: 100%;
+      padding-left: 0;
     }
   }
 }
@@ -1996,16 +1983,8 @@
 
   .ps-section__right {
     margin-bottom: 50px;
-    @media screen and (max-width: 1024px) {
-      margin-bottom: 0px;
-    }
   }
-  .ps-section__left {
-    @media screen and (max-width: 1024px) {
-      margin-top: 0px !important;
-      margin-bottom: 30px;
-    }
-  }
+
   .ps-store-link {
     margin-bottom: 50px;
     padding: 14px 15px;

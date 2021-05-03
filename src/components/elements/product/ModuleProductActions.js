@@ -43,7 +43,7 @@ const ModuleProductActions = ({ product }) => {
     <ul className="ps-product__actions">
       <li>
         <Link
-          to={`/product/detail/${product?.product_id}`}
+          to={`/product/detail/${product?.product_id || product?.id}`}
           data-toggle="tooltip"
           data-placement="top"
           title="Add To Cart"
@@ -68,7 +68,7 @@ const ModuleProductActions = ({ product }) => {
       </li>
       <li>
         <Link
-          to={`/product/detail/${product?.product_id}`}
+          to={`/product/detail/${product?.product_id || product?.id}`}
           data-toggle="tooltip"
           data-placement="top"
           title="Add to wishlist"
@@ -81,7 +81,7 @@ const ModuleProductActions = ({ product }) => {
       </li>
       <li>
         <Link
-          to={`/product/detail/${product?.product_id}`}
+          to={`/product/detail/${product?.product_id || product?.id}`}
           data-toggle="tooltip"
           data-placement="top"
           title="Compare"
@@ -106,7 +106,7 @@ const ModuleProductActions = ({ product }) => {
           </i>
         }
       >
-        <ProductDetailQuickView id={product?.product_id} />
+        <ProductDetailQuickView id={product?.product_id || product?.id} />
       </Modal>
     </ul>
   );
