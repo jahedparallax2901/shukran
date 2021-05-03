@@ -131,7 +131,6 @@ class HeaderStandard extends Component {
     return (
       <header
         className="header header--standard header--market-place-1"
-        dataSticky="true"
         id="headerSticky"
       >
         <div className="header__content">

@@ -32,11 +32,11 @@ export default function SearchProduct() {
     // setProductItems(dealOfTheDayProducts);
     processGetRequest("/search-engine", params)
       .then((res) => {
-        const { current_page, last_page, per_page } = res.product;
+        const { current_page, total , per_page } = res.product;
         setProductItems(res.product.data);
         setTotal(res.product.total);
-        setQuery({ ...query});
-        setPagination({current_page, last_page, per_page})
+        setQuery(queryString.parse(history.location.search));
+        setPagination({current_page, total, per_page})
         setTimeout(
           function () {
             setLoading(false);
