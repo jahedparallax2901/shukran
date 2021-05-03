@@ -34,6 +34,8 @@ import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
 import { toast } from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
+import { getCartItems, handleClearCart } from "../redux";
+import { connect } from "react-redux";
 
 const Checkout = (props) => {
   const [defaultSelected, setDefaultSelected] = useState([0]);
@@ -198,8 +200,11 @@ const Checkout = (props) => {
       payment_gateway_id: 1,
     }, true)
       .then((res) => {
-        if (res.status) {
-          toast.success("Order successfully placed");
+        if (res.status === 200) {
+          props.getCartItems(()=>{
+            toast.success("Order successfully placed");
+            props.shoppingCart.cartSummery.total_prdoucts === 0 && props.handleClearCart()
+          })
 
           history.push({
             pathname: '/invoice',
@@ -466,7 +471,7 @@ const Checkout = (props) => {
   };
 
   return (
-    <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
+    <ContainerMarketPlace3 title="Checkout" isExpanded={true} isCartAvailable={false}>
       <Modal
         className="info-modal"
         show={isShowModal}
@@ -1325,4 +1330,17 @@ const Checkout = (props) => {
   );
 };
 
-export default Checkout;
+const mapStateToProps = (state) =>{
+  return{
+    shoppingCart: state.shoppingCart
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    getCartItems: (cb)=> dispatch(getCartItems(cb)),
+    handleClearCart: () => dispatch(handleClearCart()),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Checkout);

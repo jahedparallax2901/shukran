@@ -325,7 +325,7 @@ class MiniShoppinCart extends Component {
           </div>
         ) : (
           <>
-            {shoppingCart?.cartItems?.length > 0 ? (
+            {shoppingCart?.cartSummery?.total_prdoucts !== 0 || shoppingCart?.cartItems?.length > 0 ? (
               <>
                 <div className="select-all-div">
                   <div className="ps-checkbox">
@@ -574,7 +574,7 @@ class MiniShoppinCart extends Component {
                       </div>
                     ) : (
                       <>
-                        {!shoppingCart.cartSummery.coupon ? (
+                        {!shoppingCart?.cartSummery?.coupon ? (
                           <>
                             <input
                               type="text"
