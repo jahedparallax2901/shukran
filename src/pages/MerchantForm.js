@@ -72,7 +72,11 @@ const MerchantForm = () => {
     const handleFormSubmit = (e, url) => {
         e.preventDefault();
         setIsLoading(true)
-        processPostRequest(url, formData, true)
+        const data = new FormData();
+        Object.keys(formData).map(item=>{
+            data.append(item,formData[item])
+        })
+        processPostRequest(url, data, true)
             .then((res) => {
                 if (res.status) {
                     toast.success(res.data.message);
