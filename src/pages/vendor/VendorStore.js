@@ -18,6 +18,7 @@ import { Link, useHistory } from "react-router-dom";
 
 const VendorStore = () => {
 
+  const [allData , setAllData] = useState()
   const [storeData , setStoreData] = useState([])
   const [storeCategory , setStoreCategory] = useState([])
   const [query , setQuery] = useState({page: "1"})
@@ -34,6 +35,7 @@ const VendorStore = () => {
   const getData = () => {
     processGetRequest("/merchant/store-list", query, true).then((res) => {
       setStoreData(res.merchants.data);
+      setAllData(res.merchants)
       setStoreCategory(res.store_categories);
     });
   };
@@ -200,38 +202,15 @@ const VendorStore = () => {
                       </form>
                     </li>
                     <li>
-
-
                       <Pagination
                           itemClass="page-item"
                           linkClass="page-link"
                           activePage={query?.page}
-                          itemsCountPerPage={storeData?.per_page}
-                          totalItemsCount={storeData?.total}
+                          itemsCountPerPage={allData?.per_page}
+                          totalItemsCount={allData?.total}
                           pageRangeDisplayed={3}
                           onChange={handlePageChange}
                       />
-
-                      {/* <ul className="pagination">
-                        <li className="active">
-                          <a href="#">1</a>
-                        </li>
-                        <li>
-                          <a href="#">2</a>
-                        </li>
-                        <li>
-                          <a href="#">3</a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Next Page
-                            <i>
-                              {" "}
-                              <BsChevronRight />
-                            </i>
-                          </a>
-                        </li>
-                      </ul>*/}
                     </li>
                   </ul>
                 </nav>
@@ -257,7 +236,12 @@ const VendorStore = () => {
                               <div className="shop-owner">
                                 <img style={{width: 80, height: 100, borderRadius: 100/ 2}}
                                      src={item?.store_detail?.file_attach_logo?.file_url} alt="fail" />
-                                <a className="visit-store" href="vendor-store.html">
+
+                                <a className="visit-store"  onClick={()=>{
+                                  history.push(
+                                      `/store/product/${item?.store_detail?.id}`
+                                  );
+                                }}>
                                   Visit Store
                                 </a>
                               </div>
