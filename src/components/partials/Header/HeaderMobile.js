@@ -115,12 +115,13 @@ class HeaderMobile extends Component {
                     </div>
                   ) : (
                     <>
-                      {shoppingCart.cartItems?.length > 0 ? (
+                      {shoppingCart?.cartSummery?.total_prdoucts > 0 ||
+                      shoppingCart?.cartItems?.length > 0 ? (
                         <>
                           <div className="ps-cart__items">
                             {shoppingCart.cartItems.map((item) => (
                               <>
-                                {item?.store_product &&
+                                {item?.store_product?.length > 0 &&
                                   item.store_product.map((store_item) => (
                                     <div className="ps-product--cart-mobile">
                                       <div className="ps-product__thumbnail">
@@ -205,12 +206,12 @@ class HeaderMobile extends Component {
                       </i>
                     </a>
                     <a className="ps-block__right">
-                        <Link
-                          className="user-phone-number my-auto"
-                          to="/account/my-account"
-                        >
-                          {user.phone}
-                        </Link>
+                      <Link
+                        className="user-phone-number my-auto"
+                        to="/account/my-account"
+                      >
+                        {user.phone}
+                      </Link>
                       {/* <br/>
                       <a onClick={() => this.handleSignOut()}>Logout</a> */}
                     </a>
