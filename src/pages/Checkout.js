@@ -65,7 +65,7 @@ const Checkout = (props) => {
 
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1
@@ -113,6 +113,8 @@ const Checkout = (props) => {
   const [checkoutData, setCheckoutData] = useState([]);
   const [select , setSelect] = useState(0)
   const [selectCntct , setSelectCntct] = useState(0)
+  const [selectPaymentGateWay , setSelectPaymentGateWay] = useState(1)
+
   const [isSuccessPlace , setIsSuccessPlace] = useState(false)
 
 
@@ -224,7 +226,7 @@ const Checkout = (props) => {
         checkout_id: checkoutData?.checkout?.id,
         address_id: deliverAddress[select]?.id,
         contact_id: contacts[selectCntct]?.id,
-        payment_gateway_id: 1,
+        payment_gateway_id: selectPaymentGateWay,
       }, true)
           .then((res) => {
             if (res.status === 200) {
@@ -1297,7 +1299,11 @@ const Checkout = (props) => {
                             <Slider {...settings}>
                               {numberOfPicture.map((data, index) => (
                                   <div key={index}>
-                                    <div key={index} className="owl-item" style={{ width: 230, marginLeft: 0 , }}>
+                                    <div key={index}
+                                         onClick={()=>{
+                                           setSelectPaymentGateWay(index+1)
+                                         }}
+                                         className="owl-item" style={{ width: 230, marginLeft: 0 , }}>
                                       {/*single-checkout-body single-checkout-body-first payment-body*/}
                                       {/*single-checkout-body payment-body*/}
                                       <div className={"single-checkout-body "+(index === 0 ? "single-checkout-body-first" : "" ) +" payment-body"}>

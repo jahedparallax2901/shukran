@@ -111,7 +111,7 @@ function App() {
             <MerchantForm />
           </Route>
 
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/invoice">
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/invoice/:id">
             <Invoice />
           </Route>
 
