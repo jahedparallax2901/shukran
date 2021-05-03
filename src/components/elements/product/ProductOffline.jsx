@@ -116,27 +116,6 @@ class Product extends Component {
                             </p>
                         )}
                     </div>
-                    <div className="ps-product__content hover">
-                        <Link
-                            to={`/product/${product?.id}`}>
-                            <a className="ps-product__title">{product?.name}</a>
-                        </Link>
-                        {product.sale_price < product.price ? (
-                            <p className="ps-product__price sale">
-                                {/* {currency ? currency.symbol : '$'} */}
-                                ৳ {product.price}{' '}
-                                <del className="ml-2">
-                                    {/* {currency ? currency.symbol : '$'} */}
-                                    ৳ {product.sale_price}
-                                </del>
-                            </p>
-                        ) : (
-                            <p className="ps-product__price">
-                                {/* {currency ? currency.symbol : '$'} */}
-                                ৳ {product.price}
-                            </p>
-                        )}
-                    </div>
                 </div>
                 <Modal
                     title={product.title}

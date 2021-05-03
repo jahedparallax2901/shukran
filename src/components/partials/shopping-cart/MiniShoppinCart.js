@@ -29,13 +29,13 @@ class MiniShoppinCart extends Component {
     scrollbody.onscroll = function () {
       let cartFooter = document.getElementById("all-checkout");
       console.log(cartFooter);
-      let sticky = cartFooter.offsetTop;
-      if (scrollbody.scrollTop * 4 > sticky) {
+      let sticky = cartFooter?.offsetTop || 0;
+      if (sticky > 0 && scrollbody.scrollTop * 4 > sticky) {
         cartFooter.classList.add("custom-sticky");
         let lastStore = document.querySelectorAll(".store-div");
         lastStore = lastStore[lastStore.length - 1];
         lastStore.style.marginBottom = "165px";
-      } else {
+      } else if(sticky > 0) {
         cartFooter.classList.remove("custom-sticky");
         let lastStore = document.querySelectorAll(".store-div");
         lastStore = lastStore[lastStore.length - 1];
