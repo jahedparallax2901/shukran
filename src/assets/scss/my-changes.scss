@@ -27,7 +27,7 @@
   
   .loading-wrapper {
     position: absolute;
-    height: 100vh;
+    height: calc(100vh - 52px);
     width: 100%;
     display: flex;
     justify-content: center;

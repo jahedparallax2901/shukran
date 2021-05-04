@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 // import NavigationList from '../partials/NavigationList';
 import FooterMarketPlace2 from "../partials/footer/FooterMarketPlace2";
 import Header from "../partials/Header/Header";
+import NavigationList from "../partials/navigation/NavigationList";
 import FloatingCart from "../partials/shared/shopping-cart/FloatingCart";
 import MiniShoppinCart from "../partials/shopping-cart/MiniShoppinCart";
 // import MarketPlacePromotionHeader from '../partials/MarketPlacePromotionHeader';
@@ -35,6 +36,7 @@ const ContainerMarketPlace3 = ({
       {/* <HeaderMobile />
             <NavigationList /> */}
       <Header isProduct={false} />
+      <NavigationList/>
       {isCartAvailable && <FloatingCart />}
       {isCartAvailable && <MiniShoppinCart />}
       

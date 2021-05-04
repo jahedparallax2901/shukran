@@ -221,7 +221,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 535;
     padding: 10px 30px;
     border-top: 1px solid #ccc;
     background-color: #ffffff;
@@ -229,6 +229,7 @@
     .navigation__item {
         text-align: center;
         color: #666;
+        font-size: 1.7rem;
         i {
             font-size: 24px;
         }
