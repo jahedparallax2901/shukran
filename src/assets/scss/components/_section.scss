@@ -453,7 +453,25 @@
     .ps-shopping__view {
       padding-left: 40px;
     }
-
+    .ps-select-modify{
+      font-size: 18px;
+      color: #666;
+      border: 1px solid #666;
+      @media screen and (max-width: 668px) {
+        font-size: 17px;
+      }
+    }
+    .ps-shopping-view-modifiy p{
+      font-size: 18px;
+      color: #666;
+      @media screen and (max-width: 668px) {
+        font-size: 17px;
+        margin-right: 0px;
+      }
+      @media screen and (max-width: 425px) {
+        padding-left: 0px !important;
+      }
+    }
     .form-control {
       height: 40px;
       background-color: #fff;
@@ -464,7 +482,13 @@
       flex-flow: row nowrap;
     }
   }
-
+  .ps-shopping__actions-shop{
+    @media screen and (max-width: 425px) {
+      width: 100%;
+      justify-content: space-between !important;
+      padding: 0px 15px;
+    }
+  }
   .ps-shopping__header {
     margin-bottom: 40px;
     width: 100%;
@@ -485,7 +509,22 @@
       }
     }
   }
+  @media screen and (max-width: 1440px){
+    .ps-shopping__header-modify{
+      margin-bottom: 20px;
+    }
+  }
 
+ @media screen and (max-width: 1366px){
+    .ps-shopping__header-modify{
+      margin-bottom: 0px;
+    }
+  }
+  @media screen and (max-width: 668px){
+    .ps-shopping__header-modify{
+      margin-bottom: 20px;
+    }
+  }
   .ps-shop__filter-mb {
     margin-bottom: 30px;
     font-size: 16px;
@@ -1621,6 +1660,7 @@
   }
 }
 
+
 .ps-vendor-store {
   padding: 40px 0;
 
@@ -1639,6 +1679,14 @@
     .ps-section__right {
       max-width: 75%;
       padding-left: 30px;
+      .vendor-shop-modify-right{
+        @media screen and (max-width: 1024px){
+          margin-top: 30px;
+        }
+        @media screen and (max-width: 576px){
+          margin-top: 20px;
+        }
+      }
     }
   }
 
@@ -1661,8 +1709,33 @@
       }
     }
   }
+  @media screen and (max-width: 1024px){
+    .ps-section__container {
+      .ps-section__left {
+        max-width: 100%;
+        margin-bottom: 0px;
+      }
+    
+    }
+  }
 }
-
+@media screen and (max-width: 1366px) {
+  .ps-section__container {
+    .ps-shop-details-vendor{
+      padding: 30px 0px 40px 0px;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .ps-shop-details-vendor{
+    margin-bottom: 0px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .ps-shop-details-vendor{
+    padding: 20px 0px 30px 0px;
+  }
+}
 .ps-vendor-best-seller {
   .ps-section__header {
     margin-bottom: 30px;
