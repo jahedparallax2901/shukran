@@ -65,9 +65,9 @@ class Header extends Component {
                   <a className="ps-btn" href="#">
                     View Cart
                   </a>
-                  <a className="ps-btn" href="checkout.html">
+                  <Link className={`ps-btn`} to={`/checkout`} >
                     Checkout
-                  </a>
+                  </Link>
                 </figure>
               </div>
             </div>

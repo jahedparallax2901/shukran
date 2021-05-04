@@ -42,6 +42,8 @@ import ProductDealOfDay from "../components/product/ProductDealOfDay";
 import {generateTempArray} from "../utilities/common-helpers";
 import SkeletonProduct from "../components/partials/shared/SkeletonProduct";
 import Success from "../components/success/Success";
+import {Empty} from 'antd'
+import {Link} from "react-router-dom";
 
 const Checkout = (props) => {
   const [defaultSelected, setDefaultSelected] = useState([0]);
@@ -1394,7 +1396,32 @@ const Checkout = (props) => {
               </div>
             </div>
         ) : (
-            <>No Item Selected</>
+            <div>
+              <Empty
+                  style={{
+                    paddingBottom: '20vh',
+                    paddingTop: '20vh'
+                  }}
+                  image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                  imageStyle={{
+                    height: 90,
+                  }}
+                  description={
+                    <span>
+                    No item selected
+                  </span>
+                  }>
+                <Link
+                to={`/`}>
+                  <Button style={{
+                    padding: '7px 30px 7px 30px',
+                    backgroundColor: '#1d6c32'
+                  }} type="primary">Shopping Now</Button>
+                </Link>
+
+              </Empty>
+
+            </div>
         )}
       </>
       }
