@@ -1,0 +1,50 @@
+
+/* Success Page CSS */
+.main-content {
+    background-color: #f4f5f5;
+    min-height: calc(100vh - 140px);
+    position: relative;
+    z-index: 66;
+}
+.order-placed,
+.order-placed .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-placed .order-placed-container {
+    max-width: 620px;
+    width: 100%;
+    padding: 50px;
+    text-align: center;
+    background-color: transparent;
+}
+.order-placed .icon {
+    font-size: 6rem;
+    color: #3f4d68;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+}
+.order-placed .order-placed-container .success-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+.order-placed .order-placed-container p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+.order-placed .order-placed-container .btn-primary {
+    background-color: #006c32;
+}
+.order-placed .order-placed-container .btn-primary:hover {
+    background-color: #005728;
+}
+.order-placed .order-placed-container .btn {
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 0.5rem 1.75rem;
+}
+/* Success Page CSS */

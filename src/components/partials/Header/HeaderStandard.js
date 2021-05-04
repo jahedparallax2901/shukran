@@ -125,13 +125,12 @@ class HeaderStandard extends Component {
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
-      wishlist
+      wishlist,
     } = this.props;
-    
+
     return (
       <header
         className="header header--standard header--market-place-1"
-        dataSticky="true"
         id="headerSticky"
       >
         <div className="header__content">
@@ -190,12 +189,13 @@ class HeaderStandard extends Component {
                       </div>
                     ) : (
                       <>
-                        {shoppingCart.cartItems?.length > 0 ? (
+                        {shoppingCart?.cartSummery?.total_prdoucts > 0 ||
+                        shoppingCart?.cartItems?.length > 0 ? (
                           <>
                             <div className="ps-cart__items">
                               {shoppingCart.cartItems.map((item) => (
                                 <>
-                                  {item?.store_product &&
+                                  {item?.store_product?.length>0 &&
                                     item.store_product.map((store_item) => (
                                       <div className="ps-product--cart-mobile">
                                         <div className="ps-product__thumbnail">
@@ -353,7 +353,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.userData,
     shoppingCart: state.shoppingCart,
-    wishlist: state.wishlist.wishListItems
+    wishlist: state.wishlist.wishListItems,
   };
 };
 
@@ -366,7 +366,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
     handleClearCart: () => dispatch(handleClearCart()),
-    getWishlistItems: (cb) => dispatch(getWishlistItems(cb))
+    getWishlistItems: (cb) => dispatch(getWishlistItems(cb)),
   };
 };
 

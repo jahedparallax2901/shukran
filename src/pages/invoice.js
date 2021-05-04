@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { connect } from 'react-redux';
 // import { useRouter } from 'next/router';
-
-
+import { useParams } from "react-router";
 import "../assets/css/checkout.css"
 import "../assets/css/register.css"
 
@@ -24,19 +23,31 @@ import {toast} from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
-import { useLocation } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import {processGetRequest} from "../services/baseServices";
 
 
 const Invoice = () => {
 
+    const {id} = useParams();
     const location = useLocation()
-
     const [json ,setJson] = useState()
 
     useEffect( ()=>{
-        setJson(location.state.json)
+         processGetRequest(`/order-details/${id}`,{} ,true).then((res)=>{
+             setJson(res.ordered_item)
+       })
+
+
 
     },[])
+
+
+    const getInvoiceData = () => {
+
+
+
+    }
 
     return (
         <ContainerMarketPlace3
@@ -75,9 +86,9 @@ const Invoice = () => {
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Ship To</h4>
-                                                        <span className="d-block">{json?.customer_address?.name}</span>
-                                                        <span className="d-block">{json?.customer_address?.phone}</span>
-                                                        <span className="d-block">{json?.customer_address?.address}</span>
+                                                        <span className="d-block">{json?.order?.address?.name}</span>
+                                                        <span className="d-block">{json?.order?.address?.phone_number}</span>
+                                                        <span className="d-block">{json?.order?.address?.address}</span>
                                                         <span className="d-block">
 
                           </span>
@@ -85,11 +96,11 @@ const Invoice = () => {
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Payment Method</h4>
                                                         <span className="d-block" />
-                                                        <span className="d-block">Unpaid</span>
+                                                        <span className="d-block"> {json?.order?.payment?.name}</span>
                                                     </td>
                                                     <td width="20%" style={{paddingBottom: 20}}>
                                                         <h4 className="invoice-title-alt">Shipping Method</h4>
-                                                        <span className="d-block"> --</span>
+                                                        <span className="d-block"> -- </span>
 
                                                         <span className="d-block" />
                                                     </td>
@@ -141,30 +152,30 @@ const Invoice = () => {
                                                         </span>
                                                         <span className="badge badge-info ml-4">Pending</span></td>
                                                 </tr>*/}
-                                            {json?.ordered_items && json?.ordered_items.map( (data,index) => (
+                                            {json?.store_product && json?.store_product.map( (data1,index) => (
                                                 <>
-                                                {data.store_product.map((data1,index1) => (<>
-
-                                                   <tr>
-                                                       <td>
+                                                    <tr>
+                                                        <td>
                                                         <span className="d-block">
                                                         <strong>
-                                                        <a href="/products/details/604092662146a37c6fe03ba3" target="_blank">
-                                                            {data1.product.name}
-                                                        </a>
+                                                            <Link to={`/product/${data1.product.id}`}> {data1.product.name} </Link>
+
                                                     </strong></span><span className="d-block text-muted" /></td>
-                                                       <td>{data1.quantity}</td>
-                                                       <td className="text-right">{data1.total_amount}</td>
-                                                       <td>
-                                                           <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
-                                                           </button>
-                                                           <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
-                                                           </button>
-                                                       </td>
+                                                        <td>{data1.quantity}</td>
+                                                        <td className="text-right">{data1.total_amount}</td>
+                                                        <td>
+                                                            <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
+                                                            </button>
+                                                            <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
+                                                            </button>
+                                                        </td>
 
-                                                   </tr>
+                                                    </tr>
+                                               {/* {json.store_product.map((data1,index1) => (<>
 
-                                                </>))}
+
+
+                                                </>))}*/}
                                                 </>
                                             ) )}
                                                 <tr>
@@ -204,7 +215,7 @@ const Invoice = () => {
                                                                     <div className="text"><h4>Pending</h4>
                                                                         <p /></div>
                                                                 </div>
-                                                                <div className="progress-block">
+                                                                <div className="progress-block ">
                                                                     <div className="date">-</div>
                                                                     <div className="circle" />
                                                                     <div className="text"><h4>Confirmed</h4>

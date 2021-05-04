@@ -10,6 +10,7 @@ import ModuleSearcjProductSortBy from "../product/ModuleSearcjProductSortBy";
 import { BsGrid3X3Gap } from "react-icons/bs";
 import { processGetRequest } from "../../services/baseServices";
 import {objToUrlPrams} from '../../helpers/utils';
+import queryString from "query-string";
 
 const SearchItems = ({ columns = 4, productItems, total , loading, query, setQuery, getProducts, paginanation}) => {
   const history = useHistory();
@@ -24,10 +25,15 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
   }
 
   function handlePagination(page, pageSize) {
-    setQuery({...query, page}, ()=>{
-        history.push(objToUrlPrams(query));
-        getProducts()
-    })
+    const newQuery = {...query, page};
+    const url =
+        history.location.pathname +
+        "?" +
+        queryString.stringify(newQuery) 
+    setQuery(newQuery);
+    history.push(url);
+    getProducts(newQuery);
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   function handleSetColumns() {
@@ -118,7 +124,7 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
       <div className="ps-shopping__footer text-center">
         <div className="ps-pagination">
           <Pagination
-            total={total - 1}
+            total={paginanation?.total || 1}
             pageSize={paginanation?.per_page || 10}
             responsive={true}
             showSizeChanger={false}

@@ -15,10 +15,10 @@ const RelatedProduct = ({ product, boxed, layout }) => {
       product?.relateds
     );
     setTimeout(
-        function () {
-            setLoading(false);
-        }.bind(this),
-        250
+      function () {
+        setLoading(false);
+      }.bind(this),
+      250
     );
   }
 
@@ -138,9 +138,8 @@ const RelatedProduct = ({ product, boxed, layout }) => {
 
   return (
     <div
-      className={`ps-section--default ps-related-products ${
-        boxed === true ? "boxed" : ""
-      }`}
+      className={`ps-section--default ps-related-products ${boxed === true ? "boxed" : ""
+        }`}
     >
       <div className="ps-section__header">
         <h3>Related products</h3>

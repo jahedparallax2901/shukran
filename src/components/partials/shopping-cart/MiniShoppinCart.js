@@ -29,13 +29,13 @@ class MiniShoppinCart extends Component {
     scrollbody.onscroll = function () {
       let cartFooter = document.getElementById("all-checkout");
       console.log(cartFooter);
-      let sticky = cartFooter.offsetTop;
-      if (scrollbody.scrollTop * 4 > sticky) {
+      let sticky = cartFooter?.offsetTop || 0;
+      if (sticky > 0 && scrollbody.scrollTop * 4 > sticky) {
         cartFooter.classList.add("custom-sticky");
         let lastStore = document.querySelectorAll(".store-div");
         lastStore = lastStore[lastStore.length - 1];
         lastStore.style.marginBottom = "165px";
-      } else {
+      } else if (sticky > 0) {
         cartFooter.classList.remove("custom-sticky");
         let lastStore = document.querySelectorAll(".store-div");
         lastStore = lastStore[lastStore.length - 1];
@@ -325,7 +325,8 @@ class MiniShoppinCart extends Component {
           </div>
         ) : (
           <>
-            {shoppingCart?.cartItems?.length > 0 ? (
+            {shoppingCart?.cartSummery?.total_prdoucts > 0 ||
+            shoppingCart?.cartItems?.length > 0 ? (
               <>
                 <div className="select-all-div">
                   <div className="ps-checkbox">
@@ -342,229 +343,238 @@ class MiniShoppinCart extends Component {
 
                 <div className="store-div-container">
                   {shoppingCart.cartItems.map((cart_items) => (
-                    <div className="store-div">
-                      <div className="store">
-                        <div className="store-name">
-                          <div className="ps-checkbox">
-                            {/* <input
+                    <>
+                      {cart_items.store_product.length > 0 && (
+                        <div className="store-div">
+                          <div className="store">
+                            <div className="store-name">
+                              <div className="ps-checkbox">
+                                {/* <input
                               className="form-control"
                               type="checkbox"
                               id="store-1"
                               name="brand"
                             /> */}
-                            {/* <label for="store-1">
+                                {/* <label for="store-1">
                               {cart_items?.store?.name || ""}
                             </label> */}
 
-                            <h3 className="mt-2">
-                              {cart_items?.store?.name || ""}
-                            </h3>
-                          </div>
-                        </div>
-
-                        {/* Product portion */}
-
-                        {cart_items?.store_product &&
-                          cart_items.store_product.map((store_item) => (
-                            <div className="product">
-                              <div className="product-name d-flex justify-content-between">
-                                <div className="ps-checkbox">
-                                  {console.log(
-                                    "Checking",
-                                    store_item.cart_check === 1
-                                  )}
-                                  <input
-                                    className="form-control"
-                                    type="checkbox"
-                                    id={`brand-${store_item?.product_attribute?.id}`}
-                                    name={`brand-${store_item?.product_attribute?.id}`}
-                                    checked={store_item.cart_check === 1}
-                                    onChange={(e) =>
-                                      this.handleSelectProduct(
-                                        e,
-                                        store_item?.cart_id,
-                                        store_item?.product_attribute
-                                          ?.product_id,
-                                        store_item?.product_attribute?.id,
-                                        store_item.cart_check
-                                      )
-                                    }
-                                  />
-                                  <label
-                                    for={`brand-${store_item?.product_attribute?.id}`}
-                                  >
-                                    {store_item.product.name}
-                                  </label>
-                                </div>
-                                <AiOutlineClose
-                                  onClick={(e) =>
-                                    this.handleItemDelete(
-                                      e,
-                                      store_item.product.id,
-                                      store_item.product_attribute.id
-                                    )
-                                  }
-                                />
+                                <h3 className="mt-2">
+                                  {cart_items?.store?.name || ""}
+                                </h3>
                               </div>
-                              <div className="product-details">
-                                <div className="product-details-div-img product-details-div">
-                                  <img
-                                    src={
-                                      store_item?.product?.single_image ||
-                                      bagPack
-                                    }
-                                    alt=""
-                                  />
-                                </div>
-                                <div className="quantity product-details-div">
-                                  <h6 className="quantity-title product-details-div-title">
-                                    quantity
-                                  </h6>
-                                  <div className="quantity-changer">
-                                    <i>
-                                      <AiOutlineMinus />
-                                    </i>
-                                    <p>{store_item.quantity}</p>
-                                    <i>
-                                      <AiOutlinePlus />
-                                    </i>
-                                  </div>
-                                </div>
+                            </div>
 
-                                {store_item.attribute_item && (
-                                  <div className="size product-details-div">
-                                    <h6 className="size-title product-details-div-title">
-                                      {
-                                        store_item?.attribute_item?.attribute
-                                          .name
+                            {/* Product portion */}
+
+                            {cart_items?.store_product &&
+                              cart_items.store_product.map((store_item) => (
+                                <div className="product">
+                                  <div className="product-name d-flex justify-content-between">
+                                    <div className="ps-checkbox">
+                                      {console.log(
+                                        "Checking",
+                                        store_item.cart_check === 1
+                                      )}
+                                      <input
+                                        className="form-control"
+                                        type="checkbox"
+                                        id={`brand-${store_item?.product_attribute?.id}`}
+                                        name={`brand-${store_item?.product_attribute?.id}`}
+                                        checked={store_item.cart_check === 1}
+                                        onChange={(e) =>
+                                          this.handleSelectProduct(
+                                            e,
+                                            store_item?.cart_id,
+                                            store_item?.product_attribute
+                                              ?.product_id,
+                                            store_item?.product_attribute?.id,
+                                            store_item.cart_check
+                                          )
+                                        }
+                                      />
+                                      <label
+                                        for={`brand-${store_item?.product_attribute?.id}`}
+                                      >
+                                        {store_item.product.name}
+                                      </label>
+                                    </div>
+                                    <AiOutlineClose
+                                      onClick={(e) =>
+                                        this.handleItemDelete(
+                                          e,
+                                          store_item.product.id,
+                                          store_item.product_attribute.id
+                                        )
                                       }
-                                    </h6>
-                                    <p>{store_item?.attribute_item?.value}</p>
+                                    />
                                   </div>
-                                )}
-                              </div>
+                                  <div className="product-details">
+                                    <div className="product-details-div-img product-details-div">
+                                      <img
+                                        src={
+                                          store_item?.product?.single_image ||
+                                          bagPack
+                                        }
+                                        alt=""
+                                      />
+                                    </div>
+                                    <div className="quantity product-details-div">
+                                      <h6 className="quantity-title product-details-div-title">
+                                        quantity
+                                      </h6>
+                                      <div className="quantity-changer">
+                                        <i>
+                                          <AiOutlineMinus />
+                                        </i>
+                                        <p>{store_item.quantity}</p>
+                                        <i>
+                                          <AiOutlinePlus />
+                                        </i>
+                                      </div>
+                                    </div>
 
-                              {/* Product calculation portion */}
-
-                              <div className="product-price-div">
-                                <div className="product-price">
-                                  <div className="product-price-title">
-                                    <h6>price</h6>
+                                    {store_item.attribute_item && (
+                                      <div className="size product-details-div">
+                                        <h6 className="size-title product-details-div-title">
+                                          {
+                                            store_item?.attribute_item
+                                              ?.attribute.name
+                                          }
+                                        </h6>
+                                        <p>
+                                          {store_item?.attribute_item?.value}
+                                        </p>
+                                      </div>
+                                    )}
                                   </div>
-                                  <p>৳{store_item?.total_amount}</p>
-                                </div>
-                                <div className="delivery-charge">
-                                  {/* <div className="delivery-charge-title">
+
+                                  {/* Product calculation portion */}
+
+                                  <div className="product-price-div">
+                                    <div className="product-price">
+                                      <div className="product-price-title">
+                                        <h6>price</h6>
+                                      </div>
+                                      <p>৳{store_item?.total_amount}</p>
+                                    </div>
+                                    <div className="delivery-charge">
+                                      {/* <div className="delivery-charge-title">
                                     <h6>delivery charge</h6>
                                   </div>
                                   <p>৳{store_item?.delivery_charge || 0}</p> */}
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                          ))}
+                              ))}
 
-                        {/* Store coupon portion */}
+                            {/* Store coupon portion */}
 
-                        <div className="store-checkout-div">
-                          <div className="store-coupon">
-                            {shoppingCart.cartSummery.coupon ? (
-                              <div className="coupon-status-not-applicable">
-                                <span className="mr-4">Not Applicable</span>
-                              </div>
-                            ) : (
-                              <>
-                                {cart_items.coupon ? (
-                                  <div className="d-flex justify-content-between align-items-center coupon-status-success">
-                                    <span className="mr-4">
-                                      {cart_items?.coupon?.coupon_code?.code}{" "}
-                                      Coupon Applied
-                                    </span>
-                                    <BsTrash
-                                      title="Remove"
-                                      onClick={(e) =>
-                                        this.handleRemoveCoupon(
-                                          e,
-                                          shoppingCart.cartSummery.id,
-                                          cart_items.store.id
-                                        )
-                                      }
-                                    />
+                            <div className="store-checkout-div">
+                              <div className="store-coupon">
+                                {shoppingCart.cartSummery.coupon ? (
+                                  <div className="coupon-status-not-applicable">
+                                    <span className="mr-4">Not Applicable</span>
                                   </div>
                                 ) : (
                                   <>
-                                    <input
-                                      type="text"
-                                      placeholder="apply for coupon"
-                                      name={`couponOfStore-${cart_items.store.id}`}
-                                      defaultValue={
-                                        this.state[
-                                          `couponOfStore-${cart_items.store.id}`
-                                        ]
-                                      }
-                                      onChange={(e) =>
-                                        this.handleCouponChange(e)
-                                      }
-                                    />
-                                    <button
-                                      onClick={(e) =>
-                                        this.handleApplyStoreCoupon(
-                                          e,
-                                          shoppingCart.cartSummery.id,
-                                          cart_items.store.id
-                                        )
-                                      }
-                                    >
-                                      ✓
-                                    </button>
+                                    {cart_items.coupon ? (
+                                      <div className="d-flex justify-content-between align-items-center coupon-status-success">
+                                        <span className="mr-4">
+                                          {
+                                            cart_items?.coupon?.coupon_code
+                                              ?.code
+                                          }{" "}
+                                          Coupon Applied
+                                        </span>
+                                        <BsTrash
+                                          title="Remove"
+                                          onClick={(e) =>
+                                            this.handleRemoveCoupon(
+                                              e,
+                                              shoppingCart.cartSummery.id,
+                                              cart_items.store.id
+                                            )
+                                          }
+                                        />
+                                      </div>
+                                    ) : (
+                                      <>
+                                        <input
+                                          type="text"
+                                          placeholder="apply for coupon"
+                                          name={`couponOfStore-${cart_items.store.id}`}
+                                          defaultValue={
+                                            this.state[
+                                              `couponOfStore-${cart_items.store.id}`
+                                            ]
+                                          }
+                                          onChange={(e) =>
+                                            this.handleCouponChange(e)
+                                          }
+                                        />
+                                        <button
+                                          onClick={(e) =>
+                                            this.handleApplyStoreCoupon(
+                                              e,
+                                              shoppingCart.cartSummery.id,
+                                              cart_items.store.id
+                                            )
+                                          }
+                                        >
+                                          ✓
+                                        </button>
+                                      </>
+                                    )}
                                   </>
                                 )}
-                              </>
-                            )}
-                          </div>
+                              </div>
 
-                          {/* Store checkout calculation */}
+                              {/* Store checkout calculation */}
 
-                          <div className="store-checkout-div-right">
-                            <div className="delivery-charge">
-                              <h6 className="delivery-charge-title">
-                                delivery-charge :
-                              </h6>
-                              <p>৳{cart_items?.delivery_charge || 0}</p>
+                              <div className="store-checkout-div-right">
+                                <div className="delivery-charge">
+                                  <h6 className="delivery-charge-title">
+                                    delivery-charge :
+                                  </h6>
+                                  <p>৳{cart_items?.delivery_charge || 0}</p>
+                                </div>
+                                <div className="subtotal">
+                                  <h6 className="subtotal-title">subtotal :</h6>
+                                  <p>৳{cart_items?.sub_total_amount || 0}</p>
+                                </div>
+                                <div className="subtotal">
+                                  <h6 className="subtotal-title">discount :</h6>
+                                  <p>৳{cart_items?.discount_amount || 0}</p>
+                                </div>
+                                <div className="total">
+                                  <h6 className="total-title">total :</h6>
+                                  <p>৳{cart_items.total_amount || 0}</p>
+                                </div>
+                                <a
+                                  className="store-checkout"
+                                  onClick={(e) =>
+                                    this.handleProceedCheckout(
+                                      e,
+                                      cart_items.cart_id,
+                                      cart_items.store_id
+                                    )
+                                  }
+                                >
+                                  checkout
+                                </a>
+                              </div>
                             </div>
-                            <div className="subtotal">
-                              <h6 className="subtotal-title">subtotal :</h6>
-                              <p>৳{cart_items?.sub_total_amount || 0}</p>
-                            </div>
-                            <div className="subtotal">
-                              <h6 className="subtotal-title">discount :</h6>
-                              <p>৳{cart_items?.discount_amount || 0}</p>
-                            </div>
-                            <div className="total">
-                              <h6 className="total-title">total :</h6>
-                              <p>৳{cart_items.total_amount || 0}</p>
-                            </div>
-                            <a
-                              className="store-checkout"
-                              onClick={(e) =>
-                                this.handleProceedCheckout(
-                                  e,
-                                  cart_items.cart_id,
-                                  cart_items.store_id
-                                )
-                              }
-                            >
-                              checkout
-                            </a>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      )}
+                    </>
                   ))}
                 </div>
 
                 {/* Global coupon portion */}
 
-                <div className="all-checkout"  id="all-checkout">
+                <div className="all-checkout" id="all-checkout">
                   <div class="store-coupon">
                     {shoppingCart.cartItems.find(
                       (item) => item.coupon !== null
@@ -574,7 +584,7 @@ class MiniShoppinCart extends Component {
                       </div>
                     ) : (
                       <>
-                        {!shoppingCart.cartSummery.coupon ? (
+                        {!shoppingCart?.cartSummery?.coupon ? (
                           <>
                             <input
                               type="text"
