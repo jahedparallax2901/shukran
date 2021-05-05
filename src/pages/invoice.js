@@ -32,10 +32,19 @@ const Invoice = () => {
     const {id} = useParams();
     const location = useLocation()
     const [json ,setJson] = useState()
+    const [timeLineStatus , setTimeLineStatus] = useState(0)
+    const [timeLineArray , setTimeLineArray] = useState([])
 
     useEffect( ()=>{
          processGetRequest(`/order-details/${id}`,{} ,true).then((res)=>{
              setJson(res.ordered_item)
+             setTimeLineArray(res.ordered_item.timeline)
+             console.log(res.ordered_item.timeline)
+             timeLineArray.map((data,index) =>{
+                 if (data?.active === true){
+                     setTimeLineStatus(index)
+                 }
+             })
        })
 
 
@@ -44,9 +53,6 @@ const Invoice = () => {
 
 
     const getInvoiceData = () => {
-
-
-
     }
 
     return (
@@ -209,48 +215,31 @@ const Invoice = () => {
                                                         <div className="delivery-progress-timeline grid-6" style={{margin: 0}}>
                                                             <span className="progress-line" />
                                                             <div className="timeline-inner">
-                                                                <div className="progress-block completed">
-                                                                    <div className="date">{moment(json?.order.created_at).format('ll')}</div>
-                                                                    <div className="circle" />
-                                                                    <div className="text"><h4>Pending</h4>
-                                                                        <p /></div>
-                                                                </div>
-                                                                <div className="progress-block ">
-                                                                    <div className="date">-</div>
-                                                                    <div className="circle" />
-                                                                    <div className="text"><h4>Confirmed</h4>
-                                                                        <p>The order will be confirmed very soon</p></div>
-                                                                </div>
-                                                                <div className="progress-block">
-                                                                    <div className="date">-</div>
-                                                                    <div className="circle" />
-                                                                    <div className="text"><h4>Processing</h4>
-                                                                        <p /></div>
-                                                                </div>
-                                                                <div className="progress-block">
-                                                                    <div className="date">-</div>
-                                                                    <div className="circle" />
-                                                                    <div className="text"><h4>Picked</h4>
-                                                                        <p /></div>
-                                                                </div>
-                                                                <div className="progress-block">
-                                                                    <div className="date">-</div>
-                                                                    <div className="circle" />
-                                                                    <div className="text"><h4>Shipped</h4>
-                                                                        <p /></div>
-                                                                </div>
-                                                                <div className="progress-block">
-                                                                    <div className="date">-</div>
-                                                                    <div className="circle" />
-                                                                    <div className="text"><h4>Delivered</h4>
-                                                                        <p /></div>
-                                                                </div>
+                                                                {timeLineArray.map((data,index) =>(
+                                                                    <>
+                                                                        <div className={"progress-block "+(timeLineStatus >= index ? "completed": "")}>
+                                                                            <div className="date">
+                                                                                {index===0 ? moment(timeLineArray?.created_at).format('ll') :
+                                                                                <>
+                                                                                    {(index !==0 && data?.updated_at !== null) ? moment(timeLineArray?.updated_at).format('ll')
+                                                                                    : <>-</>
+                                                                                    }
+                                                                                </>
+                                                                                }
+
+                                                                            </div>
+                                                                            <div className="circle" />
+                                                                            <div className="text"><h4>{data?.name}</h4>
+                                                                                <p /></div>
+                                                                        </div>
+                                                                    </>
+                                                                ) )}
+
                                                             </div>
                                                         </div>
                                                         <span className="btn-toggle-collapse">Less
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth={0} version="1.2" baseProfile="tiny" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18.2 13.3l-6.2-6.3-6.2 6.3c-.2.2-.3.5-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7z" />
-                            </svg>
-                          </span>
+                                                        <svg stroke="currentColor" fill="currentColor" strokeWidth={0} version="1.2" baseProfile="tiny" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18.2 13.3l-6.2-6.3-6.2 6.3c-.2.2-.3.5-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7z" />
+                                                        </svg></span>
                                                     </td>
                                                 </tr>
                                                 <tr className="text-bold">

@@ -131,8 +131,8 @@ const Checkout = (props) => {
   const getAllData = () => {
     processGetRequest("/user-details", {}, true).then((res) => {
       console.log(res);
-      setDeliveryAddress(res.user_info.addresses);
-      setContacts(res.user_info.contacts);
+      setDeliveryAddress(res?.user_info?.addresses);
+      setContacts(res?.user_info?.contacts);
     });
   };
 

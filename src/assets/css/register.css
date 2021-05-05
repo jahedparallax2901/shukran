@@ -197,7 +197,7 @@ table {
     margin-bottom: 40px;
 }
 .delivery-progress-timeline .progress-block.completed .circle, .delivery-progress-timeline .progress-block.completed:after {
-    background-color: #006C32;
+    background-color: #006C32 !important;
 }
 .delivery-progress-timeline .progress-block .circle {
     width: 10px;
