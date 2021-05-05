@@ -211,6 +211,7 @@ const Checkout = (props) => {
       });
   };
 
+
   const placeOrder = (e) => {
     e.preventDefault();
 
