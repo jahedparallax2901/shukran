@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import shoppingCartReducer from './shopping-cart/shoppingCartReducer';
+import productSearchReducer from './product-search/productSearchReducer';
 // import sidebarReducer from './sidebar/sidebarReducer';
 import authReducer from './auth/authReducer';
 import wishlistReducer from './wishlist/wishlistReducer';
@@ -15,7 +16,7 @@ const rootReducer = combineReducers({
   wishlist: wishlistReducer,
   // sidebar: sidebarReducer,
   auth: authReducer,
-  // productSearch: productSearchReducer,
+  productSearch: productSearchReducer,
   // shippingAddress: shippingAddressReducer,
   // billingAddress: billingAddressReducer,
   // recommendation: recommendationReducer,

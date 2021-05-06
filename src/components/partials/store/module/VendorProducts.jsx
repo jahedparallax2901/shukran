@@ -24,8 +24,8 @@ class VendorProducts extends Component {
         console.log("Products", products)
 
         return (
-            <div className="ps-shopping vendor-shop">
-                <div className="ps-shopping__header">
+            <div className="ps-shopping vendor-shop vendor-shop-modify-right">
+                <div className="ps-shopping__header ps-shopping__header-modify">
                     <p>
                         <strong>
                             {' '}
@@ -33,9 +33,9 @@ class VendorProducts extends Component {
                         </strong>{' '}
                         Products found
                     </p>
-                    <div className="ps-shopping__actions">
+                    <div className="ps-shopping__actions ps-shopping__actions-shop">
                         <select
-                            className="ps-select"
+                            className="ps-select ps-select-modify"
                             data-placeholder="Sort Items">
                             <option>Sort by latest</option>
                             <option>Sort by popularity</option>
@@ -43,7 +43,7 @@ class VendorProducts extends Component {
                             <option>Sort by price: low to high</option>
                             <option>Sort by price: high to low</option>
                         </select>
-                        <div className="ps-shopping__view">
+                        <div className="ps-shopping__view ps-shopping-view-modifiy">
                             <p>View</p>
                             <ul className="ps-tab-list">
                                 <li
@@ -76,14 +76,14 @@ class VendorProducts extends Component {
                             <div className="row">
                                 {products && products.length > 0
                                     ? products.map((product) => (
-                                          <div
-                                              className="col-lg-3 col-md-4 col-sm-6 col-6 "
-                                              key={product.id}>
-                                              <ProductOffline
-                                                  product={product}
-                                              />
-                                          </div>
-                                      ))
+                                        <div
+                                            className="col-lg-3 col-md-4 col-sm-6 col-6 "
+                                            key={product.id}>
+                                            <ProductOffline
+                                                product={product}
+                                            />
+                                        </div>
+                                    ))
                                     : ''}
                             </div>
                         </div>
@@ -91,11 +91,11 @@ class VendorProducts extends Component {
                         <div className="ps-shopping-product">
                             {products && products.length > 0
                                 ? products.map((product) => (
-                                      <ProductWide
-                                          product={product}
-                                          key={product.id}
-                                      />
-                                  ))
+                                    <ProductWide
+                                        product={product}
+                                        key={product.id}
+                                    />
+                                ))
                                 : ''}
                         </div>
                     )}

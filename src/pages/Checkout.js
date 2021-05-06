@@ -44,6 +44,8 @@ import ProductDealOfDay from "../components/product/ProductDealOfDay";
 import {generateTempArray} from "../utilities/common-helpers";
 import SkeletonProduct from "../components/partials/shared/SkeletonProduct";
 import Success from "../components/success/Success";
+import {Empty} from 'antd'
+import {Link} from "react-router-dom";
 
 const Checkout = (props) => {
   const [defaultSelected, setDefaultSelected] = useState([0]);
@@ -131,8 +133,8 @@ const Checkout = (props) => {
   const getAllData = () => {
     processGetRequest("/user-details", {}, true).then((res) => {
       console.log(res);
-      setDeliveryAddress(res.user_info.addresses);
-      setContacts(res.user_info.contacts);
+      setDeliveryAddress(res?.user_info?.addresses);
+      setContacts(res?.user_info?.contacts);
     });
   };
 
@@ -211,6 +213,7 @@ const Checkout = (props) => {
       });
   };
 
+
   const placeOrder = (e) => {
     e.preventDefault();
 
@@ -230,10 +233,15 @@ const Checkout = (props) => {
       }, true)
           .then((res) => {
             if (res.status === 200) {
-              props.getCartItems(()=>{
+              props.getCartItems((data, isSuccess)=>{
                 toast.success("Order successfully placed");
-                setIsSuccessPlace(true)
-                props.shoppingCart.cartSummery.total_prdoucts === 0 && props.handleClearCart()
+                setIsSuccessPlace(true);
+                debugger;
+                const items = data.cart.total_prdoucts;
+                if(items <= 0){
+                  localStorage.removeItem("cart_id");
+                  props.handleClearCart()
+                }
               })
             }
             // if (res.status) {
@@ -1403,7 +1411,32 @@ const Checkout = (props) => {
               </div>
             </div>
         ) : (
-            <>No Item Selected</>
+            <div>
+              <Empty
+                  style={{
+                    paddingBottom: '20vh',
+                    paddingTop: '20vh'
+                  }}
+                  image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                  imageStyle={{
+                    height: 90,
+                  }}
+                  description={
+                    <span>
+                    No item selected
+                  </span>
+                  }>
+                <Link
+                to={`/`}>
+                  <Button style={{
+                    padding: '7px 30px 7px 30px',
+                    backgroundColor: '#1d6c32'
+                  }} type="primary">Shopping Now</Button>
+                </Link>
+
+              </Empty>
+
+            </div>
         )}
       </>
       }
@@ -1424,4 +1457,4 @@ const mapDispatchToProps = (dispatch)=>{
   }
 }
 
-export default connect(null, mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -70,7 +70,7 @@ class Product extends Component {
         //     });
         // }
         return (
-            <div className="ps-product">
+            <div className="ps-product ps-product-shop-details">
                 <div className="ps-product__thumbnail">
                     <Link to={`/product/${product.id}`}>
                         <a>
@@ -84,9 +84,9 @@ class Product extends Component {
                     </Link>
                     {product.badge ? productBadge : ''}
 
-                    <ModuleProductActions product={product}/>
+                    <ModuleProductActions product={product} />
                 </div>
-                
+
                 <div className="ps-product__container">
                     {/* <Link to="/shop">
                         <a className="ps-product__vendor">Young Shop</a>

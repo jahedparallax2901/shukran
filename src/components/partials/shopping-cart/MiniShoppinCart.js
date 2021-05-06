@@ -225,7 +225,7 @@ class MiniShoppinCart extends Component {
       this.props.shoppingCart.cartProductlist.map((item) => {
         formData.append(
           `product_id[${item.product_id}][${item.item_id}]`,
-          item.quantity
+          isSelected === 1 ? 2 : 1
         );
       });
     }
@@ -254,12 +254,17 @@ class MiniShoppinCart extends Component {
         (item) => item.store_id === store_id
       );
       store.store_product.map((item) => {
-        cart_store_product_ids.push(item.id);
+        if(item?.cart_check == 2){
+          cart_store_product_ids.push(item.id);
+        }
       });
     } else {
       this.props.shoppingCart.cartItems.map((cart_item) => {
         cart_item.store_product.map((store_item) => {
-          cart_store_product_ids.push(store_item.id);
+          if(store_item?.cart_check == 2){
+            cart_store_product_ids.push(store_item.id);
+          }
+          
         });
       });
     }
@@ -325,8 +330,7 @@ class MiniShoppinCart extends Component {
           </div>
         ) : (
           <>
-            {shoppingCart?.cartSummery?.total_prdoucts > 0 ||
-            shoppingCart?.cartItems?.length > 0 ? (
+            {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
               <>
                 <div className="select-all-div">
                   <div className="ps-checkbox">

@@ -59,17 +59,17 @@ class Store extends Component {
           <div className="ps-vendor-store">
             <div className="container">
               <div className="ps-section__container">
-                <div className="loading-wrapper" style={{position: 'relative', height: '10vh'}}>
+                <div className="loading-wrapper" style={{ position: 'relative', height: '10vh' }}>
                   <Spinner animation="border" />
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          <div className="ps-vendor-store">
+          <div className="ps-vendor-store ps-shop-details-vendor">
             <div className="container">
               <div className="ps-section__container">
-                <div className="ps-section__left">
+                <div className="ps-section__left ps-shop-details-left">
                   <div className="ps-block--vendor">
                     <div className="ps-block__thumbnail">
                       <img
