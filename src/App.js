@@ -33,6 +33,7 @@ import MyContacts from "./pages/account/MyContacts";
 import VendorStoreDetails from "./pages/store/VendorStoreDetails";
 import DigitalSheba from "./pages/DigitalSheba";
 import LittleBangladesh from "./pages/LittleBangladesh";
+import PaymentSuccess from "./pages/payment/PaymentSuccess";
 
 function App() {
   const homePath = "/";
@@ -160,6 +161,9 @@ function App() {
           </Route>
          
 
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/payment-success">
+            <PaymentSuccess />
+          </Route>
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">
             <NotFound />
           </Route>

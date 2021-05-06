@@ -267,6 +267,7 @@ const Checkout = (props) => {
     }
 
 
+             
   };
 
   const handleDeleteData = (url) => {
@@ -1314,7 +1315,8 @@ const Checkout = (props) => {
                                          className="owl-item" style={{ width: 230, marginLeft: 0 , }}>
                                       {/*single-checkout-body single-checkout-body-first payment-body*/}
                                       {/*single-checkout-body payment-body*/}
-                                      <div className={"single-checkout-body "+(index === 0 ? "single-checkout-body-first" : "" ) +" payment-body"}>
+                                      <div
+                                          className={"single-checkout-body "+(index === 0 ? "single-checkout-body-first" : "" ) +" payment-body"}>
                                         <div className="checkout-body-location">
                                           <h4>
                                             <img src={data.url} alt />
@@ -1430,7 +1432,7 @@ const Checkout = (props) => {
                 to={`/`}>
                   <Button style={{
                     padding: '7px 30px 7px 30px',
-                    backgroundColor: '#1d6c32'
+                    backgroundColor: '#ed1c24'
                   }} type="primary">Shopping Now</Button>
                 </Link>
 
