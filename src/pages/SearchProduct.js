@@ -7,8 +7,10 @@ import SearchItems from "../components/search/SearchItems";
 import queryString from "query-string";
 import { processGetRequest } from "../services/baseServices";
 import { useHistory } from "react-router";
+import { fetchSearchedProducts } from "../redux/product-search/productSearchActions";
+import { connect } from "react-redux";
 
-export default function SearchProduct() {
+const SearchProduct = ({fetchSearchedProducts, productSearch}) => {
   const breadCrumb = [
     {
       text: "Home",
@@ -27,29 +29,37 @@ export default function SearchProduct() {
   const [loading, setLoading] = useState(false);
     const [paginanation, setPagination] = useState({});
 
-  async function getProducts(params) {
-    setLoading(true);
-    // setProductItems(dealOfTheDayProducts);
-    processGetRequest("/search-engine", params)
-      .then((res) => {
-        const { current_page, total , per_page } = res.product;
-        setProductItems(res.product.data);
-        setTotal(res.product.total);
-        setQuery(queryString.parse(history.location.search));
+  // async function getProducts(params) {
+  //   setLoading(true);
+  //   processGetRequest("/search-engine", params)
+  //     .then((res) => {
+  //       const { current_page, total , per_page } = res.product;
+  //       setProductItems(res.product.data);
+  //       setTotal(res.product.total);
+  //       setQuery(queryString.parse(history.location.search));
+  //       setPagination({current_page, total, per_page})
+  //       setTimeout(
+  //         function () {
+  //           setLoading(false);
+  //         }.bind(this),
+  //         250
+  //       );
+  //     })
+  //     .then((err) => console.log(err));
+  // }
+
+  const getProducts = (params) =>{
+    fetchSearchedProducts(params, (data)=>{
+      const { current_page, total , per_page } = data.product;
+      setTotal(data.product.total);
+      setQuery(queryString.parse(history.location.search));
         setPagination({current_page, total, per_page})
-        setTimeout(
-          function () {
-            setLoading(false);
-          }.bind(this),
-          250
-        );
-      })
-      .then((err) => console.log(err));
+    })
   }
 
   useEffect(() => {
     const params = query;
-    getProducts(params);
+    getProducts(params)
   }, []);
 
   return (
@@ -65,12 +75,12 @@ export default function SearchProduct() {
             <div className="ps-layout__right">
               <SearchItems
                 columns={6}
-                productItems={productItems}
-                loading={loading}
+                productItems={productSearch.products}
+                loading={productSearch.isSearching}
                 total={total}
                 query={query}
-                setQuery={setQuery}
                 getProducts={getProducts}
+                setQuery={setQuery}
                 paginanation={paginanation}
               />
             </div>
@@ -80,3 +90,17 @@ export default function SearchProduct() {
     </ContainerMarketPlace3>
   );
 }
+
+const mapStateToProps = (state) => {
+  return{
+    productSearch: state.productSearch
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    fetchSearchedProducts: (params, callback)=> dispatch(fetchSearchedProducts(params, callback))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchProduct);
