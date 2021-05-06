@@ -196,8 +196,7 @@ class HeaderStandardProduct extends Component {
                       </div>
                     ) : (
                       <>
-                        {shoppingCart?.cartSummery?.total_prdoucts > 0 ||
-                        shoppingCart?.cartItems?.length > 0 ? (
+                        {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
                           <>
                             <div className="ps-cart__items">
                               {shoppingCart.cartItems.map((item) => (

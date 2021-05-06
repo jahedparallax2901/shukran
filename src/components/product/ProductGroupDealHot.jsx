@@ -105,7 +105,7 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
     <div className="ps-deal-hot">
       <div className="container">
         <div className="row">
-          <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div className="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 my-3">
             <div className="ps-block--deal-hot" data-mh="dealhot">
               <div className="ps-block__header">
                 <h3>Campaign</h3>
@@ -133,7 +133,7 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
               <div className="ps-product__content">{productItemsView}</div>
             </div>
           </div>
-          <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div className="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 my-3">
             <aside className="widget widget_best-sale" data-mh="dealhot">
               <h3 className="widget-title">Top 20 Best Seller</h3>
               <div className="widget__content">{relatedView}</div>

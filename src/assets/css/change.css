@@ -523,8 +523,9 @@
   .ps-form--search-mobile button {
     color: #fff;
     background: #ed1c24;
-    padding: 4px 35px 0 20px;
+    padding: 4px 25px 0 23px;
     border-radius: 0px 5px 5px 0px;
+    font-size: 18px;
   }
   .ps-product--detail .ps-product__thumbnail .ps-product__variants {
     top: -20px;

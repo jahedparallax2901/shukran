@@ -44,7 +44,7 @@ class HeaderMobile extends Component {
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
-    const header = document.getElementById("headerSticky");
+    const header = document.getElementById("headerStickyMobile");
     if (header !== null) {
       if (number >= 300) {
         header.classList.add("header--sticky");
@@ -90,7 +90,7 @@ class HeaderMobile extends Component {
       <header
         className="header header--mobile"
         data-sticky="true"
-        id="headerSticky"
+        id="headerStickyMobile"
       >
         <div className="navigation--mobile">
           <div className="navigation__left">
@@ -115,8 +115,7 @@ class HeaderMobile extends Component {
                     </div>
                   ) : (
                     <>
-                      {shoppingCart?.cartSummery?.total_prdoucts > 0 ||
-                      shoppingCart?.cartItems?.length > 0 ? (
+                      {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
                         <>
                           <div className="ps-cart__items">
                             {shoppingCart.cartItems.map((item) => (

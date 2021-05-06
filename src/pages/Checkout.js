@@ -232,8 +232,8 @@ const Checkout = (props) => {
             if (res.status === 200) {
               props.getCartItems(()=>{
                 toast.success("Order successfully placed");
-                setIsSuccessPlace(true)
-                props.shoppingCart.cartSummery.total_prdoucts === 0 && props.handleClearCart()
+                setIsSuccessPlace(true);
+                props?.shoppingCart?.cartSummery?.total_prdoucts <= 0 && props.handleClearCart()
               })
             }
             // if (res.status) {
