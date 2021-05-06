@@ -10,7 +10,7 @@ import { useHistory } from "react-router";
 import { fetchSearchedProducts } from "../redux/product-search/productSearchActions";
 import { connect } from "react-redux";
 
-const SearchProduct = ({fetchSearchedProducts, productSearch}) => {
+const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
   const breadCrumb = [
     {
       text: "Home",
@@ -27,7 +27,7 @@ const SearchProduct = ({fetchSearchedProducts, productSearch}) => {
   const [productItems, setProductItems] = useState(null);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-    const [paginanation, setPagination] = useState({});
+  const [paginanation, setPagination] = useState({});
 
   // async function getProducts(params) {
   //   setLoading(true);
@@ -48,18 +48,19 @@ const SearchProduct = ({fetchSearchedProducts, productSearch}) => {
   //     .then((err) => console.log(err));
   // }
 
-  const getProducts = (params) =>{
-    fetchSearchedProducts(params, (data)=>{
-      const { current_page, total , per_page } = data.product;
-      setTotal(data.product.total);
+  const getProducts = (params) => {
+    fetchSearchedProducts(params, (data) => {
+      const { current_page, total, per_page } = data.product;
+      setTotal(productSearch?.products?.length);
       setQuery(queryString.parse(history.location.search));
-        setPagination({current_page, total, per_page})
-    })
-  }
+      setPagination({ current_page, total, per_page });
+    });
+  };
 
   useEffect(() => {
     const params = query;
-    getProducts(params)
+    getProducts(params);
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }, []);
 
   return (
@@ -69,8 +70,16 @@ const SearchProduct = ({fetchSearchedProducts, productSearch}) => {
         <div className="ps-container">
           <div className="ps-layout--shop">
             <div className="ps-layout__left">
-              <WidgetSearchCategories setQuery={setQuery} query={query} getProducts={getProducts}/>
-              <WidgetOtherFilters query={query} setQuery={setQuery} getProducts={getProducts}/>
+              <WidgetSearchCategories
+                setQuery={setQuery}
+                query={query}
+                getProducts={getProducts}
+              />
+              <WidgetOtherFilters
+                query={query}
+                setQuery={setQuery}
+                getProducts={getProducts}
+              />
             </div>
             <div className="ps-layout__right">
               <SearchItems
@@ -89,18 +98,19 @@ const SearchProduct = ({fetchSearchedProducts, productSearch}) => {
       </div>
     </ContainerMarketPlace3>
   );
-}
+};
 
 const mapStateToProps = (state) => {
-  return{
-    productSearch: state.productSearch
-  }
-}
+  return {
+    productSearch: state.productSearch,
+  };
+};
 
-const mapDispatchToProps = (dispatch)=>{
-  return{
-    fetchSearchedProducts: (params, callback)=> dispatch(fetchSearchedProducts(params, callback))
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSearchedProducts: (params, callback) =>
+      dispatch(fetchSearchedProducts(params, callback)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProduct);

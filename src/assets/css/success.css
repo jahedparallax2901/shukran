@@ -1,7 +1,6 @@
 
 /* Success Page CSS */
 .main-content {
-    background-color: #f4f5f5;
     min-height: calc(100vh - 140px);
     position: relative;
     z-index: 66;

@@ -1,0 +1,44 @@
+@import "utils/variable";
+
+
+.status-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icon {
+    font-size: 8rem;
+    color: $secondaryColor;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+  }
+
+  .status-block--container {
+    max-width: 620px;
+    width: 100%;
+    padding: 50px;
+    text-align: center;
+    
+    &.colored{
+        background-color: $defaultLighterColor;
+    }
+
+    .btn-status-block{
+        background-color: $color-1st;
+        color: white;
+        padding: 1rem 5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  }
+}

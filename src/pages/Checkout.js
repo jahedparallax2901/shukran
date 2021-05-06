@@ -233,10 +233,15 @@ const Checkout = (props) => {
       }, true)
           .then((res) => {
             if (res.status === 200) {
-              props.getCartItems(()=>{
+              props.getCartItems((data, isSuccess)=>{
                 toast.success("Order successfully placed");
                 setIsSuccessPlace(true);
-                props?.shoppingCart?.cartSummery?.total_prdoucts <= 0 && props.handleClearCart()
+                debugger;
+                const items = data.cart.total_prdoucts;
+                if(items <= 0){
+                  localStorage.removeItem("cart_id");
+                  props.handleClearCart()
+                }
               })
             }
             // if (res.status) {
@@ -1452,4 +1457,4 @@ const mapDispatchToProps = (dispatch)=>{
   }
 }
 
-export default connect(null, mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

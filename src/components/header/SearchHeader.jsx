@@ -36,6 +36,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
   const [query, setQuery] = useState();
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [categories, setCategories] = useState();
+  const [isShowingSugestedProducts, setIsShowingSugestedProducts] = useState(false);
   const history = useHistory();
 
   function handleClearKeyword() {
@@ -47,6 +48,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
   function handleSubmit(e) {
     e.preventDefault();
     history.push(`/search?q=${keyword}`);
+    setIsShowingSugestedProducts(false);
     fetchSearchedProducts({
       ...query,
       q: keyword,
@@ -105,6 +107,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
     loadMoreView;
   if (!loading) {
     if (resultItems && resultItems.length > 0) {
+
       if (resultItems.length > 5) {
         loadMoreView = (
           <div className="ps-panel__footer text-center">
@@ -114,6 +117,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
           </div>
         );
       }
+      
       productItemsView = resultItems.map((product) => (
         <ProductSearchResult product={product} key={product.id} />
       ));
@@ -167,15 +171,20 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
           defaultValue={query?.q}
           placeholder="I'm shopping for..."
           onChange={(e) => setKeyword(e.target.value)}
+          onFocus={()=>setIsShowingSugestedProducts(true)}
+          onBlur={()=>setIsShowingSugestedProducts(false)}
         />
         {clearTextView}
         {loadingView}
       </div>
       <button onClick={handleSubmit}>Search</button>
-      <div className={`ps-panel--search-result${isSearch ? " active " : ""}`}>
-        <div className="ps-panel__content">{productItemsView}</div>
-        {loadMoreView}
-      </div>
+      {
+          isShowingSugestedProducts &&  <div className={`ps-panel--search-result${isSearch ? " active " : ""}`}>
+          <div className="ps-panel__content">{productItemsView}</div>
+          {loadMoreView}
+        </div>
+      }
+     
     </form>
   );
 };
