@@ -9,6 +9,7 @@ import Pagination from "react-js-pagination";
 import {Spinner} from "react-bootstrap";
 import {faAlignCenter} from "@fortawesome/free-solid-svg-icons";
 import {getLocalAuthData} from "../../helpers/utils";
+import {List,Avatar} from "antd";
 
 
 export default function MyWishlist() {
@@ -89,6 +90,8 @@ export default function MyWishlist() {
                           style={{ height: "100%" }}
                       >
                         <img
+                            height={`100`}
+                            width={`100`}
                             style={{ height: "100%" }}
                             src={data?.product?.single_image}
                             alt=""
