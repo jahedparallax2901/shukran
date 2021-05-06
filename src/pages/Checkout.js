@@ -223,36 +223,39 @@ const Checkout = (props) => {
       select(0)
     }
     else {
-      processPostRequest("/place-order", {
-        checkout_id: checkoutData?.checkout?.id,
-        address_id: deliverAddress[select]?.id,
-        contact_id: contacts[selectCntct]?.id,
-        payment_gateway_id: selectPaymentGateWay,
-      }, true)
-          .then((res) => {
-            if (res.status) {
-              toast.success("Order successfully placed");
-              setIsSuccessPlace(true)
-/*
 
-              history.push({
-                pathname: '/invoice',
-                state: {  // location state
-                  json: res.data
-                },
-              });
-*/
+      if (selectPaymentGateWay === 2){
+        window.alert('ok')
+      }else {
+        processPostRequest("/place-order", {
+          checkout_id: checkoutData?.checkout?.id,
+          address_id: deliverAddress[select]?.id,
+          contact_id: contacts[selectCntct]?.id,
+          payment_gateway_id: selectPaymentGateWay,
+        }, true)
+            .then((res) => {
+              if (res.status) {
+                toast.success("Order successfully placed");
+                setIsSuccessPlace(true)
+                /*
+
+                              history.push({
+                                pathname: '/invoice',
+                                state: {  // location state
+                                  json: res.data
+                                },
+                              });
+                */
 
 
-            }
-          })
-          .catch((err) => {
-            toast.error(err.message);
-            setSelectCntct(0)
-          });
+              }
+            })
+            .catch((err) => {
+              toast.error(err.message);
+              setSelectCntct(0)
+            });
+      }
     }
-
-
   };
 
   const handleDeleteData = (url) => {
@@ -1300,7 +1303,8 @@ const Checkout = (props) => {
                                          className="owl-item" style={{ width: 230, marginLeft: 0 , }}>
                                       {/*single-checkout-body single-checkout-body-first payment-body*/}
                                       {/*single-checkout-body payment-body*/}
-                                      <div className={"single-checkout-body "+(index === 0 ? "single-checkout-body-first" : "" ) +" payment-body"}>
+                                      <div
+                                          className={"single-checkout-body "+(index === 0 ? "single-checkout-body-first" : "" ) +" payment-body"}>
                                         <div className="checkout-body-location">
                                           <h4>
                                             <img src={data.url} alt />
@@ -1416,7 +1420,7 @@ const Checkout = (props) => {
                 to={`/`}>
                   <Button style={{
                     padding: '7px 30px 7px 30px',
-                    backgroundColor: '#1d6c32'
+                    backgroundColor: '#ed1c24'
                   }} type="primary">Shopping Now</Button>
                 </Link>
 
@@ -1430,5 +1434,4 @@ const Checkout = (props) => {
   );
 };
 
-export default Checkout
-          ;
+export default Checkout;

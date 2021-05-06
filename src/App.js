@@ -31,6 +31,7 @@ import VendorStore from "./pages/vendor/VendorStore";
 import ProductCompare from "./pages/product/ProductCompare";
 import MyContacts from "./pages/account/MyContacts";
 import VendorStoreDetails from "./pages/store/VendorStoreDetails";
+import PaymentSuccess from "./pages/payment/PaymentSuccess";
 
 function App() {
   const homePath = "/";
@@ -149,6 +150,9 @@ function App() {
             <ProductCompare />
           </Route>
 
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/payment-success">
+            <PaymentSuccess />
+          </Route>
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">
             <NotFound />
           </Route>
