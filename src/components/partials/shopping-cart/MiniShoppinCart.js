@@ -254,14 +254,14 @@ class MiniShoppinCart extends Component {
         (item) => item.store_id === store_id
       );
       store.store_product.map((item) => {
-        if(item?.cart_check == 2){
+        if(item?.cart_check == 1){
           cart_store_product_ids.push(item.id);
         }
       });
     } else {
       this.props.shoppingCart.cartItems.map((cart_item) => {
         cart_item.store_product.map((store_item) => {
-          if(store_item?.cart_check == 2){
+          if(store_item?.cart_check == 1){
             cart_store_product_ids.push(store_item.id);
           }
           

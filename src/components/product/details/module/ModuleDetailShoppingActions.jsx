@@ -137,8 +137,8 @@ const ModuleDetailShoppingActions = ({
     }
   };
 
-  const processBuyNowCheckout = (cart_id, product_id) => {
-    let cart_store_product_ids = [product_id];
+  const processBuyNowCheckout = (cart_id, store_product_id) => {
+    let cart_store_product_ids = [store_product_id];
 
     processPostRequest(
       "/proceed-checkout",
@@ -161,21 +161,30 @@ const ModuleDetailShoppingActions = ({
       });
   };
 
-  const handleProceedCheckout = (cart_id, product_id) => {
+  const handleProceedCheckout = (cart_id, store_product_id) => {
     const user = userData();
     if (!user) {
       handleShowAuthModal(() => {
-        processBuyNowCheckout(cart_id, product_id);
+        processBuyNowCheckout(cart_id, store_product_id);
       });
     } else {
-      processBuyNowCheckout(cart_id, product_id);
+      processBuyNowCheckout(cart_id, store_product_id);
     }
   };
 
   const handleBuynow = (e) => {
     e.preventDefault();
     handleAddItemToCart(e, (data)=>{
-      handleProceedCheckout(data.cart.id, id);
+      let store_product_id;
+      
+      data.cart_items.map(item=>{
+        item.store_product.map(prod=>{
+          if(prod.product.id == id && prod.product_attribute.id==selectedAttributeProduct.id){
+            store_product_id = prod.id;
+          }
+        })
+      })
+      handleProceedCheckout(data.cart.id, store_product_id);
     });
   };
 
