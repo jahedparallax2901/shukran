@@ -261,7 +261,7 @@ class MiniShoppinCart extends Component {
     } else {
       this.props.shoppingCart.cartItems.map((cart_item) => {
         cart_item.store_product.map((store_item) => {
-          if(store_item?.cart_check == 2){
+          if(store_item?.cart_check == 1){
             cart_store_product_ids.push(store_item.id);
           }
           
