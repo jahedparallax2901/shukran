@@ -179,7 +179,7 @@
   .ps-product__thumbnail {
     position: relative;
     overflow: hidden;
-
+    min-height: 150px;
     img {
       width: 100%;
     }

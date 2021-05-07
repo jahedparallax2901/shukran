@@ -190,7 +190,7 @@ p:last-child {
     outline: 0px;
     border-radius: 0px;
     padding: 0px;
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 13px;
     font-weight: 700;
     color: #006C32;
@@ -207,7 +207,7 @@ p:last-child {
     outline: 0px;
     border-radius: 0px;
     padding: 0px;
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 13px;
     font-weight: 700;
     color: #006C32;
@@ -297,7 +297,7 @@ p:last-child {
     outline: 0px;
     border-radius: 0px;
     padding: 0px;
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 13px;
     font-weight: 700;
     color: #006C32;
@@ -371,7 +371,7 @@ p:last-child {
     cursor: pointer;
 }
 .single-checkout-body .checkout-body-location h4{
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 13px;
     font-weight: 700;
     color: rgb(13, 17, 54);
@@ -416,7 +416,7 @@ p:last-child {
     line-height: 15px;
 }
 .single-checkout-body p{
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 15px;
     font-weight: 400;
     color: #000;
@@ -452,7 +452,7 @@ p:last-child {
     }
 }
 .voucher-area p:first-child{
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 15px;
     font-weight: 400;
     color: #006c32;
@@ -467,7 +467,7 @@ p:last-child {
     cursor: pointer;
 }
 .voucher-area p:last-child{
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 13px;
     font-weight: 400;
     color: rgb(119, 121, 140);
@@ -477,7 +477,7 @@ p:last-child {
     display: block;
 }
 .voucher-area p:last-child{
-    font-family: Lato, sans-serif;
+    font-family: 'Varela Round', sans-serif !important;
     font-size: 13px;
     font-weight: 400;
     color: #ed1c24;
