@@ -45,6 +45,9 @@ import Success from "../components/success/Success";
 import {Empty} from 'antd'
 import {Link} from "react-router-dom";
 
+import { getCartItems, handleClearCart } from "../redux";
+import { connect } from "react-redux";
+
 const Checkout = (props) => {
   const [defaultSelected, setDefaultSelected] = useState([0]);
 
@@ -223,35 +226,9 @@ const Checkout = (props) => {
       select(0)
     }
     else {
-
-      if (selectPaymentGateWay === 2){
-        //GatewayPageURL
-        processPostRequest("/place-order", {
-          checkout_id: checkoutData?.checkout?.id,
-          address_id: deliverAddress[select]?.id,
-          contact_id: contacts[selectCntct]?.id,
-          payment_gateway_id: selectPaymentGateWay,
-        }, true)
-            .then((res) => {
-              if (res.status === 200) {
-                console.log(res)
-                if (res?.data.GatewayPageURL){
-
-                  window.location.href = res?.data.GatewayPageURL
-                }else {
-                  history.push('/payment-failed')
-                }
-              }
-            })
-            .catch((err) => {
-              toast.error(err.message);
-              setSelectCntct(0)
-            });
-
-      }else {
-        placeOrderV1()
-      }
+      placeOrderV1()
     }
+
   };
 
   const placeOrderV1 = () =>{
@@ -263,10 +240,24 @@ const Checkout = (props) => {
     }, true)
         .then((res) => {
           if (res.status === 200) {
-            toast.success("Order successfully placed");
-            setIsSuccessPlace(true)
+            props.getCartItems((data, isSuccess)=>{
+              const items = data.cart.total_prdoucts;
+              if(items <= 0){
+                localStorage.removeItem("cart_id");
+                props.handleClearCart()
+              }
+            })
 
-
+            if (selectPaymentGateWay === 2){
+              if (res?.data?.GatewayPageURL){
+                window.location.href = res?.data?.GatewayPageURL
+              }else {
+                history.push('/payment-failed')
+              }
+            }else {
+              toast.success("Order successfully placed");
+              setIsSuccessPlace(true)
+            }
 
           }
         })
@@ -523,7 +514,7 @@ const Checkout = (props) => {
   };
 
   return (
-      <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
+      <ContainerMarketPlace3 title="Checkout" isExpanded={true} isCartAvailable={false}>
         <Modal
             className="info-modal"
             show={isShowModal}
@@ -1456,4 +1447,18 @@ const Checkout = (props) => {
   );
 };
 
-export default Checkout;
+
+const mapStateToProps = (state) =>{
+  return{
+    shoppingCart: state.shoppingCart
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    getCartItems: (cb)=> dispatch(getCartItems(cb)),
+    handleClearCart: () => dispatch(handleClearCart()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
