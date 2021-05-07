@@ -225,8 +225,7 @@ const Checkout = (props) => {
     else {
 
       if (selectPaymentGateWay === 2){
-        window.alert('ok')
-      }else {
+        //GatewayPageURL
         processPostRequest("/place-order", {
           checkout_id: checkoutData?.checkout?.id,
           address_id: deliverAddress[select]?.id,
@@ -234,29 +233,48 @@ const Checkout = (props) => {
           payment_gateway_id: selectPaymentGateWay,
         }, true)
             .then((res) => {
-              if (res.status) {
-                toast.success("Order successfully placed");
-                setIsSuccessPlace(true)
-                /*
+              if (res.status === 200) {
+                console.log(res)
+                if (res?.data.GatewayPageURL){
 
-                              history.push({
-                                pathname: '/invoice',
-                                state: {  // location state
-                                  json: res.data
-                                },
-                              });
-                */
-
-
+                  window.location.href = res?.data.GatewayPageURL
+                }else {
+                  history.push('/payment-failed')
+                }
               }
             })
             .catch((err) => {
               toast.error(err.message);
               setSelectCntct(0)
             });
+
+      }else {
+        placeOrderV1()
       }
     }
   };
+
+  const placeOrderV1 = () =>{
+    processPostRequest("/place-order", {
+      checkout_id: checkoutData?.checkout?.id,
+      address_id: deliverAddress[select]?.id,
+      contact_id: contacts[selectCntct]?.id,
+      payment_gateway_id: selectPaymentGateWay,
+    }, true)
+        .then((res) => {
+          if (res.status === 200) {
+            toast.success("Order successfully placed");
+            setIsSuccessPlace(true)
+
+
+
+          }
+        })
+        .catch((err) => {
+          toast.error(err.message);
+          setSelectCntct(0)
+        });
+  }
 
   const handleDeleteData = (url) => {
     processDeleteRequest(url)
