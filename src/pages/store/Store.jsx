@@ -82,7 +82,7 @@ class Store extends Component {
                     </div>
                     <div className="ps-block__container">
                       <div className="ps-block__header">
-                        <h4>Digitalworld us</h4>
+                        <h4>{store_info?.name || "Store"}</h4>
                         {/* <Rating count={3} /> */}
                         {/* <p>
                           <strong>85% Positive</strong> (562 rating)

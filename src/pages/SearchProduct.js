@@ -50,8 +50,8 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
 
   const getProducts = (params) => {
     fetchSearchedProducts(params, (data) => {
-      const { current_page, total, per_page } = data.product;
-      setTotal(productSearch?.products?.length);
+      const { current_page, total, per_page } = data;
+      setTotal(data?.length);
       setQuery(queryString.parse(history.location.search));
       setPagination({ current_page, total, per_page });
     });

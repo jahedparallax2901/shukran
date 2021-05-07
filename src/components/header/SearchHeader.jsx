@@ -172,7 +172,6 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
           placeholder="I'm shopping for..."
           onChange={(e) => setKeyword(e.target.value)}
           onFocus={()=>setIsShowingSugestedProducts(true)}
-          onBlur={()=>setIsShowingSugestedProducts(false)}
         />
         {clearTextView}
         {loadingView}
