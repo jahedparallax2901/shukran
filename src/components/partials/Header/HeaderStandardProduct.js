@@ -38,14 +38,13 @@ class HeaderStandardProduct extends Component {
   };
 
   componentDidMount() {
-
     if (process.browser) {
-      window.addEventListener('scroll', this.stickyHeader);
-  }
+      window.addEventListener("scroll", this.stickyHeader);
+    }
 
     this.setState({ isLoading: true });
     const cart_id = localStorage.getItem("cart_id");
-    processGetRequest("/generic-info", {info_type: 1})
+    processGetRequest("/generic-info", { info_type: 1 })
       .then((res) => {
         this.setState({
           categories: res.categories,
@@ -59,26 +58,26 @@ class HeaderStandardProduct extends Component {
   stickyHeader = () => {
     console.log("Scrolling");
     let number =
-        window.pageXOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-    const header = document.getElementById('headerSticky');
+      window.pageXOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const header = document.getElementById("headerSticky");
     if (header !== null) {
-        if (number >= 300) {
-            header.classList.add('header--sticky');
-        } else {
-            header.classList.remove('header--sticky');
-        }
+      if (number >= 300) {
+        header.classList.add("header--sticky");
+      } else {
+        header.classList.remove("header--sticky");
+      }
     }
-};
+  };
 
   handleItemDelete = (e, product_id, item_id) => {
     this.setState({ isCartProcessing: true });
     const newProductlist = this.props.shoppingCart.cartProductlist.filter(
       (item) => item.item_id !== item_id || item.product_id !== product_id
     );
-   
+
     this.props.handleAddToCart(
       newProductlist,
       userData()?.token || "",
@@ -98,11 +97,11 @@ class HeaderStandardProduct extends Component {
     );
   };
 
-  handleSignOut = () =>{
+  handleSignOut = () => {
     localStorage.clear();
     this.props.handleSignOut();
     this.props.handleClearCart();
-  }
+  };
 
   countTotalItems = () => {
     let count = 0;
@@ -123,9 +122,10 @@ class HeaderStandardProduct extends Component {
       shoppingCart,
       handleShowShoppingCart,
       handleAddToCart,
-      product
+      product,
+      wishlist,
     } = this.props;
-    
+
     return (
       <header
         className="header header--product header--market-place-1 header--standard"
@@ -167,12 +167,12 @@ class HeaderStandardProduct extends Component {
             </div>
             <div className="header__content-right">
               <div className="header__actions">
-                <Link className="header__extra" to="/wishlist">
+                <Link className="header__extra" to="/account/wishlist">
                   <i>
                     <BsHeart />
                   </i>
                   <span>
-                    <i>0</i>
+                    <i>{wishlist?.length || 0}</i>
                   </span>
                 </Link>
                 <div className="ps-cart--mini">
@@ -185,7 +185,7 @@ class HeaderStandardProduct extends Component {
                         {shoppingCart?.cartSummery?.total_prdoucts ||
                           this.countTotalItems() ||
                           0}
-                      </i>  
+                      </i>
                     </span>
                   </a>
 
@@ -196,12 +196,12 @@ class HeaderStandardProduct extends Component {
                       </div>
                     ) : (
                       <>
-                        {shoppingCart.cartItems?.length > 0 ? (
+                        {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
                           <>
                             <div className="ps-cart__items">
                               {shoppingCart.cartItems.map((item) => (
                                 <>
-                                  {item?.store_product &&
+                                  {item?.store_product?.length>0 &&
                                     item.store_product.map((store_item) => (
                                       <div className="ps-product--cart-mobile">
                                         <div className="ps-product__thumbnail">
@@ -350,12 +350,12 @@ class HeaderStandardProduct extends Component {
             </div>
           </div>
         </nav>
-      
+
         <nav className="navigation navigation--product">
-                <div className="container">
-                    <ProductOnHeader product={product} />
-                </div>
-            </nav>
+          <div className="container">
+            <ProductOnHeader product={product} />
+          </div>
+        </nav>
       </header>
     );
   }
@@ -365,6 +365,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.userData,
     shoppingCart: state.shoppingCart,
+    wishlist: state.wishlist.wishListItems,
   };
 };
 
@@ -380,4 +381,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderStandardProduct);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeaderStandardProduct);

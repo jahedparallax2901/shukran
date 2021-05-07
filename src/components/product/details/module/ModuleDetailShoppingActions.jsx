@@ -11,6 +11,8 @@ import {
   handleShowAuthModal,
   triggeredAddToCart,
 } from "../../../../redux";
+import { getWishlistItems } from "../../../../redux/wishlist/wishlistActions";
+import { processPostRequest } from "../../../../services/baseServices";
 
 const ModuleDetailShoppingActions = ({
   product,
@@ -19,6 +21,9 @@ const ModuleDetailShoppingActions = ({
   handleAddToCart,
   shoppingCart,
   getCartItems,
+  handleShowAuthModal,
+  getWishlistItems,
+  wishlist
 }) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
@@ -51,6 +56,25 @@ const ModuleDetailShoppingActions = ({
     );
   };
 
+  const addItemToWishlist = (id) => {
+    processPostRequest(`/add-to-wishlist/${id}`, {}, true)
+      .then((res) => {
+        if (res.status === 200) {
+          getWishlistItems(()=>{
+            toast.success(res.data.message)
+
+          })
+        } else if (res.status === 400) {
+          console.log("response", res);
+        }
+      })
+      .catch((err) => {
+        console.log("error", err.message);
+        toast.error(err.message);
+      });
+  };
+
+
   const handleBuynow = (e) => {
     e.preventDefault();
     let tmp = product;
@@ -68,8 +92,14 @@ const ModuleDetailShoppingActions = ({
 
   const handleAddItemToWishlist = (e) => {
     e.preventDefault();
-    const { product } = this.props;
-    // dispatch(addItemToWishlist(product));
+    const user = userData();
+    if (!user) {
+      handleShowAuthModal(() => {
+        addItemToWishlist(product?.product_id || product?.id);
+      });
+    } else {
+      addItemToWishlist(product?.product_id || product?.id);
+    }
   };
 
   const handleIncreaseItemQty = (e) => {
@@ -115,11 +145,11 @@ const ModuleDetailShoppingActions = ({
         </button>
         <div className="ps-product__actions">
           {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}> */}
-          <a href="#">
+          <Link onClick={(e) => handleAddItemToWishlist(e)}>
             <i>
-              <FaHeart />
+              <FaHeart className={wishlist.find(item=> item?.product?.id === id)? "filled": ""}/>
             </i>
-          </a>
+          </Link>
           {/* <a href="#" onClick={(e) => handleAddItemToCompare(e)}> */}
           <a href="#">
             <i>
@@ -185,6 +215,7 @@ const mapStateToProps = (state) => {
     userIsLoggedIn: state.auth.userIsLoggedIn,
     userToken: state.auth.userData?.token,
     shoppingCart: state.shoppingCart,
+    wishlist: state.wishlist.wishListItems
   };
 };
 
@@ -196,6 +227,7 @@ const mapDispatchToProps = (dispatch) => {
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     getCartItems: (cb) => dispatch(getCartItems(cb)),
+    getWishlistItems: (cb) => dispatch(getWishlistItems(cb))
   };
 };
 

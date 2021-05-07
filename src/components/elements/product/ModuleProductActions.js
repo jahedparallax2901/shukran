@@ -11,14 +11,40 @@ import { FaChartBar, FaRegHeart } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
 import { Link } from "react-router-dom";
+import { userData } from "../../../helpers/authUtils";
+import { processPostRequest } from "../../../services/baseServices";
+import { toast } from "react-toastify";
+import { connect } from "react-redux";
+import { handleShowAuthModal } from "../../../redux";
+import { getWishlistItems } from "../../../redux/wishlist/wishlistActions";
 
-const ModuleProductActions = ({ product }) => {
+const ModuleProductActions = ({
+  product,
+  handleShowAuthModal,
+  getWishlistItems,
+}) => {
   // const dispatch = useDispatch();
   const [isQuickView, setIsQuickView] = useState(false);
 
+  const addItemToWishlist = (id) => {
+    processPostRequest(`/add-to-wishlist/${id}`, {}, true)
+      .then((res) => {
+        if (res.status === 200) {
+          getWishlistItems(() => {
+            toast.success(res.data.message);
+          });
+        } else if (res.status === 400) {
+          console.log("response", res);
+        }
+      })
+      .catch((err) => {
+        console.log("error", err.message);
+        toast.error(err.message);
+      });
+  };
+
   const handleAddItemToCart = (e) => {
     e.preventDefault();
-    // dispatch(addItem(product));
   };
 
   const handleAddItemToCompare = (e) => {
@@ -27,7 +53,15 @@ const ModuleProductActions = ({ product }) => {
   };
 
   const handleAddItemToWishlist = (e) => {
-    // dispatch(addItemToWishlist(product));
+    e.preventDefault();
+    const user = userData();
+    if (!user) {
+      handleShowAuthModal(() => {
+        addItemToWishlist(product?.product_id || product?.id);
+      });
+    } else {
+      addItemToWishlist(product?.product_id || product?.id);
+    }
   };
 
   const handleShowQuickView = (e) => {
@@ -47,7 +81,7 @@ const ModuleProductActions = ({ product }) => {
           data-toggle="tooltip"
           data-placement="top"
           title="Add To Cart"
-          // onClick={handleAddItemToCart}
+          onClick={handleAddItemToCart}
         >
           <i>
             <FiShoppingBag />
@@ -72,10 +106,10 @@ const ModuleProductActions = ({ product }) => {
           data-toggle="tooltip"
           data-placement="top"
           title="Add to wishlist"
-          // onClick={handleAddItemToWishlist}
+          onClick={handleAddItemToWishlist}
         >
           <i>
-            <FaRegHeart />
+            <FaRegHeart className="filled"/>
           </i>
         </Link>
       </li>
@@ -112,4 +146,12 @@ const ModuleProductActions = ({ product }) => {
   );
 };
 
-export default ModuleProductActions;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
+    handleShowAuthModal: (cb) => dispatch(handleShowAuthModal(cb)),
+    getWishlistItems: (cb) => dispatch(getWishlistItems(cb)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ModuleProductActions);

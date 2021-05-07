@@ -74,7 +74,7 @@ export default function MyWishlist() {
   const WishListComponent = () => {
     return(<>
             {wishlist && wishlist.map((data, index) =>(<>
-              <div key={index} className="wishlist">
+              <div key={index} className="wishlist mb-4">
                 <div className="wishlist-item py-0">
                   <div
                       className="product-hr d-flex align-items-center justify-content-between my-2"

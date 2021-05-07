@@ -70,7 +70,7 @@ class Product extends Component {
         //     });
         // }
         return (
-            <div className="ps-product">
+            <div className="ps-product ps-product-shop-details">
                 <div className="ps-product__thumbnail">
                     <Link to={`/product/${product.id}`}>
                         <a>
@@ -84,9 +84,9 @@ class Product extends Component {
                     </Link>
                     {product.badge ? productBadge : ''}
 
-                    <ModuleProductActions product={product}/>
+                    <ModuleProductActions product={product} />
                 </div>
-                
+
                 <div className="ps-product__container">
                     {/* <Link to="/shop">
                         <a className="ps-product__vendor">Young Shop</a>
@@ -100,27 +100,6 @@ class Product extends Component {
                             <Rating />
                             <span>{product.ratingCount}</span>
                         </div> */}
-                        {product.sale_price < product.price ? (
-                            <p className="ps-product__price sale">
-                                {/* {currency ? currency.symbol : '$'} */}
-                                ৳ {product.price}{' '}
-                                <del className="ml-2">
-                                    {/* {currency ? currency.symbol : '$'} */}
-                                    ৳ {product.sale_price}
-                                </del>
-                            </p>
-                        ) : (
-                            <p className="ps-product__price">
-                                {/* {currency ? currency.symbol : '$'} */}
-                                ৳ {product.price}
-                            </p>
-                        )}
-                    </div>
-                    <div className="ps-product__content hover">
-                        <Link
-                            to={`/product/${product?.id}`}>
-                            <a className="ps-product__title">{product?.name}</a>
-                        </Link>
                         {product.sale_price < product.price ? (
                             <p className="ps-product__price sale">
                                 {/* {currency ? currency.symbol : '$'} */}

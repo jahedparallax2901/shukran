@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { processGetRequest } from "../../../services/baseServices";
 import { carouselStandard } from "../../../utilities/carousel-helpers";
 import bike1 from "../../../assets/img/downloads/bike1.jpeg";
+import { withRouter } from "react-router";
 
 class AllCategories extends Component {
   state = {
@@ -36,7 +37,9 @@ class AllCategories extends Component {
               <Slider {...carouselStandard}>
                 {this.state.all_category?
                   this.state.all_category.map((item) => (
-                    <div className="ps-product ps-product--inner px-3">
+                    <div className="ps-product ps-product--inner px-3" onClick={()=>{
+                      this.props.history.push(`/search?category_id=${item.id}`)
+                    }}>
                       <div className="ps-block--category">
                         <a className="ps-block__overlay" href="#"></a>
                         <div className="all-category-single">
@@ -46,7 +49,7 @@ class AllCategories extends Component {
                       </div>
                     </div>
                   )) : <div className="ps-product ps-product--inner px-3">
-                      No Product Exist
+                      No Category Exist
                   </div> }
               </Slider>
             </div>
@@ -57,4 +60,4 @@ class AllCategories extends Component {
   }
 }
 
-export default AllCategories;
+export default withRouter(AllCategories);

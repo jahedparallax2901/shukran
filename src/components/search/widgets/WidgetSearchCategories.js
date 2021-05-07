@@ -3,6 +3,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { Link, useHistory } from "react-router-dom";
 import { arrayToUrlParams, objToUrlPrams } from "../../../helpers/utils";
 import { processGetRequest } from "../../../services/baseServices";
+import queryString from "query-string";
 
 export default function WidgetSearchCategories({
   setQuery,
@@ -12,10 +13,11 @@ export default function WidgetSearchCategories({
   const [categories, setCategories] = useState([]);
   const [selected_categories, setSelected_categories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [queryParams, setQueryParams] = useState()
   const history = useHistory();
 
   const handleCategoryClick = async (e, id) => {
-    let newQuery = { category_id: [] };
+    let newQuery = {...query, category_id: [] };
     if (!selected_categories.includes(id)) {
       e.target.classList.add("active");
       const categories = [...new Set([...selected_categories, id])];
@@ -24,9 +26,11 @@ export default function WidgetSearchCategories({
       const url =
         history.location.pathname +
         "?" +
-        objToUrlPrams(query) +
-        arrayToUrlParams("category_id", categories);
+        queryString.stringify(newQuery) 
+        // +
+        // arrayToUrlParams("category_id", categories);
       history.push(url);
+      setQuery(newQuery);
       getProducts(newQuery);
     } else {
       e.target.classList.remove("active");
@@ -38,14 +42,19 @@ export default function WidgetSearchCategories({
       const url =
         history.location.pathname +
         "?" +
-        objToUrlPrams(query) +
-        arrayToUrlParams("category_id", categories);
+        queryString.stringify(newQuery) 
+        // +
+        // arrayToUrlParams("category_id", categories);
       history.push(url);
+      setQuery(newQuery);
       getProducts(newQuery);
     }
   };
 
   useEffect(() => {
+    if(query?.category_id){
+      setSelected_categories(Array.isArray(query?.category_id)? [...new Set(query.category_id)] : [query?.category_id]);
+    }
     processGetRequest("/generic-info", { info_type: 1 })
       .then((res) => {
         setCategories(res.categories);
@@ -55,6 +64,9 @@ export default function WidgetSearchCategories({
         setLoading(false);
       });
   }, []);
+
+  console.log("query",selected_categories);
+
   return (
     <div>
       <aside className="widget widget_shop">
@@ -66,8 +78,8 @@ export default function WidgetSearchCategories({
             <>
               {categories &&
                 categories.map((cat) => (
-                  <li className={"menu-item-has-children"} onClick={(e) => handleCategoryClick(e, cat.id)}>
-                    <a >
+                  <li className={`menu-item-has-children`} onClick={(e) => handleCategoryClick(e, cat.id)}>
+                    <a className={selected_categories.includes((cat.id).toString()) && "active"}>
                       {cat.name}
                       <span className="sub-toggle">
                       <FaChevronDown />

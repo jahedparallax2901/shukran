@@ -73,7 +73,7 @@ class Header extends Component {
             </div>
           </div>
         </div>
-
+{/* 
         <div className="ps-panel--sidebar" id="navigation-mobile">
           <div className="ps-panel__header">
             <h3>Categories</h3>
@@ -127,6 +127,7 @@ class Header extends Component {
         </div>
 
         {/* changed */}
+{/* 
         <div className="navigation--list">
           <div className="navigation__content">
             {navigationList.map((item) => (
@@ -141,8 +142,9 @@ class Header extends Component {
             ))}
           </div>
         </div>
+         */}
         {/* changed-end */}
-
+{/* 
         <div className="ps-panel--sidebar" id="search-sidebar">
           <div className="ps-panel__header">
             <form
@@ -188,6 +190,7 @@ class Header extends Component {
             </ul>
           </div>
         </div>
+        */}
       </>
     );
   }

@@ -31,6 +31,8 @@ import VendorStore from "./pages/vendor/VendorStore";
 import ProductCompare from "./pages/product/ProductCompare";
 import MyContacts from "./pages/account/MyContacts";
 import VendorStoreDetails from "./pages/store/VendorStoreDetails";
+import DigitalSheba from "./pages/DigitalSheba";
+import LittleBangladesh from "./pages/LittleBangladesh";
 import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import PaymentFailed from "./pages/payment/PaymentFailed";
 
@@ -150,6 +152,15 @@ function App() {
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/compare">
             <ProductCompare />
           </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/digital-sheba">
+            <DigitalSheba />
+          </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/little-bangladesh">
+            <LittleBangladesh />
+          </Route>
+         
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/payment-success">
             <PaymentSuccess />

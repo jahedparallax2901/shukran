@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import BreadCrumb from "../../components/elements/BreadCrumb";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
@@ -20,7 +20,11 @@ const VendorStoreDetails = () => {
     },
   ];
 
-  const {id} = useParams();
+  const { id } = useParams();
+
+  useState(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="site-content">
@@ -29,7 +33,7 @@ const VendorStoreDetails = () => {
       <MiniShoppinCart />
       <div className="ps-page--single ps-page--vendor">
         <BreadCrumb breacrumb={breadCrumb} />
-        <Store store_id={id}/>
+        <Store store_id={id} />
       </div>
       <FooterMarketPlace2 isExpanded={true} />
     </div>

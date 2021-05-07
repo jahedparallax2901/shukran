@@ -3,12 +3,21 @@ import React, { useEffect } from "react";
 // import NavigationList from '../partials/NavigationList';
 import FooterMarketPlace2 from "../partials/footer/FooterMarketPlace2";
 import Header from "../partials/Header/Header";
+import NavigationList from "../partials/navigation/NavigationList";
 import FloatingCart from "../partials/shared/shopping-cart/FloatingCart";
 import MiniShoppinCart from "../partials/shopping-cart/MiniShoppinCart";
 // import MarketPlacePromotionHeader from '../partials/MarketPlacePromotionHeader';
 // import HeaderMarketPlace from '../partials/HeaderMarketPlace';
 
-const ContainerMarketPlace3 = ({ children, title, categories, all_category, isExpanded=false, requiredTopPadding= false }) => {
+const ContainerMarketPlace3 = ({
+  children,
+  title,
+  categories,
+  all_category,
+  isExpanded = false,
+  requiredTopPadding = false,
+  isCartAvailable = true,
+}) => {
   let titleView;
   if (title !== null) {
     titleView = process.env.title + " | " + title;
@@ -26,13 +35,15 @@ const ContainerMarketPlace3 = ({ children, title, categories, all_category, isEx
             <HeaderMarketPlace /> */}
       {/* <HeaderMobile />
             <NavigationList /> */}
-      <Header isProduct={false}/>
-      <FloatingCart />
-      <MiniShoppinCart />
+      <Header isProduct={false} />
+      <NavigationList/>
+      {isCartAvailable && <FloatingCart />}
+      {isCartAvailable && <MiniShoppinCart />}
+      
       <main id="homepage-5" className={`${requiredTopPadding && "pt-4"}`}>
         <div className="">{children}</div>
       </main>
-      <FooterMarketPlace2 isExpanded={isExpanded}/>
+      <FooterMarketPlace2 isExpanded={isExpanded} />
     </div>
   );
 };

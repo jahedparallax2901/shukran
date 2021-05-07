@@ -9,9 +9,21 @@ import SkeletonProduct from "../partials/shared/SkeletonProduct";
 import ModuleSearcjProductSortBy from "../product/ModuleSearcjProductSortBy";
 import { BsGrid3X3Gap } from "react-icons/bs";
 import { processGetRequest } from "../../services/baseServices";
-import {objToUrlPrams} from '../../helpers/utils';
+import { objToUrlPrams } from "../../helpers/utils";
+import queryString from "query-string";
+import StatusBlock from "../common/StatusBlock";
+import { ImHome3 } from "react-icons/im";
 
-const SearchItems = ({ columns = 4, productItems, total , loading, query, setQuery, getProducts, paginanation}) => {
+const SearchItems = ({
+  columns = 4,
+  productItems,
+  total,
+  loading,
+  query,
+  setQuery,
+  getProducts,
+  paginanation,
+}) => {
   const history = useHistory();
   const [listView, setListView] = useState(true);
   const [classes, setClasses] = useState(
@@ -24,10 +36,13 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
   }
 
   function handlePagination(page, pageSize) {
-    setQuery({...query, page}, ()=>{
-        history.push(objToUrlPrams(query));
-        getProducts()
-    })
+    const newQuery = { ...query, page };
+    const url =
+      history.location.pathname + "?" + queryString.stringify(newQuery);
+    setQuery(newQuery);
+    history.push(url);
+    getProducts(newQuery);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleSetColumns() {
@@ -75,7 +90,16 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
         ));
       }
     } else {
-      productItemsView = <p>No product found.</p>;
+      productItemsView = (
+        <StatusBlock
+          icon={<ImHome3 />}
+          title={"No product found"}
+          content={"No product found related to your search."}
+          redirectUrl="/"
+          urlText="Continue shopping"
+          isColored={false}
+        />
+      );
     }
   } else {
     const skeletonItems = generateTempArray(12).map((item) => (
@@ -118,11 +142,15 @@ const SearchItems = ({ columns = 4, productItems, total , loading, query, setQue
       <div className="ps-shopping__footer text-center">
         <div className="ps-pagination">
           <Pagination
-            total={total - 1}
+            total={paginanation?.total || 1}
             pageSize={paginanation?.per_page || 10}
             responsive={true}
             showSizeChanger={false}
-            current={paginanation?.current_page !== undefined ? parseInt(paginanation?.current_page) : 1}
+            current={
+              paginanation?.current_page !== undefined
+                ? parseInt(paginanation?.current_page)
+                : 1
+            }
             onChange={(e) => handlePagination(e)}
           />
         </div>

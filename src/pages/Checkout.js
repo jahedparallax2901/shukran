@@ -38,6 +38,8 @@ import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
 import { toast } from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
+import { getCartItems, handleClearCart } from "../redux";
+import { connect } from "react-redux";
 import ProductDealOfDay from "../components/product/ProductDealOfDay";
 import {generateTempArray} from "../utilities/common-helpers";
 import SkeletonProduct from "../components/partials/shared/SkeletonProduct";
@@ -223,39 +225,49 @@ const Checkout = (props) => {
       select(0)
     }
     else {
-
-      if (selectPaymentGateWay === 2){
-        window.alert('ok')
-      }else {
-        processPostRequest("/place-order", {
-          checkout_id: checkoutData?.checkout?.id,
-          address_id: deliverAddress[select]?.id,
-          contact_id: contacts[selectCntct]?.id,
-          payment_gateway_id: selectPaymentGateWay,
-        }, true)
-            .then((res) => {
-              if (res.status) {
+      processPostRequest("/place-order", {
+        checkout_id: checkoutData?.checkout?.id,
+        address_id: deliverAddress[select]?.id,
+        contact_id: contacts[selectCntct]?.id,
+        payment_gateway_id: selectPaymentGateWay,
+      }, true)
+          .then((res) => {
+            if (res.status === 200) {
+              props.getCartItems((data, isSuccess)=>{
                 toast.success("Order successfully placed");
-                setIsSuccessPlace(true)
-                /*
+                setIsSuccessPlace(true);
+                debugger;
+                const items = data.cart.total_prdoucts;
+                if(items <= 0){
+                  localStorage.removeItem("cart_id");
+                  props.handleClearCart()
+                }
+              })
+            }
+            // if (res.status) {
+            //   toast.success("Order successfully placed");
+            //   setIsSuccessPlace(true)
+/*
 
-                              history.push({
-                                pathname: '/invoice',
-                                state: {  // location state
-                                  json: res.data
-                                },
-                              });
-                */
+              history.push({
+                pathname: '/invoice',
+                state: {  // location state
+                  json: res.data
+                },
+              });
+*/
 
 
-              }
-            })
-            .catch((err) => {
-              toast.error(err.message);
-              setSelectCntct(0)
-            });
-      }
+            // }
+          })
+          .catch((err) => {
+            toast.error(err.message);
+            setSelectCntct(0)
+          });
     }
+
+
+             
   };
 
   const handleDeleteData = (url) => {
@@ -505,7 +517,7 @@ const Checkout = (props) => {
   };
 
   return (
-    <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
+    <ContainerMarketPlace3 title="Checkout" isExpanded={true} isCartAvailable={false}>
       <Modal
         className="info-modal"
         show={isShowModal}
@@ -1438,4 +1450,17 @@ const Checkout = (props) => {
   );
 };
 
-export default Checkout;
+const mapStateToProps = (state) =>{
+  return{
+    shoppingCart: state.shoppingCart
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    getCartItems: (cb)=> dispatch(getCartItems(cb)),
+    handleClearCart: () => dispatch(handleClearCart()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

@@ -336,10 +336,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
+            z-index: 530;
             border-bottom: 1px solid #ccc;
             padding: 10px 0;
             background-color: #ffffff;
+            transition: .5s ease-in-out;
 
             .menu--product-categories {
                 display: block;
@@ -386,7 +387,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 9999;
+            z-index: 530;
             height: auto;
             border-bottom: 1px solid #eaeaea;
             transform: translateY(0);
@@ -503,6 +504,7 @@
             width: 100%;
             z-index: 1000;
             background-color: $color-1st;
+            transition: .5s ease-in-out;
             @include box-shadow(0 0 3px 0 rgba(#000, 0.12));
         }
     }

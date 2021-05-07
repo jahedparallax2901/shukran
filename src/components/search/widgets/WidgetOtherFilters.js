@@ -7,6 +7,7 @@ import { arrayToUrlParams, objToUrlPrams } from "../../../helpers/utils";
 import { processGetRequest } from "../../../services/baseServices";
 import { all_brand } from "../../../temp-data/brands";
 import '../../../assets/scss/my-changes.scss'
+import queryString from "query-string";
 
 export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
   const [range, setRange] = useState({starting_price: "", ending_price: ""})
@@ -26,13 +27,14 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
     newQuery.starting_price = range.starting_price;
     newQuery.ending_price = range.ending_price;
     await setQuery(newQuery);
-    const url = history.location.pathname + "?" + objToUrlPrams(newQuery);
+    const url = history.location.pathname + "?" + queryString.stringify(newQuery);
     history.push(url);
     getProducts(newQuery);
   };
 
   const handleOnBrandChange = (e, id) => {
-    let newQuery = { brand_id: [] };
+    let newQuery = {...query, brand_id: [] };
+    console.log("newQuery", query);
     if (e.target.checked) {
       const brands = [...new Set([...selected_brands, id])];
       setSelected_brands(brands);
@@ -40,8 +42,9 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       const url =
         history.location.pathname +
         "?" +
-        objToUrlPrams(query) +
-        arrayToUrlParams("brand_id", brands);
+        queryString.stringify(newQuery) 
+        // +
+        // arrayToUrlParams("brand_id", brands);
       history.push(url);
       getProducts(newQuery);
     } else {
@@ -51,15 +54,17 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       const url =
         history.location.pathname +
         "?" +
-        objToUrlPrams(query) +
-        arrayToUrlParams("brand_id", brands);
+        queryString.stringify(newQuery) 
+        // +
+        // arrayToUrlParams("brand_id", brands);
       history.push(url);
       getProducts(newQuery);
     }
+    
   };
 
   const handleAttributeOnChange = (e, id) => {
-    let newQuery = { attribute_id: [] };
+    let newQuery = {...query, attribute_id: [] };
     if (e.target.checked) {
       const attributes = [...new Set([...selected_attributes, id])];
       setSelected_attributes(attributes);
@@ -67,7 +72,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       const url =
         history.location.pathname +
         "?" +
-        objToUrlPrams(query) +
+        queryString.stringify(query) +
         arrayToUrlParams("attribute_id", attributes);
       history.push(url);
       getProducts(newQuery);
@@ -80,7 +85,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       const url =
         history.location.pathname +
         "?" +
-        objToUrlPrams(query) +
+        queryString.stringify(query) +
         arrayToUrlParams("attribute_id", attributes);
       history.push(url);
       getProducts(newQuery);
@@ -121,6 +126,8 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
     // );
     // setEnding_price(query.ending_price ? parseInt(query.ending_price) : 0);
   }, []);
+
+  console.log("testing", query);
 
   return (
     <aside class="widget widget_shop">

@@ -15,7 +15,7 @@ const Menu = ({ source, className }) => {
             } else {
                 return (
                     <li key={item?.id}>
-                            <Link to={item?.url}>
+                            <Link to={`/search?category_id=${item.id}`}>
                                 {item?.icon && <i className={item.icon}></i>}
                                 {item.name}
                             </Link>

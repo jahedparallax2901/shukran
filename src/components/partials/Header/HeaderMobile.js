@@ -44,7 +44,7 @@ class HeaderMobile extends Component {
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
-    const header = document.getElementById("headerSticky");
+    const header = document.getElementById("headerStickyMobile");
     if (header !== null) {
       if (number >= 300) {
         header.classList.add("header--sticky");
@@ -90,7 +90,7 @@ class HeaderMobile extends Component {
       <header
         className="header header--mobile"
         data-sticky="true"
-        id="headerSticky"
+        id="headerStickyMobile"
       >
         <div className="navigation--mobile">
           <div className="navigation__left">
@@ -115,12 +115,12 @@ class HeaderMobile extends Component {
                     </div>
                   ) : (
                     <>
-                      {shoppingCart.cartItems?.length > 0 ? (
+                      {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
                         <>
                           <div className="ps-cart__items">
                             {shoppingCart.cartItems.map((item) => (
                               <>
-                                {item?.store_product &&
+                                {item?.store_product?.length > 0 &&
                                   item.store_product.map((store_item) => (
                                     <div className="ps-product--cart-mobile">
                                       <div className="ps-product__thumbnail">
@@ -205,12 +205,12 @@ class HeaderMobile extends Component {
                       </i>
                     </a>
                     <a className="ps-block__right">
-                        <Link
-                          className="user-phone-number my-auto"
-                          to="/account/my-account"
-                        >
-                          {user.phone}
-                        </Link>
+                      <Link
+                        className="user-phone-number my-auto"
+                        to="/account/my-account"
+                      >
+                        {user.phone}
+                      </Link>
                       {/* <br/>
                       <a onClick={() => this.handleSignOut()}>Logout</a> */}
                     </a>
