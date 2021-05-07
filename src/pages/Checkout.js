@@ -11,7 +11,7 @@ import {
   processPostRequest,
 } from "../services/baseServices";
 
-import "../assets/css/checkout.css";
+
 import {
   FiX,
   MdEdit,
@@ -1300,11 +1300,12 @@ const Checkout = (props) => {
                                          onClick={()=>{
                                            setSelectPaymentGateWay(index+1)
                                          }}
-                                         className="owl-item" style={{ width: 230, marginLeft: 0 , }}>
+                                         className="owl-item"
+                                         style={{ width: 230, marginLeft: 0 , }}>
                                       {/*single-checkout-body single-checkout-body-first payment-body*/}
                                       {/*single-checkout-body payment-body*/}
-                                      <div
-                                          className={"single-checkout-body "+(index === 0 ? "single-checkout-body-first" : "" ) +" payment-body"}>
+                                      {/*className={"single-checkout-body single-checkout"+(index === select ? "-body-first" : "" )}*/}
+                                      <div className={"single-checkout-body "+(index === 0 ? "single-checkout" : "" ) +" payment-body"}>
                                         <div className="checkout-body-location">
                                           <h4>
                                             <img src={data.url} alt />
@@ -1327,6 +1328,7 @@ const Checkout = (props) => {
 
                           <div className="voucher-area">
                             <div
+                                href={`#`}
                                 onClick={(e) => {
                                   if (deliverAddress.length < 1 || contacts.length < 1){
                                     if (deliverAddress.length < 1){
@@ -1344,7 +1346,8 @@ const Checkout = (props) => {
 
                                 className="proceed-checkout"
                             >
-                              Place Order
+                              {selectPaymentGateWay === 2 ? 'Continue Payment' : 'Place Order'}
+
                             </div>
                           </div>
                         </div>
@@ -1375,6 +1378,7 @@ const Checkout = (props) => {
                         <div className="block-card">
                           <div className="block-card-body place-button-area">
                             <div
+                                href={`#`}
                                 onClick={(e) => {
                                   if (deliverAddress.length < 1 || contacts.length < 1){
                                     if (deliverAddress.length < 1){
@@ -1390,7 +1394,7 @@ const Checkout = (props) => {
                                 }}
                                 className="btn btn-primary btn-block"
                             >
-                              Place Order
+                              {selectPaymentGateWay === 2 ? 'Continue Payment' : 'Place Order'}
                             </div>
                           </div>
                         </div>
