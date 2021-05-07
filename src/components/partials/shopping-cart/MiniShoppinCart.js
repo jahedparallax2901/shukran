@@ -247,6 +247,7 @@ class MiniShoppinCart extends Component {
   };
 
   processCheckout = (e, cart_id, store_id = null) => {
+    debugger;
     this.setState({ isCartProcessing: true });
     let cart_store_product_ids = [];
     if (store_id) {
@@ -298,7 +299,7 @@ class MiniShoppinCart extends Component {
     const user = userData();
     if (!user) {
       this.props.handleShowAuthModal(() => {
-        this.handleProceedCheckout(e, cart_id, store_id);
+        this.processCheckout(e, cart_id, store_id);
       });
     } else {
       this.processCheckout(e, cart_id, store_id);
