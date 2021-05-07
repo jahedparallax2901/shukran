@@ -298,7 +298,7 @@ class MiniShoppinCart extends Component {
     const user = userData();
     if (!user) {
       this.props.handleShowAuthModal(() => {
-        this.handleProceedCheckout(e, cart_id, store_id);
+        this.processCheckout(e, cart_id, store_id);
       });
     } else {
       this.processCheckout(e, cart_id, store_id);
