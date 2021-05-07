@@ -219,13 +219,13 @@ class MiniShoppinCart extends Component {
     if (product_id && attribute_id) {
       formData.append(
         `product_id[${product_id}][${attribute_id}]`,
-        isSelected === 1 ? 2 : 1
+        isSelected == 1 ? 2 : 1
       );
     } else {
       this.props.shoppingCart.cartProductlist.map((item) => {
         formData.append(
           `product_id[${item.product_id}][${item.item_id}]`,
-          isSelected === 1 ? 2 : 1
+          isSelected == 1 ? 2 : 1
         );
       });
     }
