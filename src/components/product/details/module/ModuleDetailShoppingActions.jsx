@@ -8,6 +8,7 @@ import { userData } from "../../../../helpers/authUtils";
 import {
   getCartItems,
   handleAddToCart,
+  handleHideShoppingCart,
   handleShowAuthModal,
   triggeredAddToCart,
 } from "../../../../redux";
@@ -23,20 +24,56 @@ const ModuleDetailShoppingActions = ({
   getCartItems,
   handleShowAuthModal,
   getWishlistItems,
-  wishlist
+  wishlist,
+  handleHideShoppingCart
 }) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
+  const [isProcessing, setIsProcessing] = useState(false);
   const { id } = product;
 
-  const handleAddItemToCart = (e) => {
+  const handleSelectProduct = async (
+    cart_id,
+    product_id = null,
+    attribute_id = null,
+    isSelected
+  ) => {
+    const formData = new FormData();
+    formData.append("cart_id", cart_id);
+    if (product_id && attribute_id) {
+      formData.append(
+        `product_id[${product_id}][${attribute_id}]`,
+        isSelected === 1 ? 2 : 1
+      );
+    } else {
+      shoppingCart.cartProductlist.map((item) => {
+        formData.append(
+          `product_id[${item.product_id}][${item.item_id}]`,
+          isSelected === 1 ? 2 : 1
+        );
+      });
+    }
+
+    processPostRequest("/cart-product-checker", formData, false)
+      .then((res) => {
+        if (res.status === 200) {
+          getCartItems(() => {});
+        } else {
+          toast.error("Something went wrong");
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
+  const handleAddItemToCart = (e, callback=()=>{}) => {
     e.preventDefault();
+    setIsProcessing(true);
     const newList = shoppingCart.cartProductlist;
     newList.push({
       product_id: id,
-      item_id:
-        selectedAttributeProduct?.id ||
-        selectedAttributeProduct?.id,
+      item_id: selectedAttributeProduct?.id,
       quantity: quantity,
     });
     handleAddToCart(
@@ -44,12 +81,23 @@ const ModuleDetailShoppingActions = ({
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
+          callback(data);
+          await handleSelectProduct(
+            data.cart.id,
+            id,
+            selectedAttributeProduct?.id,
+            false
+          );
           await getCartItems(() => {
-            localStorage.setItem("cart_id", data.cart.id);
+            setIsProcessing(false);
+            if (!localStorage.getItem("cart_id")) {
+              localStorage.setItem("cart_id", data.cart.id);
+            }
           });
           // this.props.handleShowShoppingCart();
         } else {
           toast.error("Something went wrong.");
+          setIsProcessing(false);
         }
       },
       false
@@ -57,37 +105,24 @@ const ModuleDetailShoppingActions = ({
   };
 
   const addItemToWishlist = (id) => {
+    setIsProcessing(true);
     processPostRequest(`/add-to-wishlist/${id}`, {}, true)
       .then((res) => {
         if (res.status === 200) {
-          getWishlistItems(()=>{
-            toast.success(res.data.message)
-
-          })
+          getWishlistItems(() => {
+            toast.success(res.data.message);
+            setIsProcessing(false);
+          });
         } else if (res.status === 400) {
           console.log("response", res);
+          setIsProcessing(false);
         }
       })
       .catch((err) => {
         console.log("error", err.message);
+        setIsProcessing(false);
         toast.error(err.message);
       });
-  };
-
-
-  const handleBuynow = (e) => {
-    e.preventDefault();
-    let tmp = product;
-    tmp.quantity = quantity;
-    // dispatch(addItem(tmp));
-    setTimeout(function () {
-      history.push("/account/checkout");
-    }, 1000);
-  };
-
-  const handleAddItemToCompare = (e) => {
-    e.preventDefault();
-    // dispatch(addItemToCompare(product));
   };
 
   const handleAddItemToWishlist = (e) => {
@@ -100,6 +135,62 @@ const ModuleDetailShoppingActions = ({
     } else {
       addItemToWishlist(product?.product_id || product?.id);
     }
+  };
+
+  const processBuyNowCheckout = (cart_id, store_product_id) => {
+    let cart_store_product_ids = [store_product_id];
+
+    processPostRequest(
+      "/proceed-checkout",
+      {
+        cart_id,
+        cart_store_product_ids,
+      },
+      true
+    )
+      .then((res) => {
+        if (res.status === 200) {
+          handleHideShoppingCart();
+          history.push("/checkout");
+        } else {
+          toast.error("Something went wrong", { position: "top-left" });
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message, { position: "top-left" });
+      });
+  };
+
+  const handleProceedCheckout = (cart_id, store_product_id) => {
+    const user = userData();
+    if (!user) {
+      handleShowAuthModal(() => {
+        processBuyNowCheckout(cart_id, store_product_id);
+      });
+    } else {
+      processBuyNowCheckout(cart_id, store_product_id);
+    }
+  };
+
+  const handleBuynow = (e) => {
+    e.preventDefault();
+    handleAddItemToCart(e, (data)=>{
+      let store_product_id;
+      
+      data.cart_items.map(item=>{
+        item.store_product.map(prod=>{
+          if(prod.product.id == id && prod.product_attribute.id==selectedAttributeProduct.id){
+            store_product_id = prod.id;
+          }
+        })
+      })
+      handleProceedCheckout(data.cart.id, store_product_id);
+    });
+  };
+
+  const handleAddItemToCompare = (e) => {
+    e.preventDefault();
+    // dispatch(addItemToCompare(product));
   };
 
   const handleIncreaseItemQty = (e) => {
@@ -135,10 +226,13 @@ const ModuleDetailShoppingActions = ({
           </div>
         </figure>
         <button
-          className="ps-btn ps-btn--black"
+          className={`ps-btn ps-btn--black ${
+            isProcessing && "btn-processing"
+          } `}
+          disabled={isProcessing}
           onClick={(e) => handleAddItemToCart(e)}
         >
-          Add to cart
+          {isProcessing ? "Adding to cart" : "Add to cart"}
         </button>
         <button className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
           Buy Now
@@ -147,7 +241,13 @@ const ModuleDetailShoppingActions = ({
           {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}> */}
           <Link onClick={(e) => handleAddItemToWishlist(e)}>
             <i>
-              <FaHeart className={wishlist.find(item=> item?.product?.id === id)? "filled": ""}/>
+              <FaHeart
+                className={
+                  wishlist.find((item) => item?.product?.id === id)
+                    ? "filled"
+                    : ""
+                }
+              />
             </i>
           </Link>
           {/* <a href="#" onClick={(e) => handleAddItemToCompare(e)}> */}
@@ -191,14 +291,14 @@ const ModuleDetailShoppingActions = ({
           </button>
           <div className="ps-product__actions">
             <a href="#" onClick={(e) => handleAddItemToWishlist(e)}>
-            <i>
-              <FaHeart />
-            </i>
+              <i>
+                <FaHeart />
+              </i>
             </a>
             <a href="#" onClick={(e) => handleAddItemToCompare(e)}>
-            <i>
-              <FaBars />
-            </i>
+              <i>
+                <FaBars />
+              </i>
             </a>
           </div>
         </div>
@@ -215,7 +315,7 @@ const mapStateToProps = (state) => {
     userIsLoggedIn: state.auth.userIsLoggedIn,
     userToken: state.auth.userData?.token,
     shoppingCart: state.shoppingCart,
-    wishlist: state.wishlist.wishListItems
+    wishlist: state.wishlist.wishListItems,
   };
 };
 
@@ -227,7 +327,8 @@ const mapDispatchToProps = (dispatch) => {
     handleAddToCart: (productList, token, cb, isBuyNow) =>
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     getCartItems: (cb) => dispatch(getCartItems(cb)),
-    getWishlistItems: (cb) => dispatch(getWishlistItems(cb))
+    getWishlistItems: (cb) => dispatch(getWishlistItems(cb)),
+    handleHideShoppingCart: () => dispatch(handleHideShoppingCart()),
   };
 };
 

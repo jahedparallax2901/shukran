@@ -1,11 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "antd";
-// import { addItem } from '~/store/cart/action';
-// import { addItemToCompare } from '~/store/compare/action';
-// import { addItemToWishlist } from '~/store/wishlist/action';
-// import { useDispatch } from 'react-redux';
-// import ProductDetailQuickView from '~/components/elements/detail/ProductDetailQuickView';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FiEye, FiShoppingBag } from "react-icons/fi";
 import { FaChartBar, FaRegHeart } from "react-icons/fa";
 import { GrClose } from "react-icons/gr";
@@ -23,7 +17,6 @@ const ModuleProductActions = ({
   handleShowAuthModal,
   getWishlistItems,
 }) => {
-  // const dispatch = useDispatch();
   const [isQuickView, setIsQuickView] = useState(false);
 
   const addItemToWishlist = (id) => {

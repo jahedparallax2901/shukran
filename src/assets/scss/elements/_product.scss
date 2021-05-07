@@ -908,6 +908,11 @@
 
       &.ps-btn--black {
         color: #fff;
+        background-color: black;
+      }
+
+      &.btn-processing{
+        background-color: rgba(#000, 0.5);
       }
     }
 
