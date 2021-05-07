@@ -10,6 +10,8 @@ import {
   processGetRequest,
   processPostRequest,
 } from "../services/baseServices";
+import "../assets/css/checkout.css"
+
 
 
 import {
@@ -1312,7 +1314,7 @@ const Checkout = (props) => {
                                         {/*single-checkout-body single-checkout-body-first payment-body*/}
                                         {/*single-checkout-body payment-body*/}
                                         {/*className={"single-checkout-body single-checkout"+(index === select ? "-body-first" : "" )}*/}
-                                        <div className={"single-checkout-body "+(index === 0 ? "single-checkout" : "" ) +" payment-body"}>
+                                        <div className={"single-checkout-body "+(selectPaymentGateWay === (index+1) ? "active-payment-method" : "" ) +" payment-body"}>
                                           <div className="checkout-body-location">
                                             <h4>
                                               <img src={data.url} alt />

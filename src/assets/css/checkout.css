@@ -160,7 +160,6 @@ p:last-child {
 }
 
 .single-checkout-body-first{
-    background: #ffffff;
     border: 1px solid #006c24;
 }
 .single-checkout-top{
@@ -168,7 +167,6 @@ p:last-child {
     justify-content: space-between;
 }
 .payment-body{
-    background: rgb(228, 244, 252);
     width: 100% !important;
     text-align: center;
 }
@@ -311,8 +309,10 @@ p:last-child {
     border-radius: 5px;
     width: 30% ;
 }
+.single-checkout-body.active-payment-method{
+    background-color: #fff;
+}
 .single-checkout-area .single-checkout-body:first-child{
-    background: #ffffff !important;
     border: 1px solid #006c24 !important;
 }
 @media screen and (max-width: 768px){

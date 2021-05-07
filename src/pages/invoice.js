@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 // import { connect } from 'react-redux';
 // import { useRouter } from 'next/router';
 import { useParams } from "react-router";
-import "../assets/css/checkout.css"
 import "../assets/css/register.css"
 
 import {FiX, MdEdit , HiPlus ,BiLeftArrowCircle ,BiRightArrowCircle} from "react-icons/all";

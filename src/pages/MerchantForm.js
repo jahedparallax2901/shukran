@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 // import { useRouter } from 'next/router';
 
 
-import "../assets/css/checkout.css"
 import "../assets/css/vendor.css"
 import "../assets/scss/vendor-form.scss"
 import "../assets/css/success.css"
