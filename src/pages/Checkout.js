@@ -11,7 +11,7 @@ import {
   processPostRequest,
 } from "../services/baseServices";
 import "../assets/css/checkout.css"
-
+import "../assets/css/payment_option.css"
 
 
 import {
@@ -1311,19 +1311,16 @@ const Checkout = (props) => {
                                            }}
                                            className="owl-item"
                                            style={{ width: 230, marginLeft: 0 , }}>
-                                        {/*single-checkout-body single-checkout-body-first payment-body*/}
-                                        {/*single-checkout-body payment-body*/}
-                                        {/*className={"single-checkout-body single-checkout"+(index === select ? "-body-first" : "" )}*/}
-                                        <div className={"single-checkout-body "+(selectPaymentGateWay === (index+1) ? "single-checkout" : "" ) +" payment-body"}>
+                                       {/*className={"single-checkout-body "+(selectPaymentGateWay === (index+1) ? "single-checkout" : "" ) +" payment-body"}*/}
+                                        <div
+                                            style={selectPaymentGateWay === index+1 ? {background: '#ffffff'} : null}
+                                            className={"single-checkout-body "+(selectPaymentGateWay === (index+1) ? "active_border" : "test" ) +" payment-body"}
+                                        >
                                           <div className="checkout-body-location">
                                             <h4>
                                               <img src={data.url} alt />
                                             </h4>
-                                            <div className="location-edit">
-                                              <button type="button">
-                                                <FiX />
-                                              </button>
-                                            </div>
+
                                           </div>
                                           <span>{data.name}</span>
                                         </div>

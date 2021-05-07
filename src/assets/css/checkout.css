@@ -312,8 +312,8 @@ p:last-child {
     width: 30% ;
 }
 .single-checkout-area .single-checkout-body:first-child{
-    background: #ffffff !important;
-    border: 1px solid #006c24 !important;
+/*    background: #ffffff !important;*/
+
 }
 @media screen and (max-width: 768px){
     .single-checkout-body{

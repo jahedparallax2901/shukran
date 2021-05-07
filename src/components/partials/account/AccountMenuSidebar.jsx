@@ -114,27 +114,32 @@ const AccountMenuSidebar = ({ selectedTab }) => {
         setErr(true)
         setErrMsg('new password and confirm password does not match')
       }
-      else if (formData?.new_password.length < 6){
+      else if (formData?.new_password?.length < 6){
         setErr(true)
         setErrMsg('password minimum 6 characters')
       }
       else {
-
-        if (formData.old_password.length >= 1){
-          let oldPass = '123456'
-          if (oldPass === formData.old_password){
-            setErr(false)
-            setErrMsg(null)
-            //TODO : Update
-            update()
+        if (formData?.new_password && formData?.confirm_password !== null){
+          if (formData?.old_password?.length >= 1){
+            let oldPass = '123456'
+            if (oldPass === formData.old_password){
+              setErr(false)
+              setErrMsg(null)
+              //TODO : Update
+              update()
+            }else {
+              setErr(true)
+              setErrMsg('old password is wrong')
+            }
           }else {
             setErr(true)
-            setErrMsg('old password is wrong')
+            setErrMsg('Enter your old password')
           }
         }else {
           setErr(true)
-          setErrMsg('Enter your old password')
+          setErrMsg('All the field are required')
         }
+
 
       }
 
@@ -197,8 +202,8 @@ const AccountMenuSidebar = ({ selectedTab }) => {
           <p>
             <a href="#">+880-{userDetails?.phone}</a>
           </p>
-          <p>
-            <a href="#">{userDetails?.email}</a>
+          <p style={{fontSize: '0.7vw'}}>
+            {userDetails?.email}
           </p>
           <div onClick={()=>{
             setIsChangePassword(false)

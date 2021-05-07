@@ -1,0 +1,35 @@
+
+.payment_active_css{
+    background: #ffffff;
+    border: 1px solid #006c24 !important;
+    width: 100% !important;
+    height: 100%;
+    text-align: center;
+    border-radius: 5px;
+    padding: 15px;
+    display: inline-block;
+}
+
+
+.single-checkout-bodyx {
+    display: inline-block;
+    padding: 15px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.payment-bodyx {
+    background: rgb(255, 224, 139);
+    width: 100% !important;
+    text-align: center;
+}
+
+
+.test{
+    background: #f4f5f5;
+    border: 1px solid #fcfcfc !important;
+}
+
+.active_border{
+    border: 1px solid #006c24 !important;
+}
