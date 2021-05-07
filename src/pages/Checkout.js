@@ -240,14 +240,6 @@ const Checkout = (props) => {
     }, true)
         .then((res) => {
           if (res.status === 200) {
-            props.getCartItems((data, isSuccess)=>{
-              const items = data.cart.total_prdoucts;
-              if(items <= 0){
-                localStorage.removeItem("cart_id");
-                props.handleClearCart()
-              }
-            })
-
             if (selectPaymentGateWay === 2){
               if (res?.data?.GatewayPageURL){
                 window.location.href = res?.data?.GatewayPageURL
@@ -255,10 +247,16 @@ const Checkout = (props) => {
                 history.push('/payment-failed')
               }
             }else {
+              props.getCartItems((data, isSuccess)=>{
+                const items = data.cart.total_prdoucts;
+                if(items <= 0){
+                  localStorage.removeItem("cart_id");
+                  props.handleClearCart()
+                }
+              })
               toast.success("Order successfully placed");
               setIsSuccessPlace(true)
             }
-
           }
         })
         .catch((err) => {
