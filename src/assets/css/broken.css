@@ -86,10 +86,10 @@
     top: 0px;
 }
 #homepage-5 .ps-home-banner .ps-section__center .slick-dots li.slick-active button:before{
-    color: #006c32;
+    color: #a9a9a9;
 }
 #homepage-5 .ps-home-banner .ps-section__center .slick-dots li button:hover:before{
-    color: #006c32;
+    color: #a9a9a9;
 }
 @media screen and (max-width: 1024px){
     #homepage-5 .ps-home-banner .ps-section__center {

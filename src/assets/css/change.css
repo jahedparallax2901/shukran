@@ -427,8 +427,9 @@
 .header--standard .ps-form--quick-search button,
 .ps-form--newsletter .form-group--nest button,
 .ps-cart--mini figure .ps-btn {
-  background: #ed1c24;
+  background: #D3D3D3;
   color: #fff;
+  font-family: "Varela Round", sans-serif !important;
 }
 .header--standard .ps-form--quick-search button:hover,
 .ps-form--newsletter .form-group--nest button:hover,
@@ -438,7 +439,7 @@
 }
 
 .header--standard .ps-form--quick-search .ps-form__categories select {
-  border: 0.5px solid rgb(221, 218, 218);
+  /* border: 0.5px solid rgb(221, 218, 218); */
 }
 
 #homepage-5 .ps-home-banner .ps-section__right > a:first-child {
@@ -491,7 +492,7 @@
   color: #006c32;
 }
 .ps-product .ps-product__price.sale del {
-  color: #ed1c24;
+  color: #000000;
   padding-right: 10px;
   /* color: #525252; */
 }
@@ -646,10 +647,10 @@
   background: #ffffff;
 }
 .ps-product--detail .ps-product__specification .in-stock {
-  color: #006c32;
+  color: #000000;
 }
 .ps-product--hot-deal .ps-product__processs-bar p strong {
-  color: #006c32;
+  color: #000000;
 }
 .ps-layout--shop {
   padding-bottom: 50px;
