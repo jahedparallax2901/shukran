@@ -25,6 +25,18 @@
         margin-top: 10px;
     }
 }
+@media screen and (max-width: 1024px) {
+  /* .header--mobile .ps-search--mobile{
+        position: absolute;
+        top: 5px;
+        width: 100%;
+    } */
+    .header .header__extra svg{
+        color: #666;
+        font-size: 25px;
+        margin-top: 8px;
+    }
+}
 
 /*=== Banner Style ===*/
 .ps-block--user-header .ps-block__right a {

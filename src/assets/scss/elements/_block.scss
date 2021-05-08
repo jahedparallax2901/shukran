@@ -254,7 +254,11 @@
     }
     .ps-block__right {
         padding-left: 10px;
-
+        @media screen and (max-width: 1024px) {
+            padding-left: 0px;
+            display: flex;
+            align-items: center;
+        }
         a {
             display: block;
             font-weight: 700;

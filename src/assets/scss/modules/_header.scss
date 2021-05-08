@@ -11,6 +11,9 @@
         > i {
             font-size: 30px;
             line-height: 42px;
+            @media screen and (max-width: 1024px){
+                line-height: 30px;
+            }
         }
 
         span {
@@ -89,6 +92,9 @@
     .navigation--mobile {
         .header__extra {
             width: 40px;
+            @media screen and (max-width: 1024px){
+                width: 30px;
+            }
         }
     }
 

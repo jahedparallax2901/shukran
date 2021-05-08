@@ -649,6 +649,9 @@
                 font-size: 16px;
                 font-weight: 600;
                 color: $color-heading;
+                a{
+                    word-break: break-all;
+                }
             }
         }
     }

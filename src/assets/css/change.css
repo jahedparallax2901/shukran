@@ -207,7 +207,7 @@
   }
 }
 .asside-top {
-  font-family: Lato, sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(255, 255, 255);
@@ -246,7 +246,7 @@
   -webkit-box-pack: center;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  font-family: Lato, sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(0, 158, 127);
@@ -1524,7 +1524,7 @@ button.ps-btn:active {
 
 /* ================== Start Aside Css ================ */
 .asside-top {
-  font-family: Lato, sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(255, 255, 255);
@@ -1563,7 +1563,7 @@ button.ps-btn:active {
   -webkit-box-pack: center;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  font-family: Lato, sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(0, 158, 127);
