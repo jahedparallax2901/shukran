@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import bagPack from "../../../assets/img/downloads/bagpack.jpeg";
+import shoppingCartAside from "../../../assets/img/emptyShoppingcart.svg";
 import {
   getCartItems,
   handleAddToCart,
@@ -662,7 +663,8 @@ class MiniShoppinCart extends Component {
               </>
             ) : (
               <div className="loading-wrapper">
-                <h3>No items in cart</h3>
+                <img src={shoppingCartAside} alt="Shopping Cart" />
+                <h3>Your shopping cart is empty.</h3>
               </div>
             )}
           </>

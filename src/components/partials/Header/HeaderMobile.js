@@ -188,7 +188,7 @@ class HeaderMobile extends Component {
                         </>
                       ) : (
                         <div className="loading-wrapper">
-                          <h3>No Items in cart</h3>
+                          <h3>Your shopping cart is empty.</h3>
                         </div>
                       )}
                     </>
