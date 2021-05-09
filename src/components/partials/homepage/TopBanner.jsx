@@ -64,6 +64,13 @@ class TopBanner extends Component {
                 </div>
               ))}
             </Slider>
+            <div className="ps-section__banner-box">
+              {top_sliders_box.map((item) => (
+                <a key={item.id} href={item.deeplink}>
+                  <img src={item?.file_attach?.file_url} alt={item?.file_attach?.file_name} />
+                </a>
+              ))}
+            </div>
           </div>
           {/* <div className="ps-section__right">
             {top_sliders_box.map((item) => (

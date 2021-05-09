@@ -1398,6 +1398,9 @@ button.ps-btn:active {
     padding-bottom: 20px;
   }
 }
+.ps-product .ps-product__thumbnail a {
+  color: #000000;
+}
 .ps-product .ps-product__thumbnail img {
   width: 100%;
   height: 150px;
