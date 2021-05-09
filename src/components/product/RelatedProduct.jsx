@@ -7,41 +7,44 @@ import PrevArrow from "../elements/carousel/PrevArrow";
 import Product from "./module/Product";
 
 const RelatedProduct = ({ product, boxed, layout }) => {
-  const [productItems, setProductItems] = useState(null);
+  // const [productItems, setProductItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  async function getProducts() {
-    setProductItems(
-      product?.relateds
-    );
-    setTimeout(
-      function () {
-        setLoading(false);
-      }.bind(this),
-      250
-    );
-  }
+  // async function getProducts() {
+    
+  //   setTimeout(
+  //     function () {
+  //       setLoading(false);
+  //     }.bind(this),
+  //     250
+  //   );
+  // }
 
   useEffect(() => {
-    getProducts();
-  }, []);
+    // setProductItems(
+    //   product?.relateds
+    // );
+    // getProducts();
+  }, [product]);
+
+  // console.log("productItems", productItems)
 
   const carouselFullwidth = {
     dots: false,
-    // infinite: true,
-    infinite: productItems && productItems.length > 7 ? true : false,
+    infinite: product?.relateds && product?.relateds.length >= 7 ? true : false,
     speed: 750,
     slidesToShow: 7,
-    slidesToScroll: 3,
+    slidesToScroll: 2,
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     lazyload: true,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 1750,
         settings: {
-          infinite: productItems && productItems.length > 6 ? true : false,
+          infinite: product?.relateds && product?.relateds.length >= 6 ? true : false,
           slidesToShow: 6,
           slidesToScroll: 3,
           dots: true,
@@ -52,10 +55,9 @@ const RelatedProduct = ({ product, boxed, layout }) => {
       {
         breakpoint: 1366,
         settings: {
-          infinite: productItems && productItems.length > 5 ? true : false,
+          infinite: product?.relateds && product?.relateds.length >= 5 ? true : false,
           slidesToShow: 5,
           slidesToScroll: 2,
-          infinite: true,
           dots: true,
           arrows: false,
         },
@@ -63,27 +65,25 @@ const RelatedProduct = ({ product, boxed, layout }) => {
       {
         breakpoint: 1200,
         settings: {
-          infinite: productItems && productItems.length > 4 ? true : false,
+          infinite: product?.relateds && product?.relateds.length >= 4 ? true : false,
           slidesToShow: 4,
           slidesToScroll: 1,
-          infinite: true,
           dots: true,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          infinite: productItems && productItems.length > 4 ? true : false,
+          infinite: product?.relateds && product?.relateds.length >= 4 ? true : false,
           slidesToShow: 4,
           slidesToScroll: 1,
-          infinite: true,
           dots: true,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          infinite: productItems && productItems.length > 3 ? true : false,
+          infinite: product?.relateds && product?.relateds.length >= 3 ? true : false,
           slidesToShow: 3,
           slidesToScroll: 2,
           dots: true,
@@ -93,7 +93,7 @@ const RelatedProduct = ({ product, boxed, layout }) => {
       {
         breakpoint: 480,
         settings: {
-          infinite: productItems && productItems.length > 2 ? true : false,
+          infinite: product?.relateds && product?.relateds.length >= 2 ? true : false,
           slidesToShow: 2,
           dots: true,
           arrows: false,
@@ -107,11 +107,11 @@ const RelatedProduct = ({ product, boxed, layout }) => {
   // Views
   let carouselView;
   if (!loading) {
-    if (productItems) {
+    if (product?.relateds?.length>0) {
       if ((layout = "fullwidth")) {
         carouselView = (
           <Slider {...carouselFullwidth} className="ps-carousel outside">
-            {productItems.map((item, index) => {
+            {product?.relateds?.map((item, index) => {
               if (index < 8) {
                 return <Product product={item?.related_product} key={item?.id || index} />;
               }
@@ -121,7 +121,7 @@ const RelatedProduct = ({ product, boxed, layout }) => {
       } else {
         carouselView = (
           <Slider {...carouselStandard} className="ps-carousel outside">
-            {productItems.map((item, index) => {
+            {product?.relateds?.map((item, index) => {
               if (index < 8) {
                 return <Product product={item} key={item.id} />;
               }

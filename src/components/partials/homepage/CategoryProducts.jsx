@@ -73,7 +73,7 @@ const CategoryProducts = ({ cat }) => {
             </Link>
           </li> */}
         </ul>
-        <Link to="/shop" className="ps-block__more-link">
+        <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">
           View All
         </Link>
       </div>
