@@ -117,7 +117,7 @@
     line-height: 20px;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: #f14705;
+    background-color: #f0c14b;
 
     &.out-stock {
       background-color: #000;
@@ -133,7 +133,7 @@
     margin: 0;
     display: block;
     padding: 0 0 5px;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.2em;
     color: #000;
     --max-lines: 2;
@@ -451,7 +451,7 @@
   .ps-product__title {
     margin: 0;
     padding: 0 0 5px;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.2em;
     color: #000000;
     @media screen and (max-width: 768px) {
@@ -1841,7 +1841,7 @@
     .ps-product__name {
       font-weight: 600;
       color: $color-heading;
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 
@@ -1987,7 +1987,7 @@
 
   @include media("<xs") {
     .ps-product__name {
-      font-size: 16px;
+      font-size: 15px;
     }
     .ps-product__expires {
       > p {
