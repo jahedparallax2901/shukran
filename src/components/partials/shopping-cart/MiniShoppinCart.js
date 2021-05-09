@@ -306,6 +306,25 @@ class MiniShoppinCart extends Component {
     }
   };
 
+  isAllSelected(){
+    let selected = true;
+
+    if(this.props.shoppingCart?.cartSummery?.total_prdoucts > 0){
+      this.props.shoppingCart?.cartItems.map(item=>{
+        item.store_product.map(prod=>{
+          if(prod.cart_check == 2){
+            selected = false;
+          }
+        })
+      })
+    }else{
+      selected = false;
+    }
+    
+
+    return selected;
+  }
+
   render() {
     const {
       isShowingShoppingCart,
@@ -338,6 +357,7 @@ class MiniShoppinCart extends Component {
                     <input
                       type="checkbox"
                       id="select-all"
+                      defaultChecked={this.isAllSelected()}
                       onChange={(e) =>
                         this.handleSelectProduct(e, shoppingCart.cartSummery.id)
                       }
