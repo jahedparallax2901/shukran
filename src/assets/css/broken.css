@@ -53,9 +53,49 @@
 }
 #homepage-5 .ps-home-banner .ps-section__center img{
     width: 100%;
-    height: 385px;
+    height: 340px;
     display: inline-block;
     object-fit: fill;
+}
+#homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box{
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  object-fit: fill;
+}
+#homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box a{
+  height: auto;
+  width: 25%;
+  border-left: 1px solid #eee;
+}
+@media screen and (max-width: 576px){
+  #homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box{
+   flex-flow: row wrap; 
+   height: auto;
+  }
+  #homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box a{
+    width: 50%;
+    height: 180px;
+    object-fit: fill;
+  }
+}
+@media screen and (max-width: 480px){
+  #homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box a{
+    width: 50%;
+    height: 170px;
+    object-fit: fill;
+  }
+}
+@media screen and (max-width: 425px){
+  #homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box a{
+    width: 50%;
+    height: 160px;
+    object-fit: fill;
+  }
+}
+#homepage-5 .ps-home-banner .ps-section__center .ps-section__banner-box a img{
+  height: 100%;
 }
 @media screen and (max-width: 768px){
     #homepage-5 .ps-home-banner .ps-section__center img{
