@@ -7,12 +7,12 @@ let merchant_panel = null;
 let site_url = null;
 if (MODE === 'Local') {
   // base_api_url = process.env.REACT_APP_BASE_API_URL_LOCAL;
-  base_api_url = "http://localhost:80/shukran-sandbox/api/v1";
+  base_api_url = "http://localhost:80/shukran-backend/api/v1";
   merchant_panel = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
   site_url = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
 
 } else if (MODE === 'Staging') {
-  base_api_url = "https://parallaxlogic.dev/shukran-sandbox/api/v1";
+  base_api_url = "https://parallaxlogic.dev/shukran-admin/api/v1";
   merchant_panel = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
   site_url = process.env.REACT_APP_MERCHANT_PANEL_LOCAL
 } else if (MODE === 'Live') {
