@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BsPlus } from "react-icons/bs";
 import { FaBars, FaHeart } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -267,7 +268,9 @@ const ModuleDetailShoppingActions = ({
             <figcaption>Quantity</figcaption>
             <div className="form-group--number">
               <button className="up" onClick={(e) => handleIncreaseItemQty(e)}>
-                <i className="fa fa-plus"></i>
+                <i>
+                  <BsPlus/>
+                </i>
               </button>
               <button
                 className="down"
