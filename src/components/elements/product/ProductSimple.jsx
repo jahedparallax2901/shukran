@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaRegHeart } from "react-icons/fa";
 import {
     StrapiProductBadge,
     StrapiProductPrice,
@@ -12,10 +13,15 @@ import { Link } from 'react-router-dom';
 const ProductSimple = ({ product }) => {
     return (
         <div className="ps-product ps-product--simple">
+            <div class="ps-product__badge">
+                <i>
+                    <FaRegHeart />
+                </i>
+            </div>
             <div className="ps-product__thumbnail">
                 {StrapiProductThumbnail(product)}
                 {StrapiProductBadge(product)}
-                <ModuleProductActions product={product}/>
+                {/* <ModuleProductActions product={product} /> */}
             </div>
             <div className="ps-product__container">
                 <div className="ps-product__content">

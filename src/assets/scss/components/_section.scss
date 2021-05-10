@@ -743,7 +743,8 @@
 
   .widget_best-sale {
     border-bottom: 1px solid #d9d9d9;
-    max-height: 465px;
+    /* max-height: 465px; */
+    height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     padding-top: 0;
