@@ -12,13 +12,7 @@ import ThumbnailDefault from "./details/thumbnail/ThumbnailDefault";
 import "../../assets/scss/custom-new.scss";
 import { Link } from "react-router-dom";
 
-const ProductDetailFullwidth = ({ product }) => {
-  const [selectedAttributeProduct, setSelectedAttributeProduct] = useState(
-    product?.attributes_types?.length > 0
-      ? product?.attributes_types[0].items[0]
-      : product?.default_attribute
-  );
-
+const ProductDetailFullwidth = ({ product , selectedAttributeProduct, setSelectedAttributeProduct}) => {
   return (
     <div className="ps-product--detail ps-product--fullwidth">
       <div className="ps-product__header">
@@ -77,7 +71,8 @@ const ProductDetailFullwidth = ({ product }) => {
         </div>
       </div>
       <div class="ps-product-info-other">
-        {/* <ModuleDetailActionsMobile /> */}
+        <ModuleDetailActionsMobile product={product}
+          selectedAttributeProduct={selectedAttributeProduct}/>
 
        
       </div>

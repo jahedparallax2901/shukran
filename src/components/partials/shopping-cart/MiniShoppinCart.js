@@ -428,6 +428,7 @@ class MiniShoppinCart extends Component {
                                         </Tooltip>
                                       </label>
                                     </div>
+                                    <i>
                                     <AiOutlineClose
                                       onClick={(e) =>
                                         this.handleItemDelete(
@@ -437,6 +438,8 @@ class MiniShoppinCart extends Component {
                                         )
                                       }
                                     />
+                                    </i>
+                                    
                                   </div>
                                   <div className="product-details">
                                     <div className="product-details-div-img product-details-div">

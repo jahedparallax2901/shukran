@@ -104,7 +104,7 @@ class HeaderMobile extends Component {
                 <a className="header__extra" href="#">
                   <RiShoppingBagLine />
                   <span>
-                    <i>5</i>
+                    <i>{shoppingCart?.cartSummery?.total_prdoucts}</i>
                   </span>
                 </a>
 
