@@ -1,5 +1,9 @@
 import React from 'react';
+import { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { Modal } from "antd";
+import { GrClose } from "react-icons/gr";
+import ProductDetailQuickView from "../../product/ProductDetailQuickView";
 import {
     StrapiProductBadge,
     StrapiProductPrice,
@@ -11,6 +15,17 @@ import Rating from '../Rating';
 import { Link } from 'react-router-dom';
 
 const ProductSimple = ({ product }) => {
+    const [isQuickView, setIsQuickView] = useState(false);
+
+    const handleShowQuickView = (e) => {
+        e.preventDefault();
+        setIsQuickView(true);
+    };
+
+    const handleHideQuickView = (e) => {
+        e.preventDefault();
+        setIsQuickView(false);
+    };
     return (
         <div className="ps-product ps-product--simple">
             <div class="ps-product__badge">
@@ -35,6 +50,23 @@ const ProductSimple = ({ product }) => {
                     {StrapiProductPrice(product)}
                 </div>
             </div>
+            <div className="product-add-to-cart-hover" onClick={handleShowQuickView}>Add to Cart</div>
+            <Modal
+                title="Quickview"
+                centered
+                footer={null}
+                width={1024}
+                onCancel={(e) => handleHideQuickView(e)}
+                visible={isQuickView}
+                bodyStyle={{ overflowY: "visible" }}
+                closeIcon={
+                    <i>
+                        <GrClose />
+                    </i>
+                }
+            >
+                <ProductDetailQuickView id={product?.product_id || product?.id} />
+            </Modal>
         </div>
     );
 };
