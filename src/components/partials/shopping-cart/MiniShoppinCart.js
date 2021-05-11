@@ -16,6 +16,7 @@ import { processPostRequest } from "../../../services/baseServices";
 import { BsTrash } from "react-icons/bs";
 import { Spinner } from "react-bootstrap";
 import { withRouter } from "react-router";
+import { Tooltip } from "antd";
 
 class MiniShoppinCart extends Component {
   state = {
@@ -255,17 +256,16 @@ class MiniShoppinCart extends Component {
         (item) => item.store_id === store_id
       );
       store.store_product.map((item) => {
-        if(item?.cart_check == 1){
+        if (item?.cart_check == 1) {
           cart_store_product_ids.push(item.id);
         }
       });
     } else {
       this.props.shoppingCart.cartItems.map((cart_item) => {
         cart_item.store_product.map((store_item) => {
-          if(store_item?.cart_check == 1){
+          if (store_item?.cart_check == 1) {
             cart_store_product_ids.push(store_item.id);
           }
-          
         });
       });
     }
@@ -306,21 +306,20 @@ class MiniShoppinCart extends Component {
     }
   };
 
-  isAllSelected(){
+  isAllSelected() {
     let selected = true;
 
-    if(this.props.shoppingCart?.cartSummery?.total_prdoucts > 0){
-      this.props.shoppingCart?.cartItems.map(item=>{
-        item.store_product.map(prod=>{
-          if(prod.cart_check == 2){
+    if (this.props.shoppingCart?.cartSummery?.total_prdoucts > 0) {
+      this.props.shoppingCart?.cartItems.map((item) => {
+        item.store_product.map((prod) => {
+          if (prod.cart_check == 2) {
             selected = false;
           }
-        })
-      })
-    }else{
+        });
+      });
+    } else {
       selected = false;
     }
-    
 
     return selected;
   }
@@ -421,7 +420,12 @@ class MiniShoppinCart extends Component {
                                       <label
                                         for={`brand-${store_item?.product_attribute?.id}`}
                                       >
-                                        {store_item.product.name}
+                                        <Tooltip
+                                          placement="topLeft"
+                                          title={store_item.product.name}
+                                        >
+                                          {store_item.product.name}
+                                        </Tooltip>
                                       </label>
                                     </div>
                                     <AiOutlineClose
@@ -613,7 +617,7 @@ class MiniShoppinCart extends Component {
                           <>
                             <input
                               type="text"
-                              placeholder="apply for coupon global"
+                              placeholder="Apply Coupon"
                               name="globalCoupon"
                               defaultValue={this.state.globalCoupon}
                               onChange={this.handleCouponChange}
@@ -655,8 +659,8 @@ class MiniShoppinCart extends Component {
 
                   {/* Global chekout portion */}
 
-                  <div className="delivery-charge">
-                    <h6 className="delivery-charge-title">delivery-charge:</h6>
+                  <div className="subtotal">
+                    <h6 className="subtotal-title">delivery-charge:</h6>
                     <p>৳{shoppingCart?.cartSummery?.delivery_charge || 0}</p>
                   </div>
                   <div className="subtotal">
