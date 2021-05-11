@@ -26,7 +26,7 @@ const ModuleDetailShoppingActions = ({
   handleShowAuthModal,
   getWishlistItems,
   wishlist,
-  handleHideShoppingCart
+  handleHideShoppingCart,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
@@ -68,7 +68,7 @@ const ModuleDetailShoppingActions = ({
       });
   };
 
-  const handleAddItemToCart = (e, callback=()=>{}) => {
+  const handleAddItemToCart = (e, callback = () => {}) => {
     e.preventDefault();
     setIsProcessing(true);
     const newList = shoppingCart.cartProductlist;
@@ -89,6 +89,12 @@ const ModuleDetailShoppingActions = ({
             selectedAttributeProduct?.id,
             false
           );
+          toast.success("Product added to cart", {
+            position: "top-left",
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
           await getCartItems(() => {
             setIsProcessing(false);
             if (!localStorage.getItem("cart_id")) {
@@ -175,16 +181,19 @@ const ModuleDetailShoppingActions = ({
 
   const handleBuynow = (e) => {
     e.preventDefault();
-    handleAddItemToCart(e, (data)=>{
+    handleAddItemToCart(e, (data) => {
       let store_product_id;
-      
-      data.cart_items.map(item=>{
-        item.store_product.map(prod=>{
-          if(prod.product.id == id && prod.product_attribute.id==selectedAttributeProduct.id){
+
+      data.cart_items.map((item) => {
+        item.store_product.map((prod) => {
+          if (
+            prod.product.id == id &&
+            prod.product_attribute.id == selectedAttributeProduct.id
+          ) {
             store_product_id = prod.id;
           }
-        })
-      })
+        });
+      });
       handleProceedCheckout(data.cart.id, store_product_id);
     });
   };
@@ -269,7 +278,7 @@ const ModuleDetailShoppingActions = ({
             <div className="form-group--number">
               <button className="up" onClick={(e) => handleIncreaseItemQty(e)}>
                 <i>
-                  <BsPlus/>
+                  <BsPlus />
                 </i>
               </button>
               <button
