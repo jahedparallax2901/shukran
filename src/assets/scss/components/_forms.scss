@@ -39,13 +39,12 @@
         vertical-align: top;
 
         &:after {
-            content: ">";
+            content: '\2304';
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%) rotate(90deg);
+            top: -20%;
             right: 8px;
             font-family: "Linearicons";
-            font-size: 22px;
+            font-size: 24px;
         }
 
         select.form-control {
