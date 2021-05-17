@@ -71,7 +71,7 @@ class HeaderMobile extends Component {
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
-          await this.props.getCartItems(data.cart.id);
+          await this.props.getCartItems(data?.cart?.id);
           this.setState({ isCartProcessing: false });
 
           // this.props.handleShowShoppingCart();
@@ -84,6 +84,7 @@ class HeaderMobile extends Component {
       false
     );
   };
+  
   render() {
     const { user, handleShowAuthModal, shoppingCart } = this.props;
     return (

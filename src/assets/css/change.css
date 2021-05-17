@@ -1589,7 +1589,6 @@ button.ps-btn:active {
   max-width: 350px;
   background-color: #fff;
   border-left: 1px solid #f0f2f3;
-  overflow-y: scroll;
   transition: all 0.7s ease-in-out;
   z-index: 540;
   overflow-x: hidden;
@@ -1901,10 +1900,9 @@ button.ps-btn:active {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 1.5rem;
+  padding: 1.5rem 3rem;
   background: #fff;
   width: 350px;
-  z-index: 999;
   box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   -webkit-transition: all 0.4s ease-in-out;

@@ -73,8 +73,6 @@ const ProductDetailFullwidth = ({ product , selectedAttributeProduct, setSelecte
       <div class="ps-product-info-other">
         <ModuleDetailActionsMobile product={product}
           selectedAttributeProduct={selectedAttributeProduct}/>
-
-       
       </div>
 
       <DefaultDescription product={product} />
