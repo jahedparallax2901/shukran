@@ -79,9 +79,9 @@ export function StrapiProductPrice(product) {
   if (product?.product?.sale_price > 0 || product?.sale_price > 0) {
     view = (
       <p className="ps-product__price sale">
-        {formatCurrency(product?.product?.sale_price || product?.sale_price)}
+        ৳ {product?.product?.sale_price || product?.sale_price}
         <del className="ml-2">
-          {formatCurrency(product?.product?.price || product?.price)}
+        ৳ {product?.product?.price || product?.price}
         </del>
       </p>
     );
@@ -90,9 +90,9 @@ export function StrapiProductPrice(product) {
     view = (
       <p className="ps-product__price">
         {product?.product?.price ? (
-          <>{formatCurrency(product.product.price)}</>
+          <>৳ {product.product.price}</>
         ) : (
-          <>{formatCurrency(0)}</>
+          <>৳ {0}</>
         )}
       </p>
     );
@@ -150,7 +150,7 @@ export function StrapiProductThumbnail(product, isDealProduct = false) {
       <Link to={`/product/${product.product_id || product.id}`}>
         <a>
           <LazyLoad>
-            <img src={url} alt={product?.product?.name || product.name} />
+            <img src={url} alt={"shukran"} />
           </LazyLoad>
         </a>
       </Link>

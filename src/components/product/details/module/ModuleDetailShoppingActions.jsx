@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsPlus } from "react-icons/bs";
-import { FaBars, FaHeart } from "react-icons/fa";
+import { FaBars, FaHeart, FaPlus } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -15,6 +15,7 @@ import {
 } from "../../../../redux";
 import { getWishlistItems } from "../../../../redux/wishlist/wishlistActions";
 import { processPostRequest } from "../../../../services/baseServices";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
 const ModuleDetailShoppingActions = ({
   product,
@@ -222,10 +223,10 @@ const ModuleDetailShoppingActions = ({
           <figcaption>Quantity</figcaption>
           <div className="form-group--number">
             <button className="up" onClick={(e) => handleIncreaseItemQty(e)}>
-              <i className="fa fa-plus"></i>
+              <PlusOutlined />
             </button>
             <button className="down" onClick={(e) => handleDecreaseItemQty(e)}>
-              <i className="fa fa-minus"></i>
+              <MinusOutlined />
             </button>
             <input
               className="form-control"

@@ -72,7 +72,7 @@ const SearchItems = ({
   // Views
   let productItemsView;
   if (!loading) {
-    if (productItems && productItems.length > 0) {
+    if (productItems && productItems?.length > 0) {
       if (listView) {
         const items = productItems.map((item) => (
           <div className={classes} key={item.id}>

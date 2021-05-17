@@ -26,14 +26,14 @@ const Product = ({ product }) => {
       <div className="ps-product__thumbnail">
         {thumbnailImage}
         {badgeView}
-        <ModuleProductActions product={product} />
+        {/* <ModuleProductActions product={product} /> */}
       </div>
       <div className="ps-product__container">
         <Link to="/shop">
           <a className="ps-product__vendor">{product?.store_name}</a>
         </Link>
-        <Link to={`/product/${product.id}`}>
-          <a className="ps-product__title">{product?.name || product.title}</a>
+        <Link to={`/product/${product?.id}`}>
+          <a className="ps-product__title">{product?.name || product?.title}</a>
         </Link>
         <div className="ps-product__content">
           {/* <div className="ps-product__rating">

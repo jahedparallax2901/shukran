@@ -25,7 +25,7 @@ export const fetchSearchedProducts = (params = {}, callback=(()=>{})) => {
       },
     })
       .then(res => {
-        dispatch(productSearchSuccess(res.data.product.data));
+        dispatch(productSearchSuccess(res.data.product));
         callback(res.data);
       })
       .catch((err) => {

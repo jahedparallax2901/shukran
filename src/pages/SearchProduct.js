@@ -84,7 +84,7 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
             <div className="ps-layout__right">
               <SearchItems
                 columns={6}
-                productItems={productSearch.products}
+                productItems={productSearch?.products}
                 loading={productSearch.isSearching}
                 total={total}
                 query={query}
