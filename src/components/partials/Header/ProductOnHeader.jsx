@@ -34,7 +34,7 @@ const ProductOnHeader = ({
 
   const renderProductPrice = (product) => {
     let view;
-    if (product?.sale_price < product.price) {
+    if (product?.sale_price < product?.price) {
       view = (
         <p className="ps-product__price sale">
           ৳{product?.sale_price}
