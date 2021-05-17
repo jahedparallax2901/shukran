@@ -22,6 +22,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [selectedAttributeProduct, setSelectedAttributeProduct] = useState();
 
   async function getProduct(id) {
     setLoading(true);
@@ -29,6 +30,11 @@ const ProductDetails = () => {
       .then((res) => {
         console.log("response", res);
         setProduct(res.product);
+        setSelectedAttributeProduct(
+          res.product?.attributes_types?.length > 0
+            ? res.product?.attributes_types[0].items[0]
+            : res.product?.default_attribute
+        );
         setTimeout(
           function () {
             setLoading(false);
@@ -49,7 +55,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     getProduct(id);
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
   const breadCrumb = [
@@ -69,16 +75,24 @@ const ProductDetails = () => {
   let productView, headerView;
   if (!loading) {
     if (product) {
-      productView = <ProductDetailFullwidth product={product} />;
-      headerView = <Header product={product} isProduct={true} />;
+      productView = (
+        <ProductDetailFullwidth
+          product={product}
+          selectedAttributeProduct={selectedAttributeProduct}
+          setSelectedAttributeProduct={setSelectedAttributeProduct}
+        />
+      );
+      headerView = <Header product={product} isProduct={true} selectedAttributeProduct={selectedAttributeProduct}/>;
     } else {
-      headerView = <Header isProduct={false}/>;
+      headerView = <Header isProduct={false} />;
     }
   } else {
     productView = <SkeletonProductDetail />;
   }
 
   console.log("Product full width", product);
+  console.log("selectedAttributeProduct", selectedAttributeProduct);
+
   return (
     <ContainerProductDetail
       title={product ? product.title : "Loading..."}

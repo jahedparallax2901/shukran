@@ -17,13 +17,13 @@ import HeaderStandardProduct from "./HeaderStandardProduct";
 
 class Header extends Component {
   render() {
-    const { categories, all_category, isProduct, product } = this.props;
+    const { categories, all_category, isProduct, product, selectedAttributeProduct } = this.props;
 
     return (
       <>
         <HeaderPromotion />
         {isProduct ? (
-          <HeaderStandardProduct product={product} />
+          <HeaderStandardProduct product={product} selectedAttributeProduct={selectedAttributeProduct}/>
         ) : (
           <HeaderStandard />
         )}

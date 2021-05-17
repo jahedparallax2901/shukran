@@ -117,7 +117,15 @@
     line-height: 20px;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: #f14705;
+    /* background-color: #f0c14b; */
+    z-index: 99;
+    cursor: pointer;
+    i{
+      svg{
+        fill: #c53030;
+        font-size: 20px;
+      }
+    }
 
     &.out-stock {
       background-color: #000;
@@ -133,9 +141,9 @@
     margin: 0;
     display: block;
     padding: 0 0 5px;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.2em;
-    color: #06c;
+    color: #000;
     --max-lines: 2;
     max-height: calc(1.2em * var(--max-lines));
     overflow: hidden;
@@ -151,12 +159,12 @@
       min-height: 40px;
     }
     &:hover {
-      color: $color-1st;
+      color: #787878;
     }
   }
 
   .ps-product__progress-bar {
-    display: block;
+    display: none;
     width: 100%;
 
     .ps-progress__value {
@@ -179,7 +187,7 @@
   .ps-product__thumbnail {
     position: relative;
     overflow: hidden;
-
+    min-height: 150px;
     img {
       width: 100%;
     }
@@ -263,6 +271,7 @@
 }
 
 .ps-product--simple {
+  overflow: hidden;
   .ps-product__vendor {
     display: none;
   }
@@ -283,6 +292,31 @@
       @include show;
       height: auto;
     }
+    .product-add-to-cart-hover{
+      opacity: 1;
+      bottom: 0px;
+      cursor: pointer;
+      &:hover{
+        background: #ddd;
+      }
+    }
+  }
+  .product-add-to-cart-hover{
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    color: #000;
+    padding: 5px;
+    background: #eee;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 500;
+    width: 100%;
+    opacity: 0;
+    transform: translate(-50%, 0px);
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    z-index: 999;
   }
 }
 
@@ -320,7 +354,6 @@
 
   .ps-product__desc {
     position: relative;
-
     li {
       padding-left: 15px;
       position: relative;
@@ -451,14 +484,14 @@
   .ps-product__title {
     margin: 0;
     padding: 0 0 5px;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.2em;
-    color: #06c;
+    color: #000000;
     @media screen and (max-width: 768px) {
       font-size: 16px;
     }
     &:hover {
-      color: $color-1st;
+      color: #787878;
     }
   }
 
@@ -470,7 +503,7 @@
       color: #787878;
 
       del {
-        color: #f30;
+        color: #000000;
       }
     }
   }
@@ -717,7 +750,8 @@
     right: 10px;
     z-index: 30;
     padding: 0 5px;
-    background-color: #fe9931;
+    /* background-color: #fe9931; */
+    cursor: pointer;
 
     i {
       font-style: normal;
@@ -813,7 +847,30 @@
   .ps-product__desc {
     margin-bottom: 20px;
     border-bottom: 1px solid #e1e1e1;
+    .ps-list--dot{
+      max-height: 280px;
+      height: 100%;
+      overflow: scroll;
+      overflow-x: auto;
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
 
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey; 
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #787878; 
+      border-radius: 10px;
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ed1c24; 
+    }
     p {
       color: $color-heading;
 
@@ -1781,6 +1838,11 @@
     h3 {
       a {
         color: inherit;
+        &:hover{
+          a{
+            color: #787878;
+          }
+        }
       }
     }
   }
@@ -1819,7 +1881,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #96b101;
+    /* background-color: #96b101; */
 
     span {
       font-weight: 500;
@@ -1841,7 +1903,7 @@
     .ps-product__name {
       font-weight: 600;
       color: $color-heading;
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 
@@ -1987,7 +2049,7 @@
 
   @include media("<xs") {
     .ps-product__name {
-      font-size: 16px;
+      font-size: 15px;
     }
     .ps-product__expires {
       > p {
@@ -2270,6 +2332,11 @@
     line-height: 1;
     font-weight: 400;
     margin: 0 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   .ps-tab-list {

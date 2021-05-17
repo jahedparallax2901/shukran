@@ -118,14 +118,14 @@ export default function MyAccount() {
                             </td>
                             <td class="pr-0 text-right">
                               <a
-                                class="btn btn-block btn-sm btn-outline-primary"
+                                class="btn btn-block btn-lg btn-outline-primary"
                                 target="_blank"
                                 href="http://localhost/shukran-backend/admin/order-detail"
                               >
                                 View
                               </a>
                               <a
-                                class="btn btn-block btn-sm btn-outline-success"
+                                class="btn btn-block btn-lg btn-outline-success"
                                 target="_blank"
                                 href="http://localhost/shukran-backend/admin/order-invoice"
                               >

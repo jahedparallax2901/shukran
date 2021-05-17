@@ -34,7 +34,6 @@ class CountDown extends Component {
     }
     render() {
         const { days, hours, minutes, seconds } = this.state;
-        console.log("seconds",seconds);
         return (
             <ul className="ps-countdown">
                 <li>

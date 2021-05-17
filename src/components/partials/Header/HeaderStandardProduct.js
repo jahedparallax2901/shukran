@@ -123,8 +123,10 @@ class HeaderStandardProduct extends Component {
       handleShowShoppingCart,
       handleAddToCart,
       product,
+      selectedAttributeProduct,
       wishlist,
     } = this.props;
+
 
     return (
       <header
@@ -272,7 +274,7 @@ class HeaderStandardProduct extends Component {
                           </>
                         ) : (
                           <div className="loading-wrapper">
-                            <h3>No Items in cart</h3>
+                            <h3>Your shopping cart is empty.</h3>
                           </div>
                         )}
                       </>
@@ -353,7 +355,7 @@ class HeaderStandardProduct extends Component {
 
         <nav className="navigation navigation--product">
           <div className="container">
-            <ProductOnHeader product={product} />
+            <ProductOnHeader product={product} selectedAttributeProduct={selectedAttributeProduct}/>
           </div>
         </nav>
       </header>

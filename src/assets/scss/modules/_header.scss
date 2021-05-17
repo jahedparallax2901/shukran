@@ -11,6 +11,9 @@
         > i {
             font-size: 30px;
             line-height: 42px;
+            @media screen and (max-width: 1024px){
+                line-height: 30px;
+            }
         }
 
         span {
@@ -89,6 +92,9 @@
     .navigation--mobile {
         .header__extra {
             width: 40px;
+            @media screen and (max-width: 1024px){
+                width: 30px;
+            }
         }
     }
 
@@ -337,10 +343,13 @@
             top: 0;
             width: 100%;
             z-index: 530;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #eeeeee;
             padding: 10px 0;
             background-color: #ffffff;
-            transition: .5s ease-in-out;
+            -webkit-transition: .4s ease-in-out;    
+            -moz-transition: .4s ease-in-out;
+            -ms-transition: .4s ease-in-out;
+            transition: .4s ease-in-out;
 
             .menu--product-categories {
                 display: block;

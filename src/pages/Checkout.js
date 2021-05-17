@@ -230,7 +230,6 @@ const Checkout = (props) => {
     else {
       placeOrderV1()
     }
-
   };
 
   const placeOrderV1 = () =>{

@@ -9,10 +9,60 @@ import CountDownSimple from "../../elements/CountDownSimple";
 import bike1 from "../../../assets/img/downloads/bike1.jpeg";
 import { processGetRequest } from "../../../services/baseServices";
 import ModuleProductActions from "../../elements/product/ModuleProductActions";
+import NextArrow from "../../elements/carousel/NextArrow";
+import PrevArrow from "../../elements/carousel/PrevArrow";
 
 const DealOfTheDay = ({ deal_of_day_products }) => {
   const [productItems, setProductItems] = useState(null);
   const [loading, setLoading] = useState(false);
+
+ const carouselDealOfTheDay = {
+    dots: false,
+    arrows: true,
+    infinite: deal_of_day_products?.length >= 5 ?true: false,
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 5,
+    slidesToScroll: 2,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+        {
+            breakpoint: 1025,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: deal_of_day_products?.length >= 3 ?true: false,
+                dots: false,
+            },
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2,
+                infinite: deal_of_day_products?.length >= 2 ?true: false,
+            },
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: deal_of_day_products?.length >= 2 ?true: false,
+            },
+        },
+        {
+            breakpoint: 375,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: deal_of_day_products?.length >= 1 ?true: false,
+            },
+        },
+    ],
+};
 
   async function getProducts() {
     processGetRequest("/homepage", { filter_type: 4 })
@@ -42,7 +92,7 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
         <ProductDealOfDay product={item} key={item.id} />
       ));
       productItemsView = (
-        <Slider {...carouselStandard} className="ps-carousel outside">
+        <Slider {...carouselDealOfTheDay} className="ps-carousel outside">
           {slideItems}
         </Slider>
       );

@@ -10,29 +10,29 @@ import slider3 from "../../../assets/img/slider/home-3/clothing-3.jpg";
 
 const CategoryProducts = ({ cat }) => {
   const [productItems, setProductItems] = useState(null);
-  const {items, category, sliders} = cat;
+  const { items, category, sliders } = cat;
 
   // Views
   let productItemsView;
-    if (items && items.length > 0) {
-      productItemsView = items.map((item, index) => {
-        if (index < 6) {
-          return <ProductSimple product={item} key={item.id} />;
-        }
-      });
-    } else {
-      productItemsView = <p>No product found.</p>;
-    }
-  
+  if (items && items.length > 0) {
+    productItemsView = items.map((item, index) => {
+      if (index < 6) {
+        return <ProductSimple product={item} key={item.id} />;
+      }
+    });
+  } else {
+    productItemsView = <p>No product found.</p>;
+  }
+
 
   return (
     <div className="ps-block--products-of-category">
-      <div className="ps-block__categories">
+      {/* <div className="ps-block__categories">
         <h3>
           {category?.name || "Not exist"}
         </h3>
-        <ul>
-          {/* <li>
+        <ul> */}
+      {/* <li>
             <Link to="/shop/best-seller">
               <a>Best Seller</a>
             </Link>
@@ -72,12 +72,15 @@ const CategoryProducts = ({ cat }) => {
               <a>Sales & Deals</a>
             </Link>
           </li> */}
-        </ul>
-        <Link to="/shop" className="ps-block__more-link">
+      {/* </ul>
+        <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">
           View All
         </Link>
-      </div>
+      </div> */}
       <div className="ps-block__slider">
+        <h3>
+          {category?.name || "Not exist"}
+        </h3>
         <Slider {...carouselSingle} className="ps-carousel">
           {sliders.map((item) => (
             <a>
@@ -85,6 +88,9 @@ const CategoryProducts = ({ cat }) => {
             </a>
           ))}
         </Slider>
+        <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">
+          View All
+        </Link>
       </div>
       <div className="ps-block__product-box">{productItemsView}</div>
     </div>

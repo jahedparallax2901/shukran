@@ -716,7 +716,7 @@
 
 /*1. RESET AND TYPHOGRAPHY */
 html {
-  font-family: sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -943,7 +943,7 @@ textarea {
 }
 
 * {
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-weight: 400;
 }
 
@@ -1443,7 +1443,7 @@ body {
   position: relative;
   display: block;
   padding-left: 15px;
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-size: 14px;
   letter-spacing: 0.5px;
   color: #626262;
@@ -2169,7 +2169,7 @@ textarea.form-control {
   margin-bottom: 0;
   position: relative;
   padding-left: 30px;
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 400;
   cursor: pointer;
@@ -2392,7 +2392,7 @@ textarea.form-control {
   position: relative;
   margin-bottom: 0;
   padding-left: 30px;
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   color: #737373;
   font-weight: 400;
   cursor: pointer;
@@ -7181,7 +7181,7 @@ textarea.form-control {
 }
 
 .widget_sidebar .widget-title {
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   display: block;
   margin-bottom: 2.5rem;
   font-size: 1.6rem;
@@ -7756,7 +7756,9 @@ textarea.form-control {
   font-weight: 600;
   color: #000;
 }
-
+.ps-widget--account-dashboard .ps-widget__header figure p a{
+  word-break: break-all;
+}
 .ps-widget--account-dashboard .ps-widget__content ul {
   border: 1px solid #d1d1d1;
 }
@@ -11261,7 +11263,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .ps-table thead > tr > th {
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Varela Round', sans-serif !important;
   font-size: 18px;
   font-weight: 700;
   color: #515356;

@@ -11,8 +11,16 @@
 }
 
 #shop-now-home3 .ps-section__content .ps-block--category {
-  height: 200px;
+  height: 130px;
   margin: 0px auto 30px auto;
+  border-radius: 5px;
+}
+@media screen and (max-width: 412px) {
+  #shop-now-home3 .ps-section__content .ps-block--category {
+    height: 130px;
+    margin: 0px auto 20px auto;
+    border-radius: 5px;
+  }
 }
 #shop-now-home3 .ps-shop-brand,
 #shop-now-home3 .ps-shop-categories {
@@ -140,7 +148,6 @@
 
 .header--mobile.header--sticky .navigation--mobile {
   background: #ffffff;
-  
 }
 .header--mobile .header__extra span {
   background: #006c32;
@@ -207,7 +214,7 @@
   }
 }
 .asside-top {
-  font-family: Lato, sans-serif;
+  font-family: "Varela Round", sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(255, 255, 255);
@@ -246,24 +253,13 @@
   -webkit-box-pack: center;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  font-family: Lato, sans-serif;
+  font-family: "Varela Round", sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(0, 158, 127);
   margin: 0px 10px 10px;
 }
 
-.asside-card-checkout {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  max-width: 420px;
-  background-color: #fff;
-  z-index: 1000;
-  border-left: 1px solid #f0f2f3;
-}
 .asside-card-checkout .cart-header {
   display: flex;
   justify-content: space-between;
@@ -427,8 +423,9 @@
 .header--standard .ps-form--quick-search button,
 .ps-form--newsletter .form-group--nest button,
 .ps-cart--mini figure .ps-btn {
-  background: #ed1c24;
+  background: #d3d3d3;
   color: #fff;
+  font-family: "Varela Round", sans-serif !important;
 }
 .header--standard .ps-form--quick-search button:hover,
 .ps-form--newsletter .form-group--nest button:hover,
@@ -438,7 +435,7 @@
 }
 
 .header--standard .ps-form--quick-search .ps-form__categories select {
-  border: 0.5px solid rgb(221, 218, 218);
+  /* border: 0.5px solid rgb(221, 218, 218); */
 }
 
 #homepage-5 .ps-home-banner .ps-section__right > a:first-child {
@@ -475,7 +472,7 @@
   }
 }
 .ps-block--category:hover p {
-  color: #006c32;
+  color: #787878;
 }
 .menu--product-categories .menu--dropdown {
   min-height: 500px;
@@ -488,10 +485,10 @@
   color: #787878;
 }
 .ps-product .ps-product__content > p {
-  color: #006c32;
+  color: #787878;
 }
 .ps-product .ps-product__price.sale del {
-  color: #ed1c24;
+  color: #000000;
   padding-right: 10px;
   /* color: #525252; */
 }
@@ -646,10 +643,10 @@
   background: #ffffff;
 }
 .ps-product--detail .ps-product__specification .in-stock {
-  color: #006c32;
+  color: #000000;
 }
 .ps-product--hot-deal .ps-product__processs-bar p strong {
-  color: #006c32;
+  color: #000000;
 }
 .ps-layout--shop {
   padding-bottom: 50px;
@@ -745,17 +742,23 @@
   margin-bottom: 20px;
 }
 .home-categories-body {
-  padding: 30px 30px 0px 30px;
+  padding: 30px 20px 0px 20px;
   background: #ffffff;
 }
 .home-categories-body .all-category-single {
-  height: 110px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid #eee;
 }
 .home-categories-body .ps-block--category {
   height: 242px;
 }
 .home-categories-body .ps-block--category p {
   margin-top: 5px;
+  line-height: 20px;
 }
 .home-categories-body .ps-product--inner .ps-block--category img {
   width: 100%;
@@ -852,7 +855,7 @@
 .home-categories-top h3 {
   margin-bottom: 0;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
 }
 /*=================== Start Become a Member  =====================*/
 
@@ -868,7 +871,7 @@
   padding: 30px 20px;
   background: #ffffff;
 }
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .store-search-form {
     padding: 15px;
   }
@@ -1018,7 +1021,7 @@
   background: #fff;
   margin-top: 25px;
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   .ps-store-list .ps-store-link {
     margin-bottom: 20px;
     margin-top: 20px;
@@ -1087,7 +1090,7 @@
   left: 20px;
   border: 5px solid #efefef;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-owner img {
     max-height: 70px;
     left: 15px;
@@ -1111,7 +1114,7 @@
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-owner .visit-store {
     top: -15px;
     right: 15px;
@@ -1179,7 +1182,7 @@
   display: flex;
   align-items: center;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-details .shop-inquiry {
     padding: 5px 15px;
     align-items: center;
@@ -1194,7 +1197,7 @@
   padding: 4px 20px;
   border-radius: 5px;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 425px) {
   .category-vendor-body .shop-details .shop-inquiry:hover {
     padding: 5px 15px;
     align-items: center;
@@ -1397,6 +1400,9 @@ button.ps-btn:active {
     padding-bottom: 20px;
   }
 }
+.ps-product .ps-product__thumbnail a {
+  color: #000000;
+}
 .ps-product .ps-product__thumbnail img {
   width: 100%;
   height: 150px;
@@ -1524,7 +1530,7 @@ button.ps-btn:active {
 
 /* ================== Start Aside Css ================ */
 .asside-top {
-  font-family: Lato, sans-serif;
+  font-family: "Varela Round", sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(255, 255, 255);
@@ -1563,7 +1569,7 @@ button.ps-btn:active {
   -webkit-box-pack: center;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  font-family: Lato, sans-serif;
+  font-family: "Varela Round", sans-serif !important;
   font-size: 14px;
   font-weight: 700;
   color: rgb(0, 158, 127);
@@ -1575,7 +1581,7 @@ button.ps-btn:active {
   right: -100%;
   height: 100%;
   width: 100%;
-  max-width: 420px;
+  max-width: 350px;
   background-color: #fff;
   border-left: 1px solid #f0f2f3;
   overflow-y: scroll;
@@ -1606,7 +1612,7 @@ button.ps-btn:active {
   height: 8px;
 }
 .close-btn {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
@@ -1617,18 +1623,21 @@ button.ps-btn:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #006c32;
-  color: #fff;
-  padding: 5px 15px;
+  background: #ddd;
+  color: #000;
+  padding: 0px 15px;
   position: sticky;
   top: 0;
   z-index: 9999;
 }
 .aside-cart-header h1 {
   font-size: 2rem;
-  color: #fff;
+  color: #000;
   margin-bottom: 0;
   font-weight: 500;
+}
+.aside-cart-header .close-btn i {
+  vertical-align: super;
 }
 .asside-card-checkout .select-all-div {
   padding: 0 1rem;
@@ -1642,7 +1651,8 @@ button.ps-btn:active {
 }
 .asside-card-checkout .store-div-container {
   margin-bottom: 165px;
-} */
+}
+*/
 /* .asside-card-checkout .store-div .ps-checkbox {
   width: 20px;
 }
@@ -1692,8 +1702,14 @@ button.ps-btn:active {
   font-size: 14px;
   /* margin-left: 5px; */
   padding-left: 24px;
+  padding-top: 10px;
   font-weight: 500;
-  line-height: 44px;
+  line-height: 1.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 /* .asside-card-checkout .store .ps-checkbox {
   display: flex;
@@ -1799,7 +1815,7 @@ button.ps-btn:active {
 .store-coupon input[type="text"] {
   border: none;
   border: 1px solid transparent;
-  width: 135px;
+  width: 110px;
   border-radius: 5px 0 0 5px;
 }
 .store-coupon input[type="text"]:focus {
@@ -1807,7 +1823,7 @@ button.ps-btn:active {
 }
 .store-coupon input[type="text"]:placeholder-shown {
   text-transform: capitalize;
-  padding: 3px 4px;
+  padding: 2px 4px;
   /* font-weight: 700; */
 }
 .store-coupon button {
@@ -1880,9 +1896,9 @@ button.ps-btn:active {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 2rem;
+  padding: 1.5rem;
   background: #fff;
-  width: 402px !important;
+  width: 350px;
   z-index: 999;
   box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -1896,7 +1912,7 @@ button.ps-btn:active {
   position: fixed !important;
   bottom: 0px !important;
   /* width: 420px !important; */
-  width: 402px !important;
+  width: 350px;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -1921,11 +1937,11 @@ button.ps-btn:active {
 }
 .all-checkout .total h6,
 .all-checkout .subtotal h6 {
-  font-size: 16px;
+  font-size: 14px;
 }
 .all-checkout .total p,
 .all-checkout .subtotal p {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 3px;
 }
 .all-checkout .store-checkout {
@@ -1939,7 +1955,7 @@ button.ps-btn:active {
   overflow: hidden;
   position: absolute;
   left: 20px;
-  bottom: 20px;
+  bottom: 15px;
 }
 .all-checkout .store-coupon input {
   border: 1px solid #eee;
@@ -2063,7 +2079,7 @@ button.ps-btn:active {
 }
 @media screen and (max-width: 414px) {
   .home-categories-body {
-    padding: 30px 15px 0px 15px;
+    padding: 20px 15px 0px 15px;
   }
   /* .home-categories-body .owl-stage-outer{
     right: -15px;
@@ -2344,7 +2360,6 @@ button.ps-btn:active {
     order: 1;
     display: block;
     margin-bottom: 10px;
-  
   }
   .ps-layout__right .ps-shopping .ps-shopping__header .ps-shopping__select {
     font-size: 16px !important;
@@ -2486,16 +2501,16 @@ button.ps-btn:active {
   font-weight: 600;
 }
 
-.custom-layout{
+.custom-layout {
   padding: 30px 0px 50px 0px;
 }
-@media screen and (max-width: 1366px){
-  .custom-layout{
+@media screen and (max-width: 1366px) {
+  .custom-layout {
     padding: 20px 0px 40px 0px;
   }
 }
-@media screen and (max-width: 768px){
-  .custom-layout{
+@media screen and (max-width: 768px) {
+  .custom-layout {
     padding: 20px 0px 30px 0px;
   }
 }
