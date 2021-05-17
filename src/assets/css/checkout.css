@@ -150,6 +150,7 @@ p:last-child {
     background: #f4f5f5;
     margin-right: 10px;
     min-height: 130px;
+
     height: auto;
 }
 
@@ -310,6 +311,7 @@ p:last-child {
     padding: 15px;
     border-radius: 5px;
     width: 30% ;
+
 }
 .single-checkout-area .single-checkout-body:first-child{
 /*    background: #ffffff !important;*/

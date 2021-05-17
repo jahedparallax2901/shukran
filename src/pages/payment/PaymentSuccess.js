@@ -17,7 +17,7 @@ const PaymentSuccess = () =>{
                         title="Payment successfully done!"
                         subTitle="We are packaging your things and ship them asap!"
                         extra={[
-                            <Button style={{backgroundColor: '#ed1c24'}} type="primary" key="console">
+                            <Button style={{backgroundColor: '#ffffff', color:'#333333'}} type="primary" key="console">
                                 <Link to={`/account/my-orders`}>View Order List</Link>
                             </Button>
                         ]}

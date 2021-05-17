@@ -15,8 +15,8 @@ const PaymentFailed = () =>{
                     <Result
                         style={{paddingTop:'10%' ,paddingBottom: '10%'}}
                         status="error"
-                        title="Payment Error"
-                        subTitle="Payment error message"
+                        title="Transaction could not be processed"
+                        subTitle="No response received from upstream provider."
                         extra={[
                             <Button style={{backgroundColor: '#ed1c24'}} type="primary" key="console">
                                 <Link to={`/`}>Go Back</Link>

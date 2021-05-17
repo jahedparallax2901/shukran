@@ -36,6 +36,7 @@ import {
   FormText,
 } from "react-bootstrap";
 
+
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
 import { toast } from "react-toastify";
@@ -545,6 +546,7 @@ const Checkout = (props) => {
                 handleFormSubmit(e, "/edit-address/" + editedId);
               } else {
                 handleFormSubmit(e, "/add-address");
+                setIsEdited(false)
               }
             }}
             >
@@ -849,6 +851,8 @@ const Checkout = (props) => {
         </Modal>
 
         <Modal
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
             show={isShowContactModal}
             onHide={() => {
               handleHideContactModal();
@@ -856,26 +860,46 @@ const Checkout = (props) => {
         >
           <ModalBody>
             <ModalHeader>ADD NEW CONTACT</ModalHeader>
-            <input
-                required
-                defaultValue={
-                  isEdited ? contacts[selectedContact].phone_number : ""
-                }
-                onChange={(e) => handleOnChange(e)}
-                style={{ height: "40px", fontSize: "12px" }}
-                name="phone_number"
-                placeholder="Enter your Phone Number"
-                type="text"
-                id="phone_number"
-                className="form-control"
-            />
+
+              <input
+                  required
+                  defaultValue={
+                    isEdited ? contacts[selectedContact]?.phone_number : ""
+                  }
+                  onChange={(e) => handleOnChange(e)}
+                  style={{ height: "40px", fontSize: "12px" }}
+                  name="phone_number"
+                  placeholder="Enter your Phone Number"
+                  type="text"
+                  id="phone_number"
+                  minLength={11}
+                  maxLength={11}
+                  className="form-control"
+              />
             <ModalFooter>
+              <Button
+                  onClick={handleHideContactModal}
+                  style={{ height: "2vw", width: "5vw", fontSize: "12px" }}
+                  variant={`danger`}
+              >
+                Close
+              </Button>
               <Button
                   onClick={(e) => {
                     if (isEdited === true){
-                      handleFormSubmit(e, "/edit-contact/"+editedId);
+                      if (formData?.phone_number?.length >10){
+                        handleFormSubmit(e, "/edit-contact/"+editedId);
+                      }else {
+                        toast.error('min & max 11 characters')
+                      }
+
                     }else {
-                      handleFormSubmit(e, "/add-contact");
+                      if (formData?.phone_number?.length >10){
+                        handleFormSubmit(e, "/add-contact");
+                      }else {
+                        toast.error('min & max 11 characters')
+                      }
+
                     }
 
                   }}
@@ -1173,9 +1197,9 @@ const Checkout = (props) => {
                                   </div>
                                 </div>
                               </div>
-
+                              <div className={'d-flex'}>
                               <DeliveryAddress />
-
+                              </div>
                               {/*<div className="single-checkout-body single-checkout-body-first">
                                                 <div className="checkout-body-location">
                                                     <h4>Home</h4>
