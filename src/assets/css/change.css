@@ -857,6 +857,11 @@
   font-size: 20px;
   font-weight: 600;
 }
+@media screen and (max-width: 1199px){
+  .home-categories-top h3 {
+    font-weight: 500;
+  }
+}
 /*=================== Start Become a Member  =====================*/
 
 /*=================== Start Vendor Store  =====================*/

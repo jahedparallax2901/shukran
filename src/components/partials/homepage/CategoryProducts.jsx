@@ -27,12 +27,12 @@ const CategoryProducts = ({ cat }) => {
 
   return (
     <div className="ps-block--products-of-category">
-      {/* <div className="ps-block__categories">
+      <div className="ps-block__categories">
         <h3>
           {category?.name || "Not exist"}
         </h3>
-        <ul> */}
-      {/* <li>
+        {/* <ul>
+          <li>
             <Link to="/shop/best-seller">
               <a>Best Seller</a>
             </Link>
@@ -71,12 +71,12 @@ const CategoryProducts = ({ cat }) => {
             <Link to="/shop/sale-and-deal">
               <a>Sales & Deals</a>
             </Link>
-          </li> */}
-      {/* </ul>
+          </li>
+        </ul> */}
         <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">
           View All
         </Link>
-      </div> */}
+      </div>
       <div className="ps-block__slider">
         <h3>
           {category?.name || "Not exist"}
