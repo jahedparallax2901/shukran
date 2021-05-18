@@ -95,7 +95,7 @@ const ProductDetails = () => {
 
   return (
     <ContainerProductDetail
-      title={product ? product.title : "Loading..."}
+      title={product ? product?.name : "Loading..."}
       isExpanded={true}
     >
       {headerView}

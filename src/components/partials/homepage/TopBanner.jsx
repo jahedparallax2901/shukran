@@ -55,7 +55,7 @@ class TopBanner extends Component {
             <Slider {...carouselSettings}>
               {top_sliders.map((banner) => (
                 <div className="item">
-                  <Link to={banner.deeplink}>
+                  <Link to={banner.deeplink} onClick={(e)=>e.preventDefault()}>
                     <img
                       src={banner?.image}
                       alt={banner?.file_attach?.file_name}

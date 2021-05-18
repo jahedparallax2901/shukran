@@ -1,0 +1,33 @@
+.review-container {
+  padding: 2%;
+  width: 100%;
+
+  h4 {
+    margin-bottom: 20px;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2em;
+    text-transform: uppercase;
+  }
+
+ 
+
+  .single-review{
+      margin-bottom: 35px;
+
+      .customer-name-container{
+          line-height: .3em;
+      }
+    .customer-name{
+        color: rgb(122, 113, 113);
+        font-size: 2rem;
+    }
+  
+    .review{
+        font-size: 2rem;
+        margin-top: 20px;
+        color: #000;
+    }
+  }
+}

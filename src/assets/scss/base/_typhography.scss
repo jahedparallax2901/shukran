@@ -278,6 +278,10 @@ figure {
         &:last-child {
             margin-right: 0;
         }
+
+        svg{
+            color: orange;
+        }
     }
 }
 
