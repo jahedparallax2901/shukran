@@ -1616,28 +1616,114 @@ button.ps-btn:active {
   height: 8px;
 }
 .close-btn {
-  font-size: 2.3rem;
+  color: #787878;
+  font-size: 1.2rem;
+  border: 1px solid #000;
+  padding: 0px 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 .close-btn:hover {
   color: #ed1c24;
+  border: 1px solid #ed1c24;
 }
 .aside-cart-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ddd;
+  background: #f5f5f5;
   color: #000;
-  padding: 0px 15px;
+  padding: 5px 10px;
   position: sticky;
   top: 0;
   z-index: 9999;
 }
 .aside-cart-header h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #000;
   margin-bottom: 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+.aside-cart-header h1 svg{
+  font-size: 26px;
+  margin-right: 5px;
+}
+.aside-cart-header h1 span{
+  font-size: 1.6rem;
+  margin-right: 5px;
+}
+.aside-cart-discount{
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 35px;
+  background-color: #7a7879;
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#7f7d7e,#757374));
+  background-image: -webkit-linear-gradient(top,#7f7d7e,#757374);
+  background-image: -o-linear-gradient(top,#7f7d7e,#757374);
+  background-image: linear-gradient(top,#7f7d7e,#757374);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5',endColorstr='#f9f9f9',GradientType=0);
+  -webkit-box-shadow: -2px 0 12px 0 rgb(143 143 143 / 38%);
+  -moz-box-shadow: -2px 0 12px 0 rgb(143 143 143 / 38%);
+  box-shadow: -2px 0 12px 0 rgb(143 143 143 / 38%);
+}
+.progress-bg{
+  position: relative;
+}
+.progress-bg:before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 10%;
+  background: #ed1c24;
+  z-index: -1;
+}
+.aside-cart-discount .left{
+  color: #fff;
+  position: absolute;
+  left: 0;
+  height: 35px;
+  padding: 5px 15px;
+  margin-bottom: 0px;
+  line-height: 25px;
+  transition: width .6s ease;
+  z-index: 99;
+}
+.aside-cart-discount .right{
+  color: #fff;
+  position: absolute;
+  right: 0;
+  height: 35px;
+  padding: 5px 15px;
+  margin-bottom: 0px;
+  line-height: 25px;
+  -webkit-transition: width .6s ease;
+  -moz-transition: width .6s ease;
+  -ms-transition: width .6s ease;
+  -o-transition: width .6s ease;
+  transition: width .6s ease;
+}
+.aside-cart-express{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f5f5;
+  color: #000;
+  padding: 5px 15px;
+}
+.aside-cart-express p{
+  font-size: 14px;
+  font-weight: 500;
+}
+.aside-cart-express p svg{
+  font-size: 18px;
+  margin-right: 5px;
   font-weight: 500;
 }
 .aside-cart-header .close-btn i {

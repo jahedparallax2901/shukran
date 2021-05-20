@@ -9,7 +9,8 @@ import {
   handleShowAuthModal,
 } from "../../../redux";
 import { connect } from "react-redux";
-import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus, AiOutlineShopping} from "react-icons/ai";
+import { GoRocket} from "react-icons/go";
 import { userData } from "../../../helpers/authUtils";
 import { toast } from "react-toastify";
 import { processPostRequest } from "../../../services/baseServices";
@@ -335,14 +336,18 @@ class MiniShoppinCart extends Component {
         className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}
       >
         <div className="aside-cart-header">
-          <h1>Your Cart</h1>
+          <h1><AiOutlineShopping/> <span>11</span> ITEMS</h1>
           <div className="close-btn" onClick={handleHideShoppingCart}>
-            <i>
-              <AiOutlineClose />
-            </i>
+            <span>Close</span>
           </div>
         </div>
-
+        <div className="aside-cart-discount">
+          <p className="left progress-bg">Shop ৳137 more and save ৳10 fee</p>
+          <p className="right">৳37</p>
+        </div>
+        <div className="aside-cart-express">
+          <p><GoRocket/> Express Delivery</p>
+        </div>
         {this.state.isCartProcessing ? (
           <div className="loading-wrapper">
             <Spinner animation="grow" />
