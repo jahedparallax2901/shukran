@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsPlus } from "react-icons/bs";
-import { FaBars, FaHeart, FaPlus } from "react-icons/fa";
+import { FaBars, FaHeart, FaPlus, FaRegHeart } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -98,9 +98,7 @@ const ModuleDetailShoppingActions = ({
           });
           await getCartItems(() => {
             setIsProcessing(false);
-            if (!localStorage.getItem("cart_id")) {
               localStorage.setItem("cart_id", data.cart.id);
-            }
           });
           // this.props.handleShowShoppingCart();
         } else {
@@ -112,23 +110,19 @@ const ModuleDetailShoppingActions = ({
     );
   };
 
-  const addItemToWishlist = (id) => {
-    setIsProcessing(true);
+  const addItemToWishlist = () => {
     processPostRequest(`/add-to-wishlist/${id}`, {}, true)
       .then((res) => {
         if (res.status === 200) {
           getWishlistItems(() => {
             toast.success(res.data.message);
-            setIsProcessing(false);
           });
         } else if (res.status === 400) {
           console.log("response", res);
-          setIsProcessing(false);
         }
       })
       .catch((err) => {
         console.log("error", err.message);
-        setIsProcessing(false);
         toast.error(err.message);
       });
   };
@@ -138,10 +132,10 @@ const ModuleDetailShoppingActions = ({
     const user = userData();
     if (!user) {
       handleShowAuthModal(() => {
-        addItemToWishlist(product?.product_id || product?.id);
+        addItemToWishlist();
       });
     } else {
-      addItemToWishlist(product?.product_id || product?.id);
+      addItemToWishlist();
     }
   };
 
@@ -243,7 +237,7 @@ const ModuleDetailShoppingActions = ({
           disabled={isProcessing}
           onClick={(e) => handleAddItemToCart(e)}
         >
-          {isProcessing ? "Adding to cart" : "Add to cart"}
+          Add to cart
         </button>
         <button className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
           Buy Now
@@ -252,13 +246,11 @@ const ModuleDetailShoppingActions = ({
           {/* <a href="#" onClick={(e) => handleAddItemToWishlist(e)}> */}
           <Link onClick={(e) => handleAddItemToWishlist(e)}>
             <i>
-              <FaHeart
-                className={
-                  wishlist.find((item) => item?.product?.id === id)
-                    ? "filled"
-                    : ""
-                }
-              />
+            {wishlist?.find((item) => item?.product?.id === id) ? (
+            <FaHeart className="text-danger"/>
+          ) : (
+            <FaRegHeart />
+          )}
             </i>
           </Link>
           {/* <a href="#" onClick={(e) => handleAddItemToCompare(e)}> */}

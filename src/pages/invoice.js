@@ -2,143 +2,588 @@ import React, { useEffect, useState } from "react";
 // import { connect } from 'react-redux';
 // import { useRouter } from 'next/router';
 import { useParams } from "react-router";
-import "../assets/css/register.css"
+import "../assets/css/register.css";
 
-import {FiX, MdEdit , HiPlus ,BiLeftArrowCircle ,BiRightArrowCircle} from "react-icons/all";
 import {
-    Modal
-    , ModalBody
-    , ModalTitle
-    , ModalDialog
-    , ModalFooter
-    , ModalDialogProps
-    , ModalProps
-    , Button, Form,FormGroup ,FormLabel ,FormText
+  FiX,
+  MdEdit,
+  HiPlus,
+  BiLeftArrowCircle,
+  BiRightArrowCircle,
+  BsFillStarFill,
+} from "react-icons/all";
+import {
+  Modal,
+  ModalBody,
+  ModalTitle,
+  ModalDialog,
+  ModalFooter,
+  ModalDialogProps,
+  ModalProps,
+  Button,
+  Form,
+  FormGroup,
+  FormLabel,
+  FormText,
+  Alert,
 } from "react-bootstrap";
 
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import ReactDOM from "react-dom";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
-import {Link, useLocation} from "react-router-dom";
-import {processGetRequest} from "../services/baseServices";
+import { Link, useLocation } from "react-router-dom";
+import { processGetRequest, processPostRequest } from "../services/baseServices";
+import { Rate } from "antd";
+import { connect } from "react-redux";
+import { handleShowAuthModal } from "../redux";
 
+const Invoice = ({handleShowAuthModal}) => {
+  const { id } = useParams();
+  const location = useLocation();
+  const [json, setJson] = useState();
+  const [timeLineStatus, setTimeLineStatus] = useState(0);
+  const [timeLineArray, setTimeLineArray] = useState([]);
 
-const Invoice = () => {
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
 
-    const {id} = useParams();
-    const location = useLocation()
-    const [json ,setJson] = useState()
-    const [timeLineStatus , setTimeLineStatus] = useState(0)
-    const [timeLineArray , setTimeLineArray] = useState([])
+  const [formData, setFormData] = useState({ product_id: null });
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+  const [validationMessage, setValidationMessage] = useState("");
 
-    useEffect( ()=>{
-         processGetRequest(`/order-details/${id}`,{} ,true).then((res)=>{
-             setJson(res.ordered_item)
-             setTimeLineArray(res.ordered_item.timeline)
-             console.log(res.ordered_item.timeline)
-             timeLineArray.map((data,index) =>{
-                 if (data?.active === true){
-                     setTimeLineStatus(index)
-                 }
-             })
-       })
+  useEffect(() => {
+    processGetRequest(`/order-details/${id}`, {}, true).then((res) => {
+      setJson(res.ordered_item);
+      setTimeLineArray(res.ordered_item.timeline);
+      console.log(res.ordered_item.timeline);
+      timeLineArray.map((data, index) => {
+        if (data?.active === true) {
+          setTimeLineStatus(index);
+        }
+      });
+    });
 
+    setFormData({...formData, product_id: id});
+  }, []);
 
+  const inputOnChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    },[])
+  const handleRateOnChange = (value) => {
+    setFormData({ ...formData, rating: value });
+  };
 
+  const submitReview = (e) => {
+    e.preventDefault();
 
-    const getInvoiceData = () => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      setValidationMessage("Please fill the required fields!");
+    } else {
+      processPostRequest("/customer-review", formData, true)
+        .then((res) => {
+          form.reset();
+          toast.success(res.data.message);
+        })
+        .then((err) => {
+          if (err.response.status === 401) {
+            setValidationMessage("Please log in before giving review");
+            handleShowAuthModal();
+          } else {
+            setValidationMessage(err.response.data.message);
+            toast.error(err.message);
+          }
+        });
+
+      //   const authData = userData();
+      //   axios
+      //     .post(
+      //       `http://localhost:80/shukran-backend/api/v1/customer-review`,
+      //       formData,
+      //       {
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //           Authorization: authData?.token,
+      //         },
+      //       }
+      //     )
+      //     .then((res) => {
+      //       form.reset();
+      //       toast(res.data.message);
+      //     })
+      //     .catch((err) => {
+      //       if (err.response.status === 401) {
+      //         setValidationMessage("Please log in before giving review");
+      //         handleShowAuthModal();
+      //       } else {
+      //         setValidationMessage(err.response.data.message);
+      //       }
+      //     });
     }
+  };
 
-    return (
-        <ContainerMarketPlace3
-            title="Checkout"
-            isExpanded={true}>
+  const getInvoiceData = () => {};
 
+  const showReviewModal = (product_id) => {};
 
-            <div className="main-content invoice-main-content">
-                <div className="container">
-                    <div className="section-block invoice-section-block">
-                        <div className="block-header"><h2 className="block-title" /></div>
-                        <div className="invoice-outer">
-                            <div className="invoice-table-container table-responsive">
-                                <table className="invoice-table">
-                                    <tbody>
-                                    <tr className="v-top">
-                                        <td><img src="https://parallaxlogic.dev/shukran-view/img/shukran.png" alt className="brand-logo" /></td>
-                                        <td className="text-right"><span className="d-block">Support@shukran24seven.com</span><span className="d-block">info@shukran24seven.com</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan={2}><h3 className="invoice-title">order id : #{json?.order.id}</h3></td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan={2}>
-                                            <table>
-                                                <tbody>
-                                                <tr>
-                                                    <td width="20%" style={{paddingBottom: 20, paddingLeft: 0}}>
-                                                        <h4 className="invoice-title-alt">Bill To</h4>
-                                                        <span className="d-block">{json?.customer_address?.name}</span>
-                                                        <span className="d-block">{json?.customer_address?.phone}</span>
-                                                        <span className="d-block">{json?.customer_address?.address}</span>
-                                                        <span className="d-block">
+  return (
+    <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
+      {/* Review modal */}
+      <Modal
+        closeButton
+        size="md"
+        show={visible}
+        onHide={() => setVisible(false)}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">
+            Leave a Review
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="mx-2">
+        <form
+          onSubmit={submitReview}
+          className="ps-form--review needs-validation"
+          action="/"
+          method="get"
+          novalidate
+        >
+          {validationMessage && (
+            <Alert variant="warning">{validationMessage}</Alert>
+          )}
 
-                          </span>
-                                                    </td>
-                                                    <td width="20%" style={{paddingBottom: 20}}>
-                                                        <h4 className="invoice-title-alt">Ship To</h4>
-                                                        <span className="d-block">{json?.order?.address?.name}</span>
-                                                        <span className="d-block">{json?.order?.address?.phone_number}</span>
-                                                        <span className="d-block">{json?.order?.address?.address}</span>
-                                                        <span className="d-block">
+          <h4>Submit Your Review</h4>
+          <p>
+            Your email address will not be published. Required fields are marked
+            <sup>*</sup>
+          </p>
+          <label>Your rating for this product</label>
+          <div className="form-group form-group__rating">
+            <Rate
+              tooltips={desc}
+              onChange={handleRateOnChange}
+              value={formData?.rating || 0}
+              character={<BsFillStarFill />}
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              name="review"
+              className="form-control"
+              rows="6"
+              placeholder="Write your review here"
+              required
+              onChange={inputOnChange}
+            ></textarea>
+          </div>
+          {/* <div className="row">
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
+              <div className="form-group">
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Your Name"
+                />
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
+              <div className="form-group">
+                <input
+                  className="form-control"
+                  type="email"
+                  placeholder="Your Email"
+                />
+              </div>
+            </div>
+          </div> */}
+          <div className="form-group submit">
+            <button type="submit" className="ps-btn">
+              Submit Review
+            </button>
+          </div>
+        </form>
+        </Modal.Body>
+      </Modal>
 
-                          </span>
-                                                    </td>
-                                                    <td width="20%" style={{paddingBottom: 20}}>
-                                                        <h4 className="invoice-title-alt">Payment Method</h4>
-                                                        <span className="d-block" />
-                                                        <span className="d-block"> {json?.order?.payment?.name}</span>
-                                                    </td>
-                                                    <td width="20%" style={{paddingBottom: 20}}>
-                                                        <h4 className="invoice-title-alt">Shipping Method</h4>
-                                                        <span className="d-block"> -- </span>
+      <div className="main-content invoice-main-content">
+        <div className="container">
+          <div className="section-block invoice-section-block">
+            <div className="block-header">
+              <h2 className="block-title" />
+            </div>
+            <div className="invoice-outer">
+              <div className="invoice-table-container table-responsive">
+                <table className="invoice-table">
+                  <tbody>
+                    <tr className="v-top">
+                      <td>
+                        <img
+                          src="https://parallaxlogic.dev/shukran-view/img/shukran.png"
+                          alt
+                          className="brand-logo"
+                        />
+                      </td>
+                      <td className="text-right">
+                        <span className="d-block">
+                          Support@shukran24seven.com
+                        </span>
+                        <span className="d-block">info@shukran24seven.com</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={2}>
+                        <h3 className="invoice-title">
+                          order id : #{json?.order.id}
+                        </h3>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={2}>
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td
+                                width="20%"
+                                style={{ paddingBottom: 20, paddingLeft: 0 }}
+                              >
+                                <h4 className="invoice-title-alt">Bill To</h4>
+                                <span className="d-block">
+                                  {json?.customer_address?.name}
+                                </span>
+                                <span className="d-block">
+                                  {json?.customer_address?.phone}
+                                </span>
+                                <span className="d-block">
+                                  {json?.customer_address?.address}
+                                </span>
+                                <span className="d-block"></span>
+                              </td>
+                              <td width="20%" style={{ paddingBottom: 20 }}>
+                                <h4 className="invoice-title-alt">Ship To</h4>
+                                <span className="d-block">
+                                  {json?.order?.address?.name}
+                                </span>
+                                <span className="d-block">
+                                  {json?.order?.address?.phone_number}
+                                </span>
+                                <span className="d-block">
+                                  {json?.order?.address?.address}
+                                </span>
+                                <span className="d-block"></span>
+                              </td>
+                              <td width="20%" style={{ paddingBottom: 20 }}>
+                                <h4 className="invoice-title-alt">
+                                  Payment Method
+                                </h4>
+                                <span className="d-block" />
+                                <span className="d-block">
+                                  {" "}
+                                  {json?.order?.payment?.name}
+                                </span>
+                              </td>
+                              <td width="20%" style={{ paddingBottom: 20 }}>
+                                <h4 className="invoice-title-alt">
+                                  Shipping Method
+                                </h4>
+                                <span className="d-block"> -- </span>
 
-                                                        <span className="d-block" />
-                                                    </td>
-                                                    <td width="20%" style={{paddingBottom: 20}}>
-                          <span className="d-block order-date-tag">
-                            <strong>Order Date: </strong>{moment(json?.order?.created_at).format('ll')}
-                          </span>
-                                                        <span className="d-block pr-0">
-                            <svg width="310px" height="92px" x="0px" y="0px" viewBox="0 0 310 92" xmlns="http://www.w3.org/2000/svg" version="1.1" style={{transform: 'translate(0,0)'}}>
-                              <rect x={0} y={0} width={310} height={92} style={{fill: '#ffffff'}} /><g transform="translate(10, 10)" style={{fill: '#000000'}}><rect x={0} y={0} width={4} height={50} /><rect x={6} y={0} width={2} height={50} /><rect x={12} y={0} width={2} height={50} /><rect x={22} y={0} width={2} height={50} /><rect x={30} y={0} width={2} height={50} /><rect x={34} y={0} width={4} height={50} /><rect x={44} y={0} width={2} height={50} /><rect x={48} y={0} width={4} height={50} /><rect x={58} y={0} width={2} height={50} /><rect x={66} y={0} width={2} height={50} /><rect x={72} y={0} width={4} height={50} /><rect x={78} y={0} width={6} height={50} /><rect x={88} y={0} width={4} height={50} /><rect x={96} y={0} width={2} height={50} /><rect x={100} y={0} width={6} height={50} /><rect x={110} y={0} width={2} height={50} /><rect x={114} y={0} width={6} height={50} /><rect x={122} y={0} width={8} height={50} /><rect x={132} y={0} width={2} height={50} /><rect x={136} y={0} width={6} height={50} /><rect x={144} y={0} width={4} height={50} /><rect x={154} y={0} width={6} height={50} /><rect x={166} y={0} width={4} height={50} /><rect x={172} y={0} width={2} height={50} /><rect x={176} y={0} width={4} height={50} /><rect x={184} y={0} width={4} height={50} /><rect x={190} y={0} width={4} height={50} /><rect x={198} y={0} width={4} height={50} /><rect x={204} y={0} width={8} height={50} /><rect x={214} y={0} width={4} height={50} /><rect x={220} y={0} width={6} height={50} /><rect x={228} y={0} width={6} height={50} /><rect x={236} y={0} width={4} height={50} /><rect x={242} y={0} width={4} height={50} /><rect x={250} y={0} width={2} height={50} /><rect x={256} y={0} width={6} height={50} /><rect x={264} y={0} width={4} height={50} /><rect x={274} y={0} width={6} height={50} /><rect x={282} y={0} width={2} height={50} /><rect x={286} y={0} width={4} height={50} /><text style={{font: '20px monospace'}} textAnchor="middle" x={145} y={72}>
-                                {json?.order.id}
-                              </text></g>
-                            </svg>
-                          </span>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colSpan={2}>
-                                            <table className="table table-bordered">
-                                                <thead>
-                                                <tr>
-                                                    <th>Item</th>
-                                                    <th className="text-center">Quantity</th>
-                                                    <th className="text-right">Amount (৳)</th>
-                                                    <th style={{width: '1%'}} />
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                            {/*    <tr>
+                                <span className="d-block" />
+                              </td>
+                              <td width="20%" style={{ paddingBottom: 20 }}>
+                                <span className="d-block order-date-tag">
+                                  <strong>Order Date: </strong>
+                                  {moment(json?.order?.created_at).format("ll")}
+                                </span>
+                                <span className="d-block pr-0">
+                                  <svg
+                                    width="310px"
+                                    height="92px"
+                                    x="0px"
+                                    y="0px"
+                                    viewBox="0 0 310 92"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    version="1.1"
+                                    style={{ transform: "translate(0,0)" }}
+                                  >
+                                    <rect
+                                      x={0}
+                                      y={0}
+                                      width={310}
+                                      height={92}
+                                      style={{ fill: "#ffffff" }}
+                                    />
+                                    <g
+                                      transform="translate(10, 10)"
+                                      style={{ fill: "#000000" }}
+                                    >
+                                      <rect x={0} y={0} width={4} height={50} />
+                                      <rect x={6} y={0} width={2} height={50} />
+                                      <rect
+                                        x={12}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={22}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={30}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={34}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={44}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={48}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={58}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={66}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={72}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={78}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={88}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={96}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={100}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={110}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={114}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={122}
+                                        y={0}
+                                        width={8}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={132}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={136}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={144}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={154}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={166}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={172}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={176}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={184}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={190}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={198}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={204}
+                                        y={0}
+                                        width={8}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={214}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={220}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={228}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={236}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={242}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={250}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={256}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={264}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={274}
+                                        y={0}
+                                        width={6}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={282}
+                                        y={0}
+                                        width={2}
+                                        height={50}
+                                      />
+                                      <rect
+                                        x={286}
+                                        y={0}
+                                        width={4}
+                                        height={50}
+                                      />
+                                      <text
+                                        style={{ font: "20px monospace" }}
+                                        textAnchor="middle"
+                                        x={145}
+                                        y={72}
+                                      >
+                                        {json?.order.id}
+                                      </text>
+                                    </g>
+                                  </svg>
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={2}>
+                        <table className="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Item</th>
+                              <th className="text-center">Quantity</th>
+                              <th className="text-right">Amount (৳)</th>
+                              <th style={{ width: "1%" }} />
+                              <th style={{ width: "3%" }} />
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {/*    <tr>
                                                     <td colSpan={4}>
                                                         <span
                                                             className="store-name">
@@ -157,35 +602,65 @@ const Invoice = () => {
                                                         </span>
                                                         <span className="badge badge-info ml-4">Pending</span></td>
                                                 </tr>*/}
-                                            {json?.store_product && json?.store_product.map( (data1,index) => (
-                                                <>
-                                                    <tr>
-                                                        <td>
-                                                        <span className="d-block">
-                                                        <strong>
-                                                            <Link to={`/product/${data1.product.id}`}> {data1.product.name} </Link>
-
-                                                    </strong></span><span className="d-block text-muted" /></td>
-                                                        <td>{data1.quantity}</td>
-                                                        <td className="text-right">{data1.total_amount}</td>
-                                                        <td>
-                                                            <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Dispute
-                                                            </button>
-                                                            <button disabled type="button" className="btn btn-link text-muted btn-sm dispute-review">Review
-                                                            </button>
-                                                        </td>
-
-                                                    </tr>
-                                               {/* {json.store_product.map((data1,index1) => (<>
+                            {json?.store_product &&
+                              json?.store_product.map((data1, index) => (
+                                <>
+                                  <tr>
+                                    <td>
+                                      <span className="d-block">
+                                        <strong>
+                                          <Link
+                                            to={`/product/${data1.product.id}`}
+                                          >
+                                            {" "}
+                                            {data1.product.name}{" "}
+                                          </Link>
+                                        </strong>
+                                      </span>
+                                      <span className="d-block text-muted" />
+                                    </td>
+                                    <td>{data1.quantity}</td>
+                                    <td className="text-right">
+                                      {data1.total_amount}
+                                    </td>
+                                    <td>
+                                      <button
+                                        disabled
+                                        type="button"
+                                        className="btn btn-link text-muted btn-sm dispute-review"
+                                      >
+                                        Dispute
+                                      </button>
+                                      <button
+                                        disabled
+                                        type="button"
+                                        className="btn btn-link text-muted btn-sm dispute-review"
+                                      >
+                                        Review
+                                      </button>
+                                      
+                                    </td>
+                                    <td>
+                                    <button
+                                        className="btn btn-link text-muted btn-sm dispute-review"
+                                        onClick={() =>
+                                          setVisible(true)
+                                        }
+                                      >
+                                        Add Review
+                                      </button>
+                                    </td>
+                                   
+                                  </tr>
+                                  {/* {json.store_product.map((data1,index1) => (<>
 
 
 
                                                 </>))}*/}
-                                                </>
-                                            ) )}
-                                                <tr>
-
-{/*
+                                </>
+                              ))}
+                            <tr>
+                              {/*
                                                          {data.store_product.map((data1,index1) => (
                                                             <>
                                                                 <td>
@@ -206,70 +681,122 @@ const Invoice = () => {
                                                             </>
                                                             ))}
                                                            */}
+                            </tr>
+                            <tr>
+                              <td
+                                colSpan={5}
+                                style={{
+                                  padding: 0,
+                                  backgroundColor: "transparent",
+                                }}
+                              >
+                                <div
+                                  className="delivery-progress-timeline grid-6"
+                                  style={{ margin: 0 }}
+                                >
+                                  <span className="progress-line" />
+                                  <div className="timeline-inner">
+                                    {timeLineArray.map((data, index) => (
+                                      <>
+                                        <div
+                                          className={
+                                            "progress-block " +
+                                            (timeLineStatus >= index
+                                              ? "completed"
+                                              : "")
+                                          }
+                                        >
+                                          <div className="date">
+                                            {index === 0 ? (
+                                              moment(
+                                                timeLineArray?.created_at
+                                              ).format("ll")
+                                            ) : (
+                                              <>
+                                                {index !== 0 &&
+                                                data?.updated_at !== null ? (
+                                                  moment(
+                                                    timeLineArray?.updated_at
+                                                  ).format("ll")
+                                                ) : (
+                                                  <>-</>
+                                                )}
+                                              </>
+                                            )}
+                                          </div>
+                                          <div className="circle" />
+                                          <div className="text">
+                                            <h4>{data?.name}</h4>
+                                            <p />
+                                          </div>
+                                        </div>
+                                      </>
+                                    ))}
+                                  </div>
+                                </div>
+                                <span className="btn-toggle-collapse">
+                                  Less
+                                  <svg
+                                    stroke="currentColor"
+                                    fill="currentColor"
+                                    strokeWidth={0}
+                                    version="1.2"
+                                    baseProfile="tiny"
+                                    viewBox="0 0 24 24"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path d="M18.2 13.3l-6.2-6.3-6.2 6.3c-.2.2-.3.5-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7z" />
+                                  </svg>
+                                </span>
+                              </td>
+                            </tr>
+                            <tr className="text-bold">
+                              <td colSpan={4} className="text-right">
+                                Subtotal
+                              </td>
+                              <td className="text-right">
+                                {json?.order?.sub_total_amount}
+                              </td>
+                            </tr>
+                            <tr className="text-bold">
+                              <td colSpan={4} className="text-right">
+                                Discount
+                              </td>
+                              <td className="text-right">
+                                {json?.order?.discount_amount}
+                              </td>
+                            </tr>
 
-
-                                                </tr>
-                                                <tr>
-                                                    <td colSpan={4} style={{padding: 0, backgroundColor: 'transparent'}}>
-                                                        <div className="delivery-progress-timeline grid-6" style={{margin: 0}}>
-                                                            <span className="progress-line" />
-                                                            <div className="timeline-inner">
-                                                                {timeLineArray.map((data,index) =>(
-                                                                    <>
-                                                                        <div className={"progress-block "+(timeLineStatus >= index ? "completed": "")}>
-                                                                            <div className="date">
-                                                                                {index===0 ? moment(timeLineArray?.created_at).format('ll') :
-                                                                                <>
-                                                                                    {(index !==0 && data?.updated_at !== null) ? moment(timeLineArray?.updated_at).format('ll')
-                                                                                    : <>-</>
-                                                                                    }
-                                                                                </>
-                                                                                }
-
-                                                                            </div>
-                                                                            <div className="circle" />
-                                                                            <div className="text"><h4>{data?.name}</h4>
-                                                                                <p /></div>
-                                                                        </div>
-                                                                    </>
-                                                                ) )}
-
-                                                            </div>
-                                                        </div>
-                                                        <span className="btn-toggle-collapse">Less
-                                                        <svg stroke="currentColor" fill="currentColor" strokeWidth={0} version="1.2" baseProfile="tiny" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18.2 13.3l-6.2-6.3-6.2 6.3c-.2.2-.3.5-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7z" />
-                                                        </svg></span>
-                                                    </td>
-                                                </tr>
-                                                <tr className="text-bold">
-                                                    <td colSpan={3} className="text-right">Subtotal</td>
-                                                    <td className="text-right">{json?.order?.sub_total_amount}</td>
-                                                </tr>
-                                                <tr className="text-bold">
-                                                    <td colSpan={3} className="text-right">Discount</td>
-                                                    <td className="text-right">{json?.order?.discount_amount}</td>
-                                                </tr>
-
-                                                <tr className="text-bold">
-                                                    <td colSpan={3} className="text-right">Grand Total</td>
-                                                    <td className="text-right">{json?.order?.total_amount}</td>
-                                                </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <tr className="text-bold">
+                              <td colSpan={4} className="text-right">
+                                Grand Total
+                              </td>
+                              <td className="text-right">
+                                {json?.order?.total_amount}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-
-
-        </ContainerMarketPlace3>
-    );
+          </div>
+        </div>
+      </div>
+    </ContainerMarketPlace3>
+  );
 };
 
-export default Invoice;
+const mapDispatchToProps = (dispatch) => {
+    return {
+      handleShowAuthModal: () => dispatch(handleShowAuthModal()),
+    };
+  };
+  
+  export default connect(null, mapDispatchToProps)(Invoice);
+  

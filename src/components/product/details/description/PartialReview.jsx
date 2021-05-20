@@ -101,7 +101,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
 
   return (
     <div className="row">
-      <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 ">
+      <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 m-auto">
         <div className="ps-block--average-rating">
           <div className="ps-block__header">
             <h3>{reviewInfo?.avg_rating || "N/A"}</h3>
@@ -123,7 +123,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
           ))}
         </div>
       </div>
-      <div className="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
+      {/* <div className="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
         <form
           onSubmit={submitReview}
           className="ps-form--review needs-validation"
@@ -158,7 +158,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
               required
               onChange={inputOnChange}
             ></textarea>
-          </div>
+          </div> */}
           {/* <div className="row">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
               <div className="form-group">
@@ -179,14 +179,15 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
               </div>
             </div>
           </div> */}
-          <div className="form-group submit">
+          {/* <div className="form-group submit">
             <button type="submit" className="ps-btn">
               Submit Review
             </button>
           </div>
         </form>
-      </div>
-      <div className="review-container">
+      </div> */}
+      {
+        reviewInfo?.all_review?.length > 0 && <div className="review-container">
         <h4>Customers Review</h4>
         <div className="customer-review">
           {reviewInfo?.all_review?.map((review) => (
@@ -203,6 +204,8 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
           ))}
         </div>
       </div>
+      }
+      
     </div>
   );
 };

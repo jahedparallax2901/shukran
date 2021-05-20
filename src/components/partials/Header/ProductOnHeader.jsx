@@ -118,9 +118,7 @@ const ProductOnHeader = ({
           });
           await getCartItems(() => {
             setIsProcessing(false);
-            if (!localStorage.getItem("cart_id")) {
               localStorage.setItem("cart_id", data.cart.id);
-            }
           });
           // this.props.handleShowShoppingCart();
         } else {
