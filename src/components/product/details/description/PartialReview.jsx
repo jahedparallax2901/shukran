@@ -83,7 +83,8 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
 
   useEffect(() => {
     processGetRequest(`/customer-review/${product?.id}`).then(res=>{
-        setReviewInfo(res.data);
+      console.log("response", res)
+        setReviewInfo(res);
     }).catch(err=>{
         console.log(err);
     })
@@ -99,9 +100,11 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
     //   });
   }, []);
 
+  console.log("review info", reviewInfo);
+
   return (
     <div className="row">
-      <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 m-auto">
+      <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 mb-5">
         <div className="ps-block--average-rating">
           <div className="ps-block__header">
             <h3>{reviewInfo?.avg_rating || "N/A"}</h3>

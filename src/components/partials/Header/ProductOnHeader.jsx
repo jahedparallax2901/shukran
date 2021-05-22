@@ -104,6 +104,7 @@ const ProductOnHeader = ({
       async (data, isSuccess) => {
         if (isSuccess) {
           callback(data);
+          localStorage.setItem("cart_id", data.cart.id);
           await handleSelectProduct(
             data.cart.id,
             id,
@@ -118,7 +119,6 @@ const ProductOnHeader = ({
           });
           await getCartItems(() => {
             setIsProcessing(false);
-              localStorage.setItem("cart_id", data.cart.id);
           });
           // this.props.handleShowShoppingCart();
         } else {

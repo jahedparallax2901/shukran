@@ -35,12 +35,16 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import moment from "moment";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
 import { Link, useLocation } from "react-router-dom";
-import { processGetRequest, processPostRequest } from "../services/baseServices";
+import {
+  processGetRequest,
+  processPostRequest,
+  processPostRequestSecondary,
+} from "../services/baseServices";
 import { Rate } from "antd";
 import { connect } from "react-redux";
 import { handleShowAuthModal } from "../redux";
 
-const Invoice = ({handleShowAuthModal}) => {
+const Invoice = ({ handleShowAuthModal }) => {
   const { id } = useParams();
   const location = useLocation();
   const [json, setJson] = useState();
@@ -65,8 +69,6 @@ const Invoice = ({handleShowAuthModal}) => {
         }
       });
     });
-
-    setFormData({...formData, product_id: id});
   }, []);
 
   const inputOnChange = (e) => {
@@ -90,13 +92,15 @@ const Invoice = ({handleShowAuthModal}) => {
         .then((res) => {
           form.reset();
           toast.success(res.data.message);
+          setVisible(false);
         })
-        .then((err) => {
-          if (err.response.status === 401) {
+        .catch((err) => {
+          console.log("err 401", err);
+          if (err.status === 401) {
             setValidationMessage("Please log in before giving review");
             handleShowAuthModal();
           } else {
-            setValidationMessage(err.response.data.message);
+            setValidationMessage(err.data.message);
             toast.error(err.message);
           }
         });
@@ -148,42 +152,43 @@ const Invoice = ({handleShowAuthModal}) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="mx-2">
-        <form
-          onSubmit={submitReview}
-          className="ps-form--review needs-validation"
-          action="/"
-          method="get"
-          novalidate
-        >
-          {validationMessage && (
-            <Alert variant="warning">{validationMessage}</Alert>
-          )}
+          <form
+            onSubmit={submitReview}
+            className="ps-form--review needs-validation"
+            action="/"
+            method="get"
+            novalidate
+          >
+            {validationMessage && (
+              <Alert variant="warning">{validationMessage}</Alert>
+            )}
 
-          <h4>Submit Your Review</h4>
-          <p>
-            Your email address will not be published. Required fields are marked
-            <sup>*</sup>
-          </p>
-          <label>Your rating for this product</label>
-          <div className="form-group form-group__rating">
-            <Rate
-              tooltips={desc}
-              onChange={handleRateOnChange}
-              value={formData?.rating || 0}
-              character={<BsFillStarFill />}
-            />
-          </div>
-          <div className="form-group">
-            <textarea
-              name="review"
-              className="form-control"
-              rows="6"
-              placeholder="Write your review here"
-              required
-              onChange={inputOnChange}
-            ></textarea>
-          </div>
-          {/* <div className="row">
+            <h4>Submit Your Review</h4>
+            <p>
+              Your email address will not be published. Required fields are
+              marked
+              <sup>*</sup>
+            </p>
+            <label>Your rating for this product</label>
+            <div className="form-group form-group__rating">
+              <Rate
+                tooltips={desc}
+                onChange={handleRateOnChange}
+                value={formData?.rating || 0}
+                character={<BsFillStarFill />}
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                name="review"
+                className="form-control"
+                rows="6"
+                placeholder="Write your review here"
+                required
+                onChange={inputOnChange}
+              ></textarea>
+            </div>
+            {/* <div className="row">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
               <div className="form-group">
                 <input
@@ -203,12 +208,12 @@ const Invoice = ({handleShowAuthModal}) => {
               </div>
             </div>
           </div> */}
-          <div className="form-group submit">
-            <button type="submit" className="ps-btn">
-              Submit Review
-            </button>
-          </div>
-        </form>
+            <div className="form-group submit">
+              <button type="submit" className="ps-btn">
+                Submit Review
+              </button>
+            </div>
+          </form>
         </Modal.Body>
       </Modal>
 
@@ -638,19 +643,21 @@ const Invoice = ({handleShowAuthModal}) => {
                                       >
                                         Review
                                       </button>
-                                      
                                     </td>
                                     <td>
-                                    <button
+                                      <button
                                         className="btn btn-link text-muted btn-sm dispute-review"
-                                        onClick={() =>
-                                          setVisible(true)
-                                        }
+                                        onClick={() => {
+                                          setVisible(true);
+                                          setFormData({
+                                            ...formData,
+                                            product_id: data1.product.id,
+                                          });
+                                        }}
                                       >
                                         Add Review
                                       </button>
                                     </td>
-                                   
                                   </tr>
                                   {/* {json.store_product.map((data1,index1) => (<>
 
@@ -793,10 +800,9 @@ const Invoice = ({handleShowAuthModal}) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-      handleShowAuthModal: () => dispatch(handleShowAuthModal()),
-    };
+  return {
+    handleShowAuthModal: () => dispatch(handleShowAuthModal()),
   };
-  
-  export default connect(null, mapDispatchToProps)(Invoice);
-  
+};
+
+export default connect(null, mapDispatchToProps)(Invoice);

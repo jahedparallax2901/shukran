@@ -70,11 +70,11 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
         console.log("res",res)
         resolve(res);
       }).catch((err) => {
-        reject(err.response.data);
+        console.log("error 3",err)
+        reject(err.response);
       });
   });
 };
-
 
 export const processDeleteRequest = (url, data = {}, isAuthenticationRequired = false) => {
   const authData = getLocalAuthData();

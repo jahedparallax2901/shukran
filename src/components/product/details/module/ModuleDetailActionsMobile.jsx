@@ -78,6 +78,7 @@ const ModuleDetailActionsMobile = ({
       async (data, isSuccess) => {
         if (isSuccess) {
           callback(data);
+          localStorage.setItem("cart_id", data.cart.id);
           await handleSelectProduct(
             data.cart.id,
             id,
@@ -92,9 +93,7 @@ const ModuleDetailActionsMobile = ({
           });
           await getCartItems(() => {
             setIsProcessing(false);
-            if (!localStorage.getItem("cart_id")) {
-              localStorage.setItem("cart_id", data.cart.id);
-            }
+            
           });
           // this.props.handleShowShoppingCart();
         } else {
