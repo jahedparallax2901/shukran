@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import bagPack from "../../../assets/img/downloads/bagpack.jpeg";
 import shoppingCartAside from "../../../assets/img/emptyShoppingcart.svg";
+import downloadsFridge1 from "../../../assets/img/downloads/fridge1.jpg";
 import {
   getCartItems,
   handleAddToCart,
@@ -8,13 +9,16 @@ import {
   handleClearCart,
   handleShowAuthModal,
 } from "../../../redux";
+import {Form} from 'react-bootstrap';
 import { connect } from "react-redux";
 import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus, AiOutlineShopping} from "react-icons/ai";
+import { BsTrash} from "react-icons/bs";
+import { FiArrowDownCircle} from "react-icons/fi";
 import { GoRocket} from "react-icons/go";
-import { userData } from "../../../helpers/authUtils";
+import { userData } from "../../../helpers/authUtils";  
 import { toast } from "react-toastify";
 import { processPostRequest } from "../../../services/baseServices";
-import { BsTrash } from "react-icons/bs";
+import { VscChevronUp, VscChevronDown} from "react-icons/vsc";
 import { Spinner } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
@@ -336,24 +340,76 @@ class MiniShoppinCart extends Component {
         className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}
       >
         <div className="aside-cart-header">
-          <h1><AiOutlineShopping/> <span>11</span> ITEMS</h1>
+          <h1><AiOutlineShopping/> <span>2</span> ITEMS</h1>
           <div className="close-btn" onClick={handleHideShoppingCart}>
             <span>Close</span>
           </div>
         </div>
-        <div className="aside-cart-discount">
-          <p className="left progress-bg">Shop ৳137 more and save ৳10 fee</p>
+        {/* <div className="aside-cart-discount">
+          <p className="left progress-bg">Shop ৳137 more and save ৳100 fee</p>
           <p className="right">৳37</p>
         </div>
         <div className="aside-cart-express">
           <p><GoRocket/> Express Delivery</p>
-        </div>
-        {this.state.isCartProcessing ? (
+        </div> */}
+        {/* {this.state.isCartProcessing ? (
           <div className="loading-wrapper">
             <Spinner animation="grow" />
           </div>
-        ) : (
+        ) : ( */}
           <>
+            {/* <div className="card-item-area">
+              <div className="single-cart">
+                <div className="item-quantity">
+                <span><VscChevronUp/></span>
+                  <span> 0 </span>
+                <span><VscChevronDown/></span>
+                </div>
+                <div className="item-img">
+                  <img src={downloadsFridge1} alt="fail" />
+                </div>
+                <div className="item-name">
+                  <p>Rok Dishwashing Mega Steel Scourer (Buy 2 Get 1 Free) </p>
+                  <div className="price-by-quantity">
+                    <span>৳ 70</span>
+                    <span>/</span>
+                    <span>1 Kg</span>
+                  </div>
+                </div> 
+                <div className="item-total-price">
+                  <span>৳ 70</span>
+                </div>
+                <div className="item-delete">
+                  <span>X</span>
+                </div>
+              </div>
+
+              <div className="single-cart">
+                <div className="item-quantity">
+                <span><VscChevronUp/></span>
+                  <span> 0 </span>
+                <span><VscChevronDown/></span>
+                </div>
+                <div className="item-img">
+                  <img src={downloadsFridge1} alt="fail" />
+                </div>
+                <div className="item-name">
+                  <p>Rok Dishwashing Mega Steel Scourer (Buy 2 Get 1 Free) </p>
+                  <div className="price-by-quantity">
+                    <span>৳ 70</span>
+                    <span>/</span>
+                    <span>1 Kg</span>
+                  </div>
+                </div> 
+                <div className="item-total-price">
+                  <span>৳ 70</span>
+                </div>
+                <div className="item-delete">
+                  <span>X</span>
+                </div>
+              </div>
+            </div> */}
+          
             {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
               <>
                 <div className="select-all-div">
@@ -376,8 +432,9 @@ class MiniShoppinCart extends Component {
                       {cart_items.store_product.length > 0 && (
                         <div className="store-div">
                           <div className="store">
-                            <div className="store-name">
+                            <div className="store-name d-flex justify-content-between">
                               <div className="ps-checkbox">
+                              {/* ===== comment mark ===== */}
                                 {/* <input
                               className="form-control"
                               type="checkbox"
@@ -387,10 +444,24 @@ class MiniShoppinCart extends Component {
                                 {/* <label for="store-1">
                               {cart_items?.store?.name || ""}
                             </label> */}
+                            {/* ===== comment mark ===== */}
 
                                 <h3 className="mt-2">
                                   {cart_items?.store?.name || ""}
                                 </h3>
+                              </div>
+                              <div className="select-all-div pr-0">
+                                <div className="ps-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    id="select-all"
+                                    defaultChecked={this.isAllSelected()}
+                                    onChange={(e) =>
+                                      this.handleSelectProduct(e, shoppingCart.cartSummery.id)
+                                    }
+                                  />
+                                  <label for="select-all">Select All</label>
+                                </div>
                               </div>
                             </div>
 
@@ -399,7 +470,7 @@ class MiniShoppinCart extends Component {
                             {cart_items?.store_product &&
                               cart_items.store_product.map((store_item) => (
                                 <div className="product">
-                                  <div className="product-name d-flex justify-content-between">
+                                  <div className="product-name">
                                     <div className="ps-checkbox">
                                       {console.log(
                                         "Checking",
@@ -422,18 +493,37 @@ class MiniShoppinCart extends Component {
                                           )
                                         }
                                       />
-                                      <label
-                                        for={`brand-${store_item?.product_attribute?.id}`}
-                                      >
-                                        <Tooltip
-                                          placement="topLeft"
-                                          title={store_item.product.name}
-                                        >
-                                          {store_item.product.name}
-                                        </Tooltip>
+                                      <label>
+                                        <div className="card-item-area">
+                                          <div className="single-cart">
+                                            <div className="item-quantity">
+                                            <span><VscChevronUp/></span>
+                                              <span> 0 </span>
+                                            <span><VscChevronDown/></span>
+                                            </div>
+                                            <div className="item-img">
+                                              <img src={downloadsFridge1} alt="fail" />
+                                            </div>
+                                            <div className="item-name">
+                                              <p>Rok Dishwashing Mega Steel Scourer (Buy 2 Get 1 Free) </p>
+                                              <div className="price-by-quantity">
+                                                <span>৳ 70</span>
+                                                <span>/</span>
+                                                <span>1 Kg</span>
+                                              </div>
+                                            </div> 
+                                            <div className="item-total-price">
+                                              <span>৳ 70</span>
+                                            </div>
+                                            <div className="item-delete">
+                                              <span>X</span>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </label>
                                     </div>
-                                    <i>
+                                    
+                                    {/* <i>
                                     <AiOutlineClose
                                       onClick={(e) =>
                                         this.handleItemDelete(
@@ -443,10 +533,10 @@ class MiniShoppinCart extends Component {
                                         )
                                       }
                                     />
-                                    </i>
+                                    </i> */}
                                     
                                   </div>
-                                  <div className="product-details">
+                                  {/* <div className="product-details">
                                     <div className="product-details-div-img product-details-div">
                                       <img
                                         src={
@@ -484,24 +574,27 @@ class MiniShoppinCart extends Component {
                                         </p>
                                       </div>
                                     )}
-                                  </div>
+                                  </div> */}
 
                                   {/* Product calculation portion */}
 
-                                  <div className="product-price-div">
+                                  {/* <div className="product-price-div">
                                     <div className="product-price">
                                       <div className="product-price-title">
                                         <h6>price</h6>
                                       </div>
                                       <p>৳{store_item?.total_amount}</p>
                                     </div>
-                                    <div className="delivery-charge">
+                                    <div className="delivery-charge"> */}
+
+                              {/* ===== comment mark ===== */}
                                       {/* <div className="delivery-charge-title">
                                     <h6>delivery charge</h6>
                                   </div>
                                   <p>৳{store_item?.delivery_charge || 0}</p> */}
-                                    </div>
-                                  </div>
+                              {/* ===== comment mark ===== */}
+                                    {/* </div>
+                                  </div> */}
                                 </div>
                               ))}
 
@@ -539,7 +632,7 @@ class MiniShoppinCart extends Component {
                                       <>
                                         <input
                                           type="text"
-                                          placeholder="apply for coupon"
+                                          placeholder="apply coupon"
                                           name={`couponOfStore-${cart_items.store.id}`}
                                           defaultValue={
                                             this.state[
@@ -559,7 +652,7 @@ class MiniShoppinCart extends Component {
                                             )
                                           }
                                         >
-                                          ✓
+                                          Apply
                                         </button>
                                       </>
                                     )}
@@ -570,7 +663,7 @@ class MiniShoppinCart extends Component {
                               {/* Store checkout calculation */}
 
                               <div className="store-checkout-div-right">
-                                <div className="delivery-charge">
+                                {/* <div className="delivery-charge">
                                   <h6 className="delivery-charge-title">
                                     delivery-charge :
                                   </h6>
@@ -587,7 +680,8 @@ class MiniShoppinCart extends Component {
                                 <div className="total">
                                   <h6 className="total-title">total :</h6>
                                   <p>৳{cart_items.total_amount || 0}</p>
-                                </div>
+                                </div> */}
+                               
                                 <a
                                   className="store-checkout"
                                   onClick={(e) =>
@@ -598,7 +692,7 @@ class MiniShoppinCart extends Component {
                                     )
                                   }
                                 >
-                                  checkout
+                                  Store Checkout
                                 </a>
                               </div>
                             </div>
@@ -607,11 +701,12 @@ class MiniShoppinCart extends Component {
                       )}
                     </>
                   ))}
+                 
                 </div>
-
+                
                 {/* Global coupon portion */}
 
-                <div className="all-checkout" id="all-checkout">
+                {/* <div className="all-checkout" id="all-checkout">
                   <div class="store-coupon">
                     {shoppingCart.cartItems.find(
                       (item) => item.coupon !== null
@@ -663,11 +758,11 @@ class MiniShoppinCart extends Component {
                         )}
                       </>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Global chekout portion */}
 
-                  <div className="subtotal">
+                  {/* <div className="subtotal">
                     <h6 className="subtotal-title">delivery-charge:</h6>
                     <p>৳{shoppingCart?.cartSummery?.delivery_charge || 0}</p>
                   </div>
@@ -690,17 +785,38 @@ class MiniShoppinCart extends Component {
                     }
                   >
                     checkout
-                  </a>
-                </div>
+                  </a> */}
+                {/* </div> */}
               </>
             ) : (
               <div className="loading-wrapper">
                 <img src={shoppingCartAside} alt="Shopping Cart" />
-                <h3>Your shopping cart is empty.</h3>
+                <h3>Your shopping bag is empty. Start shopping</h3>
               </div>
             )}
           </>
-        )}
+        {/* )} */}
+        <div className="place-order-area">
+          <div className="place-order-area-top">
+            <div className="spacial-code">
+              <p><FiArrowDownCircle /> Have a special coupon</p>
+            </div>
+            <div className="special-code-search">
+              <Form className="mr-3 w-100">
+                <Form.Group className="special-form-group" controlId="formBasicSearch">
+                  <Form.Control type="search" placeholder="Special coupon" />
+                </Form.Group>
+              </Form>
+              <button className="coupon-code-go">Apply</button>
+            </div>
+          </div> 
+          <div className="place-order-area-bottom">
+            <button className="place-order-button">
+              <span className="place-order-button-inner">Place Order</span>
+              <span className="place-order-amount">৳ 70</span>
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

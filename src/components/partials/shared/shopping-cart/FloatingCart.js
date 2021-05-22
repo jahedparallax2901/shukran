@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleShowShoppingCart } from "../../../../redux";
+import {AiOutlineShopping} from 'react-icons/ai';
 
 class FloatingCart extends Component {
   countTotalItems = () => {
@@ -28,7 +29,7 @@ class FloatingCart extends Component {
           className="asside-card-drower asside-card-drower-button"
         >
           <div className="asside-top">
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+          <AiOutlineShopping />
             <p>
               <span>
                 {shoppingCart?.cartSummery?.total_prdoucts ||
