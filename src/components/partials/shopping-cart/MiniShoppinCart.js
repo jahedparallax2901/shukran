@@ -328,7 +328,18 @@ class MiniShoppinCart extends Component {
 
     return selected;
   }
-
+  // constructor(props){
+  //   super(props);
+  //   this.state={
+  //     count: 0
+  //   }
+  // }
+  // increment = () => {
+  //   this.setState({count: this.state.count + 1})
+  // }
+  // decrement = () => {
+  //   this.setState({count: this.state.count - 1})
+  // }
   render() {
     const {
       isShowingShoppingCart,
@@ -454,13 +465,13 @@ class MiniShoppinCart extends Component {
                                 <div className="ps-checkbox">
                                   <input
                                     type="checkbox"
-                                    id="select-all"
+                                    id="select-allInner"
                                     defaultChecked={this.isAllSelected()}
                                     onChange={(e) =>
                                       this.handleSelectProduct(e, shoppingCart.cartSummery.id)
                                     }
                                   />
-                                  <label for="select-all">Select All</label>
+                                  <label for="select-allInner">Select All</label>
                                 </div>
                               </div>
                             </div>
@@ -493,12 +504,13 @@ class MiniShoppinCart extends Component {
                                           )
                                         }
                                       />
-                                      <label>
+                                      <label for={`brand-${store_item?.product_attribute?.id}`}>
+                                        
                                         <div className="card-item-area">
                                           <div className="single-cart">
                                             <div className="item-quantity">
                                             <span><VscChevronUp/></span>
-                                              <span> 0 </span>
+                                              <span> 1 </span>
                                             <span><VscChevronDown/></span>
                                             </div>
                                             <div className="item-img">
@@ -516,7 +528,15 @@ class MiniShoppinCart extends Component {
                                               <span>৳ 70</span>
                                             </div>
                                             <div className="item-delete">
-                                              <span>X</span>
+                                              <span onClick={(e) =>
+                                                  this.handleItemDelete(
+                                                    e,
+                                                    store_item.product.id,
+                                                    store_item.product_attribute.id
+                                                    )
+                                                  }>
+                                                  X
+                                                </span>
                                             </div>
                                           </div>
                                         </div>
@@ -787,6 +807,27 @@ class MiniShoppinCart extends Component {
                     checkout
                   </a> */}
                 {/* </div> */}
+                <div className="place-order-area">
+                  <div className="place-order-area-top">
+                    <div className="spacial-code">
+                      <p><FiArrowDownCircle /> Have a special coupon</p>
+                    </div>
+                    <div className="special-code-search">
+                      <Form className="mr-3 w-100">
+                        <Form.Group className="special-form-group" controlId="formBasicSearch">
+                          <Form.Control type="search" placeholder="Special coupon" />
+                        </Form.Group>
+                      </Form>
+                      <button className="coupon-code-go">Apply</button>
+                    </div>
+                  </div> 
+                  <div className="place-order-area-bottom">
+                    <button className="place-order-button">
+                      <span className="place-order-button-inner">Place Order</span>
+                      <span className="place-order-amount">৳ 70</span>
+                    </button>
+                  </div>
+                </div>
               </>
             ) : (
               <div className="loading-wrapper">
@@ -796,27 +837,7 @@ class MiniShoppinCart extends Component {
             )}
           </>
         {/* )} */}
-        <div className="place-order-area">
-          <div className="place-order-area-top">
-            <div className="spacial-code">
-              <p><FiArrowDownCircle /> Have a special coupon</p>
-            </div>
-            <div className="special-code-search">
-              <Form className="mr-3 w-100">
-                <Form.Group className="special-form-group" controlId="formBasicSearch">
-                  <Form.Control type="search" placeholder="Special coupon" />
-                </Form.Group>
-              </Form>
-              <button className="coupon-code-go">Apply</button>
-            </div>
-          </div> 
-          <div className="place-order-area-bottom">
-            <button className="place-order-button">
-              <span className="place-order-button-inner">Place Order</span>
-              <span className="place-order-amount">৳ 70</span>
-            </button>
-          </div>
-        </div>
+        
       </div>
     );
   }
