@@ -1,5 +1,6 @@
-let MODE = 'Local';
-// let MODE = 'Staging';
+// let MODE = 'Local';
+let MODE = 'Staging';
+// let MODE = 'Sandbox';
 // let MODE = 'Live';
 
 let base_api_url = null;
@@ -13,6 +14,10 @@ if (MODE === 'Local') {
 
 } else if (MODE === 'Staging') {
   base_api_url = "https://parallaxlogic.dev/shukran-admin/api/v1";
+  merchant_panel = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
+  site_url = process.env.REACT_APP_MERCHANT_PANEL_LOCAL
+} else if (MODE === 'Sandbox') {
+  base_api_url = "https://parallaxlogic.dev/shukran-sandbox/api/v1";
   merchant_panel = process.env.REACT_APP_MERCHANT_PANEL_LOCAL;
   site_url = process.env.REACT_APP_MERCHANT_PANEL_LOCAL
 } else if (MODE === 'Live') {

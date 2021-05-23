@@ -8,10 +8,23 @@ import campaignCard3 from "../assets/img/downloads/campaign-card3.jpg";
 import campaignCard2 from "../assets/img/downloads/campaign-card2.jpg";
 import "../assets/css/campaign.css";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
+import StatusBlock from "../components/common/StatusBlock";
+import { SiGooglesearchconsole } from "react-icons/si";
+// import StatusBlock from './StatusBlock'
 
 const Campaign = () => {
   return (
     <ContainerMarketPlace3>
+      <StatusBlock
+        icon={<SiGooglesearchconsole />}
+        title={"This feature comming soon!"}
+        content={
+          "This feature is under development. We will notifu you if it is done"
+        }
+        redirectUrl={"/"}
+        urlText={"Go to home"}
+      />
+{/*       
       <div id="campaign">
         <div className="campaign-banner-area">
           <div className="banner-center">
@@ -147,6 +160,7 @@ const Campaign = () => {
           </div>
         </div>
       </div>
+     */}
     </ContainerMarketPlace3>
   );
 };
