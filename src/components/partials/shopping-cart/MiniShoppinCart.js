@@ -510,22 +510,33 @@ class MiniShoppinCart extends Component {
                                           <div className="single-cart">
                                             <div className="item-quantity">
                                             <span><VscChevronUp/></span>
-                                              <span> 1 </span>
+                                              <span>{store_item.quantity}</span>
                                             <span><VscChevronDown/></span>
                                             </div>
                                             <div className="item-img">
-                                              <img src={downloadsFridge1} alt="fail" />
+                                              <img src={
+                                                store_item?.product?.single_image ||
+                                                bagPack
+                                              } alt="fail" 
+                                              />
                                             </div>
                                             <div className="item-name">
-                                              <p>Rok Dishwashing Mega Steel Scourer (Buy 2 Get 1 Free) </p>
+                                              <p>
+                                              <Tooltip
+                                                placement="topLeft"
+                                                title={store_item.product.name}
+                                              >
+                                                {store_item.product.name}
+                                              </Tooltip>
+                                              </p>
                                               <div className="price-by-quantity">
-                                                <span>৳ 70</span>
-                                                <span>/</span>
-                                                <span>1 Kg</span>
+                                                <span>৳{store_item?.total_amount}</span>
+                                                {/* <span>/</span>
+                                                <span>1 pc</span> */}
                                               </div>
                                             </div> 
                                             <div className="item-total-price">
-                                              <span>৳ 70</span>
+                                              <span>৳{store_item?.total_amount}</span>
                                             </div>
                                             <div className="item-delete">
                                               <span onClick={(e) =>
@@ -813,18 +824,62 @@ class MiniShoppinCart extends Component {
                       <p><FiArrowDownCircle /> Have a special coupon</p>
                     </div>
                     <div className="special-code-search">
-                      <Form className="mr-3 w-100">
-                        <Form.Group className="special-form-group" controlId="formBasicSearch">
-                          <Form.Control type="search" placeholder="Special coupon" />
-                        </Form.Group>
-                      </Form>
-                      <button className="coupon-code-go">Apply</button>
+                    {shoppingCart.cartItems.find(
+                      (item) => item.coupon !== null
+                    ) ? (
+                      <div className="coupon-status-not-applicable">
+                        <span className="mr-4">Not Applicable</span>
+                      </div>
+                    ) : (
+                      <>
+                        {!shoppingCart?.cartSummery?.coupon ? (
+                          <>
+                            <Form className="mr-3 w-100">
+                              <Form.Group className="special-form-group" controlId="formBasicSearch">
+                                <Form.Control type="search" placeholder="Special coupon" 
+                                  name="globalCoupon"
+                                  defaultValue={this.state.globalCoupon}
+                                  onChange={this.handleCouponChange}/>
+                              </Form.Group>
+                            </Form>
+                            <button className="coupon-code-go" onClick={(e) =>
+                              this.handleGlobalCouponApply(
+                                e,
+                                  shoppingCart.cartSummery.id
+                                )
+                              }>Apply</button>
+                          </>
+                        ) : (
+                          <div className="d-flex justify-content-between align-items-center coupon-status-success">
+                            <span className="mr-4">
+                              {
+                                shoppingCart?.cartSummery?.coupon?.coupon_code
+                                  ?.code
+                              }{" "}
+                              Coupon Applied
+                            </span>
+                            <BsTrash
+                              title="Remove"
+                              onClick={(e) =>
+                                this.handleRemoveCoupon(
+                                  e,
+                                  shoppingCart.cartSummery.id
+                                )
+                              }
+                            />
+                          </div>
+                        )}
+                      </>
+                    )}
+            
                     </div>
                   </div> 
                   <div className="place-order-area-bottom">
                     <button className="place-order-button">
-                      <span className="place-order-button-inner">Place Order</span>
-                      <span className="place-order-amount">৳ 70</span>
+                      <span className="place-order-button-inner" onClick={(e) =>
+                      this.handleProceedCheckout(e, shoppingCart.cartSummery.id)
+                    }>Place Order</span>
+                      <span className="place-order-amount">৳{shoppingCart?.cartSummery?.total_amount || 0}</span>
                     </button>
                   </div>
                 </div>

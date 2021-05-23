@@ -1807,6 +1807,7 @@ button.ps-btn:active {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-right: 3px;
 }
 .single-cart .item-quantity span{
   font-size: 1rem;
@@ -1821,6 +1822,7 @@ button.ps-btn:active {
 .single-cart .item-img{
   height: 45px;
   width: 45px;
+  padding-right: 3px;
 }
 .single-cart .item-img img{
   width: 100%;
@@ -1830,6 +1832,7 @@ button.ps-btn:active {
 .single-cart .item-name{
   font-size: 1rem;
   max-width: 130px;
+  padding-right: 3px;
 }
 .single-cart .item-name p{
   font-size: 1rem;
@@ -1839,6 +1842,7 @@ button.ps-btn:active {
 }
 .single-cart .item-name .price-by-quantity{
   font-size: 1rem;
+  padding-right: 3px;
 }
 .single-cart .item-name .price-by-quantity span{
   color: #787878;
@@ -1847,6 +1851,7 @@ button.ps-btn:active {
 
 .single-cart .item-total-price{
   font-size: 1rem;
+  padding-right: 3px;
 }
 .single-cart .item-total-price span{
   color: #787878;
