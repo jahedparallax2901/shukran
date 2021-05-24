@@ -1,5 +1,5 @@
-// let MODE = 'Local';
-let MODE = 'Staging';
+let MODE = 'Local';
+// let MODE = 'Staging';
 // let MODE = 'Sandbox';
 // let MODE = 'Live';
 

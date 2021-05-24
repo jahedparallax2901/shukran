@@ -497,6 +497,12 @@ const Checkout = (props) => {
             </span>
             </p>
             <p className="d-flex mb-3">
+              <span className="mr-2">Delivery Charge</span>
+              <span className="ml-auto">
+              ৳ {checkoutData?.checkout?.delivery_charge}
+            </span>
+            </p>
+            <p className="d-flex mb-3">
               <span className="mr-2">Discount amount</span>
               <span className="ml-auto">
               ৳ {checkoutData?.checkout?.discount_amount}

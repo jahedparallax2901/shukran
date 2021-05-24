@@ -31,7 +31,8 @@ const ProductSimple = ({ product, wishlist }) => {
     <div className="ps-product ps-product--simple">
       <div class="ps-product__badge">
         <i>
-          {wishlist?.find((item) => item?.product?.id === product.id) ? (
+          
+          {wishlist?.find((item) => item?.product_id === product?.product_id) ? (
             <FaHeart />
           ) : (
             <FaRegHeart />

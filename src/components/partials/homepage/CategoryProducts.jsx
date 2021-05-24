@@ -26,7 +26,11 @@ const CategoryProducts = ({ cat }) => {
 
 
   return (
-    <div className="ps-block--products-of-category">
+    <div>
+      <div className="category-top-banner">
+        <img src="https://images.othoba.com/images/thumbs/0336481_food-grocery.jpeg" alt="" />
+      </div>
+        <div className="ps-block--products-of-category">
       <div className="ps-block__categories">
         <h3>
           {category?.name || "Not exist"}
@@ -94,6 +98,8 @@ const CategoryProducts = ({ cat }) => {
       </div>
       <div className="ps-block__product-box">{productItemsView}</div>
     </div>
+    </div>
+    
   );
 };
 
