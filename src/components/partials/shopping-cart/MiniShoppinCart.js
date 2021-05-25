@@ -214,7 +214,8 @@ class MiniShoppinCart extends Component {
     cart_id,
     product_id = null,
     attribute_id = null,
-    isSelected
+    isSelected,
+    store_id = null
   ) => {
     console.log("checking_field", attribute_id, isSelected);
     this.setState({ isCartProcessing: true });
@@ -225,7 +226,15 @@ class MiniShoppinCart extends Component {
         `product_id[${product_id}][${attribute_id}]`,
         isSelected == 1 ? 2 : 1
       );
-    } else {
+    } else if(store_id){
+      const store = this.props.shoppingCart.cartItems.find(item=> item.store_id == store_id);
+      store?.store_product?.map(store_item=>{
+        formData.append(
+          `product_id[${store_item.product_id}][${store_item.product_attribute_id}]`,
+          isSelected == 1 ? 2 : 1
+        );
+      })
+    }else {
       this.props.shoppingCart.cartProductlist.map((item) => {
         formData.append(
           `product_id[${item.product_id}][${item.item_id}]`,
@@ -308,10 +317,18 @@ class MiniShoppinCart extends Component {
     }
   };
 
-  isAllSelected() {
+  isAllSelected(store_id = null) {
     let selected = true;
-
-    if (this.props.shoppingCart?.cartSummery?.total_prdoucts > 0) {
+    if(store_id){
+      const cart_item = this.props.shoppingCart?.cartItems?.find(item => item.store_id == store_id);
+      if(cart_item?.store_product?.length > 0){
+        cart_item.store_product.map((prod) => {
+          if (prod.cart_check == 2) {
+            selected = false;
+          }
+        });
+      }
+    }else if (this.props.shoppingCart?.cartSummery?.total_prdoucts > 0) {
       this.props.shoppingCart?.cartItems.map((item) => {
         item.store_product.map((prod) => {
           if (prod.cart_check == 2) {
@@ -336,10 +353,17 @@ class MiniShoppinCart extends Component {
     console.log("Clicked")
     this.setState({ isCartProcessing: true });
     let quantity;
-    type === "increment"
-      ? (quantity = current_quantity + 1)
-      : (quantity = current_quantity - 1);
-
+    if(type === "increment"){
+      quantity = current_quantity + 1
+    }else{
+      if(current_quantity !== 0){
+        quantity = current_quantity - 1
+      }else{
+        quantity = 0;
+        return;
+      }
+    }
+    
     const newList = this.props.shoppingCart.cartProductlist;
     newList.push({
       product_id: product_id,
@@ -347,12 +371,12 @@ class MiniShoppinCart extends Component {
       quantity: quantity,
     });
 
-    handleAddToCart(
+    this.props.handleAddToCart(
       newList,
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
-          await getCartItems(() => {
+          await this.props.getCartItems(() => {
             this.setState({ isCartProcessing: false });
           });
           // this.props.handleShowShoppingCart();
@@ -386,7 +410,7 @@ class MiniShoppinCart extends Component {
       >
         <div className="aside-cart-header">
           <h1>
-            <AiOutlineShopping /> <span>2</span> ITEMS
+            <AiOutlineShopping /> <span>{this.props.shoppingCart?.cartSummery?.total_prdoucts}</span> ITEMS
           </h1>
           <div className="close-btn" onClick={handleHideShoppingCart}>
             <span>Close</span>
@@ -466,7 +490,7 @@ class MiniShoppinCart extends Component {
                     id="select-all"
                     checked={this.isAllSelected()}
                     onChange={(e) =>
-                      this.handleSelectProduct(e, shoppingCart.cartSummery.id)
+                      this.handleSelectProduct(e, shoppingCart.cartSummery.id, null, null, this.isAllSelected())
                     }
                   />
                   <label for="select-all">Select All</label>
@@ -501,16 +525,20 @@ class MiniShoppinCart extends Component {
                               <div className="ps-checkbox">
                                 <input
                                   type="checkbox"
-                                  id="select-allInner"
-                                  defaultChecked={this.isAllSelected()}
+                                  id={`select-all-store-${cart_items?.store_id}`}
+                                  checked={this.isAllSelected(cart_items?.store_id)}
                                   onChange={(e) =>
                                     this.handleSelectProduct(
                                       e,
-                                      shoppingCart.cartSummery.id
+                                      shoppingCart.cartSummery.id,
+                                      null,
+                                      null,
+                                      this.isAllSelected(cart_items?.store_id),
+                                      cart_items?.store_id
                                     )
                                   }
                                 />
-                                <label for="select-allInner">Select All</label>
+                                <label for={`select-all-store-${cart_items?.store_id}`}>Select All</label>
                               </div>
                             </div>
                           </div>
@@ -522,8 +550,20 @@ class MiniShoppinCart extends Component {
                               <div className="product">
                                 <div className="product-name">
                                   <div className="ps-checkbox">
-                                    
-                                    <input
+                                    <Form.Check type="checkbox" id={`brand-${store_item?.product_attribute?.id}`}
+                                      name={`brand-${store_item?.product_attribute?.id}`}
+                                      checked={store_item.cart_check === 1}
+                                      onChange={(e) =>
+                                        this.handleSelectProduct(
+                                          e,
+                                          store_item?.cart_id,
+                                          store_item?.product_attribute
+                                            ?.product_id,
+                                          store_item?.product_attribute?.id,
+                                          store_item.cart_check
+                                        )
+                                      }/>
+                                    {/* <input
                                       className="form-control"
                                       type="checkbox"
                                       id={`brand-${store_item?.product_attribute?.id}`}
@@ -539,7 +579,7 @@ class MiniShoppinCart extends Component {
                                           store_item.cart_check
                                         )
                                       }
-                                    />
+                                    /> */}
                                    {/* <label
                                       for={`brand-${store_item?.product_attribute?.id}`}
                                     >
@@ -609,9 +649,13 @@ class MiniShoppinCart extends Component {
                                                 <span>1 pc</span> */}
                                             </div>
                                           </div>
-                                          <div className="item-total-price">
-                                            <span>৳{store_item?.price}</span>
+                                          <div className="item-total-price d-flex">
+                                            <span>৳{store_item?.price}X</span>
+                                            <span> {store_item?.quantity}</span>
                                           </div>
+                                           {/* <div className="item-total-price">
+                                           ৳{store_item?.total_amount}
+                                          </div> */}
                                           <div className="item-delete">
                                             <span
                                               onClick={(e) =>
@@ -626,9 +670,7 @@ class MiniShoppinCart extends Component {
                                               X
                                             </span>
                                           </div>
-                                          <div className="item-total-price">
-                                            <span> {store_item?.quantity}</span>
-                                          </div>
+                                         
                                         </div>
                                       </div>
                                     
