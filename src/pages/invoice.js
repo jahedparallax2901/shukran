@@ -1,48 +1,24 @@
+import { Rate, Upload } from "antd";
+import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { Alert, Modal } from "react-bootstrap";
+import { AiOutlinePlus, BsFillStarFill } from "react-icons/all";
+import { connect } from "react-redux";
 // import { connect } from 'react-redux';
 // import { useRouter } from 'next/router';
 import { useParams } from "react-router";
-import "../assets/css/register.css";
-
-import {
-  FiX,
-  MdEdit,
-  HiPlus,
-  BiLeftArrowCircle,
-  BiRightArrowCircle,
-  BsFillStarFill,
-} from "react-icons/all";
-import {
-  Modal,
-  ModalBody,
-  ModalTitle,
-  ModalDialog,
-  ModalFooter,
-  ModalDialogProps,
-  ModalProps,
-  Button,
-  Form,
-  FormGroup,
-  FormLabel,
-  FormText,
-  Alert,
-} from "react-bootstrap";
-
-import ScrollMenu from "react-horizontal-scrolling-menu";
-import ReactDOM from "react-dom";
-import { toast } from "react-toastify";
-import ModalHeader from "react-bootstrap/ModalHeader";
-import moment from "moment";
-import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
 import { Link, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import "../assets/css/register.css";
+import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
+import { handleShowAuthModal } from "../redux";
 import {
   processGetRequest,
+
   processPostRequest,
-  processPostRequestSecondary,
+
+  processPostRequestMultiImage
 } from "../services/baseServices";
-import { Rate } from "antd";
-import { connect } from "react-redux";
-import { handleShowAuthModal } from "../redux";
 
 const Invoice = ({ handleShowAuthModal }) => {
   const { id } = useParams();
@@ -54,14 +30,17 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const [formData, setFormData] = useState({ product_id: null });
+  const [formData, setFormData] = useState({ product_id: null, images: [] , order_id: id});
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [validationMessage, setValidationMessage] = useState("");
+  const [fileList, setFileList] = useState([]);
+  const [isValidated, setIsValidated] = useState(true);
 
   useEffect(() => {
     processGetRequest(`/order-details/${id}`, {}, true).then((res) => {
       setJson(res.ordered_item);
       setTimeLineArray(res.ordered_item.timeline);
+      loadReviewByOrderId(id);
       console.log(res.ordered_item.timeline);
       timeLineArray.map((data, index) => {
         if (data?.active === true) {
@@ -70,6 +49,13 @@ const Invoice = ({ handleShowAuthModal }) => {
       });
     });
   }, []);
+
+  // :TODO
+  const loadReviewByOrderId = (orderId)=>{
+    processPostRequest(`/get-order-status/${orderId}`, {}, true).then(res=> {
+      console.log("order reviews", res);
+    })
+  }
 
   const inputOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -81,14 +67,26 @@ const Invoice = ({ handleShowAuthModal }) => {
 
   const submitReview = (e) => {
     e.preventDefault();
-
     const form = e.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || formData.rating === undefined || formData.review === undefined) {
       e.preventDefault();
       e.stopPropagation();
-      setValidationMessage("Please fill the required fields!");
+      setIsValidated(false);
+      setValidationMessage("Please fill the rating and review fields!");
     } else {
-      processPostRequest("/customer-review", formData, true)
+      setIsValidated(true)
+      const data = new FormData();
+      Object.keys(formData).map(key=>{
+        if(key === "images"){
+          formData[key].map(single_image=>{
+            console.log("image", single_image);
+            data.append(`${key}[]`, single_image.originFileObj)
+          })
+        }else{
+          data.append(key, formData[key]);
+        }
+      })
+      processPostRequestMultiImage("/product-review", data, true)
         .then((res) => {
           form.reset();
           toast.success(res.data.message);
@@ -132,9 +130,32 @@ const Invoice = ({ handleShowAuthModal }) => {
     }
   };
 
-  const getInvoiceData = () => {};
+  
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
-  const showReviewModal = (product_id) => {};
+  // const handleCancel = () => this.setState({ previewVisible: false });
+
+  // const handlePreview = async (file) => {
+  //   if (!file.url && !file.preview) {
+  //     file.preview = await getBase64(file.originFileObj);
+  //   }
+
+  //   this.setState({
+  //     previewImage: file.url || file.preview,
+  //     previewVisible: true,
+  //     previewTitle:
+  //       file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
+  //   });
+  // };
+
+  const handleImageChange = ({ fileList }) => setFormData({...formData, images: fileList});
 
   return (
     <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
@@ -153,11 +174,10 @@ const Invoice = ({ handleShowAuthModal }) => {
         </Modal.Header>
         <Modal.Body className="mx-2">
           <form
-            onSubmit={submitReview}
-            className="ps-form--review needs-validation"
-            action="/"
-            method="get"
+            onSubmit={(e)=>submitReview(e)}
+            className="ps-form--review"
             novalidate
+            validate={isValidated}
           >
             {validationMessage && (
               <Alert variant="warning">{validationMessage}</Alert>
@@ -178,13 +198,32 @@ const Invoice = ({ handleShowAuthModal }) => {
                 character={<BsFillStarFill />}
               />
             </div>
+            <Upload
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              listType="picture-card"
+              fileList={formData?.fileList}
+              // onPreview={handlePreview}
+              onChange={handleImageChange}
+            >
+              {fileList.length >= 8 ? null : <div>
+        <AiOutlinePlus />
+        <div style={{ marginTop: 8 }}>Upload</div>
+      </div>}
+            </Upload>
+            {/* <Modal
+          visible={previewVisible}
+          title={previewTitle}
+          footer={null}
+          onCancel={this.handleCancel}
+        >
+          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        </Modal> */}
             <div className="form-group">
               <textarea
                 name="review"
                 className="form-control"
                 rows="6"
                 placeholder="Write your review here"
-                required
                 onChange={inputOnChange}
               ></textarea>
             </div>
@@ -584,7 +623,6 @@ const Invoice = ({ handleShowAuthModal }) => {
                               <th className="text-center">Quantity</th>
                               <th className="text-right">Amount (৳)</th>
                               <th style={{ width: "1%" }} />
-                              <th style={{ width: "3%" }} />
                             </tr>
                           </thead>
                           <tbody>
@@ -636,27 +674,23 @@ const Invoice = ({ handleShowAuthModal }) => {
                                       >
                                         Dispute
                                       </button>
-                                      <button
-                                        disabled
+                                     
+                                      {
+                                        json?.status == 6 && 
+                                        <button
                                         type="button"
-                                        className="btn btn-link text-muted btn-sm dispute-review"
-                                      >
-                                        Review
-                                      </button>
-                                    </td>
-                                    <td>
-                                      <button
-                                        className="btn btn-link text-muted btn-sm dispute-review"
-                                        onClick={() => {
-                                          setVisible(true);
-                                          setFormData({
-                                            ...formData,
-                                            product_id: data1.product.id,
-                                          });
-                                        }}
-                                      >
-                                        Add Review
-                                      </button>
+                                          className="btn btn-link text-muted btn-sm dispute-review"
+                                          onClick={() => {
+                                            setVisible(true);
+                                            setFormData({
+                                              ...formData,
+                                              product_id: data1.product.id,
+                                            });
+                                          }}
+                                        >
+                                          Add Review
+                                        </button>
+                                      }
                                     </td>
                                   </tr>
                                   {/* {json.store_product.map((data1,index1) => (<>
@@ -691,7 +725,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                             </tr>
                             <tr>
                               <td
-                                colSpan={5}
+                                colSpan={4}
                                 style={{
                                   padding: 0,
                                   backgroundColor: "transparent",
@@ -760,7 +794,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                               </td>
                             </tr>
                             <tr className="text-bold">
-                              <td colSpan={4} className="text-right">
+                              <td colSpan={3} className="text-right">
                                 Subtotal
                               </td>
                               <td className="text-right">
@@ -768,7 +802,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                               </td>
                             </tr>
                             <tr className="text-bold">
-                              <td colSpan={4} className="text-right">
+                              <td colSpan={3} className="text-right">
                                 Discount
                               </td>
                               <td className="text-right">
@@ -777,7 +811,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                             </tr>
 
                             <tr className="text-bold">
-                              <td colSpan={4} className="text-right">
+                              <td colSpan={3} className="text-right">
                                 Grand Total
                               </td>
                               <td className="text-right">

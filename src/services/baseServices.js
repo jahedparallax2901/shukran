@@ -1,5 +1,5 @@
-import axios from "axios"
-import { BASE_API_URL } from "../helpers/env"
+import axios from "axios";
+import { BASE_API_URL } from "../helpers/env";
 import { getDeviceType, getLocalAuthData } from "../helpers/utils";
 
 /*
@@ -63,6 +63,25 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
     axios.post(`${BASE_API_URL}${url}`, data, {
         headers: {
           "Content-Type": "application/json",
+          "Authorization": isAuthenticationRequired? authData?.token : "",
+          "x-api-client": getDeviceType(),
+        },
+      }).then((res) => {
+        console.log("res",res)
+        resolve(res);
+      }).catch((err) => {
+        console.log("error 3",err)
+        reject(err.response);
+      });
+  });
+};
+
+export const processPostRequestMultiImage = (url, data = {}, isAuthenticationRequired = false) => {
+  const authData = getLocalAuthData();
+  return new Promise((resolve, reject) => {
+    axios.post(`${BASE_API_URL}${url}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
           "Authorization": isAuthenticationRequired? authData?.token : "",
           "x-api-client": getDeviceType(),
         },
