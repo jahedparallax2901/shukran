@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { AiOutlineShopping } from 'react-icons/ai';
 import { connect } from "react-redux";
 import { handleShowShoppingCart } from "../../../../redux";
 
@@ -28,7 +29,7 @@ class FloatingCart extends Component {
           className="asside-card-drower asside-card-drower-button"
         >
           <div className="asside-top">
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+          <AiOutlineShopping />
             <p>
               <span>
                 {shoppingCart?.cartSummery?.total_prdoucts ||
@@ -39,7 +40,7 @@ class FloatingCart extends Component {
             </p>
           </div>
           <div className="asside-body">
-            <span>৳{shoppingCart.total_amount || 0}</span>
+            <span>৳{shoppingCart?.cartSummery?.total_amount || 0}</span>
           </div>
         </button>
       )

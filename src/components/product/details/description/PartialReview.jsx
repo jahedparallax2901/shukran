@@ -1,21 +1,14 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Rate } from "antd";
-import Rating from "../../../elements/Rating";
-import { AiOutlineStar } from "react-icons/ai";
-import { BsFillStarFill } from "react-icons/bs";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import "../../../../assets/scss/customer-review.scss";
+import { handleShowAuthModal } from "../../../../redux";
 import {
   processGetRequest,
-  processPostRequest,
+  processPostRequest
 } from "../../../../services/baseServices";
-import axios from "axios";
-import { userData } from "../../../../helpers/authUtils";
-import { handleShowAuthModal } from "../../../../redux";
-import { toast } from "react-toastify";
-import { Alert } from "react-bootstrap";
-import { connect } from "react-redux";
-import "../../../../assets/scss/customer-review.scss";
-import { mockComponent } from "react-dom/test-utils";
-import moment from "moment";
+import Rating from "../../../elements/Rating";
 
 const PartialReview = ({ handleShowAuthModal, product }) => {
   const [formData, setFormData] = useState({ product_id: product?.id });
@@ -82,7 +75,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
   };
 
   useEffect(() => {
-    processGetRequest(`/customer-review/${product?.id}`).then(res=>{
+    processGetRequest(`/product-review/${product?.id}`).then(res=>{
       console.log("response", res)
         setReviewInfo(res);
     }).catch(err=>{
@@ -203,6 +196,16 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
               </p>
               
               <p className="review">{review?.review || "N/A"}</p>
+              {
+                review?.product_review_image?.length > 0 && <div className="d-flex flex-wrap w-100 w-md-50">
+                  {
+                    review?.product_review_image?.map(image=>(
+                      <img width="100px" height="100px" className="p-2" src={image?.image} alt="" />
+                    ))
+                  }
+                </div>
+              }
+              
             </div>
           ))}
         </div>

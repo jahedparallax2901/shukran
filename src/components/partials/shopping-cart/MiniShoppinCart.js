@@ -1,22 +1,24 @@
+import { Tooltip } from "antd";
 import React, { Component } from "react";
+import { Form } from "react-bootstrap";
+import { AiOutlineShopping } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
+import { FiArrowDownCircle } from "react-icons/fi";
+import { VscChevronDown, VscChevronUp } from "react-icons/vsc";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { toast } from "react-toastify";
 import bagPack from "../../../assets/img/downloads/bagpack.jpeg";
 import shoppingCartAside from "../../../assets/img/emptyShoppingcart.svg";
+import { userData } from "../../../helpers/authUtils";
 import {
   getCartItems,
   handleAddToCart,
-  handleHideShoppingCart,
   handleClearCart,
-  handleShowAuthModal,
+  handleHideShoppingCart,
+  handleShowAuthModal
 } from "../../../redux";
-import { connect } from "react-redux";
-import { AiOutlineClose, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { userData } from "../../../helpers/authUtils";
-import { toast } from "react-toastify";
 import { processPostRequest } from "../../../services/baseServices";
-import { BsTrash } from "react-icons/bs";
-import { Spinner } from "react-bootstrap";
-import { withRouter } from "react-router";
-import { Tooltip } from "antd";
 
 class MiniShoppinCart extends Component {
   state = {
@@ -212,7 +214,8 @@ class MiniShoppinCart extends Component {
     cart_id,
     product_id = null,
     attribute_id = null,
-    isSelected
+    isSelected,
+    store_id = null
   ) => {
     console.log("checking_field", attribute_id, isSelected);
     this.setState({ isCartProcessing: true });
@@ -223,7 +226,15 @@ class MiniShoppinCart extends Component {
         `product_id[${product_id}][${attribute_id}]`,
         isSelected == 1 ? 2 : 1
       );
-    } else {
+    } else if(store_id){
+      const store = this.props.shoppingCart.cartItems.find(item=> item.store_id == store_id);
+      store?.store_product?.map(store_item=>{
+        formData.append(
+          `product_id[${store_item.product_id}][${store_item.product_attribute_id}]`,
+          isSelected == 1 ? 2 : 1
+        );
+      })
+    }else {
       this.props.shoppingCart.cartProductlist.map((item) => {
         formData.append(
           `product_id[${item.product_id}][${item.item_id}]`,
@@ -306,10 +317,18 @@ class MiniShoppinCart extends Component {
     }
   };
 
-  isAllSelected() {
+  isAllSelected(store_id = null) {
     let selected = true;
-
-    if (this.props.shoppingCart?.cartSummery?.total_prdoucts > 0) {
+    if(store_id){
+      const cart_item = this.props.shoppingCart?.cartItems?.find(item => item.store_id == store_id);
+      if(cart_item?.store_product?.length > 0){
+        cart_item.store_product.map((prod) => {
+          if (prod.cart_check == 2) {
+            selected = false;
+          }
+        });
+      }
+    }else if (this.props.shoppingCart?.cartSummery?.total_prdoucts > 0) {
       this.props.shoppingCart?.cartItems.map((item) => {
         item.store_product.map((prod) => {
           if (prod.cart_check == 2) {
@@ -324,111 +343,340 @@ class MiniShoppinCart extends Component {
     return selected;
   }
 
+  handleChangeProductQuantity = (
+    product_id,
+    attribute_id,
+    cart_id,
+    type,
+    current_quantity
+  ) => {
+    console.log("Clicked")
+    this.setState({ isCartProcessing: true });
+    let quantity;
+    if(type === "increment"){
+      quantity = current_quantity + 1
+    }else{
+      if(current_quantity !== 0){
+        quantity = current_quantity - 1
+      }else{
+        quantity = 0;
+        return;
+      }
+    }
+    
+    const newList = this.props.shoppingCart.cartProductlist;
+    newList.push({
+      product_id: product_id,
+      item_id: attribute_id,
+      quantity: quantity,
+    });
+
+    this.props.handleAddToCart(
+      newList,
+      userData()?.token || "",
+      async (data, isSuccess) => {
+        if (isSuccess) {
+          await this.props.getCartItems(() => {
+            this.setState({ isCartProcessing: false });
+          });
+          // this.props.handleShowShoppingCart();
+        } else {
+          toast.error("Something went wrong.");
+          this.setState({ isCartProcessing: false });
+        }
+      },
+      false
+    );
+  };
+
+  // constructor(props){
+  //   super(props);
+  //   this.state={
+  //     count: 0
+  //   }
+  // }
+  // increment = () => {
+  //   this.setState({count: this.state.count + 1})
+  // }
+  // decrement = () => {
+  //   this.setState({count: this.state.count - 1})
+  // }
   render() {
-    const {
-      isShowingShoppingCart,
-      handleHideShoppingCart,
-      shoppingCart,
-    } = this.props;
+    const { isShowingShoppingCart, handleHideShoppingCart, shoppingCart } =
+      this.props;
     return (
       <div
         className={`asside-card-checkout ${isShowingShoppingCart && "active"}`}
       >
         <div className="aside-cart-header">
-          <h1>Your Cart</h1>
+          <h1>
+            <AiOutlineShopping /> <span>{this.props.shoppingCart?.cartSummery?.total_prdoucts}</span> ITEMS
+          </h1>
           <div className="close-btn" onClick={handleHideShoppingCart}>
-            <i>
-              <AiOutlineClose />
-            </i>
+            <span>Close</span>
           </div>
         </div>
-
-        {this.state.isCartProcessing ? (
+        {/* <div className="aside-cart-discount">
+          <p className="left progress-bg">Shop ৳137 more and save ৳100 fee</p>
+          <p className="right">৳37</p>
+        </div>
+        <div className="aside-cart-express">
+          <p><GoRocket/> Express Delivery</p>
+        </div> */}
+        {/* {this.state.isCartProcessing ? (
           <div className="loading-wrapper">
             <Spinner animation="grow" />
           </div>
-        ) : (
-          <>
-            {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
-              <>
-                <div className="select-all-div">
-                  <div className="ps-checkbox">
-                    <input
-                      type="checkbox"
-                      id="select-all"
-                      defaultChecked={this.isAllSelected()}
-                      onChange={(e) =>
-                        this.handleSelectProduct(e, shoppingCart.cartSummery.id)
-                      }
-                    />
-                    <label for="select-all">Select All</label>
-                  </div>
+        ) : ( */}
+        <>
+          {/* <div className="card-item-area">
+              <div className="single-cart">
+                <div className="item-quantity">
+                <span><VscChevronUp/></span>
+                  <span> 0 </span>
+                <span><VscChevronDown/></span>
                 </div>
+                <div className="item-img">
+                  <img src={downloadsFridge1} alt="fail" />
+                </div>
+                <div className="item-name">
+                  <p>Rok Dishwashing Mega Steel Scourer (Buy 2 Get 1 Free) </p>
+                  <div className="price-by-quantity">
+                    <span>৳ 70</span>
+                    <span>/</span>
+                    <span>1 Kg</span>
+                  </div>
+                </div> 
+                <div className="item-total-price">
+                  <span>৳ 70</span>
+                </div>
+                <div className="item-delete">
+                  <span>X</span>
+                </div>
+              </div>
 
-                <div className="store-div-container">
-                  {shoppingCart.cartItems.map((cart_items) => (
-                    <>
-                      {cart_items.store_product.length > 0 && (
-                        <div className="store-div">
-                          <div className="store">
-                            <div className="store-name">
-                              <div className="ps-checkbox">
-                                {/* <input
+              <div className="single-cart">
+                <div className="item-quantity">
+                <span><VscChevronUp/></span>
+                  <span> 0 </span>
+                <span><VscChevronDown/></span>
+                </div>
+                <div className="item-img">
+                  <img src={downloadsFridge1} alt="fail" />
+                </div>
+                <div className="item-name">
+                  <p>Rok Dishwashing Mega Steel Scourer (Buy 2 Get 1 Free) </p>
+                  <div className="price-by-quantity">
+                    <span>৳ 70</span>
+                    <span>/</span>
+                    <span>1 Kg</span>
+                  </div>
+                </div> 
+                <div className="item-total-price">
+                  <span>৳ 70</span>
+                </div>
+                <div className="item-delete">
+                  <span>X</span>
+                </div>
+              </div>
+            </div> */}
+
+          {shoppingCart?.cartSummery?.total_prdoucts > 0 ? (
+            <>
+              <div className="select-all-div">
+                <div className="ps-checkbox">
+                  <input
+                    type="checkbox"
+                    id="select-all"
+                    checked={this.isAllSelected()}
+                    onChange={(e) =>
+                      this.handleSelectProduct(e, shoppingCart.cartSummery.id, null, null, this.isAllSelected())
+                    }
+                  />
+                  <label for="select-all">Select All</label>
+                </div>
+              </div>
+
+              <div className="store-div-container">
+                {shoppingCart.cartItems.map((cart_items) => (
+                  <>
+                    {cart_items.store_product.length > 0 && (
+                      <div className="store-div">
+                        <div className="store">
+                          <div className="store-name d-flex justify-content-between">
+                            <div className="ps-checkbox">
+                              {/* ===== comment mark ===== */}
+                              {/* <input
                               className="form-control"
                               type="checkbox"
                               id="store-1"
                               name="brand"
                             /> */}
-                                {/* <label for="store-1">
+                              {/* <label for="store-1">
                               {cart_items?.store?.name || ""}
                             </label> */}
+                              {/* ===== comment mark ===== */}
 
-                                <h3 className="mt-2">
-                                  {cart_items?.store?.name || ""}
-                                </h3>
+                              <h3 className="mt-2">
+                                {cart_items?.store?.name || ""}
+                              </h3>
+                            </div>
+                            <div className="select-all-div pr-0">
+                              <div className="ps-checkbox">
+                                <input
+                                  type="checkbox"
+                                  id={`select-all-store-${cart_items?.store_id}`}
+                                  checked={this.isAllSelected(cart_items?.store_id)}
+                                  onChange={(e) =>
+                                    this.handleSelectProduct(
+                                      e,
+                                      shoppingCart.cartSummery.id,
+                                      null,
+                                      null,
+                                      this.isAllSelected(cart_items?.store_id),
+                                      cart_items?.store_id
+                                    )
+                                  }
+                                />
+                                <label for={`select-all-store-${cart_items?.store_id}`}>Select All</label>
                               </div>
                             </div>
+                          </div>
 
-                            {/* Product portion */}
+                          {/* Product portion */}
 
-                            {cart_items?.store_product &&
-                              cart_items.store_product.map((store_item) => (
-                                <div className="product">
-                                  <div className="product-name d-flex justify-content-between">
-                                    <div className="ps-checkbox">
-                                      {console.log(
-                                        "Checking",
-                                        store_item.cart_check === 1
-                                      )}
-                                      <input
-                                        className="form-control"
-                                        type="checkbox"
-                                        id={`brand-${store_item?.product_attribute?.id}`}
-                                        name={`brand-${store_item?.product_attribute?.id}`}
-                                        checked={store_item.cart_check === 1}
-                                        onChange={(e) =>
-                                          this.handleSelectProduct(
-                                            e,
-                                            store_item?.cart_id,
-                                            store_item?.product_attribute
-                                              ?.product_id,
-                                            store_item?.product_attribute?.id,
-                                            store_item.cart_check
-                                          )
-                                        }
-                                      />
-                                      <label
-                                        for={`brand-${store_item?.product_attribute?.id}`}
-                                      >
-                                        <Tooltip
-                                          placement="topLeft"
-                                          title={store_item.product.name}
-                                        >
-                                          {store_item.product.name}
-                                        </Tooltip>
-                                      </label>
-                                    </div>
-                                    <i>
+                          {cart_items?.store_product &&
+                            cart_items.store_product.map((store_item) => (
+                              <div className="product">
+                                <div className="product-name">
+                                  <div className="ps-checkbox">
+                                    <Form.Check type="checkbox" id={`brand-${store_item?.product_attribute?.id}`}
+                                      name={`brand-${store_item?.product_attribute?.id}`}
+                                      checked={store_item.cart_check === 1}
+                                      onChange={(e) =>
+                                        this.handleSelectProduct(
+                                          e,
+                                          store_item?.cart_id,
+                                          store_item?.product_attribute
+                                            ?.product_id,
+                                          store_item?.product_attribute?.id,
+                                          store_item.cart_check
+                                        )
+                                      }/>
+                                    {/* <input
+                                      className="form-control"
+                                      type="checkbox"
+                                      id={`brand-${store_item?.product_attribute?.id}`}
+                                      name={`brand-${store_item?.product_attribute?.id}`}
+                                      checked={store_item.cart_check === 1}
+                                      onChange={(e) =>
+                                        this.handleSelectProduct(
+                                          e,
+                                          store_item?.cart_id,
+                                          store_item?.product_attribute
+                                            ?.product_id,
+                                          store_item?.product_attribute?.id,
+                                          store_item.cart_check
+                                        )
+                                      }
+                                    /> */}
+                                   {/* <label
+                                      for={`brand-${store_item?.product_attribute?.id}`}
+                                    >
+                                      .
+                                    </label> */}
+                                    <div className="card-item-area">
+                                    
+                                        <div className="single-cart">
+                                          <div className="item-quantity">
+                                            <span >
+                                              <VscChevronUp
+                                                onClick={() =>
+                                                  this.handleChangeProductQuantity(
+                                                    store_item
+                                                      ?.product_attribute
+                                                      ?.product_id,
+                                                    store_item
+                                                      ?.product_attribute?.id,
+                                                    store_item?.cart_id,
+                                                    "increment",
+                                                    store_item?.quantity
+                                                  )
+                                                }
+                                              />
+                                            </span>
+                                            <span>{store_item.quantity}</span>
+                                            <span>
+                                              <VscChevronDown
+                                                onClick={() =>
+                                                  this.handleChangeProductQuantity(
+                                                    store_item
+                                                      ?.product_attribute
+                                                      ?.product_id,
+                                                    store_item
+                                                      ?.product_attribute?.id,
+                                                    store_item?.cart_id,
+                                                    "decrement",
+                                                    store_item?.quantity
+                                                  )
+                                                }
+                                              />
+                                            </span>
+                                          </div>
+                                          <div className="item-img">
+                                            <img
+                                              src={
+                                                store_item?.product
+                                                  ?.single_image || bagPack
+                                              }
+                                              alt="fail"
+                                            />
+                                          </div>
+                                          <div className="item-name">
+                                            <p>
+                                              <Tooltip
+                                                placement="topLeft"
+                                                title={store_item.product.name}
+                                              >
+                                                {store_item.product.name}
+                                              </Tooltip>
+                                            </p>
+                                            <div className="price-by-quantity">
+                                              <span>
+                                                ৳{store_item?.total_amount}
+                                              </span>
+                                              {/* <span>/</span>
+                                                <span>1 pc</span> */}
+                                            </div>
+                                          </div>
+                                          <div className="item-total-price d-flex">
+                                            <span>৳{store_item?.price}X</span>
+                                            <span> {store_item?.quantity}</span>
+                                          </div>
+                                           {/* <div className="item-total-price">
+                                           ৳{store_item?.total_amount}
+                                          </div> */}
+                                          <div className="item-delete">
+                                            <span
+                                              onClick={(e) =>
+                                                this.handleItemDelete(
+                                                  e,
+                                                  store_item.product.id,
+                                                  store_item.product_attribute
+                                                    .id
+                                                )
+                                              }
+                                            >
+                                              X
+                                            </span>
+                                          </div>
+                                         
+                                        </div>
+                                      </div>
+                                    
+                                  </div>
+
+                                  {/* <i>
                                     <AiOutlineClose
                                       onClick={(e) =>
                                         this.handleItemDelete(
@@ -438,10 +686,9 @@ class MiniShoppinCart extends Component {
                                         )
                                       }
                                     />
-                                    </i>
-                                    
-                                  </div>
-                                  <div className="product-details">
+                                    </i> */}
+                                </div>
+                                {/* <div className="product-details">
                                     <div className="product-details-div-img product-details-div">
                                       <img
                                         src={
@@ -479,93 +726,93 @@ class MiniShoppinCart extends Component {
                                         </p>
                                       </div>
                                     )}
-                                  </div>
+                                  </div> */}
 
-                                  {/* Product calculation portion */}
+                                {/* Product calculation portion */}
 
-                                  <div className="product-price-div">
+                                {/* <div className="product-price-div">
                                     <div className="product-price">
                                       <div className="product-price-title">
                                         <h6>price</h6>
                                       </div>
                                       <p>৳{store_item?.total_amount}</p>
                                     </div>
-                                    <div className="delivery-charge">
-                                      {/* <div className="delivery-charge-title">
+                                    <div className="delivery-charge"> */}
+
+                                {/* ===== comment mark ===== */}
+                                {/* <div className="delivery-charge-title">
                                     <h6>delivery charge</h6>
                                   </div>
                                   <p>৳{store_item?.delivery_charge || 0}</p> */}
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
-
-                            {/* Store coupon portion */}
-
-                            <div className="store-checkout-div">
-                              <div className="store-coupon">
-                                {shoppingCart.cartSummery.coupon ? (
-                                  <div className="coupon-status-not-applicable">
-                                    <span className="mr-4">Not Applicable</span>
-                                  </div>
-                                ) : (
-                                  <>
-                                    {cart_items.coupon ? (
-                                      <div className="d-flex justify-content-between align-items-center coupon-status-success">
-                                        <span className="mr-4">
-                                          {
-                                            cart_items?.coupon?.coupon_code
-                                              ?.code
-                                          }{" "}
-                                          Coupon Applied
-                                        </span>
-                                        <BsTrash
-                                          title="Remove"
-                                          onClick={(e) =>
-                                            this.handleRemoveCoupon(
-                                              e,
-                                              shoppingCart.cartSummery.id,
-                                              cart_items.store.id
-                                            )
-                                          }
-                                        />
-                                      </div>
-                                    ) : (
-                                      <>
-                                        <input
-                                          type="text"
-                                          placeholder="apply for coupon"
-                                          name={`couponOfStore-${cart_items.store.id}`}
-                                          defaultValue={
-                                            this.state[
-                                              `couponOfStore-${cart_items.store.id}`
-                                            ]
-                                          }
-                                          onChange={(e) =>
-                                            this.handleCouponChange(e)
-                                          }
-                                        />
-                                        <button
-                                          onClick={(e) =>
-                                            this.handleApplyStoreCoupon(
-                                              e,
-                                              shoppingCart.cartSummery.id,
-                                              cart_items.store.id
-                                            )
-                                          }
-                                        >
-                                          ✓
-                                        </button>
-                                      </>
-                                    )}
-                                  </>
-                                )}
+                                {/* ===== comment mark ===== */}
+                                {/* </div>
+                                  </div> */}
                               </div>
+                            ))}
 
-                              {/* Store checkout calculation */}
+                          {/* Store coupon portion */}
 
-                              <div className="store-checkout-div-right">
-                                <div className="delivery-charge">
+                          <div className="store-checkout-div">
+                            <div className="store-coupon">
+                              {shoppingCart.cartSummery.coupon ? (
+                                <div className="coupon-status-not-applicable">
+                                  <span className="mr-4">Not Applicable</span>
+                                </div>
+                              ) : (
+                                <>
+                                  {cart_items.coupon ? (
+                                    <div className="d-flex justify-content-between align-items-center coupon-status-success">
+                                      <span className="mr-4">
+                                        {cart_items?.coupon?.coupon_code?.code}{" "}
+                                        Coupon Applied
+                                      </span>
+                                      <BsTrash
+                                        title="Remove"
+                                        onClick={(e) =>
+                                          this.handleRemoveCoupon(
+                                            e,
+                                            shoppingCart.cartSummery.id,
+                                            cart_items.store.id
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                  ) : (
+                                    <>
+                                      <input
+                                        type="text"
+                                        placeholder="apply coupon"
+                                        name={`couponOfStore-${cart_items.store.id}`}
+                                        defaultValue={
+                                          this.state[
+                                            `couponOfStore-${cart_items.store.id}`
+                                          ]
+                                        }
+                                        onChange={(e) =>
+                                          this.handleCouponChange(e)
+                                        }
+                                      />
+                                      <button
+                                        onClick={(e) =>
+                                          this.handleApplyStoreCoupon(
+                                            e,
+                                            shoppingCart.cartSummery.id,
+                                            cart_items.store.id
+                                          )
+                                        }
+                                      >
+                                        Apply
+                                      </button>
+                                    </>
+                                  )}
+                                </>
+                              )}
+                            </div>
+
+                            {/* Store checkout calculation */}
+
+                            <div className="store-checkout-div-right">
+                              {/* <div className="delivery-charge">
                                   <h6 className="delivery-charge-title">
                                     delivery-charge :
                                   </h6>
@@ -582,31 +829,32 @@ class MiniShoppinCart extends Component {
                                 <div className="total">
                                   <h6 className="total-title">total :</h6>
                                   <p>৳{cart_items.total_amount || 0}</p>
-                                </div>
-                                <a
-                                  className="store-checkout"
-                                  onClick={(e) =>
-                                    this.handleProceedCheckout(
-                                      e,
-                                      cart_items.cart_id,
-                                      cart_items.store_id
-                                    )
-                                  }
-                                >
-                                  checkout
-                                </a>
-                              </div>
+                                </div> */}
+
+                              <a
+                                className="store-checkout"
+                                onClick={(e) =>
+                                  this.handleProceedCheckout(
+                                    e,
+                                    cart_items.cart_id,
+                                    cart_items.store_id
+                                  )
+                                }
+                              >
+                                Store Checkout
+                              </a>
                             </div>
                           </div>
                         </div>
-                      )}
-                    </>
-                  ))}
-                </div>
+                      </div>
+                    )}
+                  </>
+                ))}
+              </div>
 
-                {/* Global coupon portion */}
+              {/* Global coupon portion */}
 
-                <div className="all-checkout" id="all-checkout">
+              {/* <div className="all-checkout" id="all-checkout">
                   <div class="store-coupon">
                     {shoppingCart.cartItems.find(
                       (item) => item.coupon !== null
@@ -658,11 +906,11 @@ class MiniShoppinCart extends Component {
                         )}
                       </>
                     )}
-                  </div>
+                  </div> */}
 
-                  {/* Global chekout portion */}
+              {/* Global chekout portion */}
 
-                  <div className="subtotal">
+              {/* <div className="subtotal">
                     <h6 className="subtotal-title">delivery-charge:</h6>
                     <p>৳{shoppingCart?.cartSummery?.delivery_charge || 0}</p>
                   </div>
@@ -685,17 +933,104 @@ class MiniShoppinCart extends Component {
                     }
                   >
                     checkout
-                  </a>
+                  </a> */}
+              {/* </div> */}
+              <div className="place-order-area">
+                <div className="place-order-area-top">
+                  <div className="spacial-code">
+                    <p>
+                      <FiArrowDownCircle /> Have a special coupon
+                    </p>
+                  </div>
+                  <div className="special-code-search">
+                    {shoppingCart.cartItems.find(
+                      (item) => item.coupon !== null
+                    ) ? (
+                      <div className="coupon-status-not-applicable">
+                        <span className="mr-4">Not Applicable</span>
+                      </div>
+                    ) : (
+                      <>
+                        {!shoppingCart?.cartSummery?.coupon ? (
+                          <>
+                            <Form className="mr-3 w-100">
+                              <Form.Group
+                                className="special-form-group"
+                                controlId="formBasicSearch"
+                              >
+                                <Form.Control
+                                  type="search"
+                                  placeholder="Special coupon"
+                                  name="globalCoupon"
+                                  defaultValue={this.state.globalCoupon}
+                                  onChange={this.handleCouponChange}
+                                />
+                              </Form.Group>
+                            </Form>
+                            <button
+                              className="coupon-code-go"
+                              onClick={(e) =>
+                                this.handleGlobalCouponApply(
+                                  e,
+                                  shoppingCart.cartSummery.id
+                                )
+                              }
+                            >
+                              Apply
+                            </button>
+                          </>
+                        ) : (
+                          <div className="d-flex justify-content-between align-items-center coupon-status-success">
+                            <span className="mr-4">
+                              {
+                                shoppingCart?.cartSummery?.coupon?.coupon_code
+                                  ?.code
+                              }{" "}
+                              Coupon Applied
+                            </span>
+                            <BsTrash
+                              title="Remove"
+                              onClick={(e) =>
+                                this.handleRemoveCoupon(
+                                  e,
+                                  shoppingCart.cartSummery.id
+                                )
+                              }
+                            />
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
-              </>
-            ) : (
-              <div className="loading-wrapper">
-                <img src={shoppingCartAside} alt="Shopping Cart" />
-                <h3>Your shopping cart is empty.</h3>
+                <div className="place-order-area-bottom">
+                  <button className="place-order-button">
+                    <span
+                      className="place-order-button-inner"
+                      onClick={(e) =>
+                        this.handleProceedCheckout(
+                          e,
+                          shoppingCart.cartSummery.id
+                        )
+                      }
+                    >
+                      Place Order
+                    </span>
+                    <span className="place-order-amount">
+                      ৳{shoppingCart?.cartSummery?.total_amount || 0}
+                    </span>
+                  </button>
+                </div>
               </div>
-            )}
-          </>
-        )}
+            </>
+          ) : (
+            <div className="loading-wrapper">
+              <img src={shoppingCartAside} alt="Shopping Cart" />
+              <h3>Your shopping bag is empty. Start shopping</h3>
+            </div>
+          )}
+        </>
+        {/* )} */}
       </div>
     );
   }

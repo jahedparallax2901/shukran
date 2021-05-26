@@ -17,7 +17,7 @@ class HeaderPromotion extends Component {
                 <h4>For Books Of March</h4>
               </figure>
             </div>
-            <a className="ps-btn ps-btn--sm mr-0" href="#">
+            <a className="ps-btn ps-btn--sm mr-0 btn-gradiant" href="#">
               Shop now
             </a>
           </div>

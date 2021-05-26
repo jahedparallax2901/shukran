@@ -2560,11 +2560,11 @@
     }
 
     .ps-btn {
-        background-color: #f14705;
+        background-color: #ED1C24;
         color: #ffffff;
-        font-size: 14px;
-        padding: 8px 20px;
-
+        font-size: 13px;
+        padding: 5px 15px 7px 15px;
+        font-weight: 500;
         &:hover {
             background-color: $color-1st;
         }

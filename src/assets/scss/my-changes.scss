@@ -16,9 +16,10 @@
   }
   
   .coupon-status-not-applicable{
-      background-color: hsla(42, 86%, 73%, 0.863);
-      padding: 5px;
-      border-radius: 2px;
+    background-color: rgba(245, 210, 127, 0.863);
+    border-radius: 2px;
+    font-size: 1.1rem;
+    padding: 3px 8px;
   
       &:hover {
           background-color: hsla(42, 86%, 73%, 0.4);
@@ -27,7 +28,7 @@
   
   .loading-wrapper {
     position: absolute;
-    height: calc(100vh - 52px);
+    height: calc(100vh - 35px);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -35,7 +36,10 @@
     align-items: center;
     font-size: 19px;
     background-color: rgba(237, 242, 248, 0.931);
-  
+    h3{
+      font-size: 1.6rem;
+      text-align: center;
+    }
     .spinner-grow{
         width: 50px;
         height: 50px;
