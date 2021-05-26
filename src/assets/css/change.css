@@ -2014,6 +2014,7 @@ button.ps-btn:active {
   position: relative;
   height: calc(100% - 150px);
   overflow: scroll;
+  overflow-x: hidden;
 }
 */
 /* .asside-card-checkout .store-div .ps-checkbox {
