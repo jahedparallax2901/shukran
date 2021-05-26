@@ -26,6 +26,7 @@ class MiniShoppinCart extends Component {
     isGlobalCouponApplied: false,
     storesWithCoupon: [],
     isCartProcessing: false,
+    haveSpecialCoupon: false
   };
 
   componentDidMount() {
@@ -642,17 +643,18 @@ class MiniShoppinCart extends Component {
                                               </Tooltip>
                                             </p>
                                             <div className="price-by-quantity">
+                                            <span>৳{store_item?.price}X</span>
+                                            <span> {store_item?.quantity}</span>
+                                          </div>
+                                            
+                                          </div>
+                                          <div className="item-total-price d-flex ">
                                               <span>
                                                 ৳{store_item?.total_amount}
                                               </span>
                                               {/* <span>/</span>
                                                 <span>1 pc</span> */}
                                             </div>
-                                          </div>
-                                          <div className="item-total-price d-flex">
-                                            <span>৳{store_item?.price}X</span>
-                                            <span> {store_item?.quantity}</span>
-                                          </div>
                                            {/* <div className="item-total-price">
                                            ৳{store_item?.total_amount}
                                           </div> */}
@@ -936,73 +938,76 @@ class MiniShoppinCart extends Component {
                   </a> */}
               {/* </div> */}
               <div className="place-order-area">
-                <div className="place-order-area-top">
+                    <div className="place-order-area-top">
                   <div className="spacial-code">
-                    <p>
+                    <p onClick={()=>this.setState({haveSpecialCoupon: !this.state.haveSpecialCoupon})} className="btn">
                       <FiArrowDownCircle /> Have a special coupon
                     </p>
                   </div>
-                  <div className="special-code-search">
-                    {shoppingCart.cartItems.find(
-                      (item) => item.coupon !== null
-                    ) ? (
-                      <div className="coupon-status-not-applicable">
-                        <span className="mr-4">Not Applicable</span>
-                      </div>
-                    ) : (
-                      <>
-                        {!shoppingCart?.cartSummery?.coupon ? (
-                          <>
-                            <Form className="mr-3 w-100">
-                              <Form.Group
-                                className="special-form-group"
-                                controlId="formBasicSearch"
+                  {
+                      this.state.haveSpecialCoupon &&<div className="special-code-search">
+                      {shoppingCart.cartItems.find(
+                        (item) => item.coupon !== null
+                      ) ? (
+                        <div className="coupon-status-not-applicable">
+                          <span className="mr-4">Not Applicable</span>
+                        </div>
+                      ) : (
+                        <>
+                          {!shoppingCart?.cartSummery?.coupon ? (
+                            <>
+                              <Form className="mr-3 w-100">
+                                <Form.Group
+                                  className="special-form-group"
+                                  controlId="formBasicSearch"
+                                >
+                                  <Form.Control
+                                    type="search"
+                                    placeholder="Special coupon"
+                                    name="globalCoupon"
+                                    defaultValue={this.state.globalCoupon}
+                                    onChange={this.handleCouponChange}
+                                  />
+                                </Form.Group>
+                              </Form>
+                              <button
+                                className="coupon-code-go"
+                                onClick={(e) =>
+                                  this.handleGlobalCouponApply(
+                                    e,
+                                    shoppingCart.cartSummery.id
+                                  )
+                                }
                               >
-                                <Form.Control
-                                  type="search"
-                                  placeholder="Special coupon"
-                                  name="globalCoupon"
-                                  defaultValue={this.state.globalCoupon}
-                                  onChange={this.handleCouponChange}
-                                />
-                              </Form.Group>
-                            </Form>
-                            <button
-                              className="coupon-code-go"
-                              onClick={(e) =>
-                                this.handleGlobalCouponApply(
-                                  e,
-                                  shoppingCart.cartSummery.id
-                                )
-                              }
-                            >
-                              Apply
-                            </button>
-                          </>
-                        ) : (
-                          <div className="d-flex justify-content-between align-items-center coupon-status-success">
-                            <span className="mr-4">
-                              {
-                                shoppingCart?.cartSummery?.coupon?.coupon_code
-                                  ?.code
-                              }{" "}
-                              Coupon Applied
-                            </span>
-                            <BsTrash
-                              title="Remove"
-                              onClick={(e) =>
-                                this.handleRemoveCoupon(
-                                  e,
-                                  shoppingCart.cartSummery.id
-                                )
-                              }
-                            />
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </div>
+                                Apply
+                              </button>
+                            </>
+                          ) : (
+                            <div className="d-flex justify-content-between align-items-center coupon-status-success">
+                              <span className="mr-4">
+                                {
+                                  shoppingCart?.cartSummery?.coupon?.coupon_code
+                                    ?.code
+                                }{" "}
+                                Coupon Applied
+                              </span>
+                              <BsTrash
+                                title="Remove"
+                                onClick={(e) =>
+                                  this.handleRemoveCoupon(
+                                    e,
+                                    shoppingCart.cartSummery.id
+                                  )
+                                }
+                              />
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  }
                 </div>
+                
                 <div className="place-order-area-bottom">
                   <button className="place-order-button">
                     <span
