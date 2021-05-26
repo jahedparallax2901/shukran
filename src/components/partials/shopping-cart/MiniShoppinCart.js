@@ -552,6 +552,7 @@ class MiniShoppinCart extends Component {
                                 <div className="product-name">
                                   <div className="ps-checkbox">
                                     <Form.Check type="checkbox" id={`brand-${store_item?.product_attribute?.id}`}
+                                      className="cart-chackbox"
                                       name={`brand-${store_item?.product_attribute?.id}`}
                                       checked={store_item.cart_check === 1}
                                       onChange={(e) =>
