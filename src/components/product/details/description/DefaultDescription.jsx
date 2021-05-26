@@ -1,11 +1,11 @@
-import React from 'react';
-
 import { Tabs } from 'antd';
+import React from 'react';
 import PartialDescription from './PartialDescription';
+import PartialOffer from './PartialOffer';
+import PartialReview from './PartialReview';
 import PartialSpecification from './PartialSpecification';
 import PartialVendor from './PartialVendor';
-import PartialReview from './PartialReview';
-import PartialOffer from './PartialOffer';
+
 
 const { TabPane } = Tabs;
 
@@ -22,7 +22,7 @@ const DefaultDescription = ({product}) => {
                 <TabPane tab="Vendor" key="3">
                     <PartialVendor />
                 </TabPane>
-                <TabPane tab="Reviews (1)" key="4">
+                <TabPane tab="Reviews" key="4">
                     <PartialReview product={product}/>
                 </TabPane>
                 <TabPane tab="Questions and Answers" key="5">

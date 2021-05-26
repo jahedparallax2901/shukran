@@ -1,7 +1,7 @@
-import { Rate, Upload } from "antd";
+import { Modal, Rate, Upload } from "antd";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Alert, Modal } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { AiOutlinePlus, BsFillStarFill } from "react-icons/all";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
@@ -36,6 +36,7 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [fileList, setFileList] = useState([]);
   const [isValidated, setIsValidated] = useState(true);
   const [orderReviews, setOrderReviews] = useState([]);
+  const [preview, setPreview] = useState({previewVisible: false, previewTitle: "", previewImage: null});
 
   useEffect(() => {
     processGetRequest(`/order-details/${id}`, {}, true).then((res) => {
@@ -165,20 +166,18 @@ const Invoice = ({ handleShowAuthModal }) => {
     });
   };
 
-  // const handleCancel = () => this.setState({ previewVisible: false });
+  const handlePreviewCancel = () => setPreview({...preview, previewVisible: false});
 
-  // const handlePreview = async (file) => {
-  //   if (!file.url && !file.preview) {
-  //     file.preview = await getBase64(file.originFileObj);
-  //   }
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
 
-  //   this.setState({
-  //     previewImage: file.url || file.preview,
-  //     previewVisible: true,
-  //     previewTitle:
-  //       file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
-  //   });
-  // };
+    setPreview({...preview, previewImage: file.url || file.preview,
+      previewVisible: true,
+      previewTitle:
+        file.name || file.url.substring(file.url.lastIndexOf("/") + 1)})
+  };
 
   const handleImageChange = ({ fileList }) =>
     setFormData({ ...formData, images: fileList });
@@ -187,18 +186,23 @@ const Invoice = ({ handleShowAuthModal }) => {
     <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
       {/* Review modal */}
       <Modal
-        closeButton
-        size="md"
-        show={visible}
-        onHide={() => setVisible(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
+        // closeButton
+        // size="md"
+        // show={visible}
+        // onHide={() => setVisible(false)}
+        // aria-labelledby="example-modal-sizes-title-lg"
+
+        visible={visible}
+          title={null}
+          footer={null}
+          onCancel={()=>setVisible(false)}
       >
-        <Modal.Header closeButton>
+        {/* <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
-            Leave a Review
+            
           </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="mx-2">
+        </Modal.Header> */}
+        {/* <Modal.Body className="mx-2"> */}
           <form
             onSubmit={(e) => submitReview(e)}
             className="ps-form--review"
@@ -226,9 +230,10 @@ const Invoice = ({ handleShowAuthModal }) => {
             </div>
             <Upload
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              method="POST"
               listType="picture-card"
               fileList={formData?.fileList}
-              // onPreview={handlePreview}
+              onPreview={handlePreview}
               onChange={handleImageChange}
             >
               {fileList.length >= 8 ? null : (
@@ -238,14 +243,15 @@ const Invoice = ({ handleShowAuthModal }) => {
                 </div>
               )}
             </Upload>
-            {/* <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={this.handleCancel}
-        >
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
-        </Modal> */}
+            <Modal
+              visible={preview.previewVisible}
+              title={preview.previewTitle}
+              footer={null}
+              onCancel={handlePreviewCancel}
+            >
+              <img alt="example" style={{ width: '100%' }} src={preview.previewImage} />
+            </Modal>
+
             <div className="form-group">
               <textarea
                 name="review"
@@ -281,7 +287,7 @@ const Invoice = ({ handleShowAuthModal }) => {
               </button>
             </div>
           </form>
-        </Modal.Body>
+        {/* </Modal.Body> */}
       </Modal>
 
       <div className="main-content invoice-main-content">

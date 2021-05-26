@@ -61,10 +61,10 @@ class MiniShoppinCart extends Component {
       userData()?.token || "",
       async (data, isSuccess) => {
         if (data.cart) {
-          await this.props.getCartItems(() => {
+          if(data.cart){
+            await this.props.getCartItems(data.cart.id);
             this.setState({ isCartProcessing: false });
-          });
-
+          }
           // this.props.handleShowShoppingCart();
         } else {
           this.props.handleClearCart();
@@ -939,8 +939,8 @@ class MiniShoppinCart extends Component {
               {/* </div> */}
               <div className="place-order-area">
                     <div className="place-order-area-top">
-                  <div className="spacial-code">
-                    <p onClick={()=>this.setState({haveSpecialCoupon: !this.state.haveSpecialCoupon})} className="btn">
+                  <div className="spacial-code w-100" onClick={()=>this.setState({haveSpecialCoupon: !this.state.haveSpecialCoupon})}>
+                    <p className="btn">
                       <FiArrowDownCircle /> Have a special coupon
                     </p>
                   </div>

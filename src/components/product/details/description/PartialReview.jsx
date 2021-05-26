@@ -192,7 +192,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
               <p>{review?.created_at ? moment(review?.created_at).fromNow() : ""}</p>
               <p className="customer-name-container">
                 by{" "}
-                <span className="customer-name">{review?.name || "N/A"}</span>
+                <span className="customer-name">{review?.customer?.name || "N/A"}</span>
               </p>
               
               <p className="review">{review?.review || "N/A"}</p>

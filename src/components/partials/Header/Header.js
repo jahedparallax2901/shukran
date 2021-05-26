@@ -1,18 +1,8 @@
 import React, { Component } from "react";
-import { menuContents, navigationList } from "../../../temp-data/homeData";
-import shukranLogo from "../../../assets/img/shukran.png";
 import clothing7 from "../../../assets/img/products/clothing/7.jpg";
-import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
-import HeaderPromotion from "./HeaderPromotion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSearch,
-  faShoppingBag,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
 import HeaderMobile from "./HeaderMobile";
+import HeaderPromotion from "./HeaderPromotion";
 import HeaderStandard from "./HeaderStandard";
-import { Link } from "react-router-dom";
 import HeaderStandardProduct from "./HeaderStandardProduct";
 
 class Header extends Component {
@@ -65,9 +55,9 @@ class Header extends Component {
                   <a className="ps-btn" href="#">
                     View Cart
                   </a>
-                  <Link className={`ps-btn`} to={`/checkout`} >
+                  {/* <Link className={`ps-btn`} to={`/checkout`} >
                     Checkout
-                  </Link>
+                  </Link> */}
                 </figure>
               </div>
             </div>

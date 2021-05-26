@@ -1,31 +1,25 @@
 import {
-  faSearch,
-  faShoppingBag,
-  faTimes,
-  faUser,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import clothing7 from "../../../assets/img/products/clothing/7.jpg";
-import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
-import shukranLogo from "../../../assets/img/shukran.png";
 import React, { Component } from "react";
+import { Spinner } from "react-bootstrap";
+import { AiOutlineClose, AiOutlineUser } from "react-icons/ai";
+import { IoMdLogOut } from "react-icons/io";
+import { RiShoppingBagLine } from "react-icons/ri";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import shukranLogo from "../../../assets/img/shukran.png";
+import "../../../assets/scss/my-changes.scss";
+import { userData } from "../../../helpers/authUtils";
 import {
   getCartItems,
   handleAddToCart,
   handleClearCart,
   handleShowAuthModal,
   handleShowShoppingCart,
-  handleSignOut,
+  handleSignOut
 } from "../../../redux";
-import { connect } from "react-redux";
-import { userData } from "../../../helpers/authUtils";
-import { Spinner } from "react-bootstrap";
-import { AiOutlineClose, AiOutlineUser } from "react-icons/ai";
-import "../../../assets/scss/my-changes.scss";
-import SearchHeader from "../../header/SearchHeader";
-import { RiLogoutBoxRLine, RiShoppingBagLine } from "react-icons/ri";
-import { IoMdLogOut } from "react-icons/io";
 
 class HeaderMobile extends Component {
   state = {
@@ -71,9 +65,11 @@ class HeaderMobile extends Component {
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
-          await this.props.getCartItems(data?.cart?.id);
-          this.setState({ isCartProcessing: false });
 
+          if(data.cart){
+            await this.props.getCartItems(data.cart.id);
+            this.setState({ isCartProcessing: false });
+          }
           // this.props.handleShowShoppingCart();
         } else {
           localStorage.removeItem("cart_id");
@@ -174,16 +170,19 @@ class HeaderMobile extends Component {
                               </strong>
                             </h3>
                             <figure>
-                              <a
+                              <Link
                                 className="ps-btn"
                                 href="#"
-                                onClick={handleShowShoppingCart}
+                                onClick={(e)=>{
+                                  e.preventDefault();
+                                  this.props.handleShowShoppingCart();
+                                }}
                               >
                                 View Cart
-                              </a>
-                              <Link to="/checkout" className="ps-btn">
-                                Checkout
                               </Link>
+                              {/* <Link to="/checkout" className="ps-btn">
+                                Checkout
+                              </Link> */}
                             </figure>
                           </div>
                         </>

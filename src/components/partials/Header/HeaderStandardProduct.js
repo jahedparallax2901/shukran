@@ -1,34 +1,26 @@
-import React, { Component } from "react";
-import shukranLogo from "../../../assets/img/shukran.png";
-import clothing7 from "../../../assets/img/products/clothing/7.jpg";
-import downloadBodyspray from "../../../assets/img/downloads/bodyspray.JPG";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
+import React, { Component } from "react";
+import { Spinner } from "react-bootstrap";
 import {
-  BsList,
-  BsChevronDown,
-  BsHeart,
-  BsBag,
-  AiOutlineClose,
+  AiOutlineClose, BsBag, BsHeart, BsList
 } from "react-icons/all";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import shukranLogo from "../../../assets/img/shukran.png";
+import { userData } from "../../../helpers/authUtils";
 import {
   getCartItems,
   handleAddToCart,
   handleClearCart,
   handleShowAuthModal,
   handleShowShoppingCart,
-  handleSignOut,
+  handleSignOut
 } from "../../../redux";
-import { connect } from "react-redux";
-import Menu from "../../elements/menu/Menu";
 import { processGetRequest } from "../../../services/baseServices";
-import SearchHeader from "../../header/SearchHeader.jsx";
-import { Link } from "react-router-dom";
-import { userData } from "../../../helpers/authUtils";
-import { toast } from "react-toastify";
-import { Spinner } from "react-bootstrap";
 import { menuItems } from "../../../temp-data/homeData";
+import Menu from "../../elements/menu/Menu";
+import SearchHeader from "../../header/SearchHeader.jsx";
 import ProductOnHeader from "./ProductOnHeader";
 
 class HeaderStandardProduct extends Component {
@@ -82,10 +74,11 @@ class HeaderStandardProduct extends Component {
       newProductlist,
       userData()?.token || "",
       async (data, isSuccess) => {
-        if (isSuccess) {
-          await this.props.getCartItems(data.cart.id);
-          this.setState({ isCartProcessing: false });
-
+        if (data.cart) {
+          if(data.cart){
+            await this.props.getCartItems(data.cart.id);
+            this.setState({ isCartProcessing: false });
+          }
           // this.props.handleShowShoppingCart();
         } else {
           localStorage.removeItem("cart_id");
@@ -259,16 +252,19 @@ class HeaderStandardProduct extends Component {
                                 </strong>
                               </h3>
                               <figure>
-                                <a
+                                <Link
                                   className="ps-btn"
                                   href="#"
-                                  onClick={handleShowShoppingCart}
+                                  onClick={(e)=>{
+                                    e.preventDefault();
+                                    handleShowShoppingCart();
+                                  }}
                                 >
                                   View Cart
-                                </a>
-                                <a className="ps-btn" href="checkout.html">
+                                </Link>
+                                {/* <a className="ps-btn" href="checkout.html">
                                   Checkout
-                                </a>
+                                </a> */}
                               </figure>
                             </div>
                           </>
