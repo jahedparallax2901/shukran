@@ -171,7 +171,14 @@
 } */
 
 /* Aside Drower */
+.asside-card-drower-area {
+
+}
 .asside-card-drower {
+  position: fixed;
+  right: -76px;
+  top: 50%;
+  transform: translate(0%, -50%);
   height: auto;
   width: auto;
   display: flex;
@@ -187,12 +194,42 @@
   border: 0px;
   outline: 0px;
   cursor: pointer;
-  position: fixed;
-  right: 0px;
-  top: 50%;
-  margin-top: -46px;
-  z-index: 99;
+  z-index: 9999;
   transition: all 0.3s ease-in-out;
+}
+.cart-hover-effect{
+  position: fixed;
+  top: 50%;
+  right: 0px;
+  transform: translate(0px, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 65px;
+  color: #fff;
+  background-color: #006c32;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: rgb(0 0 0 / 16%) 0px 21px 36px;
+  cursor: pointer;
+  z-index: 9999;
+  animation: pulse 6s infinite 2s cubic-bezier(0.25, 0, 0, 1);
+  box-shadow: 0 0 0 0 rgb(0 108 50);
+  opacity: 1;
+  visibility: visible;
+}
+.cart-hover-effect svg{
+  font-size: 20px;
+}
+.asside-card-drower-area:hover .asside-card-drower{
+  right: 0px;
+}
+.asside-card-drower-area:hover .cart-hover-effect{
+  opacity: 0;
+  visibility: hidden;
 }
 @media screen and (max-width: 1024px) {
   #homepage-5 .ps-home-banner .ps-section__center {
@@ -205,7 +242,7 @@
   }
 }
 .asside-card-drower {
-  animation: pulse 6s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  animation: pulse 6s infinite 2s cubic-bezier(0.25, 0, 0, 1);
   box-shadow: 0 0 0 0 rgb(0 108 50);
 }
 .button-pulse-primary {
