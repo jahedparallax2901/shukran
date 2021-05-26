@@ -158,8 +158,8 @@ textarea.form-control {
 
     input[type='checkbox']:checked ~ label {
         &:before {
-            background-color: $color-2nd;
-            border-color: $color-2nd;
+            background-color: #007bff;
+            border-color: #007bff;
         }
 
         &:after {

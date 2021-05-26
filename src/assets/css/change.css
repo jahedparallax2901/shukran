@@ -171,7 +171,14 @@
 } */
 
 /* Aside Drower */
+.asside-card-drower-area {
+
+}
 .asside-card-drower {
+  position: fixed;
+  right: -76px;
+  top: 50%;
+  transform: translate(0%, -50%);
   height: auto;
   width: auto;
   display: flex;
@@ -187,12 +194,42 @@
   border: 0px;
   outline: 0px;
   cursor: pointer;
-  position: fixed;
-  right: 0px;
-  top: 50%;
-  margin-top: -46px;
-  z-index: 99;
+  z-index: 9999;
   transition: all 0.3s ease-in-out;
+}
+.cart-hover-effect{
+  position: fixed;
+  top: 50%;
+  right: 0px;
+  transform: translate(0px, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 65px;
+  color: #fff;
+  background-color: #006c32;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: rgb(0 0 0 / 16%) 0px 21px 36px;
+  cursor: pointer;
+  z-index: 9999;
+  animation: pulse 6s infinite 2s cubic-bezier(0.25, 0, 0, 1);
+  box-shadow: 0 0 0 0 rgb(0 108 50);
+  opacity: 1;
+  visibility: visible;
+}
+.cart-hover-effect svg{
+  font-size: 20px;
+}
+.asside-card-drower-area:hover .asside-card-drower{
+  right: 0px;
+}
+.asside-card-drower-area:hover .cart-hover-effect{
+  opacity: 0;
+  visibility: hidden;
 }
 @media screen and (max-width: 1024px) {
   #homepage-5 .ps-home-banner .ps-section__center {
@@ -205,7 +242,7 @@
   }
 }
 .asside-card-drower {
-  animation: pulse 6s infinite 3s cubic-bezier(0.25, 0, 0, 1);
+  animation: pulse 6s infinite 2s cubic-bezier(0.25, 0, 0, 1);
   box-shadow: 0 0 0 0 rgb(0 108 50);
 }
 .button-pulse-primary {
@@ -1663,14 +1700,14 @@ button.ps-btn:active {
 }
 .asside-card-checkout .ps-checkbox label:before {
   border: 1px solid rgb(129, 129, 129);
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  border-radius: 2px;
+  width: 12px;
+  height: 12px;
   top: 5px;
 }
 .asside-card-checkout .ps-checkbox label::after {
-  top: 7.5px;
-  left: 6px;
+  top: 5.5px;
+  left: 4px;
   width: 4px;
   height: 8px;
 }
@@ -1787,15 +1824,20 @@ button.ps-btn:active {
   margin-right: 5px;
   font-weight: 500;
 }
-
+.cart-chackbox{
+  position: relative;
+  top: 4px;
+  left: 8px;
+}
 .card-item-area{
 
 }
 .single-cart{
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px 5px 0px;
+  padding: 5px 10px 5px 10px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid #ebebeb;
 }
@@ -1807,7 +1849,7 @@ button.ps-btn:active {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-right: 3px;
+  padding-right: 5px;
 }
 .single-cart .item-quantity span{
   font-size: 1rem;
@@ -1822,7 +1864,7 @@ button.ps-btn:active {
 .single-cart .item-img{
   height: 45px;
   width: 45px;
-  padding-right: 3px;
+  padding-right: 5px;
 }
 .single-cart .item-img img{
   width: 100%;
@@ -1831,8 +1873,8 @@ button.ps-btn:active {
 
 .single-cart .item-name{
   font-size: 1rem;
-  max-width: 130px;
-  padding-right: 3px;
+  max-width: 120px;
+  padding-right: 5px;
 }
 .single-cart .item-name p{
   font-size: 1rem;
@@ -1842,7 +1884,7 @@ button.ps-btn:active {
 }
 .single-cart .item-name .price-by-quantity{
   font-size: 1rem;
-  padding-right: 3px;
+  padding-right: 5px;
 }
 .single-cart .item-name .price-by-quantity span{
   color: #787878;
@@ -1851,14 +1893,18 @@ button.ps-btn:active {
 
 .single-cart .item-total-price{
   font-size: 1rem;
-  padding-right: 3px;
+  padding-right: 5px;
 }
 .single-cart .item-total-price span{
   color: #787878;
   font-size: 1rem;
 }
 
-.single-cart .item-delete{}
+.single-cart .item-delete{
+  position: absolute;
+  top: -23px;
+  right: 10px;
+}
 .single-cart .item-delete span{
   color: #787878;
   font-size: 1rem;
