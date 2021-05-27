@@ -1,40 +1,39 @@
-import logo from "./logo.svg";
 import { Provider } from "react-redux";
-import store from "./redux/store";
 import {
   BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
+
+
+  Route, Switch
 } from "react-router-dom";
-import Home from "./pages/Home";
 import AuthModal from "./components/auth/AuthModal";
+import PrivateRoute from "./components/PrivateRoute";
+import BillingAddress from "./pages/account/BillingAddress";
+import Disputes from "./pages/account/Disputes";
+import MyAccount from "./pages/account/MyAccount";
+import MyContacts from "./pages/account/MyContacts";
+import MyCoupons from "./pages/account/MyCoupons";
+import MyOrders from "./pages/account/MyOrders";
+import MyWishlist from "./pages/account/MyWishlist";
+import ShippingAddress from "./pages/account/ShippingAddress";
+import Campaign from "./pages/Campaign";
+import Checkout from "./pages/Checkout";
+import DigitalSheba from "./pages/DigitalSheba";
+import Home from "./pages/Home";
+import Invoice from "./pages/invoice";
+import LittleBangladesh from "./pages/LittleBangladesh";
+import MerchantForm from "./pages/MerchantForm";
+import NotFound from "./pages/NotFound";
+import PaymentFailed from "./pages/payment/PaymentFailed";
+import PaymentSuccess from "./pages/payment/PaymentSuccess";
+import ProductCompare from "./pages/product/ProductCompare";
 import ProductDetails from "./pages/ProductDetails";
 import SearchProduct from "./pages/SearchProduct";
-import MyOrders from "./pages/account/MyOrders";
-import MyAccount from "./pages/account/MyAccount";
-import MyCoupons from "./pages/account/MyCoupons";
-import MyWishlist from "./pages/account/MyWishlist";
-import Disputes from "./pages/account/Disputes";
-import ShippingAddress from "./pages/account/ShippingAddress";
-import BillingAddress from "./pages/account/BillingAddress";
-import NotFound from "./pages/NotFound";
-import Checkout from "./pages/Checkout";
-import Invoice from "./pages/invoice";
-import PrivateRoute from "./components/PrivateRoute";
-import MerchantForm from "./pages/MerchantForm";
-import Campaign from "./pages/Campaign";
-import BecomeAVendor from "./pages/vendor/BecomeAVendor";
-import Wishlist from "./pages/Wishlist";
 import StoreDetails from "./pages/store/StoreDetails";
-import VendorStore from "./pages/vendor/VendorStore";
-import ProductCompare from "./pages/product/ProductCompare";
-import MyContacts from "./pages/account/MyContacts";
 import VendorStoreDetails from "./pages/store/VendorStoreDetails";
-import DigitalSheba from "./pages/DigitalSheba";
-import LittleBangladesh from "./pages/LittleBangladesh";
-import PaymentSuccess from "./pages/payment/PaymentSuccess";
-import PaymentFailed from "./pages/payment/PaymentFailed";
+import BecomeAVendor from "./pages/vendor/BecomeAVendor";
+import VendorStore from "./pages/vendor/VendorStore";
+import Wishlist from "./pages/Wishlist";
+import store from "./redux/store";
 
 function App() {
   const homePath = "/";
@@ -52,6 +51,14 @@ function App() {
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
             <SearchProduct />
           </Route>
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
+            <ProductDetails />
+          </Route>
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
+            <SearchProduct />
+          </Route>
+
           <PrivateRoute
             redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
@@ -59,57 +66,63 @@ function App() {
           >
             <Checkout />
           </PrivateRoute>
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/product/:id">
-            <ProductDetails />
-          </Route>
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/search">
-            <SearchProduct />
-          </Route>
-          <Route
+
+          <PrivateRoute
+            redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
             path="/account/my-account"
           >
             <MyAccount />
-          </Route>
-          <Route
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
             path="/account/my-orders"
           >
             <MyOrders />
-          </Route>
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/account/coupons">
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/account/coupons"
+          >
             <MyCoupons />
-          </Route>
-          <Route
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
             path="/account/wishlist"
           >
             <MyWishlist />
-          </Route>
-          <Route
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
             path="/account/disputes"
           >
             <Disputes />
-          </Route>
-          <Route
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
             path="/account/shipping-address"
           >
             <ShippingAddress />
-          </Route>
-          <Route
-              onUpdate={() => window.scrollTo(0, 0)}
-              path="/account/contacts"
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/account/contacts"
           >
             <MyContacts />
-          </Route>
-          <Route
+          </PrivateRoute>
+          <PrivateRoute
+            redirectTo={homePath}
             onUpdate={() => window.scrollTo(0, 0)}
             path="/account/billing-address"
           >
             <BillingAddress />
-          </Route>
+          </PrivateRoute>
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/merchant-apply">
             <MerchantForm />
@@ -145,7 +158,10 @@ function App() {
             <VendorStore />
           </Route>
 
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/store/product/:id">
+          <Route
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/store/product/:id"
+          >
             <VendorStoreDetails />
           </Route>
 
@@ -157,10 +173,12 @@ function App() {
             <DigitalSheba />
           </Route>
 
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/little-bangladesh">
+          <Route
+            onUpdate={() => window.scrollTo(0, 0)}
+            path="/little-bangladesh"
+          >
             <LittleBangladesh />
           </Route>
-         
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/payment-success">
             <PaymentSuccess />
@@ -168,8 +186,6 @@ function App() {
           <Route onUpdate={() => window.scrollTo(0, 0)} path="/payment-failed">
             <PaymentFailed />
           </Route>
-
-
 
           <Route onUpdate={() => window.scrollTo(0, 0)} path="*">
             <NotFound />
