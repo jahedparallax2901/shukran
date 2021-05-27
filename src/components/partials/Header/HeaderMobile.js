@@ -1,6 +1,4 @@
-import {
-  faSearch
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import { Spinner } from "react-bootstrap";
@@ -20,6 +18,7 @@ import {
   handleShowShoppingCart,
   handleSignOut
 } from "../../../redux";
+import { handleClearWishlist } from "../../../redux/wishlist/wishlistActions";
 
 class HeaderMobile extends Component {
   state = {
@@ -50,6 +49,7 @@ class HeaderMobile extends Component {
 
   handleSignOut = () => {
     localStorage.clear();
+    this.props.handleClearWishlist();
     this.props.handleSignOut();
     this.props.handleClearCart();
   };
@@ -65,8 +65,7 @@ class HeaderMobile extends Component {
       userData()?.token || "",
       async (data, isSuccess) => {
         if (isSuccess) {
-
-          if(data.cart){
+          if (data.cart) {
             await this.props.getCartItems(data.cart.id);
             this.setState({ isCartProcessing: false });
           }
@@ -80,9 +79,10 @@ class HeaderMobile extends Component {
       false
     );
   };
-  
+
   render() {
-    const { user, handleShowAuthModal, shoppingCart } = this.props;
+    const { user, handleShowAuthModal, shoppingCart } =
+      this.props;
     return (
       <header
         className="header header--mobile"
@@ -173,7 +173,7 @@ class HeaderMobile extends Component {
                               <Link
                                 className="ps-btn"
                                 href="#"
-                                onClick={(e)=>{
+                                onClick={(e) => {
                                   e.preventDefault();
                                   this.props.handleShowShoppingCart();
                                 }}
@@ -201,7 +201,11 @@ class HeaderMobile extends Component {
                   <div className="ps-block--user-header mr-0">
                     <a className="ps-block__left mr-2 header__extra">
                       <i>
-                        <IoMdLogOut onClick={() => this.handleSignOut()} />
+                        <IoMdLogOut
+                          onClick={() => {
+                            this.handleSignOut();
+                          }}
+                        />
                       </i>
                     </a>
                     <a className="ps-block__right">
@@ -277,6 +281,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(handleAddToCart(productList, token, cb, isBuyNow)),
     handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
     handleClearCart: () => dispatch(handleClearCart()),
+    handleClearWishlist: () => dispatch(handleClearWishlist()),
   };
 };
 

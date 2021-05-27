@@ -15,7 +15,7 @@ import {
   handleShowShoppingCart,
   handleSignOut
 } from "../../../redux";
-import { getWishlistItems } from "../../../redux/wishlist/wishlistActions";
+import { getWishlistItems, handleClearWishlist } from "../../../redux/wishlist/wishlistActions";
 import { processGetRequest } from "../../../services/baseServices";
 import { menuItems } from "../../../temp-data/homeData";
 import Menu from "../../elements/menu/Menu";
@@ -93,6 +93,7 @@ class HeaderStandard extends Component {
 
   handleSignOut = () => {
     localStorage.clear();
+    this.props.handleClearWishlist();
     this.props.handleSignOut();
     this.props.handleClearCart();
   };
@@ -365,6 +366,7 @@ const mapDispatchToProps = (dispatch) => {
     handleShowShoppingCart: () => dispatch(handleShowShoppingCart()),
     handleClearCart: () => dispatch(handleClearCart()),
     getWishlistItems: (cb) => dispatch(getWishlistItems(cb)),
+    handleClearWishlist: ()=> dispatch(handleClearWishlist()),
   };
 };
 
