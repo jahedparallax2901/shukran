@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import BreadCrumb from "../../components/elements/BreadCrumb";
-import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import FooterMarketPlace2 from "../../components/partials/footer/FooterMarketPlace2";
 import Header from "../../components/partials/Header/Header";
 import FloatingCart from "../../components/partials/shared/shopping-cart/FloatingCart";
 import MiniShoppinCart from "../../components/partials/shopping-cart/MiniShoppinCart";
-import VendorStore from "../vendor/VendorStore";
 import Store from "./Store";
 
 const VendorStoreDetails = () => {
@@ -23,7 +21,7 @@ const VendorStoreDetails = () => {
   const { id } = useParams();
 
   useState(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auton" });
   }, []);
 
   return (

@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import BreadCrumb from "../components/elements/BreadCrumb";
 import SkeletonProductDetail from "../components/elements/skeletons/SkeletonProductDetail";
-import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3.jsx";
 import ContainerProductDetail from "../components/layouts/ContainerProductDetail";
 import Header from "../components/partials/Header/Header";
-import CustomerBought from "../components/product/CustomerBought";
 // import HeaderDefault from '../components/product/details/header/HeaderDefault';
 // import HeaderProduct from '../components/product/details/header/HeaderProduct';
 import ProductDetailFullwidth from "../components/product/ProductDetailFullwidth";
 import ProductWidgets from "../components/product/ProductWidgets";
 import RelatedProduct from "../components/product/RelatedProduct";
 import {
-  processGetRequest,
-  processPostRequest,
+  processGetRequest
 } from "../services/baseServices";
-import { singleProduct } from "../temp-data/product";
 
 const ProductDetails = () => {
   // const router = useRouter();
@@ -38,7 +34,7 @@ const ProductDetails = () => {
         setTimeout(
           function () {
             setLoading(false);
-          }.bind(this),
+          },
           250
         );
       })
@@ -47,7 +43,7 @@ const ProductDetails = () => {
         setTimeout(
           function () {
             setLoading(false);
-          }.bind(this),
+          },
           250
         );
       });
@@ -55,7 +51,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     getProduct(id);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [id]);
 
   const breadCrumb = [

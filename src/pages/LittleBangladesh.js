@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { CgSearchLoading } from "react-icons/cg";
-import { IoMdConstruct } from "react-icons/io";
 import { SiGooglesearchconsole } from "react-icons/si";
 import StatusBlock from "../components/common/StatusBlock";
 import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
 
 const LittleBangladesh = () => {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
   return (

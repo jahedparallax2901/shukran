@@ -1,14 +1,13 @@
-import React, { Component, useEffect, useState } from "react";
-import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
-import BreadCrumb from "../components/elements/BreadCrumb";
-import WidgetSearchCategories from "../components/search/widgets/WidgetSearchCategories";
-import WidgetOtherFilters from "../components/search/widgets/WidgetOtherFilters";
-import SearchItems from "../components/search/SearchItems";
 import queryString from "query-string";
-import { processGetRequest } from "../services/baseServices";
-import { useHistory } from "react-router";
-import { fetchSearchedProducts } from "../redux/product-search/productSearchActions";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router";
+import BreadCrumb from "../components/elements/BreadCrumb";
+import ContainerMarketPlace3 from "../components/layouts/ContainerMarketPlace3";
+import SearchItems from "../components/search/SearchItems";
+import WidgetOtherFilters from "../components/search/widgets/WidgetOtherFilters";
+import WidgetSearchCategories from "../components/search/widgets/WidgetSearchCategories";
+import { fetchSearchedProducts } from "../redux/product-search/productSearchActions";
 
 const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
   const breadCrumb = [
@@ -60,7 +59,7 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
   useEffect(() => {
     const params = query;
     getProducts(params);
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top: 0, behavior: 'auto'});
   }, []);
 
   return (
