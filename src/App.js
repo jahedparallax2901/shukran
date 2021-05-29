@@ -173,6 +173,10 @@ function App() {
             <DigitalSheba />
           </Route>
 
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/order-tracking">
+            <DigitalSheba />
+          </Route>
+
           <Route
             onUpdate={() => window.scrollTo(0, 0)}
             path="/little-bangladesh"

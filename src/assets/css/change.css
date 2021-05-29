@@ -129,16 +129,16 @@
   margin: 0;
 }
 .header--standard .header__content-left .ps-logo img {
-  max-height: 70px;
+  max-height: 50px;
   height: 100%;
-  width: 100%;
+  width: auto;
 }
 .header-navigation {
   display: flex;
   justify-content: space-between;
 }
 .header--standard .header__content {
-  padding: 15px 0;
+  padding: 5px 0;
 }
 
 /*============= Mobile Style =================*/

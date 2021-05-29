@@ -7,7 +7,7 @@ import { IoMdLogOut } from "react-icons/io";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import shukranLogo from "../../../assets/img/shukran.png";
+import shukranLogo from "../../../assets/img/shukran-old.png";
 import "../../../assets/scss/my-changes.scss";
 import { userData } from "../../../helpers/authUtils";
 import {

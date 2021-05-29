@@ -11,7 +11,7 @@ class Header extends Component {
 
     return (
       <>
-        <HeaderPromotion />
+        {/* <HeaderPromotion /> */}
         {isProduct ? (
           <HeaderStandardProduct product={product} selectedAttributeProduct={selectedAttributeProduct}/>
         ) : (

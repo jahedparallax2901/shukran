@@ -149,7 +149,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
 
   return (
     <form className="ps-form--quick-search" onSubmit={handleSubmit}>
-      <div className="ps-form__categories">
+      {/* <div className="ps-form__categories">
         <select
           defaultValue={selectedCategoryId}
           className="form-control"
@@ -162,7 +162,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
           </option>
           {selectOptionView}
         </select>
-      </div>
+      </div> */}
       <div className="ps-form__input">
         <input
           ref={inputEl}

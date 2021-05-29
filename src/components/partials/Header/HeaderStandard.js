@@ -2,10 +2,10 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import { Spinner } from "react-bootstrap";
-import { AiOutlineClose, BsBag, BsHeart, BsList } from "react-icons/all";
+import { AiOutlineClose, BiUser, BsBag, BsHeart, BsList, FiPhone } from "react-icons/all";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import shukranLogo from "../../../assets/img/shukran.png";
+import shukranLogo from "../../../assets/img/shukran-old.png";
 import { userData } from "../../../helpers/authUtils";
 import {
   getCartItems,
@@ -276,7 +276,7 @@ class HeaderStandard extends Component {
                   <div className="ps-block--user-header mr-0">
                     <div className="ps-block__left">
                       <i>
-                        <FontAwesomeIcon icon={faUser} />
+                        <BiUser />
                       </i>
                     </div>
                     <div className="ps-block__right">
@@ -288,7 +288,7 @@ class HeaderStandard extends Component {
                   <div className="ps-block--user-header mr-0">
                     <div className="ps-block__left">
                       <i>
-                        <FontAwesomeIcon icon={faUser} />
+                      <BiUser />
                       </i>
                     </div>
                     <div className="ps-block__right">
@@ -335,7 +335,10 @@ class HeaderStandard extends Component {
               <div className="navigation__right">
                 <div className="ps-block--header-hotline inline">
                   <p>
-                    <i className="icon-telephone"></i>Hotline:
+                    <i>
+                    <FiPhone/>
+                    </i>
+                    Hotline:
                     <strong>+880-234-5678</strong>
                   </p>
                 </div>

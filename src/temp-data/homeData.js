@@ -95,11 +95,11 @@ import { GiPikeman } from "react-icons/gi";
 import { GrUserFemale } from "react-icons/gr";
 
 export const menuItems = [
-  {id: 1, name: 'Digital Sheba', url: '/digital-sheba'},
+  {id: 1, name: 'Home', url: '/'},
   {id: 2, name: 'Campaign', url: '/campaign'},
   {id: 3, name: 'Vendor Stores', url: '/vendor/store'},
-  {id: 3, name: 'Little Bangladesh', url: '/little-bangladesh'},
-  {id: 2, name: 'Become a Vendor', url: '/vendor/become-a-vendor'},
+  {id: 4, name: 'Become a Vendor', url: '/vendor/become-a-vendor'},
+  {id: 5, name: 'OrderTracking', url: '/order-tracking'},
 ]
 export const menuContents = [
   {
