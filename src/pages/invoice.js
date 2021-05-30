@@ -13,8 +13,9 @@ import { handleShowAuthModal } from "../redux";
 import {
   processDeleteRequest,
   processGetRequest,
-  processPostRequestMultiImage
+  processPostRequestMultiImage,
 } from "../services/baseServices";
+import { response } from "../temp-data/response";
 
 const Invoice = ({ handleShowAuthModal }) => {
   const { id } = useParams();
@@ -22,6 +23,7 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [json, setJson] = useState();
   const [timeLineStatus, setTimeLineStatus] = useState(0);
   const [timeLineArray, setTimeLineArray] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -36,7 +38,12 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [fileList, setFileList] = useState([]);
   const [isValidated, setIsValidated] = useState(true);
   const [orderReviews, setOrderReviews] = useState([]);
-  const [preview, setPreview] = useState({previewVisible: false, previewTitle: "", previewImage: null});
+  const [preview, setPreview] = useState({
+    previewVisible: false,
+    previewTitle: "",
+    previewImage: null,
+  });
+  const [reviewId, setReviewId] = useState(null);
 
   useEffect(() => {
     processGetRequest(`/order-details/${id}`, {}, true).then((res) => {
@@ -71,8 +78,10 @@ const Invoice = ({ handleShowAuthModal }) => {
     setFormData({ ...formData, rating: value });
   };
 
-  const submitReview = (e) => {
+  const submitReview = (e, id=null) => {
     e.preventDefault();
+    const url = isUpdating? `/product-review/${id}` : `/product-review`
+
     const form = e.currentTarget;
     if (
       form.checkValidity() === false ||
@@ -96,15 +105,19 @@ const Invoice = ({ handleShowAuthModal }) => {
           data.append(key, formData[key]);
         }
       });
-      processPostRequestMultiImage("/product-review", data, true)
+      processPostRequestMultiImage(url, data, true)
         .then((res) => {
           setFormData({ product_id: null, images: [], order_id: id });
           loadReviewByOrderId(id);
           toast.success(res.data.message);
           setVisible(false);
+          setIsUpdating(false);
+          setReviewId(null);
         })
         .catch((err) => {
           console.log("err 401", err);
+          setIsUpdating(false);
+          setReviewId(null);
           if (err.status === 401) {
             setValidationMessage("Please log in before giving review");
             handleShowAuthModal();
@@ -143,7 +156,35 @@ const Invoice = ({ handleShowAuthModal }) => {
 
   const handlereviewEdit = (e, id) => {
     e.preventDefault();
+    setReviewId(id);
+    // processGetRequest(`/product-review/${id}/edit`, {}, true)
+    //   .then((res) => {
+    //     setFormData({
+    //       order_id: res.data.order_id,
+    //       product_id: res.data.product_id,
+    //       images: res.data.product_review_image,
+    //       rating: res.data.rating,
+    //       review: res.data.review
+    //     });
+    //   }).then(() =>{
+    //     setVisible(true);
+    //     setIsUpdating(true);
+    //   })
+    //   .catch((err) => {
+    //     toast.error("Sorry, you cannot edit this review");
+    //   });
+    const res = response;
+    setFormData({
+      order_id: res.order_id,
+      product_id: res.product_id,
+      images: res.product_review_image,
+      rating: res.rating,
+      review: res.review
+    })
+      setVisible(true);
+      setIsUpdating(true);
   };
+
 
   const handlereviewDelete = (e, id) => {
     e.preventDefault();
@@ -166,17 +207,21 @@ const Invoice = ({ handleShowAuthModal }) => {
     });
   };
 
-  const handlePreviewCancel = () => setPreview({...preview, previewVisible: false});
+  const handlePreviewCancel = () =>
+    setPreview({ ...preview, previewVisible: false });
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
 
-    setPreview({...preview, previewImage: file.url || file.preview,
+    setPreview({
+      ...preview,
+      previewImage: file.url || file.preview,
       previewVisible: true,
       previewTitle:
-        file.name || file.url.substring(file.url.lastIndexOf("/") + 1)})
+        file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
+    });
   };
 
   const handleImageChange = ({ fileList }) =>
@@ -193,9 +238,9 @@ const Invoice = ({ handleShowAuthModal }) => {
         // aria-labelledby="example-modal-sizes-title-lg"
 
         visible={visible}
-          title={null}
-          footer={null}
-          onCancel={()=>setVisible(false)}
+        title={null}
+        footer={null}
+        onCancel={() => setVisible(false)}
       >
         {/* <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
@@ -203,65 +248,69 @@ const Invoice = ({ handleShowAuthModal }) => {
           </Modal.Title>
         </Modal.Header> */}
         {/* <Modal.Body className="mx-2"> */}
-          <form
-            onSubmit={(e) => submitReview(e)}
-            className="ps-form--review"
-            novalidate
-            validate={isValidated}
+        <form
+          onSubmit={(e) => submitReview(e,  reviewId)}
+          className="ps-form--review"
+          novalidate
+          validate={isValidated}
+        >
+          {validationMessage && (
+            <Alert variant="warning">{validationMessage}</Alert>
+          )}
+
+          <h4>{isUpdating? "Update your review": "Submit Your Review"}</h4>
+          <p>
+            Your email address will not be published. Required fields are marked
+            <sup>*</sup>
+          </p>
+          <label>Your rating for this product</label>
+          <div className="form-group form-group__rating">
+            <Rate
+              tooltips={desc}
+              onChange={handleRateOnChange}
+              defaultValue={formData?.rating || 0}
+              character={<BsFillStarFill />}
+            />
+          </div>
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            method="POST"
+            listType="picture-card"
+            fileList={formData?.fileList}
+            onPreview={handlePreview}
+            onChange={handleImageChange}
           >
-            {validationMessage && (
-              <Alert variant="warning">{validationMessage}</Alert>
+            {fileList.length >= 8 ? null : (
+              <div>
+                <AiOutlinePlus />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </div>
             )}
+          </Upload>
+          <Modal
+            visible={preview.previewVisible}
+            title={preview.previewTitle}
+            footer={null}
+            onCancel={handlePreviewCancel}
+          >
+            <img
+              alt="example"
+              style={{ width: "100%" }}
+              src={preview.previewImage}
+            />
+          </Modal>
 
-            <h4>Submit Your Review</h4>
-            <p>
-              Your email address will not be published. Required fields are
-              marked
-              <sup>*</sup>
-            </p>
-            <label>Your rating for this product</label>
-            <div className="form-group form-group__rating">
-              <Rate
-                tooltips={desc}
-                onChange={handleRateOnChange}
-                value={formData?.rating || 0}
-                character={<BsFillStarFill />}
-              />
-            </div>
-            <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              method="POST"
-              listType="picture-card"
-              fileList={formData?.fileList}
-              onPreview={handlePreview}
-              onChange={handleImageChange}
-            >
-              {fileList.length >= 8 ? null : (
-                <div>
-                  <AiOutlinePlus />
-                  <div style={{ marginTop: 8 }}>Upload</div>
-                </div>
-              )}
-            </Upload>
-            <Modal
-              visible={preview.previewVisible}
-              title={preview.previewTitle}
-              footer={null}
-              onCancel={handlePreviewCancel}
-            >
-              <img alt="example" style={{ width: '100%' }} src={preview.previewImage} />
-            </Modal>
-
-            <div className="form-group">
-              <textarea
-                name="review"
-                className="form-control"
-                rows="6"
-                placeholder="Write your review here"
-                onChange={inputOnChange}
-              ></textarea>
-            </div>
-            {/* <div className="row">
+          <div className="form-group">
+            <textarea
+              name="review"
+              className="form-control"
+              rows="6"
+              placeholder="Write your review here"
+              onChange={inputOnChange}
+              defaultValue={formData?.review}
+            ></textarea>
+          </div>
+          {/* <div className="row">
             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
               <div className="form-group">
                 <input
@@ -281,12 +330,12 @@ const Invoice = ({ handleShowAuthModal }) => {
               </div>
             </div>
           </div> */}
-            <div className="form-group submit">
-              <button type="submit" className="ps-btn">
-                Submit Review
-              </button>
-            </div>
-          </form>
+          <div className="form-group submit">
+            <button type="submit" className="ps-btn">
+              Submit Review
+            </button>
+          </div>
+        </form>
         {/* </Modal.Body> */}
       </Modal>
 
@@ -760,7 +809,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 });
                                               }}
                                             >
-                                              Add Review
+                                              Review
                                             </button>
                                           )}
                                         </>
