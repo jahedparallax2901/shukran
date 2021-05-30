@@ -7,8 +7,8 @@ import { BsChevronRight } from 'react-icons/bs';
 import { GiShurikenAperture } from 'react-icons/gi';
 import { GoDeviceMobile } from 'react-icons/go';
 import banner1 from "../../../assets/img/downloads/banner-1.jpg";
-import downloadsBanner5 from "../../../assets/img/downloads/banner5.png";
-import downloadsBanner6 from "../../../assets/img/downloads/banner6.png";
+import addBanner1 from "../../../assets/img/home-banner1.png";
+import addBanner2 from "../../../assets/img/home-banner2.jpeg";
 import { processGetRequest } from "../../../services/baseServices";
 import Menu from "../../elements/menu/Menu";
 
@@ -53,10 +53,9 @@ class TopBanner extends Component {
         <section className="ps-home-banner">
           <div className="container">
             <div className="ps-section__left">
-              <div className="ps-section__left">
-                <Menu source={categories} className="menu--dropdown" />
-              </div>
+              <Menu source={categories} className="menu--dropdown" />
             </div>
+            {/* <div className="d-flex"> */}
             <div className="ps-section__right">
               {top_sliders_box.map((item) => (
                 <a key={item.id} href={item.deeplink}>
@@ -77,15 +76,33 @@ class TopBanner extends Component {
                   </div>
                 ))}
               </Slider>
-              {/* <div className="ps-section__banner-box">
+
+            </div>
+            {/* </div> */}
+            {/* <div className="d-block">
+              <div className="ps-section__banner-box">
                 {top_sliders_box.map((item) => (
                   <a key={item.id} href={item.deeplink}>
                     <img src={item?.file_attach?.file_url} alt={item?.file_attach?.file_name} />
                   </a>
                 ))}
-              </div> */}
-            </div>
+              </div>
+            </div> */}
 
+          </div>
+          <div className="container">
+            <div className="d-block">
+              <div className="ps-section__banner-box">
+                <div className="banner-add">
+                  <div className="banner-add-item">
+                    <img src={addBanner1} alt="fail" />
+                  </div>
+                  <div className="banner-add-item">
+                    <img src={addBanner2} alt="fail" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
