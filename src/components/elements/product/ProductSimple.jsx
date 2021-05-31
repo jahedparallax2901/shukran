@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { AiFillEye } from 'react-icons/ai';
 import { Modal } from "antd";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
@@ -29,6 +30,9 @@ const ProductSimple = ({ product, wishlist }) => {
   };
   return (
     <div className="ps-product ps-product--simple">
+      <div className="ps-product__wishlist">
+        <AiFillEye/>
+      </div>
       <div class="ps-product__badge">
         <i>
           

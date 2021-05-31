@@ -939,7 +939,21 @@ class MiniShoppinCart extends Component {
                   </a> */}
               {/* </div> */}
               <div className="place-order-area">
-                    <div className="place-order-area-top">
+              <div className="cart-amount-place-order">
+                  <p className="cart-amount-subtotal">
+                    <span>Sub Total</span>
+                    <span>৳200.00</span>
+                  </p>
+                  <p className="cart-amount-delivery-charge">
+                    <span >Delivery Charge</span>
+                    <span>৳150.00</span>
+                  </p>
+                  {/* <p className="cart-amount-discount">
+                    <span>Discount</span>
+                    <span>৳15.00</span>
+                  </p> */}
+              </div>
+                <div className="place-order-area-top">
                   <div className="spacial-code w-100" onClick={()=>this.setState({haveSpecialCoupon: !this.state.haveSpecialCoupon})}>
                     <p className="btn">
                       <FiArrowDownCircle /> Have a special coupon

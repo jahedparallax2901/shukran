@@ -1,4 +1,43 @@
 /*=== Home Banner Style ===*/
+.banner-slider-top{
+    display: flex;
+    flex-direction: column;
+    .banner-slider-top-inner{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        @media screen and (max-width: 768px){
+            flex-direction: column;
+        }
+        .ps-section__right{
+            display: inline-block;  
+            max-width: 50% !important;
+            width: 100%;
+        }
+        .ps-section__center{
+            display: inline-block;
+            max-width: 50% !important;
+            width: 100%;
+        }
+    }
+    .banner-slider-bottom-inner{
+        @media screen and (max-width: 768px){
+            margin-top: 10px;
+        }
+        .ps-section__banner-box{
+            .banner-add{
+                .banner-add-item{
+                    &:not(:last-child){
+                        margin-right: 15px;
+                        @media screen and (max-width: 1024px) {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 .ps-home-channel-area{
     .ps-home-channer-innner{
         display: flex;
