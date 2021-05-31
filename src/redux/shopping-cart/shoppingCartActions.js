@@ -133,16 +133,16 @@ export const getCartItems = (callback) => {
   return (dispatch) => {
     dispatch(getCartItemsRequest());
 
-    return axois
+    axois
       .get(BASE_API_URL + "/get-cart", {
         params: { cart_id: cart_id },
         headers: {
           "Content-Type": "application/json",
           "Authorization": authData?.token || "",
-          "x-api-client": getDeviceType(),
         },
       })
       .then((res) => {
+        console.log("Successfull", res.data)
         // if (res.data.status === 1 || res.data.status === 2) {
         dispatch(getCartItemsSuccess(res.data));
         callback(res.data, true);
@@ -152,6 +152,8 @@ export const getCartItems = (callback) => {
       })
       .catch((err) => {
         dispatch(getCartItemsFailure(err.message));
+        console.log(err);
+        // callback(err, false);
       });
   };
 };

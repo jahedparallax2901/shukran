@@ -57,7 +57,7 @@ const reducer = (state = initialState, action) => {
       };
     case GET_CART_ITEMS_SUCCESS:
       let productArray = [];
-      action.payload.cart_items.map((item) => {
+      action?.payload?.cart_items?.map((item) => {
         item.store_product.map((store_item) => {
           const obj = {
             product_id: store_item.product_id,
