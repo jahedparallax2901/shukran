@@ -250,8 +250,8 @@ const Checkout = (props) => {
               }
             }else {
               props.getCartItems((data, isSuccess)=>{
-                const items = data.cart.total_prdoucts;
-                if(items <= 0){
+                console.log("Cart response", data);
+                if(data?.cart){
                   localStorage.removeItem("cart_id");
                   props.handleClearCart()
                 }
