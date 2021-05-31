@@ -14,8 +14,12 @@ import {
   triggeredAddToCart,
 } from "../../../../redux";
 import { getWishlistItems } from "../../../../redux/wishlist/wishlistActions";
-import { processDeleteRequest, processPostRequest } from "../../../../services/baseServices";
+import {
+  processDeleteRequest,
+  processPostRequest,
+} from "../../../../services/baseServices";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
 
 const ModuleDetailShoppingActions = ({
   product,
@@ -35,9 +39,10 @@ const ModuleDetailShoppingActions = ({
   const [isStockedOut, setIsStockedOut] = useState(false);
   const { id } = product;
 
-  useEffect(() =>{
-    setIsStockedOut(product?.quantity <= 0);
-  }, [isStockedOut, product?.quantity])
+  useEffect(() => {
+    setIsStockedOut(product?.quantity <= 0 ? true : false);
+    console.log("product?.quantity", product?.quantity);
+  }, [isStockedOut, product?.quantity]);
 
   const handleSelectProduct = async (
     cart_id,
@@ -76,8 +81,13 @@ const ModuleDetailShoppingActions = ({
 
   const handleAddItemToCart = (e, callback = () => {}) => {
     e.preventDefault();
-    if(product?.attributes_types?.length === 0 && product?.default_attribute === null){
-      toast.error("You can't add this product to cart! Try another one", {position: "top-left"});
+    if (
+      product?.attributes_types?.length === 0 &&
+      product?.default_attribute === null
+    ) {
+      toast.error("You can't add this product to cart! Try another one", {
+        position: "top-left",
+      });
       return;
     }
     setIsProcessing(true);
@@ -120,47 +130,45 @@ const ModuleDetailShoppingActions = ({
   };
 
   const toggleWishlistItem = (type) => {
-    if(type === "add"){
+    if (type === "add") {
       processPostRequest(`/add-to-wishlist/${id}`, {}, true)
-      .then((res) => {
-        if (res.status === 200) {
-          getWishlistItems(() => {
-            toast.success(res.data.message);
-          });
-        } else if (res.status === 400) {
-          console.log("response", res);
-        }
-      })
-      .catch((err) => {
-        console.log("error", err.message);
-        toast.error(err.message);
-      });
-    }else if(type === "remove"){
+        .then((res) => {
+          if (res.status === 200) {
+            getWishlistItems(() => {
+              toast.success(res.data.message);
+            });
+          } else if (res.status === 400) {
+            console.log("response", res);
+          }
+        })
+        .catch((err) => {
+          console.log("error", err.message);
+          toast.error(err.message);
+        });
+    } else if (type === "remove") {
       processDeleteRequest(`/remove-wishlist/${id}`, {}, true)
-      .then((res) => {
+        .then((res) => {
           getWishlistItems(() => {
             toast.success(res.data.message);
           });
-      })
-      .catch((err) => {
-        console.log("error", err.message);
-        toast.error(err.message);
-      });
+        })
+        .catch((err) => {
+          console.log("error", err.message);
+          toast.error(err.message);
+        });
     }
-    
   };
 
   const handleToggleWishlist = (type) => {
     const user = userData();
     if (!user) {
       handleShowAuthModal(() => {
-        toggleWishlistItem(type)
+        toggleWishlistItem(type);
       });
     } else {
-      toggleWishlistItem(type)
+      toggleWishlistItem(type);
     }
   };
-
 
   const processBuyNowCheckout = (cart_id, store_product_id) => {
     let cart_store_product_ids = [store_product_id];
@@ -253,27 +261,55 @@ const ModuleDetailShoppingActions = ({
             />
           </div>
         </figure>
-        <button
-          className={`ps-btn ps-btn--black ${
-            isProcessing && "btn-processing"
-          } `}
-          disabled={isProcessing}
-          onClick={(e) => handleAddItemToCart(e)}
-        >
-          Add to cart
-        </button>
-        <button className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>
-          Buy Now
-        </button>
+
+        {/* Add to cart */}
+        <Tooltip title={isStockedOut && "Stocked Out"}>
+          <button
+            className={`ps-btn ps-btn--black ${
+              (isProcessing || isStockedOut) && "btn-processing"
+            } `}
+            // disabled={isProcessing || isStockedOut}
+            onClick={(e) => {
+              if (isProcessing || isStockedOut) {
+                e.preventDefault();
+              } else {
+                handleAddItemToCart(e);
+              }
+            }}
+          >
+            Add to cart
+          </button>
+        </Tooltip>
+        <Tooltip title={isStockedOut && "Stocked Out"}>
+          <button
+            type="button"
+            // disabled={isProcessing || isStockedOut}
+            className={`ps-btn ${
+              (isProcessing || isStockedOut) && "btn-processing"
+            } `}
+            onClick={(e) => {
+              if (isProcessing || isStockedOut) {
+                e.preventDefault();
+              } else {
+                handleBuynow(e);
+              }
+            }}
+          >
+            Buy Now
+          </button>
+        </Tooltip>
         <div className="ps-product__actions">
           {/* <a href="#" onClick={(e) => handleToggleWishlist(e)}> */}
           <Link onClick={(e) => e.preventDefault()}>
             <i>
-            {wishlist?.find((item) => item?.product?.id === id) ? (
-            <FaHeart className="text-danger" onClick={(e) => handleToggleWishlist("remove")}/>
-          ) : (
-            <FaRegHeart onClick={(e) => handleToggleWishlist("add")}/>
-          )}
+              {wishlist?.find((item) => item?.product?.id === id) ? (
+                <FaHeart
+                  className="text-danger"
+                  onClick={(e) => handleToggleWishlist("remove")}
+                />
+              ) : (
+                <FaRegHeart onClick={(e) => handleToggleWishlist("add")} />
+              )}
             </i>
           </Link>
           {/* <a href="#" onClick={(e) => handleAddItemToCompare(e)}> */}
@@ -292,12 +328,15 @@ const ModuleDetailShoppingActions = ({
           <figure>
             <figcaption>Quantity</figcaption>
             <div className="form-group--number">
-            <button className="up" onClick={(e) => handleIncreaseItemQty(e)}>
-              <PlusOutlined />
-            </button>
-            <button className="down" onClick={(e) => handleDecreaseItemQty(e)}>
-              <MinusOutlined />
-            </button>
+              <button className="up" onClick={(e) => handleIncreaseItemQty(e)}>
+                <PlusOutlined />
+              </button>
+              <button
+                className="down"
+                onClick={(e) => handleDecreaseItemQty(e)}
+              >
+                <MinusOutlined />
+              </button>
               <input
                 className="form-control"
                 type="text"
@@ -313,20 +352,23 @@ const ModuleDetailShoppingActions = ({
             Add to cart
           </button>
           <div className="ps-product__actions">
-          <Link onClick={(e) => e.preventDefault()}>
-            <i>
-            {wishlist?.find((item) => item?.product?.id === id) ? (
-            <FaHeart className="text-danger" onClick={(e) => handleToggleWishlist("remove")}/>
-          ) : (
-            <FaRegHeart onClick={(e) => handleToggleWishlist("add")}/>
-          )}
-            </i>
-          </Link>
-          <a href="#">
-            <i>
-              <FaBars />
-            </i>
-          </a>
+            <Link onClick={(e) => e.preventDefault()}>
+              <i>
+                {wishlist?.find((item) => item?.product?.id === id) ? (
+                  <FaHeart
+                    className="text-danger"
+                    onClick={(e) => handleToggleWishlist("remove")}
+                  />
+                ) : (
+                  <FaRegHeart onClick={(e) => handleToggleWishlist("add")} />
+                )}
+              </i>
+            </Link>
+            <a href="#">
+              <i>
+                <FaBars />
+              </i>
+            </a>
           </div>
         </div>
         <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>

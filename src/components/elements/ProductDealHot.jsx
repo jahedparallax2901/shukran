@@ -24,14 +24,14 @@ const ProductDealHot = ({ product }) => {
           <div className="ps-product__meta">
             {product?.sale_price > 0 ? (
               <h4 className="ps-product__price sale">
-                &#2547;{formatCurrency(product?.price)}
+                &#2547;{product?.price}
                 <del className="mr-2">
-                  &#2547;{formatCurrency(product?.sale_price)}
+                  &#2547;{product?.sale_price}
                 </del>
               </h4>
             ) : (
               <h4 className="ps-product__price">
-                {formatCurrency(product?.product?.price)}
+                ৳ {product?.product?.price}
               </h4>
             )}
             <div className="ps-product__rating">
