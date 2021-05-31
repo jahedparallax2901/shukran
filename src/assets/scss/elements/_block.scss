@@ -902,11 +902,11 @@
             margin-right: 0px;
         }
         &:hover {
-            border-color:1px solid #e1e1e1;
+            border: 1px solid #e1e1e1;
             .ps-product__thumbnail{
                 overflow: hidden;
                 img{
-                    transform: scale(1.1);
+                    transform: scale(1.2);
                 }
             }
         }
