@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsPlus } from "react-icons/bs";
 import { FaBars, FaHeart, FaPlus, FaRegHeart } from "react-icons/fa";
 import { connect, useDispatch } from "react-redux";
@@ -32,7 +32,12 @@ const ModuleDetailShoppingActions = ({
   const [quantity, setQuantity] = useState(1);
   const history = useHistory();
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isStockedOut, setIsStockedOut] = useState(false);
   const { id } = product;
+
+  useEffect(() =>{
+    setIsStockedOut(product?.quantity <= 0);
+  }, [isStockedOut, product?.quantity])
 
   const handleSelectProduct = async (
     cart_id,
