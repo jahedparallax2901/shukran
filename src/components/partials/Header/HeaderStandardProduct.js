@@ -140,8 +140,7 @@ class HeaderStandardProduct extends Component {
                   <span> Shop by Department</span>
                 </div>
 
-                {/* changed */}
-                <div className="menu__content">
+                {/* <div className="menu__content">
                   <ul className="menu--dropdown">
                     {categories.map((item) => (
                       <li key={item.id}>
@@ -152,8 +151,8 @@ class HeaderStandardProduct extends Component {
                       </li>
                     ))}
                   </ul>
-                  {/* changed - end */}
-                </div>
+                </div> */}
+
               </div>
               <Link className="ps-logo" to="/">
                 <img src={shukranLogo} alt="" />
@@ -325,9 +324,9 @@ class HeaderStandardProduct extends Component {
                     </i>
                     <span> Shop by Department</span>
                   </div>
-                  <div className="menu__content">
+                  {/* <div className="menu__content">
                     <Menu source={categories} className="menu menu--dropdown" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="navigation__center">
