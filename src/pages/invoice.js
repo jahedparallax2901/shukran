@@ -20,7 +20,7 @@ const Invoice = ({ handleShowAuthModal }) => {
   const { id } = useParams();
   const location = useLocation();
   const [json, setJson] = useState();
-  const [timeLineStatus, setTimeLineStatus] = useState(0);
+  const [timeLineStatus, setTimeLineStatus] = useState(-1);
   const [timeLineArray, setTimeLineArray] = useState([]);
   const [isTimelineShowing, setIsTimelineShowing] = useState(true);
 
@@ -45,13 +45,15 @@ const Invoice = ({ handleShowAuthModal }) => {
       setTimeLineArray(res.ordered_item.timeline);
       loadReviewByOrderId(id);
       console.log(res.ordered_item.timeline);
-      timeLineArray.map((data, index) => {
+      res.ordered_item.timeline.map((data, index) => {
         if (data?.active === true) {
+          console.log('ACTIVE INDEX',index)
           setTimeLineStatus(index);
         }
       });
     });
   }, []);
+
 
   const loadReviewByOrderId = (orderId) => {
     processGetRequest(`/order-review/${orderId}`, {}, true)
@@ -790,49 +792,45 @@ const Invoice = ({ handleShowAuthModal }) => {
                                   style={{ margin: 0 }}
                                 >
                                   <span className="progress-line" />
-                                  <div className="timeline-inner">
-                                    {timeLineArray.map((data, index) => (
-                                      <>
-                                        <div
-                                          className={
-                                            "progress-block " +
-                                            (timeLineStatus >= index
-                                              ? "completed"
-                                              : "")
-                                          }
-                                        >
-                                          <div className="date">
-                                            {index === 0 ? (
-                                              moment(
-                                                timeLineArray?.created_at
-                                              ).format("ll")
-                                            ) : (
-                                              <>
-                                                {index !== 0 &&
-                                                data?.updated_at !== null ? (
-                                                  moment(
-                                                    timeLineArray?.updated_at
-                                                  ).format("ll")
+                                    <div className="timeline-inner">
+                                      {timeLineArray.length >= 0 && timeLineArray.map((data, index) => (
+                                          <>
+                                            <div
+                                                className={"progress-block " + (data.active || timeLineStatus >= index ? "completed" : "")
+                                                }
+                                            >
+
+                                              <div className="date">
+                                                {index === 0 ? (
+                                                    moment(
+                                                        timeLineArray?.created_at
+                                                    ).format("ll")
                                                 ) : (
-                                                  <>-</>
+                                                    <>
+                                                      {index !== 0 &&
+                                                      data?.updated_at !== null ? (
+                                                          moment(
+                                                              timeLineArray?.updated_at
+                                                          ).format("ll")
+                                                      ) : (
+                                                          <>-</>
+                                                      )}
+                                                    </>
                                                 )}
-                                              </>
-                                            )}
-                                          </div>
-                                          <div className="circle" />
-                                          <div className="text">
-                                            <h4>{data?.name}</h4>
-                                            <p />
-                                          </div>
-                                        </div>
-                                      </>
-                                    ))}
-                                  </div>
+                                              </div>
+                                              <div className="circle" />
+                                              <div className="text">
+                                                <h4>{data?.name}</h4>
+                                                <p />
+                                              </div>
+                                            </div>
+                                          </>
+                                      ))}
+                                    </div>
                                 </div>
-                                
                                 }
 
-                              
+
                                 <span className="btn-toggle-collapse" onClick={()=> setIsTimelineShowing(!isTimelineShowing)}>
                                   {isTimelineShowing? "Less" : "More"}
                                   <svg
