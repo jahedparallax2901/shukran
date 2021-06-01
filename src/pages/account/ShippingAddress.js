@@ -157,7 +157,7 @@ const ShippingAddress = () => {
            <>
              {deliverAddress && deliverAddress.map((data, index) => (
                  <>
-                   <div className="address-list d-inline-block p-4 border">
+                   <div className="address-list d-inline-block p-4 border mx-3 mt-5 mt-md-0">
                      <div className="address-item">
                       <div key={index} className="address-box -default">
                      <h4 className="name">{data?.name}</h4>

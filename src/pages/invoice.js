@@ -146,6 +146,7 @@ const Invoice = ({ handleShowAuthModal }) => {
 
   const handlereviewEdit = (e, id) => {
     e.preventDefault();
+    setVisible(true)
   };
 
   const handlereviewDelete = (e, id) => {
@@ -698,7 +699,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                               data1.product.id
                                           ) ? (
                                             <>
-                                              <button
+                                              {/* <button
                                                 className="btn btn-link text-muted btn-sm dispute-review"
                                                 onClick={(e) =>
                                                   handlereviewEdit(
@@ -712,7 +713,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 }
                                               >
                                                 Review Edit
-                                              </button>
+                                              </button> */}
                                               <button
                                                 className="btn btn-link text-muted btn-sm dispute-review"
                                                 onClick={(e) =>

@@ -36,11 +36,11 @@ const AccountMenuSidebar = ({ selectedTab }) => {
       url: "/account/wishlist",
       icon: <AiOutlineHeart />,
     },
-    {
-      text: "Disputes",
-      url: "/account/disputes",
-      icon: <RiSignalWifiErrorLine />,
-    },
+    // {
+    //   text: "Disputes",
+    //   url: "/account/disputes",
+    //   icon: <RiSignalWifiErrorLine />,
+    // },
     {
       text: "Shipping Address",
       url: "/account/shipping-address",

@@ -81,7 +81,7 @@ const MyOrders = () => {
                   </td>
                   <td>
                               <span className="d-block text-muted font-weight-bolder font-size-sm">
-                                {data?.status === 1 && <>Pending</>}
+                                {data?.status_detail?.name}
                               </span>
                   </td>
                   <td className="pr-0 text-right">
