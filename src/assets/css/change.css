@@ -221,6 +221,11 @@
   opacity: 1;
   visibility: visible;
 }
+@media screen and (max-width: 768px){
+  .cart-hover-effect{
+    display: none;
+  }
+}
 .cart-hover-effect svg{
   font-size: 20px;
 }
@@ -529,13 +534,27 @@
   background: #006c32;
   color: #fff;
 }
-
+.banner-add{
+  display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.banner-add .banner-add-item{
+  width: 50%;
+  height: 100%;
+  display: flex;
+}
+.banner-add .banner-add-item img{
+  height: 164px;
+  width: 100%;
+  object-fit: cover;
+}
 .header--standard .ps-form--quick-search .ps-form__categories select {
   /* border: 0.5px solid rgb(221, 218, 218); */
 }
 
 #homepage-5 .ps-home-banner .ps-section__right > a:first-child {
-  border-right: 1px solid #e1e1e1;
+  /* border-right: 1px solid #e1e1e1; */
 }
 @media screen and (max-width: 991px) {
   #homepage-5 .ps-home-banner .ps-section__right > a:first-child {
@@ -544,7 +563,7 @@
   }
 }
 #homepage-5 .ps-home-banner .ps-section__right > a:last-child {
-  border-left: 1px solid #e1e1e1;
+  /* border-left: 1px solid #e1e1e1; */
 }
 @media screen and (max-width: 991px) {
   #homepage-5 .ps-home-banner .ps-section__right > a:last-child {
