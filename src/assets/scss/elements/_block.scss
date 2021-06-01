@@ -755,7 +755,7 @@
         background-color: #ffffff;
         max-width: 20%;
         display: none;
-        @media screen and (max-width: 1199px){
+        @media screen and (max-width: 768px){
             display: block;
         }
         @extend %list-reset;
@@ -800,6 +800,9 @@
     .ps-block__slider {
         max-width: 24%;
         position: relative;
+        @media screen and (max-width: 1024px) {
+            max-width: 25%;
+        }
         a {
             display: block;
             img {
@@ -844,9 +847,9 @@
             border-right: 1px solid #e1e1e1;
 
             > * {
-                max-width: 24%;
+                max-width: 32.37%;
                 width: 100%;
-                flex-basis: 24%;
+                flex-basis: 32.37%;
             }
         }
         @media screen and (max-width: 768px){
@@ -912,7 +915,7 @@
         }
     }
 
-    @include media('<lg') {
+    @include media('<md') {
         .ps-block__slider {
             display: none;
         }

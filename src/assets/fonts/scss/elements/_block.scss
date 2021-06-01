@@ -845,7 +845,7 @@
         }
     }
 
-    @include media('<lg') {
+    @include media('<md') {
         .ps-block__slider {
             display: none;
         }
