@@ -1363,6 +1363,8 @@ const Checkout = (props) => {
 
                             <div className="voucher-area">
                               <div
+                              type="button"
+                              block
                                   href={`#`}
                                   onClick={(e) => {
                                     if (deliverAddress.length < 1 || contacts.length < 1){
@@ -1413,6 +1415,7 @@ const Checkout = (props) => {
                           <div className="block-card">
                             <div className="block-card-body place-button-area">
                               <div
+                              type="button"
                                   href={`#`}
                                   onClick={(e) => {
                                     if (deliverAddress.length < 1 || contacts.length < 1){
