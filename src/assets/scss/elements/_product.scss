@@ -106,7 +106,23 @@
     text-transform: uppercase;
     border-bottom: 1px solid #e1e1e1;
   }
-
+  .ps-product__wishlist{
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    background: #fff;
+    /* border: 1px solid #787878; */
+    height: 25px;
+    width: 25px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    border-radius: 3px;
+    z-index: 99;
+    svg{
+      font-size: 20px;
+      color: #787878;
+    }
+  }
   .ps-product__badge {
     position: absolute;
     top: 0;
@@ -148,15 +164,16 @@
     max-height: calc(1.2em * var(--max-lines));
     overflow: hidden;
     padding-right: 1rem;
-    min-height: 43px;
+    min-height: 40px;
     overflow: hidden;
+    margin-bottom: 5px;
     text-overflow: ellipsis;
     @media screen and (max-width: 992px) {
-      min-height: 43px;
+      min-height: 40px;
     }
     @media screen and (max-width: 768px) {
       font-size: 16px;
-      min-height: 40px;
+      min-height: 37px;
     }
     &:hover {
       color: #787878;

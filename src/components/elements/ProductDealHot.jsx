@@ -22,11 +22,11 @@ const ProductDealHot = ({ product }) => {
           </h3>
 
           <div className="ps-product__meta">
-            {product?.sale_price > 0 ? (
+            {product?.product?.price - product?.product?.sale_price > 0 ? (
               <h4 className="ps-product__price sale">
-                &#2547;{product?.price}
-                <del className="mr-2">
-                  &#2547;{product?.sale_price}
+                &#2547;{product?.product?.sale_price}
+                <del className="mr-2 ml-2">
+                  &#2547;{product?.product?.price}
                 </del>
               </h4>
             ) : (

@@ -60,6 +60,7 @@
 /* Section Margin */
 /* Section Margin */
 .ps-block--products-of-category {
+  margin-top: 10px;
   margin-bottom: 50px;
 }
 .ps-block--products-of-category:last-child {
@@ -545,9 +546,14 @@
   display: flex;
 }
 .banner-add .banner-add-item img{
-  height: 164px;
+  height: 115px;
   width: 100%;
   object-fit: cover;
+}
+@media screen and (max-width: 768px) {
+  .banner-add .banner-add-item img{
+    height: 85px;
+  }
 }
 .header--standard .ps-form--quick-search .ps-form__categories select {
   /* border: 0.5px solid rgb(221, 218, 218); */
@@ -556,21 +562,21 @@
 #homepage-5 .ps-home-banner .ps-section__right > a:first-child {
   /* border-right: 1px solid #e1e1e1; */
 }
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
   #homepage-5 .ps-home-banner .ps-section__right > a:first-child {
     border-right: 1px solid #e1e1e1;
     border-bottom: 1px solid #e1e1e1;
   }
-}
+} */
 #homepage-5 .ps-home-banner .ps-section__right > a:last-child {
   /* border-left: 1px solid #e1e1e1; */
 }
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
   #homepage-5 .ps-home-banner .ps-section__right > a:last-child {
     border-left: 1px solid #e1e1e1;
     border-top: 1px solid #e1e1e1;
   }
-}
+} */
 #homepage-5 {
   background: #f4f5f5;
 }
@@ -1708,6 +1714,11 @@ button.ps-btn:active {
   box-sizing: border-box;
   box-shadow: -2px 0 12px 0 rgb(143 143 143 / 38%);
 }
+@media screen and (min-width: 1441px) {
+  .asside-card-checkout{
+    max-width: 330px;
+  }
+}
 .asside-card-checkout.active {
   right: 0;
 }
@@ -1896,7 +1907,8 @@ button.ps-btn:active {
   padding-right: 5px;
 }
 .single-cart .item-name p{
-  font-size: 1rem;
+  color: #000;
+  font-size: 1.05rem;
   margin-bottom: 0px;
   max-height: 34px;
   overflow: hidden;
@@ -1943,6 +1955,28 @@ button.ps-btn:active {
   z-index: 999;
   transform: translateX(-50%);
 } 
+@media screen and (min-width: 1441px) {
+  .place-order-area{
+    width: 330px;
+  }
+}
+.cart-amount-place-order{
+  padding: 10px 15px 10px 0px;
+}
+.cart-amount-place-order .cart-amount-subtotal{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0px;
+}
+.cart-amount-place-order .cart-amount-delivery-charge{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0px;
+}
+.cart-amount-place-order .cart-amount-discount{
+  display: flex;
+  justify-content: space-between;
+}
 .place-order-area .spacial-code{
   text-align: center;
   padding-bottom: 5px;

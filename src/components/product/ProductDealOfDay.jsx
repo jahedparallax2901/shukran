@@ -13,7 +13,7 @@ import ModuleProductProgressbar from "../partials/shared/ModuleProductProgressba
 
 const ProductDealOfDay = ({ product }) => {
   return (
-    <div className="ps-product ps-product--inner px-3">
+    <div className="ps-product ps-product--inner px-3"> 
       <div className="ps-product__thumbnail">
         {StrapiProductThumbnail(product, true)}
         {product?.product?.quantity <= 0 ? (

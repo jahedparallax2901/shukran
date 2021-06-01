@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FiEye } from 'react-icons/fi';
 import { Modal } from "antd";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
@@ -78,6 +79,9 @@ const ProductSimple = ({ product, wishlist, getWishlistItems, handleShowAuthModa
 
   return (
     <div className="ps-product ps-product--simple">
+      <a className="ps-product__wishlist" >
+        <FiEye onClick={handleShowQuickView}/>
+      </a>
       <div class="ps-product__badge">
         <i>
           {wishlist?.find((item) => item?.product_id === product?.product_id) ? (
@@ -130,7 +134,7 @@ const ProductSimple = ({ product, wishlist, getWishlistItems, handleShowAuthModa
 };
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     wishlist: state.wishlist.wishListItems,
   };
 };

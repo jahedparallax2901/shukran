@@ -55,30 +55,46 @@ class TopBanner extends Component {
             <div className="ps-section__left">
               <Menu source={categories} className="menu--dropdown" />
             </div>
-            {/* <div className="d-flex"> */}
-            <div className="ps-section__right">
-              {top_sliders_box.map((item) => (
-                <a key={item.id} href={item.deeplink}>
-                  <img src={item?.file_attach?.file_url} alt={item?.file_attach?.file_name} />
-                </a>
-              ))}
-            </div>
-            <div className="ps-section__center">
-              <Slider {...carouselSettings}>
-                {top_sliders.map((banner) => (
-                  <div className="item">
-                    <Link to={banner.deeplink} onClick={(e) => e.preventDefault()}>
-                      <img
-                        src={banner?.image}
-                        alt={banner?.file_attach?.file_name}
-                      />
-                    </Link>
-                  </div>
-                ))}
-              </Slider>
+            <div className="banner-slider-top">
+              <div className="banner-slider-top-inner">
+                <div className="ps-section__right">
+                  {top_sliders_box.map((item) => (
+                    <a key={item.id} href={item.deeplink}>
+                      <img src={item?.file_attach?.file_url} alt={item?.file_attach?.file_name} />
+                    </a>
+                  ))}
+                </div>
+                <div className="ps-section__center">
+                  <Slider {...carouselSettings}>
+                    {top_sliders.map((banner) => (
+                      <div className="item">
+                        <Link to={banner.deeplink} onClick={(e) => e.preventDefault()}>
+                          <img
+                            src={banner?.image}
+                            alt={banner?.file_attach?.file_name}
+                          />
+                        </Link>
+                      </div>
+                    ))}
+                  </Slider>
 
+                </div>
+              </div>
+              <div className="banner-slider-bottom-inner">
+                <div className="d-block">
+                  <div className="ps-section__banner-box">
+                    <div className="banner-add">
+                      <div className="banner-add-item">
+                        <img src={addBanner1} alt="fail" />
+                      </div>
+                      <div className="banner-add-item">
+                        <img src={addBanner2} alt="fail" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* </div> */}
             {/* <div className="d-block">
               <div className="ps-section__banner-box">
                 {top_sliders_box.map((item) => (
@@ -91,18 +107,7 @@ class TopBanner extends Component {
 
           </div>
           <div className="container">
-            <div className="d-block">
-              <div className="ps-section__banner-box">
-                <div className="banner-add">
-                  <div className="banner-add-item">
-                    <img src={addBanner1} alt="fail" />
-                  </div>
-                  <div className="banner-add-item">
-                    <img src={addBanner2} alt="fail" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </section>
 
