@@ -10,9 +10,10 @@ import {Spinner} from "react-bootstrap";
 import {faAlignCenter} from "@fortawesome/free-solid-svg-icons";
 import {getLocalAuthData} from "../../helpers/utils";
 import {List,Avatar} from "antd";
+import { getWishlistItems, handleClearWishlist } from '../../redux/wishlist/wishlistActions';
+import { connect } from "react-redux";
 
-
-export default function MyWishlist() {
+const MyWishlist = ({getWishlistItems}) => {
   const breadCrumb = [
     {
         text: 'Home',
@@ -66,6 +67,7 @@ export default function MyWishlist() {
     e.preventDefault()
     processDeleteRequest(`/remove-wishlist/${id}`,{} , true).then((res)=>{
         getData()
+        getWishlistItems();
         toast.success('Wish list remove successfully')
     })
   }
@@ -207,3 +209,11 @@ export default function MyWishlist() {
     </ContainerMarketPlace3>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getWishlistItems: () => dispatch(getWishlistItems())
+  }
+}
+
+export default connect(null, mapDispatchToProps) ( MyWishlist);
