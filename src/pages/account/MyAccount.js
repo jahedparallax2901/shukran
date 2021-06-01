@@ -56,13 +56,13 @@ export default function MyAccount() {
                     className="card-body pt-3 pb-3 user-profile"
                     id="pills-tabContent"
                   >
-                    <div className="d-flex">
+                    <div className="d-flex flex-wrap">
                       <img
                         className="user-image"
                         src={userDetails?.details?.image}
                         alt="User"
                       />
-                      <div className="ml-5">
+                      <div className="ml-0 ml-md-5 mt-4 mt-md-0">
                         <h4 className="font-weight-bold">
                           {userDetails?.name || "N/A"}
                         </h4>
@@ -87,7 +87,7 @@ export default function MyAccount() {
                     {userDetails?.addresses?.length > 0 &&
                       userDetails?.addresses?.map((data, index) => (
                         <>
-                          <div className="address-list d-inline-block p-4 border mr-4">
+                          <div className="address-list d-inline-block p-4 border mr-4 my-2">
                             <div className="address-item">
                               <div key={index} className="address-box -default">
                                 <h4 className="name">{data?.name}</h4>
