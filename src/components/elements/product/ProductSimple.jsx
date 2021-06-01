@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { AiFillEye } from 'react-icons/ai';
+import { FiEye } from 'react-icons/fi';
 import { Modal } from "antd";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
@@ -31,11 +31,11 @@ const ProductSimple = ({ product, wishlist }) => {
   return (
     <div className="ps-product ps-product--simple">
       <div className="ps-product__wishlist">
-        <AiFillEye/>
+        <FiEye />
       </div>
       <div class="ps-product__badge">
         <i>
-          
+
           {wishlist?.find((item) => item?.product_id === product?.product_id) ? (
             <FaHeart />
           ) : (
@@ -86,7 +86,7 @@ const ProductSimple = ({ product, wishlist }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     wishlist: state.wishlist.wishListItems,
   };
 };

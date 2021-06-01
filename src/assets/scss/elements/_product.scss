@@ -108,10 +108,10 @@
   }
   .ps-product__wishlist{
     position: absolute;
-    top: 7px;
+    top: 3px;
     left: 7px;
     background: #fff;
-    border: 1px solid #787878;
+    /* border: 1px solid #787878; */
     height: 25px;
     width: 25px;
     padding-left: 2px;
@@ -120,7 +120,7 @@
     z-index: 99;
     svg{
       font-size: 20px;
-      fill: #c53030;
+      color: #787878;
     }
   }
   .ps-product__badge {
