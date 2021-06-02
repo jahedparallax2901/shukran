@@ -257,6 +257,9 @@
 
     .header__content-center {
         max-width: 600px;
+        @media screen and (min-width: 1501px) {
+            margin-left: 6%;
+        }
     }
 
     .menu--product-categories {
