@@ -30,7 +30,7 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [formData, setFormData] = useState({
     product_id: null,
     images: [],
-    order_id: id,
+    order_store_id: id,
   });
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [validationMessage, setValidationMessage] = useState("");
@@ -101,7 +101,7 @@ const Invoice = ({ handleShowAuthModal }) => {
       });
       processPostRequestMultiImage("/product-review", data, true)
         .then((res) => {
-          setFormData({ product_id: null, images: [], order_id: id });
+          setFormData({ product_id: null, images: [], order_store_id: id });
           loadReviewByOrderId(id);
           toast.success(res.data.message);
           setVisible(false);
