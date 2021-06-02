@@ -147,8 +147,7 @@ class MiniShoppinCart extends Component {
         store_id,
       },
       false
-    )
-      .then((res) => {
+    ).then((res) => {
         if (res.status === 200) {
           this.props.getCartItems(() => {
             let obj = this.state;
@@ -175,8 +174,7 @@ class MiniShoppinCart extends Component {
       })
       .catch((err) => {
         this.setState({ isCartProcessing: false });
-
-        toast.error(err.message, {
+        toast.error(err.data.message, {
           position: "top-left",
           autoClose: 5000,
           hideProgressBar: false,
