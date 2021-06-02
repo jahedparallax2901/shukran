@@ -83,7 +83,7 @@ class MiniShoppinCart extends Component {
   };
 
   /**
-   * Apply the gobal coupon
+   * Apply the global coupon
    * @param {event} e
    * @param {int} cart_id
    */
@@ -964,7 +964,7 @@ class MiniShoppinCart extends Component {
                     </p>
                   </div>
                   {
-                      this.state.haveSpecialCoupon &&<div className="special-code-search">
+                      (shoppingCart?.cartSummery?.coupon || this.state.haveSpecialCoupon) &&<div className="special-code-search">
                       {shoppingCart.cartItems.find(
                         (item) => item.coupon !== null
                       ) ? (

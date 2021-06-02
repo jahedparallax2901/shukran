@@ -13,6 +13,7 @@ import { objToUrlPrams } from "../../helpers/utils";
 import queryString from "query-string";
 import StatusBlock from "../common/StatusBlock";
 import { ImHome3 } from "react-icons/im";
+import ProductSimple from "../elements/product/ProductSimple";
 
 const SearchItems = ({
   columns = 4,
@@ -76,7 +77,8 @@ const SearchItems = ({
       if (listView) {
         const items = productItems.map((item) => (
           <div className={classes} key={item.id}>
-            <Product product={item} />
+            {/* <Product product={item} /> */}
+            <ProductSimple product={item} key={item.id} />
           </div>
         ));
         productItemsView = (

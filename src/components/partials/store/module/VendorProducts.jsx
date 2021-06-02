@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { dealOfTheDayProducts } from '../../../../temp-data/homeData';
 import ProductOffline from '../../../elements/product/ProductOffline';
+import ProductSimple from '../../../elements/product/ProductSimple';
 import ProductWide from '../../../product/ProductWide';
 
 // import ProductWide from '../../../elements/products/ProductWide';
@@ -79,9 +80,7 @@ class VendorProducts extends Component {
                                         <div
                                             className="col-lg-3 col-md-4 col-sm-6 col-6 "
                                             key={product.id}>
-                                            <ProductOffline
-                                                product={product}
-                                            />
+                                            <ProductSimple product={product} key={product.id} />
                                         </div>
                                     ))
                                     : ''}

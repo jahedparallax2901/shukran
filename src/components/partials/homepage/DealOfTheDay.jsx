@@ -11,6 +11,7 @@ import { processGetRequest } from "../../../services/baseServices";
 import ModuleProductActions from "../../elements/product/ModuleProductActions";
 import NextArrow from "../../elements/carousel/NextArrow";
 import PrevArrow from "../../elements/carousel/PrevArrow";
+import ProductSimple from "../../elements/product/ProductSimple";
 
 const DealOfTheDay = ({ deal_of_day_products }) => {
   const [productItems, setProductItems] = useState(null);
@@ -89,7 +90,8 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
   if (!loading) {
     if (productItems && productItems.length > 0) {
       const slideItems = productItems.map((item) => (
-        <ProductDealOfDay product={item} key={item.id} />
+        // <ProductDealOfDay product={item} key={item.id} />
+        <ProductSimple product={item} key={item.id} />
       ));
       productItemsView = (
         <Slider {...carouselDealOfTheDay} className="ps-carousel outside">

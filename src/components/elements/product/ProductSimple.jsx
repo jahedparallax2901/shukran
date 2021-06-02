@@ -100,7 +100,7 @@ const ProductSimple = ({ product, wishlist, getWishlistItems, handleShowAuthModa
         <div className="ps-product__content">
           <Link to={`/product/${product?.product_id || product?.id}`}>
             <a className="ps-product__title">
-              {product?.product?.name || product.title}
+              {product?.product?.name || product.name}
             </a>
           </Link>
           <div className="ps-product__rating">

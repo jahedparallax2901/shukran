@@ -326,7 +326,7 @@ class HeaderStandard extends Component {
                   </div> */}
                 </div>
               </div>
-              {/* <div className="navigation__center">
+              <div className="navigation__center">
                 <ul className="menu">
                   {menuItems.map((cat) => (
                     <li key={cat.id}>
@@ -334,7 +334,7 @@ class HeaderStandard extends Component {
                     </li>
                   ))}
                 </ul>
-              </div> */}
+              </div>
               <div className="navigation__right">
                 <div className="ps-block--header-hotline inline">
                   <p>

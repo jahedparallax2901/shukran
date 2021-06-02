@@ -28,7 +28,7 @@ const CategoryProducts = ({ cat }) => {
   return (
     <div>
       <div className="category-top-banner">
-        <img src="https://images.othoba.com/images/thumbs/0336481_food-grocery.jpeg" alt="" />
+        <img src={cat?.top_banners?.image} alt="category_top_banner" />
       </div>
         <div className="ps-block--products-of-category">
       <div className="ps-block__categories">
