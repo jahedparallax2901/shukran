@@ -48,7 +48,8 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       history.push(url);
       getProducts(newQuery);
     } else {
-      const brands = selected_brands?.filter((selected) => selected !== id);
+      debugger;
+      const brands = selected_brands?.filter((selected) => selected != id);
       setSelected_brands(brands);
       newQuery.brand_id = brands;
       const url =
@@ -78,7 +79,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       getProducts(newQuery);
     } else {
       const attributes = selected_attributes?.filter(
-        (selected) => selected !== id
+        (selected) => selected != id
       );
       setSelected_attributes(attributes);
       newQuery.attribute_id = attributes;
@@ -99,6 +100,13 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
   }
 
   useEffect(() => {
+    if(query?.brand_id){
+      setSelected_brands(Array.isArray(query?.brand_id)? [...new Set(query?.brand_id)] : [query?.brand_id]);
+    }
+    if(query?.attribute_id){
+      setSelected_attributes(Array.isArray(query?.attribute_id)? [...new Set(query?.attribute_id)] : [query?.attribute_id]);
+    }
+
     processGetRequest("/generic-info", { info_type: 2 })
       .then((res) => {
         setBrands(res.brands);
@@ -150,7 +158,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
                     class="form-control"
                     type="checkbox"
                     id={`brand-${brand.id}`}
-                    defaultChecked={query?.brand_id?.includes(
+                    defaultChecked={selected_brands?.includes(
                       brand.id.toString()
                     )}
                     onChange={(e) => handleOnBrandChange(e, brand.id)}

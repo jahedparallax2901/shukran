@@ -1616,7 +1616,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 10003;
+    z-index: 90;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -2440,6 +2440,7 @@
   justify-content: space-between;
   align-items: flex-start;
   border: none;
+  max-height: 90px;
 
   > * {
     flex-basis: 100%;

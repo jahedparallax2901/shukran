@@ -21,7 +21,7 @@ const VendorStoreDetails = () => {
   const { id } = useParams();
 
   useState(() => {
-    window.scrollTo({ top: 0, behavior: "auton" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
   return (

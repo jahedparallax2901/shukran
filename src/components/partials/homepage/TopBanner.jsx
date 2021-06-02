@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { Container } from 'react-bootstrap';
-import { FcShipped, FcShop, FcDam } from 'react-icons/fc';
-import { BsChevronRight } from 'react-icons/bs';
-import { GiShurikenAperture } from 'react-icons/gi';
-import { GoDeviceMobile } from 'react-icons/go';
+import { Container } from "react-bootstrap";
+import { FcShipped, FcShop, FcDam } from "react-icons/fc";
+import { BsChevronRight } from "react-icons/bs";
+import { GiShurikenAperture } from "react-icons/gi";
+import { GoDeviceMobile } from "react-icons/go";
 import banner1 from "../../../assets/img/downloads/banner-1.jpg";
 import addBanner1 from "../../../assets/img/home-banner1.png";
 import addBanner2 from "../../../assets/img/home-banner2.jpeg";
@@ -17,6 +17,7 @@ class TopBanner extends Component {
     categories: [],
     top_sliders: [],
     top_sliders_box: [],
+    top_image_long_images: [],
     isLoading: false,
   };
 
@@ -28,6 +29,7 @@ class TopBanner extends Component {
           categories: res.category,
           top_sliders_box: res.top_sliders_box,
           top_sliders: res.top_sliders,
+          top_image_long_images: res.top_image_long_images,
           isLoading: false,
         });
       })
@@ -46,7 +48,7 @@ class TopBanner extends Component {
       slidesToScroll: 1,
     };
 
-    const { categories, top_sliders, top_sliders_box } = this.state;
+    const { categories, top_sliders, top_sliders_box, top_image_long_images } = this.state;
 
     return (
       <>
@@ -60,7 +62,10 @@ class TopBanner extends Component {
                 <div className="ps-section__right">
                   {top_sliders_box.map((item) => (
                     <a key={item.id} href={item.deeplink}>
-                      <img src={item?.file_attach?.file_url} alt={item?.file_attach?.file_name} />
+                      <img
+                        src={item?.file_attach?.file_url}
+                        alt={item?.file_attach?.file_name}
+                      />
                     </a>
                   ))}
                 </div>
@@ -68,7 +73,10 @@ class TopBanner extends Component {
                   <Slider {...carouselSettings}>
                     {top_sliders.map((banner) => (
                       <div className="item">
-                        <Link to={banner.deeplink} onClick={(e) => e.preventDefault()}>
+                        <Link
+                          to={banner.deeplink}
+                          onClick={(e) => e.preventDefault()}
+                        >
                           <img
                             src={banner?.image}
                             alt={banner?.file_attach?.file_name}
@@ -77,19 +85,17 @@ class TopBanner extends Component {
                       </div>
                     ))}
                   </Slider>
-
                 </div>
               </div>
               <div className="banner-slider-bottom-inner">
                 <div className="d-block">
                   <div className="ps-section__banner-box">
                     <div className="banner-add">
-                      <div className="banner-add-item">
-                        <img src={addBanner1} alt="fail" />
-                      </div>
-                      <div className="banner-add-item">
-                        <img src={addBanner2} alt="fail" />
-                      </div>
+                      {top_image_long_images?.map((item) => (
+                        <div className="banner-add-item">
+                          <img src={item.image} alt="bottom_slider" />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -104,11 +110,8 @@ class TopBanner extends Component {
                 ))}
               </div>
             </div> */}
-
           </div>
-          <div className="container">
-            
-          </div>
+          <div className="container"></div>
         </section>
 
         <section className="ps-home-channel-area">

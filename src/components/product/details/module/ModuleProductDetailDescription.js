@@ -6,7 +6,7 @@ const ModuleProductDetailDescription = ({ product }) => (
     <div className="ps-product__desc">
         <p>
             Sold By:
-            <Link to={`/store/${product?.store_id}`}>
+            <Link to={`/store/product/${product?.store_id}`}>
                 <a>
                     <strong> {product?.store?.name}</strong>
                 </a>

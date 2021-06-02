@@ -83,7 +83,7 @@ class MiniShoppinCart extends Component {
   };
 
   /**
-   * Apply the gobal coupon
+   * Apply the global coupon
    * @param {event} e
    * @param {int} cart_id
    */
@@ -942,11 +942,15 @@ class MiniShoppinCart extends Component {
               <div className="cart-amount-place-order">
                   <p className="cart-amount-subtotal">
                     <span>Sub Total</span>
-                    <span>৳200.00</span>
+                    <span>৳{shoppingCart?.cartSummery?.sub_total_amount || 0}</span>
                   </p>
                   <p className="cart-amount-delivery-charge">
                     <span >Delivery Charge</span>
-                    <span>৳150.00</span>
+                    <span>৳{shoppingCart?.cartSummery?.delivery_charge || 0}</span>
+                  </p>
+                  <p className="cart-amount-delivery-charge">
+                    <span >Discount</span>
+                    <span>৳{shoppingCart?.cartSummery?.discount_amount || 0}</span>
                   </p>
                   {/* <p className="cart-amount-discount">
                     <span>Discount</span>
@@ -960,7 +964,7 @@ class MiniShoppinCart extends Component {
                     </p>
                   </div>
                   {
-                      this.state.haveSpecialCoupon &&<div className="special-code-search">
+                      (shoppingCart?.cartSummery?.coupon || this.state.haveSpecialCoupon) &&<div className="special-code-search">
                       {shoppingCart.cartItems.find(
                         (item) => item.coupon !== null
                       ) ? (

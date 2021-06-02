@@ -20,8 +20,9 @@ const Invoice = ({ handleShowAuthModal }) => {
   const { id } = useParams();
   const location = useLocation();
   const [json, setJson] = useState();
-  const [timeLineStatus, setTimeLineStatus] = useState(0);
+  const [timeLineStatus, setTimeLineStatus] = useState(-1);
   const [timeLineArray, setTimeLineArray] = useState([]);
+  const [isTimelineShowing, setIsTimelineShowing] = useState(true);
 
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -44,13 +45,15 @@ const Invoice = ({ handleShowAuthModal }) => {
       setTimeLineArray(res.ordered_item.timeline);
       loadReviewByOrderId(id);
       console.log(res.ordered_item.timeline);
-      timeLineArray.map((data, index) => {
+      res.ordered_item.timeline.map((data, index) => {
         if (data?.active === true) {
+          console.log('ACTIVE INDEX',index)
           setTimeLineStatus(index);
         }
       });
     });
   }, []);
+
 
   const loadReviewByOrderId = (orderId) => {
     processGetRequest(`/order-review/${orderId}`, {}, true)
@@ -143,6 +146,7 @@ const Invoice = ({ handleShowAuthModal }) => {
 
   const handlereviewEdit = (e, id) => {
     e.preventDefault();
+    setVisible(true)
   };
 
   const handlereviewDelete = (e, id) => {
@@ -318,7 +322,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                     <tr>
                       <td colSpan={2}>
                         <h3 className="invoice-title">
-                          order id : #{json?.order.id}
+                          order id : #{json?.id}
                         </h3>
                       </td>
                     </tr>
@@ -327,22 +331,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                         <table>
                           <tbody>
                             <tr>
-                              <td
-                                width="20%"
-                                style={{ paddingBottom: 20, paddingLeft: 0 }}
-                              >
-                                <h4 className="invoice-title-alt">Bill To</h4>
-                                <span className="d-block">
-                                  {json?.customer_address?.name}
-                                </span>
-                                <span className="d-block">
-                                  {json?.customer_address?.phone}
-                                </span>
-                                <span className="d-block">
-                                  {json?.customer_address?.address}
-                                </span>
-                                <span className="d-block"></span>
-                              </td>
+                              
                               <td width="20%" style={{ paddingBottom: 20 }}>
                                 <h4 className="invoice-title-alt">Ship To</h4>
                                 <span className="d-block">
@@ -356,7 +345,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                 </span>
                                 <span className="d-block"></span>
                               </td>
-                              <td width="20%" style={{ paddingBottom: 20 }}>
+                              <td width="40%" style={{ paddingBottom: 20 }}>
                                 <h4 className="invoice-title-alt">
                                   Payment Method
                                 </h4>
@@ -366,14 +355,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                   {json?.order?.payment?.name}
                                 </span>
                               </td>
-                              <td width="20%" style={{ paddingBottom: 20 }}>
-                                <h4 className="invoice-title-alt">
-                                  Shipping Method
-                                </h4>
-                                <span className="d-block"> -- </span>
-
-                                <span className="d-block" />
-                              </td>
+                              
                               <td width="20%" style={{ paddingBottom: 20 }}>
                                 <span className="d-block order-date-tag">
                                   <strong>Order Date: </strong>
@@ -637,7 +619,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                         x={145}
                                         y={72}
                                       >
-                                        {json?.order.id}
+                                        {json?.id}
                                       </text>
                                     </g>
                                   </svg>
@@ -717,7 +699,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                               data1.product.id
                                           ) ? (
                                             <>
-                                              <button
+                                              {/* <button
                                                 className="btn btn-link text-muted btn-sm dispute-review"
                                                 onClick={(e) =>
                                                   handlereviewEdit(
@@ -731,7 +713,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 }
                                               >
                                                 Review Edit
-                                              </button>
+                                              </button> */}
                                               <button
                                                 className="btn btn-link text-muted btn-sm dispute-review"
                                                 onClick={(e) =>
@@ -805,52 +787,53 @@ const Invoice = ({ handleShowAuthModal }) => {
                                   backgroundColor: "transparent",
                                 }}
                               >
-                                <div
+                                {
+                                  isTimelineShowing &&   <div
                                   className="delivery-progress-timeline grid-6"
                                   style={{ margin: 0 }}
                                 >
                                   <span className="progress-line" />
-                                  <div className="timeline-inner">
-                                    {timeLineArray.map((data, index) => (
-                                      <>
-                                        <div
-                                          className={
-                                            "progress-block " +
-                                            (timeLineStatus >= index
-                                              ? "completed"
-                                              : "")
-                                          }
-                                        >
-                                          <div className="date">
-                                            {index === 0 ? (
-                                              moment(
-                                                timeLineArray?.created_at
-                                              ).format("ll")
-                                            ) : (
-                                              <>
-                                                {index !== 0 &&
-                                                data?.updated_at !== null ? (
-                                                  moment(
-                                                    timeLineArray?.updated_at
-                                                  ).format("ll")
+                                    <div className="timeline-inner">
+                                      {timeLineArray.length >= 0 && timeLineArray.map((data, index) => (
+                                          <>
+                                            <div
+                                                className={"progress-block " + (data.active || timeLineStatus >= index ? "completed" : "")
+                                                }
+                                            >
+
+                                              <div className="date">
+                                                {index === 0 ? (
+                                                    moment(
+                                                        timeLineArray?.created_at
+                                                    ).format("ll")
                                                 ) : (
-                                                  <>-</>
+                                                    <>
+                                                      {index !== 0 &&
+                                                      data?.updated_at !== null ? (
+                                                          moment(
+                                                              timeLineArray?.updated_at
+                                                          ).format("ll")
+                                                      ) : (
+                                                          <>-</>
+                                                      )}
+                                                    </>
                                                 )}
-                                              </>
-                                            )}
-                                          </div>
-                                          <div className="circle" />
-                                          <div className="text">
-                                            <h4>{data?.name}</h4>
-                                            <p />
-                                          </div>
-                                        </div>
-                                      </>
-                                    ))}
-                                  </div>
+                                              </div>
+                                              <div className="circle" />
+                                              <div className="text">
+                                                <h4>{data?.name}</h4>
+                                                <p />
+                                              </div>
+                                            </div>
+                                          </>
+                                      ))}
+                                    </div>
                                 </div>
-                                <span className="btn-toggle-collapse">
-                                  Less
+                                }
+
+
+                                <span className="btn-toggle-collapse" onClick={()=> setIsTimelineShowing(!isTimelineShowing)}>
+                                  {isTimelineShowing? "Less" : "More"}
                                   <svg
                                     stroke="currentColor"
                                     fill="currentColor"

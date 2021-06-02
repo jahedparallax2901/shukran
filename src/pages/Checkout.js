@@ -250,8 +250,8 @@ const Checkout = (props) => {
               }
             }else {
               props.getCartItems((data, isSuccess)=>{
-                const items = data.cart.total_prdoucts;
-                if(items <= 0){
+                console.log("Cart response", data);
+                if(data?.cart_items?.length <= 0 ){
                   localStorage.removeItem("cart_id");
                   props.handleClearCart()
                 }
@@ -1363,6 +1363,8 @@ const Checkout = (props) => {
 
                             <div className="voucher-area">
                               <div
+                              type="button"
+                              block
                                   href={`#`}
                                   onClick={(e) => {
                                     if (deliverAddress.length < 1 || contacts.length < 1){
@@ -1413,6 +1415,7 @@ const Checkout = (props) => {
                           <div className="block-card">
                             <div className="block-card-body place-button-area">
                               <div
+                              type="button"
                                   href={`#`}
                                   onClick={(e) => {
                                     if (deliverAddress.length < 1 || contacts.length < 1){

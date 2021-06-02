@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import FooterMarketPlace2 from '../components/partials/footer/FooterMarketPlace2'
 import Header from '../components/partials/Header/Header'
+import notFound from '../assets/img/404.jpg';
 
 export default function NotFound() {
     return (
@@ -11,7 +12,7 @@ export default function NotFound() {
             <div className="container">
                 <div className="ps-section__content">
                     <figure>
-                        <img src="/static/img/404.jpg" alt="" />
+                        <img src={notFound} alt="" />
                         <h3>Ohh! Page not found</h3>
                         <p>
                             It seems we can't find what you're looking for.{' '}

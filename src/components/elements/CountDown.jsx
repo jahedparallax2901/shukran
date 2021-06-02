@@ -15,14 +15,13 @@ class CountDown extends Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             const { timeTillDate, timeFormat } = this.props;
-            const then = moment(timeTillDate, timeFormat);
+            const then = moment(timeTillDate);
             const now = moment();
             const countdown = moment(then - now);
             const days = countdown.format('D');
             const hours = countdown.format('HH');
             const minutes = countdown.format('mm');
             const seconds = countdown.format('ss');
-
             this.setState({ days, hours, minutes, seconds });
         }, 1000);
     }

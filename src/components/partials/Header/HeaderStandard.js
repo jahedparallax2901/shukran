@@ -137,11 +137,11 @@ class HeaderStandard extends Component {
                 </div>
 
                 {/* changed */}
-                <div className="menu__content">
+                {/* <div className="menu__content">
                   <div className="menu__content">
                     <Menu source={categories} className="menu menu--dropdown" />
                   </div>
-                </div>
+                </div> */}
               </div>
               <Link className="ps-logo" to="/">
                 <img src={shukranLogo} alt="" />
@@ -152,19 +152,22 @@ class HeaderStandard extends Component {
             </div>
             <div className="header__content-right">
               <div className="header__actions">
-                <Link className="header__extra" onClick={(e) =>{
-                  e.preventDefault();
-                  if(userData().token){
-                    this.props.history.push('/account/wishlist')
-                  }
-                }}>
-                  <i>
-                    <BsHeart />
-                  </i>
-                  <span>
-                    <i>{wishlist?.length || 0}</i>
-                  </span>
-                </Link>
+                {
+                  userData()?.token && <Link className="header__extra" onClick={(e) =>{
+                    e.preventDefault();
+                    if(userData()?.token){
+                      this.props.history.push('/account/wishlist')
+                    }
+                  }}>
+                    <i>
+                      <BsHeart />
+                    </i>
+                    <span>
+                      <i>{wishlist?.length || 0}</i>
+                    </span>
+                  </Link>
+                }
+                
                 <div className="ps-cart--mini">
                   <a className="header__extra" href="#">
                     <i>
@@ -318,9 +321,9 @@ class HeaderStandard extends Component {
                     </i>
                     <span> Shop by Department</span>
                   </div>
-                  <div className="menu__content">
+                  {/* <div className="menu__content">
                     <Menu source={categories} className="menu menu--dropdown" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="navigation__center">

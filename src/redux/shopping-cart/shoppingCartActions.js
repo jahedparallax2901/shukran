@@ -72,15 +72,18 @@ export const handleAddToCart = (
     dispatch(addToCartRequest());
     const formData = new FormData();
     cart_id && formData.append("cart_id", cart_id);
-    productList.map(item=>{
-      formData.append(`product_id[${item.product_id}][${item.item_id}]`, item.quantity);
-    })
+    productList.map((item) => {
+      formData.append(
+        `product_id[${item.product_id}][${item.item_id}]`,
+        item.quantity
+      );
+    });
 
     axois
       .post(BASE_API_URL + "/add-to-cart", formData, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": authData?.token || "",
+          Authorization: authData?.token || "",
           "x-api-client": "web",
         },
       })
@@ -126,31 +129,33 @@ const addToCartFailure = (errMsg) => {
 export const getCartItems = (callback) => {
   const authData = userData();
   const cart_id = localStorage.getItem("cart_id");
-  
-    return (dispatch) => {
-      dispatch(getCartItemsRequest());
 
-      axois
-        .get(BASE_API_URL + "/get-cart", {
-          params: {cart_id: cart_id},
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": authData?.token || "",
-            "x-api-client": getDeviceType(),
-          },
-        })
-        .then((res) => {
-          // if (res.data.status === 1 || res.data.status === 2) {
-            dispatch(getCartItemsSuccess(res.data));
-            callback(res.data, true);
-          // } else {
-          //   getCartItemsFailure(res.data.message);
-          // }
-        })
-        .catch((err) => {
-          getCartItemsFailure(err.message);
-        });
-    };
+  return (dispatch) => {
+    dispatch(getCartItemsRequest());
+
+    axois
+      .get(BASE_API_URL + "/get-cart", {
+        params: { cart_id: cart_id },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": authData?.token || "",
+        },
+      })
+      .then((res) => {
+        console.log("Successfull", res.data)
+        // if (res.data.status === 1 || res.data.status === 2) {
+        dispatch(getCartItemsSuccess(res.data));
+        callback(res.data, true);
+        // } else {
+        //   getCartItemsFailure(res.data.message);
+        // }
+      })
+      .catch((err) => {
+        dispatch(getCartItemsFailure(err.message));
+        console.log(err);
+        // callback(err, false);
+      });
+  };
 };
 
 const getCartItemsRequest = () => {
@@ -175,11 +180,11 @@ const getCartItemsFailure = (errMsg) => {
 
 // Clear cart
 
-export const handleClearCart = ()=>{
-  return{
-    type: CLEAR_CART
-  }
-}
+export const handleClearCart = () => {
+  return {
+    type: CLEAR_CART,
+  };
+};
 
 export const cartAmountUpdate = (cartItems, id) => {
   return (dispatch) => {
