@@ -126,13 +126,14 @@
   }
   .ps-product__badge {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 3px;
+    right: 3px;
     color: #fff;
+    background: #fff;
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
-    padding: 5px 10px;
+    padding: 2px 4px;
     border-radius: 4px;
     /* background-color: #f0c14b; */
     z-index: 95;
@@ -206,6 +207,9 @@
     position: relative;
     overflow: hidden;
     min-height: 150px;
+    @media screen and (max-width: 1024px) {
+      min-height: 135px;
+    }
     img {
       width: 100%;
     }

@@ -68,3 +68,8 @@ body {
         min-width: 1230px;
     }
 }
+@media screen (min-width: 668px) {
+    .container {
+        max-width: 620px !important;
+    }
+}
