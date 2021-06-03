@@ -89,6 +89,7 @@ const SearchHeader = () => {
     const debouncedSearchTerm = useDebounce(keyword, 300);
 
     function handleClearKeyword() {
+        console.log("this is something inside", keyword)
         setKeyword('');
         setIsSearch(false);
         setLoading(false);
@@ -171,6 +172,8 @@ const SearchHeader = () => {
         </option>
     ));
 
+    console.log("this is something", keyword);
+
     return (
         <form
             className="ps-form--quick-search"
@@ -185,7 +188,7 @@ const SearchHeader = () => {
                     ref={inputEl}
                     className="form-control"
                     type="text"
-                    value={keyword}
+                    defaultValue={keyword}
                     placeholder="I'm shopping for..."
                     onChange={(e) => setKeyword(e.target.value)}
                 />

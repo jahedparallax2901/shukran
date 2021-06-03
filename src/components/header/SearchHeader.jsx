@@ -40,6 +40,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
   const history = useHistory();
 
   function handleClearKeyword() {
+    console.log("This is something inside", keyword);
     setKeyword("");
     setIsSearch(false);
     setLoading(false);
@@ -111,7 +112,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
       if (resultItems.length > 5) {
         loadMoreView = (
           <div className="ps-panel__footer text-center">
-            <Link to="/search">
+            <Link to={`/search/q=${keyword}`}>
               <a>See all results</a>
             </Link>
           </div>
@@ -128,7 +129,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
       clearTextView = (
         <span className="ps-form__action" onClick={handleClearKeyword}>
           <i>
-            <IoIosCloseCircleOutline />
+            <IoIosCloseCircleOutline className="pointer-cursor" />
           </i>
         </span>
       );
@@ -146,6 +147,8 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
       {option.name}
     </option>
   ));
+
+  console.log("This is something", keyword);
 
   return (
     <form className="ps-form--quick-search" onSubmit={handleSubmit}>
@@ -168,7 +171,7 @@ const SearchHeader = ({ fetchSearchedProducts }) => {
           ref={inputEl}
           className="form-control"
           type="text"
-          defaultValue={query?.q}
+          value={keyword}
           placeholder="I'm shopping for..."
           onChange={(e) => setKeyword(e.target.value)}
           onFocus={()=>setIsShowingSugestedProducts(true)}
