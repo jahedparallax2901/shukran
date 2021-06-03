@@ -31,6 +31,8 @@ const Invoice = ({ handleShowAuthModal }) => {
     product_id: null,
     images: [],
     order_store_id: id,
+    rating: "",
+    review: ""
   });
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [validationMessage, setValidationMessage] = useState("");
@@ -38,6 +40,8 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [isValidated, setIsValidated] = useState(true);
   const [orderReviews, setOrderReviews] = useState([]);
   const [preview, setPreview] = useState({previewVisible: false, previewTitle: "", previewImage: null});
+  const [reviewId, setReviewId] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     processGetRequest(`/order-details/${id}`, {}, true).then((res) => {
@@ -74,8 +78,10 @@ const Invoice = ({ handleShowAuthModal }) => {
     setFormData({ ...formData, rating: value });
   };
 
-  const submitReview = (e) => {
+  const submitReview = (e, review_id=null) => {
     e.preventDefault();
+    const url = isUpdating? `/product-review/${review_id}` : `/product-review`
+
     const form = e.currentTarget;
     if (
       form.checkValidity() === false ||
@@ -99,15 +105,19 @@ const Invoice = ({ handleShowAuthModal }) => {
           data.append(key, formData[key]);
         }
       });
-      processPostRequestMultiImage("/product-review", data, true)
+      processPostRequestMultiImage(url, data, true)
         .then((res) => {
           setFormData({ product_id: null, images: [], order_store_id: id });
           loadReviewByOrderId(id);
           toast.success(res.data.message);
           setVisible(false);
+          setIsUpdating(false);
+          setReviewId(null);
         })
         .catch((err) => {
           console.log("err 401", err);
+          setIsUpdating(false);
+          setReviewId(null);
           if (err.status === 401) {
             setValidationMessage("Please log in before giving review");
             handleShowAuthModal();
@@ -116,37 +126,31 @@ const Invoice = ({ handleShowAuthModal }) => {
             toast.error(err.message);
           }
         });
-
-      //   const authData = userData();
-      //   axios
-      //     .post(
-      //       `http://localhost:80/shukran-backend/api/v1/customer-review`,
-      //       formData,
-      //       {
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //           Authorization: authData?.token,
-      //         },
-      //       }
-      //     )
-      //     .then((res) => {
-      //       form.reset();
-      //       toast(res.data.message);
-      //     })
-      //     .catch((err) => {
-      //       if (err.response.status === 401) {
-      //         setValidationMessage("Please log in before giving review");
-      //         handleShowAuthModal();
-      //       } else {
-      //         setValidationMessage(err.response.data.message);
-      //       }
-      //     });
     }
   };
 
   const handlereviewEdit = (e, id) => {
     e.preventDefault();
-    setVisible(true)
+    processGetRequest(`/product-review/${id}/edit`, {}, true)
+      .then((res) => {
+        const image_id = 
+        setFormData({
+          order_store_id: res.review.order_store_id,
+          product_id: res.review.product_id,
+          images: res.review.product_review_image.map(img=>img.file_attach),
+          rating: res.review.rating,
+          review: res.review.review,
+          image_id: []
+        });
+      }).then(() =>{
+        setReviewId(id);
+        setVisible(true);
+        setIsUpdating(true);
+      })
+      .catch((err) => {
+        console.log("Sorry", err)
+        toast.error("Sorry, you cannot edit this review");
+      });
   };
 
   const handlereviewDelete = (e, id) => {
@@ -154,7 +158,7 @@ const Invoice = ({ handleShowAuthModal }) => {
     processDeleteRequest(`/product-review/${id}`, {}, true)
       .then((res) => {
         loadReviewByOrderId(id);
-        toast.success(res.data.message);
+        toast.success(res.message);
       })
       .catch((err) => {
         toast.error("Something went wrong");
@@ -208,7 +212,7 @@ const Invoice = ({ handleShowAuthModal }) => {
         </Modal.Header> */}
         {/* <Modal.Body className="mx-2"> */}
           <form
-            onSubmit={(e) => submitReview(e)}
+            onSubmit={(e) => submitReview(e, reviewId)}
             className="ps-form--review"
             novalidate
             validate={isValidated}
@@ -217,7 +221,7 @@ const Invoice = ({ handleShowAuthModal }) => {
               <Alert variant="warning">{validationMessage}</Alert>
             )}
 
-            <h4>Submit Your Review</h4>
+            <h4>{isUpdating ? "Update your review": "Submit Your Review"}</h4>
             <p>
               Your email address will not be published. Required fields are
               marked
@@ -228,7 +232,7 @@ const Invoice = ({ handleShowAuthModal }) => {
               <Rate
                 tooltips={desc}
                 onChange={handleRateOnChange}
-                value={formData?.rating || 0}
+                defaultValue={formData?.rating || 0}
                 character={<BsFillStarFill />}
               />
             </div>
@@ -252,6 +256,7 @@ const Invoice = ({ handleShowAuthModal }) => {
               title={preview.previewTitle}
               footer={null}
               onCancel={handlePreviewCancel}
+              
             >
               <img alt="example" style={{ width: '100%' }} src={preview.previewImage} />
             </Modal>
@@ -263,6 +268,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                 rows="6"
                 placeholder="Write your review here"
                 onChange={inputOnChange}
+                defaultValue={formData?.review || ""}
               ></textarea>
             </div>
             {/* <div className="row">
@@ -287,7 +293,7 @@ const Invoice = ({ handleShowAuthModal }) => {
           </div> */}
             <div className="form-group submit">
               <button type="submit" className="ps-btn">
-                Submit Review
+                {isUpdating? "Update": "Submit Review"}
               </button>
             </div>
           </form>
@@ -742,7 +748,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 });
                                               }}
                                             >
-                                              Add Review
+                                              Review
                                             </button>
                                           )}
                                         </>

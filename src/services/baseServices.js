@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useHistory } from "react-router";
 import { BASE_API_URL } from "../helpers/env";
 import { getDeviceType, getLocalAuthData } from "../helpers/utils";
 
@@ -48,11 +49,16 @@ export const processGetRequest = (url, paramsObj = {}, isAuthenticationRequired 
             },
           })
           .then((res) => {
-            resolve(res.data);
+              resolve(res.data);
           })
           .catch((err) => {
-            console.error(err);
-            reject(err.message);
+            console.log("process get request err", err.response);
+            if(err.response.status === 401){
+              localStorage.removeItem('user');
+              window.location.reload();
+            }else{
+              reject(err.message);
+            }
           });
     });
 };
