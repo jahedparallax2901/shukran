@@ -185,10 +185,10 @@ class MiniShoppinCart extends Component {
       });
   };
 
-  handleRemoveCoupon = (e, cart_id, store_id = null) => {
+  handleRemoveCoupon = (e, cart_id, coupon_id = null) => {
     this.setState({ isCartProcessing: true });
     let data;
-    store_id ? (data = { cart_id, store_id }) : (data = { cart_id });
+    coupon_id ? (data = { cart_id, coupon_id }) : (data = { cart_id });
 
     processPostRequest("/remove-cart-coupon", data, false)
       .then((res) => {
@@ -773,7 +773,7 @@ class MiniShoppinCart extends Component {
                                           this.handleRemoveCoupon(
                                             e,
                                             shoppingCart.cartSummery.id,
-                                            cart_items.store.id
+                                            cart_items?.coupon?.coupon_id
                                           )
                                         }
                                       />
@@ -1013,7 +1013,7 @@ class MiniShoppinCart extends Component {
                                 onClick={(e) =>
                                   this.handleRemoveCoupon(
                                     e,
-                                    shoppingCart.cartSummery.id
+                                    shoppingCart.cartSummery.coupon?.coupon_id
                                   )
                                 }
                               />
