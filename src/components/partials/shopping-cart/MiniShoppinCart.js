@@ -773,7 +773,7 @@ class MiniShoppinCart extends Component {
                                           this.handleRemoveCoupon(
                                             e,
                                             shoppingCart.cartSummery.id,
-                                            cart_items?.coupon?.coupon_id
+                                            cart_items?.coupon?.coupon_code?.coupon_id
                                           )
                                         }
                                       />
@@ -1013,7 +1013,7 @@ class MiniShoppinCart extends Component {
                                 onClick={(e) =>
                                   this.handleRemoveCoupon(
                                     e,
-                                    shoppingCart.cartSummery.coupon?.coupon_id
+                                    shoppingCart.cartSummery.coupon?.coupon_code?.coupon_id
                                   )
                                 }
                               />
