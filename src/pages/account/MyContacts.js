@@ -127,7 +127,7 @@ const MyContacts = () => {
                             }}
                             className="address-list d-inline-block p-4 border">
                             <div className="address-item">
-                                <div key={index} className="address-box -default">
+                                <div key={index} className="address-box-default">
                                     <p className="address-line d-flex">
                               <span className="icon mr-2">
                                 <svg
@@ -149,13 +149,13 @@ const MyContacts = () => {
                                 </span>
                               </span>
                                     </p>
-                                    <p className="address-line d-flex">
+                                    {/* <p className="address-line d-flex">
 
                                         <span className="text">
 
                               </span>
-                                    </p>
-                                    <label className="action d-block mb-2">
+                                    </p> */}
+                                    {/* <label className="action d-block mb-2">
                                         <input
                                             type="radio"
                                             name="billing_address"
@@ -168,7 +168,7 @@ const MyContacts = () => {
                                         >
                                 Default contact address
                               </span>
-                                    </label>
+                                    </label> */}
                                     <div className="actions mb-0">
                               <span onClick={() =>{
                                   setSelectedContact(index)

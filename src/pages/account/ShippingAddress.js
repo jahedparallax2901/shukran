@@ -227,7 +227,7 @@ const ShippingAddress = () => {
                                 </span>
                               </span>
                      </p>
-                     <label className="action d-block mb-2">
+                     {/* <label className="action d-block mb-2">
                        <input
                            type="radio"
                            name="billing_address"
@@ -240,7 +240,7 @@ const ShippingAddress = () => {
                        >
                                 Default Billing Address
                               </span>
-                     </label>
+                     </label> */}
                      <div className="actions mb-0">
                               <span onClick={() =>{
                                 setSelectedAddress(index)

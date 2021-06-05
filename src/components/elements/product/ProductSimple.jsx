@@ -84,10 +84,10 @@ const ProductSimple = ({ product, wishlist, getWishlistItems, handleShowAuthModa
       </a>
       <div class="ps-product__badge">
         <i>
-          {wishlist?.find((item) => item?.product_id === product?.product_id) ? (
-            <FaHeart onClick={(e) => handleToggleWishlist("remove", product?.product_id)}/>
+          {wishlist?.find((item) => (item?.product_id === product?.product_id) || (item?.product_id === product?.id)) ? (
+            <FaHeart onClick={(e) => handleToggleWishlist("remove", product?.product_id || product?.id)}/>
           ) : (
-            <FaRegHeart onClick={(e) => handleToggleWishlist("add", product?.product_id)}/>
+            <FaRegHeart onClick={(e) => handleToggleWishlist("add", product?.product_id || product?.id)}/>
           )}
         </i>
       </div>

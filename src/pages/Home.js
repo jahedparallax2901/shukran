@@ -78,7 +78,7 @@ class Home extends Component {
         {/*============ Start Main Body Area =============*/}
           <TopBanner />
           <ProductGroupDealHot collectionSlug="Campaign" />
-          <SearchTrending />
+          {/* <SearchTrending /> */}
           <DealOfTheDay deal_of_day_products={this.state.deal_of_day_products}/>
           <AllCategories/>
 

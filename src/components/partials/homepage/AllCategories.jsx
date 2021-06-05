@@ -41,7 +41,7 @@ class AllCategories extends Component {
                       this.props.history.push(`/search?category_id=${item.id}`)
                     }}>
                       <div className="ps-block--category">
-                        <a className="ps-block__overlay" href="#"></a>
+                        <a className="ps-block__overlay"></a>
                         <div className="all-category-single">
                           <img src={item?.image || bike1} alt={item?.name} />
                         </div>

@@ -51,7 +51,7 @@ class Store extends Component {
   };
 
   render() {
-    const { store_info, product } = this.state;
+    const { store_info, product, vendor } = this.state;
 
     return (
       <>
@@ -137,7 +137,7 @@ class Store extends Component {
                           </strong>
                         </p>
                         <p>or Or if you have any question</p>
-                        <a className="ps-btn ps-btn--fullwidth" href="">
+                        <a className="ps-btn ps-btn--fullwidth" href={`mailto:${store_info?.vendor?.email}`}>
                           Contact Seller
                         </a>
                       </div>

@@ -56,7 +56,7 @@ const VendorStore = () => {
         <section className="ps-store-list">
           <ShopBanner />
           <div className="container">
-            <form
+            {/* <form
               role="search"
               method="get"
               className="store-search-form"
@@ -126,9 +126,9 @@ const VendorStore = () => {
               <div className="wcfmmp-overlay" style={{ display: "none" }}>
                 <span className="wcfmmp-ajax-loader"></span>
               </div>
-            </form>
+            </form> */}
             <div className="ps-section__wrapper">
-              <div className="ps-section__left">
+              {/* <div className="ps-section__left"> */}
                 {/*     <aside className="widget widget--vendor">
                   <h3 className="widget-title">Product Search</h3>
                   <div className="form-group--icon">
@@ -142,7 +142,7 @@ const VendorStore = () => {
                     </i>
                   </div>
                 </aside>*/}
-                <aside className="widget widget--vendor">
+                {/* <aside className="widget widget--vendor">
                   <h3 className="widget-title">Store Categories</h3>
                   <ul className="ps-list--arrow">
                     {storeCategory &&
@@ -152,13 +152,13 @@ const VendorStore = () => {
                         </li>
                       ))}
                   </ul>
-                </aside>
-              </div>
+                </aside> */}
+              {/* </div> */}
               <div className="ps-section__right">
                 <nav className="ps-store-link">
                   <ul className="d-flex justify-content-between vendor-store-pagination">
                     <li className="vendor-store-pagination-first-li">
-                      <form
+                      {/* <form
                         role="search"
                         method="get"
                         className="store-search-form1"
@@ -199,7 +199,7 @@ const VendorStore = () => {
                           <option value="158">Quater Panels</option>
                           <option value="30">Mirrors</option>
                         </select>
-                      </form>
+                      </form> */}
                     </li>
                     <li>
                       <Pagination
@@ -277,7 +277,11 @@ const VendorStore = () => {
                                   </i>{" "}
                                   {item?.vendor?.phone}
                                 </p>
-                                <button className="shop-inquiry">
+                                <button className="shop-inquiry" onClick={()=>{
+                                  history.push(
+                                      `/store/product/${item?.store_detail?.id}`
+                                  );
+                                }}>
                                   <i>
                                     <AiOutlineQuestionCircle />
                                   </i>

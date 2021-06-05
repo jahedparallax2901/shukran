@@ -26,11 +26,11 @@ const AccountMenuSidebar = ({ selectedTab }) => {
       url: "/account/my-orders",
       icon: <GiAlarmClock />,
     },
-    {
-      text: "My Coupons",
-      url: "/account/coupons",
-      icon: <RiCouponLine />,
-    },
+    // {
+    //   text: "My Coupons",
+    //   url: "/account/coupons",
+    //   icon: <RiCouponLine />,
+    // }
     {
       text: "My Wishlist",
       url: "/account/wishlist",

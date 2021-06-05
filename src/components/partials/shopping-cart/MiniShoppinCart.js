@@ -356,7 +356,7 @@ class MiniShoppinCart extends Component {
     if(type === "increment"){
       quantity = current_quantity + 1
     }else{
-      if(current_quantity !== 0){
+      if(current_quantity !== 1){
         quantity = current_quantity - 1
       }else{
         quantity = 0;

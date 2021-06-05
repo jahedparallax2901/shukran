@@ -15,7 +15,7 @@ const Menu = ({ source, className }) => {
             } else {
                 return (
                     <li key={item?.id}>
-                            <Link to={`/search?category_id[]=${item.id}`}>
+                            <Link to={`/search?category_id=${item.id}`}>
                                 {item?.icon && <i className={item.icon}></i>}
                                 {(item.name).toUpperCase()}
                             </Link>

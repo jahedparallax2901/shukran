@@ -128,9 +128,9 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
               </figure>
             </div>
           </div>
-          <Link to="/shop">
+          {/* <Link to="/shop">
             <a>View all</a>
-          </Link>
+          </Link> */}
         </div>
         <div className="ps-section__content">
           {productItemsView}

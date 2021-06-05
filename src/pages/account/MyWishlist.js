@@ -131,7 +131,7 @@ const MyWishlist = ({getWishlistItems}) => {
                               className="text"
                               href="/store/details/5f8d7607515e430f0169ed44"
                           >
-                            Fashion &amp; Store
+                            {data?.product?.store?.name}
                           </a>
                         </p>
                       </div>

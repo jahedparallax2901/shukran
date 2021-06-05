@@ -32,7 +32,8 @@ export default function MyCoupons() {
                       </span>
                     </h3>
                   </div>
-                 
+                  <p>No coupon</p>
+{/*                  
                   <div class="card-body pt-3 pb-3" id="pills-tabContent">
                     <div class="card" style={{width: '30rem', borderRadius: '10px'}}>
                       <div
@@ -83,6 +84,7 @@ export default function MyCoupons() {
                       </div>
                     </div>
                   </div>
+                 */}
                 </div>
               </div>
             </div>

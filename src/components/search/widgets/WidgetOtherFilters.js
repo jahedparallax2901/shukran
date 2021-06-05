@@ -6,11 +6,11 @@ import { useHistory } from "react-router";
 import { arrayToUrlParams, objToUrlPrams } from "../../../helpers/utils";
 import { processGetRequest } from "../../../services/baseServices";
 import { all_brand } from "../../../temp-data/brands";
-import '../../../assets/scss/my-changes.scss'
+import "../../../assets/scss/my-changes.scss";
 import queryString from "query-string";
 
 export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
-  const [range, setRange] = useState({starting_price: "", ending_price: ""})
+  const [range, setRange] = useState({ starting_price: "", ending_price: "" });
   const [starting_price, setStarting_price] = useState(0);
   const [ending_price, setEnding_price] = useState(0);
   const [brands, setBrands] = useState([]);
@@ -27,45 +27,40 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
     newQuery.starting_price = range.starting_price;
     newQuery.ending_price = range.ending_price;
     await setQuery(newQuery);
-    const url = history.location.pathname + "?" + queryString.stringify(newQuery);
+    const url =
+      history.location.pathname + "?" + queryString.stringify(newQuery);
     history.push(url);
     getProducts(newQuery);
   };
 
   const handleOnBrandChange = (e, id) => {
-    let newQuery = {...query, brand_id: [] };
+    let newQuery = { ...query, brand_id: [] };
     console.log("newQuery", query);
     if (e.target.checked) {
       const brands = [...new Set([...selected_brands, id])];
       setSelected_brands(brands);
       newQuery.brand_id = brands;
       const url =
-        history.location.pathname +
-        "?" +
-        queryString.stringify(newQuery) 
-        // +
-        // arrayToUrlParams("brand_id", brands);
+        history.location.pathname + "?" + queryString.stringify(newQuery);
+      // +
+      // arrayToUrlParams("brand_id", brands);
       history.push(url);
       getProducts(newQuery);
     } else {
-      debugger;
       const brands = selected_brands?.filter((selected) => selected != id);
       setSelected_brands(brands);
       newQuery.brand_id = brands;
       const url =
-        history.location.pathname +
-        "?" +
-        queryString.stringify(newQuery) 
-        // +
-        // arrayToUrlParams("brand_id", brands);
+        history.location.pathname + "?" + queryString.stringify(newQuery);
+      // +
+      // arrayToUrlParams("brand_id", brands);
       history.push(url);
       getProducts(newQuery);
     }
-    
   };
 
   const handleAttributeOnChange = (e, id) => {
-    let newQuery = {...query, attribute_id: [] };
+    let newQuery = { ...query, attribute_id: [] };
     if (e.target.checked) {
       const attributes = [...new Set([...selected_attributes, id])];
       setSelected_attributes(attributes);
@@ -93,18 +88,27 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
     }
   };
 
-  const rangerInputOnChange = (e)=>{
-    const newRange  = {...range};
-    newRange[e.target.name] = e.target.value;
+  const rangerInputOnChange = (e) => {
+    const newRange = { ...range };
+    const value = e.target.value.replace(/\D/g, "");
+    newRange[e.target.name] = value;
     setRange(newRange);
-  }
+  };
 
   useEffect(() => {
-    if(query?.brand_id){
-      setSelected_brands(Array.isArray(query?.brand_id)? [...new Set(query?.brand_id)] : [query?.brand_id]);
+    if (query?.brand_id) {
+      setSelected_brands(
+        Array.isArray(query?.brand_id)
+          ? [...new Set(query?.brand_id)]
+          : [query?.brand_id]
+      );
     }
-    if(query?.attribute_id){
-      setSelected_attributes(Array.isArray(query?.attribute_id)? [...new Set(query?.attribute_id)] : [query?.attribute_id]);
+    if (query?.attribute_id) {
+      setSelected_attributes(
+        Array.isArray(query?.attribute_id)
+          ? [...new Set(query?.attribute_id)]
+          : [query?.attribute_id]
+      );
     }
 
     processGetRequest("/generic-info", { info_type: 2 })
@@ -124,11 +128,11 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       .catch((err) => {
         setIsAttributesFetching(false);
       });
-      const range = {
-        starting_price: parseInt(query.starting_price) || "",
-        ending_price: parseInt(query.ending_price) || ""
-      }
-      setRange(range);
+    const range = {
+      starting_price: parseInt(query.starting_price) || "",
+      ending_price: parseInt(query.ending_price) || "",
+    };
+    setRange(range);
     // setStarting_price(
     //   query.starting_price ? parseInt(query.starting_price) : 0
     // );
@@ -174,22 +178,32 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
         <div id="nonlinear"></div>
         <p class="ps-slider__meta">
           Price:
-
           <div className="price-rang">
-              <input type="number" name={`starting_price`}
-                     onChange={rangerInputOnChange}
-                     placeholder="Min"
-                     defaultValue={range.starting_price}/>
-              <span>-</span>
-              <input type="number" name={`ending_price`}
-                     onChange={rangerInputOnChange}
-                     placeholder="Max"
-                     defaultValue={range.ending_price}/>
-              <button
-                // onChange={this.rangerInputOnChange}
-                onClick={handlePriceFilter}
-                type="button"><FiChevronRight/></button>
-            </div>
+            <input
+              type="number"
+              min="0"
+              name={`starting_price`}
+              onChange={rangerInputOnChange}
+              placeholder="Min"
+              value={range.starting_price}
+            />
+            <span>-</span>
+            <input
+              type="number"
+              min={starting_price + 1}
+              name={`ending_price`}
+              onChange={rangerInputOnChange}
+              placeholder="Max - test"
+              value={range.ending_price}
+            />
+            <button
+              // onChange={this.rangerInputOnChange}
+              onClick={handlePriceFilter}
+              type="button"
+            >
+              <FiChevronRight />
+            </button>
+          </div>
           {/* <Slider
             range={{ draggableTrack: true }}
             step={5}

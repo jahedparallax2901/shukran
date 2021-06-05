@@ -34,7 +34,7 @@ class VendorProducts extends Component {
                         </strong>{' '}
                         Products found
                     </p>
-                    <div className="ps-shopping__actions ps-shopping__actions-shop">
+                    {/* <div className="ps-shopping__actions ps-shopping__actions-shop">
                         <select
                             className="ps-select ps-select-modify"
                             data-placeholder="Sort Items">
@@ -69,7 +69,7 @@ class VendorProducts extends Component {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="ps-shopping__content">
                     {viewMode === true ? (
@@ -81,6 +81,7 @@ class VendorProducts extends Component {
                                             className="col-lg-3 col-md-4 col-sm-6 col-6 "
                                             key={product.id}>
                                             <ProductSimple product={product} key={product.id} />
+                                            {console.log("store page", product)}
                                         </div>
                                     ))
                                     : ''}

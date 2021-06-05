@@ -57,7 +57,16 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
   };
 
   useEffect(() => {
-    const params = query;
+    const params = queryString.parse(history.location.search);
+    
+    if(params.category_id && !Array.isArray(params.category_id)){
+      params.category_id = [params.category_id]
+    }else if(params.brand_id && !Array.isArray(params.brand_id)){
+      params.brand_id = [params.brand_id]
+    }else if(params.attribute_id && !Array.isArray(params.attribute_id)){
+      params.attribute_id = [params.attribute_id]
+    }
+
     getProducts(params);
     window.scrollTo({top: 0, behavior: 'auto'});
   }, []);
