@@ -207,24 +207,27 @@ const MyContacts = () => {
                     <ModalHeader>
                         {isEdited === true && 'Edit CONTACT'}
                         {isEdited === false && 'ADD NEW CONTACT'}
-
-
                     </ModalHeader>
-                    <input
+                    <Modal.Body>
+                        <Form>
+                        <Form.Control
                         required
                         defaultValue={
-                            isEdited ? contacts[selectedContact].phone_number : ""
+                            isEdited ? contacts[selectedContact]?.phone_number : ""
                         }
                         onChange={(e) => handleOnChange(e)}
-                        style={{ height: "40px", fontSize: "12px" }}
                         name="phone_number"
                         placeholder="Enter your Phone Number"
                         type="number"
                         id="phone_number"
                         className="form-control"
                     />
+                    
+                        </Form>
+                    </Modal.Body>
+                    
                     <ModalFooter>
-                        <Button
+                    <Button
                             onClick={(e) => {
                                 if (isEdited === true){
                                     handleFormSubmit(e, "/edit-contact/"+editedId);
@@ -233,8 +236,9 @@ const MyContacts = () => {
                                 }
 
                             }}
-                            style={{ height: "2vw", width: "7vw", fontSize: "12px" }}
-                            variant={`primary`}
+                                variant={`primary`}
+                                className="ml-auto"
+                                style={{width: '110px'}}
                         >
                             SAVE CHANGE
                         </Button>

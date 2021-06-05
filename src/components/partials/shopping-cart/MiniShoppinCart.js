@@ -30,23 +30,7 @@ class MiniShoppinCart extends Component {
   };
 
   componentDidMount() {
-    const scrollbody = document.querySelector(".asside-card-checkout");
-    scrollbody.onscroll = function () {
-      let cartFooter = document.getElementById("all-checkout");
-      console.log(cartFooter);
-      let sticky = cartFooter?.offsetTop || 0;
-      if (sticky > 0 && scrollbody.scrollTop * 4 > sticky) {
-        cartFooter.classList.add("custom-sticky");
-        let lastStore = document.querySelectorAll(".store-div");
-        lastStore = lastStore[lastStore.length - 1];
-        lastStore.style.marginBottom = "165px";
-      } else if (sticky > 0) {
-        cartFooter.classList.remove("custom-sticky");
-        let lastStore = document.querySelectorAll(".store-div");
-        lastStore = lastStore[lastStore.length - 1];
-        lastStore.style.marginBottom = "0px";
-      }
-    };
+    
   }
 
   handleItemDelete = (e, product_id, item_id) => {
@@ -766,7 +750,7 @@ class MiniShoppinCart extends Component {
                                     <div className="d-flex justify-content-between align-items-center coupon-status-success">
                                       <span className="mr-4">
                                         {cart_items?.coupon?.coupon_code?.code}{" "}
-                                        Coupon Applied
+                                        Applied
                                       </span>
                                       <BsTrash
                                         title="Remove"
@@ -1007,7 +991,7 @@ class MiniShoppinCart extends Component {
                                   shoppingCart?.cartSummery?.coupon?.coupon_code
                                     ?.code
                                 }{" "}
-                                Coupon Applied
+                                Applied
                               </span>
                               <BsTrash
                                 title="Remove"
