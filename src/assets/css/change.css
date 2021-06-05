@@ -2108,7 +2108,7 @@ button.ps-btn:active {
 .asside-card-checkout .store-div-container {
   /* margin-bottom: 105px; */
   position: relative;
-  height: calc(100% - 150px);
+  height: calc(100% - 235px);
   overflow: scroll;
   overflow-x: hidden;
 }

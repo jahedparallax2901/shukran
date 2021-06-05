@@ -313,7 +313,7 @@ const Checkout = (props) => {
                 </div>
               }
               data={numberOfPicture.map((data, index) => (
-                  <div key={index} className="owl-item" style={{ width: 230, marginRight: 25 }}>
+                  <div key={index} className="owl-item" style={{ minWidth: '230px', marginRight: '25px' }}>
                     <div className="single-checkout-body payment-body">
                       <div className="checkout-body-location">
                         <h4>
