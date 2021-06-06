@@ -74,8 +74,9 @@ const MyOrders = () => {
                   </td>
                   <td>
                               <span className="d-block text-muted font-weight-bolder font-size-sm">
-                                {data?.order?.payment_status === 1 && 'Paid' }
-                                {data?.order?.payment_status === 2 && 'Unpaid' }
+                                {data?.payment_status === 1 && 'Paid' }
+                                {data?.payment_status === 2 && 'Unpaid' }
+                                {data?.payment_status === 3 && 'Cancelled' }
                               </span>
                   </td>
                   <td>

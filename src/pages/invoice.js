@@ -1,7 +1,8 @@
-import { Modal, Rate, Upload } from "antd";
+import { Modal, Rate, Select, Tooltip, Upload } from "antd";
+
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { AiOutlinePlus, BsFillStarFill } from "react-icons/all";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
@@ -13,8 +14,10 @@ import { handleShowAuthModal } from "../redux";
 import {
   processDeleteRequest,
   processGetRequest,
-  processPostRequestMultiImage
+  processPostRequestMultiImage,
+  processPutRequest
 } from "../services/baseServices";
+const { Option } = Select;
 
 const Invoice = ({ handleShowAuthModal }) => {
   const { id } = useParams();
@@ -32,16 +35,24 @@ const Invoice = ({ handleShowAuthModal }) => {
     images: [],
     order_store_id: id,
     rating: "",
-    review: ""
+    review: "",
   });
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [validationMessage, setValidationMessage] = useState("");
   const [fileList, setFileList] = useState([]);
   const [isValidated, setIsValidated] = useState(true);
   const [orderReviews, setOrderReviews] = useState([]);
-  const [preview, setPreview] = useState({previewVisible: false, previewTitle: "", previewImage: null});
+  const [preview, setPreview] = useState({
+    previewVisible: false,
+    previewTitle: "",
+    previewImage: null,
+  });
   const [reviewId, setReviewId] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [disputeMessage, setDisputeMessage] = useState("");
+  const [disputeData, setDisputeData] = useState({reason: "", order_id: id, store_id: null, product_id: null})
+  const [isDisputeModalOpen, setIsDisputeModalOpen] = useState(false);
+
 
   useEffect(() => {
     processGetRequest(`/order-details/${id}`, {}, true).then((res) => {
@@ -51,13 +62,12 @@ const Invoice = ({ handleShowAuthModal }) => {
       console.log(res.ordered_item.timeline);
       res.ordered_item.timeline.map((data, index) => {
         if (data?.active === true) {
-          console.log('ACTIVE INDEX',index)
+          console.log("ACTIVE INDEX", index);
           setTimeLineStatus(index);
         }
       });
     });
   }, []);
-
 
   const loadReviewByOrderId = (orderId) => {
     processGetRequest(`/order-review/${orderId}`, {}, true)
@@ -78,9 +88,9 @@ const Invoice = ({ handleShowAuthModal }) => {
     setFormData({ ...formData, rating: value });
   };
 
-  const submitReview = (e, review_id=null) => {
+  const submitReview = (e, review_id = null) => {
     e.preventDefault();
-    const url = isUpdating? `/product-review/${review_id}` : `/product-review`
+    const url = isUpdating ? `/product-review/${review_id}` : `/product-review`;
 
     const form = e.currentTarget;
     if (
@@ -133,22 +143,22 @@ const Invoice = ({ handleShowAuthModal }) => {
     e.preventDefault();
     processGetRequest(`/product-review/${id}/edit`, {}, true)
       .then((res) => {
-        const image_id = 
-        setFormData({
+        const image_id = setFormData({
           order_store_id: res.review.order_store_id,
           product_id: res.review.product_id,
-          images: res.review.product_review_image.map(img=>img.file_attach),
+          images: res.review.product_review_image.map((img) => img.file_attach),
           rating: res.review.rating,
           review: res.review.review,
-          image_id: []
+          image_id: [],
         });
-      }).then(() =>{
+      })
+      .then(() => {
         setReviewId(id);
         setVisible(true);
         setIsUpdating(true);
       })
       .catch((err) => {
-        console.log("Sorry", err)
+        console.log("Sorry", err);
         toast.error("Sorry, you cannot edit this review");
       });
   };
@@ -174,131 +184,144 @@ const Invoice = ({ handleShowAuthModal }) => {
     });
   };
 
-  const handlePreviewCancel = () => setPreview({...preview, previewVisible: false});
+  const handlePreviewCancel = () =>
+    setPreview({ ...preview, previewVisible: false });
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
 
-    setPreview({...preview, previewImage: file.url || file.preview,
+    setPreview({
+      ...preview,
+      previewImage: file.url || file.preview,
       previewVisible: true,
       previewTitle:
-        file.name || file.url.substring(file.url.lastIndexOf("/") + 1)})
+        file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
+    });
   };
 
   const handleImageChange = ({ fileList }) =>
     setFormData({ ...formData, images: fileList });
 
+
+    const handleDisputeModalShow = (store_id, product_id, status)=>{
+      if(status == 6){
+        setIsDisputeModalOpen(true);
+        setDisputeData({...disputeData, store_id, product_id})
+      }
+    }
+
+  const handleDisputeChange = (e) => {
+    setDisputeData({...disputeData, reason: e.target.value})
+  };
+
+  const handleDisputeSubmit = (e) =>{
+    e.preventDefault();
+    processPutRequest('/dispute', disputeData, true).then(res=>console.log(res.data)).then(err=>console.log(err))
+  }
+
   return (
     <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
       {/* Review modal */}
       <Modal
-        // closeButton
-        // size="md"
-        // show={visible}
-        // onHide={() => setVisible(false)}
-        // aria-labelledby="example-modal-sizes-title-lg"
-
         visible={visible}
-          title={null}
-          footer={null}
-          onCancel={()=>setVisible(false)}
+        title={null}
+        footer={null}
+        onCancel={() => setVisible(false)}
       >
-        {/* <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            
-          </Modal.Title>
-        </Modal.Header> */}
-        {/* <Modal.Body className="mx-2"> */}
-          <form
-            onSubmit={(e) => submitReview(e, reviewId)}
-            className="ps-form--review"
-            novalidate
-            validate={isValidated}
+        <form
+          onSubmit={(e) => submitReview(e, reviewId)}
+          className="ps-form--review"
+          novalidate
+          validate={isValidated}
+        >
+          {validationMessage && (
+            <Alert variant="warning">{validationMessage}</Alert>
+          )}
+
+          <h4>{isUpdating ? "Update your review" : "Submit Your Review"}</h4>
+          <p>
+            Your email address will not be published. Required fields are marked
+            <sup>*</sup>
+          </p>
+          <label>Your rating for this product</label>
+          <div className="form-group form-group__rating">
+            <Rate
+              tooltips={desc}
+              onChange={handleRateOnChange}
+              defaultValue={formData?.rating || 0}
+              character={<BsFillStarFill />}
+            />
+          </div>
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            method="POST"
+            listType="picture-card"
+            fileList={formData?.fileList}
+            onPreview={handlePreview}
+            onChange={handleImageChange}
           >
-            {validationMessage && (
-              <Alert variant="warning">{validationMessage}</Alert>
+            {fileList.length >= 8 ? null : (
+              <div>
+                <AiOutlinePlus />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </div>
             )}
+          </Upload>
+          <Modal
+            visible={preview.previewVisible}
+            title={preview.previewTitle}
+            footer={null}
+            onCancel={handlePreviewCancel}
+          >
+            <img
+              alt="example"
+              style={{ width: "100%" }}
+              src={preview.previewImage}
+            />
+          </Modal>
 
-            <h4>{isUpdating ? "Update your review": "Submit Your Review"}</h4>
-            <p>
-              Your email address will not be published. Required fields are
-              marked
-              <sup>*</sup>
-            </p>
-            <label>Your rating for this product</label>
-            <div className="form-group form-group__rating">
-              <Rate
-                tooltips={desc}
-                onChange={handleRateOnChange}
-                defaultValue={formData?.rating || 0}
-                character={<BsFillStarFill />}
-              />
-            </div>
-            <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              method="POST"
-              listType="picture-card"
-              fileList={formData?.fileList}
-              onPreview={handlePreview}
-              onChange={handleImageChange}
-            >
-              {fileList.length >= 8 ? null : (
-                <div>
-                  <AiOutlinePlus />
-                  <div style={{ marginTop: 8 }}>Upload</div>
-                </div>
-              )}
-            </Upload>
-            <Modal
-              visible={preview.previewVisible}
-              title={preview.previewTitle}
-              footer={null}
-              onCancel={handlePreviewCancel}
-              
-            >
-              <img alt="example" style={{ width: '100%' }} src={preview.previewImage} />
-            </Modal>
+          <div className="form-group">
+            <textarea
+              name="review"
+              className="form-control"
+              rows="6"
+              placeholder="Write your review here"
+              onChange={inputOnChange}
+              defaultValue={formData?.review || ""}
+            ></textarea>
+          </div>
 
-            <div className="form-group">
-              <textarea
-                name="review"
-                className="form-control"
-                rows="6"
-                placeholder="Write your review here"
-                onChange={inputOnChange}
-                defaultValue={formData?.review || ""}
-              ></textarea>
-            </div>
-            {/* <div className="row">
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Your Name"
-                />
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12  ">
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  type="email"
-                  placeholder="Your Email"
-                />
-              </div>
-            </div>
-          </div> */}
-            <div className="form-group submit">
-              <button type="submit" className="ps-btn">
-                {isUpdating? "Update": "Submit Review"}
-              </button>
-            </div>
-          </form>
+          <div className="form-group submit">
+            <button type="submit" className="ps-btn">
+              {isUpdating ? "Update" : "Submit Review"}
+            </button>
+          </div>
+        </form>
         {/* </Modal.Body> */}
       </Modal>
+
+      {/* Dispute modal */}
+      <Modal
+        visible={isDisputeModalOpen}
+        title={null}
+        footer={null}
+        onCancel={() => setIsDisputeModalOpen(false)}
+      >
+        <>
+          <h4>{"Raise a dispute"}</h4>
+          <textarea
+              className="form-control"
+              rows="3"
+              placeholder="Write your dispute reasons"
+              onChange={handleDisputeChange}
+              defaultValue={disputeMessage}
+            ></textarea>
+            <Button className="mt-3 w-25 ml-auto p-3" onClick={handleDisputeSubmit}>Submit</Button>
+        </>
+      </Modal>
+      {/*--Dispute modal --*/}
 
       <div className="main-content invoice-main-content">
         <div className="container">
@@ -337,7 +360,6 @@ const Invoice = ({ handleShowAuthModal }) => {
                         <table>
                           <tbody>
                             <tr>
-                              
                               <td width="20%" style={{ paddingBottom: 20 }}>
                                 <h4 className="invoice-title-alt">Ship To</h4>
                                 <span className="d-block">
@@ -361,7 +383,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                   {json?.order?.payment?.name}
                                 </span>
                               </td>
-                              
+
                               <td width="20%" style={{ paddingBottom: 20 }}>
                                 <span className="d-block order-date-tag">
                                   <strong>Order Date: </strong>
@@ -669,42 +691,44 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 </tr>*/}
                             {json?.store_product &&
                               json?.store_product.map((data1, index) => (
-                                  <tr key={data1?.id}>
-                                    <td>
-                                      <span className="d-block">
-                                        <strong>
-                                          <Link
-                                            to={`/product/${data1.product.id}`}
-                                          >
-                                            {" "}
-                                            {data1.product.name}{" "}
-                                          </Link>
-                                        </strong>
-                                      </span>
-                                      <span className="d-block text-muted" />
-                                    </td>
-                                    <td>{data1.quantity}</td>
-                                    <td className="text-right">
-                                      {data1.total_amount}
-                                    </td>
-                                    <td className="d-flex flex-column">
-                                      <button
-                                        disabled
-                                        type="button"
-                                        className="btn btn-link text-muted btn-sm dispute-review"
-                                      >
-                                        Dispute
-                                      </button>
+                                <tr key={data1?.id}>
+                                  <td>
+                                    <span className="d-block">
+                                      <strong>
+                                        <Link
+                                          to={`/product/${data1.product.id}`}
+                                        >
+                                          {" "}
+                                          {data1.product.name}{" "}
+                                        </Link>
+                                      </strong>
+                                    </span>
+                                    <span className="d-block text-muted" />
+                                  </td>
+                                  <td>{data1.quantity}</td>
+                                  <td className="text-right">
+                                    {data1.total_amount}
+                                  </td>
+                                  <td className="d-flex flex-column">
+                                    <Tooltip title={json?.status == 6 ? "": "Only for delivered product"}>
+                                    <button
+                                      type="button"
+                                      className="btn btn-link text-muted btn-sm dispute-review"
+                                      onClick={()=>handleDisputeModalShow(data1?.store_id, data1?.product.id, json?.status)}
+                                    >
+                                      Dispute
+                                    </button>
+                                    </Tooltip>
+                                  
 
-                                      {json?.status == 6 && (
-                                        <>
-                                          {orderReviews.find(
-                                            (item) =>
-                                              item.product_id ==
-                                              data1.product.id
-                                          ) ? (
-                                            <>
-                                              {/* <button
+                                    {json?.status == 6 && (
+                                      <>
+                                        {orderReviews.find(
+                                          (item) =>
+                                            item.product_id == data1.product.id
+                                        ) ? (
+                                          <>
+                                            {/* <button
                                                 className="btn btn-link text-muted btn-sm dispute-review"
                                                 onClick={(e) =>
                                                   handlereviewEdit(
@@ -719,42 +743,42 @@ const Invoice = ({ handleShowAuthModal }) => {
                                               >
                                                 Review Edit
                                               </button> */}
-                                              <button
-                                                className="btn btn-link text-muted btn-sm dispute-review"
-                                                onClick={(e) =>
-                                                  handlereviewDelete(
-                                                    e,
-                                                    orderReviews.find(
-                                                      (item) =>
-                                                        item.product_id ==
-                                                        data1.product.id
-                                                    ).id
-                                                  )
-                                                }
-                                              >
-                                                Review Delete
-                                              </button>
-                                            </>
-                                          ) : (
+                                              
                                             <button
-                                              type="button"
                                               className="btn btn-link text-muted btn-sm dispute-review"
-                                              onClick={() => {
-                                                setVisible(true);
-                                                setFormData({
-                                                  ...formData,
-                                                  product_id: data1.product.id,
-                                                });
-                                              }}
+                                              onClick={(e) =>
+                                                handlereviewDelete(
+                                                  e,
+                                                  orderReviews.find(
+                                                    (item) =>
+                                                      item.product_id ==
+                                                      data1.product.id
+                                                  ).id
+                                                )
+                                              }
                                             >
-                                              Review
+                                              Review Delete
                                             </button>
-                                          )}
-                                        </>
-                                      )}
-                                    </td>
-                                  </tr>
-                                 
+                                          </>
+                                        ) : (
+                                          <button
+                                            type="button"
+                                            className="btn btn-link text-muted btn-sm dispute-review"
+                                            onClick={() => {
+                                              setVisible(true);
+                                              setFormData({
+                                                ...formData,
+                                                product_id: data1.product.id,
+                                              });
+                                            }}
+                                          >
+                                            Review
+                                          </button>
+                                        )}
+                                      </>
+                                    )}
+                                  </td>
+                                </tr>
                               ))}
                             <tr>
                               {/*
@@ -787,52 +811,61 @@ const Invoice = ({ handleShowAuthModal }) => {
                                   backgroundColor: "transparent",
                                 }}
                               >
-                                {
-                                  isTimelineShowing &&   <div
-                                  className="delivery-progress-timeline grid-6"
-                                  style={{ margin: 0 }}
-                                >
-                                  <span className="progress-line" />
+                                {isTimelineShowing && (
+                                  <div
+                                    className="delivery-progress-timeline grid-6"
+                                    style={{ margin: 0 }}
+                                  >
+                                    <span className="progress-line" />
                                     <div className="timeline-inner">
-                                      {timeLineArray.length >= 0 && timeLineArray.map((data, index) => (
-                                            <div
+                                      {timeLineArray.length >= 0 &&
+                                        timeLineArray.map((data, index) => (
+                                          <div
                                             key={data?.id}
-                                                className={"progress-block " + (data.active || timeLineStatus >= index ? "completed" : "")
-                                                }
-                                            >
-
-                                              <div className="date">
-                                                {index === 0 ? (
+                                            className={
+                                              "progress-block " +
+                                              (data.active ||
+                                              timeLineStatus >= index
+                                                ? "completed"
+                                                : "")
+                                            }
+                                          >
+                                            <div className="date">
+                                              {index === 0 ? (
+                                                moment(
+                                                  timeLineArray?.created_at
+                                                ).format("ll")
+                                              ) : (
+                                                <>
+                                                  {index !== 0 &&
+                                                  data?.updated_at !== null ? (
                                                     moment(
-                                                        timeLineArray?.created_at
+                                                      timeLineArray?.updated_at
                                                     ).format("ll")
-                                                ) : (
-                                                    <>
-                                                      {index !== 0 &&
-                                                      data?.updated_at !== null ? (
-                                                          moment(
-                                                              timeLineArray?.updated_at
-                                                          ).format("ll")
-                                                      ) : (
-                                                          <>-</>
-                                                      )}
-                                                    </>
-                                                )}
-                                              </div>
-                                              <div className="circle" />
-                                              <div className="text">
-                                                <h4>{data?.name}</h4>
-                                                <p />
-                                              </div>
+                                                  ) : (
+                                                    <>-</>
+                                                  )}
+                                                </>
+                                              )}
                                             </div>
-                                      ))}
+                                            <div className="circle" />
+                                            <div className="text">
+                                              <h4>{data?.name}</h4>
+                                              <p />
+                                            </div>
+                                          </div>
+                                        ))}
                                     </div>
-                                </div>
-                                }
+                                  </div>
+                                )}
 
-
-                                <span className="btn-toggle-collapse" onClick={()=> setIsTimelineShowing(!isTimelineShowing)}>
-                                  {isTimelineShowing? "Less" : "More"}
+                                <span
+                                  className="btn-toggle-collapse"
+                                  onClick={() =>
+                                    setIsTimelineShowing(!isTimelineShowing)
+                                  }
+                                >
+                                  {isTimelineShowing ? "Less" : "More"}
                                   <svg
                                     stroke="currentColor"
                                     fill="currentColor"

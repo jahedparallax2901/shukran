@@ -118,3 +118,21 @@ export const processDeleteRequest = (url, data = {}, isAuthenticationRequired = 
     });
   });
 };
+
+export const processPutRequest = (url, data = {}, isAuthenticationRequired = false) => {
+  const authData = getLocalAuthData();
+  return new Promise((resolve, reject) => {
+    axios.put(`${BASE_API_URL}${url}`,  {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": isAuthenticationRequired? authData?.token : "",
+        "x-api-client": getDeviceType(),
+      },
+    }).then((res) => {
+      resolve(res.data);
+    }).catch((err) => {
+      console.error(err);
+      reject(err.message);
+    });
+  });
+};
