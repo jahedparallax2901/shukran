@@ -36,8 +36,7 @@ const MyOrders = () => {
 
     return(
         <>{orderList && orderList.map((data , index) =>(
-              <>
-                <tr>
+                <tr key={data?.id}>
                   <td className="pl-0">
                     <a
                         href="#"
@@ -101,7 +100,6 @@ const MyOrders = () => {
 
                   </td>
                 </tr>
-              </>
           ))}
         </>)}
 

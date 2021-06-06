@@ -485,7 +485,7 @@ class MiniShoppinCart extends Component {
                 {shoppingCart.cartItems.map((cart_items) => (
                   <>
                     {cart_items.store_product.length > 0 && (
-                      <div className="store-div">
+                      <div key={cart_items?.id} className="store-div">
                         <div className="store">
                           <div className="store-name d-flex justify-content-between">
                             <div className="ps-checkbox">
@@ -531,7 +531,7 @@ class MiniShoppinCart extends Component {
 
                           {cart_items?.store_product &&
                             cart_items.store_product.map((store_item) => (
-                              <div className="product">
+                              <div key={store_item?.id} className="product">
                                 <div className="product-name">
                                   <div className="ps-checkbox">
                                     <Form.Check type="checkbox" id={`brand-${store_item?.product_attribute?.id}`}

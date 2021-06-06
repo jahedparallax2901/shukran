@@ -107,7 +107,7 @@ const ShopItems = ({ columns = 4, pageSize = 12 }) => {
                 );
             } else {
                 productItemsView = productItems.map((item) => (
-                    <ProductWide product={item} />
+                    <ProductWide product={item} key={item?.id}/>
                 ));
             }
         } else {

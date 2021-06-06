@@ -34,13 +34,14 @@ const ProductDetailFullwidth = ({ product , selectedAttributeProduct, setSelecte
               <table>
                 <tbody>
                   {product?.attributes_types.map((item) => (
-                    <tr>
+                    <tr key={item?.id}>
                       <td>
                         <p>{item.name}</p>
                       </td>
                       <td>
                         {item.items.map((attr) => (
                           <Link
+                          key={attr?.id}
                           onClick={(e) =>{
                             e.preventDefault();
                             setSelectedAttributeProduct(attr || {})

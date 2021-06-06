@@ -87,7 +87,7 @@ class Home extends Component {
             <div className="container">
               {
                 this.state.category_products ? this.state.category_products.map(cat=>(
-                  <CategoryProducts cat={cat} />
+                  <CategoryProducts cat={cat} key={cat?.id}/>
                 )) : <p>No category exist</p>
               }
             </div>

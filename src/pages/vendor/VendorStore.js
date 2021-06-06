@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { BsChevronRight, BsPhone } from "react-icons/bs";
+import { BsPhone } from "react-icons/bs";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import ShopBanner from "../../components/partials/store/ShopBanner";
-import img1 from "../../assets/img/1.jpg";
-import { BiEnvelope, BiSearchAlt2 } from "react-icons/bi";
-import shopLogo1 from "../../assets/img/shop-logo1.jpeg";
+import { BiEnvelope } from "react-icons/bi";
 import { AiOutlineQuestionCircle, AiOutlineStar } from "react-icons/ai";
-import banner4 from "../../assets/img/downloads/banner4.jpg";
-import banner5 from "../../assets/img/downloads/banner5.png";
-import banner6 from "../../assets/img/downloads/banner6.png";
-import shoeShopLogo from "../../assets/img/downloads/shoe-shop-logo.jpg";
-import girlsShopLogo from "../../assets/img/downloads/girls-shop-logo.jpg";
-import girlsShopLogo2 from "../../assets/img/downloads/girls-shop-logo2.jpg";
+
 import { processGetRequest } from "../../services/baseServices";
 import Pagination from "react-js-pagination";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const VendorStore = () => {
 
@@ -22,10 +15,7 @@ const VendorStore = () => {
   const [storeData , setStoreData] = useState([])
   const [storeCategory , setStoreCategory] = useState([])
   const [query , setQuery] = useState({page: "1"})
-  const [searchKey , setSearchKey] = useState("")
-  const [pagination, setPagination] = useState({});
   const history = useHistory();
-
 
 
   useEffect(() => {

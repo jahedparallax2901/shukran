@@ -17,7 +17,11 @@
         .ps-section__center{
             display: inline-block;
             max-width: 50% !important;
-            width: 100%;
+            width: 550px;
+
+            @media screen and (max-width:768px){
+                width: 100%;
+            }
         }
     }
     .banner-slider-bottom-inner{

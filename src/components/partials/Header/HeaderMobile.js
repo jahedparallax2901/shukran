@@ -119,7 +119,7 @@ class HeaderMobile extends Component {
                               <>
                                 {item?.store_product?.length > 0 &&
                                   item.store_product.map((store_item) => (
-                                    <div className="ps-product--cart-mobile">
+                                    <div key={store_item?.id} className="ps-product--cart-mobile">
                                       <div className="ps-product__thumbnail">
                                         <a href="#">
                                           <img

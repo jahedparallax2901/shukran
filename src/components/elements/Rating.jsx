@@ -6,7 +6,7 @@ import { FiStar } from "react-icons/fi";
 const Rating = ({ count }) => (
   <span className="ps-rating">
     {[1, 2, 3, 4, 5].map((item, index) => (
-      <i>{index >= count ? <FiStar /> : <FaStar />}</i>
+      <i key={item}>{index >= count ? <FiStar /> : <FaStar />}</i>
       // <i className={`fa fa-star-o ${index> count && "open"}`}></i>
     ))}
   </span>

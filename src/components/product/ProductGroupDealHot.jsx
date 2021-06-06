@@ -53,8 +53,8 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
         <ProductDealHot product={item} key={item.id} />
       ));
       const relatedItems =
-        top_products.length > 0 &&
-        top_products.map((item, index) => {
+        top_products?.length > 0 &&
+        top_products?.map((item, index) => {
           return <ProductHorizontal product={item} key={item.id} />;
         });
       productItemsView = (
@@ -69,11 +69,11 @@ const ProductGroupDealHot = ({ collectionSlug }) => {
       );
       relatedView = (
         <Slider {...carouselSingle}>
-          {relatedItems.map((item, index) => {
+          {relatedItems && relatedItems?.map((item, index) => {
             if (index % 4 === 0) {
-              const newItem = relatedItems.slice(index, index + 4);
+              const newItem = relatedItems?.slice(index, index + 4);
               return (
-                <div className="ps-product-group" key="group-1">
+                <div className="ps-product-group" key="index">
                   {newItem}
                 </div>
               );

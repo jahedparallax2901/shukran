@@ -1,7 +1,6 @@
-import React, {Component, useState , useEffect} from "react";
+import React, { useState , useEffect} from "react";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
-import Checkout from "../Checkout";
 import {processDeleteRequest, processGetRequest, processPostRequest} from "../../services/baseServices";
 import {Button, Form, Modal} from "react-bootstrap";
 import {toast} from "react-toastify";
@@ -156,8 +155,7 @@ const ShippingAddress = () => {
        return(
            <>
              {deliverAddress && deliverAddress.map((data, index) => (
-                 <>
-                   <div className="address-list d-inline-block p-4 border mx-3 mt-5 mt-md-0">
+                   <div className="address-list d-inline-block p-4 border mx-3 mt-5 mt-md-0" key={data?.id}>
                      <div className="address-item">
                       <div key={index} className="address-box -default">
                      <h4 className="name">{data?.name}</h4>
@@ -257,7 +255,6 @@ const ShippingAddress = () => {
                    </div>
                      </div>
                    </div>
-                 </>
              ))}
            </>
        )
@@ -438,12 +435,10 @@ const ShippingAddress = () => {
                       <option value=""> --select division-- </option>
                       {division &&
                       division.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>
@@ -469,12 +464,10 @@ const ShippingAddress = () => {
                       <option value=""> --select District-- </option>
                       {district &&
                       district.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>
@@ -500,12 +493,10 @@ const ShippingAddress = () => {
                       <option value=""> --select upazila-- </option>
                       {upazila &&
                       upazila.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>
@@ -529,12 +520,10 @@ const ShippingAddress = () => {
                       <option value=""> --select upazila thana-- </option>
                       {upazilaArea &&
                       upazilaArea.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>

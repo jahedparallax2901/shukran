@@ -119,9 +119,8 @@ const MyContacts = () => {
             <>
                 {contacts &&
                 contacts.map((data, index) => (
-
-                    <>
                         <div
+                        key={data?.id}
                             onClick={() => {
                                 setSelectContact(index);
                             }}
@@ -185,8 +184,6 @@ const MyContacts = () => {
                                 </div>
                             </div>
                         </div>
-                    </>
-
                 ))}
             </>
         );

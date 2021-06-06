@@ -87,9 +87,9 @@ const CategoryProducts = ({ cat }) => {
         </h3>
         <Slider {...carouselSingle} className="ps-carousel">
           {sliders.map((item) => (
-            <a>
+            <Link key={item?.id} to={`/search?category_id=${category?.id}`}>
               <img src={item.image} alt="shukran" />
-            </a>
+            </Link>
           ))}
         </Slider>
         <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">

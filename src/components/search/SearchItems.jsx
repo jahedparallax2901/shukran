@@ -23,7 +23,7 @@ const SearchItems = ({
   query,
   setQuery,
   getProducts,
-  paginanation,
+  pagination,
 }) => {
   const history = useHistory();
   const [listView, setListView] = useState(true);
@@ -88,7 +88,7 @@ const SearchItems = ({
         );
       } else {
         productItemsView = productItems.map((item) => (
-          <ProductWide product={item} />
+          <ProductWide product={item} key={item.id}/>
         ));
       }
     } else {
@@ -142,15 +142,16 @@ const SearchItems = ({
       </div>
       <div className="ps-shopping__content">{productItemsView}</div>
       <div className="ps-shopping__footer text-center">
-        <div className="ps-pagination">
+        <div className="ps-pagination">\
+        {console.log("pagination", pagination)}
           <Pagination
-            total={paginanation?.total || 1}
-            pageSize={paginanation?.per_page || 10}
+            total={pagination?.total || 1}
+            pageSize={pagination?.per_page || 10}
             responsive={true}
             showSizeChanger={false}
             current={
-              paginanation?.current_page !== undefined
-                ? parseInt(paginanation?.current_page)
+              pagination?.current_page !== undefined
+                ? parseInt(pagination?.current_page)
                 : 1
             }
             onChange={(e) => handlePagination(e)}

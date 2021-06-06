@@ -106,7 +106,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
             <span>{reviewInfo?.count} Review</span>
           </div>
           {reviewInfo?.grp_rating?.map((rating) => (
-            <div className="ps-block__star">
+            <div className="ps-block__star" key={rating?.id}>
               <span>{rating?.rating} Star</span>
               <div
                 className="ps-progress"
@@ -187,7 +187,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
         <h4>Customers Review</h4>
         <div className="customer-review">
           {reviewInfo?.all_review?.map((review) => (
-            <div className="single-review">
+            <div className="single-review" key={review?.id}>
               <Rating count={review?.rating || 0} />
               <p>{review?.created_at ? moment(review?.created_at).fromNow() : ""}</p>
               <p className="customer-name-container">
@@ -200,7 +200,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
                 review?.product_review_image?.length > 0 && <div className="d-flex flex-wrap w-100 w-md-50">
                   {
                     review?.product_review_image?.map(image=>(
-                      <img width="100px" height="100px" className="p-2" src={image?.image} alt="" />
+                      <img width="100px" height="100px" className="p-2" src={image?.image} alt="" key={image?.id}/>
                     ))
                   }
                 </div>

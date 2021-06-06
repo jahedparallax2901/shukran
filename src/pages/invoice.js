@@ -669,8 +669,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 </tr>*/}
                             {json?.store_product &&
                               json?.store_product.map((data1, index) => (
-                                <>
-                                  <tr>
+                                  <tr key={data1?.id}>
                                     <td>
                                       <span className="d-block">
                                         <strong>
@@ -755,12 +754,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                       )}
                                     </td>
                                   </tr>
-                                  {/* {json.store_product.map((data1,index1) => (<>
-
-
-
-                                                </>))}*/}
-                                </>
+                                 
                               ))}
                             <tr>
                               {/*
@@ -801,8 +795,8 @@ const Invoice = ({ handleShowAuthModal }) => {
                                   <span className="progress-line" />
                                     <div className="timeline-inner">
                                       {timeLineArray.length >= 0 && timeLineArray.map((data, index) => (
-                                          <>
                                             <div
+                                            key={data?.id}
                                                 className={"progress-block " + (data.active || timeLineStatus >= index ? "completed" : "")
                                                 }
                                             >
@@ -831,7 +825,6 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 <p />
                                               </div>
                                             </div>
-                                          </>
                                       ))}
                                     </div>
                                 </div>

@@ -693,12 +693,10 @@ const Checkout = (props) => {
                       <option value=""> --select division-- </option>
                       {division &&
                       division.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>
@@ -724,12 +722,10 @@ const Checkout = (props) => {
                       <option value=""> --select District-- </option>
                       {district &&
                       district.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>
@@ -755,12 +751,10 @@ const Checkout = (props) => {
                       <option value=""> --select upazila-- </option>
                       {upazila &&
                       upazila.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>
@@ -784,12 +778,10 @@ const Checkout = (props) => {
                       <option value=""> --select upazila thana-- </option>
                       {upazilaArea &&
                       upazilaArea.map((data, index) => (
-                          <>
-                            <option id={data.id} value={data.id}>
+                            <option id={data.id} value={data.id} key={data?.id}>
                               {" "}
                               {data.name}{" "}
                             </option>
-                          </>
                       ))}
                     </Form.Control>
                   </>

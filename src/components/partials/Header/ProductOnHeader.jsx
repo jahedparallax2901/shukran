@@ -11,7 +11,6 @@ import {
 } from "../../../redux";
 import { processPostRequest } from "../../../services/baseServices";
 import {
-  StrapiProductPrice,
   StrapiProductThumbnail,
 } from "../../../utilities/product-helper";
 
@@ -28,7 +27,6 @@ const ProductOnHeader = ({
   // Views
   const thumbnailImage = StrapiProductThumbnail(product);
   const [quantity, setQuantity] = useState(1);
-  const history = useHistory();
   const [isProcessing, setIsProcessing] = useState(false);
   const { id } = product;
 

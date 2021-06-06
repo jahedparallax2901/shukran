@@ -37,7 +37,7 @@ class AllCategories extends Component {
               <Slider {...carouselStandard}>
                 {this.state.all_category?
                   this.state.all_category.map((item) => (
-                    <div className="ps-product ps-product--inner px-3" onClick={()=>{
+                    <div key={item?.id} className="ps-product ps-product--inner px-3" onClick={()=>{
                       this.props.history.push(`/search?category_id=${item.id}`)
                     }}>
                       <div className="ps-block--category">

@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import { Spinner } from "react-bootstrap";
-import Slider from "react-slick";
-import ProductOffline from "../../components/elements/product/ProductOffline";
+// import ProductOffline from "../../components/elements/product/ProductOffline";
 import Rating from "../../components/elements/Rating";
 import VendorProducts from "../../components/partials/store/module/VendorProducts";
 import {
   processGetRequest,
-  processPostRequest,
 } from "../../services/baseServices";
-import { dealOfTheDayProducts } from "../../temp-data/homeData";
-import { carouselStandard } from "../../utilities/carousel-helpers";
 import noImage from "../../assets/img/no_image.jpg";
 import { Pagination } from "antd";
 

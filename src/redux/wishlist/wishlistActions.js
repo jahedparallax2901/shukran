@@ -3,7 +3,6 @@ import { userData } from "../../helpers/authUtils";
 import { BASE_API_URL } from "../../helpers/env";
 import { getDeviceType } from "../../helpers/utils";
 import { ADD_TO_WISHLIST_FAILURE, ADD_TO_WISHLIST_REQUEST, ADD_TO_WISHLIST_SUCCESS, CLEAR_WISHLIST_ITEMS, GET_WISHLIST_ITEMS_FAILURE, GET_WISHLIST_ITEMS_REQUEST, GET_WISHLIST_ITEMS_SUCCESS } from "./actionTypes";
-const userInfo = userData();
 
 export const handleAddToWishlist = (
    product_id,

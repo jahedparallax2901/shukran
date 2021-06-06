@@ -78,7 +78,7 @@ export default function WidgetSearchCategories({
             <>
               {categories &&
                 categories.map((cat) => (
-                  <li className={`menu-item-has-children`} onClick={(e) => handleCategoryClick(e, cat.id.toString())}>
+                  <li key={cat?.id} className={`menu-item-has-children`} onClick={(e) => handleCategoryClick(e, cat.id.toString())}>
                     <a className={selected_categories.includes((cat.id).toString()) && "active"}>
                       {cat.name}
                       <span className="sub-toggle">

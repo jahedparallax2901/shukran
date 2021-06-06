@@ -157,7 +157,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
           <form>
             {brands &&
               brands.map((brand) => (
-                <div class="ps-checkbox">
+                <div class="ps-checkbox" key={brand?.id}>
                   <input
                     class="form-control"
                     type="checkbox"
@@ -317,7 +317,7 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
       {
         attributes &&
           attributes.map((attr) => (
-            <figure>
+            <figure key={attr?.id}>
               <h4 class="widget-title">By {attr.name}</h4>
               {attr?.items?.map((item) => (
                 <div class="ps-checkbox">

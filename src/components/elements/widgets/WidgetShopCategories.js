@@ -9,7 +9,7 @@ function WidgetShopCategories() {
       <h4 class="widget-title">Categories</h4>
       <ul class="ps-list--categories">
         {menuContents.map((item) => (
-          <li className={"menu-item-has-children"}>
+          <li key={item.id} className={"menu-item-has-children"}>
             <Link to={"#"}>
               <i>{item.icon}</i> {item.title}
               <span class="sub-toggle">

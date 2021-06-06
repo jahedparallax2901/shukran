@@ -87,8 +87,7 @@ export default function MyAccount() {
                       <h4>Addresses</h4>
                       {userDetails?.addresses?.length > 0 &&
                         userDetails?.addresses?.map((data, index) => (
-                          <>
-                            <div className="address-list d-inline-block p-4 border mr-4 my-2">
+                            <div className="address-list d-inline-block p-4 border mr-4 my-2" key={data?.id}>
                               <div className="address-item">
                                 <div
                                   key={index}
@@ -164,7 +163,6 @@ export default function MyAccount() {
                                 </div>
                               </div>
                             </div>
-                          </>
                         ))}
                     </div>
                   </div>

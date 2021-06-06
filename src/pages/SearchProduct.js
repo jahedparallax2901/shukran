@@ -26,7 +26,7 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
   const [productItems, setProductItems] = useState(null);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [paginanation, setPagination] = useState({});
+  const [pagination, setPagination] = useState({});
 
   // async function getProducts(params) {
   //   setLoading(true);
@@ -49,7 +49,8 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
 
   const getProducts = (params) => {
     fetchSearchedProducts(params, (data) => {
-      const { current_page, total, per_page } = data;
+      console.log("Testing data", data);
+      const { current_page, total, per_page } = data.product;
       setTotal(data?.length);
       setQuery(queryString.parse(history.location.search));
       setPagination({ current_page, total, per_page });
@@ -98,7 +99,7 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
                 query={query}
                 getProducts={getProducts}
                 setQuery={setQuery}
-                paginanation={paginanation}
+                pagination={pagination}
               />
             </div>
           </div>

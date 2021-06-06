@@ -63,11 +63,11 @@ export function StrapiProductBadge(product) {
   if (product?.badge && product?.badge !== null) {
     view = product.badge.map((badge) => {
       if (badge.type === "sale") {
-        return <div className="ps-product__badge">{badge.value}</div>;
+        return <div key={badge?.id} className="ps-product__badge">{badge.value}</div>;
       } else if (badge.type === "outStock") {
-        return <div className="ps-product__badge out-stock">{badge.value}</div>;
+        return <div key={badge?.id} className="ps-product__badge out-stock">{badge.value}</div>;
       } else {
-        return <div className="ps-product__badge hot">{badge.value}</div>;
+        return <div key={badge?.id} className="ps-product__badge hot">{badge.value}</div>;
       }
     });
   }

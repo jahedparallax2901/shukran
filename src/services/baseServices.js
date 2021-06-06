@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useHistory } from "react-router";
 import { BASE_API_URL } from "../helpers/env";
 import { getDeviceType, getLocalAuthData } from "../helpers/utils";
 

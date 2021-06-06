@@ -72,7 +72,7 @@ class TopBanner extends Component {
                 <div className="ps-section__center">
                   <Slider {...carouselSettings}>
                     {top_sliders.map((banner) => (
-                      <div className="item">
+                      <div key={banner?.id} className="item">
                         <Link
                           to={banner.deeplink}
                           onClick={(e) => e.preventDefault()}
@@ -92,7 +92,7 @@ class TopBanner extends Component {
                   <div className="ps-section__banner-box">
                     <div className="banner-add">
                       {top_image_long_images?.map((item) => (
-                        <div className="banner-add-item">
+                        <div key={item?.id} className="banner-add-item">
                           <img src={item.image} alt="bottom_slider" />
                         </div>
                       ))}
