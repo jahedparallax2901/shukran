@@ -64,7 +64,7 @@ const ProductDetails = () => {
       url: "/shop",
     },
     {
-      text: product ? product.title : "Loading...",
+      text: product ? product.name : "Loading...",
     },
   ];
   // Views

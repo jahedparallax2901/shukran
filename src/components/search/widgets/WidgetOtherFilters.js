@@ -144,12 +144,12 @@ export default function WidgetOtherFilters({ query, setQuery, getProducts }) {
   return (
     <aside class="widget widget_shop">
       <h4 class="widget-title">BY BRANDS</h4>
-      <form class="ps-form--widget-search" action="do_action" method="get">
+      {/* <form class="ps-form--widget-search" action="do_action" method="get">
         <input class="form-control" type="text" placeholder="Search brand.." />
         <button>
           <FaSearch />
         </button>
-      </form>
+      </form> */}
       <figure class="ps-custom-scrollbar" data-height="250">
         {isBrandFetching ? (
           <p>Fetching....</p>

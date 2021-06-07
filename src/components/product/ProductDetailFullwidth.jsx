@@ -68,7 +68,7 @@ const ProductDetailFullwidth = ({ product , selectedAttributeProduct, setSelecte
           product={product}
           selectedAttributeProduct={selectedAttributeProduct}
         />
-        <ModuleProductDetailSharing />
+        {/* <ModuleProductDetailSharing /> */}
         </div>
       </div>
       <div class="ps-product-info-other">

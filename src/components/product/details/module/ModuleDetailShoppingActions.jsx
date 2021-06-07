@@ -313,11 +313,11 @@ const ModuleDetailShoppingActions = ({
             </i>
           </Link>
           {/* <a href="#" onClick={(e) => handleAddItemToCompare(e)}> */}
-          <a href="#">
+          {/* <a href="#">
             <i>
               <FaBars />
             </i>
-          </a>
+          </a> */}
         </div>
       </div>
     );
@@ -364,11 +364,6 @@ const ModuleDetailShoppingActions = ({
                 )}
               </i>
             </Link>
-            <a href="#">
-              <i>
-                <FaBars />
-              </i>
-            </a>
           </div>
         </div>
         <a className="ps-btn" href="#" onClick={(e) => handleBuynow(e)}>

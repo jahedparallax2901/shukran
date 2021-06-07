@@ -46,9 +46,44 @@ class TopBanner extends Component {
       speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      autoplay: true
+    };
+    const sliderBoxCarouselSettings = {
+      dots: false,
+      arrows: false,
+      infinite: true,
+      speed: 1000,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      autoplay: true
     };
 
-    const { categories, top_sliders, top_sliders_box, top_image_long_images } = this.state;
+    const { categories, top_sliders, top_sliders_box, top_image_long_images } =
+      this.state;
+
+    let topLeftSliders = [];
+
+    for (let i = 0; i < top_sliders_box.length; i += 2) {
+      topLeftSliders.push(
+        <>
+          <a key={top_sliders_box[i].id} href={top_sliders_box[i].deeplink}>
+            <img
+              src={top_sliders_box[i]?.file_attach?.file_url}
+              alt={top_sliders_box[i]?.file_attach?.file_name}
+            />
+          </a>
+          <a
+            key={top_sliders_box[i + 1].id}
+            href={top_sliders_box[i + 1].deeplink}
+          >
+            <img
+              src={top_sliders_box[i + 1]?.file_attach?.file_url}
+              alt={top_sliders_box[i + 1]?.file_attach?.file_name}
+            />
+          </a>
+        </>
+      );
+    }
 
     return (
       <>
@@ -60,14 +95,13 @@ class TopBanner extends Component {
             <div className="banner-slider-top">
               <div className="banner-slider-top-inner">
                 <div className="ps-section__right">
-                  {top_sliders_box.map((item) => (
-                    <a key={item.id} href={item.deeplink}>
-                      <img
-                        src={item?.file_attach?.file_url}
-                        alt={item?.file_attach?.file_name}
-                      />
-                    </a>
-                  ))}
+                <Slider {...sliderBoxCarouselSettings}>
+                  {
+                    topLeftSliders.map((item, index) => <div key={index} className="item">
+                        {item}
+                    </div>)
+                  }
+                </Slider>
                 </div>
                 <div className="ps-section__center">
                   <Slider {...carouselSettings}>

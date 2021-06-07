@@ -13,6 +13,7 @@ const ShopBanner = () => {
         infinite: true,
         speed: 1000,
         slidesToShow: 1,
+        autoplay: true,
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,

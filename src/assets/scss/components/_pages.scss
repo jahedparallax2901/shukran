@@ -12,12 +12,30 @@
         .ps-section__right{
             display: inline-block;  
             max-width: 50% !important;
-            width: 100%;
+            width: 550px;
+            height: auto;
+            @media screen and (max-width:768px){
+                width: 100%;
+            }
+
+            a{
+                height: 50%;
+                img{
+                    height: 195px;
+                    width: 275px;
+                    object-fit: cover;
+
+                    @media screen and (max-width:1200px){
+                        height: 164px;
+                    }
+                }
+            }
         }
         .ps-section__center{
             display: inline-block;
             max-width: 50% !important;
             width: 550px;
+            height: auto;
 
             @media screen and (max-width:768px){
                 width: 100%;

@@ -75,8 +75,12 @@ export const processPostRequest = (url, data = {}, isAuthenticationRequired = fa
         console.log("res",res)
         resolve(res);
       }).catch((err) => {
-        console.log("error 3",err)
-        reject(err.response);
+        if(err.response.status === 401){
+          localStorage.removeItem('user');
+          window.location.reload();
+        }else{
+          reject(err.response);
+        }
       });
   });
 };
@@ -94,8 +98,13 @@ export const processPostRequestMultiImage = (url, data = {}, isAuthenticationReq
         console.log("res",res)
         resolve(res);
       }).catch((err) => {
-        console.log("error 3",err)
-        reject(err.response);
+        if(err.response.status === 401){
+          localStorage.removeItem('user');
+          window.location.reload();
+        }else{
+          reject(err.response);
+        }
+        
       });
   });
 };
@@ -113,8 +122,12 @@ export const processDeleteRequest = (url, data = {}, isAuthenticationRequired = 
     }).then((res) => {
       resolve(res.data);
     }).catch((err) => {
-      console.error(err);
-      reject(err.message);
+      if(err.response.status === 401){
+        localStorage.removeItem('user');
+        window.location.reload();
+      }else{
+        reject(err.message);
+      }
     });
   });
 };
@@ -131,8 +144,12 @@ export const processPutRequest = (url, data = {}, isAuthenticationRequired = fal
     }).then((res) => {
       resolve(res.data);
     }).catch((err) => {
-      console.error(err);
-      reject(err.message);
+      if(err.response.status === 401){
+        localStorage.removeItem('user');
+        window.location.reload();
+      }else{
+        reject(err.message);
+      }
     });
   });
 };

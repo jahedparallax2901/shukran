@@ -114,12 +114,12 @@ const SearchItems = ({
 
   return (
     <div className="ps-shopping">
-      <div className="ps-shopping__header">
-        <p>
-          <strong className="mr-2">{total}</strong>
+      <div className="ps-shopping__header bg-white">
+        <p className="font-weight-bold">
+          <strong className="mr-2">{pagination?.total}</strong>
           Products found
         </p>
-        <div className="ps-shopping__actions">
+        {/* <div className="ps-shopping__actions">
           <ModuleSearcjProductSortBy />
           <div className="ps-shopping__view">
             <p>View</p>
@@ -138,9 +138,9 @@ const SearchItems = ({
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="ps-shopping__content">{productItemsView}</div>
+      <div className="ps-shopping__content mt-2">{productItemsView}</div>
       <div className="ps-shopping__footer text-center">
         <div className="ps-pagination">\
         {console.log("pagination", pagination)}

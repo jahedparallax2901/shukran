@@ -19,18 +19,18 @@ const DefaultDescription = ({product}) => {
                 <TabPane tab="Specification" key="2">
                     <PartialSpecification product={product}/>
                 </TabPane>
-                <TabPane tab="Vendor" key="3">
+                {/* <TabPane tab="Vendor" key="3">
                     <PartialVendor />
-                </TabPane>
+                </TabPane> */}
                 <TabPane tab="Reviews" key="4">
                     <PartialReview product={product}/>
                 </TabPane>
-                <TabPane tab="Questions and Answers" key="5">
+                {/* <TabPane tab="Questions and Answers" key="5">
                     Content of Tab Pane 3
-                </TabPane>
-                <TabPane tab="More Offers" key="6">
+                </TabPane> */}
+                {/* <TabPane tab="More Offers" key="6">
                     <PartialOffer />
-                </TabPane>
+                </TabPane> */}
             </Tabs>
         </div>
     );

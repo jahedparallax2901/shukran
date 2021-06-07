@@ -99,7 +99,7 @@ class Store extends Component {
                           {store_info?.store_address?.address ||
                             "Badda, Dhaka, 1212"}
                         </p>
-                        <figure>
+                        {/* <figure>
                           <figcaption>Foloow us on social</figcaption>
                           <ul className="ps-list--social-color">
                             <li>
@@ -123,9 +123,9 @@ class Store extends Component {
                               </a>
                             </li>
                           </ul>
-                        </figure>
+                        </figure> */}
                       </div>
-                      <div className="ps-block__footer">
+                      <div className="ps-block__footer mt-2">
                         <p>
                           Call us directly
                           <strong>
