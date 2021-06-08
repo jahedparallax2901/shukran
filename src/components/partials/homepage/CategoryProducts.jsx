@@ -17,7 +17,7 @@ const CategoryProducts = ({ cat }) => {
   if (items && items.length > 0) {
     productItemsView = items.map((item, index) => {
       if (index < 6) {
-        return <ProductSimple product={item} key={item.id} />;
+        return <ProductSimple product={item?.product} key={item.id} />;
       }
     });
   } else {

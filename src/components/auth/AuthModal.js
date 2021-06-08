@@ -47,7 +47,7 @@ const AuthModal = ({
   //   firebase.initializeApp(firebaseConfig);
   // }
 
-  const [authData, setAuthData] = useState({phone: '', country_code: '+880'});
+  const [authData, setAuthData] = useState({phone: '', country_code: '+880', name: ''});
   const [countryList, setCountryList] = useState([]);
   const [resendTime, setResendTime] = useState(OTP_RESEND_TIME)
   const [isOTPSent, setIsOTPSent] = useState(false)
@@ -89,7 +89,7 @@ const AuthModal = ({
         phone: authData.phone,
         otp: authData.otp,
         password: authData.password,
-        // name: authData.name,
+        name: authData.name,
         // device_id: "",
         // device_token: "f4as4f5as5f4as5f4as6",
         // device_type: getDeviceType()

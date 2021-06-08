@@ -278,7 +278,7 @@ class HeaderStandardProduct extends Component {
                     )}
                   </div>
                 </div>
-                {user?.phone ? (
+                {user?.name || user?.phone ? (
                   <div className="ps-block--user-header mr-0">
                     <div className="ps-block__left">
                       <i>
@@ -286,7 +286,7 @@ class HeaderStandardProduct extends Component {
                       </i>
                     </div>
                     <div className="ps-block__right">
-                      <Link to="/account/my-account">{user.phone}</Link>
+                      <Link to="/account/my-account">{user?.name || user?.phone}</Link>
                       <a onClick={() => this.handleSignOut()}>Logout</a>
                     </div>
                   </div>

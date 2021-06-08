@@ -13,8 +13,11 @@ import {Upload, Input, Tooltip, Modal, Button, Cascader, Select, options, Space,
 import ImgCrop from 'antd-img-crop';
 import {EditOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
 import {Option} from "antd/es/mentions";
+import { connect } from "react-redux";
+import { handleClearCart, handleSignOut } from "../../../redux";
+import { handleClearWishlist } from "../../../redux/wishlist/wishlistActions";
 
-const AccountMenuSidebar = ({ selectedTab }) => {
+const AccountMenuSidebar = ({ selectedTab, handleClearWishlist, handleSignOut, handleClearCart }) => {
   const accountLinks = [
     {
       text: "My Account",
@@ -190,6 +193,13 @@ const AccountMenuSidebar = ({ selectedTab }) => {
     setFormData({ ...formData, "gender": value });
   }
 
+  const SignOut = () => {
+    localStorage.clear();
+    handleClearWishlist();
+    handleSignOut();
+    handleClearCart();
+  };
+
   return (
     <aside className="ps-widget--account-dashboard">
       <div className="ps-widget__header">
@@ -237,7 +247,7 @@ const AccountMenuSidebar = ({ selectedTab }) => {
             </li>
           ))}
           <li className="nav-item">
-            <Link href="/account/my-account">
+            <Link onClick={(e) => {e.preventDefault();SignOut()}}>
               <i>
                 <AiOutlineLogout />
               </i>
@@ -351,4 +361,12 @@ const AccountMenuSidebar = ({ selectedTab }) => {
   );
 };
 
-export default AccountMenuSidebar;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleSignOut: () => dispatch(handleSignOut()),
+    handleClearCart: () => dispatch(handleClearCart()),
+    handleClearWishlist: ()=> dispatch(handleClearWishlist()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(AccountMenuSidebar);
