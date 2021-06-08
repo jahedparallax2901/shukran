@@ -872,8 +872,8 @@
     .ps-list--dot{
       max-height: 280px;
       height: 100%;
-      overflow: scroll;
-      overflow-x: auto;
+      overflow: auto;
+      overflow-x: hidden;
     }
     ::-webkit-scrollbar {
       width: 10px;
