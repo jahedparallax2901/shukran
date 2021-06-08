@@ -100,9 +100,14 @@ export const handleAddToCart = (
         // }
       })
       .catch((err) => {
-        console.log("Err Msg: ", err.message);
         dispatch(addToCartFailure(err.message));
-        callback(err.message, false);
+        if(err.response.status === 401){
+          localStorage.removeItem('user');
+          window.location.reload();
+        }else{
+          callback(err.message, false);
+        }
+        
       });
   };
 };
