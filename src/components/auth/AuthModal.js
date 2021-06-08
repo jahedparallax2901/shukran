@@ -66,11 +66,9 @@ const AuthModal = ({
   const handleOTPVerify = () => {
     if (PasswordReset === true) {
       handleVerifyResetOtp({
-        token: authData.token,
-        password: authData.password,
-        device_id: "",
-        device_token: "f4as4f5as5f4as5f4as6",
-        device_type: getDeviceType()
+        password: authData?.password,
+        otp: otp,
+        phone: authData?.phone,
       }, () => {
         setIsLoginWithPassword(true)
         setIsPasswordReset(false);
@@ -81,7 +79,7 @@ const AuthModal = ({
           ...authData,
           showOTP: true
         })
-        this.state.auth.showOTP(true);
+        // this.state.auth.showOTP(true);
         return false;
       })
     } else {
@@ -221,7 +219,7 @@ const AuthModal = ({
     setResendTime(OTP_RESEND_TIME)
     setIsSending(true)
 
-    handleForgotResetPassword(authData, () => {
+    handleForgotResetPassword(authData, (data) => {
       setIsSending(false)
       setIsOTPSent(true)
       setIsSentOnce(true)
@@ -405,7 +403,7 @@ const mapStateToProps = state => {
     showOTP: state.auth.showOTP,
     // userToken: state.auth.userData?.token,
     errMessage: state.auth.errMessage,
-    otp: state.auth.otp,
+    otp        : state.auth.otp,
     setIsLoginWithPassword: state.auth.setIsLoginWithPassword,
     setIsPasswordReset: state.auth.setIsPasswordReset
   }

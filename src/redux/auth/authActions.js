@@ -94,18 +94,14 @@ export const handleForgotResetPassword = (
 ) => {
   return (dispatch) => {
     dispatch(verifyOtpRequest());
-    if (credential.phone_number.length > 5) {
+    if (credential.phone.length > 8) {
       credential.login_id =
-        credential.country_code + "-" + credential.phone_number;
+        credential.country_code + "-" + credential.phone;
       axois
-        .post(BASE_API_URL + "/forgot-password", credential)
+        .post(BASE_API_URL + "/forgot-password", {phone: credential?.phone})
         .then((res) => {
-          if (res.data.status === 1) {
-            dispatch(authSuccess(res.data.otpValue));
-            callback();
-          } else {
-            dispatch(authFailure(res.data.message));
-          }
+            dispatch(authSuccess(res.data.otp));
+            callback(res.data);
         })
         .catch((err) => {
           dispatch(authFailure(err.message));
@@ -198,21 +194,19 @@ export const handleVerifyOtp = (otpData, callback) => {
 };
 
 export const handleVerifyResetOtp = (otpData, callback) => {
+  console.log("Checking",otpData);
   return (dispatch) => {
     dispatch(authRequest());
-    if (otpData.token?.length === 4 && otpData.password?.length > 4) {
+    if (otpData.otp.toString()?.length === 4 && otpData.password?.length > 4) {
       axois
-        .post(BASE_API_URL + "/reset-password", otpData)
+        .post(BASE_API_URL + "/password-reset", otpData)
         .then((res) => {
-          if (res.data.status === 1) {
             dispatch(backToPhoneInputScreen(res.data.message));
-            callback();
-          } else {
-            dispatch(authFailure(res.data.message));
-          }
+            callback(res.data);
         })
         .catch((err) => {
-          // dispatch(verifyOtpFailure(err.message))
+          console.log("Checking errors",err)
+          dispatch(verifyOtpFailure(err.message))
         });
     } else {
       alert("Please insert valid OTP or Password");
