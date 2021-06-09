@@ -30,13 +30,7 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const [formData, setFormData] = useState({
-    product_id: null,
-    images: [],
-    order_store_id: id,
-    rating: "",
-    review: "",
-  });
+  const [formData, setFormData] = useState({});
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [validationMessage, setValidationMessage] = useState("");
   const [fileList, setFileList] = useState([]);
@@ -67,6 +61,14 @@ const Invoice = ({ handleShowAuthModal }) => {
         }
       });
     });
+
+    setFormData({
+      product_id: null,
+      images: [],
+      order_store_id: id,
+      rating: "",
+      review: "",
+    })
   }, []);
 
   const loadReviewByOrderId = (orderId) => {
@@ -117,7 +119,7 @@ const Invoice = ({ handleShowAuthModal }) => {
       });
       processPostRequestMultiImage(url, data, true)
         .then((res) => {
-          setFormData({ product_id: null, images: [], order_store_id: id });
+          setFormData({ product_id: null, images: [], order_store_id: id, review: '', rating: 0 });
           loadReviewByOrderId(id);
           toast.success(res.data.message);
           setVisible(false);
@@ -163,9 +165,9 @@ const Invoice = ({ handleShowAuthModal }) => {
       });
   };
 
-  const handlereviewDelete = (e, id) => {
+  const handlereviewDelete = (e, review_id) => {
     e.preventDefault();
-    processDeleteRequest(`/product-review/${id}`, {}, true)
+    processDeleteRequest(`/product-review/${review_id}`, {}, true)
       .then((res) => {
         loadReviewByOrderId(id);
         toast.success(res.message);
@@ -250,7 +252,7 @@ const Invoice = ({ handleShowAuthModal }) => {
             <Rate
               tooltips={desc}
               onChange={handleRateOnChange}
-              defaultValue={formData?.rating || 0}
+              value={formData?.rating || 0}
               character={<BsFillStarFill />}
             />
           </div>
@@ -258,7 +260,7 @@ const Invoice = ({ handleShowAuthModal }) => {
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             method="POST"
             listType="picture-card"
-            fileList={formData?.fileList}
+            fileList={formData?.images}
             onPreview={handlePreview}
             onChange={handleImageChange}
           >
@@ -289,7 +291,7 @@ const Invoice = ({ handleShowAuthModal }) => {
               rows="6"
               placeholder="Write your review here"
               onChange={inputOnChange}
-              defaultValue={formData?.review || ""}
+              value={formData?.review || ""}
             ></textarea>
           </div>
 
@@ -721,8 +723,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                     </Tooltip>
                                   
 
-                                    {json?.status == 6 && (
-                                      <>
+                                    
                                         {orderReviews.find(
                                           (item) =>
                                             item.product_id == data1.product.id
@@ -757,26 +758,32 @@ const Invoice = ({ handleShowAuthModal }) => {
                                                 )
                                               }
                                             >
-                                              Review Delete
+                                              Delete Review
                                             </button>
                                           </>
                                         ) : (
+                                          <Tooltip title={json?.status == 6 ? "": "Only for delivered product"}>
                                           <button
                                             type="button"
                                             className="btn btn-link text-muted btn-sm dispute-review"
-                                            onClick={() => {
-                                              setVisible(true);
-                                              setFormData({
-                                                ...formData,
-                                                product_id: data1.product.id,
-                                              });
+                                            onClick={(e) => {
+                                              if(json?.status == 6){
+                                                setVisible(true);
+                                                setFormData({
+                                                  ...formData,
+                                                  product_id: data1.product.id,
+                                                });
+                                              }else{
+                                                e.preventDefault();
+                                              }
+                                              
                                             }}
                                           >
                                             Review
                                           </button>
+                                          </Tooltip>
                                         )}
-                                      </>
-                                    )}
+                                      
                                   </td>
                                 </tr>
                               ))}

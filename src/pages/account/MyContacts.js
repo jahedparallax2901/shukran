@@ -124,7 +124,7 @@ const MyContacts = () => {
                             onClick={() => {
                                 setSelectContact(index);
                             }}
-                            className="address-list d-inline-block p-4 border">
+                            className="address-list d-inline-block p-4 border mr-3 mb-2">
                             <div className="address-item">
                                 <div key={index} className="address-box-default">
                                     <p className="address-line d-flex">

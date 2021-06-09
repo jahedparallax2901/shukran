@@ -34,14 +34,16 @@ export const handleAuthentication = (credential, callback = () => null) => {
   return (dispatch) => {
     dispatch(authRequest());
     console.log("Inside handleAuthentication", credential);
-    if (credential.phone.length > 5) {
+    if (credential.phone.length > 7) {
       axois
         .post(BASE_API_URL + "/sign-in-otp", credential)
         .then((res) => {
           // if (res.data.status === 1) {
           //TODO: OTP will be removed when twello will be connected
-          alert(res.data.otp);
-          dispatch(authSuccess(res.data.otp));
+          if(res?.data?.otp){
+            alert("Your OTP is :" + res.data.otp)
+            dispatch(authSuccess(res.data.otp));
+          }
           callback();
           // } else {
           //   dispatch(authFailure(res.data.message));
@@ -49,10 +51,10 @@ export const handleAuthentication = (credential, callback = () => null) => {
         })
         .catch((err) => {
           console.log("err", err);
-          dispatch(authFailure(err.message));
+          dispatch(authFailure(err.response.data.message));
         });
     } else {
-      alert("Please insert valid phone number of minimu 8 length");
+      alert("Please insert valid phone number of minimum length 8");
     }
   };
 };
@@ -63,7 +65,7 @@ export const handleAuthenticationWithPassword = (
 ) => {
   return (dispatch) => {
     dispatch(verifyOtpRequest());
-    if (credential.phone.length > 5 && credential.password.length > 5) {
+    if (credential.phone?.length > 7 && credential.password?.length > 5) {
       // credential.phone = credential.country_code+"-"+credential.phone_number;
       axois
         .post(BASE_API_URL + "/sign-in", credential)
@@ -80,10 +82,10 @@ export const handleAuthenticationWithPassword = (
         })
         .catch((err) => {
           console.log("err", err)
-          dispatch(verifyOtpFailure(err.message));
+          dispatch(verifyOtpFailure(err.response.data.message));
         });
     } else {
-      alert("Please insert valid phone number");
+      alert("Please insert valid phone number with minimum length 8");
     }
   };
 };
@@ -94,20 +96,25 @@ export const handleForgotResetPassword = (
 ) => {
   return (dispatch) => {
     dispatch(verifyOtpRequest());
-    if (credential.phone.length > 8) {
+    if (credential.phone.length > 7) {
       credential.login_id =
         credential.country_code + "-" + credential.phone;
       axois
         .post(BASE_API_URL + "/forgot-password", {phone: credential?.phone})
         .then((res) => {
+          if(res?.data?.otp){
             dispatch(authSuccess(res.data.otp));
+            alert("Your OTP is :" + res.data.otp)
+          }
+            
+
             callback(res.data);
         })
         .catch((err) => {
-          dispatch(authFailure(err.message));
+          dispatch(authFailure(err.response.data.message));
         });
     } else {
-      alert("Please insert valid phone number");
+      alert("Please insert valid phone number with minimum length 8");
     }
   };
 };
@@ -119,7 +126,7 @@ export const handleAuthenticationExist = (
   return (dispatch) => {
     dispatch(authRequest());
     let data = {};
-    if (credential.phone.length > 5) {
+    if (credential.phone.length > 7) {
       data.phone = credential.phone;
       axois
         .post(BASE_API_URL + "/sign-in-otp", data)
@@ -131,10 +138,10 @@ export const handleAuthenticationExist = (
           }
         })
         .catch((err) => {
-          dispatch(authFailure(err.message));
+          dispatch(authFailure(err.response.data.message));
         });
     } else {
-      alert("Please insert valid phone number");
+      alert("Please insert valid phone number with minimum length 8");
     }
   };
 };
@@ -185,10 +192,10 @@ export const handleVerifyOtp = (otpData, callback) => {
         })
         .catch((err) => {
           console.log("err",err)
-          dispatch(verifyOtpFailure(err.message))
+          dispatch(verifyOtpFailure(err.response.data.message))
         });
     } else {
-      alert("Please insert valid OTP or Password");
+      alert("Please insert valid OTP or Password (Password length minimum 6)");
     }
   };
 };
@@ -206,10 +213,10 @@ export const handleVerifyResetOtp = (otpData, callback) => {
         })
         .catch((err) => {
           console.log("Checking errors",err)
-          dispatch(verifyOtpFailure(err.message))
+          dispatch(verifyOtpFailure(err.response.data.message))
         });
     } else {
-      alert("Please insert valid OTP or Password");
+      alert("Please insert valid OTP or Password (Password length minimum 6)");
     }
   };
 };

@@ -183,7 +183,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
         </form>
       </div> */}
       {
-        reviewInfo?.all_review?.length > 0 && <div className="review-container">
+        reviewInfo?.all_review?.length > 0 && <div className="review-container px-4 px-md-4">
         <h4>Customers Review</h4>
         <div className="customer-review">
           {reviewInfo?.all_review?.map((review) => (
@@ -197,12 +197,15 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
               
               <p className="review">{review?.review || "N/A"}</p>
               {
-                review?.product_review_image?.length > 0 && <div className="d-flex flex-wrap w-100 w-md-50">
+                review?.product_review_image?.length > 0 && <div className="row">
+                  <div className="d-flex flex-wrap col-12 col-md-6">
                   {
                     review?.product_review_image?.map(image=>(
-                      <img width="100px" height="100px" className="p-2" src={image?.image} alt="" key={image?.id}/>
+                      <img width="120px" height="120px" className="p-2" src={image?.image} alt="" key={image?.id}/>
                     ))
                   }
+                  </div>
+                  
                 </div>
               }
               

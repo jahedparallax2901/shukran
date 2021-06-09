@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
 import { processGetRequest } from "../../services/baseServices";
-import emptyUser from '../../assets/img/users/1.png';
+import emptyUser from "../../assets/img/users/1.png";
 
 export default function MyAccount() {
   const [userDetails, setUserDetails] = useState();
@@ -84,10 +84,14 @@ export default function MyAccount() {
                     </div>
 
                     <div className="my-5">
-                      <h4>Addresses</h4>
-                      {userDetails?.addresses?.length > 0 &&
-                        userDetails?.addresses?.map((data, index) => (
-                            <div className="address-list d-inline-block p-4 border mr-4 my-2" key={data?.id}>
+                      {userDetails?.addresses?.length > 0 && (
+                        <>
+                          <h4>Addresses</h4>
+                          {userDetails?.addresses?.map((data, index) => (
+                            <div
+                              className="address-list d-inline-block p-4 border mr-4 my-2"
+                              key={data?.id}
+                            >
                               <div className="address-item">
                                 <div
                                   key={index}
@@ -163,7 +167,9 @@ export default function MyAccount() {
                                 </div>
                               </div>
                             </div>
-                        ))}
+                          ))}
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

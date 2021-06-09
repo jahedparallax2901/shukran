@@ -52,16 +52,15 @@ const MyOrders = () => {
                                 {moment(data?.created_at).fromNow()}
                               </span>
                   </td>
-                  <td>
+                  {/* <td>
                     <Link
                       to={`/product/`+data?.store_product[0]?.product_id}
                       className="text-primary font-weight-bolder text-hover-primary font-size-lg"
                     >{data?.id}</Link>
 
                     <span className="text-dark-75 font-weight-bolder d-block font-size-lg">
-                                {/*Total Item:*/}
                               </span>
-                  </td>
+                  </td> */}
                   <td>
                               <span className="d-block text-muted font-weight-bolder font-size-sm">
                                 {data?.total_amount}
@@ -138,9 +137,9 @@ const MyOrders = () => {
                             <th style={{ minWidth: "100px" }} class="pl-7">
                               <span class="text-dark-75">Date</span>
                             </th>
-                            <th style={{ minWidth: "100px" }}>
+                            {/* <th style={{ minWidth: "100px" }}>
                               <span class="text-dark">Order Item</span>
-                            </th>
+                            </th> */}
                             <th style={{ minWidth: "80px" }}>
                               <span class="text-dark">Amount</span>
                             </th>

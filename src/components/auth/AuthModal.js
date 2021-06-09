@@ -76,7 +76,7 @@ const AuthModal = ({
         setIsOTPSent(false)
         setIsSentOnce(false)
         setAuthData({
-          ...authData,
+          ...authData,phone: '', country_code: '+880', name: '',
           showOTP: true
         })
         // this.state.auth.showOTP(true);
@@ -103,7 +103,7 @@ const AuthModal = ({
     if (e.target.name === 'phone') {
       setAuthData({
         ...authData,
-        [e.target.name]: e.target.value.replace(/^0+/, '')
+        [e.target.name]: 0 + e.target.value.replace(/^0+/, '')
       })
     } else {
       setAuthData({
@@ -180,6 +180,7 @@ const AuthModal = ({
         device_type: getDeviceType()
       }, () => {
         // getCartItems()
+        setAuthData({phone: '', country_code: '+880', name: ''})
         authModalHide()
       })
     } else {
@@ -284,19 +285,25 @@ const AuthModal = ({
                   </select>
 
                   <input type="text" name="phone"
+                         defaultValue={authData?.phone}
                          onChange={handleInputOnChange}
+                         minLength={8}
                          placeholder={"Enter your phone number"}
                          className="form-control"
                          onKeyUp={(e)=>{if(e.keyCode === 13){
                           handleSendOTP()
                          }}}/>
+                         
                 </div>
+                <small>Phone number must be of 8 character or more</small>
 
                 {LoginWithPassword ?
                   <div className="login-form-group">
                     <label htmlFor="userID">Password</label>
                     <div className="input-group">
                       <input type="password" name="password"
+                             defaultValue={authData?.password}
+                             minLength={6}
                              onChange={handleInputOnChange}
                              placeholder={"Enter your password"}
                              className="form-control"
@@ -304,6 +311,7 @@ const AuthModal = ({
                               handleSendOTP()
                              }}}/>
                     </div>
+                    <small>Password must be of 6 character or more</small>
                   </div>
                   : ""
                 }
@@ -321,18 +329,20 @@ const AuthModal = ({
                          maxLength={4}
                          placeholder={"- - - -"}
                          onChange={handleInputOnChange}
+                         defaultValue={authData?.otp}
                          className="login-form-control"/>
                   <Form.Text>{renderOtpButton()}</Form.Text>
 
                   {/* TODO: OTP will be removed when twello will be connected */}
                   {(otp && process.env.NODE_ENV === 'development') && <Form.Text>CODE is: {otp}</Form.Text>}
-                  {errMessage && <span className={"text-danger"}>{errMessage}</span>}
+                  {errMessage && <span className={"text-danger d-block "}>{errMessage}</span>}
                 </div>
 
                 {!PasswordReset ?
                   <div className="login-form-group">
                     <label htmlFor="userID">Name.</label>
                     <input type="text" name="name"
+                           defaultValue={authData?.name}
                            onChange={handleInputOnChange}
                            placeholder={"Enter your name"}
                            className="form-control"
@@ -343,12 +353,14 @@ const AuthModal = ({
                 <div className="login-form-group">
                   <label htmlFor="userID">Password.</label>
                   <input type="password" name="password"
+                         defaultValue={authData?.password}
+                         minLength={6}
                          onChange={handleInputOnChange}
                          key={'userID'}
                          placeholder={"Enter your password"}
                          className="form-control"
                          />
-
+                  <small>Password must be of 6 character or more</small>
                 </div>
               </>
             }
