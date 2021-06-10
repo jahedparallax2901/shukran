@@ -74,7 +74,49 @@ const Checkout = (props) => {
     infinite: false,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    arrow: true,
+    responsive: [
+      {
+          breakpoint: 1025,
+          settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false,
+          },
+      },
+      {
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              initialSlide: 1,
+          },
+      },
+      {
+          breakpoint: 600,
+          settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              initialSlide: 1,
+          },
+      },
+      {
+          breakpoint: 480,
+          settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+          },
+      },
+      {
+          breakpoint: 375,
+          settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+          },
+      },
+  ],
   };
 
   const [formData, setFormData] = useState({
@@ -158,9 +200,19 @@ const Checkout = (props) => {
         });
   };
 
+  // :Working Here
+  const loadAllLocationForEdit = async () =>{
+    await getLocationV2("/division-list", null);
+    await getLocationV2("/division-district-list", deliverAddress[selectedAddress]?.division_id);
+    await getLocationV2("/district-upazila-list", deliverAddress[selectedAddress]?.district_id);
+    await getLocationV2("/upazila-area-list", deliverAddress[selectedAddress]?.upazila_id);
+
+    return new Promise();
+  }
   const handleShowModal = (request, id) => {
     console.log('checkX', deliverAddress)
     if (request === "put") {
+      
       setFormData(deliverAddress[selectedAddress])
       setIsEdited(true);
       setEditedId(id);
@@ -184,6 +236,7 @@ const Checkout = (props) => {
 
 
     if (request === "put") {
+      
       setIsEdited(true);
       setEditedId(id);
     } else {
@@ -601,7 +654,7 @@ const Checkout = (props) => {
                         name={`phone_number`}
                         defaultValue={
                           isEdited
-                              ? deliverAddress[selectedAddress].phone_number
+                              ? deliverAddress[selectedAddress]?.phone_number
                               : ""
                         }
                         onChange={(e) => handleOnChange(e)}
@@ -625,7 +678,7 @@ const Checkout = (props) => {
                 <Form.Control
                     name={`email`}
                     defaultValue={
-                      isEdited ? deliverAddress[selectedAddress].email : ""
+                      isEdited ? deliverAddress[selectedAddress]?.email : ""
                     }
                     onChange={(e) => handleOnChange(e)}
                     style={{ height: "40px", fontSize: "12px" }}
@@ -641,7 +694,7 @@ const Checkout = (props) => {
                 <Form.Control
                     name={`address`}
                     defaultValue={
-                      isEdited ? deliverAddress[selectedAddress].address : ""
+                      isEdited ? deliverAddress[selectedAddress]?.address : ""
                     }
                     onChange={(e) => handleOnChange(e)}
                     style={{ height: "40px", fontSize: "12px" }}
@@ -673,8 +726,9 @@ const Checkout = (props) => {
 
                         </Form.Control>*/}
 
-              {divisionShow && (
+              {(divisionShow || isEdited) && (
                   <>
+                  
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       Division <span className="text-danger">*</span>{" "}
                     </Form.Label>
@@ -689,6 +743,7 @@ const Checkout = (props) => {
                         style={{ height: "40px", fontSize: "12px" }}
                         as="select"
                         size={"lg"}
+                        defaultValue={isEdited ? deliverAddress[selectedAddress]?.division_id : ""}
                     >
                       <option value=""> --select division-- </option>
                       {division &&
@@ -702,8 +757,9 @@ const Checkout = (props) => {
                   </>
               )}
 
-              {districtShow && (
+              {(districtShow || isEdited) && (
                   <>
+                  {console.log("Checking",deliverAddress[selectedAddress].district_id)}
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       District <span className="text-danger">*</span>{" "}
                     </Form.Label>
@@ -718,6 +774,7 @@ const Checkout = (props) => {
                         style={{ height: "40px", fontSize: "12px" }}
                         as="select"
                         size={"lg"}
+                        defaultValue={isEdited ? deliverAddress[selectedAddress]?.district_id : ""}
                     >
                       <option value=""> --select District-- </option>
                       {district &&
@@ -731,10 +788,10 @@ const Checkout = (props) => {
                   </>
               )}
 
-              {upazilaShow && (
+              {(upazilaShow || isEdited) && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
-                      upazila <span className="text-danger">*</span>{" "}
+                      Upazila <span className="text-danger">*</span>{" "}
                     </Form.Label>
                     <Form.Control
                         name={"upazila_id"}
@@ -747,6 +804,7 @@ const Checkout = (props) => {
                         style={{ height: "40px", fontSize: "12px" }}
                         as="select"
                         size={"lg"}
+                        defaultValue={isEdited ? deliverAddress[selectedAddress]?.upazila_id : ""}
                     >
                       <option value=""> --select upazila-- </option>
                       {upazila &&
@@ -760,7 +818,7 @@ const Checkout = (props) => {
                   </>
               )}
 
-              {upazilaAreaShow && (
+              {(upazilaAreaShow || isEdited) && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       Upazila Thana <span className="text-danger">*</span>{" "}
@@ -774,6 +832,7 @@ const Checkout = (props) => {
                         style={{ height: "40px", fontSize: "12px" }}
                         as="select"
                         size={"lg"}
+                        defaultValue={isEdited ? deliverAddress[selectedAddress]?.area_id : ""}
                     >
                       <option value=""> --select upazila thana-- </option>
                       {upazilaArea &&
@@ -1320,12 +1379,11 @@ const Checkout = (props) => {
                               </div>
                             </div>
 
-                            <div className="owl-stage-outer">
                               {/* <PaymentOption />*/}
 
                               <Slider {...settings}>
                                 {numberOfPicture.map((data, index) => (
-                                    <div key={index}>
+                                    <div key={index} className="item">
                                       <div key={index}
                                            onClick={()=>{
                                              setSelectPaymentGateWay(index+1)
@@ -1351,7 +1409,6 @@ const Checkout = (props) => {
                               </Slider>
 
 
-                            </div>
 
                             <div className="voucher-area">
                               <div
