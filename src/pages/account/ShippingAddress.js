@@ -510,7 +510,7 @@ const ShippingAddress = () => {
                     <Form.Control
                         name={"area_id"}
                         onChange={(e) => {
-                          console.log(e.target.value);
+                          handleOnChange(e);
                         }}
                         index={`0`}
                         style={{ height: "40px", fontSize: "12px" }}
