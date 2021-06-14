@@ -899,6 +899,14 @@ const Invoice = ({ handleShowAuthModal }) => {
                             </tr>
                             <tr className="text-bold">
                               <td colSpan={3} className="text-right">
+                                VAT
+                              </td>
+                              <td className="text-right">
+                                {json?.order?.tax_amount}
+                              </td>
+                            </tr>
+                            <tr className="text-bold">
+                              <td colSpan={3} className="text-right">
                                 Discount
                               </td>
                               <td className="text-right">

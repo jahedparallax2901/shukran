@@ -49,7 +49,7 @@ const ShippingAddress = () => {
 
     useEffect(async () => {
       await getAllData();
-      await getLocationV2("/division-list", null);
+      await getLocationV2("/division-district-list", null);
     }, []);
 
     const getAllData = () => {
@@ -68,14 +68,19 @@ const ShippingAddress = () => {
   const handleShowModal = (request, id) => {
     console.log('checkX', deliverAddress)
     if (request === "put") {
-      setFormData(deliverAddress[selectedAddress])
-      setIsEdited(true);
-      setEditedId(id);
+      getLocationV2("/upazila-area-list", deliverAddress[selectedAddress]?.district_id, (isResponseRecieved)=>{
+        if(isResponseRecieved){
+          setFormData(deliverAddress[selectedAddress])
+          setIsEdited(true);
+          setEditedId(id);
+        }
+      })
     } else {
       setFormData(null);
       setIsEdited(false);
     }
     setIsShowModal(true);
+
   };
 
     const handleHideModal = () => {
@@ -84,22 +89,14 @@ const ShippingAddress = () => {
 
 
 
-     const getLocationV2 = (url, id) => {
+     const getLocationV2 = (url, id, cb=()=>{}) => {
       if (id !== null) {
         processGetRequest(url + "/" + id, {}, true).then((res) => {
-          if (url === "/division-list") {
-            setDivision(res);
-          }
+          cb(true);
           if (url === "/division-district-list") {
             setDistrict(res);
             setDistrictShow(true);
 
-            setUpdazillaShow(false);
-            setupazilaAreaShow(false);
-          }
-          if (url === "/district-upazila-list") {
-            setupazila(res);
-            setUpdazillaShow(true);
             setupazilaAreaShow(false);
           }
           if (url === "/upazila-area-list") {
@@ -109,9 +106,11 @@ const ShippingAddress = () => {
         });
       } else {
         processGetRequest(url, {}, true).then((res) => {
-          if (url === "/division-list") {
-            setDivision(res);
-            setDivisionShow(true);
+          if (url === "/division-district-list") {
+            setDistrict(res);
+          setDistrictShow(true);
+
+          setupazilaAreaShow(false);
           }
         });
       }
@@ -122,7 +121,7 @@ const ShippingAddress = () => {
         e.preventDefault();
         processPostRequest(url, formData, true)
             .then((res) => {
-              if (res.status) {
+              if (res.status === 200) {
                 setIsEdited(false)
                 setEditedId(null)
                 setFormData(null);
@@ -130,6 +129,8 @@ const ShippingAddress = () => {
                 toast.success(res.message);
                 getAllData();
                 handleHideModal();
+              }else{
+                toast.error(res.data.message);
               }
 
             })
@@ -415,7 +416,7 @@ const ShippingAddress = () => {
 
                         </Form.Control>*/}
 
-              {divisionShow && (
+              {/* {divisionShow && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       Division <span className="text-danger">*</span>{" "}
@@ -442,9 +443,9 @@ const ShippingAddress = () => {
                       ))}
                     </Form.Control>
                   </>
-              )}
+              )} */}
 
-              {districtShow && (
+              {(districtShow || isEdited) && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       District <span className="text-danger">*</span>{" "}
@@ -453,15 +454,16 @@ const ShippingAddress = () => {
                         name={"district_id"}
                         onChange={(e) => {
                           console.log(e.target.value);
-                          getLocationV2("/district-upazila-list", e.target.value);
+                          getLocationV2("/upazila-area-list", e.target.value);
                           handleOnChange(e);
                         }}
                         index={`0`}
                         style={{ height: "40px", fontSize: "12px" }}
                         as="select"
                         size={"lg"}
+                        defaultValue={isEdited ? deliverAddress[selectedAddress]?.district_id : ""}
                     >
-                      <option value=""> --select District-- </option>
+                      <option value=""> --Select District-- </option>
                       {district &&
                       district.map((data, index) => (
                             <option id={data.id} value={data.id} key={data?.id}>
@@ -473,7 +475,7 @@ const ShippingAddress = () => {
                   </>
               )}
 
-              {upazilaShow && (
+              {/* {upazilaShow && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       upazila <span className="text-danger">*</span>{" "}
@@ -500,9 +502,9 @@ const ShippingAddress = () => {
                       ))}
                     </Form.Control>
                   </>
-              )}
+              )} */}
 
-              {upazilaAreaShow && (
+              {(upazilaAreaShow || isEdited) && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       Upazila Thana <span className="text-danger">*</span>{" "}
@@ -516,6 +518,7 @@ const ShippingAddress = () => {
                         style={{ height: "40px", fontSize: "12px" }}
                         as="select"
                         size={"lg"}
+                        defaultValue={isEdited ? deliverAddress[selectedAddress]?.area_id : ""}
                     >
                       <option value=""> --select upazila thana-- </option>
                       {upazilaArea &&
@@ -540,7 +543,7 @@ const ShippingAddress = () => {
               }
                 */}
                   <Form.Check
-                      defaultChecked={deliverAddress[selectedAddress]?.address_type === 0 && true}
+                      defaultChecked={isEdited && deliverAddress[selectedAddress]?.address_type === 0 && true}
                       name={`address_type`}
                       value={0}
                       type="radio"
@@ -549,7 +552,7 @@ const ShippingAddress = () => {
                   />
                   <Form.Check.Label>{`Home address`}</Form.Check.Label>
                   <Form.Check
-                      defaultChecked={deliverAddress[selectedAddress]?.address_type === 1 && true}
+                      defaultChecked={ isEdited && deliverAddress[selectedAddress]?.address_type === 1 && true}
                       name={`address_type`}
                       value={1}
                       className={"mx-3"}
@@ -558,7 +561,7 @@ const ShippingAddress = () => {
                   />
                   <Form.Check.Label>{`Office address`}</Form.Check.Label>
                   <Form.Check
-                      defaultChecked={deliverAddress[selectedAddress]?.address_type === 2 && true}
+                      defaultChecked={ isEdited && deliverAddress[selectedAddress]?.address_type === 2 && true}
                       name={`address_type`}
                       value={2}
                       className={"mx-3"}

@@ -4,13 +4,14 @@ import { formatCurrency } from "../../utilities/product-helper";
 import Rating from "./Rating";
 import CountDown from "./CountDown";
 import ThumbnailWithBadge from "./ThumbnailWithBadge";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import downloadsFridge1 from "../../assets/img/downloads/fridge1.jpg";
 import moment from "moment";
 
 const ProductDealHot = ({ product }) => {
+  const history = useHistory();
   return (
-    <div className="ps-product--detail ps-product--hot-deal">
+    <div className="ps-product--detail ps-product--hot-deal" onClick={()=>history.push(`/product/${product?.id}`)}>
       <div className="ps-product__header">
         <ThumbnailWithBadge product={product} />
         <div className="ps-product__info">

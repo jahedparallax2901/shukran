@@ -147,14 +147,11 @@ const Checkout = (props) => {
     { id: 0, name: "--select address--" },
     { id: 1, name: "Bangladesh" },
   ]);
-  const [division, setDivision] = useState([]);
   const [district, setDistrict] = useState([]);
-  const [upazila, setupazila] = useState([]);
   const [upazilaArea, setupazilaArea] = useState([]);
 
-  const [divisionShow, setDivisionShow] = useState(true);
+  // const [divisionShow, setDivisionShow] = useState(true);
   const [districtShow, setDistrictShow] = useState(false);
-  const [upazilaShow, setUpdazillaShow] = useState(false);
   const [upazilaAreaShow, setupazilaAreaShow] = useState(false);
 
   const [orderProductList, setOrderProductList] = useState([]);
@@ -169,7 +166,7 @@ const Checkout = (props) => {
   useEffect(async () => {
     await orderSummary();
     await getAllData();
-    await getLocationV2("/division-list", null);
+    await getLocationV2("/division-district-list", null);
   }, []);
 
   useEffect( ()=>{
@@ -201,26 +198,31 @@ const Checkout = (props) => {
   };
 
   // :Working Here
-  const loadAllLocationForEdit = async () =>{
-    await getLocationV2("/division-list", null);
-    await getLocationV2("/division-district-list", deliverAddress[selectedAddress]?.division_id);
-    await getLocationV2("/district-upazila-list", deliverAddress[selectedAddress]?.district_id);
-    await getLocationV2("/upazila-area-list", deliverAddress[selectedAddress]?.upazila_id);
+  // const loadAllLocationForEdit = async () =>{
+  //   await getLocationV2("/division-list", null);
+  //   await getLocationV2("/division-district-list", deliverAddress[selectedAddress]?.division_id);
+  //   await getLocationV2("/district-upazila-list", deliverAddress[selectedAddress]?.district_id);
+  //   await getLocationV2("/upazila-area-list", deliverAddress[selectedAddress]?.upazila_id);
 
-    return new Promise();
-  }
+  //   return new Promise();
+  // }
   const handleShowModal = (request, id) => {
     console.log('checkX', deliverAddress)
     if (request === "put") {
       
-      setFormData(deliverAddress[selectedAddress])
-      setIsEdited(true);
-      setEditedId(id);
+      getLocationV2("/upazila-area-list", deliverAddress[selectedAddress]?.district_id, (isResponseRecieved)=>{
+        if(isResponseRecieved){
+          setFormData(deliverAddress[selectedAddress])
+          setIsEdited(true);
+          setEditedId(id);
+        }
+      })
     } else {
       setFormData(null);
       setIsEdited(false);
     }
     setIsShowModal(true);
+    
   };
 
   const handleHideModal = () => {
@@ -252,7 +254,7 @@ const Checkout = (props) => {
     e.preventDefault();
     processPostRequest(url, formData, true)
         .then((res) => {
-          if (res.status) {
+          if (res.status === 200) {
             setIsEdited(false)
             setEditedId(null)
             setFormData(null);
@@ -261,6 +263,8 @@ const Checkout = (props) => {
             getAllData();
             handleHideModal();
             handleHideContactModal();
+          }else{
+            toast.error(res.data.message);
           }
 
         })
@@ -484,22 +488,15 @@ const Checkout = (props) => {
     );
   };
 
-  const getLocationV2 = (url, id) => {
+  const getLocationV2 = (url, id, cb=()=>{}) => {
     if (id !== null) {
       processGetRequest(url + "/" + id, {}, true).then((res) => {
-        if (url === "/division-list") {
-          setDivision(res);
-        }
+        cb(true);
+        
         if (url === "/division-district-list") {
           setDistrict(res);
           setDistrictShow(true);
 
-          setUpdazillaShow(false);
-          setupazilaAreaShow(false);
-        }
-        if (url === "/district-upazila-list") {
-          setupazila(res);
-          setUpdazillaShow(true);
           setupazilaAreaShow(false);
         }
         if (url === "/upazila-area-list") {
@@ -509,9 +506,11 @@ const Checkout = (props) => {
       });
     } else {
       processGetRequest(url, {}, true).then((res) => {
-        if (url === "/division-list") {
-          setDivision(res);
-          setDivisionShow(true);
+        if (url === "/division-district-list") {
+          setDistrict(res);
+          setDistrictShow(true);
+
+          setupazilaAreaShow(false);
         }
       });
     }
@@ -530,8 +529,8 @@ const Checkout = (props) => {
                   <span className="mx-auto">
                   ৳ {data?.price}
                 </span>
-                  <span className="mx-auto">X</span>
-                  <span className>৳ {data?.price}</span>
+                  <span className="mx-auto">=</span>
+                  <span className>৳ {data?.sub_total_amount}</span>
                 </p>
               </div>
           ))}
@@ -553,6 +552,12 @@ const Checkout = (props) => {
               <span className="mr-2">Delivery Charge</span>
               <span className="ml-auto">
               ৳ {checkoutData?.checkout?.delivery_charge}
+            </span>
+            </p>
+            <p className="d-flex mb-3">
+              <span className="mr-2">VAT</span>
+              <span className="ml-auto">
+              ৳ {checkoutData?.checkout?.tax_amount}
             </span>
             </p>
             <p className="d-flex mb-3">
@@ -726,7 +731,7 @@ const Checkout = (props) => {
 
                         </Form.Control>*/}
 
-              {(divisionShow || isEdited) && (
+              {/* {(divisionShow || isEdited) && (
                   <>
                   
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
@@ -755,11 +760,11 @@ const Checkout = (props) => {
                       ))}
                     </Form.Control>
                   </>
-              )}
+              )} */}
 
               {(districtShow || isEdited) && (
                   <>
-                  {console.log("Checking",deliverAddress[selectedAddress].district_id)}
+                  {console.log("Checking",deliverAddress[selectedAddress]?.district_id)}
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       District <span className="text-danger">*</span>{" "}
                     </Form.Label>
@@ -767,7 +772,7 @@ const Checkout = (props) => {
                         name={"district_id"}
                         onChange={(e) => {
                           console.log(e.target.value);
-                          getLocationV2("/district-upazila-list", e.target.value);
+                          getLocationV2("/upazila-area-list", e.target.value);
                           handleOnChange(e);
                         }}
                         index={`0`}
@@ -776,7 +781,7 @@ const Checkout = (props) => {
                         size={"lg"}
                         defaultValue={isEdited ? deliverAddress[selectedAddress]?.district_id : ""}
                     >
-                      <option value=""> --select District-- </option>
+                      <option value=""> --Select District-- </option>
                       {district &&
                       district.map((data, index) => (
                             <option id={data.id} value={data.id} key={data?.id}>
@@ -788,7 +793,7 @@ const Checkout = (props) => {
                   </>
               )}
 
-              {(upazilaShow || isEdited) && (
+              {/* {(upazilaShow || isEdited) && (
                   <>
                     <Form.Label style={{ marginTop: "0.5vw", fontSize: "14px" }}>
                       Upazila <span className="text-danger">*</span>{" "}
@@ -816,7 +821,7 @@ const Checkout = (props) => {
                       ))}
                     </Form.Control>
                   </>
-              )}
+              )} */}
 
               {(upazilaAreaShow || isEdited) && (
                   <>
@@ -826,7 +831,7 @@ const Checkout = (props) => {
                     <Form.Control
                         name={"area_id"}
                         onChange={(e) => {
-                          console.log(e.target.value);
+                          handleOnChange(e);
                         }}
                         index={`0`}
                         style={{ height: "40px", fontSize: "12px" }}
@@ -834,7 +839,7 @@ const Checkout = (props) => {
                         size={"lg"}
                         defaultValue={isEdited ? deliverAddress[selectedAddress]?.area_id : ""}
                     >
-                      <option value=""> --select upazila thana-- </option>
+                      <option value=""> --Select upazila thana-- </option>
                       {upazilaArea &&
                       upazilaArea.map((data, index) => (
                             <option id={data.id} value={data.id} key={data?.id}>
@@ -856,8 +861,9 @@ const Checkout = (props) => {
                 isEdited ? deliverAddress[selectedAddress].address : ""
               }
                 */}
+                {console.log("deliverAddress", deliverAddress)}
                   <Form.Check
-                      defaultChecked={deliverAddress[selectedAddress]?.address_type === 0 && true}
+                      defaultChecked={isEdited && deliverAddress[selectedAddress]?.address_type === 0 && true}
                       name={`address_type`}
                       value={0}
                       type="radio"
@@ -866,7 +872,7 @@ const Checkout = (props) => {
                   />
                   <Form.Check.Label>{`Home address`}</Form.Check.Label>
                   <Form.Check
-                      defaultChecked={deliverAddress[selectedAddress]?.address_type === 1 && true}
+                      defaultChecked={isEdited && deliverAddress[selectedAddress]?.address_type === 1 && true}
                       name={`address_type`}
                       value={1}
                       className={"mx-3"}
@@ -875,7 +881,7 @@ const Checkout = (props) => {
                   />
                   <Form.Check.Label>{`Office address`}</Form.Check.Label>
                   <Form.Check
-                      defaultChecked={deliverAddress[selectedAddress]?.address_type === 2 && true}
+                      defaultChecked={isEdited && deliverAddress[selectedAddress]?.address_type === 2 && true}
                       name={`address_type`}
                       value={2}
                       className={"mx-3"}
