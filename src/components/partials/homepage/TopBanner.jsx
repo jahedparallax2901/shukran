@@ -11,6 +11,7 @@ import addBanner1 from "../../../assets/img/home-banner1.png";
 import addBanner2 from "../../../assets/img/home-banner2.jpeg";
 import { processGetRequest } from "../../../services/baseServices";
 import Menu from "../../elements/menu/Menu";
+import '../../../assets/scss/custom-slick.scss'
 
 class TopBanner extends Component {
   state = {
@@ -47,12 +48,12 @@ class TopBanner extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      // appendDots: dots => <ul>{dots}</ul>,
-      // customPaging: i => (
-      //   <div className="ft-slick__dots--custom">
-      //     <div className="loading" />
-      //   </div>
-      // )
+      appendDots: dots => <ul>{dots}</ul>,
+      customPaging: i => (
+        <div className="ft-slick__dots--custom">
+          <div className="active-slide" />
+        </div>
+      )
     };
     const sliderBoxCarouselSettings = {
       dots: false,

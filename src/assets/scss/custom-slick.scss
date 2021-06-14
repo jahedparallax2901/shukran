@@ -1,0 +1,22 @@
+.ft-slick__dots--custom {
+    height: 8px;
+    width: 19px;
+    background-color: #c9c3c3;
+    border-radius: 8px;
+    position: relative;
+    top: -20px;
+  }
+
+  .slick-dots .slick-active {
+    width: 40px;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .slick-dots .slick-active .ft-slick__dots--custom {
+    width: 40px;
+    top: 0px;
+    overflow: hidden;
+    position: relative;
+    top: -32px;
+    background-color: rgb(59, 57, 57);
+  }
