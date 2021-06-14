@@ -2,6 +2,7 @@
 .banner-slider-top{
     display: flex;
     flex-direction: column;
+    width: calc(100% - 272px);
     .banner-slider-top-inner{
         display: flex;
         justify-content: space-between;
@@ -33,9 +34,16 @@
         }
         .ps-section__center{
             display: inline-block;
-            max-width: 50% !important;
-            width: 550px;
+            // max-width: 50% !important;
+            width: 100%;
             height: auto;
+            // .slick-active{
+            //     button{
+            //         padding: 5px 50px;
+            //         width: 50px;
+            //         background-color: black;
+            //     }
+            // }
 
             @media screen and (max-width:768px){
                 width: 100%;

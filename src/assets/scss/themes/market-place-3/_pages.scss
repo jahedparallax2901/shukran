@@ -8,7 +8,7 @@
             justify-content: space-between;
 
             > * {
-                width: 100%;
+                // width: 100%;
             }
         }
 
@@ -41,8 +41,14 @@
         }
 
         .ps-section__center {
-            max-width: calc(100% - 382px);
+            // max-width: calc(100% - 382px);
             // height: 520px;
+            // .slick-active{
+            //     button{
+            //         padding: 5px 50px;
+            //     }
+                
+            // }
             img {
                 width: 100%;
             }

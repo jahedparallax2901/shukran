@@ -46,7 +46,13 @@ class TopBanner extends Component {
       speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true
+      autoplay: true,
+      // appendDots: dots => <ul>{dots}</ul>,
+      // customPaging: i => (
+      //   <div className="ft-slick__dots--custom">
+      //     <div className="loading" />
+      //   </div>
+      // )
     };
     const sliderBoxCarouselSettings = {
       dots: false,
@@ -94,7 +100,7 @@ class TopBanner extends Component {
             </div>
             <div className="banner-slider-top">
               <div className="banner-slider-top-inner">
-                <div className="ps-section__right">
+                {/* <div className="ps-section__right">
                 <Slider {...sliderBoxCarouselSettings}>
                   {
                     topLeftSliders.map((item, index) => <div key={index} className="item">
@@ -102,7 +108,7 @@ class TopBanner extends Component {
                     </div>)
                   }
                 </Slider>
-                </div>
+                </div> */}
                 <div className="ps-section__center">
                   <Slider {...carouselSettings}>
                     {top_sliders.map((banner) => (
