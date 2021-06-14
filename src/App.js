@@ -1,6 +1,7 @@
 import { Provider } from "react-redux";
 import {
   BrowserRouter as Router,
+  
   Route, Switch
 } from "react-router-dom";
 import AuthModal from "./components/auth/AuthModal";
