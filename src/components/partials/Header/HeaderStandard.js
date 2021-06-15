@@ -1,5 +1,6 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Menu, Dropdown } from 'antd';
 import React, { Component } from "react";
 import { Spinner } from "react-bootstrap";
 import { AiOutlineClose, BiUser, BsBag, BsHeart, BsList, FiPhone } from "react-icons/all";
@@ -18,7 +19,7 @@ import {
 import { getWishlistItems, handleClearWishlist } from "../../../redux/wishlist/wishlistActions";
 import { processGetRequest } from "../../../services/baseServices";
 import { menuItems } from "../../../temp-data/homeData";
-import Menu from "../../elements/menu/Menu";
+// import Menu from "../../elements/menu/Menu";
 import SearchHeader from "../../header/SearchHeader.jsx";
 
 class HeaderStandard extends Component {
@@ -119,6 +120,26 @@ class HeaderStandard extends Component {
       handleAddToCart,
       wishlist,
     } = this.props;
+
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <Link to={"/account/my-account"} className="font-weight-bold">
+            {userData()?.name}
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={"/account/my-account"}>
+            My Account
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link onClick={(e) => {e.preventDefault();this.handleSignOut()}}>
+            Logout
+          </Link>
+        </Menu.Item>
+      </Menu>
+    );
 
     return (
       <header
@@ -278,14 +299,14 @@ class HeaderStandard extends Component {
                 {user?.name || user?.phone ? (
                   <div className="ps-block--user-header mr-0">
                     <div className="ps-block__left">
-                      <i>
-                        <BiUser />
+                    <Dropdown overlay={menu} placement="bottomRight">
+                    <i>
+                        <BiUser className="cursor-pointer"/>
                       </i>
+      </Dropdown>
+                      
                     </div>
-                    <div className="ps-block__right">
-                      <Link to="/account/my-account">{user?.name || user?.phone}</Link>
-                      <a onClick={() => this.handleSignOut()}>Logout</a>
-                    </div>
+                    
                   </div>
                 ) : (
                   <div className="ps-block--user-header mr-0">

@@ -23,27 +23,36 @@ const DealOfTheDay = ({ deal_of_day_products }) => {
     infinite: deal_of_day_products?.length >= 5 ?true: false,
     speed: 500,
     autoplay: true,
-    slidesToShow: 5,
+    slidesToShow: 6,
     slidesToScroll: 2,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
+      {
+        breakpoint: 1201,
+        settings: {
+            slidesToShow: 5,
+            slidesToScroll: 2,
+            infinite: deal_of_day_products?.length >= 5 ?true: false,
+            dots: false,
+        },
+    },
         {
-            breakpoint: 1025,
+            breakpoint: 1081,
             settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: deal_of_day_products?.length >= 3 ?true: false,
+                slidesToShow: 4,
+                slidesToScroll: 2,
+                infinite: deal_of_day_products?.length >= 4 ?true: false,
                 dots: false,
             },
         },
         {
-            breakpoint: 600,
+            breakpoint: 769,
             settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2,
-                infinite: deal_of_day_products?.length >= 2 ?true: false,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                initialSlide: 1,
+                infinite: deal_of_day_products?.length >= 3 ?true: false,
             },
         },
         {

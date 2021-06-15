@@ -14,7 +14,16 @@ export const carouselStandard = {
     prevArrow: <PrevArrow />,
     responsive: [
         {
-            breakpoint: 1025,
+            breakpoint: 1201,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: false,
+            },
+        },
+        {
+            breakpoint: 1081,
             settings: {
                 slidesToShow: 4,
                 slidesToScroll: 3,

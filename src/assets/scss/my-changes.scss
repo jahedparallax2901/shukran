@@ -114,7 +114,7 @@
   .ps-product--simple {
     background-color: #fff;
     border: 1px solid #e1e1e1;
-    margin: auto 18px;
+    margin: auto 8px;
     border-radius: 5px;
     max-height: 280px;
   }
@@ -137,4 +137,8 @@
     border-radius: 5px;
     max-height: 280px;
   }
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }

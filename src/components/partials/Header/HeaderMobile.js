@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Component } from "react";
 import { Spinner } from "react-bootstrap";
 import { AiOutlineClose, AiOutlineUser } from "react-icons/ai";
+import { BiUser } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { connect } from "react-redux";
@@ -16,9 +17,11 @@ import {
   handleClearCart,
   handleShowAuthModal,
   handleShowShoppingCart,
-  handleSignOut
+  handleSignOut,
 } from "../../../redux";
 import { handleClearWishlist } from "../../../redux/wishlist/wishlistActions";
+import { Menu, Dropdown } from "antd";
+import { BsBag } from "react-icons/bs";
 
 class HeaderMobile extends Component {
   state = {
@@ -81,8 +84,30 @@ class HeaderMobile extends Component {
   };
 
   render() {
-    const { user, handleShowAuthModal, shoppingCart } =
-      this.props;
+    const { user, handleShowAuthModal, shoppingCart } = this.props;
+
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <Link to={"/account/my-account"} className="font-weight-bold">
+            {userData()?.name}
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={"/account/my-account"}>My Account</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              this.handleSignOut();
+            }}
+          >
+            Logout
+          </Link>
+        </Menu.Item>
+      </Menu>
+    );
     return (
       <header
         className="header header--mobile"
@@ -99,7 +124,7 @@ class HeaderMobile extends Component {
             <div className="header__actions">
               <div className="ps-cart--mini">
                 <a className="header__extra" href="#">
-                  <RiShoppingBagLine />
+                  <BsBag />
                   <span>
                     <i>{shoppingCart?.cartSummery?.total_prdoucts || 0}</i>
                   </span>
@@ -119,7 +144,10 @@ class HeaderMobile extends Component {
                               <>
                                 {item?.store_product?.length > 0 &&
                                   item.store_product.map((store_item) => (
-                                    <div key={store_item?.id} className="ps-product--cart-mobile">
+                                    <div
+                                      key={store_item?.id}
+                                      className="ps-product--cart-mobile"
+                                    >
                                       <div className="ps-product__thumbnail">
                                         <a href="#">
                                           <img
@@ -196,25 +224,17 @@ class HeaderMobile extends Component {
                 </div>
               </div>
 
-              <div className="ps-block--user-header">
-                {user?.phone ? (
+              <div className="ps-block--user-header ml-0 mb-2">
+                {user?.name || user?.phone ? (
                   <div className="ps-block--user-header mr-0">
                     <a className="ps-block__left mr-2 header__extra">
-                      <i>
-                        <IoMdLogOut
-                          onClick={() => {
-                            this.handleSignOut();
-                          }}
-                        />
-                      </i>
+                      <Dropdown overlay={menu} placement="bottomRight">
+                        <i>
+                          <BiUser className="cursor-pointer" />
+                        </i>
+                      </Dropdown>
                     </a>
                     <a className="ps-block__right">
-                      <Link
-                        className="user-phone-number my-auto"
-                        to="/account/my-account"
-                      >
-                        {user.phone}
-                      </Link>
                       {/* <br/>
                       <a onClick={() => this.handleSignOut()}>Logout</a> */}
                     </a>

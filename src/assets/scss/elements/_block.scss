@@ -730,6 +730,10 @@
             img{
                 max-height: 100%;
                 object-fit: contain;
+                @media screen and (max-width: 768px) {
+                    height: 180px;
+                    margin: auto
+                }
             }
 
             .ps-product__badge {
@@ -808,7 +812,7 @@
     .ps-block__slider {
         max-width: 24%;
         position: relative;
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1080px) {
             max-width: 25%;
         }
         a {
@@ -829,7 +833,6 @@
             position: absolute;
             bottom: 25px;
             left: 110px;
-            font-style: italic;
             color: #fff;
             background: #ED1C24;
             padding: 3px 25px;
@@ -837,6 +840,10 @@
             border: 1px solid #ED1C24;
             &:hover{
                 color: #000000;
+            }
+
+            @media screen and (max-width: 1080px) {
+                left: 55px;
             }
         }
     }
@@ -857,25 +864,25 @@
                 flex-basis: 24.13%;
             }
         }
-        @media screen and (max-width: 1024px){
+        @media screen and (max-width: 1080px){
             > * {
-                max-width: 32.17%;
+                max-width: 31%;
                 width: 100%;
-                flex-basis: 32.17%;
+                flex-basis: 31%;
             }
         }
         @media screen and (max-width: 768px){
             > * {
-                max-width: 32.17%;
+                max-width: 31%;
                 width: 100%;
-                flex-basis: 32.17%;
+                flex-basis: 31%;
             }
         }
         @media screen and (max-width: 668px){
             > * {
-                max-width: 31.75%;
+                max-width: 30%;
                 width: 100%;
-                flex-basis: 31.75%;
+                flex-basis: 30%;
             }
         }
         @media screen and (max-width: 576px){
@@ -887,30 +894,30 @@
         }
         @media screen and (max-width: 480px){
             > * {
-                max-width: 48.67%;
+                max-width: 48.50%;
                 width: 100%;
-                flex-basis: 48.67%;
+                flex-basis: 48.50%;
             }
         }
         @media screen and (max-width: 425px){
             > * {
-                max-width: 48.47%;
+                max-width: 48.30%;
                 width: 100%;
-                flex-basis: 48.47%;
+                flex-basis: 48.30%;
             }
         }
         @media screen and (max-width: 412px){
             > * {
-                max-width: 48.37%;
+                max-width: 48.3%;
                 width: 100%;
-                flex-basis: 48.37%;
+                flex-basis: 48.3%;
             }
         }
         @media screen and (max-width: 375px){
             > * {
-                max-width: 48.17%;
+                max-width: 48.18%;
                 width: 100%;
-                flex-basis: 48.17%;
+                flex-basis: 48.18%;
             }
         }
         @media screen and (max-width: 320px){
@@ -931,7 +938,7 @@
         margin: 0px 12px 12px 0px;
         border-radius: 5px;
         max-height: 280px;
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1080px) {
             max-height: 270px;
             &:nth-child(3){
                 margin-right: 0px;

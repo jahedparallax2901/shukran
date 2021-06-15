@@ -1,5 +1,5 @@
 import React from "react";
-import { Progress } from "antd";
+import { Progress, Tooltip } from "antd";
 import { formatCurrency } from "../../utilities/product-helper";
 import Rating from "./Rating";
 import CountDown from "./CountDown";
@@ -16,11 +16,13 @@ const ProductDealHot = ({ product }) => {
         <ThumbnailWithBadge product={product} />
         <div className="ps-product__info">
           {/* <h5>Investor</h5> */}
+          <Tooltip title={product?.product?.name}>
           <h3 className="ps-product__name">
             <Link to={`/product/${product.product_id}`}>
               <a>{product?.product?.name}</a>
             </Link>
           </h3>
+          </Tooltip>
 
           <div className="ps-product__meta">
             {product?.product?.price - product?.product?.sale_price > 0 ? (
