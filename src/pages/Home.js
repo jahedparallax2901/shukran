@@ -36,6 +36,7 @@ import AllCategories from "../components/partials/homepage/AllCategories";
 import DealOfTheDay from "../components/partials/homepage/DealOfTheDay";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { BackTop } from "antd";
 
 class Home extends Component {
   state = {
@@ -81,6 +82,7 @@ class Home extends Component {
           {/* <SearchTrending /> */}
           <DealOfTheDay deal_of_day_products={this.state.deal_of_day_products}/>
           <AllCategories/>
+          
 
         <div id="homepage-3">
           <div className="mt-5">

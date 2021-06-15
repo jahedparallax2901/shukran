@@ -2,7 +2,7 @@ import { Modal, Rate, Select, Tooltip, Upload } from "antd";
 
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Alert, Button } from "react-bootstrap";
+import { Alert, Button, Container } from "react-bootstrap";
 import { AiOutlinePlus, BsFillStarFill } from "react-icons/all";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
@@ -326,7 +326,7 @@ const Invoice = ({ handleShowAuthModal }) => {
       {/*--Dispute modal --*/}
 
       <div className="main-content invoice-main-content">
-        <div className="container">
+        <Container fluid="md">
           <div className="section-block invoice-section-block">
             <div className="block-header">
               <h2 className="block-title" />
@@ -712,7 +712,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                     {data1.total_amount}
                                   </td>
                                   <td className="d-flex flex-column">
-                                    <Tooltip title={json?.status == 6 ? "": "Only for delivered product"}>
+                                    {/* <Tooltip title={json?.status == 6 ? "": "Only for delivered product"}>
                                     <button
                                       type="button"
                                       className="btn btn-link text-muted btn-sm dispute-review"
@@ -720,7 +720,7 @@ const Invoice = ({ handleShowAuthModal }) => {
                                     >
                                       Dispute
                                     </button>
-                                    </Tooltip>
+                                    </Tooltip> */}
                                   
 
                                     
@@ -899,7 +899,15 @@ const Invoice = ({ handleShowAuthModal }) => {
                             </tr>
                             <tr className="text-bold">
                               <td colSpan={3} className="text-right">
-                                VAT
+                                Delivery Charge
+                              </td>
+                              <td className="text-right">
+                                {json?.order?.delivery_charge}
+                              </td>
+                            </tr>
+                            <tr className="text-bold">
+                              <td colSpan={3} className="text-right">
+                                Tax Amount
                               </td>
                               <td className="text-right">
                                 {json?.order?.tax_amount}
@@ -931,7 +939,7 @@ const Invoice = ({ handleShowAuthModal }) => {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
     </ContainerMarketPlace3>
   );

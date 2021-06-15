@@ -198,7 +198,7 @@ const PartialReview = ({ handleShowAuthModal, product }) => {
               <p className="review">{review?.review || "N/A"}</p>
               {
                 review?.product_review_image?.length > 0 && <div className="row">
-                  <div className="d-flex flex-wrap col-12 col-md-6">
+                  <div className="d-flex flex-wrap col-12 col-md-12 col-lg-6">
                   {
                     review?.product_review_image?.map(image=>(
                       <img width="120px" height="120px" className="p-2" src={image?.image} alt="" key={image?.id}/>

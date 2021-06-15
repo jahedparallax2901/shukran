@@ -300,8 +300,8 @@ class HeaderStandard extends Component {
                   <div className="ps-block--user-header mr-0">
                     <div className="ps-block__left">
                     <Dropdown overlay={menu} placement="bottomRight">
-                    <i>
-                        <BiUser className="cursor-pointer"/>
+                    <i className="cursor-pointer" type="button">
+                        <BiUser />
                       </i>
       </Dropdown>
                       

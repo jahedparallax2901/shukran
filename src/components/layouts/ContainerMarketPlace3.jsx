@@ -1,3 +1,4 @@
+import { BackTop } from "antd";
 import React, { useEffect } from "react";
 // import HeaderMobile from '../partials/HeaderMobile';
 // import NavigationList from '../partials/NavigationList';
@@ -42,6 +43,7 @@ const ContainerMarketPlace3 = ({
       
       <main id="homepage-5" className={`${requiredTopPadding && "pt-4"}`}>
         <div className="">{children}</div>
+        <BackTop />
       </main>
       <FooterMarketPlace2 isExpanded={isExpanded} />
     </div>

@@ -92,12 +92,12 @@ const ProductDetails = () => {
   return (
     <ContainerProductDetail
       title={product ? product?.name : "Loading..."}
-      isExpanded={true}
+      isExpanded={false}
     >
       {headerView}
-      <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
+      <BreadCrumb breacrumb={breadCrumb} layout="" />
       <div className="ps-page--product ps-product-details-related">
-        <div className="ps-container">
+        <div className="ps-container container">
           <div className="ps-page__container">
             <div className="ps-page__left">{productView}</div>
             <div className="ps-page__right">
@@ -109,6 +109,7 @@ const ProductDetails = () => {
           <RelatedProduct product={product} />
         </div>
       </div>
+      
     </ContainerProductDetail>
   );
 };

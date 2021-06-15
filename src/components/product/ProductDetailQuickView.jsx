@@ -103,7 +103,7 @@ const ProductDetailQuickView = ({ id }) => {
               )}
               <ModuleDetailShoppingActions
                 product={quickProduct}
-                extended={true}
+                extended={false}
                 selectedAttributeProduct={selectedAttributeProduct}
               />
               <ModuleProductDetailSpecification

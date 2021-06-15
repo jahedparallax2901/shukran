@@ -75,8 +75,8 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
   return (
     <ContainerMarketPlace3>
       <div className="ps-page--shop">
-        <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
-        <div className="ps-container">
+        <BreadCrumb breacrumb={breadCrumb} layout="" />
+        <div className="ps-container container">
           <div className="ps-layout--shop">
             <div className="ps-layout__left">
               <WidgetSearchCategories
@@ -92,7 +92,7 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
             </div>
             <div className="ps-layout__right">
               <SearchItems
-                columns={6}
+                columns={4}
                 productItems={productSearch?.products}
                 loading={productSearch.isSearching}
                 total={total}

@@ -19,7 +19,8 @@ const ContainerProductDetail = ({ children, title, isExpanded = false }) => {
       <FloatingCart />
       <MiniShoppinCart />
       {/* <HeaderMobileProduct /> */}
-      <main>{children}</main>
+      <main>
+        {children}</main>
       {/* <Newletters /> */}
       <FooterMarketPlace2 isExpanded={isExpanded} />
     </div>

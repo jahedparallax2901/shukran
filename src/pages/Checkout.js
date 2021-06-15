@@ -555,7 +555,7 @@ const Checkout = (props) => {
             </span>
             </p>
             <p className="d-flex mb-3">
-              <span className="mr-2">VAT</span>
+              <span className="mr-2">Tax Amount</span>
               <span className="ml-auto">
               ৳ {checkoutData?.checkout?.tax_amount}
             </span>

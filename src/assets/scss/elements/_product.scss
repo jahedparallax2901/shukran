@@ -1682,6 +1682,10 @@
         width: 100%;
         max-width: 100%;
 
+        @media screen and (max-width: 1080px){
+          display:  none;
+        }
+
         .item {
           border: none;
           margin-right: 10px;
@@ -2456,7 +2460,7 @@
   justify-content: space-between;
   align-items: flex-start;
   border: none;
-  max-height: 90px;
+  max-height: 80px;
 
   > * {
     flex-basis: 100%;
