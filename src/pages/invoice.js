@@ -1,4 +1,4 @@
-import { Modal, Rate, Select, Tooltip, Upload } from "antd";
+import { Badge, Modal, Rate, Select, Tooltip, Upload } from "antd";
 
 import moment from "moment";
 import React, { useEffect, useState } from "react";
@@ -46,6 +46,8 @@ const Invoice = ({ handleShowAuthModal }) => {
   const [disputeMessage, setDisputeMessage] = useState("");
   const [disputeData, setDisputeData] = useState({reason: "", order_id: id, store_id: null, product_id: null})
   const [isDisputeModalOpen, setIsDisputeModalOpen] = useState(false);
+  const [isDigitalInfoVisible, setIsDigitalInfoVisible] = useState(false);
+  const [digitalInfo, setDigitalInfo] = useState("");
 
 
   useEffect(() => {
@@ -223,6 +225,21 @@ const Invoice = ({ handleShowAuthModal }) => {
     processPutRequest('/dispute', disputeData, true).then(res=>console.log(res.data)).then(err=>console.log(err))
   }
 
+  const showModal = (info) => {
+    setIsDigitalInfoVisible(true);
+    setDigitalInfo(info);
+  };
+
+  const handleOk = () => {
+    setIsDigitalInfoVisible(false);
+    setDigitalInfo("");
+  };
+
+  const handleCancel = () => {
+    setIsDigitalInfoVisible(false);
+    setDigitalInfo("");
+  };
+
   return (
     <ContainerMarketPlace3 title="Checkout" isExpanded={true}>
       {/* Review modal */}
@@ -324,6 +341,13 @@ const Invoice = ({ handleShowAuthModal }) => {
         </>
       </Modal>
       {/*--Dispute modal --*/}
+
+
+      {/* Digital info modal */}
+      <Modal title="Digital info" visible={isDigitalInfoVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>{digitalInfo}</p>
+      </Modal>
+      {/* Digital info modal */}
 
       <div className="main-content invoice-main-content">
         <Container fluid="md">
@@ -701,8 +725,26 @@ const Invoice = ({ handleShowAuthModal }) => {
                                           to={`/product/${data1.product.id}`}
                                         >
                                           {" "}
-                                          {data1.product.name}{" "}
+                                          {data1.product.name}{" "} 
+                                          
+                                          
                                         </Link>
+                                        {
+                                            data1?.downloadable && <>
+                                            {
+                                              data1?.downloadable?.type === 1 ? <Badge
+                                              className="site-badge-count-109"
+                                              count={<a target="_blank" href={data1?.downloadable?.download_link} className="p-2 text-white ml-2 rounded">Download</a>}
+                                              style={{ backgroundColor: '#327ba8' }}
+                                              /> : <Badge
+                                              className="site-badge-count-109"
+                                              count={<p className="p-2 text-white ml-2 cursor-pointer rounded" onClick={()=>showModal(data1?.downloadable?.details)}>Show</p>}
+                                              style={{ backgroundColor: '#52c41a' }}
+                                              />
+                                            }
+                                            </>
+                                            
+                                          }
                                       </strong>
                                     </span>
                                     <span className="d-block text-muted" />
