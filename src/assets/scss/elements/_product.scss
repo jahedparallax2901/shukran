@@ -159,23 +159,27 @@
     margin: 0;
     display: block;
     padding: 0 0 5px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.2em;
     color: #000;
     --max-lines: 2;
-    max-height: calc(1.2em * var(--max-lines));
     overflow: hidden;
     padding-right: 1rem;
-    min-height: 40px;
+    height: 38px;
     overflow: hidden;
     margin-bottom: 5px;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+
     @media screen and (max-width: 992px) {
-      min-height: 40px;
+      height: 37px;
     }
     @media screen and (max-width: 768px) {
-      font-size: 16px;
-      min-height: 37px;
+      font-size: 14px;
+      height: 28px;
     }
     &:hover {
       color: #787878;
@@ -254,7 +258,7 @@
   }
 
   &:hover {
-    border-color: silver;
+    // border-color: silver;
 
     .ps-product__thumbnail {
       .ps-product__actions {
@@ -307,7 +311,7 @@
   }
 
   &:hover {
-    border-color: transparent;
+    // border-color: transparent;
 
     .ps-product__content {
       display: block;

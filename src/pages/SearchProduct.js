@@ -76,7 +76,7 @@ const SearchProduct = ({ fetchSearchedProducts, productSearch }) => {
     <ContainerMarketPlace3>
       <div className="ps-page--shop">
         <BreadCrumb breacrumb={breadCrumb} layout="" />
-        <div className="ps-container container">
+        <div className="container">
           <div className="ps-layout--shop">
             <div className="ps-layout__left">
               <WidgetSearchCategories

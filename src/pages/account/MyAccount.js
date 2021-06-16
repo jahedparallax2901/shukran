@@ -2,11 +2,26 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ContainerMarketPlace3 from "../../components/layouts/ContainerMarketPlace3";
 import AccountMenuSidebar from "../../components/partials/account/AccountMenuSidebar";
-import { processGetRequest } from "../../services/baseServices";
+import { processGetRequest, processPostRequest } from "../../services/baseServices";
 import emptyUser from "../../assets/img/users/1.png";
+import moment from "moment";
+import notFound from '../../assets/img/NotFound.png';
+import { Link } from "react-router-dom";
+import Modal from "antd/lib/modal/Modal";
+import { Button, DatePicker, Input, Select, Upload } from "antd";
+import ImgCrop from "antd-img-crop";
+import { EditOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import { Option } from "antd/es/mentions";
 
 export default function MyAccount() {
   const [userDetails, setUserDetails] = useState();
+  const [formData, setFormData] = useState({});
+  const [visible, setVisible] = useState(false);
+  const [fileList, setFileList] = useState([]);
+  const [confirmLoading, setConfirmLoading] = React.useState(false);
+  const [err, setErr] = useState();
+  const [errMsg, setErrMsg] = useState(null);
+
   const breadCrumb = [
     {
       text: "Home",
@@ -32,8 +47,200 @@ export default function MyAccount() {
       });
   };
 
+  const showModal = () => {
+    setVisible(true);
+    setFormData({
+      name: userDetails?.name,
+      email: userDetails?.email,
+      phone: userDetails?.phone,
+      date_of_birth: userDetails?.details?.date_of_birth,
+      gender: userDetails?.details?.gender,
+    });
+  };
+
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setFormData({});
+    setFileList([]);
+    setVisible(false);
+  };
+
+  const handleOnChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleOnUpdate = (e) => {
+    e.preventDefault();
+    update();
+  };
+
+  const update = () => {
+    setConfirmLoading(true);
+    const data = new FormData();
+    Object.keys(formData).map((item) => {
+      data.append(item, formData[item]);
+    });
+    processPostRequest("/update-details", data, true)
+      .then((res) => {
+        if (res.status === 200) {
+          getData();
+          toast.success(res.data.message);
+          setVisible(false);
+          setConfirmLoading(false);
+          setFormData({
+            name: "",
+            phone: "",
+            email: "",
+            date_of_birth: "",
+            gender: "",
+          });
+        } else {
+          toast.error(res.data.message);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+    console.log(newFileList);
+    setFormData({
+      ...formData,
+      profile_picture: newFileList[0]?.originFileObj,
+    });
+  };
+
+  const onPreview = async (file) => {
+    console.log(file);
+    let src = file.url;
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow.document.write(image.outerHTML);
+  };
+
+  const handleChange = (value) => {
+    setFormData({ ...formData, gender: value });
+  };
+
+  const birthDataOnChange = (date, dateString) => {
+    setFormData({ ...formData, date_of_birth: dateString });
+  };
+
+  const getData = () => {
+    processGetRequest("/user-details", {}, true)
+      .then((res) => {
+        console.log(res);
+        setUserDetails(res.user_info);
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
+
   return (
     <ContainerMarketPlace3>
+      <Modal
+        title={"Edit profile"}
+        visible={visible}
+        onOk={handleOnUpdate}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="dsgg" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            style={{ backgroundColor: "#1d6c32", color: "white" }}
+            key="dad"
+            onClick={handleOnUpdate}
+          >
+            Update
+          </Button>,
+        ]}
+      >
+       
+          <>
+            <ImgCrop rotate>
+              <Upload
+                listType="picture-card"
+                fileList={fileList}
+                onChange={onChange}
+                onPreview={onPreview}
+              >
+                {fileList.length < 1 && "+ Upload"}
+              </Upload>
+            </ImgCrop>
+
+            <Input
+              name={`name`}
+              onChange={(e) => {
+                handleOnChange(e);
+              }}
+              defaultValue={formData?.name}
+              style={{ marginTop: "10px" }}
+              placeholder="Enter your username"
+              prefix={<UserOutlined className="site-form-item-icon" />}
+            />
+
+            <Input
+              name={`email`}
+              onChange={handleOnChange}
+              defaultValue={formData?.email}
+              disabled={userDetails?.email}
+              style={{ marginTop: "10px" }}
+              placeholder="Enter your email"
+              suffix={
+                <a href={`#`}>
+                  <EditOutlined style={{ color: "#1d6c32" }} />
+                </a>
+              }
+              prefix={<MailOutlined className="site-form-item-icon" />}
+            />
+
+            <Input
+              name={`phone`}
+              onChange={handleOnChange}
+              defaultValue={formData?.phone}
+              disabled={userDetails?.phone}
+              style={{ marginTop: "10px" }}
+              placeholder=""
+              prefix={`+880 `}
+              suffix={
+                <a href={`#`}>
+                  <EditOutlined style={{ color: "#1d6c32" }} />
+                </a>
+              }
+            />
+
+            <DatePicker
+              placeholder="Select Birthdate"
+              className="w-100 mt-3"
+              onChange={birthDataOnChange}
+              defaultValue={
+                formData?.date_of_birth
+                  ? moment(formData?.date_of_birth, "YYYY-MM-DD")
+                  : ""
+              }
+              disabled={userDetails?.details?.date_of_birth}
+            />
+
+            <Input.Group compact>
+              <Select
+                style={{ width: "100%", marginTop: "10px" }}
+                onChange={handleChange}
+                defaultValue={formData?.gender}
+              >
+                <Option value="m">Male</Option>
+                <Option value="f">Female</Option>
+                <Option value="o">Other</Option>
+              </Select>
+            </Input.Group>
+          </>
+        
+      </Modal>
       <section className="ps-my-account ps-page--account pt-3">
         <div className="container">
           <div className="row">
@@ -53,7 +260,15 @@ export default function MyAccount() {
                     </h3>
                   </div>
 
-                  <div
+                  {
+                    (!userDetails?.name || !userDetails?.email || !userDetails?.phone || !userDetails?.details?.date_of_birth || !userDetails?.details?.gender) ? <div className="card-body pt-3 pb-3 user-profile">
+                        <div className="oops-content">
+                          <img src={notFound} alt="not Found" />
+                          <h1>OOPS!</h1>
+                          <h2>Your Profile is Incomplete.</h2>
+                          <p>Please <Link onClick={()=>showModal()}>Updata your Profile</Link> </p>
+                        </div>
+                    </div> : <div
                     className="card-body pt-3 pb-3 user-profile"
                     id="pills-tabContent"
                   >
@@ -68,7 +283,7 @@ export default function MyAccount() {
                           {userDetails?.name || "N/A"}
                         </h4>
                         <p className="font-weight-bold">
-                          +880-{userDetails?.phone || "N/A"}
+                          +88-{userDetails?.phone || "N/A"}
                         </p>
                         <p className="font-weight-bold">
                           {userDetails?.email || "N/A"}
@@ -80,6 +295,11 @@ export default function MyAccount() {
                               : "Gender"}
                           </p>
                         )}
+                        {
+                          userDetails?.details?.date_of_birth && <h2>
+                            {moment(userDetails?.date_of_birth).format('ll')}
+                          </h2>
+                        }
                       </div>
                     </div>
 
@@ -172,6 +392,9 @@ export default function MyAccount() {
                       )}
                     </div>
                   </div>
+                  }
+
+                  
                 </div>
               </div>
             </div>

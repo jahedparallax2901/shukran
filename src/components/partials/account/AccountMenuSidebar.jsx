@@ -24,6 +24,7 @@ import {
   Space,
   Form,
   Alert,
+  DatePicker,
 } from "antd";
 import ImgCrop from "antd-img-crop";
 import { EditOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
@@ -31,6 +32,7 @@ import { Option } from "antd/es/mentions";
 import { connect } from "react-redux";
 import { handleClearCart, handleSignOut } from "../../../redux";
 import { handleClearWishlist } from "../../../redux/wishlist/wishlistActions";
+import moment from "moment";
 
 const AccountMenuSidebar = ({
   selectedTab,
@@ -78,7 +80,7 @@ const AccountMenuSidebar = ({
 
   const [userDetails, setUserDetails] = useState();
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState();
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState("Content of the modal");
   const [fileList, setFileList] = useState([]);
@@ -105,7 +107,7 @@ const AccountMenuSidebar = ({
 
   const showModal = () => {
     setVisible(true);
-    setFormData([]);
+    setFormData({});
   };
 
   const handleOk = () => {
@@ -119,7 +121,7 @@ const AccountMenuSidebar = ({
 
   const handleCancel = () => {
     console.log("Clicked cancel button");
-    setFormData([]);
+    setFormData({});
     setFileList([]);
     setVisible(false);
   };
@@ -138,7 +140,9 @@ const AccountMenuSidebar = ({
       ) {
         setErr(true);
         setErrMsg("All the field are required");
-      } else if (formData?.new_password !== formData?.new_password_confirmation) {
+      } else if (
+        formData?.new_password !== formData?.new_password_confirmation
+      ) {
         setErr(true);
         setErrMsg("new password and confirm password does not match");
       } else if (formData?.password?.length < 6) {
@@ -153,14 +157,21 @@ const AccountMenuSidebar = ({
             new_password_confirmation: formData?.new_password_confirmation,
           },
           true
-        ).then((res) => {
-          setFormData({...formData, password: "", new_password: "", new_password_confirmation: ""})
-          setErr(false);
-          setErrMsg("")
-          toast.success(res.data.message);
-        }).catch((err) => {
-          setErrMsg(err.message);
-        });
+        )
+          .then((res) => {
+            setFormData({
+              ...formData,
+              password: "",
+              new_password: "",
+              new_password_confirmation: "",
+            });
+            setErr(false);
+            setErrMsg("");
+            toast.success(res.data.message);
+          })
+          .catch((err) => {
+            setErrMsg(err.message);
+          });
       }
     } else {
       update();
@@ -175,11 +186,20 @@ const AccountMenuSidebar = ({
     });
     processPostRequest("/update-details", data, true)
       .then((res) => {
-        if (res.status) {
+        if (res.status === 200) {
           getData();
           toast.success(res.data.message);
           setVisible(false);
           setConfirmLoading(false);
+          setFormData({
+            name: "",
+            phone: "",
+            email: "",
+            date_of_birth: "",
+            gender: "",
+          });
+        } else {
+          toast.error(res.data.message);
         }
       })
       .catch((err) => {
@@ -216,6 +236,10 @@ const AccountMenuSidebar = ({
     handleClearCart();
   };
 
+  const birthDataOnChange = (date, dateString) => {
+    setFormData({ ...formData, date_of_birth: dateString });
+  };
+
   return (
     <aside className="ps-widget--account-dashboard">
       <div className="ps-widget__header">
@@ -229,13 +253,20 @@ const AccountMenuSidebar = ({
           <p>
             <a href="#">+880-{userDetails?.phone}</a>
           </p>
-          <p style={{ fontSize: "0.7vw" }}>{userDetails?.email}</p>
+          <p className="mb-2">{userDetails?.email}</p>
           <div
             onClick={() => {
               setIsChangePassword(false);
               showModal();
+              setFormData({
+                name: userDetails?.name,
+                email: userDetails?.email,
+                phone: userDetails?.phone,
+                date_of_birth: userDetails?.details?.date_of_birth,
+                gender: userDetails?.details?.gender,
+              });
             }}
-            class="btn btn-secondary mr-2"
+            className="btn btn-secondary mr-2"
             href=""
           >
             Edit
@@ -321,7 +352,7 @@ const AccountMenuSidebar = ({
               onChange={(e) => {
                 handleOnChange(e);
               }}
-              defaultValue={userDetails?.name}
+              defaultValue={formData?.name}
               style={{ marginTop: "10px" }}
               placeholder="Enter your username"
               prefix={<UserOutlined className="site-form-item-icon" />}
@@ -330,8 +361,8 @@ const AccountMenuSidebar = ({
             <Input
               name={`email`}
               onChange={handleOnChange}
-              defaultValue={userDetails?.email}
-              disabled={true}
+              defaultValue={formData?.email}
+              disabled={userDetails?.email}
               style={{ marginTop: "10px" }}
               placeholder="Enter your email"
               suffix={
@@ -345,8 +376,8 @@ const AccountMenuSidebar = ({
             <Input
               name={`phone`}
               onChange={handleOnChange}
-              defaultValue={userDetails?.phone}
-              disabled={true}
+              defaultValue={formData?.phone}
+              disabled={userDetails?.phone}
               style={{ marginTop: "10px" }}
               placeholder=""
               prefix={`+880 `}
@@ -357,11 +388,23 @@ const AccountMenuSidebar = ({
               }
             />
 
+            <DatePicker
+              placeholder="Select Birthdate"
+              className="w-100 mt-3"
+              onChange={birthDataOnChange}
+              defaultValue={
+                formData?.date_of_birth
+                  ? moment(formData?.date_of_birth, "YYYY-MM-DD")
+                  : ""
+              }
+              disabled={userDetails?.details?.date_of_birth}
+            />
+
             <Input.Group compact>
               <Select
                 style={{ width: "100%", marginTop: "10px" }}
                 onChange={handleChange}
-                defaultValue={userDetails?.details?.gender}
+                defaultValue={formData?.gender}
               >
                 <Option value="m">Male</Option>
                 <Option value="f">Female</Option>

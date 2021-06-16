@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { FiEye } from 'react-icons/fi';
-import { Modal } from "antd";
+import { Modal, Tooltip } from "antd";
 import { GrClose } from "react-icons/gr";
 import ProductDetailQuickView from "../../product/ProductDetailQuickView";
 import {
@@ -192,16 +192,47 @@ const ProductSimple = ({ product, wishlist, getWishlistItems, handleShowAuthModa
       </div>
       <div className="ps-product__container">
         <div className="ps-product__content">
+          <Tooltip title={product?.product?.name || product.name}>
           <Link to={`/product/${product?.product_id || product?.id}`}>
-            <a className="ps-product__title">
+            <a className="ps-product__title text-center font-weight-bolder">
               {product?.product?.name || product.name}
             </a>
           </Link>
-          <div className="ps-product__rating">
-            {/* <Rating />
-                        <span>{product.ratingCount}</span> */}
-          </div>
-          {StrapiProductPrice(product)}
+          </Tooltip>
+          
+          {/* <div className="ps-product__rating">
+            <Rating />
+                        <span>{product.ratingCount}</span>
+          </div> */}
+          {/* {StrapiProductPrice(product)} */}
+
+          {
+            (product?.product?.sale_price > 0 || product?.sale_price > 0) ?
+              
+                <>
+                <p className="ps-product__price sale text-center m-0 font-weight-bolder">
+                  ৳ {product?.product?.sale_price || product?.sale_price}
+                  
+                </p>
+                <p className="text-center font-weight-bold">
+                <del className="font-weight-bold text-danger">
+                  ৳ {product?.product?.price || product?.price}
+                  </del>
+                </p>
+               
+                </>
+                
+            
+            : (
+                <p className="ps-product__price text-center font-weight-bolder">
+                  {product?.product?.price ? (
+                    <>৳ {product.product.price}</>
+                  ) : (
+                    <>৳ {0}</>
+                  )}
+                </p>
+              )
+          }
         </div>
       </div>
       <div className="product-add-to-cart-hover" onClick={handleProductAddToCart}>

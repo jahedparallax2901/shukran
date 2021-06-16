@@ -142,7 +142,7 @@ const SearchItems = ({
       </div>
       <div className="ps-shopping__content mt-2">{productItemsView}</div>
       <div className="ps-shopping__footer text-center">
-        <div className="ps-pagination">\
+        <div className="ps-pagination">
         {console.log("pagination", pagination)}
           <Pagination
             total={pagination?.total || 1}

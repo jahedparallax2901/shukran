@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Slider from "react-slick";
 import { Container } from "react-bootstrap";
 import { FcShipped, FcShop, FcDam } from "react-icons/fc";
@@ -30,7 +30,7 @@ class TopBanner extends Component {
           categories: res.category,
           top_sliders_box: res.top_sliders_box,
           top_sliders: res.top_sliders,
-          top_image_long_images: res.top_image_long_images,
+          top_image_long_images: [...res.top_image_long_images, ...res.top_image_long_images],
           isLoading: false,
         });
       })
@@ -55,6 +55,17 @@ class TopBanner extends Component {
         </div>
       )
     };
+
+    const longImageSliderSettings = {
+      dots: false,
+      arrows: false,
+      infinite: true,
+      speed: 1000,
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      autoplay: true,
+    };
+
     const sliderBoxCarouselSettings = {
       dots: false,
       arrows: false,
@@ -132,11 +143,17 @@ class TopBanner extends Component {
                 <div className="d-block">
                   <div className="ps-section__banner-box">
                     <div className="banner-add">
+                      <Slider {...longImageSliderSettings}>
                       {top_image_long_images?.map((item) => (
-                        <div key={item?.id} className="banner-add-item">
+                        <div className="item">
+<div key={item?.id} className="banner-add-item">
                           <img src={item.image} alt="bottom_slider" />
                         </div>
+                        </div>
+                        
                       ))}
+                      </Slider>
+                      
                     </div>
                   </div>
                 </div>
@@ -159,7 +176,7 @@ class TopBanner extends Component {
           <Container>
             <div className="ps-home-channer-innner">
               <div className="single-channer-item">
-                <a href="#" className="single-channer-item-link">
+                <a className="single-channer-item-link">
                   <div className="card-channels-icon align-left">
                     <div className="card-channels-img-wrap">
                       <FcShipped />
@@ -174,7 +191,7 @@ class TopBanner extends Component {
                 </a>
               </div>
               <div className="single-channer-item">
-                <a href="#" className="single-channer-item-link">
+                <a className="single-channer-item-link">
                   <div className="card-channels-icon align-left">
                     <div className="card-channels-img-wrap">
                       <FcShop />
@@ -189,7 +206,7 @@ class TopBanner extends Component {
                 </a>
               </div>
               <div className="single-channer-item">
-                <a href="#" className="single-channer-item-link">
+                <a className="single-channer-item-link">
                   <div className="card-channels-icon align-left">
                     <div className="card-channels-img-wrap">
                       <FcDam />
@@ -203,8 +220,10 @@ class TopBanner extends Component {
                   </div>
                 </a>
               </div>
-              <div className="single-channer-item">
-                <a href="#" className="single-channer-item-link">
+              <div className="single-channer-item" onClick={()=>{
+                this.props.history.push("/search?source=digital");
+              }}>
+                <a className="single-channer-item-link">
                   <div className="card-channels-icon align-left">
                     <div className="card-channels-img-wrap">
                       <GoDeviceMobile />
@@ -219,7 +238,7 @@ class TopBanner extends Component {
                 </a>
               </div>
               <div className="single-channer-item">
-                <a href="#" className="single-channer-item-link">
+                <a className="single-channer-item-link">
                   <div className="card-channels-icon align-left">
                     <div className="card-channels-img-wrap">
                       <GiShurikenAperture />
@@ -241,4 +260,4 @@ class TopBanner extends Component {
   }
 }
 
-export default TopBanner;
+export default withRouter(TopBanner);
