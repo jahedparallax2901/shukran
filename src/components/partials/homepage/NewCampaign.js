@@ -159,7 +159,7 @@ const NewCampaign = () => {
                 ) : (
                   <div>
                     <hr />
-                    <h2 className="text-warning">Campaign Expired</h2>
+                    <h4 className="text-warning">Campaign Expired</h4>
                   </div>
                 )}
               </div>
