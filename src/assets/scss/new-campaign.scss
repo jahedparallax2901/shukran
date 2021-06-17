@@ -1,0 +1,228 @@
+.campaign-section-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .slick-next::before,
+  .slick-prev::before {
+    display: none;
+  }
+
+  .slick-arrow {
+    background-color: white;
+    border: 0.5px solid rgb(214, 211, 211);
+    height: 80px;
+    width: 50px;
+    z-index: 100;
+    svg {
+      color: red;
+      font-size: 30px;
+      font-weight: 700;
+      position: absolute;
+      top: 23px;
+      left: 10px;
+    }
+  }
+  .campaign-container {
+    background-color: white;
+    padding: 10px;
+    height: 440px;
+    width: 550px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 1500px) {
+      width: 480px;
+    }
+
+    @media screen and (max-width: 1199px) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      height: auto;
+      margin-bottom: 20px;
+      .product-cotainer {
+        .image-container,
+        .product-info {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p {
+            text-align: center;
+          }
+        }
+      }
+    }
+
+    .product-cotainer {
+      padding: 10px;
+      height: 100%;
+      .image-container {
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          @media screen and (max-width: 1199px) {
+            height: 350px;
+            width: 350px;
+          }
+          @media screen and (max-width: 768px) {
+            height: 250px;
+            width: 250px;
+          }
+        }
+      }
+
+      .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: 300px;
+        max-height: 355px;
+        .product-title {
+          margin: 0;
+          display: block;
+          padding: 0 0 5px;
+          font-size: 15px;
+          line-height: 1.2em;
+          color: #000;
+          --max-lines: 2;
+          overflow: hidden;
+          padding-right: 1rem;
+          max-height: 50px;
+          overflow: hidden;
+          margin-bottom: 5px;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+        .price {
+          color: red;
+          font-weight: 700;
+          .sale-price {
+            font-size: 1.4rem;
+            color: gray;
+            margin-left: 5px;
+          }
+        }
+
+        .timer {
+          color: #3b83f7;
+          font-size: 1.6rem;
+          display: flex;
+          width: 90%;
+          @media screen and (max-width: 1500px) {
+            width: 100%;
+          }
+
+          @media screen and (max-width: 1199px) {
+            width: 50%;
+          }
+          @media screen and (max-width: 991px) {
+            width: 70%;
+          }
+          justify-content: space-between;
+          align-items: center;
+          font-weight: 700;
+          .block {
+            font-weight: 700;
+            border: 1px solid rgb(219, 216, 216);
+            padding: 6px 10px;
+            background-color: #f7f8fa;
+            border-radius: 3px;
+          }
+
+          @media screen and (max-width: 1250px) {
+            .block {
+              padding: 3px 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .top-products {
+    background-color: white;
+    height: 100%;
+    padding: 10px;
+    width: 790px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @media screen and (max-width: 1500px) {
+      width: 693px;
+    }
+
+    @media screen and (max-width: 1199px) {
+      width: 100%;
+    }
+
+    .product-container {
+      padding: 20px 10px;
+    }
+  }
+}
+
+.campaign-actions {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  button {
+    border: 1px solid rgb(175, 170, 170);
+    background-color: white;
+    color: rgb(110, 109, 109);
+    font-size: 1rem;
+    margin-right: 10px;
+    padding: 5px 10px;
+  }
+}
+
+.product-campaign {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 360px;
+  padding: 10px;
+  border: 0.5px solid rgb(245, 242, 242);
+  max-width: 240px;
+  .image-container {
+    height: 180px;
+    width: 100%;
+    overflow: hidden;
+    img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    .product-title {
+        max-height: 38px;
+          overflow: hidden;
+          margin-bottom: 5px;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+    }
+    .price {
+      color: red;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.block-title{
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 70px;
+}
