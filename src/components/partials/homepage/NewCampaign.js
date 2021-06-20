@@ -22,11 +22,20 @@ const NewCampaign = () => {
     infinite: true,
     speed: 500,
     autoplay: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 2,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
+      {
+        breakpoint: 1501,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
       {
         breakpoint: 1201,
         settings: {

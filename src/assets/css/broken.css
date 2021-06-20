@@ -56,6 +56,10 @@
     height: 340px;
     display: inline-block;
     object-fit: fill;
+    margin-bottom: 15px;
+    -webkit-box-shadow: 0 6px 4px -4px gray;
+  -moz-box-shadow: 0 6px 4px -4px gray;
+  box-shadow: 0 3px 4px -4px gray;
 }
 @media screen and (min-width: 1501px) {
   #homepage-5 .ps-home-banner .ps-section__center img{

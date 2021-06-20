@@ -24,18 +24,15 @@ const CategoryProducts = ({ cat }) => {
     productItemsView = <p>No product found.</p>;
   }
 
-
   return (
     <div>
       <div className="category-top-banner">
         <img src={cat?.top_banners?.image} alt="category_top_banner" />
       </div>
-        <div className="ps-block--products-of-category">
-      <div className="ps-block__categories">
-        <h3>
-          {category?.name || "Not exist"}
-        </h3>
-        {/* <ul>
+      <div className="ps-block--products-of-category">
+        {/* <div className="ps-block__categories">
+          <h3>{category?.name || "Not exist"}</h3> */}
+          {/* <ul>
           <li>
             <Link to="/shop/best-seller">
               <a>Best Seller</a>
@@ -77,29 +74,35 @@ const CategoryProducts = ({ cat }) => {
             </Link>
           </li>
         </ul> */}
-        <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">
-          View All
-        </Link>
+          {/* <Link
+            to={`/search?category_id=${category?.id}`}
+            className="ps-block__more-link"
+          >
+            View All
+          </Link>
+        </div> */}
+        <div className="ps-block__slider">
+          <div className="content">
+          <h3>{category?.name || "Not exist"}</h3>
+          <Link
+            to={`/search?category_id=${category?.id}`}
+            className="ps-block__more-link"
+          >
+            View All
+          </Link>
+          </div>
+          <Slider {...carouselSingle} className="ps-carousel">
+            {sliders.map((item) => (
+              <Link key={item?.id} to={`/search?category_id=${category?.id}`}>
+                <img src={item.image} alt="shukran" />
+              </Link>
+            ))}
+          </Slider>
+         
+        </div>
+        <div className="ps-block__product-box">{productItemsView}</div>
       </div>
-      <div className="ps-block__slider">
-        <h3>
-          {category?.name || "Not exist"}
-        </h3>
-        <Slider {...carouselSingle} className="ps-carousel">
-          {sliders.map((item) => (
-            <Link key={item?.id} to={`/search?category_id=${category?.id}`}>
-              <img src={item.image} alt="shukran" />
-            </Link>
-          ))}
-        </Slider>
-        <Link to={`/search?category_id=${category?.id}`} className="ps-block__more-link">
-          View All
-        </Link>
-      </div>
-      <div className="ps-block__product-box">{productItemsView}</div>
     </div>
-    </div>
-    
   );
 };
 

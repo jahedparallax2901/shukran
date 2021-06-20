@@ -7,14 +7,32 @@
     display: none;
   }
 
+  .slick-arrow {
+    background-color: white;
+    border: 0.5px solid rgb(214, 211, 211);
+    height: 80px;
+    width: 50px;
+    z-index: 100;
+    svg {
+      color: red;
+      font-size: 30px;
+      font-weight: 700;
+      position: absolute;
+      top: 23px;
+      left: 10px;
+    }
+  }
+
+
   
   .campaign-container {
     background-color: white;
     padding: 10px;
     height: 440px;
-    width: 550px;
+    width: 620px;
     margin-top: 50px;
     margin-bottom: 50px;
+    font-size: 15px;
 
     .slick-arrow {
         background-color: white;
@@ -34,7 +52,7 @@
       }
 
     @media screen and (max-width: 1500px) {
-      width: 480px;
+      width: 483px;
     }
 
     @media screen and (max-width: 1199px) {
@@ -64,9 +82,9 @@
       
       .image-container {
         img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
+          height: 350px;
+          width: 350px;
+          object-fit: fill;
           @media screen and (max-width: 1199px) {
             height: 350px;
             width: 350px;
@@ -152,25 +170,9 @@
     background-color: white;
     height: 100%;
     padding: 10px;
-    width: 790px;
+    width: 1006px; 
     margin-top: 50px;
     margin-bottom: 50px;
-
-    .slick-arrow {
-        background-color: white;
-        border: 0.5px solid rgb(214, 211, 211);
-        height: 80px;
-        width: 50px;
-        z-index: 100;
-        svg {
-          color: red;
-          font-size: 30px;
-          font-weight: 700;
-          position: absolute;
-          top: 23px;
-          left: 10px;
-        }
-      }
 
     @media screen and (max-width: 1500px) {
       width: 693px;
@@ -205,10 +207,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 360px;
+  height: 354px;
   padding: 10px;
   border: 0.5px solid rgb(245, 242, 242);
-  max-width: 240px;
+  max-width: 230px;
   .image-container {
     height: 180px;
     width: 100%;

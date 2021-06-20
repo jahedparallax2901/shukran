@@ -810,8 +810,20 @@
     }
 
     .ps-block__slider {
-        max-width: 24%;
+        max-width: 20%;
         position: relative;
+
+        .content{
+                /* z-index: 525; */
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(253, 244, 244, 0.5));
+                height: 100%;
+                /* opacity: 1; */
+                position: absolute;
+                 z-index: 3; 
+                /* top: -100%; */
+                left: 0;
+                right: 0;
+        }
         @media screen and (max-width: 1080px) {
             max-width: 25%;
         }
@@ -819,6 +831,8 @@
             display: block;
             img {
                 width: 100%;
+                opacity: .8;
+                z-index: 2;
             }
         }
         h3{
@@ -826,8 +840,9 @@
             top: 25px;
             left: 40px;
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 500;
             z-index: 99;
+            color: white;
         }
         .ps-block__more-link{
             position: absolute;
@@ -859,9 +874,9 @@
         }
         @media screen and (min-width: 1501px){
             > * {
-                max-width: 24.13%;
+                max-width: 19.13%;
                 width: 100%;
-                flex-basis: 24.13%;
+                flex-basis: 19.13%;
             }
         }
         @media screen and (max-width: 1080px){

@@ -11,7 +11,7 @@ import addBanner1 from "../../../assets/img/home-banner1.png";
 import addBanner2 from "../../../assets/img/home-banner2.jpeg";
 import { processGetRequest } from "../../../services/baseServices";
 import Menu from "../../elements/menu/Menu";
-import '../../../assets/scss/custom-slick.scss'
+import "../../../assets/scss/custom-slick.scss";
 
 class TopBanner extends Component {
   state = {
@@ -30,7 +30,10 @@ class TopBanner extends Component {
           categories: res.category,
           top_sliders_box: res.top_sliders_box,
           top_sliders: res.top_sliders,
-          top_image_long_images: [...res.top_image_long_images, ...res.top_image_long_images],
+          top_image_long_images: [
+            ...res.top_image_long_images,
+            ...res.top_image_long_images,
+          ],
           isLoading: false,
         });
       })
@@ -48,12 +51,12 @@ class TopBanner extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      appendDots: dots => <ul>{dots}</ul>,
-      customPaging: i => (
+      appendDots: (dots) => <ul>{dots}</ul>,
+      customPaging: (i) => (
         <div className="ft-slick__dots--custom">
           <div className="active-slide" />
         </div>
-      )
+      ),
     };
 
     const longImageSliderSettings = {
@@ -61,8 +64,8 @@ class TopBanner extends Component {
       arrows: false,
       infinite: true,
       speed: 1000,
-      slidesToShow: 2,
-      slidesToScroll: 2,
+      slidesToShow: 1,
+      slidesToScroll: 1,
       autoplay: true,
     };
 
@@ -73,7 +76,7 @@ class TopBanner extends Component {
       speed: 1000,
       slidesToShow: 2,
       slidesToScroll: 1,
-      autoplay: true
+      autoplay: true,
     };
 
     const { categories, top_sliders, top_sliders_box, top_image_long_images } =
@@ -102,6 +105,14 @@ class TopBanner extends Component {
         </>
       );
     }
+
+    let topLongSliders = [];
+    for (let i= 0; i<top_image_long_images.length; i+=2){
+      const tempArr = [top_image_long_images[i], top_image_long_images[i+1]]
+      topLongSliders.push(tempArr);
+    }
+
+    console.log("Top long sliders",topLongSliders)
 
     return (
       <>
@@ -144,16 +155,20 @@ class TopBanner extends Component {
                   <div className="ps-section__banner-box">
                     <div className="banner-add">
                       <Slider {...longImageSliderSettings}>
-                      {top_image_long_images?.map((item) => (
-                        <div className="item">
-<div key={item?.id} className="banner-add-item">
-                          <img src={item.image} alt="bottom_slider" />
-                        </div>
-                        </div>
-                        
-                      ))}
+                        {topLongSliders?.map((item) => (
+                          <div className="item d-flex">
+                            {
+                                item.map(inner_item=>{
+                                  return <div key={inner_item?.id} className="banner-add-item">
+                              
+                              <img src={inner_item.image} alt="bottom_slider" />
+                            </div>
+                                })
+                              }
+                            
+                          </div>
+                        ))}
                       </Slider>
-                      
                     </div>
                   </div>
                 </div>
@@ -220,9 +235,12 @@ class TopBanner extends Component {
                   </div>
                 </a>
               </div>
-              <div className="single-channer-item" onClick={()=>{
-                this.props.history.push("/search?source=digital");
-              }}>
+              <div
+                className="single-channer-item"
+                onClick={() => {
+                  this.props.history.push("/search?source=digital");
+                }}
+              >
                 <a className="single-channer-item-link">
                   <div className="card-channels-icon align-left">
                     <div className="card-channels-img-wrap">
