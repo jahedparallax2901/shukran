@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row } from "react-bootstrap";
 import { BsChevronRight } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { MdReplay } from "react-icons/md";
@@ -15,6 +15,9 @@ import Rating from "../../elements/Rating";
 import CampaignProductActions from "../../product/module/CampaignProductActions";
 import ProductCampaign from "../../product/ProductCampaign";
 import parse from 'html-react-parser'
+import { GrClose } from "react-icons/gr";
+import ProductDetailQuickView from "../../product/ProductDetailQuickView";
+import NewCampaignProduct from "../../product/NewCampaignProduct";
 
 const NewCampaign = () => {
   const carouselStandard = {
@@ -75,6 +78,7 @@ const NewCampaign = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          centerMode: true
         },
       },
       {
@@ -82,6 +86,7 @@ const NewCampaign = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          centerMode: true
         },
       },
     ],
@@ -127,54 +132,7 @@ const NewCampaign = () => {
   if (!loading) {
     if (campaign_products && campaign_products.length > 0) {
       const slideItems = campaign_products.map((item) => (
-        <div
-          className="product-cotainer"
-          title={item?.product?.name}
-          onClick={() => {
-            history.push(`/product/${item.product_id}`);
-          }}
-        >
-          <Row>
-            <Col md={6} sm={12}>
-              <div className="image-container">
-                <img src={item?.product?.single_image} alt="" />
-              </div>
-            </Col>
-            <Col md={6} sm={12}>
-              <div className="product-info">
-                <h3 className="product-title">
-                  <Link
-                    className="normal-link"
-                    to={`/product/${item.product_id}`}
-                  >
-                    {item?.product?.name}
-                  </Link>
-                </h3>
-                <Rating count={4} />
-                {/* <p>{(item?.product?.description)}</p> */}
-                <h3 className="price">
-                  {" "}
-                  &#2547;{item?.product?.price}{" "}
-                  <del className="sale-price">
-                    &#2547;{item?.product?.sale_price}
-                  </del>{" "}
-                </h3>
-                <CampaignProductActions />
-                {moment(item?.end_date) > moment() ? (
-                  <CountDownSimple
-                    timeTillDate={item?.end_date}
-                    timeFormat="MM DD YYYY, h:mm a"
-                  />
-                ) : (
-                  <div>
-                    <hr />
-                    <h4 className="text-warning">Campaign Expired</h4>
-                  </div>
-                )}
-              </div>
-            </Col>
-          </Row>
-        </div>
+        <NewCampaignProduct product={item}/>
       ));
       const relatedItems =
         top_products?.length > 0 &&
@@ -211,6 +169,8 @@ const NewCampaign = () => {
         <h1 className="block-title">Top 20 Products</h1>
         <div className="product-container">{relatedView}</div>
       </div>
+
+      
     </div>
   );
 };

@@ -6,21 +6,23 @@ import CampaignProductActions from './module/CampaignProductActions'
 const ProductCampaign = ({product}) => {
     const history = useHistory();
     return (
-        <div className="product-campaign" onClick={()=>{
-            history.push(`/product/${product?.product_id}`)
-        }}>
+        <div className="product-campaign" >
             <div className="image-container">
-            <img src={product?.product?.single_image} alt="shukran" />
+            <img className="cursor-pointer" src={product?.product?.single_image} alt="shukran" onClick={()=>{
+            history.push(`/product/${product?.product_id}`)
+        }}/>
             </div>
             <div className="product-info">
-                <h4 className="product-title">{product?.product?.name}</h4>
+                <h4 className="product-title cursor-pointer" onClick={()=>{
+            history.push(`/product/${product?.product_id}`)
+        }}>{product?.product?.name}</h4>
                 <Rating count={4}/>
                 <span className="price">
                 &#2547;{product?.product?.sale_price}
                 </span>
             </div>
             <div className="d-flex justify-content-center">
-                <CampaignProductActions />
+                <CampaignProductActions product={product?.product}/>
                 </div>
         </div>
     )

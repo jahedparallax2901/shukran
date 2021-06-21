@@ -5,6 +5,8 @@ import NextArrow from "../../../elements/carousel/NextArrow";
 import PrevArrow from "../../../elements/carousel/PrevArrow";
 import { clothingAndApparelProducts } from "../../../../temp-data/homeData";
 import ReactImageMagnify from "react-image-magnify";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 const ThumbnailDefault = ({ product, vertical = true }) => {
   const galleryCarousel = useRef(null);
@@ -87,40 +89,41 @@ const ThumbnailDefault = ({ product, vertical = true }) => {
       </div>
     ));
     galleryImagesView = productImages.map((item, index) => (
-      <div className="item" key={item}>
+      <InnerImageZoom src={item} zoomScale={1.5} zoomType={"hover"} hideHint={true}/>
+//       <div className="item" key={item}>
         
-        <a href="#" onClick={(e) => handleOpenLightbox(e, index)}>
-        {/* <ReactImageMagnify {...{
-    smallImage: {
-        alt: 'Wristwatch by Ted Baker London',
-        isFluidWidth: true,
-        src: item,
-    },
-    largeImage: {
-        src: item,
-        alt: "error",
-        width: 1200,
-        height: 1200
-    },
-    isHintEnabled: true,
-     enlargedImageContainerDimensions: {
-      width: '100%',
-      height: '100%'
-    },
+//         <a href="#" onClick={(e) => handleOpenLightbox(e, index)}>
+//         <ReactImageMagnify {...{
+//     smallImage: {
+//         alt: 'Wristwatch by Ted Baker London',
+//         isFluidWidth: true,
+//         src: item,
+//     },
+//     largeImage: {
+//         src: item,
+//         alt: "error",
+//         width: 1200,
+//         height: 1200
+//     },
+//     isHintEnabled: true,
+//      enlargedImageContainerDimensions: {
+//       width: '100%',
+//       height: '100%'
+//     },
     
-    enlargedImageContainerStyle:{
-      height: '100%',
-      width: '100%',
-      zIndex: '1000'
-    },
-    enlargedImageStyle:{
-      height: '300%',
-      width: '300%'
-    }
-}} /> */}
-          <img src={item} alt={item} />
-        </a>
-      </div>
+//     enlargedImageContainerStyle:{
+//       height: '100%',
+//       width: '100%',
+//       zIndex: '1000'
+//     },
+//     enlargedImageStyle:{
+//       height: '300%',
+//       width: '300%'
+//     }
+// }} />
+//           <img src={item} alt={item} />
+//         </a>
+//       </div>
     ));
   }
 
