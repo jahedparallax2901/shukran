@@ -10,9 +10,7 @@ const NextArrow = (props) => {
             {icon}
         </i>
       ) : (
-        <i className="text-secondary bg-primary">
           <BsChevronRight />
-        </i>
       )}
     </a>
   );

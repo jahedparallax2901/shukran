@@ -158,3 +158,123 @@
     margin-bottom: 50px;
   }
 }
+
+// Homepage all categories section
+.home-categories-body{
+  .slick-next::before,
+  .slick-prev::before {
+    display: none;
+  }
+
+    .slick-arrow {
+        
+        width: 40px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+        z-index: 100;
+        background-color: transparent;
+        border: none;
+        top: 70px;
+        
+        
+        &:hover {
+            background-color: white;
+            border: 0.5px solid rgb(214, 211, 211);
+            svg {
+                color: red;
+                font-size: 30px;
+                font-weight: 700;
+                position: absolute;
+                top: 15px;
+                left: 7px;
+            }
+        }
+        &.slick-prev {
+            left: 0;
+            border-radius: 5px 0px 0px 5px;
+        }
+
+        &.slick-next {
+            right: 0;
+            border-radius: 0px 5px 5px 0px;
+            &::before{
+                margin-left: 15px;
+            }
+        }
+    }
+
+    .slick-dots {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        list-style-type: none;
+        text-align: center;
+        > li {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: top;
+            button {
+                display: block;
+                vertical-align: top;
+                padding: 0;
+                font-size: 0;
+                border-radius: 0;
+                border: none;
+                width: 10px;
+                height: 10px;
+                background-color: rgba(#000, 0.3);
+                border-radius: 50%;
+
+                &::before{
+                    display: none;
+                }
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+            &.slick-active {
+                button {
+                    background-color: white;
+                }
+            }
+        }
+    }
+
+    &.outside {
+        @media screen and (min-width: 1366px) {
+            .slick-arrow {
+                &.slick-prev {
+                    left: -30px;
+                }
+
+                &.slick-next {
+                    right: -30px;
+                }
+            }
+        }
+
+        @media screen and (min-width: 1440px) {
+            .slick-arrow {
+                &.slick-prev {
+                    left: -30px;
+                }
+
+                &.slick-next {
+                    right: -30px;
+                }
+            }
+        }
+    }
+
+    &.blur {
+        .slick-arrow {
+            background-color: rgba(#ccc, .5);
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+}
