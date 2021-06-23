@@ -15,6 +15,7 @@
   margin: 0px auto 30px auto;
   border-radius: 5px;
 }
+
 @media screen and (max-width: 412px) {
   #shop-now-home3 .ps-section__content .ps-block--category {
     height: 130px;

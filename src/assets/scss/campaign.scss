@@ -1,0 +1,52 @@
+.campaign-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .single-campaign {
+    padding: 10px;
+
+    &:hover{
+        .overlay{
+            visibility: visible;
+            background-color: rgba(0, 0, 0, 0.685);
+        }
+      }
+
+    .overlay {
+      height: 250px;
+      width: 250px;
+      position: absolute;
+      visibility: hidden;
+      z-index: 10;
+      transition: background-color .5s ease-in-out;
+      display: flex;
+      flex-direction:column;
+      justify-content: center;
+      align-items: center;
+
+      h3{
+          font-size: 2rem;
+          color: white;
+          font-weight: bold;
+          text-align: center;
+      }
+
+      p{
+          text-align: center;
+          color: white;
+      }
+    }
+    .campaign-content {
+      height: 250px;
+      width: 250px;
+      border: 1px solid black;
+      z-index: 5;
+
+      img {
+        height: 250px;
+        width: 250px;
+        object-fit: cover;
+      }
+    }
+  }
+}

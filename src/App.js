@@ -15,6 +15,7 @@ import MyOrders from "./pages/account/MyOrders";
 import MyWishlist from "./pages/account/MyWishlist";
 import ShippingAddress from "./pages/account/ShippingAddress";
 import Campaign from "./pages/Campaign";
+import Campaigns from "./pages/campaign/Campaigns";
 import Checkout from "./pages/Checkout";
 import DigitalSheba from "./pages/DigitalSheba";
 import Home from "./pages/Home";
@@ -131,8 +132,12 @@ function App() {
             <Invoice />
           </Route>
 
-          <Route onUpdate={() => window.scrollTo(0, 0)} path="/campaign">
+          {/* <Route onUpdate={() => window.scrollTo(0, 0)} path="/campaign">
             <Campaign />
+          </Route> */}
+
+          <Route onUpdate={() => window.scrollTo(0, 0)} path="/campaign">
+            <Campaigns />
           </Route>
 
           <Route

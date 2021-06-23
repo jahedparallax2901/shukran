@@ -192,7 +192,7 @@ class TopBanner extends Component {
             <div className="ps-home-channer-innner">
               <div className="single-channer-item">
                 <a className="single-channer-item-link">
-                  <div className="card-channels-icon align-left">
+                  <div className="card-channels-icon align-left ml-auto">
                     <div className="card-channels-img-wrap">
                       <FcShipped />
                     </div>
@@ -207,7 +207,7 @@ class TopBanner extends Component {
               </div>
               <div className="single-channer-item">
                 <a className="single-channer-item-link">
-                  <div className="card-channels-icon align-left">
+                  <div className="card-channels-icon align-left ml-auto">
                     <div className="card-channels-img-wrap">
                       <FcShop />
                     </div>
@@ -222,7 +222,7 @@ class TopBanner extends Component {
               </div>
               <div className="single-channer-item">
                 <a className="single-channer-item-link">
-                  <div className="card-channels-icon align-left">
+                  <div className="card-channels-icon align-left ml-auto">
                     <div className="card-channels-img-wrap">
                       <FcDam />
                     </div>
@@ -242,7 +242,7 @@ class TopBanner extends Component {
                 }}
               >
                 <a className="single-channer-item-link">
-                  <div className="card-channels-icon align-left">
+                  <div className="card-channels-icon align-left ml-auto">
                     <div className="card-channels-img-wrap">
                       <GoDeviceMobile />
                     </div>
@@ -257,7 +257,7 @@ class TopBanner extends Component {
               </div>
               <div className="single-channer-item">
                 <a className="single-channer-item-link">
-                  <div className="card-channels-icon align-left">
+                  <div className="card-channels-icon align-left ml-auto">
                     <div className="card-channels-img-wrap">
                       <GiShurikenAperture />
                     </div>

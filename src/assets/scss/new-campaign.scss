@@ -10,16 +10,26 @@
   .slick-arrow {
     background-color: white;
     border: 0.5px solid rgb(214, 211, 211);
-    height: 80px;
-    width: 50px;
+    height: 50px;
+    width: 30px;
     z-index: 100;
     svg {
       color: red;
-      font-size: 30px;
+      font-size: 25px;
       font-weight: 700;
       position: absolute;
-      top: 23px;
-      left: 10px;
+      top: 12px;
+      
+    }
+    &.slick-next{
+      svg{
+        left: 4px;
+      }
+    }
+    &.slick-prev{
+      svg{
+        left: 0px;
+      }
     }
   }
 
@@ -37,17 +47,27 @@
     .slick-arrow {
         background-color: white;
         border: 0.5px solid rgb(214, 211, 211);
-        height: 80px;
-        width: 50px;
+        height: 50px;
+        width: 30px;
         z-index: 100;
-        top: 200px;
+        top: 197px;
         svg {
           color: red;
-          font-size: 30px;
+          font-size: 25px;
           font-weight: 700;
           position: absolute;
-          top: 23px;
-          left: 10px;
+          top: 12px;
+          
+        }
+        &.slick-next{
+          svg{
+            left: 4px;
+          }
+        }
+        &.slick-prev{
+          svg{
+            left: 0px;
+          }
         }
       }
 
@@ -106,13 +126,13 @@
           margin: 0;
           display: block;
           padding: 0 0 5px;
-          font-size: 15px;
-          line-height: 1.2em;
+          font-size: 22px;
+          line-height: 1.3em;
           color: #000;
           --max-lines: 2;
           overflow: hidden;
           padding-right: 1rem;
-          max-height: 50px;
+          max-height: 80px;
           overflow: hidden;
           margin-bottom: 5px;
           text-overflow: ellipsis;
@@ -244,7 +264,7 @@
     align-items: center;
     margin-top: 10px;
     .product-title {
-        max-height: 38px;
+        max-height: 42px;
           overflow: hidden;
           margin-bottom: 5px;
           text-overflow: ellipsis;
